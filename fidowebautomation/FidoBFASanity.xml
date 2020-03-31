@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Fido Sanity BFA" parallel="none" thread-count="10">
+	<parameter name="strBrowser" value="chrome"/>
+	<parameter name="strLanguage" value="en"/>
+	<parameter name="strGroupName" value=""/>
+	<listeners>
+		<listener
+			class-name="ca.fido.buyflow.test.listeners.TestListener" />
+		<listener
+			class-name="ca.fido.buyflow.test.listeners.AnnotationTransformer" />
+	</listeners>
+	
+	<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="true">
+	<classes>
+			<class
+				name="ca.fido.test.tests.buyflow.Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test">
+			</class>
+		</classes>
+	</test>
+	
+	<test name="TC04- Fido- Validate user able to perform HUP with PPC using Existing Finance acct" enabled="true">
+	<classes>
+			<class
+				name="ca.fido.test.tests.buyflow.Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test">
+			</class>
+		</classes>
+	</test>
+	
+	<test name="TC06- Fido- Validate user able to perform PPC using existing finance acct" enabled="true">
+	<classes>
+			<class
+				name="ca.fido.test.tests.buyflow.Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test">
+			</class>
+		</classes>
+	</test>
+
+</suite>
