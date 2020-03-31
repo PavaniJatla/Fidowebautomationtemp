@@ -1,0 +1,16 @@
+# Config
+---
+fidoURL: https://www.qa05.fido.ca
+browser: chrome
+language: en
+cookieUserName: orphanRegRog@mailinator.com
+cookieUserPassword: rogers123
+ensLoginEmail: Serv_DigiAuto@rci.rogers.ca
+ensPassword: Asdf@123
+ensURL01: http://ensqa1.rogers.com/ENS/notificationsViewer.action
+ensURL02: http://ensqa3.rogers.com/ENS/notificationsViewer.action
+ensURL06: http://ensqa4.rogers.com/ENS/notificationsViewer.action
+sauceUser: Mirza.Kamran
+sauceKey: dacb41bf-f530-437e-8d75-4b0e1e9670b9
+brightStarURL: https://stage-onlineportal-ca.brightstar.com/fido/login
+...

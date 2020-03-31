@@ -1,0 +1,12 @@
+# Account Details --BAN with multiple-line
+---
+name: FidoPreRegisterAccount
+username: March04ssp000@yahoo.com
+password: DigiAuto@123
+accountDetails:
+   type: Wireless
+   ban: 930670120
+   postalCode: M4L2Z8
+   ctn: 6478600892
+   email: autor320reg6@yahoo.com
+...

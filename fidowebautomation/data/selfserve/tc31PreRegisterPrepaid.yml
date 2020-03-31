@@ -1,0 +1,11 @@
+# Account Details -- BAN with single line
+---
+name: FidoPreRegisterAccount
+email: postpaid731@mailinator.com
+password: DigiAuto@123
+accountDetails:
+   type: Wireless
+   ban: 930639331
+   postalCode: M4L2Z8
+   ctn: 4168381205
+...

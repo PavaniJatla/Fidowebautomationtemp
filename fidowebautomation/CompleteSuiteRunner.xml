@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Self Serve Fido Wireless Dashboard Tests"  parallel="tests" thread-count="25">
+<parameter name="strBrowser" value="saucechrome"/>
+<parameter name="strLanguage" value="en"/>
+<parameter name="strGroupName" value="payment"/>
+<listeners>
+      <listener class-name="ca.fido.selfserve.test.listeners.AnnotationTransformer"/>
+</listeners> 
+
+<test name="FidoSS_TC012_PostPaidChangeMOP">	
+		<classes>             
+            <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC012_PostPaidChangeMOP"> </class>
+         </classes>
+</test>        
+           
+           
+<test name="FidoSS_TC013_FidoCA_PostpaidPaymentCC">	
+		<classes>   
+          <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
+         </classes>
+</test>                
+           
+     <test name="FidoSS_TC014_FidoCA_PostpaidPaymentInterac">	
+		<classes>             
+            <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC014_FidoCA_PostpaidPaymentInterac"> </class>
+         </classes>
+    </test>
+           
+     <test name="FidoSS_TC015_FidoCA_PostpaidPaymentHistory">	
+		<classes>             
+            <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC015_FidoCA_PostpaidPaymentHistory"> </class>
+         </classes>
+    </test>
+
+     <test name="FidoSS_TC016_FidoCA_PostpaidViewBill">	
+		<classes>             
+            <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
+         </classes>
+    </test>
+
+     <test name="FidoSS_TC042_FidoCA_HSI_PaymentHistory">	
+		<classes>             
+            <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC042_FidoCA_HSI_PaymentHistory"> </class>
+         </classes>
+    </test>
+	
+	<test name="FidoSS_Regression_TC033_TC034_ValidateChangeUserNamePassword">
+		<classes>			
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC033_TC034_ValidateChangeUserNamePassword">
+			</class>
+			 </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC044_PostpaidAccHolderUpdateProfile">	
+		<classes> 
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC044_PostpaidAccHolderUpdateProfile">
+			</class>
+			 </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile">	
+		<classes>			
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile">
+			</class>
+			 </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile">	
+		<classes>
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
+			</class>
+			 </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
+		<classes>		
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC006_PrepaidUpdateProfile">
+			</class>	
+			 </classes>
+    </test>                
+           
+	<test name="FidoSS_Regression_TC017_PostpaidViewAndEditProfile">	
+		<classes>		
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC017_PostpaidViewAndEditProfile">
+			</class>	
+									
+		</classes>
+	</test>	
+	
+	<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
+		<classes>             
+                     <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC001_PrePaidDashBoard">
+                    </class> 
+                     </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
+		<classes>                                   
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC011_PostPaidDashBoard">
+                    </class>
+                     </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard">	
+		<classes>                    
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard">
+                    </class>
+                     </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">	
+		<classes>                    
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">
+                    </class>
+                     </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC028_FidoCA_PostpaidSuspendedCTN">	
+		<classes>
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC028_FidoCA_PostpaidSuspendedCTN">
+                    </class>
+                     </classes>
+    </test>                
+           
+     <test name="FidoSS_Regression_TC032_PostpaidDeviceReserve">	
+		<classes>
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC032_PostpaidDeviceReserve">
+                    </class>                                       
+             </classes>
+	</test>
+				
+</suite>

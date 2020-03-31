@@ -1,0 +1,20 @@
+# Account Details required: newPassword, emailAddress, mobilePhone, homePhone, businessPhone, language, address
+---
+name: FidoPostPaidAccount
+username: Aprilssf08@yahoo.com
+password: DigiAuto@123
+accountDetails:
+   type: Wireless
+   ban: 925463176
+   newPassword: rogers123
+   recoveryNumber: 1234567890
+   emailAddress: fidoqa06@mailinator.com
+   mobilePhone: 413-231-1111
+   homePhone: 431-231-4817
+   businessPhone: 431-231-0817
+   simCardNumber: 370203000023404
+   language: English
+   address: 
+     line1: 18 Foxbar Rd
+     line2: TORONTO ON M4V 2G6 CANADA
+...

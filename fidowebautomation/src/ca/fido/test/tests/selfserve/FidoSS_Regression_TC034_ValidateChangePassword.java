@@ -1,0 +1,95 @@
+package ca.fido.test.tests.selfserve;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.util.HashMap;
+
+
+import org.apache.http.client.ClientProtocolException;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import ca.fido.test.base.BaseTestClass;
+import ca.fido.testdatamanagement.TestDataHandler;
+
+public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClass{
+	
+ 	
+
+	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage", "strGroupName" })
+	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext,Method method) throws ClientProtocolException, IOException {
+		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
+		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
+				strLanguage, strGroupName,method);			
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void afterTest() throws InterruptedException {
+		closeSession();
+	}
+	
+	
+	@Test
+	public void postPaidPaymentViewAndEditProfileUpdatePassword() throws InterruptedException, ParseException, IOException {
+
+		fido_home_page.clkLogin();
+		fido_login_page.switchToSignInFrame();
+
+		String altUserName=TestDataHandler.tc34.getUsername();
+		String altPassword=TestDataHandler.tc34.getPassword();
+		String newPassword=TestDataHandler.tc34.getNewPassword();
+		fido_login_page.setUsernameInFrame(altUserName);
+		fido_login_page.setPasswordInFrame(altPassword);
+		reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
+		fido_login_page.clkLoginInFrame();		
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{			
+			reporter.reportLogWithScreenshot("Login attempt one not successful, trying with alternate password:"+newPassword);
+			String tempPwd=altPassword;			
+			altPassword=newPassword;			
+			newPassword=tempPwd;				
+			fido_login_page.setUsernameInFrame(altUserName);
+			fido_login_page.setPasswordInFrame(altPassword);
+			reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
+			fido_login_page.clkLoginInFrame();
+
+		}
+		fido_login_page.switchOutOfSignInFrame();
+		reporter.reportLogWithScreenshot("Account overview page");
+		fido_account_overview_page.clkMenuProfileNSetting();
+		reporter.reportLogWithScreenshot("Click performed on profile and settings");
+		fido_profile_and_setting_page.clkChangePassword();				
+		fido_profile_and_setting_page.setNewPassword(altPassword, newPassword);
+		reporter.reportLogWithScreenshot("Password enetered , Old passowrd: "+altPassword+" and New Password: "+newPassword);
+		fido_profile_and_setting_page.clkSaveButton();
+		fido_login_page.clkSignOut();
+		reporter.reportLogWithScreenshot("Sign out done");
+		fido_login_page.clkResignInAs();
+		reporter.reportLogWithScreenshot("Click Re Sign In");
+		fido_login_page.switchToSignInFrame();
+		fido_login_page.setPasswordInFrame(newPassword);
+		reporter.reportLogWithScreenshot("Verify login with new password.");
+		fido_login_page.clkLoginInFrame();
+		fido_login_page.switchOutOfSignInFrame();
+		//rechange to the original one
+		if(fido_account_overview_page.verifySuccessfulLogin())
+		{
+			reporter.reportLogWithScreenshot("Login with new password succeed.");
+			fido_account_overview_page.clkMenuProfileNSetting();
+			fido_profile_and_setting_page.clkChangePassword();				
+			fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);
+			reporter.reportLogWithScreenshot("Reset password back to default one.");
+			fido_profile_and_setting_page.clkSaveButton();
+			reporter.reportLogWithScreenshot("password reset back");
+		}else
+		{
+			reporter.reportLogWithScreenshot("Login with new password failed, please investigate.");
+			reporter.reportLogFail("The Re-Login is not successful after change of password, please investigate");
+		}
+	}
+
+}

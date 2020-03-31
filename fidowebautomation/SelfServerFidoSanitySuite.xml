@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Self Serve Fido Tests" parallel="tests" thread-count="3">
+<parameter name="strBrowser" value="gridchrome"/>
+<parameter name="strLanguage" value="en"/>
+<parameter name="strGroupName" value=""/>
+<listeners>
+      <listener class-name="ca.fido.selfserve.test.listeners.AnnotationTransformer"/>
+</listeners> 
+
+    
+    <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
+		<classes>		
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC006_PrepaidUpdateProfile">
+			</class>	
+	    </classes>
+    </test>         
+    	
+     <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
+		<classes>                                   
+              <class
+              name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC011_PostPaidDashBoard">
+              </class>
+        </classes>
+    </test>
+    
+	<test name="FidoSS_TC012_PostPaidChangeMOP">	
+		<classes>             
+            <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC012_PostPaidChangeMOP"> </class>
+         </classes>
+    </test>        
+           
+           
+	<test name="FidoSS_TC013_FidoCA_PostpaidPaymentCC">	
+		<classes>   
+          <class name="ca.fido.selfserve.test.tests.payment.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
+         </classes>
+    </test>                           
+           
+	<test name="FidoSS_Regression_TC017_PostpaidViewAndEditProfile">	
+		<classes>		
+			<class
+				name="ca.fido.selfserve.test.tests.pns.FidoSS_Regression_TC017_PostpaidViewAndEditProfile">
+			</class>									
+		</classes>
+	</test>
+
+<!-- descoped from sanity
+     <test name="FidoSS_Regression_TC55_ValidateBrightstarLinkInWirelessDashboard_postpaidConsumerRegularAccount">	
+		<classes>
+               <class
+               name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC55_ValidateBrightstarLinkInWirelessDashboard_postpaidConsumerRegularAccount">
+               </class>                                       
+        </classes>
+	</test> 
+	-->
+		
+	<test name="FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">	
+		<classes>
+               <class
+               name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">
+               </class>                                       
+        </classes>
+	</test> 
+	
+</suite>

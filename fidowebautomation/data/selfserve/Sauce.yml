@@ -1,0 +1,14 @@
+# Config
+---
+sauceOptions:
+   seleniumVersion: 3.141.59
+   name: Fido - Self Serve Job
+   maxDuration: 3600
+   commandTimeout: 600
+   idleTimeout: 1000
+   build: Onboarding Sample App - Java-TestNG 
+mutableCapabilities:
+   browserName: firefox
+   platformVersion: Windows 10
+   browserVersion: latest
+...

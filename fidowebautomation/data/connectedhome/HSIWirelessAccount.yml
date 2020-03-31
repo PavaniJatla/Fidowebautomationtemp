@@ -1,0 +1,17 @@
+# Wireless Account Details 
+---
+name: FidoWirelessHSIAccount
+accountDetails:
+   type: Internet
+   ban: 920073582
+   postalCode: L6R3E4
+   upgradePlan: 75
+   downgradePlan: 5
+   payment: 10.00
+   upgradePlanCost: 65
+   downgradePlanCost: 60
+   upgradeDataPlan: Unlimited
+   downgradeDataPlan: 200  GB
+   address:
+     line1: 18 Foxbar Rd
+     line2: toronto ON M4V2G6

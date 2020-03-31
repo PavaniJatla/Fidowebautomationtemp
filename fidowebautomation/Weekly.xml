@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Fido Tests">
+<listeners>
+      <listener class-name="ca.fido.selfserve.test.listeners.AnnotationTransformer"/>
+</listeners> 
+		
+	
+	<test name="Fido Wireless Dashboard Tests - Chrome/Fr">
+	<parameter name="strBrowser" value="gridchrome"/>
+	<parameter name="strLanguage" value="fr"/>
+	<parameter name="strGroupName" value="wirelessDashboard"/>
+		<classes>                                 
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC010_PrepaidLostOrStolen">
+                    </class>                    
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC018_PostpaidUpdateSIMCard">
+                    </class>
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC022_PostPaidChangeCTN">
+                    </class>                    
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC025_PostpaidLostOrStolen">
+                    </class>                                                          
+             </classes>
+
+	</test>
+	
+	<test name="Fido Wireless Dashboard Tests - Chrome/En">
+	<parameter name="strBrowser" value="gridchrome"/>
+	<parameter name="strLanguage" value="en"/>
+	<parameter name="strGroupName" value="wirelessDashboard"/>
+		<classes>
+              <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC010_PrepaidLostOrStolen">
+                    </class>                    
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC018_PostpaidUpdateSIMCard">
+                    </class>
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC022_PostPaidChangeCTN">
+                    </class>                    
+                    <class
+                    name="ca.fido.selfserve.test.tests.wldb.FidoSS_Regression_TC025_PostpaidLostOrStolen">
+                    </class> 
+             </classes>
+
+	</test>
+	
+	
+</suite>
