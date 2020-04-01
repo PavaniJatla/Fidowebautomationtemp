@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
@@ -46,7 +47,7 @@ public class BrowserDrivers {
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
-	public WebDriver driverInit(String strBrowser, Method currentTestMethodName) throws ClientProtocolException, IOException {
+	public WebDriver driverInit(String strBrowser, Method currentTestMethodName, String strGroupName) throws ClientProtocolException, IOException {
 	    os=getOS();
 		switch(strBrowser.toLowerCase().trim()) {			
 		case "firefox":				
@@ -62,7 +63,7 @@ public class BrowserDrivers {
 			break;
 							
 		case "chrome":	
-			chromeInit(strBrowser);
+			chromeInit(strBrowser, strGroupName);
 		    break;
 			
 		case "remoteChrome":
@@ -137,13 +138,16 @@ public class BrowserDrivers {
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
-	private void chromeInit(String strBrowser) throws ClientProtocolException, IOException {
+	private void chromeInit(String strBrowser, String strGroupName) throws ClientProtocolException, IOException {
 			//WebDriverManager.chromedriver().setup();		
 			WebDriverManager.chromedriver().version("79.0.3945.36").setup();
 			ChromeOptions options = new ChromeOptions(); 
 		    options.addArguments("--start-maximized");
- 		options.addArguments("--kiosk");
+		    options.addArguments("--kiosk");
 		    options.addArguments("--incognito");
+			if (strGroupName.equalsIgnoreCase("selfserve_login")) {
+				options.setPageLoadStrategy(PageLoadStrategy.NONE);
+			}	
 		    setDriver(new ChromeDriver(options));    
 	}
 	

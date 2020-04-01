@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid extends BaseTe
 	
 	@Test
 	public void prepaidValidateRegisterFlow() {
-		/*
+
 		
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -65,8 +65,7 @@ public class FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid extends BaseTe
 		reporter.reportLogWithScreenshot("Connect a prepaid account page");
 		fido_prepaid_link_account_page.clkBtnSendMeCode();
 //Got recaptcha here!!!
- * 
- * */
+
  
 		
 

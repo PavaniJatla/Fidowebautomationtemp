@@ -33,8 +33,8 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 	@Test
 	public void prepaidOneTimeRefill() {
 		fido_home_page.clkLogin();
-		String userName=TestDataHandler.tc005.getUsername();
-		String password=TestDataHandler.tc005.getPassword();
+		String userName=TestDataHandler.tc0405.getUsername();
+		String password=TestDataHandler.tc0405.getPassword();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);

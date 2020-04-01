@@ -39,12 +39,12 @@ public class FidoSS_Regression_TC02_ValidateRegisterFlow_Subscriber extends Base
 		reporter.reportLogWithScreenshot("Register now is clicked.");
 		
 		fido_account_registration_page.clkSubscriber();
-		String strFidoSubscriberPhoneNumber = TestDataHandler.tc0203.getaccountDetails().getPhoneNumber();
+		String strFidoSubscriberPhoneNumber = TestDataHandler.tc02PreRegister.getaccountDetails().getPhoneNumber();
 		fido_account_registration_page.setPhoneNumber(strFidoSubscriberPhoneNumber);
 		fido_account_registration_page.clkContinueAfterPhoneNumber();
 		
 		//Sometimes got captcha here!!!
-		String strEmail = TestDataHandler.tc0203.getaccountDetails().getEmail();
+		String strEmail = TestDataHandler.tc02PreRegister.getaccountDetails().getEmail();
 		fido_account_registration_page.setFidoEmail(strEmail);
 		fido_account_registration_page.setFidoConfirmEmail(strEmail);
 	}
