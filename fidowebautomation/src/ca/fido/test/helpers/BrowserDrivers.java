@@ -66,7 +66,7 @@ public class BrowserDrivers {
 			chromeInit(strBrowser, strGroupName);
 		    break;
 			
-		case "remoteChrome":
+		case "remotechrome":
 			remoteChromeInit(strBrowser);
 			break; 
 			
@@ -142,9 +142,9 @@ public class BrowserDrivers {
 			//WebDriverManager.chromedriver().setup();		
 			WebDriverManager.chromedriver().version("79.0.3945.36").setup();
 			ChromeOptions options = new ChromeOptions(); 
-		    options.addArguments("--start-maximized");
-		    options.addArguments("--kiosk");
-		    options.addArguments("--incognito");
+			options.addArguments("--start-maximized");
+			options.addArguments("--incognito");
+			options.addArguments("disable-infobars");
 			if (strGroupName.equalsIgnoreCase("selfserve_login")) {
 				options.setPageLoadStrategy(PageLoadStrategy.NONE);
 			}	

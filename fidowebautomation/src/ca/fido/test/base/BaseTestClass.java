@@ -59,6 +59,7 @@ import ca.fido.test.commonbusiness.CommonBusinessFlows;
 import ca.fido.test.commonbusiness.VerifyInEns;
 import ca.fido.test.helpers.BrowserDrivers;
 import ca.fido.test.helpers.CaptchaBypassHandlers;
+import ca.fido.test.helpers.FidoEnums;
 import extentreport.ExtentTestManager;
 import utils.Reporter;
 
@@ -165,7 +166,40 @@ public class BaseTestClass {
 	    init(strGroupName);
   }
 	
-	
+	 /* To start a session using given url, browser, language and test case group name.
+	 * @param strUrl                     string of test url
+	 * @param strBrowser                 string of browser name
+	 * @param strLanguage                string of language to use
+	 * @param enumGroupName               string of group name of the test case
+	 * @param currentTestMethodName 
+	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
+	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
+	 */
+	public void startSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
+		this.driver = browserdriver.driverInit(strBrowser, currentTestMethodName, enumGroupName.toString());
+		System.out.println(strUrl + "----------------------------------------------------------------------------");
+		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
+		switch(enumGroupName.toString().toLowerCase().trim()) {			
+		case "connectedhome_anonymous":				
+			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
+			break;	
+			
+		case "connectedhome_login":
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;            
+
+		case "selfserve":
+		case "selfserve_login":
+			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
+			break;
+
+  		default :
+  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+		}
+	    setImplicitWait(getDriver(), 10);
+	    init(enumGroupName.toString().toLowerCase().trim());
+  }
+
 	
 	/**
 	 * To initiate the page objects based on test case group, will read group name from xml file.
