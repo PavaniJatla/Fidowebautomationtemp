@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
+<parameter name="strBrowser" value="chrome"/>
+<parameter name="strLanguage" value="en"/>
+<listeners>
+       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
+</listeners> 
+
+    
+    <test name="FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine">	
+		<classes>		
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine">
+			</class>	
+	    </classes>
+    </test>         
+    	
+     <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">	
+		<classes>                                   
+              <class
+              name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
+              </class>
+        </classes>
+    </test>
+	
+</suite>
