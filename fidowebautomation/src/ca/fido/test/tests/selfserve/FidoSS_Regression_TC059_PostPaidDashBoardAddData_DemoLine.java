@@ -108,7 +108,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
 				"Total data in Manage data overlay is displayed",
 				"Total data in Manage data overlay is not displayed");	
-		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay(),
+		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("mtt"),
 				"Accuracy of data in Manage data overlay is verified.",
 				"Accuracy of data in Manage data overlay didn't verify successfully.");	
 		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -1347,5 +1348,42 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		int totalSpeedPass = getAllExistingAddOns();		
 		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
 		
+	}
+
+	/**
+	 * 
+	 * @return
+	 * @author Mirza.Kamran
+	 */
+	public HashMap<String, Integer> getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection() {				
+		int active=0;
+		int cancelled=0;
+		int nonMTT=0;
+		HashMap<String, Integer> addData = new HashMap<String, Integer>();
+		for(WebElement row:lstMyPlanAddOns)
+		{
+			if((row.getText().toLowerCase().contains("monthly data")&& row.getText().toLowerCase().contains("expires")))
+			{
+				cancelled++;
+				
+			}else if((row.getText().toLowerCase().contains("monthly data")&& !row.getText().toLowerCase().contains("expires")))
+			{
+				active++;
+			}else
+			{
+				nonMTT++;
+			}
+		}
+		
+		addData.put("active", active);
+		addData.put("cancelled", cancelled);
+		addData.put("nonMTT", nonMTT);
+		return addData;		
+	}
+
+	
+	public boolean verifyCancelledAddedDataInMyPlan(int countOfCancelled, int countOfActiveBeforeCancelled) {
+		int cancelled= getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection().get("cancelled");
+		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
 	}
 }

@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,13 +47,31 @@ public class FidoDataManagementPage extends BasePageClass {
 
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")
 	List<WebElement> rowsAddedData;
+	
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
+	List<WebElement> tableRowsAddData;
+	
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
+	List<WebElement> rowsAddMTTData;
 
 	@FindBy (xpath = "//span[@translate='usageModule.manage']")
 	WebElement lnkViewDetails;
 
-	@FindBy (xpath = "//*[text()='Cancel' or text()='Annuler']")
+	@FindBy (xpath = "//a[@title='Cancel this add-on' or contains(@title,'Annuler')]")
 	WebElement lnkCancel;
 	 
+	@FindBy(xpath = "//p[text()='CANCEL ADD-ON' or text()='CANCEL ADD-ON']")
+	WebElement titleCancelAddOn;
+	
+	@FindBy(xpath = "//button//span[text()='YES, CANCEL' or text()='YES, CANCEL']")
+	WebElement btnYesCancel;
+	
+	@FindBy(xpath = "//p[text()='ADD-ON CANCELLED' or text()='ADD-ON CANCELLED']")
+	WebElement titleAddOnCancelled;
+	
+	@FindBy(xpath = "//button[@title='Close' or @title='Close']//span[contains(text(),'Close') or contains(text(),'Close')]/parent::span/parent::button")
+	WebElement btnCloseAddOnCancelled;
+	
 	/**
 	 * Verify manage data overlay Displayed
 	 * @return true if the overlay displayed, otherwise false
@@ -152,22 +171,24 @@ public class FidoDataManagementPage extends BasePageClass {
 	/**
 	 * Verify data accuracy in manage data overlay, total data should show plan data + data add-ons 
 	 * @return true if the data matches displayed, otherwise false
+	 * @param strType ott and mtt type
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyDataAccuracyManageDataOverlay() {
+	public boolean verifyDataAccuracyManageDataOverlay(String strType) {
 		String strPlanData = rowPlanData.getText();		
 		strPlanData=getNumbersFromString(strPlanData);				
 		double intPlanData = Double.parseDouble(strPlanData);
 				
 		String strTotalData = rowsTotalData.get(0).getText();
 		double intTotalData = Double.parseDouble(getNumbersFromString(strTotalData));
-		double intAddData = 0;
+		double intAddData = 0;		
+		List<WebElement> rows = strType.equalsIgnoreCase("ott") ? rowsAddedData : tableRowsAddData;
 		
-			for (int iLoop = 0; iLoop <= rowsAddedData.size()-1; iLoop++) {
-				String strAddData = rowsAddedData.get(iLoop).getText();				
+			for (int iLoop = 0; iLoop <= rows.size()-1; iLoop++) {
+				String strAddData = rows.get(iLoop).getText();				
 				if (strAddData.toLowerCase().contains("mo")?strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")
 						: strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")) {
-					intAddData = intAddData / 1000;					
+					intAddData = Double.parseDouble(getNumbersFromString(strAddData)) / 1000;					
 				}
 				intAddData = intAddData + Double.parseDouble(strAddData.substring(0, strAddData.length()-3));
 			}
@@ -220,6 +241,46 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 
 	/**
+	 * This method gets the ADD data count
+	 * @return int count of all speed pass
+	 * @author Mirza.Kamran
+	 */
+	public int getAllExistingAddDataCount() {
+		return tableRowsAddData.size();
+	}
+
+	/**
+	 * This method gets the ADD data count
+	 * @return int count of all speed pass
+	 * @author Mirza.Kamran
+	 */
+	public HashMap<String, Integer> getAllExistingAddDataCountCancelledAndActive() {
+		int active=0;
+		int cancelled=0;
+		int nonMTT=0;
+		HashMap<String, Integer> addData = new HashMap<String, Integer>();
+		for(WebElement row:tableRowsAddData)
+		{
+			if(row.getText().toLowerCase().contains("cancel"))
+			{
+				active++;
+				
+			}else if(row.getText().toLowerCase().contains("expires"))
+			{
+				cancelled++;
+			}else
+			{
+				nonMTT++;
+			}
+		}
+		
+		addData.put("active", active);
+		addData.put("cancelled", cancelled);
+		addData.put("nonMTT", nonMTT);
+		return addData;
+	}
+	
+	/**
 	 * Verifies View Details link 
 	 * @return true if element is displayed else false
 	 * @author Mirza.Kamran
@@ -235,5 +296,82 @@ public class FidoDataManagementPage extends BasePageClass {
 		}		
 		return isDisplayed;
 	}
+
+	/**
+	 * Checks if the cancel is displayed for all mtt add data
+	 * @return true if all the add data has cancel button else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyCancelIsDisplayedForAllMTTData() {
+		Boolean found = true;
+		for(WebElement row : rowsAddedData) {
+			if(!row.getText().toLowerCase().contains("cancel")
+				|| !row.getText().toLowerCase().contains("annuler")) {
+				found = false;
+				break;
+			}
+		}
+		return found;
+	}
+
+	/**
+	 * Clicks on the cancel MDT link
+	 * @author Mirza.Kamran
+	 */
+	public void clkCancelMTTLink() {
+		Boolean found = false;
+		for(WebElement row : tableRowsAddData) {
+			if(row.getText().toLowerCase().contains("cancel")
+				|| row.getText().toLowerCase().contains("annuler")) {
+				lnkCancel.click();
+				found = true;
+				break;
+			}
+		}
+		
+	}
+
+	/**
+	 * Clicks on Yes cancel on Overlay
+	 * @author Mirza.Kamran
+	 */
+	public void clkYesRemoveTopUpButton() {
+		reusableActions.clickIfAvailable(btnYesCancel);		
+	}
+
+	/**
+	 * is MDT cancelled 
+	 * @return true if the cancelled is successful
+	 * @author Mirza.Kamran
+	 */
+	public boolean isMDTCancelled() {
+		return reusableActions.isElementVisible(titleAddOnCancelled);
+	}
+
+	/**
+	 * 
+	 * @param countOfCancelled
+	 * @param countOfActiveBeforeCancelled
+	 * @return true if the count matche else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyCancelledMDTInManageData(int countOfCancelled, int countOfActiveBeforeCancelled) {
+		int cancelled= getAllExistingAddDataCountCancelledAndActive().get("cancelled");
+		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
+	}
+
+	/**
+	 * Clicks on the close overlay
+	 * @author Mirza.Kamran
+	 */
+	public void clkCloseButtonOnCancelSuccessOverlay() {
+		reusableActions.getWhenReady(btnCloseAddOnCancelled);
+	}
+
+	public boolean isCancelSuccessdisplayed() {		
+		return reusableActions.isElementVisible(titleAddOnCancelled,30);
+	}
+	
+	
 	
 }

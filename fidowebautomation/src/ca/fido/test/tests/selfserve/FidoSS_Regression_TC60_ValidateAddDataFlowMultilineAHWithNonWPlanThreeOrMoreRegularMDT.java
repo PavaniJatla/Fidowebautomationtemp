@@ -20,7 +20,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 /**
  * The test will verify demo-line account add data flow and manage data page, 
  * as well as verify the total data and data accuracy in manage data page. 
- * @author Ning.Xue
+ * @author Mirza.Kamran
  *
  */
 public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT extends BaseTestClass{
@@ -63,7 +63,15 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
-		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
+
+		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+				"'Data details' page is displayed after click on view details link",
+				"'Data details' page is NOT displayed after click on view details link");
+		int countOfExistSpeedPass = fido_data_management_page.getAllExistingAddDataCount();
+		fido_data_management_page.clkLinkBackOnManageDataOverlay();
+		
+		int countOfExistingAddOnsInMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddOns();				
+		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
@@ -82,7 +90,6 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		  
 		   6. Added Data section lists all add-ons separately and only Monthly Add ons have Cancel link
 		 */
-		
 		
 		double dataAdded = 0;
 		if(fido_wireless_dashboard_postpaid_page.isLimitReachedMsgDisplayed()) {
@@ -118,10 +125,17 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"Added data in Manage data overlay is not displayed");	
 		reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
 				"Total data in Manage data overlay is displayed",
-				"Total data in Manage data overlay is not displayed");	
-		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyInManageDataOverlay(),
+				"Total data in Manage data overlay is not displayed");
+		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("mtt"),
 				"Accuracy of data in Manage data overlay is verified.",
 				"Accuracy of data in Manage data overlay didn't verify successfully.");	
+		
+		reporter.softAssert((fido_data_management_page.verifyAddedDataInDataDetails(1, countOfExistSpeedPass)
+				&& fido_data_management_page.verifyCancelIsDisplayedForAllMTTData()),
+				"Added Data section lists all add-ons separately and there is NO Cancel link next to OTT",
+				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is Cancel link next to OTT");
+		
+				
 		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");

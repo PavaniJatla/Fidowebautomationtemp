@@ -19,5 +19,8 @@ public class FidoEnums {
 		selfserve
 		  } ;
     
-    
+	public enum AddDataType {
+			    MTT,
+			    OTT,			   
+			  };
 }
