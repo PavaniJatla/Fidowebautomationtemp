@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.poi.openxml4j.opc.internal.FileHelper;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -179,11 +177,16 @@ public class FidoDataManagementPage extends BasePageClass {
 					&& intTotalAddon == intAddData;
 	}
 	
+	/**
+	 * This will extract the numbers from string
+	 * @param strMatch complete string to be matched
+	 * @return String number
+	 */
 	public String getNumbersFromString(String strMatch) {
-		Pattern p = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
-        Matcher m = p.matcher(strMatch);  
-        m.find();
-        return m.group();
+		Pattern pattern = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
+        Matcher match = pattern.matcher(strMatch);  
+        match.find();
+        return match.group();
 	}
 	
 	/**
