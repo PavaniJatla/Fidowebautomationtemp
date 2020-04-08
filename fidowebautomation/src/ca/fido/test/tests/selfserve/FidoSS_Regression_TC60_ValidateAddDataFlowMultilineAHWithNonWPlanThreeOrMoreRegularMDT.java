@@ -23,7 +23,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author Ning.Xue
  *
  */
-public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends BaseTestClass{
+public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT extends BaseTestClass{
 	
 	
 	 	
@@ -46,8 +46,8 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();
 	
-		String	userName = TestDataHandler.tc5859.getUsername();
-		String	password = TestDataHandler.tc5859.getPassword();
+		String	userName = TestDataHandler.tc6062.getUsername();
+		String	password = TestDataHandler.tc6062.getPassword();
 		
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
@@ -75,6 +75,15 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
 		fido_wireless_dashboard_postpaid_page.clkPurchaseBtnOnAddDataOverlay();
+		
+		/*
+		 * 4. Verify Only MDT options available (no OTT). 
+		 * MDT is added and reflected in total bucket,plan section and manage data page
+		  
+		   6. Added Data section lists all add-ons separately and only Monthly Add ons have Cancel link
+		 */
+		
+		
 		double dataAdded = 0;
 		if(fido_wireless_dashboard_postpaid_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
@@ -86,6 +95,8 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			reporter.reportLogWithScreenshot("Add data success modal.");
 		}
 		fido_wireless_dashboard_postpaid_page.clkCloseBtnOnAddDataOverlay();
+		
+		// 5.All the added MDTs are reflected in total bucket,plan section and manage data page
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
@@ -108,7 +119,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
 				"Total data in Manage data overlay is displayed",
 				"Total data in Manage data overlay is not displayed");	
-		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay(),
+		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyInManageDataOverlay(),
 				"Accuracy of data in Manage data overlay is verified.",
 				"Accuracy of data in Manage data overlay didn't verify successfully.");	
 		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();

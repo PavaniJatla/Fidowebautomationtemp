@@ -242,10 +242,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
 	WebElement overlayMonthlyDataAddOn;
 	
+	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
+	WebElement overlayOTTDataAddOn;
+	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	
-	@FindBy(xpath = "//button[@data-caption='Continue']")
+	@FindBy(xpath = "//button[@data-caption='Continue' or @data-caption='Continuer']")
 	WebElement btnContinueOnAddDataOverlay;
 	
 	@FindBy(xpath = "//span[text()='Select amount' or text()='Sélectionnez le montant']")
@@ -269,7 +272,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title']")
 	WebElement msgConfirmPurchasing;
 	
-	@FindBy (xpath = "//button[@data-caption='Purchase']")
+	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")
 	WebElement btnPurchaseOnAddDataOverlay;
 	
 	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
@@ -308,6 +311,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//img[@alt='Attention']")
 	WebElement imgAttentionOverage;
 	
+	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
+	List<WebElement> lstMyPlanAddOns;
+	
 	/**
 	 * Clicks on the add data button for demoline accounts only
 	 * @author Mirza.Kamran
@@ -319,9 +325,20 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	/**
 	 * Verify Overlay Monthly Data Add On Displayed
 	 * @return true if the overlay displayed, otherwise false
-	 * @author ning.xue
+	 * @author Mirza.Kamran
 	 */
 	public boolean verifyOverlayMonthlyDataAddOnDisplayed() {
+		String strOverlaytitleText = reusableActions.getWhenReady(overlayOTTDataAddOn, 30).getText().trim();
+		return ((strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"))
+				&& (!strOverlaytitleText.contains("Month")||!strOverlaytitleText.contains("Mois")));
+	} 
+	
+	/**
+	 * Verify Overlay OTT Data Add On Displayed
+	 * @return true if the overlay displayed, otherwise false
+	 * @author ning.xue
+	 */
+	public boolean verifyOverlayOTTDataAddOnDisplayed() {
 		return reusableActions.isElementVisible(overlayMonthlyDataAddOn, 30);
 	} 
 	
@@ -408,11 +425,29 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public double getValueAddedData() {
 		String strDataAdded = msgSuccessOnAddDataOverlay.getText();
-		double valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('B')-2).trim());
-		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")) {
+		double valueAddedData = 0;
+		if(strDataAdded.toLowerCase().contains("mo")||strDataAdded.toLowerCase().contains("go"))
+		{
+			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('O')-2).trim());
+		}else
+		{
+			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('B')-2).trim());
+		}
+				
+		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")
+			||strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MO")) {
 			valueAddedData = valueAddedData / 1000;
 		}
 		return valueAddedData;
+	}
+	
+	/**
+	 * 
+	 * @return String value added 
+	 * @author Mirza.Kamran
+	 */
+	public String getAddedValueWithGBOrMB() {
+		return msgSuccessOnAddDataOverlay.getText();
 	}
 	
 	/**
@@ -781,6 +816,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyTotalDataReflectedAddedData(double previousTotalDataValue, double addedDataValue) {
 		return Double.parseDouble(divTotalData.getText().trim()) == addedDataValue + previousTotalDataValue;
 	}
+		
 	
 	/**
 	 * Verify total data in data usage section align with the total data in Manage Data page
@@ -821,7 +857,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyRemainingDataReflectedAddedData(double previousRemainingDataValue, double addedDataValue) {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == addedDataValue + previousRemainingDataValue;
+		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == (addedDataValue/1000) + previousRemainingDataValue;
 	}
 	
 	/**
@@ -1291,5 +1327,25 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyAttentionOverageSymbolIsDisplayed() {		
 		return reusableActions.isElementVisible(imgAttentionOverage);
+	}
+
+	/*
+	 * 
+	 */
+	public int getAllExistingAddOns() {		
+		return lstMyPlanAddOns.size();
+	}
+	
+	/**
+	 * Verifies if the added data is displayed separately in data details
+	 * @return true if the new added count plus previous records matches total records else false
+	 * @param listAddedData int, new added record count
+	 * @param intCountOfSpeedPassBefore int, the previous record
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyAddedDataInMyPlan(int listAddedData, int intCountOfSpeedPassBefore) {
+		int totalSpeedPass = getAllExistingAddOns();		
+		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
+		
 	}
 }

@@ -1,6 +1,4 @@
 package ca.fido.testdatamanagement;
-
-
 import ca.fido.yaml.pojo.AccountData;
 import ca.fido.yaml.pojo.Config;
 import ca.fido.yaml.pojo.HUPData;
@@ -56,6 +54,9 @@ public class TestDataHandler {
 	public static HUPData testCase04;
 	public static HUPData testCase05;
 	public static PPCData testCase06;
+	public static AccountData tc6062;
+	public static AccountData tc002003;
+	public static AccountData tc61;
 
 	public static void dataInit (String strApplicationType) {	    	
 	    	if(strApplicationType.toUpperCase().trim().endsWith("CH")) {	    	
@@ -90,8 +91,7 @@ public class TestDataHandler {
     	paymentInfo = YamlHandler.getPaymentDetails();
     	tc00101056 = YamlHandler.getAccountData("tc001_010_56Prepaid");
     	tc0203 = YamlHandler.getAccountData("tc02_03Prepaid");
-    	tc0301 = YamlHandler.getAccountData("tc03_01PreRegisterMultiLine"); 
-    	tc02PreRegister = YamlHandler.getAccountData("tc02PreRegisterSubscriber");
+    	tc0301 = YamlHandler.getAccountData("tc03_01PreRegisterMultiLine");
     	tc31 = YamlHandler.getAccountData("tc31PreRegisterPrepaid");
     	tc0405 = YamlHandler.getAccountData("tc04_05Prepaid");
     	tc04To09 = YamlHandler.getAccountData("tc04-09Recovery");
@@ -104,8 +104,7 @@ public class TestDataHandler {
     	tc23 = YamlHandler.getAccountData("tc23CancelledCTN");
     	tc25 = YamlHandler.getAccountData("tc25PostPaidLostStolen");
     	tc2732 = YamlHandler.getAccountData("tc27_32PostPaidWithVoiceMail");
-    	tc28 = YamlHandler.getAccountData("tc28PostPaidSuspendedCTN"); 
-    	tc31 = YamlHandler.getAccountData("tc31PreRegisterPrepaid");
+    	tc28 = YamlHandler.getAccountData("tc28PostPaidSuspendedCTN");
     	tc33 = YamlHandler.getAccountData("tc33PostPaidToChangeUsername");
     	tc34 = YamlHandler.getAccountData("tc34PostPaidToChangePassword");
     	tc39 = YamlHandler.getAccountData("tc39PreRegisterCancelledBan");
@@ -119,7 +118,10 @@ public class TestDataHandler {
     	tc49 = YamlHandler.getAccountData("tc49PostPaidDataOnly");
     	tc5055 = YamlHandler.getAccountData("tc50_55PostPaidWithDataTalkText");
     	tc54 = YamlHandler.getAccountData("tc54PostPaidLimitedTalkTextOnly");
-    	tc5859 = YamlHandler.getAccountData("tc58_59PostPaidDemoline");	    		    	    		    	 
+    	tc5859 = YamlHandler.getAccountData("tc58_59PostPaidDemoline");	    		    	    	  	    		    		    		    	  	    	
+    	tc002003 = YamlHandler.getAccountData("tc002_003");	 
+    	tc6062 = YamlHandler.getAccountData("tc60_62PostPaidDemoline");
+    	tc61 = YamlHandler.getAccountData("tc61PostPaidDemolineOTT");
 	}
 	
 	private static void buyFlowsDataInit() {

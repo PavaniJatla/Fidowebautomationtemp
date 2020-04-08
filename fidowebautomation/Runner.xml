@@ -7,10 +7,10 @@
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners> 
   
-     <test name="FidoSS_Regression_TC001_PrePaidDashBoard">	
+     <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC001_PrePaidDashBoard">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
                     </class>                                       
              </classes>
 	</test>  		  

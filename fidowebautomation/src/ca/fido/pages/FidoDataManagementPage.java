@@ -2,7 +2,11 @@ package ca.fido.pages;
 
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.apache.poi.openxml4j.opc.internal.FileHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,17 +27,33 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")
 	WebElement titlePlanData;
 	
+	@FindBy(xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]/parent::div/parent::div//tr")
+	WebElement rowPlanData;
+	
 	@FindBy (xpath = "//h4[contains(text(),'ADDED DATA') or contains(text(),'DONNÉES AJOUTÉES')]")
 	WebElement titleAddedData;
 	
+	
 	@FindBy (xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]")
 	WebElement titleTotalData;
+	
+	@FindBy(xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]/parent::div/parent::div//strong")
+	List<WebElement> rowsTotalData;
 	
 	@FindBy (xpath = "//span[contains(text(),'Back') or contains(text(),'Précédent')]")
 	WebElement lnkBackOnManageDataOverlay;
 	
 	@FindBy (xpath = "//strong")
 	List<WebElement> listData;
+
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")
+	List<WebElement> rowsAddedData;
+
+	@FindBy (xpath = "//span[@translate='usageModule.manage']")
+	WebElement lnkViewDetails;
+
+	@FindBy (xpath = "//*[text()='Cancel' or text()='Annuler']")
+	WebElement lnkCancel;
 	 
 	/**
 	 * Verify manage data overlay Displayed
@@ -112,7 +132,9 @@ public class FidoDataManagementPage extends BasePageClass {
 			int flag = 1;
 			for (int iLoop = 1; iLoop <= listData.size()-3; iLoop++) {
 				String strAddData = listData.get(iLoop).getText();
-				if (strAddData.substring(strAddData.length()-2).equalsIgnoreCase("GB")
+				
+				if (strAddData.toLowerCase().contains("go")?strAddData.substring(strAddData.length()-2).equalsIgnoreCase("GO")
+						: strAddData.substring(strAddData.length()-2).equalsIgnoreCase("GB")
 						&& flag == 1) {
 					intAddData = intAddData / 1000;
 					flag = 0;
@@ -127,6 +149,88 @@ public class FidoDataManagementPage extends BasePageClass {
 			return intTotalData == intPlanData; 
 		}
 
+	}
+
+	/**
+	 * Verify data accuracy in manage data overlay, total data should show plan data + data add-ons 
+	 * @return true if the data matches displayed, otherwise false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyDataAccuracyManageDataOverlay() {
+		String strPlanData = rowPlanData.getText();		
+		strPlanData=getNumbersFromString(strPlanData);				
+		double intPlanData = Double.parseDouble(strPlanData);
+				
+		String strTotalData = rowsTotalData.get(0).getText();
+		double intTotalData = Double.parseDouble(getNumbersFromString(strTotalData));
+		double intAddData = 0;
+		
+			for (int iLoop = 0; iLoop <= rowsAddedData.size()-1; iLoop++) {
+				String strAddData = rowsAddedData.get(iLoop).getText();				
+				if (strAddData.toLowerCase().contains("mo")?strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")
+						: strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")) {
+					intAddData = intAddData / 1000;					
+				}
+				intAddData = intAddData + Double.parseDouble(strAddData.substring(0, strAddData.length()-3));
+			}
+			String strTotalAddon = rowsTotalData.get(1).getText();
+			double intTotalAddon = Double.parseDouble(getNumbersFromString(strTotalAddon)); 
+			return intTotalData == intPlanData 
+					&& intTotalAddon == intAddData;
+	}
+	
+	public String getNumbersFromString(String strMatch) {
+		Pattern p = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
+        Matcher m = p.matcher(strMatch);  
+        m.find();
+        return m.group();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean verifyNoCancelLinkDisplayedForAddedData() {
+		return !reusableActions.isElementVisible(lnkCancel);
 	} 
+	
+	/**
+	 * Verifies if the added data is displayed separately in data details
+	 * @return true if the new added count plus previous records matches total records else false
+	 * @param listAddedData int, new added record count
+	 * @param intCountOfSpeedPassBefore int, the previous record
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyAddedDataInDataDetails(int listAddedData, int intCountOfSpeedPassBefore) {
+		int totalSpeedPass = getAllExistingAddOTTCount();
+		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
+		
+	}
+
+	/**
+	 * This method gets the Speed pass count
+	 * @return int count of all speed pass
+	 * @author Mirza.Kamran
+	 */
+	public int getAllExistingAddOTTCount() {
+		return rowsAddedData.size();
+	}
+
+	/**
+	 * Verifies View Details link 
+	 * @return true if element is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean validateViewDetailsLink() {
+		boolean isDisplayed=false;
+		reusableActions.waitForElementTobeClickable(lnkViewDetails, 30);
+		reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		if(reusableActions.isElementVisible(titleManageData,30)
+			&& reusableActions.isElementVisible(titlePlanData, 30)	)
+		{				
+			isDisplayed=true;			
+		}		
+		return isDisplayed;
+	}
 	
 }
