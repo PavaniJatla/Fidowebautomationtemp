@@ -79,7 +79,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
 		//4. Complete Add OTT flow
 		//4. Verify Only OTT options available (no MDT). OTT is added and reflected in total bucket,
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayOTTDataAddOnDisplayed(),
 							"Verify Only OTT options available (no MDT)",
 							"It seems Only OTT options not available");			
 		reporter.reportLogWithScreenshot("Add OTT data add on overlay");

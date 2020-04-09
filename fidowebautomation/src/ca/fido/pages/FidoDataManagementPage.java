@@ -48,7 +48,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")
 	List<WebElement> rowsAddedData;
 	
-	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//strong[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")
 	List<WebElement> tableRowsAddData;
 	
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
@@ -60,16 +60,16 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy (xpath = "//a[@title='Cancel this add-on' or contains(@title,'Annuler')]")
 	WebElement lnkCancel;
 	 
-	@FindBy(xpath = "//p[text()='CANCEL ADD-ON' or text()='CANCEL ADD-ON']")
+	@FindBy(xpath = "//p[text()='CANCEL ADD-ON' or text()='ANNULER L’OPTION']")
 	WebElement titleCancelAddOn;
 	
-	@FindBy(xpath = "//button//span[text()='YES, CANCEL' or text()='YES, CANCEL']")
+	@FindBy(xpath = "//button//span[text()='YES, CANCEL' or text()='OUI, ANNULER']")
 	WebElement btnYesCancel;
 	
-	@FindBy(xpath = "//p[text()='ADD-ON CANCELLED' or text()='ADD-ON CANCELLED']")
+	@FindBy(xpath = "//p[text()='ADD-ON CANCELLED' or contains(text(),'OPTION ANNUL')]")
 	WebElement titleAddOnCancelled;
 	
-	@FindBy(xpath = "//button[@title='Close' or @title='Close']//span[contains(text(),'Close') or contains(text(),'Close')]/parent::span/parent::button")
+	@FindBy(xpath = "//button[@title='Close' or @title='FERMER']//span[contains(text(),'FERMER') or contains(text(),'Close')]/parent::span/parent::button")
 	WebElement btnCloseAddOnCancelled;
 	
 	/**
@@ -232,6 +232,28 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 
 	/**
+	 * Verifies if the added data is displayed separately in data details
+	 * @return true if the new added count plus previous records matches total records else false
+	 * @param listAddedData int, new added record count
+	 * @param intCountOfSpeedPassBefore int, the previous record
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyMTTAddedDataInDataDetails(int listAddedData, int intCountOfSpeedPassBefore) {
+		int totalSpeedPass = getAllExistingAddMTTCount();
+		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
+		
+	}
+	
+	/**
+	 * Returns count of all MTT add ons
+	 * @return int count
+	 * @author Mirza.Kamran
+	 */
+	private int getAllExistingAddMTTCount() {		
+		return tableRowsAddData.size();
+	}
+
+	/**
 	 * This method gets the Speed pass count
 	 * @return int count of all speed pass
 	 * @author Mirza.Kamran
@@ -259,13 +281,13 @@ public class FidoDataManagementPage extends BasePageClass {
 		int cancelled=0;
 		int nonMTT=0;
 		HashMap<String, Integer> addData = new HashMap<String, Integer>();
-		for(WebElement row:tableRowsAddData)
+		for(WebElement row:rowsAddMTTData)
 		{
-			if(row.getText().toLowerCase().contains("cancel"))
+			if(row.getText().toLowerCase().contains("cancel") ||row.getText().toLowerCase().contains("annuler"))
 			{
 				active++;
 				
-			}else if(row.getText().toLowerCase().contains("expires"))
+			}else if(row.getText().toLowerCase().contains("expires") || row.getText().toLowerCase().contains("prend"))
 			{
 				cancelled++;
 			}else
@@ -278,6 +300,34 @@ public class FidoDataManagementPage extends BasePageClass {
 		addData.put("cancelled", cancelled);
 		addData.put("nonMTT", nonMTT);
 		return addData;
+	}
+	
+	/**
+	 * This method gets the values and their counts already added in the view detais
+	 * @return int count of all speed pass
+	 * @author Mirza.Kamran
+	 */
+	public HashMap<String, Integer> getCountOfAllExistingAddedDataValues() {
+				
+		HashMap<String, Integer> addedDataValues = new HashMap<String, Integer>();
+		for(WebElement row:tableRowsAddData)
+		{		
+			int addedValueCount=0;
+			String strAddedValue = getNumbersFromString(row.getText());
+			if(addedDataValues.containsKey(strAddedValue))
+			{
+				addedValueCount =	addedDataValues.get(strAddedValue);
+				addedValueCount++;
+				addedDataValues.put(strAddedValue, addedValueCount);
+			}else
+			{
+				addedDataValues.put(strAddedValue, 1);
+			}
+			
+		}
+		
+	
+		return addedDataValues;
 	}
 	
 	/**
@@ -313,6 +363,24 @@ public class FidoDataManagementPage extends BasePageClass {
 		}
 		return found;
 	}
+	
+	/**
+	 * Checks if the cancel is displayed for all existing active ane newly added
+	 * @return true if all the add data has cancel button else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(int intExistingActive, int intNewlyAddedMTTAddOns) {	
+		int countTotal = 0;
+		intExistingActive = 4;
+		for(WebElement row : rowsAddMTTData) {
+			if(row.getText().toLowerCase().contains("cancel")
+				|| row.getText().toLowerCase().contains("annuler")) {
+				countTotal++;
+			}
+		}
+		return countTotal== (intExistingActive+intNewlyAddedMTTAddOns);
+	}
+
 
 	/**
 	 * Clicks on the cancel MDT link
@@ -365,11 +433,28 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkCloseButtonOnCancelSuccessOverlay() {
-		reusableActions.getWhenReady(btnCloseAddOnCancelled);
+		reusableActions.getWhenReady(btnCloseAddOnCancelled).click();
 	}
 
 	public boolean isCancelSuccessdisplayed() {		
 		return reusableActions.isElementVisible(titleAddOnCancelled,30);
+	}
+
+	/**
+	 * Scrolls top
+	 * @author Mirza.Kamran
+	 */
+	public void scrollToTop() {
+	reusableActions.javascriptScrollToTopOfPage();
+		
+	}
+
+	/**
+	 * Scrolls to middle of page
+	 */
+	public void scrollToMiddle() {
+		reusableActions.javascriptScrollToMiddleOfPage();
+		
 	}
 	
 	

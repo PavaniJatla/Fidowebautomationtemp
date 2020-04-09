@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -15,6 +16,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
+import ca.fido.test.helpers.StringHelpers;
 
 /**
  * This class have all the post paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -246,7 +248,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
 	WebElement overlayOTTDataAddOn;
 	
-	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']")})
+	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	
 	@FindBy(xpath = "//button[@data-caption='Continue' or @data-caption='Continuer']")
@@ -329,9 +331,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyOverlayMonthlyDataAddOnDisplayed() {
-		String strOverlaytitleText = reusableActions.getWhenReady(overlayOTTDataAddOn, 30).getText().trim();
-		return ((strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"))
-				&& (!strOverlaytitleText.contains("Month")||!strOverlaytitleText.contains("Mois")));
+		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
+		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE"));
 	} 
 	
 	/**
@@ -340,7 +341,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyOverlayOTTDataAddOnDisplayed() {
-		return reusableActions.isElementVisible(overlayMonthlyDataAddOn, 30);
+		String strOverlaytitleText = reusableActions.getWhenReady(overlayOTTDataAddOn, 30).getText().trim();
+		return ((strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"))
+				&& (!strOverlaytitleText.contains("Month")||!strOverlaytitleText.contains("Mois")));
 	} 
 	
 	/**
@@ -1362,11 +1365,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		HashMap<String, Integer> addData = new HashMap<String, Integer>();
 		for(WebElement row:lstMyPlanAddOns)
 		{
-			if((row.getText().toLowerCase().contains("monthly data")&& row.getText().toLowerCase().contains("expires")))
+			if((row.getText().toLowerCase().contains("monthly data")&& row.getText().toLowerCase().contains("expires"))
+				||(row.getText().toLowerCase().contains("mensuel")&& row.getText().toLowerCase().contains("expiration")))
 			{
 				cancelled++;
 				
-			}else if((row.getText().toLowerCase().contains("monthly data")&& !row.getText().toLowerCase().contains("expires")))
+			}else if((row.getText().toLowerCase().contains("monthly data")&& !row.getText().toLowerCase().contains("expires"))
+					||(row.getText().toLowerCase().contains("mensuel")&& !row.getText().toLowerCase().contains("expiration")))
 			{
 				active++;
 			}else
@@ -1385,5 +1390,36 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyCancelledAddedDataInMyPlan(int countOfCancelled, int countOfActiveBeforeCancelled) {
 		int cancelled= getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection().get("cancelled");
 		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
+	}
+
+	/**
+	 * 
+	 * @param mapCountOfAlreadyAddedData Contains all added values and their count
+	 * @return
+	 */
+	public boolean clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(Map<String, Integer> mapCountOfAlreadyAddedData) {
+		boolean foundLessThanThree = false;
+		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
+		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
+		{
+			String addedvalue = StringHelpers.getNumbersFromString(btn.getText());
+			if(mapCountOfAlreadyAddedData.containsKey(addedvalue))
+			{
+				if(mapCountOfAlreadyAddedData.get(addedvalue)<3)
+				{
+					btn.click();
+					foundLessThanThree = true;
+					break;
+				}
+			
+			}else
+			{
+				btn.click();
+				foundLessThanThree = true;
+				break;
+			}
+		}
+		return foundLessThanThree;
+		
 	}
 }

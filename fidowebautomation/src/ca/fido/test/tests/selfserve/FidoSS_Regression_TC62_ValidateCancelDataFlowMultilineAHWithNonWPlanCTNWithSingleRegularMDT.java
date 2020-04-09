@@ -19,9 +19,8 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
- * The test will verify demo-line account add data flow and manage data page, 
- * as well as verify the total data and data accuracy in manage data page. 
- * @author Ning.Xue
+ * The test will Validate Cancel DataFlow Multiline AH With NonW Plan CTN With Single RegularMDT, 
+ * @author Mirza.Kamran
  *
  */
 public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT extends BaseTestClass{
@@ -41,25 +40,6 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 	public void afterTest() throws InterruptedException {
 		closeSession();
 	}
-	
-	
-	/*
-﻿1. Navigate to Fido.ca
-2. Sign in with proper credentials
-3. Click on the CTN
-4. Click on View details in usage dashboard
-5. Click on Cancel link next to the data add on
-6. Click on Yes,remove top-up button
-7. Verify that MDT is cancelled
-8. Validate in V21"	"﻿1.Fido.ca landing page is opened successfully
-2.Account Overview page is landed successfully
-3. Wireless dashboard is displayed
-4. Added Data section lists all add-ons separately and only Monthly Add ons have Cancel link.
-5. Review screen of cancel monthly data top-up is displayed
-6. Confirmation screen is displayed
-7. Expires MMM DD - is displayed next to the cancelled MDT in manage data page and plan section
-8. MDT SOC is removed from the plan as expected"
-	 */
 	
 	
 	@Test
@@ -98,6 +78,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		
 		if((countOfActiveAndCancelledAddData.get("active")>=1))
 		{
+			fido_data_management_page.scrollToMiddle();
 			reporter.reportLogWithScreenshot("Click on cancel MTT Link");
 			fido_data_management_page.clkCancelMTTLink();			
 			reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
@@ -108,6 +89,13 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 			reporter.reportLogWithScreenshot("Cancel successful");
 			fido_data_management_page.clkCloseButtonOnCancelSuccessOverlay();
 			reporter.reportLogWithScreenshot("Close overlay");
+			
+			fido_data_management_page.scrollToTop();
+			fido_data_management_page.clkLinkBackOnManageDataOverlay();
+			reporter.reportLogWithScreenshot("Back on dashboard");
+			reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+					"'Data details' page is displayed after click on view details link",
+					"'Data details' page is NOT displayed after click on view details link");
 			//7. Verify that MDT is cancelled
 			//7. Expires MMM DD - is displayed next to the cancelled MDT in manage data page and plan section
 			reporter.softAssert(fido_data_management_page.verifyCancelledMDTInManageData(1,countOfActiveAndCancelledAddData.get("cancelled")),
