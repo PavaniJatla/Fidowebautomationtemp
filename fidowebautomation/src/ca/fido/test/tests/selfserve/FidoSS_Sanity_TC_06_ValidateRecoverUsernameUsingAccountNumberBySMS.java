@@ -49,16 +49,14 @@ public class FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS 
 		reporter.reportLogWithScreenshot("Click on Text as recovery option");
 		String strTestingTab = getDriver().getWindowHandle();
 		String strRecoveredUserName = null;		
-		try {
-			String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
-			strRecoveredUserName = ensVerifications.getAccountUserName(strPhoneNum);			
-			getDriver().switchTo().window(strTestingTab);
-			reporter.reportLogWithScreenshot("Close the Overlay");
-			fido_recover_pass_or_name_page.switchToSetCodeIframe();
-			fido_recover_pass_or_name_page.clkBtnCloseWeHaveTextedUserNameOverlay();			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
+		strRecoveredUserName = ensVerifications.getAccountUserName(strPhoneNum);			
+		getDriver().switchTo().window(strTestingTab);
+		reporter.reportLogWithScreenshot("Close the Overlay");
+		fido_recover_pass_or_name_page.switchToSetCodeIframe();
+		fido_recover_pass_or_name_page.clkBtnCloseWeHaveTextedUserNameOverlay();			
+
 		//Login with username:  
 		fido_home_page.clkLogin();
 		reporter.reportLogWithScreenshot("Login Page");

@@ -24,8 +24,6 @@ public class CaptchaBypassHandlers {
 		public void captchaBypassURLSelfserveFlows(String strUrl, String strLanguage) throws IOException {
 			driver.get(strUrl+"?setLanguage="+ strLanguage );
 		
-		//------------------Need to pass this from data file -----------------------//			
-		//CookieFetcher.registerCookieAccount("bypassfido11@mailinator.com", "rogers123", "https://www.qa07.fido.ca/pages/web/genesis/api/user/v1/registration/recaptchaBypass");
 		String strCookieUserName= TestDataHandler.config.getCookieUserName();
 		String strCookieUserPassword= TestDataHandler.config.getCookieUserPassword();
 		

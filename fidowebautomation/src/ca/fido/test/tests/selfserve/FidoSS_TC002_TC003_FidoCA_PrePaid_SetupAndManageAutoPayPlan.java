@@ -35,8 +35,8 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 	public void prepaidSetUpAutoPayRefill() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc002003.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc002003.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.tc0203.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.tc0203.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
 		fido_login_page.switchOutOfSignInFrame();

@@ -15,6 +15,7 @@ public class FidoEnums {
 	public enum GroupName {
 		connectedhome_anonymous,
 		connectedhome_login,
+		selfserve_login,
 		selfserve
 		  } ;
     

@@ -9,7 +9,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Listeners;
 
-import ca.fido.ens.VerifyInEns;
 import ca.fido.pages.FidoAccountOverviewPage;
 import ca.fido.pages.FidoAccountRegistrationPage;
 import ca.fido.pages.FidoBillDetailsPage;
@@ -39,6 +38,7 @@ import ca.fido.pages.FidoOrderReviewPage;
 import ca.fido.pages.FidoPaymentHistoryPage;
 import ca.fido.pages.FidoPaymentOptionsPage;
 import ca.fido.pages.FidoPaymentPage;
+import ca.fido.pages.FidoPrepaidLinkAccountPage;
 import ca.fido.pages.FidoProfileAndSettingPage;
 import ca.fido.pages.FidoRecoverPassOrNamePage;
 import ca.fido.pages.FidoRefillPage;
@@ -56,6 +56,7 @@ import ca.fido.ssp.pages.SSPFidoRetailerHomePage;
 import ca.fido.ssp.pages.SSPFidoRetailerSearchResultsPage;
 import ca.fido.ssp.pages.SSPFidoRetailerShopPage;
 import ca.fido.test.commonbusiness.CommonBusinessFlows;
+import ca.fido.test.commonbusiness.VerifyInEns;
 import ca.fido.test.helpers.BrowserDrivers;
 import ca.fido.test.helpers.CaptchaBypassHandlers;
 import extentreport.ExtentTestManager;
@@ -68,9 +69,11 @@ import utils.Reporter;
 public class BaseTestClass {
 		    
 	private WebDriver driver;
-	protected VerifyInEns ensVerifications;
 	public Reporter reporter;	
 	protected HashMap<String,String> xmlTestParameters;
+	public EnsHomePage ensHomePage;
+	public EnsNotificationViewPage ensNoteViewPage;
+	protected VerifyInEns ensVerifications;
 	public FidoHomePage fido_home_page;
 	public FidoLoginPage fido_login_page;
 	public FidoAccountOverviewPage fido_account_overview_page;
@@ -81,6 +84,7 @@ public class BaseTestClass {
 	protected FidoMakePaymentPage fido_make_payment_page;
 	protected FidoRecoverPassOrNamePage fido_recover_pass_or_name_page;
 	protected FidoPaymentHistoryPage fido_payment_history_page;
+	protected FidoPrepaidLinkAccountPage fido_prepaid_link_account_page;
 	protected FidoInternetDashboardPage fido_Internet_dashboard_page;
 	protected FidoInteracOnlinePage fido_interac_online_page;
 	protected FidoCommunityPage fido_Community_Page;
@@ -94,8 +98,6 @@ public class BaseTestClass {
 	protected FidoDeviceReservationSystemPage fido_device_reservation_system_page;
 	protected FidoDataManagementPage fido_data_management_page;
 	protected FidoSetPasswordPage fido_set_password_page;
-	protected EnsHomePage ensHomePage;
-	protected EnsNotificationViewPage ensNoteViewPage;
 	protected boolean isDockerStarted = false;
 	protected CommonBusinessFlows common_business_flows; 
 	protected FidoPaymentPage fido_payment_page;
@@ -139,7 +141,7 @@ public class BaseTestClass {
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
 	public void startSession(String strUrl, String strBrowser,  String strLanguage, String strGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		this.driver = browserdriver.driverInit(strBrowser, currentTestMethodName);
+		this.driver = browserdriver.driverInit(strBrowser, currentTestMethodName, strGroupName);
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(strGroupName.toLowerCase().trim()) {			
@@ -152,6 +154,7 @@ public class BaseTestClass {
 			break;            
 
 		case "selfserve":
+		case "selfserve_login":
 			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
 			break;
 
@@ -185,6 +188,7 @@ public class BaseTestClass {
 			fido_make_payment_page =new FidoMakePaymentPage(driver);
 			fido_recover_pass_or_name_page = new FidoRecoverPassOrNamePage(driver);
 			fido_payment_history_page = new FidoPaymentHistoryPage(driver);
+			fido_prepaid_link_account_page = new FidoPrepaidLinkAccountPage(driver);
 			fido_interac_online_page = new FidoInteracOnlinePage(driver);
 			fido_Internet_dashboard_page = new FidoInternetDashboardPage(driver);
 			fido_Community_Page = new FidoCommunityPage(driver);
@@ -200,7 +204,7 @@ public class BaseTestClass {
 			fido_set_password_page = new FidoSetPasswordPage(driver);
 			ensHomePage = new EnsHomePage(driver);
 			ensNoteViewPage = new EnsNotificationViewPage(driver);
-			ensVerifications = new VerifyInEns(driver, ensHomePage, ensNoteViewPage, reporter);
+			ensVerifications = new VerifyInEns(this);
 			break;
 			
 		case "connectedhome_login":
