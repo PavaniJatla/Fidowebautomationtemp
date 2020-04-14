@@ -1,4 +1,4 @@
-package ca.fido.test.tests.buyflow;
+package ca.fido.test.tests.buyflows;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -59,10 +59,10 @@ public class Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test extends BaseT
 		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase04.getUsername());
 		if(fido_order_review_page.isPaymentRequired()) {
 			fido_order_review_page.clkContinueToPayment();
-			fido_payment_page.setCreditCardDetails(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber(),
-												   TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth(),
-												   TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear(),
-												   TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+			fido_payment_page.setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),
+												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth(),
+												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear(),
+												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCVV());
 			fido_payment_page.clkContinueOrder();
 		} else {
 			fido_order_review_page.clkCompleteOrder();
@@ -76,7 +76,7 @@ public class Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test extends BaseT
 	@BeforeTest
     public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, String strGroupName, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
     }
 
     @AfterTest(alwaysRun = true)

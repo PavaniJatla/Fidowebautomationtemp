@@ -11,7 +11,11 @@ import ca.fido.yaml.pojo.PaymentDetails;
 public class TestDataHandler {
 	
 	public static Config config;
+	public static Config fidoConfig;
+	public static Config bfaConfig;
 	public static PaymentDetails paymentInfo;
+	public static PaymentDetails fidoPaymentInfo;
+	public static PaymentDetails bfaPaymentInfo;
 	public static AccountData tc00101056;
 	public static AccountData tc0203;
 	public static AccountData tc0405;
@@ -45,13 +49,11 @@ public class TestDataHandler {
 	public static AccountData tc04To09;
 	public static AccountData tc39;
 	public static AccountData tc40;
-	public static Config fidoConfig;
 	public static AccountData fidoHSIAccount;
 	public static AccountData fidoHSIAccountForDowngrade;
 	public static AccountData fidoWirelessAccount;
 	public static AccountData fidoHSIAccountwithUnwiredAddress;
 	public static AccountData fidoSspHSIAccount;
-	public static PaymentDetails fidoPaymentInfo;
 	public static NACData testCase01;
 	public static NACData testCase02;
 	public static HUPData testCase03;
@@ -126,8 +128,8 @@ public class TestDataHandler {
 	}
 	
 	private static void buyFlowsDataInit() {
-		config =  YamlHandler.getBFAConfig();
-    	paymentInfo = YamlHandler.getBFAPaymentDetails();
+		bfaConfig =  YamlHandler.getBFAConfig();
+		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();
     	testCase01 = YamlHandler.getNACData("tc01NAC");
     	testCase02 = YamlHandler.getNACData("tc02NAC");
     	testCase03 = YamlHandler.getHUPData("tc03HUP");
