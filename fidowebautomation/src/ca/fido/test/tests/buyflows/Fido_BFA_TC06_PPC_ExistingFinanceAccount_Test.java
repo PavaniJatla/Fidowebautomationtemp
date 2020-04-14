@@ -1,4 +1,4 @@
-package ca.fido.test.tests.buyflow;
+package ca.fido.test.tests.buyflows;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -65,7 +65,7 @@ public class Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test extends BaseTestClass
 	@BeforeTest
     public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, String strGroupName, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
     }
 
     @AfterTest(alwaysRun = true)
