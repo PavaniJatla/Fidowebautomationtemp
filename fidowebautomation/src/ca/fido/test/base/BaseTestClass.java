@@ -211,6 +211,7 @@ public class BaseTestClass {
 		switch(strGroupName) {
 		
 		case "selfserve":
+		case "selfserve_login":
 			
 			fido_home_page = new FidoHomePage(driver);
 			fido_login_page = new FidoLoginPage(driver);

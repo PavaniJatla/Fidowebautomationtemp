@@ -2,16 +2,81 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS">
 <parameter name="strBrowser" value="chrome"/>
-<parameter name="strLanguage" value="fr"/>
+<parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
-</listeners> 
-  
-     <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
+</listeners>   
+
+
+
+<test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
                     </class>                                       
              </classes>
-	</test>  		  
+	</test>  
+	
+	
+	<!--  prepaid ban required
+	
+		<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
+		<classes>             
+                   <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC001_PrePaidDashBoard">
+                    </class> 
+         </classes>
+    </test>
+	 
+	<test name="FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid">	
+		<classes>
+                    <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid">
+                    </class>                                       
+             </classes>
+	</test>
+	
+	-->
+	
+	
+
+
+<!-- 
+
+<test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">	
+		<classes>
+                    <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
+                    </class>                                       
+             </classes>
+	</test> 
+	
+ -->
+     
+      
+     <!-- 
+     
+      <test name="FidoSS_TC004_Prepaid_OneTimeRefill_Interac">	
+		<classes>             
+            <class name="ca.fido.test.tests.selfserve.FidoSS_TC004_Prepaid_OneTimeRefill_Interac"> </class>
+         </classes>
+    </test>  
+  
+  
+ 
+    
+      
+    
+    
+  
+   
+  
+  
+  
+  
+  
+    
+			
+	 -->
+	  
 </suite>

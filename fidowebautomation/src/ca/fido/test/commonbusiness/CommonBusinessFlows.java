@@ -3,6 +3,7 @@ package ca.fido.test.commonbusiness;
 import org.testng.annotations.Listeners;
 
 import ca.fido.test.base.BaseTestClass;
+import utils.ReusableActions;
 
 @Listeners ({ca.fido.test.listeners.TestListener.class 
 	, ca.fido.test.listeners.AnnotationTransformer.class 
@@ -53,5 +54,19 @@ public class CommonBusinessFlows {
 	public void navigateToDashBoardPageFromUsageAndBillings() {
 		
 	}
+	
+	public void scrollToMiddleOfWebPage() {
+		baseTestClass.fido_account_overview_page.scrollToMiddleOfPage();
+	}
+	
 
+	public void scrollToTopOfWebPage() {
+		baseTestClass.fido_account_overview_page.scrollToTopOfPage();
+	}
+	
+
+	public void scrollToBottomOfWebPage() {
+		baseTestClass.fido_account_overview_page.scrollToBottomOfPage();
+	}
+	
 }

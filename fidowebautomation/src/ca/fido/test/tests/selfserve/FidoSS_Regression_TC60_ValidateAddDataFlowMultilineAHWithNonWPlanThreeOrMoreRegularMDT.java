@@ -62,13 +62,14 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 
-		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
-
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
+		reporter.reportLogWithScreenshot("View details page opened");
+		common_business_flows.scrollToMiddleOfWebPage();
+		reporter.reportLogWithScreenshot("Manage data page middle view");
 		int countOfExistSpeedPass = fido_data_management_page.getAllExistingAddDataCount();
+		common_business_flows.scrollToTopOfWebPage();
 		Map<String, Integer> countOfActiveAndCancelledAddData = fido_data_management_page.getAllExistingAddDataCountCancelledAndActive();
 		Map<String, Integer> countOfAlreadyAddedData = fido_data_management_page.getCountOfAllExistingAddedDataValues();
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
@@ -172,10 +173,11 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
-		reporter.softAssert((fido_data_management_page.verifyMTTAddedDataInDataDetails(countAddData, countOfExistSpeedPass)
-				&& fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(countOfActiveAndCancelledAddData.get("active"),countAddData)),
-				"Added Data section lists all add-ons separately and there is NO Cancel link next to OTT",
-				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is Cancel link next to OTT");
+		reporter.softAssert(fido_data_management_page.verifyMTTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
+				"MTT data is added correctly in data details","MTT data is NOT added correctly it seems in data details");
+		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
+				"ALL the newly added MTT have the cancel link",
+				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
 		
 				
 		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
@@ -195,8 +197,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		{
 			reporter.reportLogWithScreenshot("Click on CTN badge");
 			fido_account_overview_page.clkCtnBadge();
-			reporter.reportLogWithScreenshot("dashboard page");
-			double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+			reporter.reportLogWithScreenshot("dashboard page");			
 			/*
 			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 					"Total data in usage section align with total data in Manage data page and displayed seperately",

@@ -129,7 +129,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * Perform click on view details link in usage section
 	 * @author ning.xue
 	 */
-	public void clkLinkBackOnManageDataOverlay() {		
+	public void clkLinkBackOnManageDataOverlay() {			
 		reusableActions.getWhenReady(lnkBackOnManageDataOverlay,20).click();
 		reusableActions.staticWait(6000);
 	}
@@ -238,7 +238,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @param intCountOfSpeedPassBefore int, the previous record
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyMTTAddedDataInDataDetails(int listAddedData, int intCountOfSpeedPassBefore) {
+	public boolean verifyMTTAddedDataInDataDetails(int listAddedData, int intCountOfSpeedPassBefore) {		
 		int totalSpeedPass = getAllExistingAddMTTCount();
 		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
 		
@@ -268,6 +268,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public int getAllExistingAddDataCount() {
+		reusableActions.staticWait(5000);
 		return tableRowsAddData.size();
 	}
 
@@ -342,7 +343,8 @@ public class FidoDataManagementPage extends BasePageClass {
 		if(reusableActions.isElementVisible(titleManageData,30)
 			&& reusableActions.isElementVisible(titlePlanData, 30)	)
 		{				
-			isDisplayed=true;			
+			isDisplayed=true;	
+			
 		}		
 		return isDisplayed;
 	}
@@ -370,8 +372,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(int intExistingActive, int intNewlyAddedMTTAddOns) {	
-		int countTotal = 0;
-		intExistingActive = 4;
+		int countTotal = 0;			
 		for(WebElement row : rowsAddMTTData) {
 			if(row.getText().toLowerCase().contains("cancel")
 				|| row.getText().toLowerCase().contains("annuler")) {

@@ -511,7 +511,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true if login fail message is displayed, otherwise false.
 	 */
 	public Boolean verifyLoginFailMsgIframe() {
-		return reusableActions.isElementVisible(failLoginDiv, 5);
+		return reusableActions.isElementVisible(failLoginDiv, 10);
 	}
 	
 	/**
@@ -790,6 +790,21 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		          + Thread.currentThread().getStackTrace()[2].getMethodName() + "\"" + " action method");
 		}
 		
+	}
+
+	/**
+	 * Scrolls to top of webpage
+	 */
+	public void scrollToTopOfPage() {
+		reusableActions.javascriptScrollToTopOfPage();
+		
+	}
+
+	/**
+	 * Scrolls to bottom of webpage
+	 */
+	public void scrollToBottomOfPage() {
+		reusableActions.javascriptScrollToBottomOfPage();		
 	}
 
 	

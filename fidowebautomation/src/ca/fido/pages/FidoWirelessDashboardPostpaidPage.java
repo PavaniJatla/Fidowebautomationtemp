@@ -429,15 +429,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public double getValueAddedData() {
 		String strDataAdded = msgSuccessOnAddDataOverlay.getText();
-		double valueAddedData = 0;
-		if(strDataAdded.toLowerCase().contains("mo")||strDataAdded.toLowerCase().contains("go"))
-		{
-			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('O')-2).trim());
-		}else
-		{
-			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('B')-2).trim());
-		}
-				
+		double valueAddedData = Double.parseDouble( StringHelpers.getNumbersFromString(strDataAdded.replace(",", ".")));		
 		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")
 			||strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MO")) {
 			valueAddedData = valueAddedData / 1000;

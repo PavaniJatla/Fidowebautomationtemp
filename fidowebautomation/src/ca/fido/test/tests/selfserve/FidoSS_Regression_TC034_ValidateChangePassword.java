@@ -42,7 +42,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 
 		String altUserName=TestDataHandler.tc34.getUsername();
 		String altPassword=TestDataHandler.tc34.getPassword();
-		String newPassword=TestDataHandler.tc34.getNewPassword();
+		String newPassword=TestDataHandler.tc34.getaccountDetails().getNewPassword();
 		fido_login_page.setUsernameInFrame(altUserName);
 		fido_login_page.setPasswordInFrame(altPassword);
 		reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);

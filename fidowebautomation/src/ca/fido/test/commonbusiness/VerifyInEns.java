@@ -20,15 +20,15 @@ public class VerifyInEns extends BaseTestClass{
 	private void startVerify() {
 
 		String strEnsUrl = "";
-		if (TestDataHandler.config.getRogersURL().contains("qa06")
-				||TestDataHandler.config.getRogersURL().contains("qa01"))
+		if (TestDataHandler.config.getFidoURL().contains("qa01")
+				|| TestDataHandler.config.getFidoURL().contains("qa05"))
 		{
-			strEnsUrl = TestDataHandler.config.getEnsURL04();
-		}else if(TestDataHandler.config.getRogersURL().contains("qa05")
-				|| TestDataHandler.config.getRogersURL().contains("qa02"))
+			strEnsUrl = TestDataHandler.config.getEnsURL01();
+		}else if(TestDataHandler.config.getFidoURL().contains("qa03")
+				|| TestDataHandler.config.getEnsURL03().contains("qa03"))
 		{
 			strEnsUrl = TestDataHandler.config.getEnsURL03();
-		}else if(TestDataHandler.config.getRogersURL().contains("qa07"))
+		}else if(TestDataHandler.config.getFidoURL().contains("qa07"))
 		{
 			strEnsUrl = TestDataHandler.config.getEnsURL01();
 		}

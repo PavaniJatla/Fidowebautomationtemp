@@ -7,9 +7,7 @@ cookieUserName: orphanRegRog@mailinator.com
 cookieUserPassword: rogers123
 ensLoginEmail: Serv_DigiAuto@rci.rogers.ca
 ensPassword: Asdf@123
-ensURL01: http://ensqa1.rogers.com/ENS/notificationsViewer.action
-ensURL03: http://ensqa3.rogers.com/ENS/notificationsViewer.action
-ensURL04: http://ensqa4.rogers.com/ENS/notificationsViewer.action
+ensURL01: http://ensqa3.rogers.com/ENS/notificationsViewer.action
 sauceUser: Mirza.Kamran
 sauceKey: dacb41bf-f530-437e-8d75-4b0e1e9670b9
 brightStarURL: https://stage-onlineportal-ca.brightstar.com/fido/login

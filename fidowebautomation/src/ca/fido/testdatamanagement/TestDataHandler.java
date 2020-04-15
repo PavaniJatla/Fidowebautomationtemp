@@ -118,8 +118,7 @@ public class TestDataHandler {
     	tc49 = YamlHandler.getAccountData("tc49PostPaidDataOnly");
     	tc5055 = YamlHandler.getAccountData("tc50_55PostPaidWithDataTalkText");
     	tc54 = YamlHandler.getAccountData("tc54PostPaidLimitedTalkTextOnly");
-    	tc5859 = YamlHandler.getAccountData("tc58_59PostPaidDemoline");	    		    	    	  	    		    		    		    	  	    	
-    	tc002003 = YamlHandler.getAccountData("tc002_003");	 
+    	tc5859 = YamlHandler.getAccountData("tc58_59PostPaidDemoline");	    		    	    	  	    		    		    		    	  	    	    
     	tc6062 = YamlHandler.getAccountData("tc60_62PostPaidDemoline");
     	tc61 = YamlHandler.getAccountData("tc61PostPaidDemolineOTT");
 	}
