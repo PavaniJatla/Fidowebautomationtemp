@@ -13,15 +13,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 
-	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage", "strGroupName" })
-	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext,Method method) throws ClientProtocolException, IOException {
+	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
 		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
-				strLanguage, strGroupName,method);			
+				strLanguage, FidoEnums.GroupName.selfserve,method);			
 	}
 
 	

@@ -2,19 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS">
 <parameter name="strBrowser" value="chrome"/>
-<parameter name="strLanguage" value="en"/>
-<parameter name="strGroupName" value="selfserve"/>
+<parameter name="strLanguage" value="fr"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners> 
   
-     <test name="FidoSS_TC013_FidoCA_PostpaidPaymentCC">	
+     <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_TC013_FidoCA_PostpaidPaymentCC">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
                     </class>                                       
              </classes>
-	</test> 
-
- 		  
+	</test>  		  
 </suite>

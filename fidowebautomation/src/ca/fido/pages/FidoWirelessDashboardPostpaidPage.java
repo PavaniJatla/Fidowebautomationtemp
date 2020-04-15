@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -14,6 +16,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
+import ca.fido.test.helpers.StringHelpers;
 
 /**
  * This class have all the post paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -242,10 +245,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
 	WebElement overlayMonthlyDataAddOn;
 	
-	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']")})
+	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
+	WebElement overlayOTTDataAddOn;
+	
+	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	
-	@FindBy(xpath = "//button[@data-caption='Continue']")
+	@FindBy(xpath = "//button[@data-caption='Continue' or @data-caption='Continuer']")
 	WebElement btnContinueOnAddDataOverlay;
 	
 	@FindBy(xpath = "//span[text()='Select amount' or text()='Sélectionnez le montant']")
@@ -269,7 +275,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title']")
 	WebElement msgConfirmPurchasing;
 	
-	@FindBy (xpath = "//button[@data-caption='Purchase']")
+	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")
 	WebElement btnPurchaseOnAddDataOverlay;
 	
 	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
@@ -308,6 +314,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//img[@alt='Attention']")
 	WebElement imgAttentionOverage;
 	
+	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
+	List<WebElement> lstMyPlanAddOns;
+	
 	/**
 	 * Clicks on the add data button for demoline accounts only
 	 * @author Mirza.Kamran
@@ -319,10 +328,22 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	/**
 	 * Verify Overlay Monthly Data Add On Displayed
 	 * @return true if the overlay displayed, otherwise false
-	 * @author ning.xue
+	 * @author Mirza.Kamran
 	 */
 	public boolean verifyOverlayMonthlyDataAddOnDisplayed() {
-		return reusableActions.isElementVisible(overlayMonthlyDataAddOn, 30);
+		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
+		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE"));
+	} 
+	
+	/**
+	 * Verify Overlay OTT Data Add On Displayed
+	 * @return true if the overlay displayed, otherwise false
+	 * @author ning.xue
+	 */
+	public boolean verifyOverlayOTTDataAddOnDisplayed() {
+		String strOverlaytitleText = reusableActions.getWhenReady(overlayOTTDataAddOn, 30).getText().trim();
+		return ((strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"))
+				&& (!strOverlaytitleText.contains("Month")||!strOverlaytitleText.contains("Mois")));
 	} 
 	
 	/**
@@ -408,11 +429,29 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public double getValueAddedData() {
 		String strDataAdded = msgSuccessOnAddDataOverlay.getText();
-		double valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('B')-2).trim());
-		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")) {
+		double valueAddedData = 0;
+		if(strDataAdded.toLowerCase().contains("mo")||strDataAdded.toLowerCase().contains("go"))
+		{
+			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('O')-2).trim());
+		}else
+		{
+			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('B')-2).trim());
+		}
+				
+		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")
+			||strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MO")) {
 			valueAddedData = valueAddedData / 1000;
 		}
 		return valueAddedData;
+	}
+	
+	/**
+	 * 
+	 * @return String value added 
+	 * @author Mirza.Kamran
+	 */
+	public String getAddedValueWithGBOrMB() {
+		return msgSuccessOnAddDataOverlay.getText();
 	}
 	
 	/**
@@ -781,6 +820,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyTotalDataReflectedAddedData(double previousTotalDataValue, double addedDataValue) {
 		return Double.parseDouble(divTotalData.getText().trim()) == addedDataValue + previousTotalDataValue;
 	}
+		
 	
 	/**
 	 * Verify total data in data usage section align with the total data in Manage Data page
@@ -821,7 +861,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyRemainingDataReflectedAddedData(double previousRemainingDataValue, double addedDataValue) {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == addedDataValue + previousRemainingDataValue;
+		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == (addedDataValue/1000) + previousRemainingDataValue;
 	}
 	
 	/**
@@ -1291,5 +1331,95 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyAttentionOverageSymbolIsDisplayed() {		
 		return reusableActions.isElementVisible(imgAttentionOverage);
+	}
+
+	/*
+	 * 
+	 */
+	public int getAllExistingAddOns() {		
+		return lstMyPlanAddOns.size();
+	}
+	
+	/**
+	 * Verifies if the added data is displayed separately in data details
+	 * @return true if the new added count plus previous records matches total records else false
+	 * @param listAddedData int, new added record count
+	 * @param intCountOfSpeedPassBefore int, the previous record
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyAddedDataInMyPlan(int listAddedData, int intCountOfSpeedPassBefore) {
+		int totalSpeedPass = getAllExistingAddOns();		
+		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
+		
+	}
+
+	/**
+	 * 
+	 * @return
+	 * @author Mirza.Kamran
+	 */
+	public HashMap<String, Integer> getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection() {				
+		int active=0;
+		int cancelled=0;
+		int nonMTT=0;
+		HashMap<String, Integer> addData = new HashMap<String, Integer>();
+		for(WebElement row:lstMyPlanAddOns)
+		{
+			if((row.getText().toLowerCase().contains("monthly data")&& row.getText().toLowerCase().contains("expires"))
+				||(row.getText().toLowerCase().contains("mensuel")&& row.getText().toLowerCase().contains("expiration")))
+			{
+				cancelled++;
+				
+			}else if((row.getText().toLowerCase().contains("monthly data")&& !row.getText().toLowerCase().contains("expires"))
+					||(row.getText().toLowerCase().contains("mensuel")&& !row.getText().toLowerCase().contains("expiration")))
+			{
+				active++;
+			}else
+			{
+				nonMTT++;
+			}
+		}
+		
+		addData.put("active", active);
+		addData.put("cancelled", cancelled);
+		addData.put("nonMTT", nonMTT);
+		return addData;		
+	}
+
+	
+	public boolean verifyCancelledAddedDataInMyPlan(int countOfCancelled, int countOfActiveBeforeCancelled) {
+		int cancelled= getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection().get("cancelled");
+		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
+	}
+
+	/**
+	 * 
+	 * @param mapCountOfAlreadyAddedData Contains all added values and their count
+	 * @return
+	 */
+	public boolean clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(Map<String, Integer> mapCountOfAlreadyAddedData) {
+		boolean foundLessThanThree = false;
+		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
+		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
+		{
+			String addedvalue = StringHelpers.getNumbersFromString(btn.getText());
+			if(mapCountOfAlreadyAddedData.containsKey(addedvalue))
+			{
+				if(mapCountOfAlreadyAddedData.get(addedvalue)<3)
+				{
+					btn.click();
+					foundLessThanThree = true;
+					break;
+				}
+			
+			}else
+			{
+				btn.click();
+				foundLessThanThree = true;
+				break;
+			}
+		}
+		return foundLessThanThree;
+		
 	}
 }
