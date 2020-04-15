@@ -1,16 +1,17 @@
 # Account Details 
 ---
 name: FidoSSPHSIAccount
-username: rqaagile-mutahirthirdparty@yahoo.com
-password: Fido@123
-dealerCode: FDBAC
+username: chinnarao.vattam@rci.rogers.ca
+password: IELTS@mar2020
+dealerCode: F9999
 environment: QA05
+sspEnv: QA03
 accountDetails:
    type: Internet
-   ban: 227633716 
+   ban: 227647039 
    postalCode: L6B0A8
-   modem: FFDD519BC312
-   newModem: FFDD519BC328
+   modem: FFDD519BC329
+   newModem: FFDD519BC331
    address:
      line1: 67 Pickett Pl
      line2: Cambridge ON N3E 0B4 

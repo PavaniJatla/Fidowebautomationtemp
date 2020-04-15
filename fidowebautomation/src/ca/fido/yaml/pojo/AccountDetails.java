@@ -34,7 +34,7 @@ public class AccountDetails {
 	private String upgradeDataPlan;
 	private String downgradeDataPlan;
 	private String modem;
-	private String  newModem;
+	private String newModem;
 	
 	public AccountDetails() {
 		
@@ -385,6 +385,5 @@ public class AccountDetails {
 	public String getDowngradeDataPlan() {
 		return downgradeDataPlan;
 	}
-
 
 }
