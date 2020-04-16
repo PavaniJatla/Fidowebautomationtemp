@@ -171,7 +171,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='talk-text-usage']//span[contains(text(),'Textos') or contains(text(),'Text')]")
 	WebElement divTextUsage;
 	
-	@FindBy (xpath = "//div[@class='talk-text-usage-wrap']//span[contains(text(),'Textos') or contains(text(),'Text')]")
+	@FindBy (xpath = "//div[@class='talk-text-usage-wrap']//*[contains(text(),'Textos') or contains(text(),'Text')]")
 	WebElement textUsageInTalkNTextOnly;
 	
 	@FindBy (xpath = "//td[contains(text(),'Picture') or contains(text(),'photo')]")

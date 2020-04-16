@@ -2,21 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS">
 <parameter name="strBrowser" value="chrome"/>
-<parameter name="strLanguage" value="fr"/>
+<parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners>   
 
 
- 
- 
-
-  <test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-                    </class>                                       
-             </classes>
+  <test name="FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline">	
+	<classes>
+    <class
+     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline">
+    </class>                                       
+    </classes>
 	</test> 
 
 <!-- 
