@@ -3,9 +3,7 @@ package ca.fido.test.tests.selfserve;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-
 import org.apache.http.client.ClientProtocolException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +14,7 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
-public class FidoSS_TC63_﻿ValidateOnBoardWidgetAfterCompletingTasks extends BaseTestClass{
+public class FidoSS_TC63_ValidateOnBoardWidgetAfterCompletingTasks extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -31,19 +29,6 @@ public class FidoSS_TC63_﻿ValidateOnBoardWidgetAfterCompletingTasks extends Ba
 		closeSession();
 	}
 	
-	/**
-	 * "﻿1. Navigate to Fido.ca
-2. Click on sign in
-3. Login with valid credentials 
-4. Validate tasks in onboarding widget after new changes are made
-5 , Complete Verify recovery number information task
-"	"﻿1. Fido.ca landing page is opened successfully
-2. Sign in popup is displayed
-3. Account overview page displayed
-4. Four tasks should be displayed in onboarding widget as below,
-(1) Log into My Account (2) Automatic Payments (3) Mobile Recovery Number (4) Verify Contact Info / Add Contact Email 
-5. Recovery task flow after completed, task bar and progress should be updated instantly"
-	 */
 	
 	@Test
 	public void userAddNumberForRecovery() {
