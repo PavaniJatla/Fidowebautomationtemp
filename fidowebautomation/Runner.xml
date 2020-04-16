@@ -9,18 +9,17 @@
 
 
 
-<test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-                    </class>                                       
-             </classes>
-	</test>  
-	
+<test name="FidoSS_TC63_﻿ValidateOnBoardWidgetAfterCompletingTasks">
+		<classes>             
+                   <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_TC63_﻿ValidateOnBoardWidgetAfterCompletingTasks">
+                    </class> 
+         </classes>
+    </test>
 	
 	<!--  prepaid ban required
 	
-		<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
+	<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
 		<classes>             
                    <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC001_PrePaidDashBoard">
@@ -43,13 +42,14 @@
 
 <!-- 
 
-<test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">	
+<test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
                     </class>                                       
              </classes>
-	</test> 
+	</test>  
+	
 	
  -->
      

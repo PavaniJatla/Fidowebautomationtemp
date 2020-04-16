@@ -330,9 +330,21 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @return true if the overlay displayed, otherwise false
 	 * @author Mirza.Kamran
 	 */
+	public boolean verifyOverlayAddOnDisplayed() {
+		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
+		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE")
+				|| strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"));
+	} 
+	
+	/**
+	 * Verify Overlay Monthly Data Add On Displayed
+	 * @return true if the overlay displayed, otherwise false
+	 * @author Mirza.Kamran
+	 */
 	public boolean verifyOverlayMonthlyDataAddOnDisplayed() {
 		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
-		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE"));
+		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE")
+				);
 	} 
 	
 	/**
@@ -853,7 +865,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyRemainingDataReflectedAddedData(double previousRemainingDataValue, double addedDataValue) {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == (addedDataValue/1000) + previousRemainingDataValue;
+		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == addedDataValue + previousRemainingDataValue;
 	}
 	
 	/**

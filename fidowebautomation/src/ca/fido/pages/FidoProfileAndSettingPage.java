@@ -183,6 +183,10 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy (xpath = "//button[@class='secondary-button']")
 	WebElement btnContinueToMyAccount;
 
+
+	@FindBy (xpath = "//div[contains(@class,'nav-links')]//a/ins[@translate='global.label.overview']")
+	WebElement btnAccountOverView;
+
 	public void clkProfileNSetting() {
 		reusableActions.getWhenReady(lnkProfileNSetting,60).click();		
 	}
@@ -880,5 +884,14 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void scrollToProfileAndSettingsMiddlePage() {
 		reusableActions.javascriptScrollToMiddleOfPage();
+	}
+	
+	/**
+	 * Clicks on menu Account overview
+	 * @author Mirza.Kamran
+	 */
+	public void clkAccountOverView() {
+		reusableActions.clickWhenReady(btnAccountOverView);
+		
 	}
 }
