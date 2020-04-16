@@ -17,6 +17,9 @@ public class SSPFidoRetailerHomePage extends BasePageClass {
 	@FindBy(xpath="//select[@id='uteFHSIButtonS']")
 	WebElement slctEnvironment;
 	
+	@FindBy(xpath="//div[@id='cfa-signed-in']")
+	WebElement bnrLogin;	
+	
 	@FindBy(id="combinedInput")
 	WebElement txtAccountNumber;
 	
@@ -48,6 +51,13 @@ public class SSPFidoRetailerHomePage extends BasePageClass {
 								
     }
 	
+	/**
+     * Verify the Internet link on the ssp.fido.ca home page navigation bar
+     * @return true, if the  Internet link present at the navigation bar else false
+     */
+	public boolean verifyLoginBanner() {		
+		return reusableActions.isElementVisible(bnrLogin,240);
+	}
 	/**
 	 * click on the Internet link on the navigation bar
 	 */
@@ -97,7 +107,7 @@ public class SSPFidoRetailerHomePage extends BasePageClass {
 	 * @param strEnvironment set the environment to be used for the fido.ca
 	 */
 	public void selectEnvironment(String strEnvironment) {
-		//reusableActions.waitForElementVisibility(slctEnvironment, 20);
+		reusableActions.waitForElementVisibility(slctEnvironment, 20);
 		reusableActions.selectWhenReady(slctEnvironment, strEnvironment,30);
 	} 
 	

@@ -42,8 +42,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//ins[@translate='global.cta.payNow']")
 	WebElement btnPayNowDefault;
 
-	@FindBy (xpath="//div[@ng-if='subscriberService.internet']/a/div/div[@class='item arrow']")
-	WebElement badgeInternet;
+	@FindBy (xpath="//div[@class='list-item']//a[@href='#/my-account/internet']")
+	WebElement badgeInternet;	
+	//div[@ng-if='subscriberService.internet']/a/div/div[@class='item arrow']
 	
 	@FindBy (xpath="//div[@ng-if='subscriberService.wireless']/a")
 	WebElement badgeWireless;
@@ -492,19 +493,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkInternetBadge() {
-		//reusableActions.clickAndHoldFor(badgeInternet,30);  //yes chrome
-		reusableActions.staticWait(1000);
 		reusableActions.javascriptScrollToMiddleOfPage();
-		reusableActions.getWhenReady(badgeInternet,90).click();
-		//reusableActions.clickIfAvailable(badgeInternet,30); //yes firefox		
-	}
-	
-	public void clkInternetBadgeSsp() {
-		//Handshake taking long time, hence using static wait
-		reusableActions.staticWait(3000);
-		reusableActions.clickAndHoldFor(badgeInternet,120);
-		reusableActions.clickIfAvailable(badgeInternet,120);
-		reusableActions.staticWait(3000);	
+		reusableActions.getWhenReady(badgeInternet,120).click();
 	}
 	
 	/**
