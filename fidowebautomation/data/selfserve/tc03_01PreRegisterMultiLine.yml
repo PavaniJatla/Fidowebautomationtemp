@@ -1,11 +1,11 @@
 # Account Details --BAN with multiple-line
 ---
 name: FidoPreRegisterAccount
-username: Apr1SSS123@yahoo.com
-password: DigiAuto@123
+username: autor320reg3@yahoo.com
+password: rogers123
 accountDetails:
    type: Wireless
-   ban: 674166103
+   ban: 930639331
    newPassword: rogers123
    recoveryNumber: 1234567890
    emailAddress: fidoqa06@mailinator.com

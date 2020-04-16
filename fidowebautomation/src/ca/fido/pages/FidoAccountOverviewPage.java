@@ -198,7 +198,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='progress-bar']")
 	WebElement progressBar;
 		
-	@FindBy(xpath = "//button[text()='Set Up Now']")
+	@FindBy(xpath = "//button[text()='Set Up Now' or text()='configurer']")
 	WebElement btnSetupNowButton;
 		
 	@FindBy(xpath = "//h1[@translate='onboarding-module.tasks.setRecoveryNumber.title']")
@@ -883,10 +883,21 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true if the recovery is not set else false
 	 * @author Mirza.Kamran
 	 */
-	public boolean checkIfSetUpMobileRecoveryNumberIsNotComplete() {		
-		return reusableActions.getWhenReady(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("pending");
+	public boolean checkIfSetUpMobileRecoveryNumberIsNotComplete() {			
+		return (reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("pending")
+				||reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("en attente"));
 	}
 
+	/**
+	 * Checks if the Mobile Recovery Number is set
+	 * @return true if the recovery is not set else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean checkIfSetUpMobileRecoveryNumberIsComplete() {			
+		return (reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("complete")
+				|| reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("est terminé"));
+	}
+	
 	/**
 	 * Get the Set up progress percentage
 	 * @return string value of percentage
