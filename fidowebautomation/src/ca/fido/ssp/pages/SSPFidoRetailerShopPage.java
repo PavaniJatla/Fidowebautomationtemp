@@ -29,7 +29,7 @@ public class SSPFidoRetailerShopPage extends BasePageClass {
 	@FindBy(xpath ="//button[@class='newSignIn signIn submitButton binded']")
 	WebElement btnLogIn;
 	
-	@FindBy(id ="cfa_online_policy_acceptBtn")
+	@FindBy(xpath ="//button[@class='button displayaslink']/ancestor::div[@id='cfa_online_policy_agreement']//button[@id='cfa_online_policy_acceptBtn']")
 	WebElement btnSecurityPopup;
 	
 	/**
@@ -71,7 +71,7 @@ public class SSPFidoRetailerShopPage extends BasePageClass {
 	 * Click on the accept button on the Security Popup
 	 */
 	public void clkSecurityAccept() {		
-		reusableActions.getWhenVisible(btnSecurityPopup,30).click();
+		reusableActions.getWhenVisible(btnSecurityPopup,60).click();
 								
     }
 	

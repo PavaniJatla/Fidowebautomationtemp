@@ -52,6 +52,7 @@ import ca.fido.pages.FidoWirelessDashboardPostpaidPage;
 import ca.fido.pages.FidoWirelessDashboardPrepaidPage;
 import ca.fido.pages.ens.EnsHomePage;
 import ca.fido.pages.ens.EnsNotificationViewPage;
+import ca.fido.ssp.pages.SSPFidoRetailerChampPage;
 import ca.fido.ssp.pages.SSPFidoRetailerHomePage;
 import ca.fido.ssp.pages.SSPFidoRetailerSearchResultsPage;
 import ca.fido.ssp.pages.SSPFidoRetailerShopPage;
@@ -123,7 +124,7 @@ public class BaseTestClass {
 	protected FidoChooseSimPage fido_chosse_sim_page;
 	protected FidoShippingPage fido_shipping_page;
 	protected BrowserDrivers browserdriver;
-	
+	protected SSPFidoRetailerChampPage retailer_champ_page;	
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	
 	public BaseTestClass() {
@@ -259,6 +260,7 @@ public class BaseTestClass {
 			fido_payment_options_page= new FidoPaymentOptionsPage(driver);
 			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver); 
+			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
 			break;
 			
 		case "connectedhome_anonymous":
@@ -280,6 +282,8 @@ public class BaseTestClass {
 			fido_ssp_retailer_home_page= new SSPFidoRetailerHomePage(driver);
 			fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver);
+			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
+			break;
 			
 		case "buyflow":
 			fido_home_page = new FidoHomePage(getDriver());

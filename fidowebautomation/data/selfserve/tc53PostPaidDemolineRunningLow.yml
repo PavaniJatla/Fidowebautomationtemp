@@ -1,11 +1,11 @@
 # Account Details 
 ---
-name: FidoPrePaidAccount
-username: Autodatar320ss085@mailinator.com
-password: rogers123
+name: FidoPostPaidAccount
+username: Autodatar320ss082@mailinator.com
+password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 930633169
+   ban: 930708144
    newPassword: rogers123
    recoveryNumber: 1234567890
    emailAddress: fidoqa06@mailinator.com

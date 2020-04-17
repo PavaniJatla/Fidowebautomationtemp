@@ -16,6 +16,7 @@ public class AccountData {
 	public String usernameMobile;
 	private String dealerCode;
 	private String environment;
+	private String sspEnv;
 	
 	/**
 	 * @return the accountDetails
@@ -183,6 +184,19 @@ public class AccountData {
 	 */
 	public void setEnvironment(String environment) {
 		this.environment = environment;
+	}
+
+	/**
+	 * @return the sspEnv
+	 */
+	public String getSspEnv() {
+		return sspEnv;
+	}
+	/**
+	 * @param sspEnv the sspEnv to set
+	 */
+	public void setSspEnv(String sspEnv) {
+		this.sspEnv = sspEnv;
 	}
 	
 }

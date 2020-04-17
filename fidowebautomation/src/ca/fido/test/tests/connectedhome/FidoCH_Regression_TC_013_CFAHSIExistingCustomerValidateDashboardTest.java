@@ -34,15 +34,27 @@ public class FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTes
 
 	@Test(invocationCount = 1)
 	public void checkSSPhsiExistingCustomerValidateDashboardTest() {
-		reporter.reportLogWithScreenshot("Launched the SSP SignIn Page");
-		fido_ssp_retailer_shop_page.setUserName(TestDataHandler.fidoSspHSIAccount.getUsername());
-		fido_ssp_retailer_shop_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
-		fido_ssp_retailer_shop_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());
-		reporter.reportLogWithScreenshot("Entered the Authentication details");
-		fido_ssp_retailer_shop_page.clkLogin();	
+		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
+		retailer_champ_page.setUsername(TestDataHandler.fidoSspHSIAccount.getUsername());
+		reporter.reportLogWithScreenshot("Entered the username");
+		retailer_champ_page.clkNext();
+		reporter.reportLogWithScreenshot("sign in has launched");
+		retailer_champ_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
+		reporter.reportLogWithScreenshot("Entered the password");
+		retailer_champ_page.clkSignIn();		
+		//reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
+		//retailer_champ_page.clkAccept();
+		reporter.reportLogWithScreenshot("Dealercode page has Launched"); 
+		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
+		reporter.reportLogWithScreenshot("Entered the Dealercode");
+		retailer_champ_page.clkSubmit();
+		retailer_champ_page.verifyAuthorized();
+		reporter.reportLogWithScreenshot("SSP launchpad has launched");
+		retailer_champ_page.selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
 		reporter.reportLogWithScreenshot("Launched the Customer Information Security Popup");
 		fido_ssp_retailer_shop_page.clkSecurityAccept();
-		fido_ssp_retailer_home_page.clkSkip();
+		fido_ssp_retailer_home_page.verifyLoginBanner();
+		reporter.reportLogWithScreenshot("SSP dashboard has launched");
 		fido_ssp_retailer_home_page.setAccountNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan());
 		fido_ssp_retailer_home_page.setPostalCode(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getPostalCode());
 		reporter.reportLogWithScreenshot("Set the Agent account details");
@@ -55,7 +67,8 @@ public class FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTes
 		fido_ssp_retailer_search_results_page.clkContinue();		
 		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");		
 		reporter.reportLogWithScreenshot("Launched the Account Page");
-		fido_account_overview_page.clkInternetBadgeSsp();
+		fido_internet_dashboard_page.clkUsageNService();
+		fido_internet_dashboard_page.clkInternetService();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
      	fido_internet_dashboard_page.clkChangePackageSsp();
 		reporter.reportLogWithScreenshot("Packages page has Launched");

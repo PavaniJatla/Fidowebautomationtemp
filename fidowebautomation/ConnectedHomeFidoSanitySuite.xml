@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Connected Home Fido all Tests  SS" parallel="classes" thread-count="3" >
+<suite name="Connected Home Fido all Tests CH" parallel="classes" thread-count="1" >
  <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
   </listeners> 
 
    <test name=" Fido anonymous">
-   	<parameter name="strBrowser" value="gridchrome"/>
+   	<parameter name="strBrowser" value="chrome"/>
 	<parameter name="strLanguage" value="en"/>
 	<parameter name="strGroupName" value="connectedhome_anonymous"/>
 		<classes>  
-         <class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class> 
-        <!-- <class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_007_HSIDeleteOfferTest"></class>   -->	 
-<!--       	<class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_008_HSIEditfromCartTest"></class>
-      	<class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthorizedChequingTest"></class>    -->      
+          
+<!--   	    <class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest"></class> -->
+         <class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTest"></class> 
+        		       <!--  <class name="ca.fido.test.tests.connectedhome.FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest"></class>  -->     
 		</classes>
 	</test>
 	
 	 <test name=" Fido login">
-   	<parameter name="strBrowser" value="gridchrome"/>
+   	<parameter name="strBrowser" value="chrome"/>
 	<parameter name="strLanguage" value="en"/>
 	<parameter name="strGroupName" value="connectedhome_login"/>
 		<classes>  

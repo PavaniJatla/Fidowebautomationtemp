@@ -41,8 +41,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.waitforViewBillToLoad();
+		reporter.reportLogWithScreenshot("Account overview page");		
 		reporter.softAssert(fido_account_overview_page.isAccountSetUpProgressBarDisplayed(), 
 				"Progress bar displayed",
 				"progress bar is not displayed"); 		
@@ -93,9 +92,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 			fido_profile_and_setting_page.clkBtnContinueToMyAccountIframe();
 			fido_profile_and_setting_page.switchOutofSetRecoveryNumIframe();
 			reporter.reportLogWithScreenshot("Click button continue to my account");
-
-			
-			
+		
 			fido_account_overview_page.clkMenuProfileNSetting();
 
 			reporter.softAssert(fido_profile_and_setting_page.verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
@@ -106,7 +103,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 			reporter.reportLogWithScreenshot("Back to Account overview page");
 			
 			reporter.hardAssert((Integer.parseInt(fido_account_overview_page.getAccountSetUpProgressPercentage())==(Integer.parseInt(beforeProgressPrecent)+25)
-								&& !fido_account_overview_page.checkIfSetUpMobileRecoveryNumberIsNotComplete()), 
+								&& fido_account_overview_page.checkIfSetUpMobileRecoveryNumberIsComplete()), 
 					"Task bar and progress should updated instantly after recovery is completed",
 					"Task bar and progress NOT updated instantly it seems, please investigate");
 			

@@ -48,18 +48,27 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 
 	@Test(invocationCount = 1)
 	public void checkSSPhsiAnonymousLogin() {
-		reporter.reportLogWithScreenshot("Launched the SSP SignIn Page");
-        fido_ssp_retailer_shop_page.setUserName(TestDataHandler.fidoSspHSIAccount.getUsername());
-		fido_ssp_retailer_shop_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
-		fido_ssp_retailer_shop_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());
-		reporter.reportLogWithScreenshot("Entered the Authentication details");
-		fido_ssp_retailer_shop_page.clkLogin();	
+		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
+		retailer_champ_page.setUsername(TestDataHandler.fidoSspHSIAccount.getUsername());
+		reporter.reportLogWithScreenshot("Entered the username");
+		retailer_champ_page.clkNext();
+		reporter.reportLogWithScreenshot("sign in has launched");
+		retailer_champ_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
+		reporter.reportLogWithScreenshot("Entered the password");
+		retailer_champ_page.clkSignIn();		
+		//reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
+		//retailer_champ_page.clkAccept();
+		reporter.reportLogWithScreenshot("Dealercode page has Launched"); 
+		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
+		reporter.reportLogWithScreenshot("Entered the Dealercode");
+		retailer_champ_page.clkSubmit();
+		retailer_champ_page.verifyAuthorized();
+		reporter.reportLogWithScreenshot("SSP launchpad has launched");
+		retailer_champ_page.selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
 		reporter.reportLogWithScreenshot("Launched the Customer Information Security Popup");
 		fido_ssp_retailer_shop_page.clkSecurityAccept();
-		// for Production environment;
-		//reporter.softAssert(fido_ssp_retailer_shop_page.verifyInternet(), "Redirected to  Shop home page", "Shop home page Redirection has failed");
-		//fido_ssp_retailer_shop_page.clkInternet() 
-		fido_ssp_retailer_home_page.clkSkip();
+		fido_ssp_retailer_home_page.verifyLoginBanner();
+		reporter.reportLogWithScreenshot("SSP dashboard has launched");		
 		fido_ssp_retailer_home_page.selectEnvironment(TestDataHandler.fidoSspHSIAccount.getEnvironment());
 		reporter.reportLogWithScreenshot("Shop home page has Lanched");
 		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");

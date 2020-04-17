@@ -8,16 +8,17 @@
 </listeners>   
 
 
+  <test name="FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline">	
+	<classes>
+    <class
+     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline">
+    </class>                                       
+    </classes>
+	</test> 
 
-<test name="FidoSS_TC63_﻿ValidateOnBoardWidgetAfterCompletingTasks">
-		<classes>             
-                   <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_TC63_﻿ValidateOnBoardWidgetAfterCompletingTasks">
-                    </class> 
-         </classes>
-    </test>
-	
-	<!--  prepaid ban required
+<!-- 
+
+   
 	
 	<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
 		<classes>             
@@ -26,57 +27,16 @@
                     </class> 
          </classes>
     </test>
-	 
-	<test name="FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid">
-                    </class>                                       
-             </classes>
-	</test>
-	
-	-->
-	
-	
-
-
-<!-- 
-
-<test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-                    </class>                                       
-             </classes>
-	</test>  
-	
-	
- -->
-     
-      
-     <!-- 
-     
+    
       <test name="FidoSS_TC004_Prepaid_OneTimeRefill_Interac">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_TC004_Prepaid_OneTimeRefill_Interac"> </class>
          </classes>
-    </test>  
-  
-  
- 
-    
-      
-    
-    
-  
-   
-  
-  
-  
-  
-  
-    
-			
-	 -->
+    </test> 
+
+	
+ -->
+     
+
 	  
 </suite>
