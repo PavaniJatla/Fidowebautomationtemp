@@ -46,7 +46,7 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='global.label.paymentConfirmationHeading']")
 	WebElement msgPaymentConfirmation;
 	
-	@FindBy(xpath = "//button[contains(@class,'pay-now-button-secondary uppercase col-md')]")
+	@FindBy(xpath = "//button[contains(@class,'col-xs-12 pay-now-button-secondary uppercase ds-button')]")
 	WebElement btnPaymentConfirmation;
 	   
 	@FindBy(xpath="//iframe[@id='sema']")
@@ -189,10 +189,10 @@ public class FidoPaymentPage extends BasePageClass {
 	
 	/**
 	 * Clicks on the payment confirmation button
-	 * @author Mirza.Kamran
+	 * @author chinnarao.vattam
 	 */
 	public void clkPaymentConfirmation() {
-		reusableActions.getWhenReady(btnPaymentConfirmation,60).click();
+		reusableActions.getWhenReady(btnPaymentConfirmation,60).click();	
 	}
 	
 	/**
