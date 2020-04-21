@@ -505,7 +505,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
         	Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
         	String strExpectedBalance=Integer.toString(intExpectedBalance);
         	reusableActions.getWhenVisible(By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
-        	System.out.println(intExpectedBalance);
         }
     	else
     	{
@@ -514,7 +513,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
         	Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
         	String strExpectedBalance=Integer.toString(intExpectedBalance);
         	reusableActions.waitForElementVisibility((WebElement) By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
-        	System.out.println(intExpectedBalance);
     	}
 		return reusableActions.isElementVisible(msgWelcome,30);	
        }
@@ -562,17 +560,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
     public boolean verifyPayment(String strIntialBalance,String strBalanceAfterpay, String strPaymentAmount,String strLanguage ) { 
     	if (strLanguage.equalsIgnoreCase("en"))
     	{	
-    		System.out.println(strIntialBalance);
-    		System.out.println(strBalanceAfterpay);
       	 Double intialBalance= Double.parseDouble(strIntialBalance);
-      	System.out.println(intialBalance);
     	 Double balanceAfterpay= Double.parseDouble(strBalanceAfterpay);
-    	 System.out.println(balanceAfterpay);
     	 Double paidAmt= intialBalance-balanceAfterpay;
     	 int paidAmount=paidAmt.intValue();
-    	 System.out.println(Integer.toString(paidAmount));
-    	 System.out.println(strPaymentAmount);
-    	   if(Integer.toString(paidAmount).equals(strPaymentAmount))
+    	   if(strPaymentAmount.equals(Integer.toString(paidAmount)))
     	       {return  true;}
     	   else {return  false;}
         }
