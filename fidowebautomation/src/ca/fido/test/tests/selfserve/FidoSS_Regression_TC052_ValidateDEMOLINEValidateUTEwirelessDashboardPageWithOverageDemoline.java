@@ -21,16 +21,15 @@ import ca.fido.testdatamanagement.TestDataHandler;
 1. Navigate to Fido.ca
 2. Click on sign in with proper credentials
 3. Click on CTN
-4. Validate wireless dashboard
-
+4. Validate wireless Dashboard
 1. Fido.ca landing page is opened successfully
 2. Account Overview page is landed successfully
-3. Wireless dashboard page displayed successfully
+3. Wireless Dashboard page displayed successfully
 4. Dashboard displayed with usage details
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline extends BaseTestClass{
+public class FidoSS_Regression_TC052_ValidateDEMOLINEValidateUTEwirelessDashboardPageWithOverageDemoline extends BaseTestClass{
 			 	
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -83,8 +82,7 @@ public class FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashbo
 							"Label N days remaining for Bill cycle is not displayed");
 	
 		reporter.reportLogWithScreenshot("Demo Line account dashboard page is displayed");
-
-		//Check the data usage running low 
+		//Check the data usage overage 
 	
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
@@ -109,8 +107,7 @@ public class FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashbo
 						"Button Change Plan MyMobilePlan DashBoard Section Is NOT Displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPlanBenefitsInMyMobilePlanDashBoardSectionIsDisplayed(),
 						"PlanBenefits In My MobilePlan DashBoard Section Is Displayed",
-						"PlanBenefits In MyMobilePlan DashBoard Section Is NOT Displayed");
-			
+						"PlanBenefits In MyMobilePlan DashBoard Section Is NOT Displayed");			
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyDeviceDetails(),
 						"My device details is displayed",
 						"My device details is not displayed");				
