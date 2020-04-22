@@ -118,7 +118,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(NACData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
 			NACData nacData = yaml.load(inputStream);
 			return nacData;
 		} catch (FileNotFoundException e) {
@@ -131,7 +131,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(AALData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
 			AALData aalData = yaml.load(inputStream);
 			return aalData;
 		} catch (FileNotFoundException e) {
@@ -144,7 +144,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(HUPData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
 			HUPData hupData = yaml.load(inputStream);
 			return hupData;
 		} catch (FileNotFoundException e) {
@@ -157,7 +157,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(PPCData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
 			PPCData ppcData = yaml.load(inputStream);
 			return ppcData;
 		} catch (FileNotFoundException e) {
