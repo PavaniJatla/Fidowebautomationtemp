@@ -14,7 +14,7 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
-public class FidoSS_TC63_ValidateOnBoardWidgetAfterCompletingTasks extends BaseTestClass{
+public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
