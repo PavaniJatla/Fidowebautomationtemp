@@ -57,8 +57,8 @@ public class CaptchaBypassHandlers {
 	public void captchaBypassURLLoginFlows(String strUrl, String strLanguage) throws IOException {
 		driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");		
 		driver.get(strUrl+"?setLanguage="+ strLanguage );
-		String strCookieUserName= TestDataHandler.config.getCookieUserName();
-		String strCookieUserPassword= TestDataHandler.config.getCookieUserPassword();			
+		String strCookieUserName= TestDataHandler.fidoConfig.getCookieUserName();
+		String strCookieUserPassword= TestDataHandler.fidoConfig.getCookieUserPassword();			
 		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl.replace("https", "http")));
 		driver.manage().addCookie(captchBypass);
   }

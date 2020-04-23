@@ -263,11 +263,9 @@ public class BaseTestClass {
 			fido_payment_options_page= new FidoPaymentOptionsPage(driver);
 			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver); 
-			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
 			break;
 			
-		case "connectedhome_anonymous":
-			
+		case "connectedhome_anonymous":			
 			fido_home_page = new FidoHomePage(driver);
 			fido_payment_page = new FidoPaymentPage(driver);
 			fido_internet_dashboard_page = new FidoInternetDashboardPage(driver);

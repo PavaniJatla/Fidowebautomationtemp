@@ -128,7 +128,8 @@ public class TestDataHandler {
 	}
 	
 	private static void buyFlowsDataInit() {
-		bfaConfig =  YamlHandler.getBFAConfig();
+		fidoConfig = YamlHandler.getBFAConfig();
+		bfaConfig = YamlHandler.getBFAConfig();
 		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();
     	testCase01 = YamlHandler.getNACData("tc01NAC");
     	testCase02 = YamlHandler.getNACData("tc02NAC");

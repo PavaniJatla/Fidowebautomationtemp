@@ -46,8 +46,8 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 		retailer_champ_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the password");
 		retailer_champ_page.clkSignIn();		
-		//reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
-		//retailer_champ_page.clkAccept();
+		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
+		retailer_champ_page.clkAccept();
 		reporter.reportLogWithScreenshot("Dealercode page has Launched"); 
 		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
 		reporter.reportLogWithScreenshot("Entered the Dealercode");
