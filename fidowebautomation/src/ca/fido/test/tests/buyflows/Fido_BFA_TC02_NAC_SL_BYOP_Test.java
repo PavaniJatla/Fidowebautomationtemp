@@ -18,7 +18,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * TC02-Fido-Validate User able to perform NAC Flow - Single Line BYOP
  * 
  * Launch Fido.ca
- * Click on Shop->plans
+ * Click on Shop -- plans
  * Click on BYOP 
  * Select a BYOP plan for the device and click continue on add ons
  * Choose Addon's(optional) and click continue
