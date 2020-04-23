@@ -75,6 +75,8 @@ public class FidoSS_TC004_Prepaid_OneTimeRefill_Interac  extends BaseTestClass{
 		fido_account_overview_page.clkBtnViewTransaction();
 		fido_account_overview_page.clkFidoTransactions();	
 		reporter.reportLogWithScreenshot("To verify Fido transaction on this page.");
+		common_business_flows.scrollToMiddleOfWebPage();
+		reporter.reportLogWithScreenshot("Transaction view");
 		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Interac Online",refillAmount), 
 				"Transaction record found.",
 				"Couldn't find the transaction record");

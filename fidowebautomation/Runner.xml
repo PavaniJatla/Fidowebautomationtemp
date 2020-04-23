@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS">
-<parameter name="strBrowser" value="chrome"/>
+<parameter name="strBrowser" value="remotechrome"/>
 <parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners>   
 
 
-  <test name="FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline">	
-	<classes>
-    <class
-     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC053_RegressionDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline">
-    </class>                                       
-    </classes>
-	</test> 
-
-<!-- 
-
-   
-	
+  <test name="FidoSS_Regression_TC052_ValidateDEMOLINEValidateUTEwirelessDashboardPageWithOverageDemoline">	
+		<classes>             
+            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC052_ValidateDEMOLINEValidateUTEwirelessDashboardPageWithOverageDemoline"> </class>
+         </classes>
+    </test> 
+    
+<!-- 	
 	<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
 		<classes>             
                    <class
@@ -27,15 +22,7 @@
                     </class> 
          </classes>
     </test>
-    
-      <test name="FidoSS_TC004_Prepaid_OneTimeRefill_Interac">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_TC004_Prepaid_OneTimeRefill_Interac"> </class>
-         </classes>
-    </test> 
-
-	
- -->
+-->
      
 
 	  
