@@ -494,6 +494,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	/**
 	 * Verify the Welcome heading on the account overview page
+	 * @param strIntialBalance Intial Balance
+	 * @param strLanguage Language.
 	 * @return true, if the account overview page display the Welcome heading, else false
 	 * @author chinnarao.vattam 
 	 */
