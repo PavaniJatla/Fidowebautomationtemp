@@ -175,7 +175,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"'Data details' page is NOT displayed after click on view details link");
 		reporter.softAssert(fido_data_management_page.verifyMTTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
 				"MTT data is added correctly in data details","MTT data is NOT added correctly it seems in data details");
-		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
+		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMDTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
 				"ALL the newly added MTT have the cancel link",
 				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
 		

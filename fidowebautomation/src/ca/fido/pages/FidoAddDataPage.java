@@ -26,7 +26,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	
-	@FindBy(xpath = "//button[@data-caption='Continue' or @data-caption='Continuer']")
+	@FindBy(xpath = "//button[@class='ute-purchase-data-continue-btn']")
 	WebElement btnContinueOnAddDataOverlay;
 	
 	@FindBy(xpath = "//span[text()='Select amount' or text()='Sélectionnez le montant']")
@@ -34,7 +34,6 @@ public class FidoAddDataPage extends BasePageClass {
 	
 	@FindBy(xpath = "//ins[@translate='ute.purchaseData.continue']")
 	WebElement btnContinueMonthlyAddOn;
-	
 	
 	@FindAll({@FindBy(xpath = "//span[@class='ui-select-choices-row-inner']/div")})
 	List<WebElement> optionsSelectDataOnAddDataOverLay;
@@ -46,7 +45,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title']")
 	WebElement msgConfirmPurchasing;
 	
-	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")
+	@FindBy (xpath = "//ins[@translate='ute.purchaseData.purchaseBtn']/parent::button")
 	WebElement btnPurchaseOnAddDataOverlay;
 	
 	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")

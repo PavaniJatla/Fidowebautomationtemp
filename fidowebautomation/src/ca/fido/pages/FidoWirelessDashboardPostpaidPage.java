@@ -6,17 +6,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-
 import ca.fido.pages.base.BasePageClass;
-import ca.fido.test.helpers.StringHelpers;
+
 
 /**
  * This class have all the post paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -908,7 +905,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	
 	/**
-	 * Check if the link Retreive PUK code is is displayed
+	 * Check if the link Retrieve PUK code is is displayed
 	 * @return true when the link is displayed, else false
 	 * @author Mirza.Kamran
 	 */
@@ -920,7 +917,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * This method will click on link and validate if the links are correct and new window is open 
 	 * @param strLinkText The link name as visible on UI 
 	 * @param strNewWindowTitle The title of the new window after the link is click
-	 * @return boolean value
+	 * @return boolean, true if the title matches.
 	 * @author Mirza.Kamran
 	 */
 	public boolean clickAndVerifyLinkForNewWindow(String strLinkText, String strNewWindowTitle) {
@@ -1120,8 +1117,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	}
 
 	/**
-	 * Data overage usage bar for demoline overage scenarios
-	 * @return true if the bar is displayed else fasle
+	 * Data overage usage bar for demo-line overage scenarios
+	 * @return true if the bar is displayed else false
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyYouHaveAnOverageUsageBarOrGradientIsDisplayed() {
@@ -1157,8 +1154,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		return reusableActions.isElementVisible(imgAttentionOverage);
 	}
 
-	/*
-	 * 
+	/**
+	 * To get the number of existing add on 
+	 * @return integer, the number of existing add on.
 	 */
 	public int getAllExistingAddOns() {		
 		return lstMyPlanAddOns.size();
@@ -1178,14 +1176,14 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * To get total number of all added data including canceled and active ones in my plan section.
+	 * @return HasMap of active and canceled MDT records and nonMDT records.
 	 * @author Mirza.Kamran
 	 */
 	public HashMap<String, Integer> getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection() {				
 		int active=0;
 		int cancelled=0;
-		int nonMTT=0;
+		int nonMDT=0;
 		HashMap<String, Integer> addData = new HashMap<String, Integer>();
 		for(WebElement row:lstMyPlanAddOns)
 		{
@@ -1200,20 +1198,26 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 				active++;
 			}else
 			{
-				nonMTT++;
+				nonMDT++;
 			}
 		}
 		
 		addData.put("active", active);
 		addData.put("cancelled", cancelled);
-		addData.put("nonMTT", nonMTT);
+		addData.put("nonMDT", nonMDT);
 		return addData;		
 	}
 
-	
-	public boolean verifyCancelledAddedDataInMyPlan(int countOfCancelled, int countOfActiveBeforeCancelled) {
+	/**
+	 * Verify the record of canceled MDT in my plan section.
+	 * @param countOfNewlyCancelled, the record of newly canceled MDT in this run.
+	 * @param countOfPreviousCancelled, the record of previous canceled MDT before run.
+	 * @return true if the newly canceled MDT id included in the record.
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyCancelledAddedDataInMyPlan(int countOfNewlyCancelled, int countOfPreviousCancelled) {
 		int cancelled= getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection().get("cancelled");
-		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
+		return (cancelled==(countOfNewlyCancelled+countOfPreviousCancelled));
 	}
 
 }
