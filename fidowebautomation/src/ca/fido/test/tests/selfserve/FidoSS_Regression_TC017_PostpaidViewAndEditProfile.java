@@ -50,7 +50,7 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 			if(!existingAddress.contains("4501 Valiant") 
 				&& existingAddress.contains(TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")))
 			{
-				newAddress="201, Fleetwood Crescent, L6T2E6";
+				newAddress="201 Fleetwood Cres BRAMPTON ON L6T 2E6";
 			}else
 			{
 				newAddress=TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")

@@ -425,6 +425,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkBackToMyAccount() {
-		reusableActions.scrollToElementAndClick(btnBackToMyAccount);
+		reusableActions.javascriptScrollToMiddleOfPage();
+		reusableActions.clickWhenReady(btnBackToMyAccount);
 	}
 }

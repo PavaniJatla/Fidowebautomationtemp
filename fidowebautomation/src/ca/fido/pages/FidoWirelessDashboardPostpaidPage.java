@@ -316,6 +316,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
 	List<WebElement> lstMyPlanAddOns;
+
+	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title']") 
+	WebElement lblYouAreRunningLow;
+	
+	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']")
+	WebElement popOutRunningLow;
+	
+	@FindBy(xpath = "//span[@translate='usageModule.addData']")
+	WebElement btnAddDataOnRunningLowPopOut;
+	
+	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']/div[@title='Close' or @title='Fermer']")
+	WebElement btnCloseOnCallOut;
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -811,7 +823,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public double getValueTotalData() {
 		reusableActions.waitForElementVisibility(divTotalData, 60);
-		return Double.parseDouble(divTotalData.getText().trim());
+		return Double.parseDouble(divTotalData.getText().replaceAll(",", ".").trim());
 	}
 	
 	/**
@@ -854,7 +866,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public double getValueRemainingData() {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim());
+		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim());
 	}
 	
 	/**
@@ -1425,5 +1437,26 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		}
 		return foundLessThanThree;
 		
+	}
+
+	/**
+	 * Checks if the running low usage bar is displayed
+	 * @return true if the usage bar running low is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isRunningLowUsageBarDisplayed() {
+	
+		return reusableActions.isElementVisible(lblYouAreRunningLow);
+	}
+
+	/**
+	 * Checks if the running low Add data pop out is displayed
+	 * @return true if the Add data pop out for running low is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isRunningLowPopOutAddDataDisplayed() {		
+		return (reusableActions.isElementVisible(popOutRunningLow)
+				&& reusableActions.isElementVisible(btnAddDataOnRunningLowPopOut)
+				&& reusableActions.isElementVisible(btnCloseOnCallOut));
 	}
 }

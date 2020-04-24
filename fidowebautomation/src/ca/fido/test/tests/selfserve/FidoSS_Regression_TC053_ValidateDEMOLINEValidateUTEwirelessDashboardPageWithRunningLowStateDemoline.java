@@ -85,6 +85,13 @@ public class FidoSS_Regression_TC053_ValidateDEMOLINEValidateUTEwirelessDashboar
 		reporter.reportLogWithScreenshot("Demo Line account dashboard page is displayed");
 
 		//Check the data usage running low 
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.isRunningLowUsageBarDisplayed(),
+				"You are running low usage bar is displayed", 
+				"Running low usage bar is not displayed");
+		
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.isRunningLowPopOutAddDataDisplayed(),
+				"Add data pop out displayed for running low data", 
+				"Add data pop out not displayed for running low data");
 	
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
