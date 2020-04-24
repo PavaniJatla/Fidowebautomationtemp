@@ -76,19 +76,19 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		int countOfExistingAddOnsInMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddOns();				
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData),
+		reporter.hardAssert(fido_add_data_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData),
 	                         "Add on selected","Seems no add on found having existing value less than 3 please investigate");
 		//fido_wireless_dashboard_postpaid_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
-		fido_wireless_dashboard_postpaid_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyConfirmPurchasingMsgDisplayed(),
+		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
+		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_wireless_dashboard_postpaid_page.clkPurchaseBtnOnAddDataOverlay();
+		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
 		
 		/*
 		 * 4. Verify Only MDT options available (no OTT). 
@@ -98,16 +98,16 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		 */
 		int countAddData = 0;
 		double dataAdded = 0;
-		if(fido_wireless_dashboard_postpaid_page.isLimitReachedMsgDisplayed()) {
+		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAddDataSuccessMsgDisplayed(),
+			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
-			dataAdded = fido_wireless_dashboard_postpaid_page.getValueAddedData();
+			dataAdded = fido_add_data_page.getValueAddedData();
 			reporter.reportLogWithScreenshot("Add data success modal.");
 		}
-		fido_wireless_dashboard_postpaid_page.clkCloseBtnOnAddDataOverlay();
+		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 		
 		// 5.All the added MDTs are reflected in total bucket,plan section and manage data page
 		
@@ -145,29 +145,29 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Adding one more add data");					
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
-		if(fido_wireless_dashboard_postpaid_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData))
+		if(fido_add_data_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData))
 		{							
-				fido_wireless_dashboard_postpaid_page.clkContinueBtnOnAddDataOverlay();
+			fido_add_data_page.clkContinueBtnOnAddDataOverlay();
 				reporter.reportLogWithScreenshot("Add monthly data selected");
-				reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyConfirmPurchasingMsgDisplayed(),
+				reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 									"Confirm purchasing on overlay is displayed",
 									"Confirm purchasing on overlay is not displayed");	
 				reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-				fido_wireless_dashboard_postpaid_page.clkPurchaseBtnOnAddDataOverlay();
-				reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyAddDataSuccessMsgDisplayed(),
+				fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+				reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 						"Add data success message is displayed",
 						"Second Add data is not successful");	
 				reporter.reportLogWithScreenshot("Click close");
-				fido_wireless_dashboard_postpaid_page.clkCloseBtnOnAddDataOverlay();
+				fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 				reporter.reportLogWithScreenshot("Verify added data");
 				countAddData++;
 		}else
 		{
-			fido_wireless_dashboard_postpaid_page.clkCloseBtnOnAddDataOverlay();
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 		}
 		
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
@@ -175,7 +175,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"'Data details' page is NOT displayed after click on view details link");
 		reporter.softAssert(fido_data_management_page.verifyMTTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
 				"MTT data is added correctly in data details","MTT data is NOT added correctly it seems in data details");
-		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
+		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMDTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
 				"ALL the newly added MTT have the cancel link",
 				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
 		

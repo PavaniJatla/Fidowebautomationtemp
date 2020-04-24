@@ -72,7 +72,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		//Comparisions Before Cancel:
 		reporter.softAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled")==countOfActiveAndCancelledAddData.get("cancelled")
 							&& countOfActiveAndCancelledAddDataOnMyPlan.get("active")==countOfActiveAndCancelledAddData.get("active")
-							&& countOfActiveAndCancelledAddDataOnMyPlan.get("nonMTT")==countOfActiveAndCancelledAddData.get("nonMTT"))
+							&& countOfActiveAndCancelledAddDataOnMyPlan.get("nonMDT")==countOfActiveAndCancelledAddData.get("nonMDT"))
 				, "The number of cancelled and active add on macth on my plans and manage data page", 
 				"The number of cancelled and active add on does not macth on my plans and manage data page");
 		
@@ -80,7 +80,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		{
 			fido_data_management_page.scrollToMiddle();
 			reporter.reportLogWithScreenshot("Click on cancel MTT Link");
-			fido_data_management_page.clkCancelMTTLink();			
+			fido_data_management_page.clkCancelMDTLink();			
 			reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
 			fido_data_management_page.clkYesRemoveTopUpButton();
 			reporter.hardAssert(fido_data_management_page.isCancelSuccessdisplayed(),
@@ -127,8 +127,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 						"Expires MMM DD - is NOT displayed next to the cancelled MDT in plan section");
 				
 			}
-			
-						
+				
 		}else
 		{
 			reporter.reportLogFail("No MTT to cancel, please add mtt and rerun the script");

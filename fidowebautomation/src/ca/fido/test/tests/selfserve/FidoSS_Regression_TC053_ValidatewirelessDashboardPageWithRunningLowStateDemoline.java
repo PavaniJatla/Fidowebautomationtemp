@@ -30,7 +30,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_Regression_TC053_ValidateDEMOLINEValidateUTEwirelessDashboardPageWithRunningLowStateDemoline extends BaseTestClass{
+public class FidoSS_Regression_TC053_ValidatewirelessDashboardPageWithRunningLowStateDemoline extends BaseTestClass{
 			 	
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -47,7 +47,7 @@ public class FidoSS_Regression_TC053_ValidateDEMOLINEValidateUTEwirelessDashboar
 	}
 	
 	@Test
-	public void validateRegressionDemolineValidateUTEwirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
+	public void validatewirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();
 		String userName = "";

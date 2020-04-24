@@ -11,6 +11,7 @@ import org.testng.annotations.Listeners;
 
 import ca.fido.pages.FidoAccountOverviewPage;
 import ca.fido.pages.FidoAccountRegistrationPage;
+import ca.fido.pages.FidoAddDataPage;
 import ca.fido.pages.FidoBillDetailsPage;
 import ca.fido.pages.FidoBuildPlanPage;
 import ca.fido.pages.FidoCartSummaryPage;
@@ -93,6 +94,7 @@ public class BaseTestClass {
 	protected FidoRefillPage fido_refill_page;
 	protected FidoWirelessDashboardPostpaidPage fido_wireless_dashboard_postpaid_page;
 	protected FidoWirelessDashboardPrepaidPage fido_wireless_dashboard_prepaid_page;
+	protected FidoAddDataPage fido_add_data_page;
 	protected FidoChangeCTNPage fido_change_CTN_page;
 	protected FidoReportLostOrStolenPage fido_report_lost_or_stolen_page;
 	protected FidoBillDetailsPage fido_bill_details_page;
@@ -231,6 +233,7 @@ public class BaseTestClass {
 			fido_refill_page = new FidoRefillPage(driver);
 			fido_wireless_dashboard_postpaid_page = new FidoWirelessDashboardPostpaidPage(driver);
 			fido_wireless_dashboard_prepaid_page = new FidoWirelessDashboardPrepaidPage(driver);
+			fido_add_data_page = new FidoAddDataPage(driver);
 			fido_report_lost_or_stolen_page = new FidoReportLostOrStolenPage(driver);
 			fido_change_CTN_page = new FidoChangeCTNPage(driver);
 			fido_bill_details_page = new FidoBillDetailsPage(driver);
@@ -260,11 +263,9 @@ public class BaseTestClass {
 			fido_payment_options_page= new FidoPaymentOptionsPage(driver);
 			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver); 
-			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
 			break;
 			
-		case "connectedhome_anonymous":
-			
+		case "connectedhome_anonymous":			
 			fido_home_page = new FidoHomePage(driver);
 			fido_payment_page = new FidoPaymentPage(driver);
 			fido_internet_dashboard_page = new FidoInternetDashboardPage(driver);

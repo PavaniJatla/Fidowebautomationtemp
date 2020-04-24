@@ -53,10 +53,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	WebElement msgWelcome;
 	
 	@FindBy (xpath="//span[@class='account-balance-font-size']")
-	WebElement infoAccountBalanceBeforePayment;
-	
-	@FindBy (xpath="//span[@class='account-balance-font-size']")
-	WebElement infoAccountBalanceAfterpayment;
+	WebElement infoAccountBalance;
 	
 	@FindBy(xpath="//span[@translate='global.cta.changeMethodOfPayment']")
 	WebElement lnkChangeMethodOfPayment;
@@ -518,9 +515,35 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {		
-		return reusableActions.isElementVisible(msgWelcome,30);
-		
+		return reusableActions.isElementVisible(msgWelcome,30);		
 	}
+	
+	/**
+	 * Verify the Welcome heading on the account overview page
+	 * @param strIntialBalance Intial Balance
+	 * @param strLanguage Language.
+	 * @return true, if the account overview page display the Welcome heading, else false
+	 * @author chinnarao.vattam 
+	 */
+	public boolean verifyAccountPage(String strIntialBalance,String strLanguage ) {	
+		if (strLanguage.equalsIgnoreCase("en"))
+    	{	
+        	String[] strBalanceValue= strIntialBalance.split("\\.");
+        	String strBalance= strBalanceValue[0];
+        	Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
+        	String strExpectedBalance=Integer.toString(intExpectedBalance);
+        	reusableActions.getWhenVisible(By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
+        }
+    	else
+    	{
+        	String[] strBalanceValue= strIntialBalance.split("\\,");
+        	String strBalance= strBalanceValue[0];
+        	Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
+        	String strExpectedBalance=Integer.toString(intExpectedBalance);
+        	reusableActions.waitForElementVisibility((WebElement) By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
+    	}
+		return reusableActions.isElementVisible(msgWelcome,30);	
+       }
 	
 	/**
 	 * Check if the login failed message displayed
@@ -536,7 +559,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
     public String getAccountBalanceBeforePayment() {    	
-    	String strIntialBalance=reusableActions.getWhenVisible(infoAccountBalanceBeforePayment,3).getText();
+    	String strIntialBalance=reusableActions.getWhenVisible(infoAccountBalance,3).getText();
         return strIntialBalance;
    }
 
@@ -546,10 +569,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
     public String getAccountBalanceAfterpayment() {    	
-    	String strBalanceAfterpayment= reusableActions.getWhenVisible(infoAccountBalanceAfterpayment,3).getText();
+    	String strBalanceAfterpayment= reusableActions.getWhenVisible(infoAccountBalance,3).getText();
         return strBalanceAfterpayment;
    }
       
+    
+    
     
     /**
      * Verify whether the payment happened or not
@@ -560,14 +585,14 @@ public class FidoAccountOverviewPage extends BasePageClass {
      * @return true, if the payment  happened, else false 
      * @author Chinnarao.Vattam
      */
-    public boolean verifyPayment(String strIntialBalance,String strBalanceAfterpay, String strPaymentAmount,String strLanguage ) {  
-    	if (strLanguage=="en")
-    	{
-    	 Double intialBalance= Double.parseDouble(strIntialBalance);
+    public boolean verifyPayment(String strIntialBalance,String strBalanceAfterpay, String strPaymentAmount,String strLanguage ) { 
+    	if (strLanguage.equalsIgnoreCase("en"))
+    	{	
+      	 Double intialBalance= Double.parseDouble(strIntialBalance);
     	 Double balanceAfterpay= Double.parseDouble(strBalanceAfterpay);
     	 Double paidAmt= intialBalance-balanceAfterpay;
     	 int paidAmount=paidAmt.intValue();
-    	   if(Integer.toString(paidAmount)==strPaymentAmount)
+    	   if(strPaymentAmount.equals(Integer.toString(paidAmount)))
     	       {return  true;}
     	   else {return  false;}
         }
@@ -580,7 +605,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
     	if(strPaymentAmount.equals(Integer.toString(paidAmount)))
     	{return  true;}
   	  else {return  false;}
-    	}   	
+    	}  	
        }
 
 

@@ -246,7 +246,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 
 	/**
 	 * Sets the account number for recovery
-	 * @param strAccountNumber
+	 * @param strAccountNumber, String, account number(CTN)
 	 * @author Mirza.Kamran
 	 */
 	public void setAccountNumber(String strAccountNumber) {

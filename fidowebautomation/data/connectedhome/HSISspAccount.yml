@@ -8,10 +8,10 @@ environment: QA05
 sspEnv: QA03
 accountDetails:
    type: Internet
-   ban: 227647039 
+   ban: 227633716 
    postalCode: L6B0A8
-   modem: FFDD519BC329
-   newModem: FFDD519BC331
+   modem: FFDD519BC312
+   newModem: FFDD519BC328
    address:
      line1: 67 Pickett Pl
      line2: Cambridge ON N3E 0B4 

@@ -3,18 +3,18 @@
 <suite name="Fido All Tests BFA" parallel="none" thread-count="10">
 	<parameter name="strBrowser" value="chrome"/>
 	<parameter name="strLanguage" value="en"/>
-	<parameter name="strGroupName" value=""/>
+	<parameter name="strGroupName" value="buyflow"/>
 	<listeners>
 		<listener
-			class-name="ca.fido.buyflow.test.listeners.TestListener" />
+			class-name="ca.fido.test.listeners.TestListener" />
 		<listener
-			class-name="ca.fido.buyflow.test.listeners.AnnotationTransformer" />
+			class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
 	
 	<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflow.Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test">
 			</class>
 		</classes>
 	</test>
@@ -22,7 +22,7 @@
 	<test name="TC02-Fido-Validate NAC Flow - Single Line BYOP - EnglishChrome" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflow.Fido_BFA_TC02_NAC_SL_BYOP_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC02_NAC_SL_BYOP_Test">
 			</class>
 		</classes>
 	</test>
@@ -30,7 +30,7 @@
 	<test name="TC03-Fido-Validate user able to perform HUP with PPC using Exisitng Subsidy acct" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflow.Fido_BFA_TC03_HUP_withPPC_ExistingSubsidyAccount_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC03_HUP_withPPC_ExistingSubsidyAccount_Test">
 			</class>
 		</classes>
 	</test>
@@ -38,7 +38,7 @@
 	<test name="TC04- Fido- Validate user able to perform HUP with PPC using Existing Finance acct" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflow.Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test">
 			</class>
 		</classes>
 	</test>
@@ -46,7 +46,7 @@
 	<test name="TC05- Fido- Validate user able to perform HUP Deeplink Flow - keep existing plan(Financing only)" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflow.Fido_BFA_TC05_HUP_Deeplink_KeepExistingPlan_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC05_HUP_Deeplink_KeepExistingPlan_Test">
 			</class>
 		</classes>
 	</test>
@@ -54,7 +54,7 @@
 	<test name="TC06- Fido- Validate user able to perform PPC using existing finance acct" enabled="true">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflow.Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test">
 			</class>
 		</classes>
 	</test>

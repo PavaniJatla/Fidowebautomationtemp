@@ -64,28 +64,28 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayAddOnDisplayed(),
+		reporter.softAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
 							"data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
-		fido_wireless_dashboard_postpaid_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
-		fido_wireless_dashboard_postpaid_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyConfirmPurchasingMsgDisplayed(),
+		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
+		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
+		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_wireless_dashboard_postpaid_page.clkPurchaseBtnOnAddDataOverlay();
+		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
 		double dataAdded = 0;
-		if(fido_wireless_dashboard_postpaid_page.isLimitReachedMsgDisplayed()) {
+		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAddDataSuccessMsgDisplayed(),
+			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
-			dataAdded = fido_wireless_dashboard_postpaid_page.getValueAddedData();
+			dataAdded = fido_add_data_page.getValueAddedData();
 			reporter.reportLogWithScreenshot("Add data success modal.");
 		}
-		fido_wireless_dashboard_postpaid_page.clkCloseBtnOnAddDataOverlay();
+		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 		//log out and login
 		
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");

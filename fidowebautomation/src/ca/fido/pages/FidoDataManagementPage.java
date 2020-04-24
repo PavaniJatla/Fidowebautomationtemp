@@ -52,7 +52,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	List<WebElement> tableRowsAddData;
 	
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
-	List<WebElement> rowsAddMTTData;
+	List<WebElement> rowsAddMDTData;
 
 	@FindBy (xpath = "//span[@translate='usageModule.manage']")
 	WebElement lnkViewDetails;
@@ -211,8 +211,9 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Verify if the "Cancel" link is not displayed for added data.
+	 * @return true, if "Cancel" link is not displayed, otherwise, false.
+	 * @author Mirza.Kamran
 	 */
 	public boolean verifyNoCancelLinkDisplayedForAddedData() {
 		return !reusableActions.isElementVisible(lnkCancel);
@@ -273,7 +274,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 
 	/**
-	 * This method gets the ADD data count
+	 * This method gets all the existing added data records.
 	 * @return int count of all speed pass
 	 * @author Mirza.Kamran
 	 */
@@ -282,7 +283,7 @@ public class FidoDataManagementPage extends BasePageClass {
 		int cancelled=0;
 		int nonMTT=0;
 		HashMap<String, Integer> addData = new HashMap<String, Integer>();
-		for(WebElement row:rowsAddMTTData)
+		for(WebElement row:rowsAddMDTData)
 		{
 			if(row.getText().toLowerCase().contains("cancel") ||row.getText().toLowerCase().contains("annuler"))
 			{
@@ -304,7 +305,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 	
 	/**
-	 * This method gets the values and their counts already added in the view detais
+	 * This method gets the MDT values and their counts already added in the view details
 	 * @return int count of all speed pass
 	 * @author Mirza.Kamran
 	 */
@@ -368,18 +369,20 @@ public class FidoDataManagementPage extends BasePageClass {
 	
 	/**
 	 * Checks if the cancel is displayed for all existing active ane newly added
+	 * @param intExistingActive, integer, the number of existing active MDT,
+	 * @param intNewlyAddedMDTAddOns, integer, the number of newly added MDT.
 	 * @return true if all the add data has cancel button else false
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyCancelIsDisplayedForAllActiveAndNewlyAddMTTData(int intExistingActive, int intNewlyAddedMTTAddOns) {	
+	public boolean verifyCancelIsDisplayedForAllActiveAndNewlyAddMDTData(int intExistingActive, int intNewlyAddedMDTAddOns) {	
 		int countTotal = 0;			
-		for(WebElement row : rowsAddMTTData) {
+		for(WebElement row : rowsAddMDTData) {
 			if(row.getText().toLowerCase().contains("cancel")
 				|| row.getText().toLowerCase().contains("annuler")) {
 				countTotal++;
 			}
 		}
-		return countTotal== (intExistingActive+intNewlyAddedMTTAddOns);
+		return countTotal== (intExistingActive+intNewlyAddedMDTAddOns);
 	}
 
 
@@ -387,11 +390,12 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * Clicks on the cancel MDT link
 	 * @author Mirza.Kamran
 	 */
-	public void clkCancelMTTLink() {
+	public void clkCancelMDTLink() {
 		Boolean found = false;
 		for(WebElement row : tableRowsAddData) {
-			if(row.getText().toLowerCase().contains("cancel")
-				|| row.getText().toLowerCase().contains("annuler")) {
+			if(found ==false 
+				&&	(row.getText().toLowerCase().contains("cancel")
+				|| row.getText().toLowerCase().contains("annuler"))) {
 				lnkCancel.click();
 				found = true;
 				break;
@@ -409,24 +413,15 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 
 	/**
-	 * is MDT cancelled 
-	 * @return true if the cancelled is successful
+	 * Verify if the canceled MDT is showing as canceled in manage data page.
+	 * @param countOfNewlyCancelled, the number of records for newly canceled MDT.
+	 * @param countOfPreviousCancelled, the number of records for previous canceled MDT.
+	 * @return true if the count match else false
 	 * @author Mirza.Kamran
 	 */
-	public boolean isMDTCancelled() {
-		return reusableActions.isElementVisible(titleAddOnCancelled);
-	}
-
-	/**
-	 * 
-	 * @param countOfCancelled
-	 * @param countOfActiveBeforeCancelled
-	 * @return true if the count matche else false
-	 * @author Mirza.Kamran
-	 */
-	public boolean verifyCancelledMDTInManageData(int countOfCancelled, int countOfActiveBeforeCancelled) {
+	public boolean verifyCancelledMDTInManageData(int countOfNewlyCancelled, int countOfPreviousCancelled) {
 		int cancelled= getAllExistingAddDataCountCancelledAndActive().get("cancelled");
-		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
+		return (cancelled==(countOfNewlyCancelled+countOfPreviousCancelled));
 	}
 
 	/**
@@ -437,12 +432,17 @@ public class FidoDataManagementPage extends BasePageClass {
 		reusableActions.getWhenReady(btnCloseAddOnCancelled).click();
 	}
 
+	/**
+	 * Check if  MDT is cancelled successfully.
+	 * @return true if the cancelled is successful
+	 * @author Mirza.Kamran
+	 */
 	public boolean isCancelSuccessdisplayed() {		
 		return reusableActions.isElementVisible(titleAddOnCancelled,30);
 	}
 
 	/**
-	 * Scrolls top
+	 * Scrolls to the top of the page
 	 * @author Mirza.Kamran
 	 */
 	public void scrollToTop() {
