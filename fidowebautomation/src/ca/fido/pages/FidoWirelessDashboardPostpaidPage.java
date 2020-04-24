@@ -236,6 +236,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='ss-data-usage-ondemand-button']")
 	WebElement lnkShowMyUsage;
 	
+	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
+	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	//=== Add data section for demoline accounts
 	
 	@FindBy(xpath = "//div[@class='ss-data-section-add-icon']/span[text()='+']")
