@@ -17,7 +17,7 @@ public class FidoAddDataPage extends BasePageClass {
 	public FidoAddDataPage(WebDriver driver) {
 		super(driver);		
 	}
-	@FindBy(xpath = "//div[@class='modal-header purchase-data-modal-header']")
+	@FindBy(xpath = "//*[@class='add-data-modal-title']")
 	WebElement overlayMonthlyDataAddOn;
 	
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
@@ -26,7 +26,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	
-	@FindBy(xpath = "//button[@class='ute-purchase-data-continue-btn']")
+	@FindBy(xpath = "//button[@title='Continue']")
 	WebElement btnContinueOnAddDataOverlay;
 	
 	@FindBy(xpath = "//span[text()='Select amount' or text()='Sélectionnez le montant']")
