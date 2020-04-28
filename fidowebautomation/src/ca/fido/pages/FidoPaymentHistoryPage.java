@@ -37,9 +37,9 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 	 * @return true if the values match else false
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyFidoTransactionRecord(String strTransactionType, String strAmount) {
-		if( reusableActions.getWhenReady(cellTransactionType).getText().toString().trim().equals(strTransactionType.trim())
-			&& reusableActions.getWhenReady(cellAmount).getText().toString().trim().equals(strAmount))
+	public boolean verifyFidoTransactionRecord(String strTransactionType, String strAmount) {		
+		if(strTransactionType.trim().contains(reusableActions.getWhenReady(cellTransactionType).getText().toString().trim())
+			&& reusableActions.getWhenReady(cellAmount).getText().toString().trim().contains(strAmount.trim()))
 		{
 			return true;
 		}

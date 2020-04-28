@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="3">
-<parameter name="strBrowser" value="remoteFirefox"/>
+<suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
+<parameter name="strBrowser" value="firefox"/>
 <parameter name="strLanguage" value="fr"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
@@ -69,7 +69,7 @@
     </test>
   
   
-  <!-- Smoke 
+
    <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
 		<classes>		
 			<class
@@ -78,7 +78,6 @@
 	    </classes>
     </test>  
   
-   -->
   
   
     <test name="FidoSS_Regression_TC009_PrePaidChangeCTN">
@@ -99,9 +98,7 @@
     
   
            
-   
-<!--   Sanity
-
+  
   <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
 		<classes>                                   
               <class
@@ -110,18 +107,8 @@
         </classes>
     </test>
     
-	<test name="FidoSS_TC012_PostPaidChangeMOP">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_TC012_PostPaidChangeMOP"> </class>
-         </classes>
-    </test>        
-           
-           
-	<test name="FidoSS_TC013_FidoCA_PostpaidPaymentCC">	
-		<classes>   
-          <class name="ca.fido.test.tests.selfserve.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
-         </classes>
-    </test>     
+      
+   
 	<test name="FidoSS_TC012_PostPaidChangeMOP">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_TC012_PostPaidChangeMOP"> </class>
@@ -134,7 +121,6 @@
           <class name="ca.fido.test.tests.selfserve.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
          </classes>
     </test>         
-    -->       
             
     <test name="FidoSS_TC015_FidoCA_PostpaidPaymentHistory">	
 		<classes>             
@@ -149,8 +135,7 @@
             <class name="ca.fido.test.tests.selfserve.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
          </classes>
     </test>
-    
-    <!--   Sanity    	              
+     	              
            
 	<test name="FidoSS_Regression_TC017_PostpaidViewAndEditProfile">	
 		<classes>		
@@ -160,7 +145,7 @@
 									
 		</classes>
 	</test>
-	-->
+
 	 <test name="FidoSS_Regression_TC018_PostpaidUpdateSIMCard">	
 		<classes>                                   
                     <class

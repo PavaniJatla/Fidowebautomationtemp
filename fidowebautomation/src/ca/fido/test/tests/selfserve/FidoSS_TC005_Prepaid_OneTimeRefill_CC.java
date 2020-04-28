@@ -64,7 +64,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Enter credit card details before click continue.");
 		fido_refill_page.clkContinue();		  
 		String refillAmount = fido_refill_page.getRefillAmount();
-		String balanceAfterRefill = Float.toString(Float.parseFloat(balanceBeforeRefill) + Float.parseFloat(refillAmount.replaceAll("\\$", "").replaceAll(",", ".").trim()));
+		String balanceAfterRefill = Float.toString(Float.parseFloat(balanceBeforeRefill.replaceAll(",", ".").trim()) + Float.parseFloat(refillAmount.replaceAll("\\$", "").replaceAll(",", ".").trim()));
 		System.out.println("Balance after refill is: " + balanceAfterRefill);
 		reporter.reportLogWithScreenshot("Page after refill and before submit.");
 		fido_refill_page.clkSubmit();		
@@ -79,7 +79,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		fido_account_overview_page.clkFidoTransactions();
 		fido_account_overview_page.scrollToMiddleOfPage();
 		reporter.reportLogWithScreenshot("Verify Fido transaction on this page.");
-		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Recharge card",refillAmount),
+		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Recharge card Réapprovisionnement de carte",refillAmount),
 				"Transaction history records matched", 
 				"transaction history records didnt match");
 	}

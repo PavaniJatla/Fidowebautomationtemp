@@ -22,7 +22,7 @@ public class FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail extends BaseT
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
 		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
-				strLanguage, FidoEnums.GroupName.selfserve,method);			
+				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
 		
 	@AfterMethod(alwaysRun = true)

@@ -46,7 +46,7 @@ public class FidoSS_Regression_TC052_ValidateDEMOLINEValidateUTEwirelessDashboar
 	}
 	
 	@Test
-	public void validateRegressionDemolineValidateUTEwirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
+	public void validateDemolineValidateUTEwirelessDashboardPageWithOverageDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();
 		String userName = "";

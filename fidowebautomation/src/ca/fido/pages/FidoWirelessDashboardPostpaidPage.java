@@ -6,14 +6,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import ca.fido.pages.base.BasePageClass;
-
+import ca.fido.test.helpers.StringHelpers;
 
 /**
  * This class have all the post paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -234,6 +236,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='ss-data-usage-ondemand-button']")
 	WebElement lnkShowMyUsage;
 	
+	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
+	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	//=== Add data section for demoline accounts
 	
 	@FindBy(xpath = "//div[@class='ss-data-section-add-icon']/span[text()='+']")
@@ -274,6 +278,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
 	List<WebElement> lstMyPlanAddOns;
+
+	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title']") 
+	WebElement lblYouAreRunningLow;
+	
+	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']")
+	WebElement popOutRunningLow;
+	
+	@FindBy(xpath = "//span[@translate='usageModule.addData']")
+	WebElement btnAddDataOnRunningLowPopOut;
+	
+	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']/div[@title='Close' or @title='Fermer']")
+	WebElement btnCloseOnCallOut;
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -628,7 +644,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public double getValueTotalData() {
 		reusableActions.waitForElementVisibility(divTotalData, 60);
-		return Double.parseDouble(divTotalData.getText().trim());
+		return Double.parseDouble(divTotalData.getText().replaceAll(",", ".").trim());
 	}
 	
 	/**
@@ -671,7 +687,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public double getValueRemainingData() {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim());
+		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim());
 	}
 	
 	/**
@@ -1220,4 +1236,56 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		return (cancelled==(countOfNewlyCancelled+countOfPreviousCancelled));
 	}
 
+
+	/**
+	 * 
+	 * @param mapCountOfAlreadyAddedData Contains all added values and their count
+	 * @return
+	 */
+	public boolean clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(Map<String, Integer> mapCountOfAlreadyAddedData) {
+		boolean foundLessThanThree = false;
+		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
+		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
+		{
+			String addedvalue = StringHelpers.getNumbersFromString(btn.getText());
+			if(mapCountOfAlreadyAddedData.containsKey(addedvalue))
+			{
+				if(mapCountOfAlreadyAddedData.get(addedvalue)<3)
+				{
+					btn.click();
+					foundLessThanThree = true;
+					break;
+				}
+			
+			}else
+			{
+				btn.click();
+				foundLessThanThree = true;
+				break;
+			}
+		}
+		return foundLessThanThree;
+		
+	}
+
+	/**
+	 * Checks if the running low usage bar is displayed
+	 * @return true if the usage bar running low is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isRunningLowUsageBarDisplayed() {
+	
+		return reusableActions.isElementVisible(lblYouAreRunningLow);
+	}
+
+	/**
+	 * Checks if the running low Add data pop out is displayed
+	 * @return true if the Add data pop out for running low is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isRunningLowPopOutAddDataDisplayed() {		
+		return (reusableActions.isElementVisible(popOutRunningLow)
+				&& reusableActions.isElementVisible(btnAddDataOnRunningLowPopOut)
+				&& reusableActions.isElementVisible(btnCloseOnCallOut));
+	}
 }
