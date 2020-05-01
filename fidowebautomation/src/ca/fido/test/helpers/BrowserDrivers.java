@@ -139,8 +139,8 @@ public class BrowserDrivers {
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
 	private void chromeInit(String strBrowser, String strGroupName) throws ClientProtocolException, IOException {
-			WebDriverManager.chromedriver().setup();		
-			//WebDriverManager.chromedriver().version("79.0.3945.36").setup();
+//			WebDriverManager.chromedriver().setup();		
+			WebDriverManager.chromedriver().version("79.0.3945.36").setup();
 			ChromeOptions options = new ChromeOptions(); 
 			options.addArguments("--start-maximized");
 			options.addArguments("--incognito");

@@ -44,7 +44,7 @@ public class FidoSS_TC004_Prepaid_OneTimeRefill_Interac  extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkBtnRefillNow();
 		reporter.reportLogWithScreenshot("Refill now page.");
-		String balanceBeforeRefill = fido_refill_page.getBalanceAmount();
+		String balanceBeforeRefill = fido_refill_page.getBalanceAmount();	
 		System.out.println("Balance before refill is: " + balanceBeforeRefill);
 		fido_refill_page.clkOneTimeRefill();
 		reporter.reportLogWithScreenshot("One time refill is clicked.");
@@ -52,7 +52,7 @@ public class FidoSS_TC004_Prepaid_OneTimeRefill_Interac  extends BaseTestClass{
 		fido_refill_page.clkPayByInteracContinue();	
 		String refillAmount = fido_refill_page.getRefillAmount();
 		reporter.reportLogWithScreenshot("refill amount summary page");
-		String balanceAfterRefill = Float.toString(Float.parseFloat(balanceBeforeRefill) + Float.parseFloat(refillAmount.split("\\$")[1]));
+		String balanceAfterRefill = Float.toString(Float.parseFloat(balanceBeforeRefill.replaceAll(",", ".").trim()) + Float.parseFloat(refillAmount.replaceAll("\\$", "").replaceAll(",", ".").trim()));
 		System.out.println("Balance after refill is: " + balanceAfterRefill);
 		fido_refill_page.clkSubmit();		
 		//Interac page flow starts
@@ -75,7 +75,9 @@ public class FidoSS_TC004_Prepaid_OneTimeRefill_Interac  extends BaseTestClass{
 		fido_account_overview_page.clkBtnViewTransaction();
 		fido_account_overview_page.clkFidoTransactions();	
 		reporter.reportLogWithScreenshot("To verify Fido transaction on this page.");
-		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Interac Online",refillAmount), 
+		common_business_flows.scrollToMiddleOfWebPage();
+		reporter.reportLogWithScreenshot("Transaction view");
+		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Interac Online Interac en ligne",refillAmount), 
 				"Transaction record found.",
 				"Couldn't find the transaction record");
 	}

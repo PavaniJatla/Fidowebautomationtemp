@@ -21,6 +21,7 @@ public class Config {
 	private String anonymousFlow;
 	private String hupURL;
 	
+	
 	/**
 	 * @return the language
 	 */

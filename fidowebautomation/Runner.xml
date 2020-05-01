@@ -2,16 +2,30 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS">
 <parameter name="strBrowser" value="chrome"/>
-<parameter name="strLanguage" value="fr"/>
+<parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
-</listeners> 
-  
-     <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
-                    </class>                                       
-             </classes>
-	</test>  		  
+</listeners>   
+
+
+    <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
+		<classes>		
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC006_PrepaidUpdateProfile">
+			</class>	
+	    </classes>
+    </test> 
+    
+<!-- 	
+	<test name="FidoSS_Regression_TC001_PrePaidDashBoard">
+		<classes>             
+                   <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC001_PrePaidDashBoard">
+                    </class> 
+         </classes>
+    </test>
+-->
+     
+
+	  
 </suite>

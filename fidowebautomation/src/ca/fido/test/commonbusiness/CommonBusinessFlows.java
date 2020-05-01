@@ -53,5 +53,19 @@ public class CommonBusinessFlows {
 	public void navigateToDashBoardPageFromUsageAndBillings() {
 		
 	}
+	
+	public void scrollToMiddleOfWebPage() {
+		baseTestClass.fido_account_overview_page.scrollToMiddleOfPage();
+	}
+	
 
+	public void scrollToTopOfWebPage() {
+		baseTestClass.fido_account_overview_page.scrollToTopOfPage();
+	}
+	
+
+	public void scrollToBottomOfWebPage() {
+		baseTestClass.fido_account_overview_page.scrollToBottomOfPage();
+	}
+	
 }

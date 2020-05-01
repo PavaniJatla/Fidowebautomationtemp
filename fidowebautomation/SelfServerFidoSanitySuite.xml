@@ -45,15 +45,6 @@
 		</classes>
 	</test>
 
-<!-- descoped from sanity
-     <test name="FidoSS_Regression_TC55_ValidateBrightstarLinkInWirelessDashboard_postpaidConsumerRegularAccount">	
-		<classes>
-               <class
-               name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC55_ValidateBrightstarLinkInWirelessDashboard_postpaidConsumerRegularAccount">
-               </class>                                       
-        </classes>
-	</test> 
-	-->
 		
 	<test name="FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">	
 		<classes>

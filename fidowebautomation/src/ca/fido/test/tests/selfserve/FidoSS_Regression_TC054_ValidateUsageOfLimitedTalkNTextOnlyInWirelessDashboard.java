@@ -64,9 +64,9 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkAnytimeUsageDetailsIsDisplayed(),
 							"Talk anytime usage details section is displayed",
 							"Talk anytime usage details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkEveningUsageDetailsIsDisplayed(),
-							"Talk evening and weekend usage details section is displayed",
-							"Talk evening and weekend usage details section is not displayed");
+		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkEveningUsageDetailsIsDisplayed(),
+		//					"Talk evening and weekend usage details section is displayed",
+		//					"Talk evening and weekend usage details section is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLimitedTalkUsageDetailsAccuracy(),
 							"Talk usage detail data accuracy is checked successfully.",	
 							"Talk usage detail has issue, please investigate.");
@@ -74,15 +74,15 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextUsageDetailsOfTalkNTextOnlyIsDisplayed(),
 							"Text usage details section is displayed",
 							"Text usage details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPictureMsgDetailsIsDisplayed(),
-							"Text usage details picture message part is displayed",
-							"Text usage details picture message part is not displayed");
+		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPictureMsgDetailsIsDisplayed(),
+		//					"Text usage details picture message part is displayed",
+		//					"Text usage details picture message part is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyBundlesMsgDetailsIsDisplayed(),
 							"Text usage details bundles message part is displayed",
 							"Text usage details bundles message part is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyInternationalMsgDetailsIsDisplayed(),
-							"Text usage details international message part is displayed",
-							"Text usage details international message part is not displayed");
+		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyInternationalMsgDetailsIsDisplayed(),
+		//					"Text usage details international message part is displayed",
+		//					"Text usage details international message part is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Days remaining in bill cycle for Talk&Text plan is displayed",
 							"Days remaining in bill cycle for Talk&Text plan is not displayed");

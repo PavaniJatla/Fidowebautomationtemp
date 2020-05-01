@@ -178,6 +178,32 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//li[@class='o-navLinkList__item clicktale-mask loginStates stateCookied stateActive']")
 	WebElement lnkSignInAs;
 	
+	@FindBy (xpath = "//div[@class='onboarding-progress-bar']")
+	WebElement lblProgressBar;
+	
+	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.setRecoveryNumber.title']")
+	WebElement btnSetUpMobileRecovery;
+	
+	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.loginToAccount.title']")
+	WebElement btnLoginToMyAccount;
+	
+	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.setAutoPayment.title']")
+	WebElement btnSetUpAutomaticPayments;
+	
+	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.addContactEmail.title']")
+	WebElement btnSetContactInfo;
+	
+	@FindBy(xpath = "//div[@class='progress-bar']")
+	WebElement progressBar;
+		
+	@FindBy(xpath = "//button[text()='Set Up Now' or text()='configurer']")
+	WebElement btnSetupNowButton;
+		
+	@FindBy(xpath = "//h1[@translate='onboarding-module.tasks.setRecoveryNumber.title']")
+	WebElement titleRecoveryNumber;
+	
+	
+	
 	/**
 	 * Verify if the email name matches the email sent when register.
 	 * @param strEmail string of registered email.
@@ -524,7 +550,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true if login fail message is displayed, otherwise false.
 	 */
 	public Boolean verifyLoginFailMsgIframe() {
-		return reusableActions.isElementVisible(failLoginDiv, 5);
+		return reusableActions.isElementVisible(failLoginDiv, 10);
 	}
 	
 	/**
@@ -807,6 +833,118 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		
 	}
 
+	/**
+	 * Scrolls to top of webpage
+	 */
+	public void scrollToTopOfPage() {
+		reusableActions.javascriptScrollToTopOfPage();
+		
+	}
+
+	/**
+	 * Scrolls to bottom of webpage
+	 */
+	public void scrollToBottomOfPage() {
+		reusableActions.javascriptScrollToBottomOfPage();		
+	}
+
+	/**
+	 * Validate if the tasks in Onboarding widgets is displayed
+	 * @return true if the progress and widgets is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isAccountSetUpWidgetLoginToMyAccountPresent() {
+		return reusableActions.isElementVisible(btnLoginToMyAccount,30);		 
+	}
+
+	/**
+	 * Validate if the tasks in Onboarding widgets is displayed
+	 * @return true if the progress and widgets is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isAccountSetUpWidgetSetContactInfoPresent() {
+		return reusableActions.isElementVisible(btnSetContactInfo,30);		 
+	}
 	
+	/**
+	 * Validate if the tasks in Onboarding widgets is displayed
+	 * @return true if the progress and widgets is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isAccountSetUpWidgetSetUpAutomaticPaymentPresent() {
+		return reusableActions.isElementVisible(btnSetUpAutomaticPayments,30);		
+	}
+	/**
+	 * Validate if the tasks in Onboarding widgets is displayed
+	 * @return true if the progress and widgets is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isAccountSetUpWidgetSetUpMobileRecoveryPresent() {
+		return reusableActions.isElementVisible(btnSetUpMobileRecovery,30);		 
+		
+	}
+	/**
+	 * Validate if the tasks in Onboarding widgets is displayed
+	 * @return true if the progress and widgets is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isAccountSetUpProgressBarDisplayed() {
+		return reusableActions.isElementVisible(lblProgressBar,30);
+		
+	}
+	
+	/**
+	 * Checks if the Mobile Recovery Number is Not already set
+	 * @return true if the recovery is not set else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean checkIfSetUpMobileRecoveryNumberIsNotComplete() {			
+		return (reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("pending")
+				||reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("en attente"));
+	}
+
+	/**
+	 * Checks if the Mobile Recovery Number is set
+	 * @return true if the recovery is not set else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean checkIfSetUpMobileRecoveryNumberIsComplete() {			
+		return (reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("complete")
+				|| reusableActions.getWhenVisible(btnSetUpMobileRecovery,30).getAttribute("aria-label").toLowerCase().trim().contains("est terminé"));
+	}
+	
+	/**
+	 * Get the Set up progress percentage
+	 * @return string value of percentage
+	 * @author Mirza.Kamran
+	 */
+	public String getAccountSetUpProgressPercentage() {
+		return reusableActions.getWhenReady(progressBar).getAttribute("aria-valuenow").trim();
+	}
+
+	/**
+	 * Clicks on set uo recovery number
+	 * @author Mirza.Kamran
+	 */
+	public void clkSetUpMobileRecoveryNumber() {
+		reusableActions.clickIfAvailable(btnSetUpMobileRecovery);
+		
+	}
 	 
+	/**
+	 * Clicks set up now button 
+	 * @author Mirza.Kamran
+	 */
+	public void clkSetUpNowButton() {
+		reusableActions.clickWhenReady(btnSetupNowButton);
+	}
+	
+	/**
+	 * Checks if the title recovery is dispalyed
+	 * @return true if the title is displayed
+	 * @author Mirza.Kamran
+	 */
+	public boolean isTitleSetUpRecoveryDisplayed() {
+		return reusableActions.isElementVisible(titleRecoveryNumber);
+	}
 }

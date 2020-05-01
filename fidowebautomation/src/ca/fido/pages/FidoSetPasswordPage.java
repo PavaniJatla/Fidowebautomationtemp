@@ -43,7 +43,7 @@ public class FidoSetPasswordPage extends BasePageClass {
 	@FindBy (xpath = "//button[@translate='ute.easy.login.registration.complete.goToOverview']")
 	WebElement btnGotoOverview;
 	
-	@FindBy (xpath = "//img[@alt='Set password']")
+	@FindBy (xpath = "//img[@alt='Set password' or @alt='Enregister le mot de passe']")
 	WebElement btnSetPasswordInEmail;
 	
 	/**
@@ -51,7 +51,7 @@ public class FidoSetPasswordPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkBtnSetPasswordInEmail() {
-		reusableActions.clickWhenReady(btnSetPasswordInEmail, 30);
+		reusableActions.clickWhenReady(By.xpath("//img[@alt='Set password' or @alt='Enregister le mot de passe']"), 30);
 	}
 	
 	/**

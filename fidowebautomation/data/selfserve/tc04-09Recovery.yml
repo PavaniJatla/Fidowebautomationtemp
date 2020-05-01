@@ -9,5 +9,6 @@ accountDetails:
    ctn: 4168381203
    email: autor320reg1@yahoo.com
    newPassword: rogers123
-   recoveryNumber: 6789123450
+   recoveryNumber: 1234567890
+   emailAddress: autor320ens1@yahoo.com
 ...

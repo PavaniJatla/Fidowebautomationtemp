@@ -79,6 +79,7 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void switchToSignInFrame() {
 		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);
+		
 	}
 	
 	/**
@@ -87,7 +88,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		reusableActions.getWhenReady(txtPassword).clear();
+		reusableActions.getWhenReady(txtPassword,10).clear();
+		reusableActions.getWhenVisible(txtPassword,10).click();
 		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
 	}
 
