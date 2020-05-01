@@ -1,6 +1,6 @@
 # Config
 ---
-fidoURL: https://qa4.fido.ca/consumer/easyloginriverpage
+fidoURL: https://www.qa01.fido.ca/
 browser: chrome
 language: en
 cookieUserName: orphanRegRog@mailinator.com

@@ -58,8 +58,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
         Object xmlTestParams = iTestResult.getInstance();
         HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
         String testClassName = fullTestClassName[fullTestClassName.length-1] +"_" + xmlTestParameters.get("strBrowser") +"_" + xmlTestParameters.get("strLanguage");        
-		ExtentTestManager.startTest(testClassName,iTestResult.getName());
-		
+		ExtentTestManager.startTest(testClassName,iTestResult.getName());		
     }
  
     @Override

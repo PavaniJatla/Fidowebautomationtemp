@@ -1,5 +1,6 @@
 package ca.fido.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -160,6 +161,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkResignInAs() {	
+		reusableActions.clickIfAvailable(By.xpath("//a[text()='My Account']"), 20);
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {

@@ -200,7 +200,7 @@ public class BaseTestClass {
   			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 		}
 	    setImplicitWait(getDriver(), 10);
-	    init(enumGroupName.toString().toLowerCase().trim());
+	    init(enumGroupName.toString().toLowerCase().trim());	    
   }
 
 	
