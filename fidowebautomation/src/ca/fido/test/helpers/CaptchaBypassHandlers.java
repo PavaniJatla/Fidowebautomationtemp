@@ -35,7 +35,7 @@ public class CaptchaBypassHandlers {
 		}
 		//Use https url in config.yml, replace https with http here will by pass the certificate issue	
 		Cookie captchBypass = new Cookie ("temp_token_f",
-		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl));			
+		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl.replace("https", "http")));			
 		driver.manage().addCookie(captchBypass);
     }
 	
