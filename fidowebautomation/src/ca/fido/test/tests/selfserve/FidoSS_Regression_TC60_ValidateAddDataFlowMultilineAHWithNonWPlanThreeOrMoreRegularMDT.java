@@ -152,19 +152,19 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		if(fido_add_data_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData))
 		{							
 			fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-				reporter.reportLogWithScreenshot("Add monthly data selected");
-				reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
-									"Confirm purchasing on overlay is displayed",
-									"Confirm purchasing on overlay is not displayed");	
-				reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-				fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
-				reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
-						"Add data success message is displayed",
-						"Second Add data is not successful");	
-				reporter.reportLogWithScreenshot("Click close");
-				fido_add_data_page.clkCloseBtnOnAddDataOverlay();
-				reporter.reportLogWithScreenshot("Verify added data");
-				countAddData++;
+			reporter.reportLogWithScreenshot("Add monthly data selected");
+			reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+								"Confirm purchasing on overlay is displayed",
+								"Confirm purchasing on overlay is not displayed");	
+			reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
+			fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+					"Add data success message is displayed",
+					"Second Add data is not successful");	
+			reporter.reportLogWithScreenshot("Click close");
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+			reporter.reportLogWithScreenshot("Verify added data");
+			countAddData++;
 		}else
 		{
 			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
