@@ -173,8 +173,8 @@ public class BaseTestClass {
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
 	 * @param strLanguage                string of language to use
-	 * @param enumGroupName               string of group name of the test case
-	 * @param currentTestMethodName 
+	 * @param enumGroupName              string of group name of the test case
+	 * @param currentTestMethodName 	 string of the current test name	
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
