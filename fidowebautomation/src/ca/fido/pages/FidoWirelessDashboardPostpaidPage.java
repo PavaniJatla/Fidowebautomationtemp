@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -15,7 +14,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import ca.fido.pages.base.BasePageClass;
-import ca.fido.test.helpers.StringHelpers;
 
 /**
  * This class have all the post paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -1234,38 +1232,6 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyCancelledAddedDataInMyPlan(int countOfNewlyCancelled, int countOfPreviousCancelled) {
 		int cancelled= getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection().get("cancelled");
 		return (cancelled==(countOfNewlyCancelled+countOfPreviousCancelled));
-	}
-
-
-	/**
-	 * 
-	 * @param mapCountOfAlreadyAddedData Contains all added values and their count
-	 * @return
-	 */
-	public boolean clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(Map<String, Integer> mapCountOfAlreadyAddedData) {
-		boolean foundLessThanThree = false;
-		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
-		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
-		{
-			String addedvalue = StringHelpers.getNumbersFromString(btn.getText());
-			if(mapCountOfAlreadyAddedData.containsKey(addedvalue))
-			{
-				if(mapCountOfAlreadyAddedData.get(addedvalue)<3)
-				{
-					btn.click();
-					foundLessThanThree = true;
-					break;
-				}
-			
-			}else
-			{
-				btn.click();
-				foundLessThanThree = true;
-				break;
-			}
-		}
-		return foundLessThanThree;
-		
 	}
 
 	/**

@@ -203,9 +203,9 @@ public class FidoAddDataPage extends BasePageClass {
 	
 
 	/**
-	 * 
+	 * To click on the MDT if it's added less than 3 times.
 	 * @param mapCountOfAlreadyAddedData Contains all added values and their count
-	 * @return
+	 * @return true if MDT added less than 3 times be found
 	 */
 	public boolean clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(Map<String, Integer> mapCountOfAlreadyAddedData) {
 		boolean foundLessThanThree = false;
