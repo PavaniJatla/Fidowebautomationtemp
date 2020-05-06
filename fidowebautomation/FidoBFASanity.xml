@@ -11,7 +11,7 @@
 			class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
 	
-	<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="true">
+	<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="false">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test">
@@ -27,7 +27,7 @@
 		</classes>
 	</test>
 	
-	<test name="TC06- Fido- Validate user able to perform PPC using existing finance acct" enabled="true">
+	<test name="TC06- Fido- Validate user able to perform PPC using existing finance acct" enabled="false">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test">
