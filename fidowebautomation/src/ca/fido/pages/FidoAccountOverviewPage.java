@@ -190,7 +190,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.setAutoPayment.title']")
 	WebElement btnSetUpAutomaticPayments;
 	
-	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.addContactEmail.title']")
+	@FindBy (xpath = "//button[@translate='onboarding-module.tasks.addContactEmail.title' or @translate='onboarding-module.tasks.verifyContactEmail.title']")
 	WebElement btnSetContactInfo;
 	
 	@FindBy(xpath = "//div[@class='progress-bar']")

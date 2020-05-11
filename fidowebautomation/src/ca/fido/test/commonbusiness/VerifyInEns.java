@@ -43,9 +43,9 @@ public class VerifyInEns extends BaseTestClass{
 	 */
 	private void loginToEns() {
 		
-		baseTestClass.ensHomePage.setEmail(TestDataHandler.config.getEnsLoginEmail());
+		baseTestClass.ensHomePage.setEmail(System.getenv("ENS_USERNAME"));
 		baseTestClass.ensHomePage.clkBtnNext();
-		baseTestClass.ensHomePage.setPassword(TestDataHandler.config.getEnsPassword());
+		baseTestClass.ensHomePage.setPassword(System.getenv("ENS_PASSWORD"));
 		baseTestClass.ensHomePage.clkBtnSignIn();
 	}
 

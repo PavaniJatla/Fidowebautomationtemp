@@ -79,13 +79,13 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		if((countOfActiveAndCancelledAddData.get("active")>=1))
 		{
 			fido_data_management_page.scrollToMiddle();
-			reporter.reportLogWithScreenshot("Click on cancel MTT Link");
+			reporter.reportLogWithScreenshot("Click on cancel MDT Link");
 			fido_data_management_page.clkCancelMDTLink();			
 			reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
 			fido_data_management_page.clkYesRemoveTopUpButton();
 			reporter.hardAssert(fido_data_management_page.isCancelSuccessdisplayed(),
-					"Cancel MTT success",
-					"MTT cancel not successful");
+					"Cancel MDT success",
+					"MDT cancel not successful");
 			reporter.reportLogWithScreenshot("Cancel successful");
 			fido_data_management_page.clkCloseButtonOnCancelSuccessOverlay();
 			reporter.reportLogWithScreenshot("Close overlay");
@@ -130,7 +130,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 				
 		}else
 		{
-			reporter.reportLogFail("No MTT to cancel, please add mtt and rerun the script");
+			reporter.reportLogFail("No MDT to cancel, please add mdt and rerun the script");
 		}
 							
 

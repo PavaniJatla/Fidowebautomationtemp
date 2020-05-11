@@ -108,7 +108,6 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 			
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		//Manage data page		
-
 		//5. Click on View details in usage dashboard plan section and manage data page
 		//5. Added Data section lists all add-ons separately and there is NO Cancel link next to OTT"
 		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
@@ -158,7 +157,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 			
 		}
 		
-		/*
+	
 		if(strValueAdded.toLowerCase().contains("mo")||strValueAdded.toLowerCase().contains("mb"))
 		{			
 			dataAdded = (dataAdded/1000);
@@ -170,7 +169,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");
-								*/	
+							
 	}
 	
 }

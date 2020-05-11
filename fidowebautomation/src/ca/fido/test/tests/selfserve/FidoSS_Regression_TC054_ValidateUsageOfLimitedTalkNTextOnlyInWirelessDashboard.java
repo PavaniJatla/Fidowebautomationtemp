@@ -77,9 +77,9 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPictureMsgDetailsIsDisplayed(),
 		//					"Text usage details picture message part is displayed",
 		//					"Text usage details picture message part is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyBundlesMsgDetailsIsDisplayed(),
-							"Text usage details bundles message part is displayed",
-							"Text usage details bundles message part is not displayed");
+		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyBundlesMsgDetailsIsDisplayed(),
+							//"Text usage details bundles message part is displayed",
+							//"Text usage details bundles message part is not displayed");
 		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyInternationalMsgDetailsIsDisplayed(),
 		//					"Text usage details international message part is displayed",
 		//					"Text usage details international message part is not displayed");

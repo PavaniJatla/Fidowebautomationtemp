@@ -62,6 +62,9 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 
+		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
+		
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
@@ -110,8 +113,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 		
 		// 5.All the added MDTs are reflected in total bucket,plan section and manage data page
-		
-		/*
+	
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
@@ -119,7 +121,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
 		
-		*/
+	
 		
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		//Manage data page
@@ -141,6 +143,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		countAddData = 1;// after one successful completion
 		
 		//add one more
+		
+		//TODO reuse the add data steps
 		countOfAlreadyAddedData = fido_data_management_page.getCountOfAllExistingAddedDataValues(); //update the count before one more addition
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Adding one more add data");					
@@ -180,9 +184,9 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
 		
 				
-		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
-		fido_data_management_page.clkLinkBackOnManageDataOverlay();
-		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
+		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
+		fido_data_management_page.clkLinkBackOnManageDataOverlay();		
+		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
 		fido_login_page.clkSignOut();
 		reporter.reportLogWithScreenshot("Sign out done");
 		fido_login_page.clkResignInAs();
@@ -198,11 +202,11 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			reporter.reportLogWithScreenshot("Click on CTN badge");
 			fido_account_overview_page.clkCtnBadge();
 			reporter.reportLogWithScreenshot("dashboard page");			
-			/*
+			double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 					"Total data in usage section align with total data in Manage data page and displayed seperately",
 					"Total data in usage section doesn't align with total data in Manage data page.");
-					*/
+				
 			fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 			reporter.reportLogWithScreenshot("My Plan Details");
 			//All the added OTT are reflected in total bucket,plan section and manage data page

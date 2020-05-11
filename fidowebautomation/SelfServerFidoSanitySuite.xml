@@ -7,7 +7,16 @@
        <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners> 
 
+
+ <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
+		<classes>		
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC011_PostPaidDashBoard">
+			</class>	
+	    </classes>
+    </test>         
     
+  
     <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
 		<classes>		
 			<class
@@ -16,13 +25,6 @@
 	    </classes>
     </test>         
     	
-     <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
-		<classes>                                   
-              <class
-              name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC011_PostPaidDashBoard">
-              </class>
-        </classes>
-    </test>
     
 	<test name="FidoSS_TC012_PostPaidChangeMOP">	
 		<classes>             
