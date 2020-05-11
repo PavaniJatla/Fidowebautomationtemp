@@ -33,6 +33,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import ca.fido.test.helpers.FidoEnums.OS;
 import ca.fido.testdatamanagement.TestDataHandler;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BrowserDrivers {
@@ -74,11 +75,13 @@ public class BrowserDrivers {
 			msEdgeInit(strBrowser);
 	        break;    
 			
-	 case "sauce" :
-     {                               
-    	 sauceInit(strBrowser, currentTestMethodName) ;          
-      break;
-     }
+		case "sauce" :                             
+			sauceInit(strBrowser, currentTestMethodName) ;          
+			break;
+			
+		case "appiumChrome":
+			appiumInit();
+			break;
 
 		default :
 			WebDriverManager.chromedriver().setup();
@@ -223,7 +226,19 @@ public class BrowserDrivers {
       driver = new RemoteWebDriver(new URL(sauceURL), sCapabilities);  
       //driver =  new RemoteWebDriver(new URL("http://"+System.getenv("SAUCE_USERNAME")+":"+System.getenv("SAUCE_ACCESS_KEY")+"@ondemand.saucelabs.com:80/wd/hub", sCapabilities) ;                      
 	}
-		/**
+	
+	private void appiumInit() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_3_API_29");
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
+        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 15000);
+        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        setDriver(driver);	
+	}
+	/**
 	 * gets the OS type
 	 * @return enum containing OS value
 	 * @author Mirza.Kamran
