@@ -5,6 +5,6 @@ browser: chrome
 language: en
 cookieUserName: orphanRegRog@mailinator.com
 cookieUserPassword: rogers123
-ensURL01: http://ensqa1.rogers.com/ENS/notificationsViewer.action
+ensURL: http://ensqa1.rogers.com/ENS/notificationsViewer.action
 brightStarURL: https://stage-onlineportal-ca.brightstar.com/fido/login
 ...
