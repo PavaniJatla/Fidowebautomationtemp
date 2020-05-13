@@ -47,7 +47,7 @@ public class FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS 
 		fido_recover_pass_or_name_page.clkBtnContinue();		
 		reporter.reportLogWithScreenshot("Continue is clicked");
 		//flow updated in May 20th release, no need to click text option.
-//		fido_recover_pass_or_name_page.clkTextToAsRecoveryOption();
+		fido_recover_pass_or_name_page.clkTextToAsRecoveryOption();
 		String strTestingTab = getDriver().getWindowHandle();
 		String strRecoveredUserName = null;		
 		

@@ -8,44 +8,22 @@
 </listeners>   
 
 
-
-<test name="FidoSS_TC004_Prepaid_OneTimeRefill_Interac">	
+   <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
 		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_TC004_Prepaid_OneTimeRefill_Interac"> </class>
+            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
          </classes>
-    </test>  
-
+    </test>
+              
+ 
  
    <!-- parked
    
-  
-
- <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile">	
-		<classes>
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
-			</class>
-			 </classes>
-    </test>     
-        
- <test name="FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">
-                    </class>                                       
-             </classes>
-	</test> 
-
-  <test name="FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail">
-                    </class>                                       
-             </classes>
-	</test>
-	 
 
 
+
+ 
+    
+              
  <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT"> </class>
@@ -53,76 +31,53 @@
     </test>
 
        
-
- 
-
-
-  <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
-              
-	
-	 
-      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
               
   <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
          </classes>
     </test> 
+   
+   
+   
+   
   
-      
-  
+ 
+ 
+      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
+		<classes>             
+            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
+         </classes>
+    </test>
+              
+              
+ <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
+		<classes>             
+            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT"> </class>
+         </classes>
+    </test>
 
- <test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
+       
+              
+  <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
+		<classes>             
+            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
+         </classes>
+    </test> 
+   
+   
+   
+   
+  <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile">	
 		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-                    </class>                                       
-             </classes>
-	</test>  
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
+			</class>
+			 </classes>
+    </test>   
 
  
-  
-	
 
-
- 
- <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
-                    </class>                                       
-             </classes>
-	</test> 
-
- 
-
-	
-
-
-    
-	<test name="FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS">
-                    </class>                                       
-             </classes>
-	</test> 
-	
-	<test name="FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS">
-                    </class>                                       
-             </classes>
-	</test> 
 	-->	
 	  
 </suite>

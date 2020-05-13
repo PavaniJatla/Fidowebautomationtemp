@@ -20,7 +20,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 	
 	
-	@FindBy (xpath = "//h1[@class='manage-data-title mb-10 ng-star-inserted']")
+	@FindBy (xpath = "//h1[@class='manage-data-title mb-10 ng-star-inserted' or @class='manage-data-title']")
 	WebElement titleManageData;
 	
 	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")

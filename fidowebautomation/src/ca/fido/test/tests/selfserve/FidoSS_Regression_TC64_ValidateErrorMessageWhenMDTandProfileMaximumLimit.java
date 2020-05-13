@@ -24,7 +24,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT extends BaseTestClass{
+public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit extends BaseTestClass{
 	
 	
 	 	
@@ -114,13 +114,13 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		// 5.All the added MDTs are reflected in total bucket,plan section and manage data page
 	
-		/*	reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
-		*/
+		
 	
 		
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
@@ -203,10 +203,10 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			fido_account_overview_page.clkCtnBadge();
 			reporter.reportLogWithScreenshot("dashboard page");			
 			double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		/*	reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
+			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 					"Total data in usage section align with total data in Manage data page and displayed seperately",
 					"Total data in usage section doesn't align with total data in Manage data page.");
-			*/	
+				
 			fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 			reporter.reportLogWithScreenshot("My Plan Details");
 			//All the added OTT are reflected in total bucket,plan section and manage data page
