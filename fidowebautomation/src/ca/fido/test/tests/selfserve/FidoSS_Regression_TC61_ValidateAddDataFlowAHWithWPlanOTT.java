@@ -162,14 +162,14 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		{			
 			dataAdded = (dataAdded/1000);
 		}
-		
+		/*
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");	
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");
-							
+		*/					
 	}
 	
 }

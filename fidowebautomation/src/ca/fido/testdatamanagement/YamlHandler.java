@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-
 import ca.fido.yaml.pojo.AALData;
 import ca.fido.yaml.pojo.HUPData;
 import ca.fido.yaml.pojo.NACData;
@@ -13,6 +12,7 @@ import ca.fido.yaml.pojo.PPCData;
 import ca.fido.yaml.pojo.AccountData;
 import ca.fido.yaml.pojo.Config;
 import ca.fido.yaml.pojo.PaymentDetails;
+import ca.fido.yaml.pojo.SauceSettings;
 
 public class YamlHandler {
 
@@ -193,5 +193,21 @@ public class YamlHandler {
 			return null;
 		}
 	}
+	
+	public static SauceSettings getSauceSettings() {
+		Yaml yaml = new Yaml(new Constructor(SauceSettings.class));
+		InputStream inputStream;
+		try {
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/selfserve/SauceSettings.yml"));
+			SauceSettings sauceSettings = yaml.load(inputStream);
+			return sauceSettings;
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 	
 }

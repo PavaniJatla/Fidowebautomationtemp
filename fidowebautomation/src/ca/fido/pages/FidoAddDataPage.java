@@ -46,7 +46,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title']")
 	WebElement msgConfirmPurchasing;
 	//ins[@translate='ute.purchaseData.purchaseBtn']/parent::button
-	@FindBy (xpath = "//button[@data-caption='Purchase']")
+	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")
 	WebElement btnPurchaseOnAddDataOverlay;
 	
 	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
@@ -212,7 +212,7 @@ public class FidoAddDataPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
 		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
 		{
-			String addedvalue = StringHelpers.getNumbersFromString(btn.getText());
+			String addedvalue = StringHelpers.getNumbersFromString(btn.getText()).replaceAll(",", ".");
 			if(mapCountOfAlreadyAddedData.containsKey(addedvalue))
 			{
 				if(mapCountOfAlreadyAddedData.get(addedvalue)<3)

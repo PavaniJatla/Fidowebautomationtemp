@@ -1,83 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Self Serve Fido Tests SS">
+<suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
 <parameter name="strBrowser" value="chrome"/>
 <parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
-</listeners>   
-
-
-   <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
-              
- 
- 
-   <!-- parked
-   
+</listeners> 
 
 
 
- 
-    
-              
- <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT"> </class>
-         </classes>
-    </test>
 
-       
-              
-  <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
-         </classes>
-    </test> 
-   
-   
-   
-   
-  
- 
- 
-      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
-              
-              
- <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT"> </class>
-         </classes>
-    </test>
 
-       
-              
-  <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
-         </classes>
-    </test> 
-   
-   
-   
-   
-  <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile">	
+ <test name="FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">	
 		<classes>
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
-			</class>
-			 </classes>
-    </test>   
+                    <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">
+                    </class>                                       
+             </classes>
+	</test> 
+	
+	
+ <test name="FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail">	
+		<classes>
+                    <class
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail">
+                    </class>                                       
+             </classes>
+	</test>   
+	
+	
+     
+	
 
- 
-
-	-->	
+<!-- Register flow to be done on chrome
 	  
+ 
+	     	
+    
+
+	
+	
+ <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
+		<classes>             
+            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
+         </classes>
+    </test> 
+   
+   
+
+	 
+              
+        
+	-->
+
+			
+	
 </suite>

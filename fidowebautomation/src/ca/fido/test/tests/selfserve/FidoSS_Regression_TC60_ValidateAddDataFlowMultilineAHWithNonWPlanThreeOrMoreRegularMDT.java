@@ -62,8 +62,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 
-		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
+		//double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+		//double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
@@ -184,7 +184,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
 		
 				
-		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
+		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();		
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
 		fido_login_page.clkSignOut();
@@ -202,7 +202,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			reporter.reportLogWithScreenshot("Click on CTN badge");
 			fido_account_overview_page.clkCtnBadge();
 			reporter.reportLogWithScreenshot("dashboard page");			
-			double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+			//double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		/*	reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 					"Total data in usage section align with total data in Manage data page and displayed seperately",
 					"Total data in usage section doesn't align with total data in Manage data page.");
