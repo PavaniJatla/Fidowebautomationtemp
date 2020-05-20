@@ -24,7 +24,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT extends BaseTestClass{
+public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit extends BaseTestClass{
 	
 	
 	 	
@@ -62,8 +62,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 
-		//double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		//double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
+		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
@@ -114,13 +114,13 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		// 5.All the added MDTs are reflected in total bucket,plan section and manage data page
 	
-		/*	reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
-		*/
+		
 	
 		
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
@@ -184,7 +184,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
 		
 				
-		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
+		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();		
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
 		fido_login_page.clkSignOut();
@@ -202,11 +202,11 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			reporter.reportLogWithScreenshot("Click on CTN badge");
 			fido_account_overview_page.clkCtnBadge();
 			reporter.reportLogWithScreenshot("dashboard page");			
-			//double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		/*	reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
+			double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 					"Total data in usage section align with total data in Manage data page and displayed seperately",
 					"Total data in usage section doesn't align with total data in Manage data page.");
-			*/	
+				
 			fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 			reporter.reportLogWithScreenshot("My Plan Details");
 			//All the added OTT are reflected in total bucket,plan section and manage data page

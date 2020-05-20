@@ -75,9 +75,23 @@ public class BrowserDrivers {
 			msEdgeInit(strBrowser);
 	        break;    
 			
-		case "sauce" :                             
-			sauceInit(strBrowser, currentTestMethodName) ;          
-			break;
+		 case "saucechrome" :
+	     {    
+	    	 sauceInit("chrome",currentTestMethodName);	    	         
+	      break;
+	     }
+		 case "saucefirefox" :
+	     {    
+	    	 sauceInit("firefox",currentTestMethodName);	    	         
+	      break;
+	     }
+	     
+		 case "sauceedge" :
+	     {    
+	    	 sauceInit("microsoftedge",currentTestMethodName);	    	         
+	      break;
+	     }
+		 
 			
 		case "appiumChrome":
 			appiumInit();
@@ -193,39 +207,43 @@ public class BrowserDrivers {
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
-	private void sauceInit(String strBrowser, Method currentTestMethodName) throws ClientProtocolException, IOException {
-                            
-       String sauceUserName =  "Rogers.Automation";//System.getenv("SAUCE_USERNAME");
-       String sauceAccessKey = "7ca3d84c-9043-4cd1-b9b2-8a09709bd6f1";//System.getenv("SAUCE_ACCESS_KEY");
-       //String sauceURL = "https://"+"System.getenv(\"SAUCE_USERNAME\")"+":"+"System.getenv(\"SAUCE_ACCESS_KEY\")@ondemand.saucelabs.com:80/wd/hub";
-       String sauceURL = "https://ondemand.saucelabs.com/wd/hub";
-       
-      MutableCapabilities sauceOpts = new MutableCapabilities();
-       sauceOpts.setCapability("username", sauceUserName);
-       sauceOpts.setCapability("accessKey", sauceAccessKey);
-       sauceOpts.setCapability("seleniumVersion", "3.141.59");
-       sauceOpts.setCapability("name", currentTestMethodName.getName());
-                   
-      List<String> tags = Arrays.asList("sauceDemo", "demoTest", "module4");
-      sauceOpts.setCapability("tags", tags);                             
-      sauceOpts.setCapability("maxDuration", 3600);               
-      sauceOpts.setCapability("commandTimeout", 600);
-      sauceOpts.setCapability("idleTimeout", 1000);       
-      sauceOpts.setCapability("build", "sample POC with TestNG selenium");          
-      ChromeOptions chromeOpts = new ChromeOptions();
-      chromeOpts.setExperimentalOption("w3c", true);  
-      chromeOpts.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-      chromeOpts.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true); 
-      MutableCapabilities sCapabilities = new MutableCapabilities();
-      sCapabilities.setCapability("sauce:options", sauceOpts);
-      sCapabilities.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
-      sCapabilities.setCapability("goog:chromeOptions", chromeOpts);
-      sCapabilities.setCapability("browserName", "chrome");
-      sCapabilities.setCapability("platformVersion", "Windows 10");
-      sCapabilities.setCapability("browserVersion", "latest");         
-      driver = new RemoteWebDriver(new URL(sauceURL), sCapabilities);  
-      //driver =  new RemoteWebDriver(new URL("http://"+System.getenv("SAUCE_USERNAME")+":"+System.getenv("SAUCE_ACCESS_KEY")+"@ondemand.saucelabs.com:80/wd/hub", sCapabilities) ;                      
+	private void sauceInit(String strBrowserName,Method currentTestMethodName) throws ClientProtocolException, IOException {
+		   
+		   String sauceUserName = System.getenv("SAUCE_USERNAME");// TestDataHandler.sauceSettings.getSauceUser();
+	       String sauceAccessKey = System.getenv("SAUCE_ACCESS_KEY");// TestDataHandler.sauceSettings.getSauceKey();       
+	       String sauceURL = "https://ondemand.saucelabs.com/wd/hub";       
+	       MutableCapabilities sauceOpts = new MutableCapabilities();
+	       sauceOpts.setCapability("username", sauceUserName);
+	       sauceOpts.setCapability("accessKey", sauceAccessKey);
+	       sauceOpts.setCapability("seleniumVersion", TestDataHandler.sauceSettings.getSauceOptions().getSeleniumVersion());
+	       sauceOpts.setCapability("name", currentTestMethodName.getName());	                               
+	       sauceOpts.setCapability("maxDuration", TestDataHandler.sauceSettings.getSauceOptions().getMaxDuration());               
+	       sauceOpts.setCapability("commandTimeout", TestDataHandler.sauceSettings.getSauceOptions().getCommandTimeout());
+	       sauceOpts.setCapability("idleTimeout", TestDataHandler.sauceSettings.getSauceOptions().getIdleTimeout());       
+	       sauceOpts.setCapability("build", TestDataHandler.sauceSettings.getSauceOptions().getBuild());  
+		   sauceOpts.setCapability("browserName", strBrowserName);
+		   switch (strBrowserName.toLowerCase()) {
+			case "chrome":							    
+			     sauceOpts.setCapability("browserVersion", TestDataHandler.sauceSettings.getMutableChromeCapabilities().getBrowserVersion());  				       
+			     sauceOpts.setCapability("platformVersion", TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformVersion());
+				break;
+			case "firefox":										
+				FirefoxOptions browserOptions = new FirefoxOptions(); 
+				browserOptions.setCapability("platformName", TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getPlatformVersion()); 
+				browserOptions.setCapability("browserVersion", TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getBrowserVersion()); 
+				browserOptions.setCapability("sauce:options", sauceOpts);	
+				break;
+			case "microsoftedge":
+				 sauceOpts.setCapability("browserVersion", TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getBrowserVersion());  				       
+			     sauceOpts.setCapability("platformVersion", TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getPlatformVersion());
+				break;
+		
+		}
+		             
+	       driver = new RemoteWebDriver(new URL(sauceURL), sauceOpts);	       	       	      
 	}
+	
+	
 	
 	private void appiumInit() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();

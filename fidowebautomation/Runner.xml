@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Self Serve Fido Tests SS">
+<suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
 <parameter name="strBrowser" value="chrome"/>
 <parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
-</listeners>   
+</listeners> 
 
 
 
-<test name="FidoSS_TC004_Prepaid_OneTimeRefill_Interac">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_TC004_Prepaid_OneTimeRefill_Interac"> </class>
-         </classes>
-    </test>  
 
- 
-   <!-- parked
-   
-  
 
- <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile">	
-		<classes>
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
-			</class>
-			 </classes>
-    </test>     
-        
  <test name="FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">	
 		<classes>
                     <class
@@ -35,94 +18,41 @@
                     </class>                                       
              </classes>
 	</test> 
-
-  <test name="FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail">	
+	
+	
+ <test name="FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail">
                     </class>                                       
              </classes>
-	</test>
-	 
-
-
- <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT"> </class>
-         </classes>
-    </test>
-
-       
-
- 
-
-
-  <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
-              
+	</test>   
 	
-	 
-      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
-              
-  <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
+	
+     
+	
+
+<!-- Register flow to be done on chrome
+	  
+ 
+	     	
+    
+
+	
+	
+ <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
          </classes>
     </test> 
-  
-      
-  
+   
+   
 
- <test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-                    </class>                                       
-             </classes>
-	</test>  
+	 
+              
+        
+	-->
 
- 
-  
+			
 	
-
-
- 
- <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
-                    </class>                                       
-             </classes>
-	</test> 
-
- 
-
-	
-
-
-    
-	<test name="FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS">
-                    </class>                                       
-             </classes>
-	</test> 
-	
-	<test name="FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS">
-                    </class>                                       
-             </classes>
-	</test> 
-	-->	
-	  
 </suite>

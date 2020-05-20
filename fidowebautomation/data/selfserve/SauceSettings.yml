@@ -1,4 +1,4 @@
-# Config
+# sauce capabilities, microsoftedge
 ---
 sauceOptions:
    seleniumVersion: 3.141.59
@@ -7,8 +7,13 @@ sauceOptions:
    commandTimeout: 600
    idleTimeout: 1000
    build: Onboarding Sample App - Java-TestNG 
-mutableCapabilities:
-   browserName: firefox
+mutableFireFoxCapabilities:  
    platformVersion: Windows 10
    browserVersion: latest
+mutableChromeCapabilities:   
+   platformVersion: Windows 10
+   browserVersion: latest
+mutableEdgeCapabilities:   
+   platformVersion: Windows 10
+   browserVersion: latest   
 ...

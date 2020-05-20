@@ -1,10 +1,12 @@
 package ca.fido.testdatamanagement;
+
 import ca.fido.yaml.pojo.AccountData;
 import ca.fido.yaml.pojo.Config;
 import ca.fido.yaml.pojo.HUPData;
 import ca.fido.yaml.pojo.NACData;
 import ca.fido.yaml.pojo.PPCData;
 import ca.fido.yaml.pojo.PaymentDetails;
+import ca.fido.yaml.pojo.SauceSettings;
 
 public class TestDataHandler {
 	
@@ -60,6 +62,7 @@ public class TestDataHandler {
 	public static AccountData tc002003;
 	public static AccountData tc61;
 	public static AccountData tc53;
+	public static SauceSettings sauceSettings;
 
 	public static void dataInit (String strApplicationType) {	    	
 	    	if(strApplicationType.toUpperCase().trim().endsWith("CH")) {	    	
@@ -91,6 +94,7 @@ public class TestDataHandler {
 	
 	private static void selfserveDataInit() {
 		config =  YamlHandler.getConfig();
+		sauceSettings = YamlHandler.getSauceSettings();
     	paymentInfo = YamlHandler.getPaymentDetails();
     	tc00101056 = YamlHandler.getAccountData("tc001_010_56Prepaid");
     	tc0203 = YamlHandler.getAccountData("tc02_03Prepaid");
