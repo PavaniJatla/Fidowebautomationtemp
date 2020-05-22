@@ -78,20 +78,9 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		
 		int countOfExistingAddOnsInMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddOns();				
-		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
-							"Monthly data add on overlay is displayed",
-							"Monthly data add on overlay is not displayed");			
-		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
-		reporter.hardAssert(fido_add_data_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData),
+
+		reporter.hardAssert(this.addData(countOfAlreadyAddedData),
 	                         "Add on selected","Seems no add on found having existing value less than 3 please investigate");
-		//fido_wireless_dashboard_postpaid_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
-		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
-							"Confirm purchasing on overlay is displayed",
-							"Confirm purchasing on overlay is not displayed");	
-		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
 		
 		/*
 		 * 4. Verify Only MDT options available (no OTT). 
@@ -144,35 +133,15 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		//add one more
 		
-		//TODO reuse the add data steps
 		countOfAlreadyAddedData = fido_data_management_page.getCountOfAllExistingAddedDataValues(); //update the count before one more addition
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Adding one more add data");					
-		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
-							"Monthly data add on overlay is displayed",
-							"Monthly data add on overlay is not displayed");			
-		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
-		if(fido_add_data_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData))
-		{							
-			fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-			reporter.reportLogWithScreenshot("Add monthly data selected");
-			reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
-								"Confirm purchasing on overlay is displayed",
-								"Confirm purchasing on overlay is not displayed");	
-			reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-			fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
-			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
-					"Add data success message is displayed",
-					"Second Add data is not successful");	
-			reporter.reportLogWithScreenshot("Click close");
-			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
-			reporter.reportLogWithScreenshot("Verify added data");
-			countAddData++;
-		}else
+		
+		if(this.addData(countOfAlreadyAddedData))
 		{
-			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+			countAddData++;
 		}
+		
 		
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
@@ -217,4 +186,34 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			
 	}
 	
+	public boolean addData(Map<String, Integer> countOfAlreadyAddedData)
+	{
+		boolean dataAdded = false;
+		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
+		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+							"Monthly data add on overlay is displayed",
+							"Monthly data add on overlay is not displayed");			
+		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
+		if(fido_add_data_page.clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(countOfAlreadyAddedData))
+		{							
+			fido_add_data_page.clkContinueBtnOnAddDataOverlay();
+			reporter.reportLogWithScreenshot("Add monthly data selected");
+			reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+								"Confirm purchasing on overlay is displayed",
+								"Confirm purchasing on overlay is not displayed");	
+			reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
+			fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+					"Add data success message is displayed",
+					"Second Add data is not successful");	
+			reporter.reportLogWithScreenshot("Click close");
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+			reporter.reportLogWithScreenshot("Verify added data");
+			dataAdded= true;			
+		}else
+		{   dataAdded = false;
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		}
+		return dataAdded;
+	}
 }

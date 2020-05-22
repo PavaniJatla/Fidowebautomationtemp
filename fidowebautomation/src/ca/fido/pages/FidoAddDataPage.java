@@ -52,7 +52,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
 	WebElement msgSuccessOnAddDataOverlay;
 	
-	@FindBy (xpath = "//ins[contains(text(),'Limit reached') or contains(text(),'Limite atteinte')]")
+	@FindBy (xpath = "//*[contains(text(),'Limit reached') or contains(text(),'Limite atteinte')]")
 	WebElement msgLimitReached;
 	
 	@FindBy (xpath = "//button[@class='close ng-star-inserted']")
@@ -230,6 +230,30 @@ public class FidoAddDataPage extends BasePageClass {
 			}
 		}
 		return foundLessThanThree;
+		
+	}
+	
+	/**
+	 * Clicks the data value required on the overlay
+	 * @param strAddDataValue string data value to be selected
+	 * @return true if the data value is found else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean clkTheDataAddOnValue(String strAddDataValue) {
+		boolean found = false;
+		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
+		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
+		{
+			String addedvalue = StringHelpers.getNumbersFromString(btn.getText()).replaceAll(",", ".");
+			if(addedvalue.trim().equals(strAddDataValue.trim()))
+			{				
+					btn.click();
+					found = true;
+					break;
+			
+			}
+		}
+		return found;
 		
 	}
 }

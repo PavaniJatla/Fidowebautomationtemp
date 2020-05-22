@@ -194,11 +194,11 @@ public class YamlHandler {
 		}
 	}
 	
-	public static SauceSettings getSauceSettings() {
+	public static SauceSettings getSauceSettings(String strSauceSettingPath) {
 		Yaml yaml = new Yaml(new Constructor(SauceSettings.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/selfserve/SauceSettings.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + strSauceSettingPath));
 			SauceSettings sauceSettings = yaml.load(inputStream);
 			return sauceSettings;
 		} catch (FileNotFoundException e) {

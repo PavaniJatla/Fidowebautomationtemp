@@ -1,58 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
-<parameter name="strBrowser" value="chrome"/>
+<parameter name="strBrowser" value="sauceedge"/>
 <parameter name="strLanguage" value="en"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners> 
 
 
-
-
-
- <test name="FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">	
+ <test name="FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit">
                     </class>                                       
              </classes>
 	</test> 
-	
-	
- <test name="FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail">
-                    </class>                                       
-             </classes>
-	</test>   
-	
-	
-     
-	
-
-<!-- Register flow to be done on chrome
-	  
- 
-	     	
-    
-
-	
-	
- <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
-         </classes>
-    </test> 
-   
-   
-
-	 
-              
-        
-	-->
-
-			
+		
 	
 </suite>
