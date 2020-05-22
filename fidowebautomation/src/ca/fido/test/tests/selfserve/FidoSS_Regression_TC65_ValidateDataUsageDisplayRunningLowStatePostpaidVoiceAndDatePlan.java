@@ -51,11 +51,8 @@ public class FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostp
 	public void validatewirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();
-		String userName = "";
-		String password = "";
-	
-		userName = TestDataHandler.tc65.getUsername();
-		password = TestDataHandler.tc65.getPassword();		
+		String userName = TestDataHandler.tc65.getUsername();
+		String password = TestDataHandler.tc65.getPassword();		
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
@@ -89,10 +86,7 @@ public class FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostp
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.isRunningLowUsageBarDisplayed(),
 				"You are running low usage bar is displayed", 
 				"Running low usage bar is not displayed");
-		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.isRunningLowPopOutAddDataDisplayed(),
-				"Add data pop out displayed for running low data", 
-				"Add data pop out not displayed for running low data");
+		reporter.reportLogWithScreenshot("Running low usage bar is displayed");		
 			
 	}
 	

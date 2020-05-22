@@ -81,13 +81,7 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
 			"Talk plan is displayed",
 			"Talk plan is not displayed");		
-				
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
-							"Dashboard Section Data Balance Is Displayed",
-							"Dashboard section data balance not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardUsageBarIsDisplayed(),
-							"usage bar is displayed",
-							"usage bar is not displayed");
+					
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataInUsageSectionIsDisplayed(),
 							"Data Section is displayed",
 							"Data section is not displayed");
@@ -103,22 +97,7 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 						"Days remaining in bill cycle is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkNTextUsageModuleIsDisplayed(),
 						"Talk & Text usage module is displayed",
-						"Talk & Text usage module is not displayed, please investigate");
-		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();		
-		reporter.reportLogWithScreenshot("My Mobile Plan is displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyMobilePlanDashBoardSectionIsDisplayed(),
-						"My Mobile plan dashboard section is displayed",
-						"My mobile plan details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkViewFullPlanDetailsOnMyMobilePlanDashBoardSectionIsDisplayed(),
-						"Link View Flull plan details is displayed on My mobile plan section",
-						"Link View Flull plan details is NOT displayed on My mobile plan section");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyButtonChangePlanMyMobilePlanDashBoardSectionIsDisplayed(),
-						"Button Change Plan MyMobilePlan DashBoard Section IsDisplayed",
-						"Button Change Plan MyMobilePlan DashBoard Section Is NOT Displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPlanBenefitsInMyMobilePlanDashBoardSectionIsDisplayed(),
-						"PlanBenefits In My MobilePlan DashBoard Section Is Displayed",
-						"PlanBenefits In MyMobilePlan DashBoard Section Is NOT Displayed");
-
+						"Talk & Text usage module is not displayed, please investigate");			
 		
 	}
 	

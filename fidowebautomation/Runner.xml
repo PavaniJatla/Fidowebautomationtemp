@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
-<parameter name="strBrowser" value="sauceedge"/>
-<parameter name="strLanguage" value="en"/>
+<parameter name="strBrowser" value="firefox"/>
+<parameter name="strLanguage" value="fr"/>
 <listeners>
       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
 </listeners> 
 
 
- <test name="FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit">	
+	
+	 <test name="FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan">
                     </class>                                       
              </classes>
 	</test> 
