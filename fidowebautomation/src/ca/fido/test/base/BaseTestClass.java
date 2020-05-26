@@ -9,6 +9,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Listeners;
 
+import ca.fido.pages.FidoMobileHomePage;
 import ca.fido.pages.FidoAccountOverviewPage;
 import ca.fido.pages.FidoAccountRegistrationPage;
 import ca.fido.pages.FidoAddDataPage;
@@ -63,6 +64,8 @@ import ca.fido.test.helpers.BrowserDrivers;
 import ca.fido.test.helpers.CaptchaBypassHandlers;
 import ca.fido.test.helpers.FidoEnums;
 import extentreport.ExtentTestManager;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import utils.Reporter;
 
 
@@ -72,6 +75,7 @@ import utils.Reporter;
 public class BaseTestClass {
 		    
 	private WebDriver driver;
+	private AppiumDriver<MobileElement> adriver;
 	public Reporter reporter;	
 	protected HashMap<String,String> xmlTestParameters;
 	public EnsHomePage ensHomePage;
@@ -128,7 +132,7 @@ public class BaseTestClass {
 	protected BrowserDrivers browserdriver;
 	protected SSPFidoRetailerChampPage retailer_champ_page;	
 	private CaptchaBypassHandlers captcha_bypass_handlers;
-	
+	protected FidoMobileHomePage fido_mobile_home_page;
 	public BaseTestClass() {
 		 browserdriver =  new BrowserDrivers();
 		 
@@ -165,10 +169,10 @@ public class BaseTestClass {
   		default :
   			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 		}
-	    setImplicitWait(getDriver(), 10);
+	    setImplicitWait(getDriver(), 120);
 	    init(strGroupName);
   }
-	
+
 	 /* To start a session using given url, browser, language and test case group name.
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
@@ -203,6 +207,35 @@ public class BaseTestClass {
 	    init(enumGroupName.toString().toLowerCase().trim());	    
   }
 
+	/**
+	 * To start a session using given url, browser, language and test case group name.
+	 * @param strUrl                     string of test url
+	 * @param strBrowser                 string of browser name
+	 * @param strLanguage                string of language to use
+	 * @param strGroupName               string of group name of the test case
+	 * @param currentTestMethodName 
+	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
+	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
+	 */
+	public void startMobileSession(String strUrl, String strBrowser,  String strLanguage, String strGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
+		this.driver = browserdriver.driverInit(strBrowser, currentTestMethodName, strGroupName);
+		System.out.println(strUrl + "----------------------------------------------------------------------------");
+		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
+		switch(strGroupName.toLowerCase().trim()) {			
+		case "connectedhome_anonymous":				
+			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
+			break;	
+			
+		case "connectedhome_login":
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;            
+
+  		default :
+  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+		}
+	    setImplicitWait(adriver, 120);
+	    init(strGroupName);
+  }
 	
 	/**
 	 * To initiate the page objects based on test case group, will read group name from xml file.
@@ -284,6 +317,7 @@ public class BaseTestClass {
 			fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver);
 			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
+			fido_mobile_home_page= new FidoMobileHomePage(driver);
 			break;
 			
 		case "buyflow":

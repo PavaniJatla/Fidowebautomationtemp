@@ -6,15 +6,21 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
 import ca.fido.testdatamanagement.TestDataHandler;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import utils.CookieFetcher;
 
 public class CaptchaBypassHandlers {
 	
 	private WebDriver driver;
+	AppiumDriver<MobileElement> adriver;
 	public CaptchaBypassHandlers(WebDriver driver) {
 		this.driver = driver;
 	}
 	
+	public CaptchaBypassHandlers(AppiumDriver<MobileElement> adriver) {
+		this.adriver = adriver;
+	}
 	
 	/**
 	 * To Bypass Captcha for Self serve Flows
@@ -46,8 +52,11 @@ public class CaptchaBypassHandlers {
 	 */
 	public void captchaBypassURLAnonymousBuyFlows(String strUrl, String strLanguage) throws IOException {
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"?setLanguage="+ strLanguage );
+				driver.get(strUrl+"?setLanguage="+ strLanguage);
         }
+	
+	public void captchaBypassURLAnonymousBuyFlowsa(String strUrl, String strLanguage) throws IOException {
+      }
 
 	/**
 	 * To Bypass Captcha for login Flows

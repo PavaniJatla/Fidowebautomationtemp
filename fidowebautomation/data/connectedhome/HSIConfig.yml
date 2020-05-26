@@ -1,7 +1,5 @@
-fidoURL: https://www.qa05.fido.ca
+fidoURL: https://www.qa04.fido.ca
 sspURL: https://champ-client-ui.qa01-ssp.app.ocp.stg.rci.rogers.com 
-loginFlow: login
-anonymousFlow: anonymous
 language: en
 cookieUserName: bypassfido13@mailinator.com
 cookieUserPassword: rogers123

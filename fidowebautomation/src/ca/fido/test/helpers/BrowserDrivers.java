@@ -33,6 +33,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import ca.fido.test.helpers.FidoEnums.OS;
 import ca.fido.testdatamanagement.TestDataHandler;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -41,6 +44,7 @@ public class BrowserDrivers {
 
     private static OS os = null;
     private WebDriver driver;
+    AppiumDriver<MobileElement> adriver;
 	/*
 	 * To initiate the driver
 	 * @param strBrowser                 string of browser name
@@ -83,6 +87,14 @@ public class BrowserDrivers {
 			appiumInit();
 			break;
 
+	    case "android" :                          
+    	  androidInit(strBrowser) ;          
+        break;
+
+	    case "emuAndroid" :                          
+    	 androidEmulatorInit(strBrowser) ;          
+        break;
+      
 		default :
 			WebDriverManager.chromedriver().setup();
 			setDriver(new FirefoxDriver());
@@ -91,7 +103,6 @@ public class BrowserDrivers {
 		return driver;
 	}
 
-	
 	
 	/**
 	 * To initiate the firefox driver
@@ -142,6 +153,7 @@ public class BrowserDrivers {
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
 	private void chromeInit(String strBrowser, String strGroupName) throws ClientProtocolException, IOException {
+
 //			WebDriverManager.chromedriver().setup();		
 			WebDriverManager.chromedriver().version("79.0.3945.36").setup();
 			ChromeOptions options = new ChromeOptions(); 
@@ -352,6 +364,48 @@ public class BrowserDrivers {
 		  HttpClientBuilder.create().build().execute(putRequest);
 		}
 	
+	/**
+	 * To initiate the remote Firefox driver
+	 * @param <MobileEliment>
+	 * @param strBrowser                 string of browser name
+	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
+	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
+	 */
+	private void androidInit(String strBrowser) throws ClientProtocolException, IOException {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.1.0");
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Samsung S7 Max");
+		capabilities.setCapability(MobileCapabilityType.UDID, "420028b9c64354b3");
+		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 6000);
+		//capabilities.setCapability(MobileCapabilityType.APP, "UIAutomator2");
+		capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		adriver = new AndroidDriver<MobileElement>(url, capabilities);
+		adriver.get("https://www.qa05.fido.ca/pages/api/selfserve/bypassrecaptcha");
+		adriver.get("https://www.qa05.fido.ca?setLanguage=en" );		
+		
+	}
+	
+	/**
+	 * To initiate the remote Firefox driver
+	 * @param <MobileEliment>
+	 * @param strBrowser                 string of browser name
+	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
+	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
+	 */
+	private void androidEmulatorInit(String strBrowser) throws ClientProtocolException, IOException {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		//capabilities.setCapability("avd","AndroidTestDevice");
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3a XL API 29");
+		capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		adriver = new AndroidDriver<MobileElement>(url, capabilities);
+		adriver.get("https://www.fido.ca/");
+		//adriver.get("https://www.qa4.fido.ca");
+	}
 	
 	/**
 	 * To set the web driver

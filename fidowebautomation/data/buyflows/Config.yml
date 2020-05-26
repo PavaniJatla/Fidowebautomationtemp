@@ -1,7 +1,7 @@
 # Config
 ---
-fidoURL: https://www.qa05.fido.ca
-hupURL: "https://www.qa05.fido.ca/hup/#/choose-phone"
+fidoURL: https://www.qa01.fido.ca
+hupURL: "https://www.qa01.fido.ca/hup/#/choose-phone"
 cookieUserName: 194603leg@mailinator.com
 cookieUserPassword: rogers@123
 ...

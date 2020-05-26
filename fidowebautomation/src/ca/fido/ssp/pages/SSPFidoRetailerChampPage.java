@@ -96,7 +96,8 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	public void setDealerCode(String strDealerCode) {
 		reusableActions.waitForElementVisibility(txtDealerCodeContainer,60);
 		reusableActions.executeJavaScriptClick(txtDealerCode);
-		reusableActions.getWhenReady(txtDealerCode,10).clear();
+		//reusableActions.getWhenReady(txtDealerCode,30).click();
+		//reusableActions.getWhenReady(txtDealerCode,10).clear();
 		reusableActions.getWhenReady(txtDealerCode, 2).sendKeys(strDealerCode);
 	}
 	

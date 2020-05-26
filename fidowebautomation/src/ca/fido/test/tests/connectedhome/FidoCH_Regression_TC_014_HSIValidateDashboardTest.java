@@ -35,6 +35,7 @@ public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestC
 	@Test
 	public void checkFidoHSIValidateDashboard() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
+		fido_home_page.clkEasylogin();
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		reporter.reportLogWithScreenshot("Launched the SignIn popup");

@@ -175,7 +175,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void verifyPlanInfomationForExistingCustomer(String strPlanCost) {
 		//reusableActions.waitForElementInvisibility(btnContinueForInternet);
-		reusableActions.staticWait(1000);
+		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(By.xpath("//ins[contains(text(),'" + strPlanCost+ "')]/ancestor::div[@class='new-ts-package-cost']//button[@id='add-button-0']"), 60).click();
 	}
 	
