@@ -42,7 +42,8 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		fido_recover_pass_or_name_page.setEmailAddress(strEmail);
 		reporter.reportLogWithScreenshot("Set email for recover user name.");
 		fido_recover_pass_or_name_page.clkBtnContinue();
-
+		
+		fido_recover_pass_or_name_page.clkBtnEmailNowIfAvailable();
 		//Go to ENS to verify email and get reset password page.		
 		try {
 			ensVerifications.getEmailVerifyPage(strEmail);

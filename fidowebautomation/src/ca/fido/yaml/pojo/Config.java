@@ -8,9 +8,7 @@ public class Config {
 	private String language;
 	private String cookieUserName;
 	private String cookieUserPassword;
-	private String ensURL04;
-	private String ensURL01;
-	private String ensURL03;
+	private String ensURL;
 	private String sauceUser;
 	private String sauceKey;
 	private String ensLoginEmail;
@@ -94,19 +92,6 @@ public class Config {
 	 */
 	public void setCookieUserPassword(String cookieUserPassword) {
 		this.cookieUserPassword = cookieUserPassword;
-	}
-
-	/**
-	 * @return the ensURL01
-	 */
-	public String getEnsURL01() {
-		return ensURL01;
-	}
-	/**
-	 * @param ensURL01 the ensURL01 to set
-	 */
-	public void setEnsURL01(String ensURL01) {
-		this.ensURL01 = ensURL01;
 	}
 
 	public String getSauceUser() {
@@ -207,28 +192,17 @@ public class Config {
 		this.hupURL = hupURL;
 	}
 	/**
-	 * @return the ensURL04
+	 * @return the ensURL
 	 */
-	public String getEnsURL04() {
-		return ensURL04;
+	public String getEnsURL() {
+		return ensURL;
 	}
 	/**
-	 * @param ensURL04 the ensURL04 to set
+	 * @param ensURL the ensURL to set
 	 */
-	public void setEnsURL04(String ensURL04) {
-		this.ensURL04 = ensURL04;
+	public void setEnsURL(String ensURL) {
+		this.ensURL = ensURL;
 	}
-	/**
-	 * @return the ensURL03
-	 */
-	public String getEnsURL03() {
-		return ensURL03;
-	}
-	/**
-	 * @param ensURL03 the ensURL03 to set
-	 */
-	public void setEnsURL03(String ensURL03) {
-		this.ensURL03 = ensURL03;
-	}
+
 	
 }

@@ -55,8 +55,8 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage","strGroupName"})
 	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startMobileSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
-	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+//	startMobileSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
+//	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 
 

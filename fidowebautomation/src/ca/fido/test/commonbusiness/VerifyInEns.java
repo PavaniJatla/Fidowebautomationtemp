@@ -18,22 +18,7 @@ public class VerifyInEns extends BaseTestClass{
 	 * @author ning.xue
 	 */
 	private void startVerify() {
-
-		String strEnsUrl = "";
-		if (TestDataHandler.config.getFidoURL().contains("qa01")
-				|| TestDataHandler.config.getFidoURL().contains("qa05"))
-		{
-			strEnsUrl = TestDataHandler.config.getEnsURL01();
-		}else if(TestDataHandler.config.getFidoURL().contains("qa03")
-				|| TestDataHandler.config.getEnsURL03().contains("qa03"))
-		{
-			strEnsUrl = TestDataHandler.config.getEnsURL03();
-		}else if(TestDataHandler.config.getFidoURL().contains("qa07"))
-		{
-			strEnsUrl = TestDataHandler.config.getEnsURL01();
-		}
-
-		baseTestClass.ensHomePage.openNewTabForEns(strEnsUrl);
+		baseTestClass.ensHomePage.openNewTabForEns(TestDataHandler.config.getEnsURL());
 		baseTestClass.reporter.reportLogWithScreenshot("Ens Window");
 	}
 	

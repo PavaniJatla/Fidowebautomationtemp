@@ -20,7 +20,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 	
 	
-	@FindBy (xpath = "//h1[@class='manage-data-title mb-10 ng-star-inserted']")
+	@FindBy (xpath = "//h1[@class='manage-data-title mb-10 ng-star-inserted' or @class='manage-data-title']")
 	WebElement titleManageData;
 	
 	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")
@@ -48,6 +48,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")
 	List<WebElement> rowsAddedData;
 	
+	//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//a[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]	//
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//strong[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")
 	List<WebElement> tableRowsAddData;
 	
@@ -205,7 +206,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 */
 	public String getNumbersFromString(String strMatch) {
 		Pattern pattern = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
-        Matcher match = pattern.matcher(strMatch);  
+        Matcher match = pattern.matcher(strMatch.replaceAll(",", "."));  
         match.find();
         return match.group();
 	}
@@ -300,7 +301,7 @@ public class FidoDataManagementPage extends BasePageClass {
 		
 		addData.put("active", active);
 		addData.put("cancelled", cancelled);
-		addData.put("nonMTT", nonMTT);
+		addData.put("nonMDT", nonMTT);
 		return addData;
 	}
 	

@@ -46,15 +46,15 @@ public class FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountN
 		fido_recover_pass_or_name_page.setAccountNumber(strAccountNumber);
 		reporter.reportLogWithScreenshot("Set email id and click button continue");
 		fido_recover_pass_or_name_page.clkBtnContinue();		
-		reporter.reportLogWithScreenshot("Click on Text as recovery option");
+		reporter.reportLogWithScreenshot("Continue is clicked");
+		//flow updated in May 20th release, no need to click text option.
 		fido_recover_pass_or_name_page.clkTextToAsRecoveryOption();
-		reporter.reportLogWithScreenshot("Click on Text as recovery option");
 		String strTestingTab = getDriver().getWindowHandle();
 		
 				
 		try {
 			String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
-			String strCode = ensVerifications.getVerifyCode(strPhoneNum);
+				String strCode = ensVerifications.getVerifyCode(strPhoneNum);
 			
 			//switch to working test tab.
 			getDriver().switchTo().window(strTestingTab);

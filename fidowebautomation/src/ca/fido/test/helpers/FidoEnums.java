@@ -23,4 +23,18 @@ public class FidoEnums {
 			    MTT,
 			    OTT,			   
 			  };
+			  
+	public enum SauceCapabilities{
+			    	seleniumVersion,
+			    	maxDuration,
+			    	commandTimeout,
+			    	idleTimeout,
+			    	build,
+			    	browserVersion,
+			    	platformName,
+			    	platformVersion,
+			    	appiumVersion,
+			    	deviceName,
+			    	deviceOrientation
+			    };		  
 }

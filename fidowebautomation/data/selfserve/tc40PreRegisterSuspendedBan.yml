@@ -1,11 +1,11 @@
 # Account Details -- BAN should be suspended
 ---
 name: FidoPreRegisterAccount
-email: postpaid731@mailinator.com
+email: postpaid731Set2@mailinator.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 932509722
+   ban: 932520141
    postalCode: M4L2Z8
-   ctn: 4167311354
+   ctn: 4167311475
 ...

@@ -1,12 +1,12 @@
 # Account Details -- BAN with HSI account
 ---
 name: FidoPreRegisterAccount
-username: postpaid7312345789@mailinator.com
+username: postpaid7312345789Set2@mailinator.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 932490634
+   ban: 932490683
    postalCode: M4L2Z8
-   ctn: 4167311241
-   email: postpaid7312345789@mailinator.com
+   ctn: 4167311244
+   email: postpaid7312345789Set2@mailinator.com
 ...
