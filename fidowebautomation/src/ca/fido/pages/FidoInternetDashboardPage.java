@@ -243,7 +243,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @param strBandwidth bandwidth of the package to be selected 
 	 * @author aditya.dhingra
 	 */
-	public void selectHSIPackageByBandwidth(String strBandwidth) {		
+	public void selectHSIPackageByBandwidth(String strBandwidth) {
+		reusableActions.javascriptScrollToMiddleOfPage();
 		reusableActions.getWhenReady(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']"),60).click();
 	}
 	

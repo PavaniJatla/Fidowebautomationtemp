@@ -1,12 +1,13 @@
 package ca.fido.yaml.pojo;
 
+
 public class SauceSettings {
 
 	private SauceOptions sauceOptions;
 	private MutableCapabilities mutableFireFoxCapabilities;
 	private MutableCapabilities mutableChromeCapabilities;
 	private MutableCapabilities mutableEdgeCapabilities;
-	
+	private AndroidCapabilities androidChromeCapabilities;	
 	/**
 	 * @return the sauceOptions
 	 */
@@ -54,6 +55,18 @@ public class SauceSettings {
 	 */
 	public void setMutableEdgeCapabilities(MutableCapabilities mutableEdgeCapabilities) {
 		this.mutableEdgeCapabilities = mutableEdgeCapabilities;
+	}
+	/**
+	 * @return the androidChromeCapabilities
+	 */
+	public AndroidCapabilities getAndroidChromeCapabilities() {
+		return androidChromeCapabilities;
+	}
+	/**
+	 * @param androidChromeCapabilities the androidChromeCapabilities to set
+	 */
+	public void setAndroidChromeCapabilities(AndroidCapabilities androidChromeCapabilities) {
+		this.androidChromeCapabilities = androidChromeCapabilities;
 	}
 	
 	

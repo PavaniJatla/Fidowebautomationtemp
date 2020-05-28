@@ -28,7 +28,7 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(name = "pan")
 	WebElement txtCreditCardNumber;
 
-	@FindBy(id = "expiry-date")
+	@FindBy(xpath = "//select[@id='expiry-date']")
 	WebElement ddlExpiryMonth;
 
 	@FindBy(name = "expYear")

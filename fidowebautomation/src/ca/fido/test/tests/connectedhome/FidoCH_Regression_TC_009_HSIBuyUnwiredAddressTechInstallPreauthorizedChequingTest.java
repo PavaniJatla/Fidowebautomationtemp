@@ -49,8 +49,8 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
         fido_home_page.clkHomeInternet();
         fido_Shop_internet_page.clkCheckAvailability();
         reporter.reportLogWithScreenshot("Launched the Internet Page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccountwithUnwiredAddress.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccountwithUnwiredAddress.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkCheckAvailabilityConfirmation();
@@ -89,8 +89,8 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
-        fido_technical_installation_page.clkFulfillmentTechInstall();
-        fido_technical_installation_page.clkTechInstallSlot();
+    /*    fido_technical_installation_page.clkFulfillmentTechInstall();
+        fido_technical_installation_page.clkTechInstallSlot();*/
         reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
         fido_technical_installation_page.clkTechInstalConfirm();
         reporter.reportLogWithScreenshot("Payment page has launched");
