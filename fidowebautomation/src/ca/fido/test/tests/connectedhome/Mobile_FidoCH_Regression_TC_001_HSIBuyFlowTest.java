@@ -2,7 +2,6 @@ package ca.fido.test.tests.connectedhome;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
@@ -11,7 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ca.fido.test.base.BaseTestClass;
-import ca.fido.testdatamanagement.TestDataHandler;
 
 
 /**
