@@ -31,6 +31,10 @@ public class FidoEnums {
 			    	idleTimeout,
 			    	build,
 			    	browserVersion,
-			    	platformVersion	       
+			    	platformName,
+			    	platformVersion,
+			    	appiumVersion,
+			    	deviceName,
+			    	deviceOrientation
 			    };		  
 }
