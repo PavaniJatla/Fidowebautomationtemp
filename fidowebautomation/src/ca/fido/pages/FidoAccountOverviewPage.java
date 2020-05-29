@@ -178,6 +178,43 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//li[@class='o-navLinkList__item clicktale-mask loginStates stateCookied stateActive']")
 	WebElement lnkSignInAs;
 	
+	@FindBy (xpath = "//span[@class='new-line-name']")
+	WebElement lnkAddALine;
+	
+	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlowDevice']/parent::button/preceding-sibling::div//span")
+	@FindBy (xpath = "//span[@translate='aal.cta.addALineFlow']/parent::button")
+	WebElement buttonAALCurrentPhone;
+	
+	@FindBy (xpath = "//div[@class='modal-body']//div[@class='btn-padding hidden-xs']//following-sibling::button")
+	WebElement buttonAALNewPhone;
+	
+	/**
+	 * Click button "Add a line" on modal dialogue window.
+	 * @author Saurav.Goyal
+	 */
+	public void clkButtonAALNewPhone() {
+		reusableActions.waitForElementTobeClickable(buttonAALNewPhone, 100);
+		reusableActions.getWhenReady(buttonAALNewPhone,30).click();
+	}
+	
+	/**
+	 * Click button "Add a line" on modal dialogue window.
+	 * @author Saurav.Goyal
+	 */
+	public void clkButtonAddALine() {
+		reusableActions.waitForElementTobeClickable(buttonAALCurrentPhone, 100);
+		reusableActions.getWhenReady(buttonAALCurrentPhone,30).click();
+	}
+	
+	/**
+	 * Click link "Add a line" in overview page.
+	 * @author Saurav.Goyal
+	 */
+	public void clkLnkAddALine() {
+		reusableActions.waitForElementTobeClickable(lnkAddALine, 100);
+		reusableActions.getWhenReady(lnkAddALine,30).click();
+	}
+	
 	/**
 	 * Verify if the email name matches the email sent when register.
 	 * @param strEmail string of registered email.

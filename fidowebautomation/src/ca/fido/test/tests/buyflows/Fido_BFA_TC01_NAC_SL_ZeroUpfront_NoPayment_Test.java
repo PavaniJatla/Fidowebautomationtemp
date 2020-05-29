@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -37,21 +39,42 @@ public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestCla
 	@Test
 	public void fidoSingleLineNAC() {
 		reporter.reportLogWithScreenshot("Home Page");
-		fido_home_page.clkShop();
-		fido_home_page.clkPhones();
+		//Need to delete below lines from 43 to 50 , added due to AWS link and uncomment line 51 and 52
+		getDriver().findElement(By.xpath("//button[@id='details-button']")).click();
+		getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//fido_home_page.clkShop();
+		//fido_home_page.clkPhones();
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		//fido_choose_phone_page.selectFirstZeroUpfrontDeviceAvailable();
-		reporter.hardAssert(fido_choose_phone_page.selectDevice("iPhone 11"),"Device Found and Selected","Device Not Found");
-		fido_build_plan_page.selectDataPlanCategory();
-		reporter.hardAssert(fido_build_plan_page.selectFirstAvailablePricePlan(),"Selected a Price Plan","Failed to Select a Price Plan");
-		reporter.reportLogWithScreenshot("Build Plan page");
-		fido_build_plan_page.clkContinue();
-		reporter.reportLogWithScreenshot("Existing Customer overlay");
-		fido_build_plan_page.clkCreateAccount();
-		reporter.reportLogWithScreenshot("Choose Add-ons page");
-		fido_choose_addons_page.clkContinue();
-		reporter.reportLogWithScreenshot("CART SUMMARY page");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone 7"),"Device Found and Selected","Device Not Found");
+		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
+		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
+		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");
+		Assert.assertTrue(fido_device_config_Page.isModalDisplayed(),"Modal element is not present on the screen");
+		reporter.reportLogPass("Modal window displayed");
+		Assert.assertTrue(fido_device_config_Page.verifyGetStartedButtonOnModal(),"Get started button on the modal is not present");
+		fido_device_config_Page.clickGetStartedButtonOnModal();
+		reporter.reportLogPass("Clicked Get Started Button");
+		Assert.assertTrue(fido_build_plan_page.verifyContinueDeviceCostButton(),"Fido plan config page is displayed");
+		reporter.reportLogPass("Fido plan config page");
+		fido_build_plan_page.clkContinueDeviceCost();
+		reporter.reportLogPass("Continue button on select your device cost clicked");
+		fido_build_plan_page.clkContinueDataOption();
+		reporter.reportLogPass("Continue button on Data option clicked");
+		fido_build_plan_page.clkContinueTalkOptions();
+		reporter.reportLogPass("Continue button on talk option clicked");
+		fido_build_plan_page.clkNoBPOOfferButtonTalkOptions();
+		reporter.reportLogPass("skipped BPO option");
+		fido_build_plan_page.clkContinueAddOns();
+		reporter.reportLogPass("Continue button on AddOns clicked");
+		fido_build_plan_page.clkContinueBelowCartSummary();
+		reporter.reportLogPass("Checkout cart-summary page");
 		fido_cart_summary_page.clkContinue();
 		fido_create_user_page.setCommunicationDetails();
 		fido_create_user_page.setFirstName();
@@ -88,22 +111,32 @@ public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestCla
 		fido_order_review_page.clkTermsNConditionsConsent();
 		fido_order_review_page.setContractDigitalCopyEmail();
 		reporter.reportLogWithScreenshot("Order Review page");
-		fido_order_review_page.clkContinueToPayment();
+		if(fido_order_review_page.isPaymentRequired()) {
+			fido_order_review_page.clkContinueToPayment();
+			fido_payment_page.setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),
+												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth(),
+												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear(),
+												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCVV());
+			fido_order_review_page.clkCompleteOrder();
+			//fido_payment_page.clkContinueOrder();
+		} else {
+			fido_order_review_page.clkCompleteOrder();
+		}
 		fido_order_review_page.waitForOrderProcessing();
 		reporter.hardAssert(fido_order_confirmation_page.verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
 		reporter.reportLogWithScreenshot("Order Confirmation page");
 	}
-	
+
 	@Parameters({"strBrowser", "strLanguage", "strGroupName"})
 	@BeforeTest
-    public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, String strGroupName, Method method) throws ClientProtocolException, IOException {
+	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, String strGroupName, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
-    }
+	}
 
-    @AfterTest(alwaysRun = true)
-    public void afterTest() {
-    	closeSession();
-    }
+	@AfterTest(alwaysRun = true)
+	public void afterTest() {
+		closeSession();
+	}
 
 }

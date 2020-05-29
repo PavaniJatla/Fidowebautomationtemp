@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
@@ -17,7 +18,10 @@ public class FidoShippingPage extends BasePageClass {
 	@FindBy(xpath = "//span[@checkout-res='checkout_billing_address']")
 	WebElement lblHomeAddress;
 
-	@FindBy(xpath = "//span[@translate='btn_continue_to_review']")
+	@FindAll({
+		@FindBy(xpath = "//span[@translate='btn_continue_to_review']"),
+		@FindBy(xpath = "//span[@checkout-res='btn_continue_to_review']")
+	})
 	WebElement btnContinueToOrderReview;
 	
 	/**
@@ -33,7 +37,7 @@ public class FidoShippingPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkContinueToOrderReview() {
-		reusableActions.clickWhenReady(btnContinueToOrderReview);
 		reusableActions.waitForElementVisibility(btnContinueToOrderReview,40);
+		reusableActions.clickWhenReady(btnContinueToOrderReview,60);
 	}
 }

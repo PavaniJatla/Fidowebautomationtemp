@@ -56,6 +56,8 @@ public class TestDataHandler {
 	public static HUPData testCase04;
 	public static HUPData testCase05;
 	public static PPCData testCase06;
+	public static PPCData testCase07;
+	public static PPCData testCase08;
 	public static AccountData tc6062;
 	public static AccountData tc002003;
 	public static AccountData tc61;
@@ -136,6 +138,8 @@ public class TestDataHandler {
     	testCase04 = YamlHandler.getHUPData("tc04HUP");
     	testCase05 = YamlHandler.getHUPData("tc05HUP");
     	testCase06 = YamlHandler.getPPCData("tc06PPC");
+    	testCase07 = YamlHandler.getPPCData("tc07AAL");
+    	testCase08 = YamlHandler.getPPCData("tc08AALTerm");
 	}
 
 }

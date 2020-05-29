@@ -79,6 +79,6 @@ public class FidoCartSummaryPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkContinue() {
-		reusableActions.clickWhenVisible(btnContinue);
+		reusableActions.clickWhenVisible(btnContinue,60);
 	}
 }

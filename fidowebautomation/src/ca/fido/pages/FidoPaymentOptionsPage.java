@@ -3,6 +3,7 @@ package ca.fido.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
@@ -120,7 +121,10 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//button[@translate='global.cta.confirm']")
 	WebElement btnPaymentConfirm;
 	
-	@FindBy(xpath = "//div[@class='semafone-container']//descendant::iframe")
+	@FindAll({
+		@FindBy(xpath = "//div[@class='semafone-container']//descendant::iframe"),
+		@FindBy(xpath = "//div[@class='ute-input-text']//descendant::iframe")
+	})
 	WebElement fraSemaphone;  
 	
 	@FindBy(xpath="//div[@class='cc-payment-section']//descendant::iframe")
@@ -129,13 +133,22 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id='pan']")
 	WebElement txtCardNumber;
 
-	@FindBy(xpath= "//select[@name='ccExpiryMonth']")
+	@FindAll({
+		@FindBy(xpath = "//select[@name='ccExpiryMonth']"),
+		@FindBy(xpath = "//select[@name='month']")
+	})
 	WebElement ddlExpiryMonth;
 
-	@FindBy(xpath= "//select[@name='ccExpiryYear']")
+	@FindAll({
+		@FindBy(xpath = "//select[@name='ccExpiryYear']"),
+		@FindBy(xpath = "//select[@name='year']")
+	})
 	WebElement ddlExpiryYear;
 
-	@FindBy(name = "cvv")
+	@FindAll({
+		@FindBy(name = "cvv"),
+		@FindBy(name = "securityCode")
+	})
 	WebElement txtCVV;
 	
 	@FindBy(id = "cvc")

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
+import utils.FormFiller;
 
 
 public class FidoBuildPlanPage extends BasePageClass {
@@ -22,6 +23,26 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	@FindBy(xpath = "//button[@translate='_continue']")
 	WebElement btnContinue;
+	
+	////f-cart-summary//button[contains(@class,'-primary -large') or @id='main-continue-button']//span[contains(@class,'ds-no-overflow mw-100')]
+	//@FindBy(xpath = "//button[@id='main-continue-button']")
+	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large']")
+	WebElement btnContinueBelowCartSummary;
+	
+	@FindBy(xpath = "//button[@id='step-1-continue-button']")
+	WebElement btnContinueDeviceCost;
+	
+	@FindBy(xpath = "//button[@id='step-2-continue-button']")
+	WebElement btnContinueDataOption;
+	
+	@FindBy(xpath = "//button[@id='step-3-continue-button']")
+	WebElement btnContinueTalkOptions;
+
+	@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]")
+	WebElement btnNoBPOOffer;
+	
+	@FindBy(xpath = "//button[@id='step-4-continue-button']")
+	WebElement btnContinueAddOns;
 	
 	@FindBy(xpath = "//span[@translate='createAccount']/parent::button")
 	WebElement btnCreateAnAccount;
@@ -52,6 +73,184 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@translate='bpo_redeem_offer']")
 	WebElement btnGetThisOffer;
 	
+	@FindBy(xpath = "//span[@class='dsa-cartSummary__copy text-title-3 mb-0']")
+	WebElement textYourCartSummary;
+	
+	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100'])[1]")
+	WebElement selectFirstTierChooseYourData;
+	
+	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div//input")
+	WebElement inputFirstName;
+	
+	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div")
+	WebElement inputFirstNameDiv;
+	
+	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div//input")
+	WebElement inputLastName;
+	
+	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div")
+	WebElement inputLastNameDiv;
+	
+	@FindBy(xpath = "//button[@id='caller-id-continue-button']")
+	WebElement buttonContinueUserName;
+	
+	@FindBy(xpath = "//select[@id='ds-form-input-id-2']")
+	WebElement selectCity;
+	
+	@FindBy(xpath = "//button[@id='choose-number-continue-button']")
+	WebElement buttonChooseNumberContinue;
+	
+	@FindBy(xpath = "//img[@alt='Close']")
+	WebElement closeDialogWindow;
+	
+	/**
+	 * Clicks on the X - close Dialogue window
+	 * @author Saurav.Goyal
+	 */
+	public void clkCloseDialogWindow() {
+		reusableActions.clickIfAvailable(closeDialogWindow, 120);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for enter user's name
+	 * @author Saurav.Goyal
+	 */
+	public void clkChooseNumberContinueButton() {
+		reusableActions.waitForElementVisibility(buttonChooseNumberContinue, 120);
+		reusableActions.clickIfAvailable(buttonChooseNumberContinue, 120);
+	}
+	
+	/**
+     * This method will select the city for which connection is required
+     * @param String cityName : name of the city
+     * @author Saurav.Goyal  
+     */
+    public void selectCityForChooseYourTelephoneNum(String cityName) {
+    	reusableActions.getWhenReady(selectCity, 30).click();
+    	reusableActions.selectWhenReady(selectCity,cityName);
+    	
+    }
+    
+	/**
+	 * Clicks on the 'Continue' button for enter user's name
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueEnterUserNameAAL() {
+		reusableActions.waitForElementVisibility(buttonContinueUserName, 60);
+		reusableActions.clickIfAvailable(buttonContinueUserName, 60);
+	}
+	
+	/**
+	 * Enter First name on the phone plans page
+	 * @author Saurav.Goyal
+	 */
+	public void enterFirstName() {
+		String strFirstName = FormFiller.generateRandomName();
+		reusableActions.getWhenReady(inputFirstNameDiv, 30).click();
+		reusableActions.getWhenReady(inputFirstName, 3).sendKeys(strFirstName);
+	}
+	
+	/**
+	 * Enter Last name on the phone plans page
+	 * @author Saurav.Goyal
+	 */
+	public void enterSecondName() {
+		String strLastName = FormFiller.generateRandomName();
+		reusableActions.getWhenReady(inputLastNameDiv, 30).click();
+		reusableActions.getWhenReady(inputLastName, 3).sendKeys(strLastName);
+	}
+	
+	/**
+	 * Select First tier of the Choose your data
+	 * @author Saurav.Goyal
+	 */
+	public void clkFirstTierChooseYourDataAAL() {
+		reusableActions.waitForElementVisibility(selectFirstTierChooseYourData, 60);
+		reusableActions.clickIfAvailable(selectFirstTierChooseYourData, 60);
+	}
+	
+	/**
+	 * Verify the 'Continue' button for select you device cost
+	 * @return boolean true is the element is present else false
+	 * @author Saurav.Goyal
+	 */
+	public boolean verifyContinueDeviceCostButton() {
+		if(reusableActions.isElementVisible(btnContinueDeviceCost, 60))
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for your data
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueYourDataAAL() {
+		reusableActions.waitForElementVisibility(btnContinueDeviceCost, 60);
+		reusableActions.clickIfAvailable(btnContinueDeviceCost, 60);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for select your device cost
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueDeviceCost() {
+		reusableActions.waitForElementVisibility(btnContinueDeviceCost, 60);
+		reusableActions.clickIfAvailable(btnContinueDeviceCost, 60);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for select data option
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueDataOption() {
+		reusableActions.waitForElementVisibility(btnContinueDataOption, 60);
+		reusableActions.clickIfAvailable(btnContinueDataOption, 60);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for select talk options
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueTalkOptions() {
+		reusableActions.clickIfAvailable(btnContinueTalkOptions, 60);
+	}
+	
+	/**
+	 * Click no, I don't want this BPO offer
+	 * @author Saurav.Goyal
+	 */
+	public void clkNoBPOOfferButtonTalkOptions() {
+		reusableActions.clickIfAvailable(btnNoBPOOffer, 60);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for AddOns for AAL
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueAddOnsAAL() {
+		reusableActions.clickIfAvailable(btnContinueTalkOptions, 60);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button for select addons for new Page
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueAddOns() {
+		reusableActions.waitForElementVisibility(btnContinueAddOns, 60);
+		reusableActions.clickIfAvailable(btnContinueAddOns, 60);
+	}
+	
+	/**
+	 * Clicks on the 'Continue' button at the bottom of the cart summary
+	 * @author Saurav.Goyal
+	 */
+	public void clkContinueBelowCartSummary() {
+		reusableActions.waitForElementVisibility(btnContinueBelowCartSummary, 40);
+		reusableActions.staticWait(5000);
+		reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
+	}
+	
 	/**
 	 * Clicks on the 'Add' button against the first available price plan
 	 * @return true if at least a plan is available; else false
@@ -65,6 +264,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 		return false;
 	}
 	
+	
+	
 	/**
 	 * Clicks on the 'Continue' button at the bottom of the page
 	 * @author rajesh.varalli1
@@ -73,7 +274,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 		if(handleTodayOfferOverlay()) {
 			reusableActions.clickWhenVisible(btnContinue,30);
 		}
-		reusableActions.waitForElementVisibility(btnContinue, 40);
+		//reusableActions.waitForElementVisibility(btnContinue, 40);
 	}
 	
 	/**
@@ -152,9 +353,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueToAddons() {
 		if(handleTodayOfferOverlay()) {
-			reusableActions.clickWhenVisible(btnContinueToAddons,30);
+			reusableActions.clickWhenVisible(btnContinueToAddons,120);
 		}
-		reusableActions.waitForElementVisibility(btnContinueToAddons, 40);
+		//reusableActions.waitForElementVisibility(btnContinueToAddons, 60);
 	}
 	
 	/**
@@ -174,9 +375,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean handleTodayOfferOverlay() {
-		if(reusableActions.isElementVisible(btnGetThisOffer, 3)) {
-			reusableActions.clickWhenReady(btnGetThisOffer);
-			reusableActions.clickWhenVisible(By.xpath("//button[@translate='continue_to_addons']"), 10);
+		if(reusableActions.isElementVisible(btnGetThisOffer, 60)) {
+			reusableActions.clickWhenReady(btnGetThisOffer , 60);
+			reusableActions.clickWhenVisible(By.xpath("//button[@translate='continue_to_addons']"), 60);
 			return false;
 		} else {
 			return true;

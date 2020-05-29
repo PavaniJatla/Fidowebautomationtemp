@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
@@ -12,14 +13,25 @@ public class FidoOrderReviewPage extends BasePageClass {
 	public FidoOrderReviewPage(WebDriver driver) {
 		super(driver);		
 	}
-
-	@FindBy(xpath="//div[contains(@class,'agreement-checkbox')]//label")
+	
+	//@FindBy(xpath="//div[contains(@class,'agreement-checkbox')")
+	//@FindBy(xpath="//div[contains(@class,'terms-checkbox')]")
+	@FindBy(xpath="//label[@for='terms1']")
 	WebElement lblTermsNConditionsConsent;
+	
+	@FindBy(xpath="//div[contains(@class,'ds-checkbox__box my')]")
+	WebElement chkBoxTermsNConditionsConsentAAL;
 	
 	@FindBy(xpath="//label[@for='physical-copy']")
 	WebElement lblContractPhysicalCopy;
 	
-	@FindBy(xpath="//label[@for='digital-copy']")
+	//@FindBy(xpath="//label[@for='digital-copy']")
+	//@FindBy(xpath = "//label[@for='digital-copy' or @for='ds-radio-input-id-2']")
+	
+	@FindAll({
+		@FindBy(xpath = "//div[@class='ds-terms-conditions__consent']//following-sibling::div//input[@id='ds-radio-input-id-11']//ancestor::ds-radio-button//div[@class='ds-radioButton__innerCircle']"),
+		@FindBy(xpath = "//label[@for='digital-copy' or @for='ds-radio-input-id-2']")
+	})
 	WebElement lblContractDigitalCopy;
 	
 	@FindBy(xpath="//span[@translate='btn_continue_to_payment']//parent::button")
@@ -31,11 +43,45 @@ public class FidoOrderReviewPage extends BasePageClass {
 	@FindBy(xpath="//span[@translate='btn_complete_order']/parent::button")
 	WebElement btnCompleteOrder;
 	
-	@FindBy(xpath="//input[@id='email']")
+	//@FindBy(xpath="//input[@id='email']")
+	@FindBy(xpath="//input[@id='email' or @id='ds-form-input-id-4']")
 	WebElement txtEmailAddress;
 	
 	@FindBy(xpath = "//span[@checkout-res='checkout_step_pay']")
 	WebElement lblPaymentStep;
+	
+	@FindBy(xpath = "//button[contains(@class,'-primary -large')]")
+	WebElement btnSubmitMyOrder;
+	
+	
+	/**
+	 * Clicks on the 'Submit my order' button
+	 * @author Saurav.Goyal
+	 */
+	public void clkSubmitMyOrder() {
+		reusableActions.clickWhenReady(btnSubmitMyOrder);
+		reusableActions.waitForElementVisibility(btnSubmitMyOrder, 100);
+	}
+	
+	/**
+	 * Verify the check box for terms and conditions consent
+	 * @return boolean true if the element is present else false
+	 * @author Saurav.Goyal
+	 */
+	public boolean verifyCheckBoxTermsAndCondition() {
+		if(reusableActions.isElementVisible(chkBoxTermsNConditionsConsentAAL, 120))
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * Clicks on the Terms and Conditions checkbox for AAL
+	 * @author Saurav.Goyal
+	 */
+	public void clkTermsNConditionsConsentAAL() {
+		reusableActions.clickWhenVisible(chkBoxTermsNConditionsConsentAAL, 120);
+	}
 	
 	/**
 	 * Clicks on the Terms and Conditions checkbox

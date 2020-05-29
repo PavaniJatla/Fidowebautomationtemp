@@ -11,7 +11,7 @@
 			class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
 	
-	<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="false">
+		<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test">
@@ -19,15 +19,23 @@
 		</classes>
 	</test>
 	
-	<test name="TC02-Fido-Validate NAC Flow - Single Line BYOP - EnglishChrome" enabled="false">
+	<test name="TC02 - Fido - Regression - Perform Fido AAL TERM - AWS - e2e" enabled="true">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC02_NAC_SL_BYOP_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC08_AAL_Term_Test">
+			</class>
+		</classes>
+	</test> 
+	
+	<test name="TC03 - Fido - Regression - Perform Fido AAL BYOD -AWS - e2e" enabled="true">
+	<classes>
+			<class
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC07_AAL_BYOD_ExistingFinanceAccount_Test">
 			</class>
 		</classes>
 	</test>
 	
-	<test name="TC03-Fido-Validate user able to perform HUP with PPC using Exisitng Subsidy acct" enabled="false">
+	<test name="TC04 - Fido - Regression - Perform Fido HUP - e2e" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC03_HUP_withPPC_ExistingSubsidyAccount_Test">
@@ -35,23 +43,7 @@
 		</classes>
 	</test>
 	
-	<test name="TC04- Fido- Validate user able to perform HUP with PPC using Existing Finance acct" enabled="false">
-	<classes>
-			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test">
-			</class>
-		</classes>
-	</test>
-	
-	<test name="TC05- Fido- Validate user able to perform HUP Deeplink Flow - keep existing plan(Financing only)" enabled="false">
-	<classes>
-			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC05_HUP_Deeplink_KeepExistingPlan_Test">
-			</class>
-		</classes>
-	</test>
-	
-	<test name="TC06- Fido- Validate user able to perform PPC using existing finance acct" enabled="true">
+	<test name="TC05 - Fido - Regression - Perform Fido PPC - e2e" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test">

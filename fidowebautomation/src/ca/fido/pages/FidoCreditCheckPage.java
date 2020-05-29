@@ -310,7 +310,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void waitForCreditCheckProcessing() {
-		if(reusableActions.isElementVisible(lblCreditCheckProcessing)) {
+		if(reusableActions.isElementVisible(lblCreditCheckProcessing,30)) {
 			reusableActions.waitForElementVisibility(lblCreditCheckProcessing, 60);
 		}
 	}

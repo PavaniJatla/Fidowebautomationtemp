@@ -50,6 +50,7 @@ public class Fido_BFA_TC03_HUP_withPPC_ExistingSubsidyAccount_Test extends BaseT
 		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase03.getNewDevice()),"Device Found and Selected","Device Not Found");
 		fido_build_plan_page.selectPlanCategory("Data, Talk & Text");
 		reporter.hardAssert(fido_build_plan_page.selectFirstAvailablePricePlan(),"Selected first price plan","Error in Price Plan Selection");
+		fido_build_plan_page.clkCloseDialogWindow();
 		fido_build_plan_page.clkContinueToAddons();
 		fido_choose_addons_page.selectAnyAddon();
 		fido_choose_addons_page.clkContinueToShipping();
@@ -63,7 +64,8 @@ public class Fido_BFA_TC03_HUP_withPPC_ExistingSubsidyAccount_Test extends BaseT
 												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth(),
 												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear(),
 												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCVV());
-			fido_payment_page.clkContinueOrder();
+			fido_order_review_page.clkCompleteOrder();
+			//fido_payment_page.clkContinueOrder();
 		} else {
 			fido_order_review_page.clkCompleteOrder();
 		}

@@ -16,13 +16,15 @@ public class FidoChoosePhonePage extends BasePageClass {
 		super(driver);		
 	}
 
-	@FindBy(xpath = "//div/h1[@id='phonesDevices phonesDevicesFont']")
+	//@FindBy(xpath = "//div/h1[@id='phonesDevices phonesDevicesFont']")
+	@FindBy(xpath = "//div/h1[contains(@id,'bfa-page-title')]")
 	WebElement lblPhonesAndDevices;
 	
 	@FindBy(xpath = "//span[@price='0']/ancestor::div[@modelid]//button[@res='details_devicemodel' or @res='upgrade']")
 	List<WebElement> btnZeroUpfrontDeviceDetails;
 	
-	@FindBy(xpath = "//div[contains(@class,'phoneHeadingLabel')]/span")
+	//@FindBy(xpath = "//div[contains(@class,'phoneHeadingLabel')]/span")
+	@FindBy(xpath = "//p[contains(@class,'text-title-5')]")
 	List<WebElement> lblDeviceNames;
 	
 	@FindBy(xpath = "//button[@res='details_devicemodel' or @res='upgrade']")
@@ -37,7 +39,8 @@ public class FidoChoosePhonePage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean verifyChoosePhonesPageLoad() {
-		return reusableActions.isElementVisible(lblPhonesAndDevices);
+		reusableActions.waitForElementVisibility(lblPhonesAndDevices,60);
+		return reusableActions.isElementVisible(lblPhonesAndDevices, 120);
 	}
 	
 	/**
@@ -50,19 +53,22 @@ public class FidoChoosePhonePage extends BasePageClass {
 	}
 	
 	/**
-	 * Selects by clicking on 'Details' button against the device needed 
+	 * Selects by clicking on 'Details' button against the device needed
 	 * @param strDeviceName Name of the Device needed
 	 * @return true if device found; else false
 	 * @author rajesh.varalli1
 	 */
 	public boolean selectDevice(String strDeviceName) {
-		reusableActions.waitForElementVisibility(lblDeviceManufacturer,100);
-		for (int index = 0; index < lblDeviceNames.size(); index++) {
-			if(lblDeviceNames.get(index).getText().toLowerCase().contains(strDeviceName.trim().toLowerCase())) {
-				reusableActions.executeJavaScriptClick(btnDetails.get(index));
+			String strXpathViewDetails = "//span[text()='"+ strDeviceName +"']/ancestor::div[@class='col-xs-12 phone-name lineHeight20']//following-sibling::div[@class='col-xs-12']//button[@class='ute-btn-primary ute-lg']";
+			String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='px-24 dsa-nacTile__deviceInfo']//following-sibling::div[@class='pt-16 pb-24 px-24']//span[contains(@class,'ds-button__copy')]";
+			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetails),60)) {
+				reusableActions.executeJavaScriptClick(reusableActions.getDriver().findElement(By.xpath(strXpathViewDetails)));
 				return true;
 			}
-		}
+			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetailsAws),60)) {
+				reusableActions.executeJavaScriptClick(reusableActions.getDriver().findElement(By.xpath(strXpathViewDetailsAws)));
+				return true;
+			}
 		return false;
 	}
 	
@@ -84,3 +90,4 @@ public class FidoChoosePhonePage extends BasePageClass {
 	}
 		
 }
+	

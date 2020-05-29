@@ -24,6 +24,7 @@ import ca.fido.pages.FidoCommunityPage;
 import ca.fido.pages.FidoCreateUserPage;
 import ca.fido.pages.FidoCreditCheckPage;
 import ca.fido.pages.FidoDataManagementPage;
+import ca.fido.pages.FidoDeviceConfigPage;
 import ca.fido.pages.FidoDeviceReservationSystemPage;
 import ca.fido.pages.FidoHomePage;
 import ca.fido.pages.FidoInteracOnlinePage;
@@ -65,7 +66,7 @@ import extentreport.ExtentTestManager;
 import utils.Reporter;
 
 
-@Listeners ({ca.fido.test.listeners.TestListener.class , ca.fido.test.listeners.AnnotationTransformer.class , ca.fido.test.listeners.TestListener.class })
+/*@Listeners ({ca.fido.test.listeners.TestListener.class , ca.fido.test.listeners.AnnotationTransformer.class , ca.fido.test.listeners.TestListener.class })*/
 
 
 public class BaseTestClass {
@@ -126,6 +127,7 @@ public class BaseTestClass {
 	protected BrowserDrivers browserdriver;
 	protected SSPFidoRetailerChampPage retailer_champ_page;	
 	private CaptchaBypassHandlers captcha_bypass_handlers;
+	protected FidoDeviceConfigPage fido_device_config_Page;
 	
 	public BaseTestClass() {
 		 browserdriver =  new BrowserDrivers();
@@ -301,6 +303,7 @@ public class BaseTestClass {
 			fido_chosse_sim_page = new FidoChooseSimPage(getDriver());
 			fido_shipping_page = new FidoShippingPage(getDriver());
 			fido_payment_page = new FidoPaymentPage(getDriver());
+			fido_device_config_Page = new FidoDeviceConfigPage(getDriver());
 			
 		default:
 			

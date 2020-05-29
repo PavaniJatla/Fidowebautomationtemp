@@ -13,7 +13,8 @@ public class FidoHomePage extends BasePageClass {
 		super(driver);		
 	}
 
-	@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]")
+	//@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]")
+	@FindBy(xpath="//a[contains(@class,'signin-interceptor') or @class='m-navLink -navbar -login']")
 	WebElement lnkLogIn;
 	
 	@FindBy(xpath="//a[@class='m-navLink']//span[@class='m-navLink__chevron fds-icon-down']")
@@ -75,7 +76,8 @@ public class FidoHomePage extends BasePageClass {
 	 * Click the shop dropdown list from the top tile bar on Home page
 	 * @author chinnarao.vattam 
 	 */
-	public void clkShop() {		
+	public void clkShop() {
+		reusableActions.waitForElementTobeClickable(lnkShop,120);
 		reusableActions.getWhenReady(lnkShop,10).click();
 		reusableActions.staticWait(2000);
 	}

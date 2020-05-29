@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
@@ -15,7 +16,11 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	@FindBy(xpath ="//ins[@translate='global.label.orderConfirmation']")
 	WebElement infoOrderConfirm;
 	
-	@FindBy(xpath="//div[contains(@class,'thanksForOrder')]//span[contains(@checkout-res,'checkout_thank_you')]")
+	//@FindBy(xpath="//div[contains(@class,'thanksForOrder')]//span[contains(@checkout-res,'checkout_thank_you')]")
+	@FindAll({
+		@FindBy(xpath="//div[contains(@class,'thanksForOrder')]//span[contains(@checkout-res,'checkout_thank_you')]"),
+		@FindBy(xpath="//h1[text()='THANKS FOR YOUR ORDER!' or text()='MERCI POUR VOTRE COMMANDE!']")
+	})
 	WebElement lblThankYou;
 
 	/**

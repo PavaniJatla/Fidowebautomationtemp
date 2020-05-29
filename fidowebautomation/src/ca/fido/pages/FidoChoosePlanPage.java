@@ -23,6 +23,7 @@ public class FidoChoosePlanPage extends BasePageClass {
 	@FindBy(xpath="//div[@translate='ppc_change_plan_header']")
 	WebElement lblChangeYourPlan;
 	
+	//@FindBy(xpath="//button[@translate='continue']")
 	@FindBy(xpath="//span[@translate='_continue']/ancestor::div[contains(@class,'hidden-xs summary-strip')]/button")
 	WebElement btnContinue;
 	
@@ -32,6 +33,16 @@ public class FidoChoosePlanPage extends BasePageClass {
 	@FindBy(xpath="//span[@translate='ppc_accept_downgrade_fee']")
 	WebElement btnDowngradeFeeContinue;
 	
+	@FindBy(xpath="//span[@res='category-BYOD-title']")
+	WebElement btnAllPlans;
+	
+	/**
+	 * Clicks on all Plans button
+	 * @author Saurav.Goyal
+	 */
+	public void clkAllPlans() {
+		reusableActions.clickWhenVisible(btnAllPlans,120);
+	}
 	
 	public void clkPlanType(String planType) {
 		switch (planType.trim().toUpperCase()) {
@@ -65,7 +76,13 @@ public class FidoChoosePlanPage extends BasePageClass {
 			}
 			break;
 		}
-		reusableActions.clickWhenVisible(By.xpath("//span[@res='category-"+ planType +"-title']/ancestor::a"));
+		////a[@class='plan-tab col-xs-12']//span[@res='category-FID_FIN2-title']
+		//reusableActions.clickWhenVisible(By.xpath("//span[@res='category-"+ planType +"-title']/ancestor::a"));
+		try {
+			reusableActions.isDisplayed(reusableActions.getDriver().findElement(By.xpath("//li[@mapping-key='no-term-plans']//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']")));
+		} catch (Exception e) {
+			reusableActions.clickWhenVisible(By.xpath("//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']"),60);
+		}
 	}
 	
 	/**

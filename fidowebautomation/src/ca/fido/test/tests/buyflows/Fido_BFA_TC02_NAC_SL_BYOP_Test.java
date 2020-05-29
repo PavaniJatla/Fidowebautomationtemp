@@ -35,18 +35,17 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class Fido_BFA_TC02_NAC_SL_BYOP_Test extends BaseTestClass{
 
 	@Test
-	public void fidoSingleLineNacBYOD() {
+	public void fidoSingleLineNacBYOP() {
 		fido_home_page.clkShop();
 		fido_home_page.clkPlans();
-		fido_choose_plan_page.clkPlanType("BYOP");
+		reporter.reportLogWithScreenshot("Choose Plans page");
+		fido_choose_plan_page.clkAllPlans();
+		reporter.reportLogWithScreenshot("All plans displayed");
 		fido_choose_plan_page.selectFirstAvailablePricePlan();
-		reporter.reportLogWithScreenshot("Mobile Plans page");
-		fido_choose_plan_page.clkContinueToAddons();
-		reporter.reportLogWithScreenshot("Existing Customer overlay");
+		reporter.reportLogWithScreenshot("Mobile Plans page");		
+		fido_choose_plan_page.clkContinue();
+		reporter.reportLogWithScreenshot("Existing Customer and new to Fido overlay");
 		fido_build_plan_page.clkCreateAccount();
-		reporter.reportLogWithScreenshot("Choose Add-ons page");
-		fido_choose_addons_page.clkContinue();
-		fido_chosse_sim_page.clkGetFreeSimCard();
 		reporter.reportLogWithScreenshot("Choose SIM page");
 		fido_chosse_sim_page.clkContinue();
 		reporter.reportLogWithScreenshot("Cart Summary page");
