@@ -8,8 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Listeners;
-
 import ca.fido.pages.FidoMobileHomePage;
 import ca.fido.pages.FidoAccountOverviewPage;
 import ca.fido.pages.FidoAccountRegistrationPage;
