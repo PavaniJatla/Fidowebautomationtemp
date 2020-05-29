@@ -5,6 +5,8 @@
 <parameter name="strLanguage" value="en"/>
 <listeners>
        <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
+       <listener
+			class-name="ca.fido.test.listeners.TestListener" />
 </listeners> 
 
  <!--   

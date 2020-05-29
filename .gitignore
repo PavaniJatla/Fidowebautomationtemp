@@ -11,3 +11,7 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 debug.log
 *.orig
+test-output
+.classpath
+.settings
+fido_property.dat
