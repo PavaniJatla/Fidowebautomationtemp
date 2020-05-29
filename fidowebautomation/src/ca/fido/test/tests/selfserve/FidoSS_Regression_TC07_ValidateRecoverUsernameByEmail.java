@@ -22,7 +22,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
 		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
-				strLanguage, FidoEnums.GroupName.selfserve,method);			
+				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
 		
 	@AfterMethod(alwaysRun = true)
@@ -42,7 +42,8 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		fido_recover_pass_or_name_page.setEmailAddress(strEmail);
 		reporter.reportLogWithScreenshot("Set email for recover user name.");
 		fido_recover_pass_or_name_page.clkBtnContinue();
-
+		
+		fido_recover_pass_or_name_page.clkBtnEmailNowIfAvailable();
 		//Go to ENS to verify email and get reset password page.		
 		try {
 			ensVerifications.getEmailVerifyPage(strEmail);
@@ -62,8 +63,15 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		fido_login_page.setPasswordInFrame(strPassword);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
+		
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+			strPassword = TestDataHandler.tc04To09.getPassword();
+			fido_login_page.setPasswordInFrame(strPassword);
+			reporter.reportLogWithScreenshot("Login Credential is entered.");
+			fido_login_page.clkLoginInFrame();	
+		}
 		fido_login_page.switchOutOfSignInFrame();
-
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
 				"Username recovered successfully.",
 				"Login failed, please check the recovered username.");

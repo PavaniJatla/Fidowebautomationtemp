@@ -20,7 +20,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * TC01-Fido-Validate User able to perform NAC Flow (Single Line) for $0 device- Without payment
  * 
  * Launch Fido.ca
- * Click on Shop->wireless->View all devices
+ * Click on Shop -- wireless -- View all devices
  * select a device with $0
  * Select a plan for the device and click continue
  * Choose Addon's(optional) and click continue

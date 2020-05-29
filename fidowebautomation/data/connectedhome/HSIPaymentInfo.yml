@@ -1,10 +1,10 @@
 # Payment Details 
 ---
 creditCardDetails:
-   number: 4055012736354342
-   expiryMonth: 12
-   expiryYear: 2022
-   CVV: 123 
+   number: "4055012736354342"
+   expiryMonth: "12"
+   expiryYear: "2022"
+   CVV: "123" 
 bankDetails:
    transitCode: 00033
    bankCode: 003

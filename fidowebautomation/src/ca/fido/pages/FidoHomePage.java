@@ -47,6 +47,10 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='global.label.internetHome']")
 	WebElement menuHomeInternet;
 	
+	@FindBy(xpath = "//a[@href='/consumer/easyloginriverpage']")
+	WebElement linkeasylogin;
+	
+	
 	/**
 	 * To launch Fido home page, this method will be used to replace production page in recover user name flow.
 	 * @param url, String, the url of Fido home page
@@ -64,6 +68,14 @@ public class FidoHomePage extends BasePageClass {
 		reusableActions.clickWhenReady(lnkMyAccount,2);
 	}
 	
+	/**
+	 * Click on myAccount button on the home page
+	 * @author aditya.Dhingra
+	 */	
+	public void clkEasylogin() {
+		reusableActions.getWhenReady(linkeasylogin,2).click();
+	}
+
 	/**
 	 * Click on Login button on the home page
 	 * @author aditya.Dhingra

@@ -1,11 +1,11 @@
 # Account Details required: newPassword, emailAddress, mobilePhone, homePhone, businessPhone, language, address
 ---
 name: FidoPostPaidAccount
-username: Aprilssf08@yahoo.com
+username: AutoSS420FS3@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 930644885
+   ban: 932488281
    newPassword: rogers123
    recoveryNumber: 1234567890
    emailAddress: fidoqa06@mailinator.com

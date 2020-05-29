@@ -93,8 +93,8 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
-	    fido_technical_installation_page.clkFulfillmentTechInstall();
-	    fido_technical_installation_page.clkTechInstallSlot();
+/*	    fido_technical_installation_page.clkFulfillmentTechInstall();
+	    fido_technical_installation_page.clkTechInstallSlot();*/
 	    reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
 	    fido_technical_installation_page.clkTechInstalConfirm();
 	    reporter.reportLogWithScreenshot("Payment page has launched"); 

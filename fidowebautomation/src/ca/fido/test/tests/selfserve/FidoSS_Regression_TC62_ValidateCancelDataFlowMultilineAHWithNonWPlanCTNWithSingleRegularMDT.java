@@ -70,22 +70,23 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		Map<String, Integer> countOfActiveAndCancelledAddData = fido_data_management_page.getAllExistingAddDataCountCancelledAndActive();
 		reporter.reportLogWithScreenshot("Manage Data page");
 		//Comparisions Before Cancel:
-		reporter.softAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled")==countOfActiveAndCancelledAddData.get("cancelled")
-							&& countOfActiveAndCancelledAddDataOnMyPlan.get("active")==countOfActiveAndCancelledAddData.get("active")
-							&& countOfActiveAndCancelledAddDataOnMyPlan.get("nonMTT")==countOfActiveAndCancelledAddData.get("nonMTT"))
+		reporter.softAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled").intValue()==countOfActiveAndCancelledAddData.get("cancelled").intValue()
+							&& countOfActiveAndCancelledAddDataOnMyPlan.get("active").intValue()==countOfActiveAndCancelledAddData.get("active").intValue()
+							&& countOfActiveAndCancelledAddDataOnMyPlan.get("nonMDT").intValue()==countOfActiveAndCancelledAddData.get("nonMDT").intValue())
 				, "The number of cancelled and active add on macth on my plans and manage data page", 
 				"The number of cancelled and active add on does not macth on my plans and manage data page");
 		
 		if((countOfActiveAndCancelledAddData.get("active")>=1))
 		{
 			fido_data_management_page.scrollToMiddle();
-			reporter.reportLogWithScreenshot("Click on cancel MTT Link");
-			fido_data_management_page.clkCancelMTTLink();			
-			reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
+			reporter.reportLogWithScreenshot("Click on cancel MDT Link");
+			fido_data_management_page.clkCancelMDTLink();			
+
+reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
 			fido_data_management_page.clkYesRemoveTopUpButton();
 			reporter.hardAssert(fido_data_management_page.isCancelSuccessdisplayed(),
-					"Cancel MTT success",
-					"MTT cancel not successful");
+					"Cancel MDT success",
+					"MDT cancel not successful");
 			reporter.reportLogWithScreenshot("Cancel successful");
 			fido_data_management_page.clkCloseButtonOnCancelSuccessOverlay();
 			reporter.reportLogWithScreenshot("Close overlay");
@@ -127,11 +128,10 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 						"Expires MMM DD - is NOT displayed next to the cancelled MDT in plan section");
 				
 			}
-			
-						
+				
 		}else
 		{
-			reporter.reportLogFail("No MTT to cancel, please add mtt and rerun the script");
+			reporter.reportLogFail("No MDT to cancel, please add mdt and rerun the script");
 		}
 							
 

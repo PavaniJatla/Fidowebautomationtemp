@@ -45,9 +45,10 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 		fido_recover_pass_or_name_page.setEmailAddress(strUsername);
 		reporter.reportLogWithScreenshot("Set email id and click button continue");
 		fido_recover_pass_or_name_page.clkBtnContinue();		
-		reporter.reportLogWithScreenshot("Click on Text as recovery option");
+		reporter.reportLogWithScreenshot("Continue is clicked");
+		//flow updated in May 20th release, no need to click text option.
 		fido_recover_pass_or_name_page.clkTextToAsRecoveryOption();
-		reporter.reportLogWithScreenshot("Click on Text as recovery option");
+
 		String strTestingTab = getDriver().getWindowHandle();
 				
 		try {

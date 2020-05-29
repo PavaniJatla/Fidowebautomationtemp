@@ -64,7 +64,7 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	
 	/**
 	 * To set the txtUsername
-	 * @param strUsername user name 
+	 * @param strPassword password 
 	 * @author chinnarao.vattam
 	 */
 	public void setPassword(String strPassword) {
@@ -89,14 +89,15 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	}
 	
 	/**
-	 * To set the txtUsername
-	 * @param strUsername user name 
+	 * To set the DealerCode
+	 * @param strDealerCode DealerCode 
 	 * @author chinnarao.vattam
 	 */
 	public void setDealerCode(String strDealerCode) {
 		reusableActions.waitForElementVisibility(txtDealerCodeContainer,60);
 		reusableActions.executeJavaScriptClick(txtDealerCode);
-		reusableActions.getWhenReady(txtDealerCode,10).clear();
+		//reusableActions.getWhenReady(txtDealerCode,30).click();
+		//reusableActions.getWhenReady(txtDealerCode,10).clear();
 		reusableActions.getWhenReady(txtDealerCode, 2).sendKeys(strDealerCode);
 	}
 	
@@ -117,7 +118,8 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	}
 	
 	/**
-	 * Click on availability button on the service ability Lookup popup
+	 * set environment window
+	 * @param strBandwidth Bandwidth 
 	 * @author chinnarao.vattam
 	 */
 	public void selSSPEnvironment(String strBandwidth) {		

@@ -1,5 +1,6 @@
 package ca.fido.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -79,6 +80,7 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void switchToSignInFrame() {
 		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);
+		
 	}
 	
 	/**
@@ -87,7 +89,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		reusableActions.getWhenReady(txtPassword).clear();
+		reusableActions.getWhenReady(txtPassword,10).clear();
+		reusableActions.getWhenVisible(txtPassword,10).click();
 		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
 	}
 
@@ -160,6 +163,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkResignInAs() {	
+		reusableActions.clickIfAvailable(By.xpath("//a[text()='My Account']"), 20);
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {

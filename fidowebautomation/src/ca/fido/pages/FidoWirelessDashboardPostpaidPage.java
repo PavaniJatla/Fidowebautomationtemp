@@ -6,7 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -14,9 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-
 import ca.fido.pages.base.BasePageClass;
-import ca.fido.test.helpers.StringHelpers;
 
 /**
  * This class have all the post paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -171,7 +168,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='talk-text-usage']//span[contains(text(),'Textos') or contains(text(),'Text')]")
 	WebElement divTextUsage;
 	
-	@FindBy (xpath = "//div[@class='talk-text-usage-wrap']//span[contains(text(),'Textos') or contains(text(),'Text')]")
+	@FindBy (xpath = "//div[@class='talk-text-usage-wrap']//*[contains(text(),'Textos') or contains(text(),'Text')]")
 	WebElement textUsageInTalkNTextOnly;
 	
 	@FindBy (xpath = "//td[contains(text(),'Picture') or contains(text(),'photo')]")
@@ -237,56 +234,19 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='ss-data-usage-ondemand-button']")
 	WebElement lnkShowMyUsage;
 	
+	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
+	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	//=== Add data section for demoline accounts
 	
 	@FindBy(xpath = "//div[@class='ss-data-section-add-icon']/span[text()='+']")
 	WebElement btnAddData;
-	
-	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
-	WebElement overlayMonthlyDataAddOn;
-	
-	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
-	WebElement overlayOTTDataAddOn;
-	
-	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
-	List<WebElement> btnsSelectDataOnAddDataOverLay;
-	
-	@FindBy(xpath = "//button[@data-caption='Continue' or @data-caption='Continuer']")
-	WebElement btnContinueOnAddDataOverlay;
-	
-	@FindBy(xpath = "//span[text()='Select amount' or text()='Sélectionnez le montant']")
-	WebElement cboSelectAmount;
-	
-	@FindBy(xpath = "//ins[@translate='ute.purchaseData.continue']")
-	WebElement btnContinueMonthlyAddOn;
-	
+
 	@FindBy(xpath = "//ins[@translate='ute.purchaseData.continue']/parent::button/parent::div/following-sibling::a/ins[@translate='ute.purchaseData.backBtn']/parent::a")
 	WebElement btnCancelMonthlyDataPlan;	
-	
-	@FindAll({@FindBy(xpath = "//span[@class='ui-select-choices-row-inner']/div")})
-	List<WebElement> optionsSelectDataOnAddDataOverLay;
-	
+
 	@FindBy (xpath = "//fds-link[@class='ng-star-inserted']")
 	WebElement lnkReactivate;
-	
-	@FindBy(xpath = "//img[@class='close-btn']")
-	WebElement btnCloseMonthlyAddOnOverLay;
-	
-	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title']")
-	WebElement msgConfirmPurchasing;
-	
-	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")
-	WebElement btnPurchaseOnAddDataOverlay;
-	
-	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
-	WebElement msgSuccessOnAddDataOverlay;
-	
-	@FindBy (xpath = "//ins[contains(text(),'Limit reached') or contains(text(),'Limite atteinte')]")
-	WebElement msgLimitReached;
-	
-	@FindBy (xpath = "//button[@class='close ng-star-inserted']")
-	WebElement btnCloseOnAddDataOverlay;
-	
+
 	@FindBy (xpath = "//span[@translate='usageModule.manage']")
 	WebElement lnkViewDetailsInUsageSection;
 	
@@ -316,6 +276,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
 	List<WebElement> lstMyPlanAddOns;
+
+	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title']") 
+	WebElement lblYouAreRunningLow;
+	
+	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']")
+	WebElement popOutRunningLow;
+	
+	@FindBy(xpath = "//span[@translate='usageModule.addData']")
+	WebElement btnAddDataOnRunningLowPopOut;
+	
+	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']/div[@title='Close' or @title='Fermer']")
+	WebElement btnCloseOnCallOut;
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -324,144 +296,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public void clkAddDataButton() {
 		reusableActions.getWhenReady(btnAddData).click();
 	}
-	
-	/**
-	 * Verify Overlay Monthly Data Add On Displayed
-	 * @return true if the overlay displayed, otherwise false
-	 * @author Mirza.Kamran
-	 */
-	public boolean verifyOverlayMonthlyDataAddOnDisplayed() {
-		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
-		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE"));
-	} 
-	
-	/**
-	 * Verify Overlay OTT Data Add On Displayed
-	 * @return true if the overlay displayed, otherwise false
-	 * @author ning.xue
-	 */
-	public boolean verifyOverlayOTTDataAddOnDisplayed() {
-		String strOverlaytitleText = reusableActions.getWhenReady(overlayOTTDataAddOn, 30).getText().trim();
-		return ((strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"))
-				&& (!strOverlaytitleText.contains("Month")||!strOverlaytitleText.contains("Mois")));
-	} 
-	
-	/**
-	 * Perform click on the first data button on add data overlay
-	 * @author ning.xue
-	 */
-	public void clkTheFirstDataPlanBtnOnAddDataOverlay() {		
-		reusableActions.getWhenReady(btnsSelectDataOnAddDataOverLay.get(0),60).click();
-	} 
-	
-	/**
-	 * Perform click on continue button on add data overlay
-	 * @author ning.xue
-	 */
-	public void clkContinueBtnOnAddDataOverlay() {		
-		reusableActions.getWhenReady(btnContinueOnAddDataOverlay,20).click();
-	} 
-	
-	/**
-	 * clicks the select amount drop down
-	 * @author Mirza.Kamran
-	 */
-	public void clkSelectAmountDropDown() {
-		reusableActions.getWhenReady(cboSelectAmount, 60).click();		
-	}
-	
-	/**
-	 * will perform click on the first data option in the select drop down option
-	 * @author Mirza.Kamran
-	 */
-	public void clkTheFirstDataPlanOptionFromDropDown() {		
-		reusableActions.getWhenReady(optionsSelectDataOnAddDataOverLay.get(0),60).click();
-	}
-	
-	/**
-	 * Perform click on the cancel button on Add data plan overlay
-	 * @author Mirza.Kamran
-	 */
-	public void clkCancelButtonOnAddDataPlan() {		
-		reusableActions.clickWhenReady(btnCloseMonthlyAddOnOverLay);
-		reusableActions.staticWait(3000);
-	} 
-	
-	/**
-	 * Verify confirm purchasing message Displayed
-	 * @return true if the message displayed, otherwise false
-	 * @author ning.xue
-	 */
-	public boolean verifyConfirmPurchasingMsgDisplayed() {
-		return reusableActions.isElementVisible(msgConfirmPurchasing, 30);
-	}  
-	
-	/**
-	 * Perform click on purchase button on add data overlay
-	 * @author ning.xue
-	 */
-	public void clkPurchaseBtnOnAddDataOverlay() {		
-		reusableActions.getWhenReady(btnPurchaseOnAddDataOverlay,20).click();
-	} 
-	
-	/**
-	 * Check if limit reached message Displayed
-	 * @return true if the message displayed, otherwise false
-	 * @author ning.xue
-	 */
-	public boolean isLimitReachedMsgDisplayed() {
-		return reusableActions.isElementVisible(msgLimitReached, 30);
-	}  
-	
-	/**
-	 * Verify Add Data Success message Displayed
-	 * @return true if the message displayed, otherwise false
-	 * @author ning.xue
-	 */
-	public boolean verifyAddDataSuccessMsgDisplayed() {
-		return reusableActions.isElementVisible(msgSuccessOnAddDataOverlay, 30);
-	}  
-	
-	/**
-	 * To get the value of added data
-	 * @return double, value of added data
-	 * @author ning.xue
-	 */
-	public double getValueAddedData() {
-		String strDataAdded = msgSuccessOnAddDataOverlay.getText();
-		double valueAddedData = 0;
-		if(strDataAdded.toLowerCase().contains("mo")||strDataAdded.toLowerCase().contains("go"))
-		{
-			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('O')-2).trim());
-		}else
-		{
-			valueAddedData = Double.parseDouble(strDataAdded.substring(0, strDataAdded.indexOf('B')-2).trim());
-		}
-				
-		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")
-			||strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MO")) {
-			valueAddedData = valueAddedData / 1000;
-		}
-		return valueAddedData;
-	}
-	
-	/**
-	 * 
-	 * @return String value added 
-	 * @author Mirza.Kamran
-	 */
-	public String getAddedValueWithGBOrMB() {
-		return msgSuccessOnAddDataOverlay.getText();
-	}
-	
-	/**
-	 * Perform click on close button on add data overlay
-	 * @author ning.xue
-	 */
-	public void clkCloseBtnOnAddDataOverlay() {		
-		reusableActions.getWhenReady(btnCloseOnAddDataOverlay,20).click();
-		reusableActions.staticWait(3000);
-	} 
+
 	
 	/**
 	 * Perform click on view details link in usage section
@@ -807,7 +642,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public double getValueTotalData() {
 		reusableActions.waitForElementVisibility(divTotalData, 60);
-		return Double.parseDouble(divTotalData.getText().trim());
+		return Double.parseDouble(divTotalData.getText().replaceAll(",", ".").trim());
 	}
 	
 	/**
@@ -850,7 +685,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public double getValueRemainingData() {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim());
+		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim());
 	}
 	
 	/**
@@ -861,7 +696,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyRemainingDataReflectedAddedData(double previousRemainingDataValue, double addedDataValue) {
-		return Double.parseDouble(divDataBalanceRemaining.getText().trim()) == (addedDataValue/1000) + previousRemainingDataValue;
+		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim()) == addedDataValue + previousRemainingDataValue;
 	}
 	
 	/**
@@ -1084,7 +919,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	
 	/**
-	 * Check if the link Retreive PUK code is is displayed
+	 * Check if the link Retrieve PUK code is is displayed
 	 * @return true when the link is displayed, else false
 	 * @author Mirza.Kamran
 	 */
@@ -1096,7 +931,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * This method will click on link and validate if the links are correct and new window is open 
 	 * @param strLinkText The link name as visible on UI 
 	 * @param strNewWindowTitle The title of the new window after the link is click
-	 * @return boolean value
+	 * @return boolean, true if the title matches.
 	 * @author Mirza.Kamran
 	 */
 	public boolean clickAndVerifyLinkForNewWindow(String strLinkText, String strNewWindowTitle) {
@@ -1296,8 +1131,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	}
 
 	/**
-	 * Data overage usage bar for demoline overage scenarios
-	 * @return true if the bar is displayed else fasle
+	 * Data overage usage bar for demo-line overage scenarios
+	 * @return true if the bar is displayed else false
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyYouHaveAnOverageUsageBarOrGradientIsDisplayed() {
@@ -1333,8 +1168,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		return reusableActions.isElementVisible(imgAttentionOverage);
 	}
 
-	/*
-	 * 
+	/**
+	 * To get the number of existing add on 
+	 * @return integer, the number of existing add on.
 	 */
 	public int getAllExistingAddOns() {		
 		return lstMyPlanAddOns.size();
@@ -1354,14 +1190,14 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * To get total number of all added data including canceled and active ones in my plan section.
+	 * @return HasMap of active and canceled MDT records and nonMDT records.
 	 * @author Mirza.Kamran
 	 */
 	public HashMap<String, Integer> getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection() {				
 		int active=0;
 		int cancelled=0;
-		int nonMTT=0;
+		int nonMDT=0;
 		HashMap<String, Integer> addData = new HashMap<String, Integer>();
 		for(WebElement row:lstMyPlanAddOns)
 		{
@@ -1376,50 +1212,46 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 				active++;
 			}else
 			{
-				nonMTT++;
+				nonMDT++;
 			}
 		}
 		
 		addData.put("active", active);
 		addData.put("cancelled", cancelled);
-		addData.put("nonMTT", nonMTT);
+		addData.put("nonMDT", nonMDT);
 		return addData;		
 	}
 
-	
-	public boolean verifyCancelledAddedDataInMyPlan(int countOfCancelled, int countOfActiveBeforeCancelled) {
+	/**
+	 * Verify the record of canceled MDT in my plan section.
+	 * @param countOfNewlyCancelled, the record of newly canceled MDT in this run.
+	 * @param countOfPreviousCancelled, the record of previous canceled MDT before run.
+	 * @return true if the newly canceled MDT id included in the record.
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyCancelledAddedDataInMyPlan(int countOfNewlyCancelled, int countOfPreviousCancelled) {
 		int cancelled= getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection().get("cancelled");
-		return (cancelled==(countOfCancelled+countOfActiveBeforeCancelled));
+		return (cancelled==(countOfNewlyCancelled+countOfPreviousCancelled));
 	}
 
 	/**
-	 * 
-	 * @param mapCountOfAlreadyAddedData Contains all added values and their count
-	 * @return
+	 * Checks if the running low usage bar is displayed
+	 * @return true if the usage bar running low is displayed else false
+	 * @author Mirza.Kamran
 	 */
-	public boolean clkTheDataAddOnWhichAreNotAddedMoreThanThreeTime(Map<String, Integer> mapCountOfAlreadyAddedData) {
-		boolean foundLessThanThree = false;
-		reusableActions.waitForElementVisibility(btnsSelectDataOnAddDataOverLay.get(0), 60);
-		for(WebElement btn: btnsSelectDataOnAddDataOverLay)
-		{
-			String addedvalue = StringHelpers.getNumbersFromString(btn.getText());
-			if(mapCountOfAlreadyAddedData.containsKey(addedvalue))
-			{
-				if(mapCountOfAlreadyAddedData.get(addedvalue)<3)
-				{
-					btn.click();
-					foundLessThanThree = true;
-					break;
-				}
-			
-			}else
-			{
-				btn.click();
-				foundLessThanThree = true;
-				break;
-			}
-		}
-		return foundLessThanThree;
-		
+	public boolean isRunningLowUsageBarDisplayed() {
+	
+		return reusableActions.isElementVisible(lblYouAreRunningLow);
+	}
+
+	/**
+	 * Checks if the running low Add data pop out is displayed
+	 * @return true if the Add data pop out for running low is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isRunningLowPopOutAddDataDisplayed() {		
+		return (reusableActions.isElementVisible(popOutRunningLow)
+				&& reusableActions.isElementVisible(btnAddDataOnRunningLowPopOut)
+				&& reusableActions.isElementVisible(btnCloseOnCallOut));
 	}
 }

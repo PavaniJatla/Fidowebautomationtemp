@@ -31,9 +31,26 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='col-xs-6 col-sm-3 modal-serviceability-options modal-serviceability-options-gap-first']/img[@class='modal-serviceability-image']")
 	WebElement btnBuyOnline;
 
+	@FindBy(xpath = "//div[@class='modal-chat bcStatic']")
+	WebElement btnliveChat;
+		
 	@FindBy(xpath = "//button[@class='ute-btn-primary ute-md']/ins[@translate='global.cta.updateCart']")
 	WebElement btnUpdateCart;
 	
+	@FindBy(xpath = "//div[@id='bc-frame']")
+	WebElement popupLiveChat;
+	
+	@FindBy(xpath = "//div[@class='bc-headbtn bc-headbtn-minimize']")
+	WebElement btnMinumizeChat;
+	
+	@FindBy(xpath = "//div[@class='bc-minimize-state bc-minimize-state-idle']")
+	WebElement btnMaxmizeChat;
+	
+	@FindBy(xpath = "//div[@class='bc-headbtn bc-headbtn-menulist']")
+	WebElement btnCloseChat;
+	
+	@FindBy(xpath = "//div[@class='bc-headbtn-icon bc-headbtn-close-icon']")
+	WebElement btnCloseChatConfirm;
 	
 	@FindBy(xpath = "//button[@class='ute-icon-search']")
 	WebElement btnAvailabilitySearch;
@@ -160,6 +177,18 @@ public class FidoShopInternetPage extends BasePageClass {
 	}
 		
 	/**
+	 * Click on availability confirmation button on the service ability Lookup popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkLiveChat() {
+		// this wait is mandatory , please do not remove it 	
+		reusableActions.staticWait(3000);
+		reusableActions.waitForElementTobeClickable(btnliveChat, 60);
+		reusableActions.getWhenReady(btnliveChat, 60).click();
+	}
+	
+		
+	/**
 	 * Select the plan based on the cost of the plan on shop Internet  page
 	 * @author chinnarao.vattam
 	 */
@@ -175,7 +204,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void verifyPlanInfomationForExistingCustomer(String strPlanCost) {
 		//reusableActions.waitForElementInvisibility(btnContinueForInternet);
-		reusableActions.staticWait(1000);
+		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(By.xpath("//ins[contains(text(),'" + strPlanCost+ "')]/ancestor::div[@class='new-ts-package-cost']//button[@id='add-button-0']"), 60).click();
 	}
 	
@@ -210,6 +239,47 @@ public class FidoShopInternetPage extends BasePageClass {
 	public boolean  verifyDownloadSpeed(String strPlanCost) {
 		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'" + strPlanCost+"')]"), 30);
 	}
+
+	/**
+	 * Click on update cart button on the live chat popup
+	 * @return true, if the checkout page shows the live chat popup , else false
+	 * @author chinnarao.vattam
+	 */
+		public boolean  verifyLiveChat() {
+		return reusableActions.isElementVisible(popupLiveChat, 30);
+	}
+	
+		/**
+		 * Click on minimize button on the chat popup
+		 * @author chinnarao.vattam
+		 */
+		public void clkMinumizeChat()  {		
+			reusableActions.getWhenVisible(btnMinumizeChat,30).click();
+		}
+		
+		/**
+		 * Click on maxmize button on the chat popup
+		 * @author chinnarao.vattam
+		 */
+		public void clkMaxumizeChat()  {		
+			reusableActions.getWhenVisible(btnMaxmizeChat,30).click();
+		}
+
+		/**
+		 * Click on close button on the chat popup
+		 * @author chinnarao.vattam
+		 */
+		public void clkCloseChat()  {		
+			reusableActions.getWhenVisible(btnCloseChat,30).click();
+		}
+		
+		/**
+		 * Click on close button on the chat popup
+		 * @author chinnarao.vattam
+		 */
+		public void clkCloseChatConfirm()  {		
+			reusableActions.getWhenVisible(btnCloseChatConfirm,30).click();
+		}
 
 	/**
 	 * Click on update cart button on the buy options popup

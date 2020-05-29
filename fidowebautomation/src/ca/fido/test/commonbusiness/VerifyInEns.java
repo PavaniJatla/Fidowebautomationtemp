@@ -18,22 +18,7 @@ public class VerifyInEns extends BaseTestClass{
 	 * @author ning.xue
 	 */
 	private void startVerify() {
-
-		String strEnsUrl = "";
-		if (TestDataHandler.config.getRogersURL().contains("qa06")
-				||TestDataHandler.config.getRogersURL().contains("qa01"))
-		{
-			strEnsUrl = TestDataHandler.config.getEnsURL04();
-		}else if(TestDataHandler.config.getRogersURL().contains("qa05")
-				|| TestDataHandler.config.getRogersURL().contains("qa02"))
-		{
-			strEnsUrl = TestDataHandler.config.getEnsURL03();
-		}else if(TestDataHandler.config.getRogersURL().contains("qa07"))
-		{
-			strEnsUrl = TestDataHandler.config.getEnsURL01();
-		}
-
-		baseTestClass.ensHomePage.openNewTabForEns(strEnsUrl);
+		baseTestClass.ensHomePage.openNewTabForEns(TestDataHandler.config.getEnsURL());
 		baseTestClass.reporter.reportLogWithScreenshot("Ens Window");
 	}
 	
@@ -43,9 +28,9 @@ public class VerifyInEns extends BaseTestClass{
 	 */
 	private void loginToEns() {
 		
-		baseTestClass.ensHomePage.setEmail(TestDataHandler.config.getEnsLoginEmail());
+		baseTestClass.ensHomePage.setEmail(System.getenv("ENS_USERNAME"));
 		baseTestClass.ensHomePage.clkBtnNext();
-		baseTestClass.ensHomePage.setPassword(TestDataHandler.config.getEnsPassword());
+		baseTestClass.ensHomePage.setPassword(System.getenv("ENS_PASSWORD"));
 		baseTestClass.ensHomePage.clkBtnSignIn();
 	}
 

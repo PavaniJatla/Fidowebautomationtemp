@@ -79,36 +79,35 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
 		//4. Complete Add OTT flow
 		//4. Verify Only OTT options available (no MDT). OTT is added and reflected in total bucket,
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayOTTDataAddOnDisplayed(),
+		reporter.softAssert(fido_add_data_page.verifyOverlayOTTDataAddOnDisplayed(),
 							"Verify Only OTT options available (no MDT)",
 							"It seems Only OTT options not available");			
 		reporter.reportLogWithScreenshot("Add OTT data add on overlay");
 				
-		fido_wireless_dashboard_postpaid_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
-		fido_wireless_dashboard_postpaid_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyConfirmPurchasingMsgDisplayed(),
+		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
+		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
+		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_wireless_dashboard_postpaid_page.clkPurchaseBtnOnAddDataOverlay();
+		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
 		double dataAdded = 0;
 		String strValueAdded = null;
-		if(fido_wireless_dashboard_postpaid_page.isLimitReachedMsgDisplayed()) {
+		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAddDataSuccessMsgDisplayed(),
+			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
-			strValueAdded = fido_wireless_dashboard_postpaid_page.getAddedValueWithGBOrMB();
-			dataAdded = fido_wireless_dashboard_postpaid_page.getValueAddedData();
+			strValueAdded = fido_add_data_page.getAddedValueWithGBOrMB();
+			dataAdded = fido_add_data_page.getValueAddedData();
 			reporter.reportLogWithScreenshot("Add data success modal.");
 		}
-		fido_wireless_dashboard_postpaid_page.clkCloseBtnOnAddDataOverlay();
+		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 			
 			
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		//Manage data page		
-
 		//5. Click on View details in usage dashboard plan section and manage data page
 		//5. Added Data section lists all add-ons separately and there is NO Cancel link next to OTT"
 		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
@@ -158,19 +157,19 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 			
 		}
 		
-		/*
+	
 		if(strValueAdded.toLowerCase().contains("mo")||strValueAdded.toLowerCase().contains("mb"))
 		{			
 			dataAdded = (dataAdded/1000);
 		}
-		
+		/*
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");	
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");
-								*/	
+		*/					
 	}
 	
 }

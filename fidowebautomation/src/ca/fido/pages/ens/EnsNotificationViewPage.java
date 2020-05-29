@@ -89,7 +89,7 @@ public class EnsNotificationViewPage extends BasePageClass {
 	
 	/**
 	 * To get the notification code from the last 7 digital string.
-	 * @return verification code, string
+	 * @return string, verification code, 
 	 * @author ning.xue
 	 */
 	public String getNotificationCode() {
@@ -102,7 +102,7 @@ public class EnsNotificationViewPage extends BasePageClass {
 	
 	/**
 	 * To get the notification email from t
-	 * @return login username, string
+	 * @return string, login username, 
 	 * @author Mirza.Kamran
 	 */
 	public String getUserName() {
@@ -123,7 +123,7 @@ public class EnsNotificationViewPage extends BasePageClass {
 	
 	/**
      * Sets the email id
-     * @param strEmail
+     * @param strEmail, string, email to set.
      */
     public void setEmailId(String strEmail) {
     	reusableActions.getWhenReady(txtContactEmail).sendKeys(strEmail);

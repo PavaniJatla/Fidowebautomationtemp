@@ -3,14 +3,17 @@ package ca.fido.test.base;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Listeners;
 
+import ca.fido.pages.FidoMobileHomePage;
 import ca.fido.pages.FidoAccountOverviewPage;
 import ca.fido.pages.FidoAccountRegistrationPage;
+import ca.fido.pages.FidoAddDataPage;
 import ca.fido.pages.FidoBillDetailsPage;
 import ca.fido.pages.FidoBuildPlanPage;
 import ca.fido.pages.FidoCartSummaryPage;
@@ -59,10 +62,14 @@ import ca.fido.ssp.pages.SSPFidoRetailerSearchResultsPage;
 import ca.fido.ssp.pages.SSPFidoRetailerShopPage;
 import ca.fido.test.commonbusiness.CommonBusinessFlows;
 import ca.fido.test.commonbusiness.VerifyInEns;
-import ca.fido.test.helpers.BrowserDrivers;
 import ca.fido.test.helpers.CaptchaBypassHandlers;
 import ca.fido.test.helpers.FidoEnums;
+import ca.fido.test.helpers.FidoEnums.SauceCapabilities;
+import ca.fido.testdatamanagement.TestDataHandler;
 import extentreport.ExtentTestManager;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import utils.BrowserDrivers;
 import utils.Reporter;
 
 
@@ -72,6 +79,7 @@ import utils.Reporter;
 public class BaseTestClass {
 		    
 	private WebDriver driver;
+	private AppiumDriver<MobileElement> adriver;
 	public Reporter reporter;	
 	protected HashMap<String,String> xmlTestParameters;
 	public EnsHomePage ensHomePage;
@@ -94,6 +102,7 @@ public class BaseTestClass {
 	protected FidoRefillPage fido_refill_page;
 	protected FidoWirelessDashboardPostpaidPage fido_wireless_dashboard_postpaid_page;
 	protected FidoWirelessDashboardPrepaidPage fido_wireless_dashboard_prepaid_page;
+	protected FidoAddDataPage fido_add_data_page;
 	protected FidoChangeCTNPage fido_change_CTN_page;
 	protected FidoReportLostOrStolenPage fido_report_lost_or_stolen_page;
 	protected FidoBillDetailsPage fido_bill_details_page;
@@ -128,7 +137,9 @@ public class BaseTestClass {
 	protected SSPFidoRetailerChampPage retailer_champ_page;	
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	protected FidoDeviceConfigPage fido_device_config_Page;
-	
+	protected FidoMobileHomePage fido_mobile_home_page;
+	private Map<String,String> sauceParameters;
+
 	public BaseTestClass() {
 		 browserdriver =  new BrowserDrivers();
 		 
@@ -145,7 +156,11 @@ public class BaseTestClass {
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
 	public void startSession(String strUrl, String strBrowser,  String strLanguage, String strGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		this.driver = browserdriver.driverInit(strBrowser, currentTestMethodName, strGroupName);
+		if(strBrowser.contains("sauce"))
+		{
+			sauceParameters = initializeSauceParamsMap(strBrowser);
+		}
+		this.driver = browserdriver.driverInit(strBrowser, sauceParameters, currentTestMethodName, strGroupName);
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(strGroupName.toLowerCase().trim()) {			
@@ -165,21 +180,65 @@ public class BaseTestClass {
   		default :
   			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 		}
-	    setImplicitWait(getDriver(), 10);
+	    setImplicitWait(getDriver(), 120);
 	    init(strGroupName);
   }
 	
-	 /* To start a session using given url, browser, language and test case group name.
+	/**
+	 * This method will initialize a hash map with the sauce parameters
+	 * @param strBrowser string containing the browser name for sauce
+	 * @return hashmap with sauce capabilities
+	 * @author Mirza.Kamran
+	 */
+	 private Map<String, String> initializeSauceParamsMap(String strBrowser) {
+		
+		 Map<String,String> sauceOptions = new HashMap<String, String>();
+		 sauceOptions.put(SauceCapabilities.seleniumVersion.toString(), TestDataHandler.sauceSettings.getSauceOptions().getSeleniumVersion());
+		 sauceOptions.put(SauceCapabilities.maxDuration.toString(), TestDataHandler.sauceSettings.getSauceOptions().getMaxDuration());
+		 sauceOptions.put(SauceCapabilities.commandTimeout.toString(), TestDataHandler.sauceSettings.getSauceOptions().getCommandTimeout());
+		 sauceOptions.put(SauceCapabilities.idleTimeout.toString(), TestDataHandler.sauceSettings.getSauceOptions().getIdleTimeout());
+		 sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getSauceOptions().getBuild());
+		 switch (strBrowser.toLowerCase()) {
+			case "saucechrome":							    
+				sauceOptions.put(SauceCapabilities.platformVersion.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getBrowserVersion());  				       
+				sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformVersion());
+				break;
+			case "saucefirefox":										
+				sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getPlatformVersion());  				       
+				sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getBrowserVersion());
+				break;
+			case "sauceedge":
+				sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getBrowserVersion());  				       
+				sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getPlatformVersion());
+				break;
+			case "sauceandroidchrome":
+				sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformName()); 
+				sauceOptions.put(SauceCapabilities.platformVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformVersion()); 
+				sauceOptions.put(SauceCapabilities.appiumVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getAppiumVersion()); 
+				sauceOptions.put(SauceCapabilities.deviceName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceName()); 
+				sauceOptions.put(SauceCapabilities.deviceOrientation.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceOrientation()); 
+				break;
+		}
+			 			  		        		
+		return sauceOptions;
+	}
+
+	/* To start a session using given url, browser, language and test case group name.
+>>>>>>> SelfServeTeam
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
 	 * @param strLanguage                string of language to use
-	 * @param enumGroupName               string of group name of the test case
-	 * @param currentTestMethodName 
+	 * @param enumGroupName              string of group name of the test case
+	 * @param currentTestMethodName 	 string of the current test name	
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
 	public void startSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		this.driver = browserdriver.driverInit(strBrowser, currentTestMethodName, enumGroupName.toString());
+		if(strBrowser.contains("sauce"))
+		{
+			sauceParameters = initializeSauceParamsMap(strBrowser);
+		}
+		this.driver = browserdriver.driverInit(strBrowser,sauceParameters, currentTestMethodName, enumGroupName.toString());
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {			
@@ -200,9 +259,42 @@ public class BaseTestClass {
   			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 		}
 	    setImplicitWait(getDriver(), 10);
-	    init(enumGroupName.toString().toLowerCase().trim());
+	    init(enumGroupName.toString().toLowerCase().trim());	    
   }
 
+	/**
+	 * To start a session using given url, browser, language and test case group name.
+	 * @param strUrl                     string of test url
+	 * @param strBrowser                 string of browser name
+	 * @param strLanguage                string of language to use
+	 * @param strGroupName               string of group name of the test case
+	 * @param currentTestMethodName 
+	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
+	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
+	 */
+	public void startMobileSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
+		if(strBrowser.contains("sauce"))
+		{
+			sauceParameters = initializeSauceParamsMap(strBrowser);
+		}
+		this.driver = browserdriver.driverInit(strBrowser,sauceParameters, currentTestMethodName, enumGroupName.toString());
+		System.out.println(strUrl + "----------------------------------------------------------------------------");
+		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
+		switch(enumGroupName.toString().toLowerCase().trim()) {			
+		case "connectedhome_anonymous":				
+			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
+			break;	
+			
+		case "connectedhome_login":
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;            
+
+  		default :
+  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+		}
+	    setImplicitWait(adriver, 120);
+	    init(enumGroupName.toString().toLowerCase().trim());
+  }
 	
 	/**
 	 * To initiate the page objects based on test case group, will read group name from xml file.
@@ -214,6 +306,7 @@ public class BaseTestClass {
 		switch(strGroupName) {
 		
 		case "selfserve":
+		case "selfserve_login":
 			
 			fido_home_page = new FidoHomePage(driver);
 			fido_login_page = new FidoLoginPage(driver);
@@ -232,6 +325,7 @@ public class BaseTestClass {
 			fido_refill_page = new FidoRefillPage(driver);
 			fido_wireless_dashboard_postpaid_page = new FidoWirelessDashboardPostpaidPage(driver);
 			fido_wireless_dashboard_prepaid_page = new FidoWirelessDashboardPrepaidPage(driver);
+			fido_add_data_page = new FidoAddDataPage(driver);
 			fido_report_lost_or_stolen_page = new FidoReportLostOrStolenPage(driver);
 			fido_change_CTN_page = new FidoChangeCTNPage(driver);
 			fido_bill_details_page = new FidoBillDetailsPage(driver);
@@ -282,6 +376,7 @@ public class BaseTestClass {
 			fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver);
 			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
+			fido_mobile_home_page= new FidoMobileHomePage(driver);
 			break;
 			
 		case "buyflow":

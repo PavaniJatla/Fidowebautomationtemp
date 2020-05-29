@@ -23,7 +23,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
 		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
-				strLanguage, FidoEnums.GroupName.selfserve,method);			
+				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
 		
 	@AfterMethod(alwaysRun = true)
@@ -34,15 +34,19 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 	@DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
         return new Object[][] {
-        	{ TestDataHandler.tc0301.getaccountDetails().getBan()+"#"
-        	  +TestDataHandler.tc0301.getaccountDetails().getPostalCode()+"#"
-        	  +TestDataHandler.tc0301.getaccountDetails().getEmail()}, 
-        	{ TestDataHandler.tc41.getaccountDetails().getBan()+"#"
-              	  +TestDataHandler.tc41.getaccountDetails().getPostalCode()+"#"
-            	  +TestDataHandler.tc41.getaccountDetails().getEmail()},
-        	{TestDataHandler.tc43.getaccountDetails().getBan()+"#"
-                	  +TestDataHandler.tc43.getaccountDetails().getPostalCode()+"#"
-                	  +TestDataHandler.tc43.getaccountDetails().getEmail()}};
+        	{
+        	TestDataHandler.tc0301.getaccountDetails().getBan()+"#"
+                	  +TestDataHandler.tc0301.getaccountDetails().getPostalCode()+"#"
+                	  +TestDataHandler.tc0301.getaccountDetails().getEmail()}};
+        	/*,
+        	{
+            	TestDataHandler.tc41.getaccountDetails().getBan()+"#"
+                    	  +TestDataHandler.tc41.getaccountDetails().getPostalCode()+"#"
+                    	  +TestDataHandler.tc41.getaccountDetails().getEmail()},
+        	{
+            	TestDataHandler.tc43.getaccountDetails().getBan()+"#"
+                    	  +TestDataHandler.tc43.getaccountDetails().getPostalCode()+"#"
+                    	  +TestDataHandler.tc43.getaccountDetails().getEmail()}};*/
     }
  
     @Test(dataProvider = "data-provider")
