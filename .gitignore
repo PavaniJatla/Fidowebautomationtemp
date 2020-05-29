@@ -15,3 +15,4 @@ test-output
 .classpath
 .settings
 fido_property.dat
+.project
