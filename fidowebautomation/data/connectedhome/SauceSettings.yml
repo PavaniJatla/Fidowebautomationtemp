@@ -1,0 +1,25 @@
+# sauce capabilities, microsoftedge
+---
+sauceOptions:
+   seleniumVersion: 3.141.59
+   name: Fido - Connected home Job
+   maxDuration: 3600
+   commandTimeout: 600
+   idleTimeout: 1000
+   build: relese test App - Java-TestNG 
+mutableFireFoxCapabilities:  
+   platformVersion: Windows 10
+   browserVersion: latest
+mutableChromeCapabilities:   
+   platformVersion: Windows 10
+   browserVersion: latest
+mutableEdgeCapabilities:   
+   platformVersion: Windows 10
+   browserVersion: latest   
+androidChromeCapabilities:
+   platformName: Android
+   platformVersion: 8.1
+   appiumVersion: 1.9.1
+   deviceName: Samsung Galaxy S7 GoogleAPI Emulator
+   deviceOrientation: portrait
+...

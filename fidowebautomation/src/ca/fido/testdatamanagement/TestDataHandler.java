@@ -86,6 +86,7 @@ public class TestDataHandler {
 	}
 	private static void connectedHomeDataInit() {
 		fidoConfig =  YamlHandler.getHSIConfig();
+		sauceSettings = YamlHandler.getSauceSettings("/data/connectedhome/SauceSettings.yml");
         fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountForDowngrade =YamlHandler.getHSIAccountData("HSIAccountForDowngrade");
     	fidoWirelessAccount=YamlHandler.getHSIAccountData("HSIWirelessAccount");
