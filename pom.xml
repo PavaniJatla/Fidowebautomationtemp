@@ -282,5 +282,16 @@
             </build>
         </profile>
 
-   </profiles>	
+   </profiles>
+   <!-- Nexus Repo Config -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>digiauto</id>
+			<url>http://10.16.91.11:8080/nexus/content/repositories/digiauto</url>
+		</snapshotRepository>
+		<site>
+			<id>digiauto</id>
+			<url>dav:http://10.16.91.11:8080/nexus/content/sites/FidoWebTestAutomationJavaDocs</url>
+		</site>
+	</distributionManagement>
 </project>
