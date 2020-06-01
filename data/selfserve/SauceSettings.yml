@@ -6,7 +6,7 @@ sauceOptions:
    maxDuration: 3600
    commandTimeout: 600
    idleTimeout: 1000
-   build: Onboarding Sample App - Java-TestNG 
+   build: Fido-Sanity Run 520 
 mutableFireFoxCapabilities:  
    platformVersion: Windows 10
    browserVersion: latest
