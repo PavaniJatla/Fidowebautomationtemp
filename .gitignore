@@ -16,3 +16,5 @@ test-output
 .settings
 fido_property.dat
 .project
+*.png
+*.html
