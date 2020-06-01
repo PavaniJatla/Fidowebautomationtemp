@@ -211,7 +211,7 @@
             </build>
         </profile>
         <profile>
-            <id>sanitySS</id>
+            <id>FidoSanitySS</id>
             <build>
                 <plugins>
                     <plugin>
@@ -229,7 +229,7 @@
         </profile>
 
         <profile>
-            <id>completeSuiteSS</id>        
+            <id>FidoCompleteSuiteSS</id>        
  			<build>
                 <plugins>
                     <plugin>
