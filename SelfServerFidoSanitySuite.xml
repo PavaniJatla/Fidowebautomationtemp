@@ -4,9 +4,11 @@
 <parameter name="strBrowser" value="saucechrome"/>
 <parameter name="strLanguage" value="en"/>
 <listeners>
-       <listener class-name="ca.fido.test.listeners.AnnotationTransformer"/>
-</listeners> 
-
+		<listener
+			class-name="ca.fido.test.listeners.TestListener" />
+		<listener
+			class-name="ca.fido.test.listeners.AnnotationTransformer" />
+	</listeners>
 
  <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
 		<classes>		
