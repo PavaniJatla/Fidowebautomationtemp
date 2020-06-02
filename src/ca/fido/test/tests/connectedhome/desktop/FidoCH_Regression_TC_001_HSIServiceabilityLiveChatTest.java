@@ -1,4 +1,4 @@
-package ca.fido.test.tests.connectedhome;
+package ca.fido.test.tests.connectedhome.desktop;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

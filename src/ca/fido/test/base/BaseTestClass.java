@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
-import ca.fido.pages.FidoMobileHomePage;
 import ca.fido.pages.FidoAccountOverviewPage;
 import ca.fido.pages.FidoAccountRegistrationPage;
 import ca.fido.pages.FidoAddDataPage;
@@ -135,7 +134,6 @@ public class BaseTestClass {
 	protected SSPFidoRetailerChampPage retailer_champ_page;	
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	protected FidoDeviceConfigPage fido_device_config_Page;
-	protected FidoMobileHomePage fido_mobile_home_page;
 	private Map<String,String> sauceParameters;
 
 	public BaseTestClass() {
@@ -374,7 +372,6 @@ public class BaseTestClass {
 			fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver);
 			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
-			fido_mobile_home_page= new FidoMobileHomePage(driver);
 			break;
 			
 		case "buyflow":
