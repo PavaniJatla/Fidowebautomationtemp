@@ -25,7 +25,6 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 
 	@FindBy(xpath ="//div[@class='modal-backdrop fade  in']")
 	WebElement winModelContent;
-
 	
 	@FindBy(xpath ="//input[@id='10']/ancestor::td[@class='monday']")
 	WebElement rdoTechInstallSlot;
@@ -48,7 +47,7 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='global.label.fulfillmentPickUpAtStore']")
 	WebElement lnkPickUpAtStore;
 	
-	@FindBy(xpath = "//input[@id='accept']")
+	@FindBy(xpath = "//ins[@translate='global.label.iUnderstandAbove']")
 	WebElement chkPickStoreConsent;
 	
 	@FindBy(xpath = "//input[@id='storeLocatorSearchInput']")
@@ -158,6 +157,8 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ENTER);
+		//This wait is to enable google location
+		reusableActions.staticWait(2000);
 	}
 	
 	/**
@@ -165,6 +166,7 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkPickStoreConsent() {
+		reusableActions.waitForElementVisibility(chkPickStoreConsent,120);
 		reusableActions.getWhenReady(chkPickStoreConsent,30).click();
 		
 	}

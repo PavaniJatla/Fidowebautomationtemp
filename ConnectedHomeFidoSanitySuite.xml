@@ -5,17 +5,12 @@
 	<listeners>
 		<listener
 			class-name="ca.fido.test.listeners.AnnotationTransformer" />
-
 		<listener class-name="ca.fido.test.listeners.TestListener" />
-
 	</listeners>
 
-	<test name=" Fido anonymous">
-		<parameter name="strBrowser" value="saucechrome" />
+ 	<test name=" Fido anonymous">
+		<parameter name="strBrowser" value="chrome" />
 		<parameter name="strLanguage" value="en" />
-		<parameter name="strGroupName"
-			value="connectedhome_anonymous" />
-		<classes>
 			<class
 				name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class>
 			<class
@@ -23,13 +18,12 @@
 			<class
 				name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_008_HSIEditfromCartTest"></class>
 
-			<!-- <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTest"></class> -->
+			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTest"></class>
 		</classes>
-	</test>
+	</test> 
 	<test name=" Fido login">
-		<parameter name="strBrowser" value="saucechrome" />
+		<parameter name="strBrowser" value="chrome" />
 		<parameter name="strLanguage" value="en" />
-		<parameter name="strGroupName" value="connectedhome_login" />
 		<classes>
 			<class
 				name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_003_HSIPlanDowngradeTest"></class>

@@ -12,6 +12,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 
@@ -69,9 +70,9 @@ public class FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTestClass {
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage","strGroupName"})
-	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(TestDataHandler.fidoConfig.getFidoURL(),strBrowser,strLanguage, strGroupName,  method);
+	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+	startSession(TestDataHandler.fidoConfig.getFidoURL(),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,  method);
 	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 

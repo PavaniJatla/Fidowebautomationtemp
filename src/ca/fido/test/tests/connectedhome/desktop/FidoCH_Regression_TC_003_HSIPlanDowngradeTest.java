@@ -12,6 +12,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 
@@ -43,7 +44,7 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Lohin Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		fido_account_overview_page.selectAccountByType(TestDataHandler.fidoHSIAccountForDowngrade.getaccountDetails().getType());
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
@@ -58,11 +59,11 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 	}
 
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage","strGroupName"})
-	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext, Method method)
+	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,method);
+	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
 	
 	}
 
