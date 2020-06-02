@@ -3,9 +3,9 @@
 sauceOptions:
    seleniumVersion: 3.141.59
    name: Fido - Self Serve Job
-   maxDuration: 3600
-   commandTimeout: 600
-   idleTimeout: 1000
+   maxDuration: 600
+   commandTimeout: 300
+   idleTimeout: 120
    build: Fido-Sanity Run 520 
 mutableFireFoxCapabilities:  
    platformVersion: Windows 10
