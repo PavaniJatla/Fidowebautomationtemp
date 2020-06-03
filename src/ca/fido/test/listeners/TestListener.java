@@ -96,9 +96,15 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 	                getScreenshotAs(OutputType.BASE64);
 	 
 	        //Extentreports log and screenshot operations for failed tests.
-     		ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
-     				ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
- 						+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;"));
+	        if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {
+	        	ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
+	      				ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
+	    						+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+"\"");
+	        }else {
+	        	ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
+	       				ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
+	       				+ "Exception occured:" + iTestResult.getThrowable().getMessage());
+	        }
 		 } catch (NullPointerException e) {
 			 e.printStackTrace();	
 			 webDriver.quit();
@@ -124,9 +130,15 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 				+ ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64); 
 		
 		// Extentreports log operation for skipped tests.
-		ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
-				ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-						+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+" " + Thread.currentThread().getStackTrace()[2].getMethodName()+"\"" + " action method");
+		if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {
+			ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
+					ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
+							+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+"\"");
+		}else {
+			ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
+					ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
+					+ "Exception occured:" + iTestResult.getThrowable().getMessage());
+		}
 		} catch (NullPointerException e) {
 						
 			ExtentTestManager.getTest().log(LogStatus.WARNING,"Null Pointer Warning : <br>"

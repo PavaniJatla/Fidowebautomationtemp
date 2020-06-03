@@ -1,10 +1,10 @@
 # Payment Details 
 ---
 creditCardDetails:
-   number: 5421339853791210
+   number: 5117507902381972
    expiryMonth: 05
-   expiryYear: 2025
-   CVV: 356
+   expiryYear: 2024
+   CVV: 488
 bankDetails:
    transitCode: 00033
    bankCode: 003

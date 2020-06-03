@@ -9,11 +9,13 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
@@ -101,11 +103,11 @@ public class Fido_BFA_TC08_AAL_Term_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Order Confirmation page");
 	}
 	
-	@Parameters({"strBrowser", "strLanguage", "strGroupName"})
-	@BeforeTest
-    public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, String strGroupName, Method method) throws ClientProtocolException, IOException {
+	@Parameters({"strBrowser", "strLanguage"})
+	@BeforeMethod
+    public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.BUYFLOWS ,  method);
     }
 
     @AfterTest(alwaysRun = true)

@@ -1,8 +1,8 @@
 # Config
 ---
 #fidoURL: https://cexqa-fnac-1.fido.ca/phones
-#fidoURL: https://cexqa-aal-nac-1.fido.ca/phones/
-fidoURL: https://www.qa04.fido.ca
+fidoURL: https://cexqa-aal-nac-1.fido.ca/phones/
+#fidoURL: https://www.qa04.fido.ca
 hupURL: "https://www.qa05.fido.ca/hup/#/choose-phone"
 cookieUserName: 194603leg@mailinator.com
 cookieUserPassword: rogers@123

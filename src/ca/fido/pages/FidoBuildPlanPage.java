@@ -221,7 +221,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkNoBPOOfferButtonTalkOptions() {
-		reusableActions.clickIfAvailable(btnNoBPOOffer, 60);
+		reusableActions.clickIfAvailable(btnNoBPOOffer, 30);
 	}
 	
 	/**
@@ -229,7 +229,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueAddOnsAAL() {
-		reusableActions.clickIfAvailable(btnContinueTalkOptions, 60);
+		reusableActions.clickIfAvailable(btnContinueTalkOptions, 30);
 	}
 	
 	/**

@@ -247,7 +247,7 @@
         </profile>
    
         <profile>
-            <id>sanityBFA</id>        
+            <id>sanitySuiteBFA</id>        
  			<build>
                 <plugins>
                     <plugin>
@@ -256,7 +256,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>FidoBFASanity.xml</suiteXmlFile>
+                                <suiteXmlFile>BFAFidoSanity.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -274,7 +274,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>FidoBFASuite.xml</suiteXmlFile>
+                                <suiteXmlFile>BFAFidoCompleteSuite.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>

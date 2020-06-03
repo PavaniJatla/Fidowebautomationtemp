@@ -16,7 +16,8 @@ public class FidoEnums {
 		connectedhome_anonymous,
 		connectedhome_login,
 		selfserve_login,
-		selfserve
+		selfserve,
+		BUYFLOWS
 		  } ;
     
 	public enum AddDataType {

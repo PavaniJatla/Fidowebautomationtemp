@@ -140,6 +140,7 @@ public class TestDataHandler {
 	}
 	
 	private static void buyFlowsDataInit() {
+		sauceSettings = YamlHandler.getSauceSettings("/data/buyflows/SauceSettings.yml");
 		fidoConfig = YamlHandler.getBFAConfig();
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();

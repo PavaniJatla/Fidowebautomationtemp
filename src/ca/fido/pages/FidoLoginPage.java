@@ -1,5 +1,7 @@
 package ca.fido.pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -110,6 +112,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchOutOfSignInFrame() {	
+		//driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		driver.switchTo().defaultContent();	
 		reusableActions.waitForPageLoad();
 		if(reusableActions.isElementVisible(lblPageLoading)) {

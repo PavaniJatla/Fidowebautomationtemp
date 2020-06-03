@@ -60,7 +60,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public void clkSubmitMyOrder() {
 		reusableActions.clickWhenReady(btnSubmitMyOrder);
-		reusableActions.waitForElementVisibility(btnSubmitMyOrder, 100);
+		reusableActions.waitForElementVisibility(btnSubmitMyOrder, 60);
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public boolean verifyCheckBoxTermsAndCondition() {
-		if(reusableActions.isElementVisible(chkBoxTermsNConditionsConsentAAL, 120))
+		if(reusableActions.isElementVisible(chkBoxTermsNConditionsConsentAAL, 60))
 			return true;
 		else
 			return false;
@@ -80,7 +80,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkTermsNConditionsConsentAAL() {
-		reusableActions.clickWhenVisible(chkBoxTermsNConditionsConsentAAL, 120);
+		reusableActions.clickWhenVisible(chkBoxTermsNConditionsConsentAAL, 60);
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkTermsNConditionsConsent() {
-		reusableActions.clickWhenVisible(lblTermsNConditionsConsent, 120);
+		reusableActions.clickWhenVisible(lblTermsNConditionsConsent, 60);
 	}
 	
 	/**
@@ -134,7 +134,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public void waitForOrderProcessing() {
 		if(reusableActions.isElementVisible(lblOrderProcessing)) {
-			reusableActions.waitForElementVisibility(lblOrderProcessing, 120);
+			reusableActions.waitForElementVisibility(lblOrderProcessing, 60);
 		}
 	}
 	

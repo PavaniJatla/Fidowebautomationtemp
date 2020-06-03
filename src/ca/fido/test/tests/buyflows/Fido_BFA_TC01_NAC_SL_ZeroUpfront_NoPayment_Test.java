@@ -9,11 +9,12 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
@@ -52,7 +53,7 @@ public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestCla
 		//fido_home_page.clkPhones();
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone 7"),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XS MAX"),"Device Found and Selected","Device Not Found");
 		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
 		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
 		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");
@@ -127,11 +128,11 @@ public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestCla
 		reporter.reportLogWithScreenshot("Order Confirmation page");
 	}
 
-	@Parameters({"strBrowser", "strLanguage", "strGroupName"})
-	@BeforeTest
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, String strGroupName, Method method) throws ClientProtocolException, IOException {
+	@Parameters({"strBrowser", "strLanguage"})
+	@BeforeMethod
+	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.BUYFLOWS ,  method);
 	}
 
 	@AfterTest(alwaysRun = true)

@@ -695,8 +695,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkSubmit() {
-		reusableActions.clickWhenReady(btnSubmit);
-		reusableActions.waitForElementVisibility(btnSubmit, 100);
+		reusableActions.clickWhenReady(btnSubmit , 60);
+		//reusableActions.waitForElementVisibility(btnSubmit, 100);
 	}
 
 	/**
