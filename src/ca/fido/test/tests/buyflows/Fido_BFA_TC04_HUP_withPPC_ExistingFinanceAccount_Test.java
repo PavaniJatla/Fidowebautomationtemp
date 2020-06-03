@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC04- Fido- Validate user able to perform HUP with PPC using Existing Finance acct

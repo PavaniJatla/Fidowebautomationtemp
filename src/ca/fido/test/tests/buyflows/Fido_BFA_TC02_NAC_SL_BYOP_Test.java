@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC02-Fido-Validate User able to perform NAC Flow - Single Line BYOP

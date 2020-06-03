@@ -15,7 +15,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC01-Fido-Validate User able to perform NAC Flow (Single Line) for $0 device- Without payment

@@ -16,7 +16,6 @@ import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC07 - Fido - Validate user able to perform AAL BYOD using existing finance account

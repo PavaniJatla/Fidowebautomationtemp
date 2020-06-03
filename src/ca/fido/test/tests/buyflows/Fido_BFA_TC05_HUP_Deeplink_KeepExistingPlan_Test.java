@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC05- Fido- Validate user able to perform HUP Deeplink Flow - keep existing plan(Financing only)
