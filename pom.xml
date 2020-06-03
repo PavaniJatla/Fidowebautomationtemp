@@ -203,7 +203,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>CompleteSuiteRunner.xml</suiteXmlFile>
+                                <suiteXmlFile>ConnectedHomeCompleteSuiteRunner.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -211,7 +211,7 @@
             </build>
         </profile>
         <profile>
-            <id>sanitySS</id>
+            <id>FidoSanitySS</id>
             <build>
                 <plugins>
                     <plugin>
@@ -229,7 +229,7 @@
         </profile>
 
         <profile>
-            <id>completeSuiteSS</id>        
+            <id>FidoCompleteSuiteSS</id>        
  			<build>
                 <plugins>
                     <plugin>
@@ -282,5 +282,16 @@
             </build>
         </profile>
 
-   </profiles>	
+   </profiles>
+   <!-- Nexus Repo Config -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>digiauto</id>
+			<url>http://10.16.91.11:8080/nexus/content/repositories/digiauto</url>
+		</snapshotRepository>
+		<site>
+			<id>digiauto</id>
+			<url>dav:http://10.16.91.11:8080/nexus/content/sites/FidoWebTestAutomationJavaDocs</url>
+		</site>
+	</distributionManagement>
 </project>

@@ -50,6 +50,41 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath = "//a[@href='/consumer/easyloginriverpage']")
 	WebElement linkeasylogin;
 	
+	@FindBy(xpath="//button[@class='fcl-header-mobilenav']")
+	WebElement lnkNavMobile;
+	
+	@FindBy(xpath="//li[@class='o-mobileNavLinkList__item -separator']//a[@title='Shop']")
+	WebElement lnkShopMobile;	
+	
+	@FindBy(xpath="//li[@class='o-mobileNavDropdown__item']//a[@title='Home Internet']")
+	WebElement lnkHomeInternetMobile;
+	
+	@FindBy(xpath="//button[@class='button-new']")
+	WebElement btnCheckAvailabilityMobile;
+	
+	@FindBy(xpath="//div[@class='recovery-header container']")
+	WebElement overlayRecoveryHeaderContainerMobile;
+	
+	@FindBy(xpath="//div[@class='fdl-navmain-inner']//a[@href='/consumer/easyloginriverpage']")
+	WebElement lnkMyAccountMobile;
+	
+	@FindBy (xpath = "//a[@title='Contact us']")
+	WebElement lnkContactUsMobile;
+	
+	@FindBy (xpath = "//a[@class='m-navLink my-fido-account']/span")
+	WebElement menuMyAccountAfterLoginMobile;
+	
+	@FindBy(xpath="//a[@title='Phones' or @title='Téléphones et appareils']")
+	WebElement lnkPhonesMobile;
+	
+	@FindBy(xpath="//a[@title='Plans' or @title='Forfaits']")
+	WebElement lnkPlansMobile;
+	
+	@FindBy(xpath = "//ins[@translate='global.label.internetHome']")
+	WebElement menuHomeInternetMobile;
+	
+	@FindBy(xpath = "//a[@href='/consumer/easyloginriverpage']")
+	WebElement linkeasyloginMobile;
 	
 	/**
 	 * To launch Fido home page, this method will be used to replace production page in recover user name flow.
@@ -151,6 +186,80 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public void clkHomeInternetMenu() {
 		reusableActions.clickWhenReady(menuHomeInternet);
+	}
+
+	/**
+	 * Click on myAccount button on the home page
+	 * @author chinnarao.vattam
+	 */	
+	public void clkkMobileNavMobile() {
+		reusableActions.clickWhenReady(lnkNavMobile,20);
+	}
+	
+	/**
+	 * Click the shop dropdown list from the top tile bar on Home page
+	 * @author chinnarao.vattam 
+	 */
+	public void clkShopMobile() {		
+		reusableActions.getWhenReady(lnkShopMobile,10).click();
+		reusableActions.staticWait(2000);
+	}
+	
+	/**
+	 * Click the Digital TV option from shop dropdown list
+	 * @author chinnarao.vattam 
+	 */
+	public void clkHomeInternetMobile() {	
+		reusableActions.waitForElementVisibility(lnkHomeInternetMobile,20);
+		reusableActions.executeJavaScriptClick(lnkHomeInternetMobile);
+	}
+	
+	/**
+	 * Click on skip recovery overlay
+	 * @author chinnarao.vattam
+	 */
+	public void clkCheckAvailabilityMobile() {
+			reusableActions.clickIfAvailable(btnCheckAvailabilityMobile,20);			
+	}
+	
+	/**
+	 * Click on link ContactUs in Fido home page.
+	 * @author chinnarao.vattam
+	 */
+	public void clkContactUsMobile() {
+		reusableActions.scrollToElementAndClick(lnkContactUsMobile);
+	}
+	
+	/**
+	 * Click on the menu MY ACCOUNT when user is already login
+	 * @author chinnarao.vattam
+	 */
+	public void clkMenuMyAccountAfterLoginMobile() { 
+		reusableActions.getWhenVisible(menuMyAccountAfterLoginMobile, 20).click();
+	}
+	
+	/**
+	 * Clicks on the 'Phones' menu under the 'Shop' menu
+	 * @author chinnarao.vattam
+	 */
+	public void clkPhonesMobile() {
+		reusableActions.clickWhenReady(lnkPhonesMobile);
+	}
+	
+	/**
+	 * Clicks on the 'Plans' menu under the 'Shop' menu
+	 * @author chinnarao.vattam
+	 */
+	public void clkPlansMobile() {
+		reusableActions.clickWhenReady(lnkPlansMobile);
+	}
+	
+	/**
+	 * Clicks on the 'internet' menu under the 'Shop' menu
+	 * @author chinnarao.vattam
+	 */
+	public void clkHomeInternetMenuMobile() {
+		reusableActions.clickWhenReady(menuHomeInternetMobile);
 	}
 		
 }

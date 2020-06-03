@@ -95,8 +95,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @param strAddress address to check the service ability
 	 * @author chinnarao.vattam
 	 */
-	public void setAddressLookup(String strAddress) {
-		
+	public void setAddressLookup(String strAddress) {		
 		reusableActions.getWhenReady(txtAddressLookup,5).clear();
 		reusableActions.getWhenReady(txtAddressLookup,5).click();		
 		setCharacterByCharacterTextInWebElement(txtAddressLookup,strAddress);

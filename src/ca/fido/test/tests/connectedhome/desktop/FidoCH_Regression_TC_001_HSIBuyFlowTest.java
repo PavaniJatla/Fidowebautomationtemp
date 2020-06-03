@@ -1,4 +1,4 @@
-package ca.fido.test.tests.connectedhome;
+package ca.fido.test.tests.connectedhome.desktop;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 
@@ -42,7 +43,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  *
  **/
 
-public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTestClass {
+public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
 
 	@Test
 	public void checkInternetBuyFlow() {
@@ -92,13 +93,33 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
-        
-
+       //fido_technical_installation_page.clkFulfillmentTechInstall();        
+       //fido_technical_installation_page.clkTechInstallSlot();
+       reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
+        fido_technical_installation_page.clkTechInstalConfirm();
+        reporter.reportLogWithScreenshot("Payment page has launched");        
+        //fido_payment_options_page.selectPaymentMode("pacc");
+        fido_payment_options_page.setCreditCardNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
+        fido_payment_options_page.selectExpiryMonth();
+        fido_payment_options_page.selectExpiryYear();
+        fido_payment_options_page.setCVV();     
+        reporter.reportLogWithScreenshot("Payment details has set");
+        fido_payment_options_page.clkPaymentConfirm();        
+        reporter.reportLogWithScreenshot("Order review page has launched");
+        //reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Plan information has verified", "Plan information has failed");
+        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
+		fido_internet_package_change_review_order_page.clkscrollToElement();
+		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
+		reporter.reportLogWithScreenshot("Consent Check has Done");
+		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
+		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
+		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
+		reporter.reportLogWithScreenshot("Order details");
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage","strGroupName"})
-	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
+	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
 	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 

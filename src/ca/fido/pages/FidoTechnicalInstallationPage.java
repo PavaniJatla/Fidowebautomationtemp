@@ -1,5 +1,6 @@
 package ca.fido.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +25,6 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 
 	@FindBy(xpath ="//div[@class='modal-backdrop fade  in']")
 	WebElement winModelContent;
-
 	
 	@FindBy(xpath ="//input[@id='10']/ancestor::td[@class='monday']")
 	WebElement rdoTechInstallSlot;
@@ -37,7 +37,6 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	
 	@FindBy(name = "submit")
 	WebElement btnCreditCheckSubmit;
-
 	
 	@FindBy(xpath ="//ins[@translate='global.label.fulfillmentPickUpAtStore']")
 	WebElement btnFulfillmentPickUp;
@@ -45,6 +44,15 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='global.label.iUnderstandAbove']")
 	WebElement chkIUnderstandAbove;
 	
+	@FindBy(xpath = "//ins[@translate='global.label.fulfillmentPickUpAtStore']")
+	WebElement lnkPickUpAtStore;
+	
+	@FindBy(xpath = "//ins[@translate='global.label.iUnderstandAbove']")
+	WebElement chkPickStoreConsent;
+	
+	@FindBy(xpath = "//input[@id='storeLocatorSearchInput']")
+	WebElement txtClosestStore;
+
 	
 	
 	public boolean verifyModelWindow() {
@@ -98,7 +106,6 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(rdoTechInstallSlot, 60);
 		reusableActions.scrollToElement(rdoTechInstallSlot);		
 		reusableActions.getWhenReady(rdoTechInstallSlot,20).click();
-		reusableActions.staticWait(3000);
 	}
 	
 	/**
@@ -106,8 +113,6 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public void clkTechInstalConfirm() {
-		reusableActions.staticWait(5000);
-		//reusableActions.scrollToElement(btnTechInstalConfirm);
 		reusableActions.getWhenReady(btnTechInstalConfirm,90).click();
 		}
 
@@ -126,6 +131,43 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	 */
 	public void clkIUnderstandAboveChekBox() {
 		reusableActions.getWhenReady(chkIUnderstandAbove).click();
+		
+	}
+	
+	/**
+	 * Clicks on PickUpAtStore link on techinstall page
+	 * @author chinnarao.vattam
+	 */
+	public void clkPickUpAtStore() {
+		reusableActions.getWhenReady(lnkPickUpAtStore,120).click();
+		
+	}
+	
+	/**
+	 * To set the Lookup address on the service ability Lookup popup
+	 * @param strAddress address to check the service ability
+	 * @author chinnarao.vattam
+	 */
+	public void setAddressLookup(String strAddress) {		
+		reusableActions.getWhenReady(txtClosestStore,5).clear();
+		reusableActions.getWhenReady(txtClosestStore,5).click();		
+		reusableActions.getWhenReady(txtClosestStore, 2).sendKeys(strAddress);
+		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.TAB);
+		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ENTER);
+		//This wait is to enable google location
+		reusableActions.staticWait(2000);
+	}
+	
+	/**
+	 * Clicks on I understand check box for pick at store option
+	 * @author chinnarao.vattam
+	 */
+	public void clkPickStoreConsent() {
+		reusableActions.waitForElementVisibility(chkPickStoreConsent,120);
+		reusableActions.getWhenReady(chkPickStoreConsent,30).click();
 		
 	}
 	

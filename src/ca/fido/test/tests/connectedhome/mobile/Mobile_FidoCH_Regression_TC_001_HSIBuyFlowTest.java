@@ -1,7 +1,8 @@
-package ca.fido.test.tests.connectedhome;
+package ca.fido.test.tests.connectedhome.mobile;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
@@ -10,6 +11,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
+import ca.fido.testdatamanagement.TestDataHandler;
 
 
 /**
@@ -45,16 +48,16 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 	@Test
 	public void checkInternetBuyFlow() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
-		fido_mobile_home_page.clkkMobileNav();
-		fido_mobile_home_page.clkShop();
-		fido_mobile_home_page.clkHomeInternet();
-		fido_mobile_home_page.clkCheckAvailability();
+		fido_home_page.clkkMobileNavMobile();
+		fido_home_page.clkShopMobile();
+		fido_home_page.clkHomeInternetMobile();
+		fido_home_page.clkCheckAvailabilityMobile();
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage","strGroupName"})
-	public void beforeTest(String strBrowser, String strLanguage, String strGroupName,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-//	startMobileSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, strGroupName,  method);
-//	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,   method);
+	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 
 
