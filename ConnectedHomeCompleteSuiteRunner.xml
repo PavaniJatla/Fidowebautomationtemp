@@ -38,7 +38,6 @@
       <test name=" Fido retailer">
    	<parameter name="strBrowser" value="chrome"/>
 	<parameter name="strLanguage" value="en"/>
-	<parameter name="strGroupName" value="connectedhome_anonymous"/>
 		<classes>   
    		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest"></class>    
 		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest"></class>
