@@ -8,12 +8,12 @@ import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
+import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC02-Fido-Validate User able to perform NAC Flow - Single Line BYOP
@@ -97,7 +97,7 @@ public class Fido_BFA_TC02_NAC_SL_BYOP_Test extends BaseTestClass{
 	@BeforeMethod
     public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.BUYFLOWS ,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
     @AfterTest(alwaysRun = true)

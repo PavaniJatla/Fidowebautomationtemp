@@ -10,12 +10,12 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
+import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * TC07 - Fido - Validate user able to perform AAL BYOD using existing finance account
@@ -87,7 +87,7 @@ public class Fido_BFA_TC07_AAL_BYOD_ExistingFinanceAccount_Test extends BaseTest
 	@BeforeMethod
     public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.BUYFLOWS,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
     }
 
     @AfterTest(alwaysRun = true)
