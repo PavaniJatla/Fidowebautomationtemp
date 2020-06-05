@@ -87,7 +87,7 @@ public class Fido_BFA_TC07_AAL_BYOD_ExistingFinanceAccount_Test extends BaseTest
 	@BeforeMethod
     public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
     }
 
     @AfterTest(alwaysRun = true)

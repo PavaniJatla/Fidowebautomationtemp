@@ -103,7 +103,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 	        }else {
 	        	ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
 	       				ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-	       				+ "Exception occured:" + iTestResult.getThrowable().getMessage());
+	       				+ "Exception occured: " + iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
 	        }
 		 } catch (NullPointerException e) {
 			 e.printStackTrace();	
@@ -137,7 +137,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
 					ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-					+ "Exception occured:" + iTestResult.getThrowable().getMessage());
+					+ "Exception occured: " + iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
 		}
 		} catch (NullPointerException e) {
 						

@@ -34,22 +34,21 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author rajesh.varalli1
  *
  */
-public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestClass{
+public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 
 	@Test
 	public void fidoSingleLineNAC() {
 		reporter.reportLogWithScreenshot("Home Page");
-		//Need to delete below lines from 43 to 50 , added due to AWS link and uncomment line 51 and 52
-		getDriver().findElement(By.xpath("//button[@id='details-button']")).click();
-		getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//fido_home_page.clkShop();
-		//fido_home_page.clkPhones();
+		/*
+		 * //Need to delete below lines from 43 to 50 , added due to AWS link and
+		 * uncomment line 51 and 52
+		 * getDriver().findElement(By.xpath("//button[@id='details-button1']")).click();
+		 * getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click(); try {
+		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO Auto-generated
+		 * catch block e.printStackTrace(); }
+		 */
+		fido_home_page.clkShop();
+		fido_home_page.clkPhones();
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
 		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XS MAX"),"Device Found and Selected","Device Not Found");
@@ -131,7 +130,7 @@ public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestCla
 	@BeforeMethod
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterTest(alwaysRun = true)

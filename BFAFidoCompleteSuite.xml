@@ -10,42 +10,42 @@
 			class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
 	
-		<test name="TC01-Fido-Validate NAC Flow (Single Line) for $0 device- Without payment - EnglishChrome" enabled="true">
+		<test name="TC01 - Fido -Regression - Perform Fido Redesign Net New Activation - AWS - e2e" enabled="true">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC01_NAC_Test">
 			</class>
 		</classes>
 	</test>
 	
-	<test name="TC02 - Fido - Regression - Perform Fido AAL TERM - AWS - e2e" enabled="true">
+	<test name="TC02 - Fido - Regression - Perform Fido AAL TERM - AWS - e2e" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC08_AAL_Term_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC02_AAL_Term_Test">
 			</class>
 		</classes>
 	</test> 
 	
-	<test name="TC03 - Fido - Regression - Perform Fido AAL BYOD -AWS - e2e" enabled="true">
+	<test name="TC03 - Fido - Regression - Perform Fido AAL BYOD -AWS - e2e" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC07_AAL_BYOD_ExistingFinanceAccount_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC03_AAL_BYOD_Test">
 			</class>
 		</classes>
 	</test>
 	
-	<test name="TC04 - Fido - Regression - Perform Fido HUP - e2e" enabled="true">
+	<test name="TC04 - Fido - Regression - Perform Fido HUP - e2e" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC03_HUP_withPPC_ExistingSubsidyAccount_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC04_HUP_Test">
 			</class>
 		</classes>
 	</test>
 	
-	<test name="TC05 - Fido - Regression - Perform Fido PPC - e2e" enabled="true">
+	<test name="TC05 - Fido - Regression - Perform Fido PPC - e2e" enabled="false">
 	<classes>
 			<class
-				name="ca.fido.test.tests.buyflows.Fido_BFA_TC06_PPC_ExistingFinanceAccount_Test">
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC05_PPC_Test">
 			</class>
 		</classes>
 	</test>
