@@ -377,7 +377,7 @@ public class BaseTestClass {
 			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
 			break;
 			
-		case "buyflow":
+		case "buyflows":
 			fido_home_page = new FidoHomePage(getDriver());
 			fido_login_page = new FidoLoginPage(getDriver());
 			fido_account_overview_page = new FidoAccountOverviewPage(getDriver());
