@@ -157,7 +157,7 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ENTER);
-		//This wait is to enable google location
+		//This wait is to enable google map location
 		reusableActions.staticWait(2000);
 	}
 	

@@ -126,7 +126,6 @@ public class FidoHomePage extends BasePageClass {
 	public void clkShop() {
 		reusableActions.waitForElementTobeClickable(lnkShop,120);
 		reusableActions.getWhenReady(lnkShop,10).click();
-		reusableActions.staticWait(2000);
 	}
 	
 	/**
@@ -134,7 +133,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author aditya.Dhingra 
 	 */
 	public void clkHomeInternet() {	
-		reusableActions.waitForElementVisibility(lnkHomeInternet,20);
+		reusableActions.waitForElementVisibility(lnkHomeInternet,120);
 		reusableActions.executeJavaScriptClick(lnkHomeInternet);
 	}
 	
@@ -202,7 +201,6 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public void clkShopMobile() {		
 		reusableActions.getWhenReady(lnkShopMobile,10).click();
-		reusableActions.staticWait(2000);
 	}
 	
 	/**
@@ -210,7 +208,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkHomeInternetMobile() {	
-		reusableActions.waitForElementVisibility(lnkHomeInternetMobile,20);
+		reusableActions.waitForElementVisibility(lnkHomeInternetMobile,120);
 		reusableActions.executeJavaScriptClick(lnkHomeInternetMobile);
 	}
 	
