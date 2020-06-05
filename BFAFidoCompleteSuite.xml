@@ -18,7 +18,7 @@
 		</classes>
 	</test>
 	
-	<test name="TC02 - Fido - Regression - Perform Fido AAL TERM - AWS - e2e" enabled="false">
+	<test name="TC02 - Fido - Regression - Perform Fido AAL TERM - AWS - e2e" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC02_AAL_Term_Test">
@@ -26,7 +26,7 @@
 		</classes>
 	</test> 
 	
-	<test name="TC03 - Fido - Regression - Perform Fido AAL BYOD -AWS - e2e" enabled="false">
+	<test name="TC03 - Fido - Regression - Perform Fido AAL BYOD -AWS - e2e" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC03_AAL_BYOD_Test">
@@ -34,7 +34,7 @@
 		</classes>
 	</test>
 	
-	<test name="TC04 - Fido - Regression - Perform Fido HUP - e2e" enabled="false">
+	<test name="TC04 - Fido - Regression - Perform Fido HUP - e2e" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC04_HUP_Test">
@@ -42,7 +42,7 @@
 		</classes>
 	</test>
 	
-	<test name="TC05 - Fido - Regression - Perform Fido PPC - e2e" enabled="false">
+	<test name="TC05 - Fido - Regression - Perform Fido PPC - e2e" enabled="true">
 	<classes>
 			<class
 				name="ca.fido.test.tests.buyflows.Fido_BFA_TC05_PPC_Test">

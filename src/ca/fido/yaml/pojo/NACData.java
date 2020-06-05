@@ -5,7 +5,21 @@ public class NACData {
 	private String billingAddress;
 	private String dlProvinceCode;
 	private String ctnCity;
+	private String deviceName;
 	
+	/**
+	 * @return the name of the device
+	 */
+	public String getDeviceName() {
+		return deviceName;
+	}
+	
+	/**
+	 * @param deviceName name of the device
+	 */
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
+	}
 	/**
 	 * @return the billingAddress
 	 */

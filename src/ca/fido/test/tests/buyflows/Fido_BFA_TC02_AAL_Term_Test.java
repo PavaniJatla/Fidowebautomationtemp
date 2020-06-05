@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -31,20 +30,18 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * 
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC08_AAL_Term_Test extends BaseTestClass{
+public class Fido_BFA_TC02_AAL_Term_Test extends BaseTestClass{
 
 	@Test
-	public void aalBYODFlowTest() {
+	public void aalTermFlowTest() {
 		reporter.reportLogWithScreenshot("Fido Home Page");
-		//Need to delete below lines from 39 to 46 , added due to AWS link
-		getDriver().findElement(By.xpath("//button[@id='details-button']")).click();
-		getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * //Need to delete below lines from 39 to 46 , added due to AWS link
+		 * getDriver().findElement(By.xpath("//button[@id='details-button']")).click();
+		 * getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click(); try {
+		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO Auto-generated
+		 * catch block e.printStackTrace(); }
+		 */
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.testCase08.getUsername());
