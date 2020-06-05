@@ -202,7 +202,6 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 				if(isDockerStarted)
 				{
 					 Runtime.getRuntime().exec("cmd /c start stopDockerGrid.bat");
-					 Thread.sleep(5000);
 					 Runtime.getRuntime().exec("taskkill /f /im cmd.exe");
 				}
 				
@@ -212,10 +211,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
-	}
+			} 
+			}
  
 }

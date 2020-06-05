@@ -345,8 +345,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkAgreeTermsAndCondition() {		
 		reusableActions.scrollToElementAndClick(lbltermsAndConditionBottom);
-		reusableActions.staticWait(1000);
-		reusableActions.clickIfAvailable(chkAgreeTermsAndCond);
+		reusableActions.getWhenReady(chkAgreeTermsAndCond,120);
 	}
 	
 	/**
@@ -373,12 +372,11 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setCreditCardNumber(String strAccountNumber) {	
-		driver.switchTo().frame(reusableActions.getWhenVisible(fraSemaphone));	
-		reusableActions.staticWait(1000);
+		driver.switchTo().frame(reusableActions.getWhenVisible(fraSemaphone,100));	
+		reusableActions.waitForElementVisibility(txtCardNumber,120);
 		reusableActions.executeJavaScriptClick(txtCardNumber);
 		reusableActions.getWhenReady(txtCardNumber).sendKeys(strAccountNumber);
 		driver.switchTo().defaultContent();
-		reusableActions.staticWait(1000);
 	}
 
 	/**'

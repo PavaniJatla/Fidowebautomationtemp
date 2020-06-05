@@ -96,22 +96,13 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setAddressLookup(String strAddress) {		
-		reusableActions.getWhenReady(txtAddressLookup,5).clear();
-		reusableActions.getWhenReady(txtAddressLookup,5).click();		
-		setCharacterByCharacterTextInWebElement(txtAddressLookup,strAddress);
-		reusableActions.staticWait(5000);
-		reusableActions.getWhenReady(txtAddressLookup).sendKeys(Keys.ENTER);	
-		reusableActions.staticWait(2000);
-		
-		/*
-		reusableActions.getWhenReady(txtAddressLookup,5).clear();
-		reusableActions.getWhenReady(txtAddressLookup, 2).sendKeys(strAddress);
+		reusableActions.getWhenReady(txtAddressLookup,60).clear();
+		reusableActions.getWhenReady(txtAddressLookup, 20).sendKeys(strAddress);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.TAB);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
-		*/
 	}
 	
 	
@@ -145,7 +136,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	public void clkCheckAvailabilityConfirmation() {
 		// this wait is mandatory , please do not remove it 	
 		reusableActions.staticWait(3000);
-		reusableActions.waitForElementTobeClickable(btnCheckAvailability, 60);
+		reusableActions.waitForElementVisibility(btnCheckAvailability, 120);
+		reusableActions.waitForElementTobeClickable(btnCheckAvailability, 120);
 		reusableActions.getWhenReady(btnCheckAvailability, 60).click();
 	}
 	
@@ -202,9 +194,9 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void verifyPlanInfomationForExistingCustomer(String strPlanCost) {
-		//reusableActions.waitForElementInvisibility(btnContinueForInternet);
-		reusableActions.staticWait(5000);
-		reusableActions.getWhenReady(By.xpath("//ins[contains(text(),'" + strPlanCost+ "')]/ancestor::div[@class='new-ts-package-cost']//button[@id='add-button-0']"), 60).click();
+		By planLocator = By.xpath("//ins[contains(text(),'" + strPlanCost+ "')]/ancestor::div[@class='new-ts-package-cost']//button[@id='add-button-0']");
+		reusableActions.waitForElementInvisibility(btnContinueForInternet,180);
+		reusableActions.getWhenReady(planLocator, 60).click();
 	}
 	
 	/**

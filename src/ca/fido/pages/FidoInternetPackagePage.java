@@ -81,7 +81,7 @@ public class FidoInternetPackagePage extends BasePageClass {
 	 */
 	public void clkPrintReceipt() {	
 		reusableActions.waitForElementVisibility(btnPrintReceipt,120);
-		reusableActions.staticWait(2000);
+		reusableActions.getWhenReady(btnPrintReceipt,180);
 		reusableActions.getWhenReady(btnPrintReceipt,120).click();
 	}
 	

@@ -54,7 +54,7 @@ public boolean verifyPlanInfomation(String strBandwidth) {
  * @author Aditya.Dhingra
  */
 public boolean verifyFidoTermsAndConditions() {
-	return reusableActions.isElementVisible(termsAndConditionsFido);
+	return reusableActions.isElementVisible(termsAndConditionsFido,180);
 }
 
 public boolean verifyFidoTermsAndConditionsSsp() {
@@ -85,12 +85,10 @@ public boolean verifySubmitButtonEnabled() {
  */
 public void clkReviewSubmitButton() {
 	reusableActions.getWhenReady(btnSubmit,60).click();
-	reusableActions.staticWait(3000);
 }
-public void clkscrollToElement() {	
-	reusableActions.staticWait(2000);
+public void clkscrollToElement() {
+	reusableActions.waitForElementVisibility(lnkUnsubscribe,120);
 	reusableActions.scrollToElement(lnkUnsubscribe);
-	reusableActions.staticWait(1000);
 }
 
 /**
