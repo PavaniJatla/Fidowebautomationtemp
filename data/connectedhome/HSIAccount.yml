@@ -1,12 +1,12 @@
 # Account Details 
 ---
 name: FidoHSIAccount
-username: Autodatar420ch10@yahoo.com
-usernamePay: Autodatar420ch09@yahoo.com
-usernameDowngrade: Autodatar420ch08@yahoo.com
+username: Autodatar520ch11@yahoo.com
+usernamePay: Autodatar520ch12@yahoo.com
+usernameDowngrade: Autodatar520ch11@yahoo.com
 usernameUpgrade: Autodatar420sc27@yahoo.com
-usernameDowngradeSameSpeed: Autodatar420ch08@yahoo.com
-usernameMobile: Autodatar420sc30@yahoo.com
+usernameDowngradeSameSpeed: Autodatar520ch11@yahoo.com
+usernameMobile: Autodatar520ch01@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Internet
@@ -15,7 +15,7 @@ accountDetails:
    downgradePlan: 5
    payment: 1
    upgradePlanCost: 75
-   downgradePlanCost: 50
+   downgradePlanCost: 55
    upgradeDataPlan: Unlimited
    downgradeDataPlan: 200  GB
    address:

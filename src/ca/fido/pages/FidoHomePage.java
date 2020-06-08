@@ -13,8 +13,7 @@ public class FidoHomePage extends BasePageClass {
 		super(driver);		
 	}
 
-	//@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]")
-	@FindBy(xpath="//a[contains(@class,'signin-interceptor') or @class='m-navLink -navbar -login']")
+	@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]")
 	WebElement lnkLogIn;
 	
 	@FindBy(xpath="//a[@class='m-navLink']//span[@class='m-navLink__chevron fds-icon-down']")

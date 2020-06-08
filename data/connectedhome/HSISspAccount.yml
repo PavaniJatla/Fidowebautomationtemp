@@ -4,14 +4,14 @@ name: FidoSSPHSIAccount
 username: chinnarao.vattam@rci.rogers.ca
 password: IELTS@mar2020
 dealerCode: FHQAB
-environment: QA05
-sspEnv: QA02
+environment: QA06
+sspEnv: QA01
 accountDetails:
    type: Internet
-   ban: 227451606  
+   ban: 227225059  
    postalCode: L6T4N4
-   modem: FDD2402BC734
-   newModem: FDD2402BC735
+   modem: FDD2520BC127
+   newModem: FDD2520BC128
    address:
      line1: 706-10 Lisa St
      line2: BRAMPTON ON L6T 4N4 

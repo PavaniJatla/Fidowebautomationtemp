@@ -157,8 +157,6 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtClosestStore).sendKeys(Keys.ENTER);
-		//This wait is to enable google map location
-		reusableActions.staticWait(2000);
 	}
 	
 	/**
@@ -166,8 +164,7 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkPickStoreConsent() {
-		reusableActions.waitForElementVisibility(chkPickStoreConsent,120);
-		reusableActions.getWhenReady(chkPickStoreConsent,30).click();
+		reusableActions.getWhenReady(chkPickStoreConsent,90).click();
 		
 	}
 	

@@ -329,7 +329,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public void clkUsageNService() {
-		reusableActions.waitForElementVisibility(navUsageNService, 180);
+		reusableActions.waitForElementVisibility(navUsageNService, 240);
 		reusableActions.getWhenReady(navUsageNService, 20).click();
 	}
 	
