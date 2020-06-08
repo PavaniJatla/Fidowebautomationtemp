@@ -51,10 +51,10 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
         fido_Shop_internet_page.clkLiveChat();
         fido_Shop_internet_page.verifyLiveChat();
         reporter.reportLogWithScreenshot("Launched Live chat frame");
-        fido_Shop_internet_page.clkMinumizeChat();
-        reporter.reportLogWithScreenshot("Live caht frame has minimized");
-        fido_Shop_internet_page.clkMaxumizeChat();
-        reporter.reportLogWithScreenshot("Launched Live chatt frame");
+        fido_Shop_internet_page.clkMinimizeChat();
+        reporter.reportLogWithScreenshot("Live chat frame has minimized");
+        fido_Shop_internet_page.clkMaximizeChat();
+        reporter.reportLogWithScreenshot("Launched Live chat frame");
         fido_Shop_internet_page.clkCloseChat();
         fido_Shop_internet_page.clkCloseChatConfirm();
 		reporter.hardAssert(fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");

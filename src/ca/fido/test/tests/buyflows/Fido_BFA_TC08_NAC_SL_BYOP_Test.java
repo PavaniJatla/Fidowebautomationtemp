@@ -33,7 +33,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author rajesh.varalli1
  *
  */
-public class Fido_BFA_TC02_NAC_SL_BYOP_Test extends BaseTestClass{
+public class Fido_BFA_TC08_NAC_SL_BYOP_Test extends BaseTestClass{
 
 	@Test
 	public void fidoSingleLineNacBYOP() {

@@ -36,7 +36,8 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 
 	@Test
-	public void fidoSingleLineNAC() {
+	public void fidoNACFlow() {
+		reporter.reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
 		reporter.reportLogWithScreenshot("Home Page");
 		/*
 		 * //Need to delete below lines from 43 to 50 , added due to AWS link and
@@ -46,11 +47,11 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO Auto-generated
 		 * catch block e.printStackTrace(); }
 		 */
-		fido_home_page.clkShop();
-		fido_home_page.clkPhones();
+		//fido_home_page.clkShop();
+		//fido_home_page.clkPhones();
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XS MAX"),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase01.getDeviceName()),"Device Found and Selected","Device Not Found");
 		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
 		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
 		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");

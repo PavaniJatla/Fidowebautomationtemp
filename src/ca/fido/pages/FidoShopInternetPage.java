@@ -43,8 +43,11 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='bc-headbtn bc-headbtn-minimize']")
 	WebElement btnMinumizeChat;
 	
-	@FindBy(xpath = "//div[@class='bc-minimize-state bc-minimize-state-idle']")
+	@FindBy(xpath = "//div[@class='bc-minimize-container']/div")
 	WebElement btnMaxmizeChat;
+	
+	@FindBy(xpath = "//div[@class='bc-minimize-state bc-minimize-state-ended']")
+	WebElement btnShadowMaxmizeChat;
 	
 	@FindBy(xpath = "//div[@class='bc-headbtn bc-headbtn-menulist']")
 	WebElement btnCloseChat;
@@ -102,6 +105,8 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.SPACE);
+		reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
 	}
 	
@@ -135,7 +140,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void clkCheckAvailabilityConfirmation() {
 		// this wait is mandatory , please do not remove it 	
-		reusableActions.staticWait(3000);
+		
 		reusableActions.waitForElementVisibility(btnCheckAvailability, 120);
 		reusableActions.waitForElementTobeClickable(btnCheckAvailability, 120);
 		reusableActions.getWhenReady(btnCheckAvailability, 60).click();
@@ -173,7 +178,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void clkLiveChat() {
 		// this wait is mandatory , please do not remove it 	
-		reusableActions.staticWait(3000);
+		
 		reusableActions.waitForElementTobeClickable(btnliveChat, 60);
 		reusableActions.getWhenReady(btnliveChat, 60).click();
 	}
@@ -244,31 +249,34 @@ public class FidoShopInternetPage extends BasePageClass {
 		 * Click on minimize button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkMinumizeChat()  {		
-			reusableActions.getWhenVisible(btnMinumizeChat,30).click();
+		public void clkMinimizeChat()  {		
+			reusableActions.getWhenReady(btnMinumizeChat,30).click();
 		}
 		
 		/**
 		 * Click on maxmize button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkMaxumizeChat()  {		
-			reusableActions.getWhenVisible(btnMaxmizeChat,30).click();
+		public void clkMaximizeChat()  {	
+			reusableActions.getWhenReady(btnMaxmizeChat,30).click();
 		}
 
 		/**
 		 * Click on close button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkCloseChat()  {		
-			reusableActions.getWhenVisible(btnCloseChat,30).click();
+		public void clkCloseChat()  {	
+			
+			reusableActions.getWhenReady(By.xpath("//div[@id='bc-frame' and contains(@style,'block')]"));
+			reusableActions.getWhenReady(btnCloseChat,30).click();
 		}
 		
 		/**
 		 * Click on close button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkCloseChatConfirm()  {		
+		public void clkCloseChatConfirm()  {	
+			
 			reusableActions.getWhenVisible(btnCloseChatConfirm,30).click();
 		}
 

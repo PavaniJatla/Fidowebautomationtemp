@@ -29,7 +29,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * 
  * @author rajesh.varalli1
  */
-public class Fido_BFA_TC04_HUP_withPPC_ExistingFinanceAccount_Test extends BaseTestClass{
+public class Fido_BFA_TC06_HUP_withPPC_ExistingFinanceAccount_Test extends BaseTestClass{
 
 	@Test
 	public void ppcUpgradeTierFlow() {
