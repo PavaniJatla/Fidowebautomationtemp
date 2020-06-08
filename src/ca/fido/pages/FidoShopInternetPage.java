@@ -85,6 +85,13 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.cta.continue']")
 	WebElement btnpackselectedNContinue;
 	
+	@FindBy(xpath="//*[@translate='global.cta.continue']")
+	WebElement btnContinue;
+	
+	@FindBy(xpath="//div[@id='bc-frame' and contains(@style,'block')]")
+	WebElement popupChat;
+	
+	
 	/**
 	 * Click on Check availability button on Shop Internet page
 	 * @author chinnarao.vattam
@@ -265,9 +272,8 @@ public class FidoShopInternetPage extends BasePageClass {
 		 * Click on close button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkCloseChat()  {	
-			
-			reusableActions.getWhenReady(By.xpath("//div[@id='bc-frame' and contains(@style,'block')]"));
+		public void clkCloseChat()  {			
+			reusableActions.getWhenReady(popupChat,30);
 			reusableActions.getWhenReady(btnCloseChat,30).click();
 		}
 		
@@ -297,8 +303,7 @@ public class FidoShopInternetPage extends BasePageClass {
     }
 
 	public void clickContinue() {
-		reusableActions.getWhenReady(By.xpath("//*[@translate='global.cta.continue']")).click();
+		reusableActions.getWhenReady(btnContinue,90).click();
 		
 	}
-	////*[@translate='global.cta.buyNow']
 }
