@@ -72,7 +72,8 @@ public class TestDataHandler {
 	    	if(strApplicationType.toUpperCase().trim().endsWith("CH")) {	    	
 	    		//HSI Fido Data files
 	    		connectedHomeDataInit();            
-	    	} else if(strApplicationType.toUpperCase().trim().endsWith("SS")) {
+	    	} else if(strApplicationType.toUpperCase().trim().endsWith("SS")
+	    			||strApplicationType.toUpperCase().trim().endsWith("SS]")) {
 		    	//Self-Service Data files
 	    		selfserveDataInit();
 	    	} else if(strApplicationType.toUpperCase().trim().endsWith("BFA")) {

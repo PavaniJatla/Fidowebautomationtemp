@@ -40,6 +40,16 @@
          </classes>
     </test>                           
            
+           
+         <test name="FidoSS_TC016_FidoCA_PostpaidViewBill">	
+		<classes>		
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_TC016_FidoCA_PostpaidViewBill">
+			</class>									
+		</classes>
+	</test>
+           
+           
 	<test name="FidoSS_Regression_TC017_PostpaidViewAndEditProfile">	
 		<classes>		
 			<class
