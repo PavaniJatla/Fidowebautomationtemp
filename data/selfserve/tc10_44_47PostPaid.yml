@@ -1,7 +1,7 @@
 # Account Details, required: username, password, recoveryNumber, mobilePhone.
 ---
 name: FidoPostPaidAccount
-username: Autodatar520ss05@yahoo.com
+username: Autodatar520ss06@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
