@@ -18,7 +18,21 @@ public class Config {
 	private String loginFlow;
 	private String anonymousFlow;
 	private String hupURL;
+	private String fidoAWSUrl;
 	
+	/**
+	 * @return the fidoAWSUrl
+	 */
+	public String getFidoAWSUrl() {
+		return fidoAWSUrl;
+	}
+	
+	/**
+	 * @param fidoAWSUrl AWS url link to set
+	 */
+	public void setFidoAWSUrl(String fidoAWSUrl) {
+		this.fidoAWSUrl = fidoAWSUrl;
+	}
 	
 	/**
 	 * @return the language

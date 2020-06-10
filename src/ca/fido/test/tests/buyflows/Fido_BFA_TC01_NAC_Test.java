@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
@@ -34,25 +33,25 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author rajesh.varalli1
  *
  */
-public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestClass{
+public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 
 	@Test
-	public void fidoSingleLineNAC() {
+	public void fidoNACFlow() {
+		reporter.reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
 		reporter.reportLogWithScreenshot("Home Page");
-		//Need to delete below lines from 43 to 50 , added due to AWS link and uncomment line 51 and 52
-		getDriver().findElement(By.xpath("//button[@id='details-button']")).click();
-		getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * //Need to delete below lines from 43 to 50 , added due to AWS link and
+		 * uncomment line 51 and 52
+		 * getDriver().findElement(By.xpath("//button[@id='details-button1']")).click();
+		 * getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click(); try {
+		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO Auto-generated
+		 * catch block e.printStackTrace(); }
+		 */
 		//fido_home_page.clkShop();
 		//fido_home_page.clkPhones();
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XS MAX"),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase01.getDeviceName()),"Device Found and Selected","Device Not Found");
 		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
 		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
 		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");
@@ -131,7 +130,7 @@ public class Fido_BFA_TC01_NAC_SL_ZeroUpfront_NoPayment_Test extends BaseTestCla
 	@BeforeMethod
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterTest(alwaysRun = true)
