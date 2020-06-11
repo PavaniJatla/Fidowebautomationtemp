@@ -6,6 +6,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
 import extentreport.FileUpload;
+import extentreport.SendEmail;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -195,23 +196,18 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 	public void onFinish(ISuite suite) {
 
  		
-			try {
-				FileUpload.extentReportsUpload();
-				
-				//Terminating the docker
-				if(isDockerStarted)
-				{
-					 Runtime.getRuntime().exec("cmd /c start stopDockerGrid.bat");
-					 Runtime.getRuntime().exec("taskkill /f /im cmd.exe");
-				}
-				
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+		try {
+
+			String strResPath= FileUpload.extentReportsUpload();
+			SendEmail.sendEmail(suite.getName(), strResPath);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 			}
  
 }
