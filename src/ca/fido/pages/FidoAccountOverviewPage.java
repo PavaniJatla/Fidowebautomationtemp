@@ -49,7 +49,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//div[@ng-if='subscriberService.wireless']/a")
 	WebElement badgeWireless;
 	
-	@FindBy (xpath="//h1[@translate='global.label.welcomeText']")
+	@FindBy (xpath="//h1[@class='welcome-text']")
 	WebElement msgWelcome;
 	
 	@FindBy (xpath="//span[@class='account-balance-font-size']")
@@ -551,7 +551,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {		
-		return reusableActions.isElementVisible(msgWelcome,30);		
+		return reusableActions.isElementVisible(msgWelcome,120);		
 	}
 	
 	/**
@@ -562,6 +562,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifyAccountPage(String strIntialBalance,String strLanguage ) {	
+		reusableActions.getWhenReady(msgWelcome,90);
 		if (strLanguage.equalsIgnoreCase("en"))
     	{	
         	String[] strBalanceValue= strIntialBalance.split("\\.");
@@ -577,7 +578,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
         	Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
         	String strExpectedBalance=Integer.toString(intExpectedBalance);
         	reusableActions.waitForElementVisibility((WebElement) By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
-    	}
+    	}	
 		return reusableActions.isElementVisible(msgWelcome,30);	
        }
 	
@@ -622,6 +623,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
      * @author Chinnarao.Vattam
      */
     public boolean verifyPayment(String strIntialBalance,String strBalanceAfterpay, String strPaymentAmount,String strLanguage ) { 
+    	
     	if (strLanguage.equalsIgnoreCase("en"))
     	{	
       	 Double intialBalance= Double.parseDouble(strIntialBalance);

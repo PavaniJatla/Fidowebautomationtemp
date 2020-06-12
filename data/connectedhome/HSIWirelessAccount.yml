@@ -5,7 +5,6 @@ accountDetails:
    type: Internet
    ban: 920073582
    postalCode: L6R3E4
-   upgradePlan: 75
    downgradePlan: 5
    payment: 10.00
    upgradePlanCost: 65
