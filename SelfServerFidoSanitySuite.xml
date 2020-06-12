@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="2">
-<parameter name="strBrowser" value="saucechrome"/>
+<parameter name="strBrowser" value="chrome"/>
 <parameter name="strLanguage" value="en"/>
 
 	<listeners>
@@ -39,6 +39,16 @@
           <class name="ca.fido.test.tests.selfserve.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
          </classes>
     </test>                           
+           
+           
+         <test name="FidoSS_TC016_FidoCA_PostpaidViewBill">	
+		<classes>		
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_TC016_FidoCA_PostpaidViewBill">
+			</class>									
+		</classes>
+	</test>
+           
            
 	<test name="FidoSS_Regression_TC017_PostpaidViewAndEditProfile">	
 		<classes>		

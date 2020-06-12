@@ -29,9 +29,7 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 	
 	@DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
-        return new Object[][] { { TestDataHandler.tc39.getaccountDetails().getBan()+"#"
-        						+TestDataHandler.tc39.getaccountDetails().getPostalCode()},
-        					{ TestDataHandler.tc40.getaccountDetails().getBan()+"#"
+        return new Object[][] {{ TestDataHandler.tc40.getaccountDetails().getBan()+"#"
         						+TestDataHandler.tc40.getaccountDetails().getPostalCode() } };
     }
 	

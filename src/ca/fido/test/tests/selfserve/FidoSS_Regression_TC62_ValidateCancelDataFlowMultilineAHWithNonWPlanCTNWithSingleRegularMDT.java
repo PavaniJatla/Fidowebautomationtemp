@@ -42,7 +42,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 	}
 	
 	
-	@Test
+	@Test(groups = { "CancelMDT" })
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();
@@ -82,7 +82,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 			reporter.reportLogWithScreenshot("Click on cancel MDT Link");
 			fido_data_management_page.clkCancelMDTLink();			
 
-reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
+			reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
 			fido_data_management_page.clkYesRemoveTopUpButton();
 			reporter.hardAssert(fido_data_management_page.isCancelSuccessdisplayed(),
 					"Cancel MDT success",
