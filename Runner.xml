@@ -10,7 +10,7 @@
 
 
 
- 	<test name="FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan" enabled="false">	
+ 	<test name="FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan" enabled="true">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan">
@@ -42,7 +42,7 @@
     </test>
                       
 
-    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="true">	
+    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
