@@ -494,12 +494,14 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	public void clearMobilePhone() {
 		//for Chrome
 		reusableActions.getWhenVisible(txtMobilePhone).click();	
-				reusableActions.getWhenVisible(txtMobilePhone, 30).clear();				
-				//added extra for Firefox
-				reusableActions.getWhenVisible(txtMobilePhone).click();	
-				reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-				reusableActions.staticWait(1000);		
-				reusableActions.getWhenVisible(txtMobilePhone).sendKeys("");
+		//reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.END));
+		int length = reusableActions.getWhenVisible(txtMobilePhone).getAttribute("value").trim().length();
+		for(int itr=0;itr<length;itr++)
+		{
+			reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));
+			reusableActions.staticWait(1000);
+		}				
+										
 	}
 	
 	/**
