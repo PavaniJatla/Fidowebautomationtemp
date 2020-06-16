@@ -35,20 +35,22 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 
 	@Test
-	public void checkFidoHSIPayNowFunctionality() {
+	public void checkFidoHSIPayNowFunctionalityMobile() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
-		fido_home_page.clkEasylogin();
-		fido_home_page.clkLogin();
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		fido_home_page.clkLoginMobile();
 		fido_login_page.switchToSignInFrame();
-		reporter.reportLogWithScreenshot("Launched the SignIn popup");
+		reporter.reportLogWithScreenshot("Launched the SignIn page");
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
-		//fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Lohin Failed");
+		fido_account_overview_page.clkAccountSelectionDropDown();
+		fido_account_overview_page.selectAccountByType(TestDataHandler.fidoHSIAccount.getaccountDetails().getType());
 		String accountBalanceBeforePayment=fido_account_overview_page.getAccountBalanceBeforePayment();
-		reporter.reportLogWithScreenshot("Launched the Account overview Page");
+		reporter.reportLogWithScreenshot("Launched the Account Page");	
 		fido_account_overview_page.clkPayNow();
 		reporter.reportLogWithScreenshot("Launched the payment widget");
 		fido_payment_page.setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
@@ -56,10 +58,11 @@ public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass
 		fido_payment_page.selectCreditCardOption();
 		// -- Need to be fixed--workaround/
 		fido_payment_page.selectCreditCardOption();
-		reporter.reportLogWithScreenshot("Launched the credit card widget");
+		reporter.reportLogWithScreenshot("set the payment mode");
 
 		// --------------------Pass it from yaml-----------------//
 		fido_payment_page.setCreditCardNumberIFrame(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
+		reporter.reportLogWithScreenshot("set the credit card number");
 		fido_payment_page.selectExpiryMonth(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getExpiryMonth());
 		fido_payment_page.selectExpiryYear(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getExpiryYear());
 		fido_payment_page.setCVVNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getCVV());
@@ -67,10 +70,10 @@ public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass
 		fido_payment_page.clkReviewAndContinue();
 		reporter.reportLogWithScreenshot("payment confirmation widget");
 		fido_payment_page.clkPayNow();
-		reporter.reportLogWithScreenshot("payment processing with pament gateway");
+		reporter.reportLogWithScreenshot("payment processing with payment gateway");		
 		reporter.hardAssert(fido_payment_page.verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
-		reporter.reportLogWithScreenshot("payment success widget");
-		fido_payment_page.clkPaymentConfirmation();
+		reporter.reportLogWithScreenshot("payment success widget");	
+		fido_payment_page.clkPaymentConfirmationMobile();		
 		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, TestDataHandler.fidoConfig.getLanguage());
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();

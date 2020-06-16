@@ -16,6 +16,9 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]")
 	WebElement lnkLogIn;
 	
+	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor') ]")
+	WebElement lnkLogInMobile;
+	
 	@FindBy(xpath="//a[@class='m-navLink']//span[@class='m-navLink__chevron fds-icon-down']")
 	WebElement lnkShop;	
 	
@@ -120,6 +123,14 @@ public class FidoHomePage extends BasePageClass {
 	 */	
 	public void clkLogin() {						
 		reusableActions.getWhenVisible(lnkLogIn,40).click();
+	}
+	
+	/**
+	 * Click on Mobile Login button on the home page
+	 * @author aditya.Dhingra
+	 */	
+	public void clkLoginMobile() {						
+		reusableActions.getWhenVisible(lnkLogInMobile,40).click();
 	}
 	
 	/**
