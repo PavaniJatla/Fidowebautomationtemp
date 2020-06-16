@@ -52,7 +52,7 @@ public class FidoCH_Regression_TC_007_HSIDeleteOfferTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Good News for the Service availability");
 		fido_Shop_internet_page.clkBuyOnline();
 		reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
-		fido_Shop_internet_page.verifyPlanInfomation();
+		fido_Shop_internet_page.selectPlan();
 		reporter.reportLogWithScreenshot("Selected Plan information");
 		fido_cart_summary_page.clkShoppingCartDelete();
 		reporter.reportLogWithScreenshot("Removal confirm popup");

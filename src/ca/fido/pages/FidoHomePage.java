@@ -85,6 +85,10 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath = "//a[@href='/consumer/easyloginriverpage']")
 	WebElement linkeasyloginMobile;
 	
+	@FindBy(xpath = "//div[@class='preloader loading-secondary']")
+	WebElement popLoadingFingerMobile;
+	
+	
 	/**
 	 * To launch Fido home page, this method will be used to replace production page in recover user name flow.
 	 * @param url, String, the url of Fido home page
@@ -190,7 +194,7 @@ public class FidoHomePage extends BasePageClass {
 	 * Click on myAccount button on the home page
 	 * @author chinnarao.vattam
 	 */	
-	public void clkkMobileNavMobile() {
+	public void clkNavMobile() {
 		reusableActions.clickWhenReady(lnkNavMobile,20);
 	}
 	
@@ -216,7 +220,8 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkCheckAvailabilityMobile() {
-			reusableActions.clickIfAvailable(btnCheckAvailabilityMobile,20);			
+    reusableActions.waitForElementInvisibility(popLoadingFingerMobile,60);
+	reusableActions.getWhenReady(btnCheckAvailabilityMobile,20).click();			
 	}
 	
 	/**
@@ -232,7 +237,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkMenuMyAccountAfterLoginMobile() { 
-		reusableActions.getWhenVisible(menuMyAccountAfterLoginMobile, 20).click();
+		reusableActions.getWhenReady(menuMyAccountAfterLoginMobile, 20).click();
 	}
 	
 	/**
@@ -240,7 +245,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkPhonesMobile() {
-		reusableActions.clickWhenReady(lnkPhonesMobile);
+		reusableActions.getWhenReady(lnkPhonesMobile).click();
 	}
 	
 	/**
@@ -248,7 +253,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkPlansMobile() {
-		reusableActions.clickWhenReady(lnkPlansMobile);
+		reusableActions.getWhenReady(lnkPlansMobile).click();
 	}
 	
 	/**
@@ -256,7 +261,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkHomeInternetMenuMobile() {
-		reusableActions.clickWhenReady(menuHomeInternetMobile);
+		reusableActions.getWhenReady(menuHomeInternetMobile).click();
 	}
 		
 }

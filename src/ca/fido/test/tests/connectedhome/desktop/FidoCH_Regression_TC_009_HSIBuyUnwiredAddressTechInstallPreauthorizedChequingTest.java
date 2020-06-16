@@ -58,7 +58,7 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_Shop_internet_page.clkBuyOnline();
         reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
-        fido_Shop_internet_page.verifyPlanInfomation();
+        fido_Shop_internet_page.selectPlan();
         fido_cart_summary_page.clkCheckout();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.setCommunicationDetails();
