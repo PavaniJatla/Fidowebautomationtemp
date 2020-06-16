@@ -226,9 +226,25 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	/**
 	 * Clicks on the 'Continue' button
 	 * @author chinnarao.vattam
+	 * @return true if successful else false
 	 */
-	public void clkContinueAccountRegister() {
-		reusableActions.clickWhenReady(btnContinueAccountRegister,30);
+	public boolean clkContinueAccountRegister() {
+				
+		boolean clickSuccess=false;
+		int count=0;
+		while (count<=2 && !clickSuccess) {
+			System.out.println("Attempt: "+(count+1)+" Trying to find Ban and postcode");
+			reusableActions.clickIfAvailable(btnContinueAccountRegister);			
+			if(reusableActions.isElementVisible(lblErroraccountcancelledOrSuspended, 10))
+			{				
+				count++;
+			}else {				
+				clickSuccess=true;				
+				break;
+			}
+			
+		}
+		return clickSuccess;
 	}
 	
 	/**

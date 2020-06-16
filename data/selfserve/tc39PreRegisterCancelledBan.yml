@@ -1,11 +1,11 @@
 # Account Details -- BAN should be cancelled
 ---
 name: FidoPreRegisterAccount
-email: postpaid731Set2@mailinator.com
+email: postpaid520Set1@mailinator.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 932520158
+   ban: 934226135
    postalCode: M4L2Z8
-   ctn: 4167311476
+   ctn: 4167315314
 ...
