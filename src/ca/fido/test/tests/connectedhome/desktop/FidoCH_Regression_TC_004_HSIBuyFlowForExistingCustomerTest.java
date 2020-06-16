@@ -68,7 +68,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_internet_dashboard_page.clkContinueForInternet();
         reporter.reportLogWithScreenshot("launche ratecard page");
-        fido_Shop_internet_page.verifyPlanInfomationForExistingCustomer(TestDataHandler.fidoWirelessAccount.getaccountDetails().getDowngradePlan());
+        fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoWirelessAccount.getaccountDetails().getDowngradePlan());
         fido_cart_summary_page.clkCheckout();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.clkUserProfileNextForExistingCustomer();

@@ -168,6 +168,10 @@ public class BaseTestClass {
 			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 			break;            
 
+		case "mobile_connectedhome":
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;
+			
 		case "selfserve":
 		case "selfserve_login":
 			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
