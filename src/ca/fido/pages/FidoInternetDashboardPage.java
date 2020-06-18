@@ -231,6 +231,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkChangePackage() {
+		reusableActions.waitForElementVisibility(lnkChangePackage,90);
 		reusableActions.getWhenReady(lnkChangePackage,90).click();
 	}
 	
