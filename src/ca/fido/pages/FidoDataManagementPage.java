@@ -393,7 +393,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 */
 	public void clkCancelMDTLink() {
 		Boolean found = false;
-		for(WebElement row : tableRowsAddData) {
+		for(WebElement row : rowsAddMDTData) {
 			if(found ==false 
 				&&	(row.getText().toLowerCase().contains("cancel")
 				|| row.getText().toLowerCase().contains("annuler"))) {
