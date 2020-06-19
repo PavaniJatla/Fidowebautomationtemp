@@ -500,7 +500,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkAccountSelectionDropDown() {		
-		reusableActions.clickIfAvailable(ddlAccountSelection,5);		
+		reusableActions.getWhenReady(ddlAccountSelection,30).click();		
 	}
 	
 	/**
@@ -509,7 +509,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void selectAccountByType(String strAccountType) {		
-		reusableActions.clickIfAvailable(By.xpath("//div[@class='account-div-cover']/span[text()='"+strAccountType+"']"),5);
+		reusableActions.getWhenReady(By.xpath("//div[@class='account-div-cover']/span[text()='"+strAccountType+"']"),60).click();
 	}
 	
 	/**
