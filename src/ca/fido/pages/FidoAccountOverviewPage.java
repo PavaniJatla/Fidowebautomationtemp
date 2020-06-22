@@ -526,7 +526,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkInternetBadge() {
-		reusableActions.javascriptScrollToMiddleOfPage();
 		reusableActions.getWhenReady(badgeInternet,120).click();
 	}
 	

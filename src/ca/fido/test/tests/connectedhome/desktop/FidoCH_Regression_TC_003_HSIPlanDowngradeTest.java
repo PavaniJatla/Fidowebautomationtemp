@@ -45,13 +45,12 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
-		fido_account_overview_page.selectAccountByType(TestDataHandler.fidoHSIAccountForDowngrade.getaccountDetails().getType());
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		fido_internet_dashboard_page.clkChangePackage();
 		reporter.reportLogWithScreenshot("Launched the packages Page");
-		fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccountForDowngrade.getaccountDetails().getDowngradePlan());
+		fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradePlan());
 		reporter.reportLogWithScreenshot("Selected the package");
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Plan downgarde ways popup has displayed");

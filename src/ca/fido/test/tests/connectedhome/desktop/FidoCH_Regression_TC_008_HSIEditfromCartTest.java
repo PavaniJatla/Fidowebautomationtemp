@@ -39,6 +39,8 @@ public class FidoCH_Regression_TC_008_HSIEditfromCartTest extends BaseTestClass 
 
 	@Test
 	public void checkEditfromCart()  {
+		/*reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();*/
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkEasylogin();
         fido_home_page.clkShop();

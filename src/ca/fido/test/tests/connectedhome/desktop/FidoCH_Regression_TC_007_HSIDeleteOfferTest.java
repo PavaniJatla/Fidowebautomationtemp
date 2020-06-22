@@ -37,6 +37,8 @@ public class FidoCH_Regression_TC_007_HSIDeleteOfferTest extends BaseTestClass {
 
 	@Test
 	public void checkDeleteOffer() {
+	/*	reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();*/
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkEasylogin();
 		fido_home_page.clkShop();

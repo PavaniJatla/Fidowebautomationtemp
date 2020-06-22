@@ -23,7 +23,7 @@
 	</test>
 	
 	 <test name=" Fido login">
-   	<parameter name="strBrowser" value="saucechrome"/>
+   	<parameter name="strBrowser" value="saucesaucechrome"/>
 	<parameter name="strLanguage" value="en"/>
 	<classes>  
      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_002_HSIPlanUpgradeTest"></class>  
@@ -36,7 +36,7 @@
 	</test> 
 	
       <test name=" Fido retailer">
-   	<parameter name="strBrowser" value="chrome"/>
+   	<parameter name="strBrowser" value="saucechrome"/>
 	<parameter name="strLanguage" value="en"/>
 		<classes>   
    		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest"></class>    
