@@ -48,7 +48,6 @@ public class TestDataHandler {
 	public static AccountData tc40;
 	public static AccountData tc02PreRegister;
 	public static AccountData fidoHSIAccount;
-	public static AccountData fidoHSIAccountForDowngrade;
 	public static AccountData fidoWirelessAccount;
 	public static AccountData fidoHSIAccountwithUnwiredAddress;
 	public static AccountData fidoSspHSIAccount;
@@ -91,7 +90,6 @@ public class TestDataHandler {
 		fidoConfig =  YamlHandler.getHSIConfig();
 		sauceSettings = YamlHandler.getSauceSettings("/data/connectedhome/SauceSettings.yml");
         fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
-    	fidoHSIAccountForDowngrade =YamlHandler.getHSIAccountData("HSIAccountForDowngrade");
     	fidoWirelessAccount=YamlHandler.getHSIAccountData("HSIWirelessAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");

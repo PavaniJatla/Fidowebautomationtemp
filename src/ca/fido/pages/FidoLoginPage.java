@@ -100,8 +100,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public void clkLoginInFrame() {		
-		reusableActions.getWhenVisible(btnLogIn,10).click();	   
-		reusableActions.clickIfAvailable(btnSkip,10);
+		reusableActions.getWhenReady(btnLogIn,60).click();	   
+		reusableActions.clickIfAvailable(btnSkip,60);
 	}
 	
 	/**

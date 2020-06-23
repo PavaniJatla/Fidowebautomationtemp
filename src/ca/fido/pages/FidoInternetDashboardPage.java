@@ -231,11 +231,13 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkChangePackage() {
-		reusableActions.waitForElementVisibility(lnkChangePackage,90);
-		reusableActions.getWhenReady(lnkChangePackage,90).click();
+		reusableActions.waitForElementVisibility(lnkChangePackage,180);
+		reusableActions.getWhenReady(lnkChangePackage,180);
+		reusableActions.getWhenReady(lnkChangePackage,180).click();
 	}
 	
 	public void clkChangePackageSsp() {
+		reusableActions.waitForElementVisibility(lnkChangePackage,90);
 		reusableActions.getWhenReady(lnkChangePackage,120).click();
 	}
 
@@ -249,7 +251,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		WebElement pkg = driver.findElement(packageNameLocator);
 		reusableActions.scrollToElement(pkg);
 		reusableActions.waitForElementVisibility(pkg, 180);
-		reusableActions.getWhenReady(packageNameLocator, 90).click();
+		reusableActions.getWhenReady(pkg, 90).click();
 	}
 	
 	/**

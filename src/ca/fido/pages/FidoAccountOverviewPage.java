@@ -549,7 +549,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true, if the account overview page display the Welcome heading, else false
 	 * @author chinnarao.vattam 
 	 */
-	public boolean verifySuccessfulLogin() {		
+	public boolean verifySuccessfulLogin() {	
+		reusableActions.waitForElementVisibility(msgWelcome,120);
 		return reusableActions.isElementVisible(msgWelcome,120);		
 	}
 	
