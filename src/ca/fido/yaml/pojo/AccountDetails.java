@@ -59,7 +59,7 @@ public class AccountDetails {
 		return postalCode;
 	}
 	/**
-	 * @param SwapoutChannel the SwapoutChannel to set
+	 * @param postalCode the postalCode to set
 	 */
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
@@ -270,7 +270,7 @@ public class AccountDetails {
 		return newModem;
 	}
 	/**
-	 * @param new modem the type to set
+	 * @param newModem the type to set
 	 */
 	public void setNewModem(String newModem) {
 		this.newModem = newModem;
@@ -295,7 +295,7 @@ public class AccountDetails {
 		return upgradeBundle;
 	}
 	/**
-	 * @param upgradePlan the upgradePlan to set
+	 * @param upgradeBundle the upgradeBundle to set
 	 */
 	public void setUpgradeBundle(String upgradeBundle) {
 		this.upgradeBundle = upgradeBundle;
@@ -319,7 +319,7 @@ public class AccountDetails {
 		return downgradeBundle;
 	}
 	/**
-	 * @param downgradePlan the downgradePlan to set
+	 * @param downgradeBundle the downgradeBundle to set
 	 */
 	public void setDowngradeBundle(String downgradeBundle) {
 		this.downgradeBundle = downgradeBundle;
@@ -332,7 +332,7 @@ public class AccountDetails {
 		return payment;
 	}
 	/**
-	 * @param SwapoutChannel the SwapoutChannel to set
+	 * @param payment the payment to set
 	 */
 	public void setPayment(String payment) {
 		this.payment = payment;
@@ -356,7 +356,7 @@ public class AccountDetails {
 		return downgradePlanCost;
 	}
 	/**
-	 * @param planCostToBeDowngrade 
+	 * @param downgradePlanCost the downgradePlanCost to set 
 	 */
 	public void setDowngradePlanCost(String downgradePlanCost) {
 		this.downgradePlanCost = downgradePlanCost;

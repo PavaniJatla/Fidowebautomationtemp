@@ -26,7 +26,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  *1. Click on pay now option besides Internet icon in dashboard.
  *2. Fill in the amount and the required credit card/bank details.
  *3. Click on the internet icon in dashboard.
- *4. Click on Review & Confirm
+ *4. Click on Review and Confirm
  *5. Click on confirm button.
  *6. Verify that message conveying successful payment is displayed.
  *

@@ -3,7 +3,6 @@ package ca.fido.yaml.pojo;
 public class Config {
 	
 	private String fidoURL;
-	private String rogersURL;
 	private String browser;
 	private String language;
 	private String cookieUserName;
@@ -69,18 +68,6 @@ public class Config {
 	 */
 	public void setFidoURL(String url) {
 		this.fidoURL = url;
-	}
-	/**
-	 * @return the rogersURL
-	 */
-	public String getRogersURL() {
-		return rogersURL;
-	}
-	/**
-	 * @param rogersURL the rogersURL to set
-	 */
-	public void setRogersURL(String rogersURL) {
-		this.rogersURL = rogersURL;
 	}
 	
 	/**
@@ -168,30 +155,6 @@ public class Config {
 	 */
 	public void setSspURL(String url) {
 		this.sspURL = url;
-	}
-	/**
-	 * @return the rogersURL
-	 */
-	public String getLoginFlow() {
-		return loginFlow;
-	}
-	/**
-	 * @param rogersURL the rogersURL to set
-	 */
-	public void setLoginFlow(String loginFlow) {
-		this.loginFlow = loginFlow;
-	}
-	/**
-	 * @return the rogersURL
-	 */
-	public String getAnonymousFlow() {
-		return anonymousFlow;
-	}
-	/**
-	 * @param rogersURL the rogersURL to set
-	 */
-	public void setAnonymousFlow(String anonymousFlow ) {
-		this.anonymousFlow = anonymousFlow ;
 	}
 	/**
 	 * @return the hupURL
