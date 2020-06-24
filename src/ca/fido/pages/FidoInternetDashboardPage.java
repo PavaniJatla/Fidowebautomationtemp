@@ -261,7 +261,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author Chinnarao.vattam
 	 */
 	public void selectHSIPackageByDatafromSameSpeed(String strBandwidth, String strData ) {		
-		reusableActions.getWhenVisible(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//b[@ng-bind-template='"+strData+"']"),10).click();
+		reusableActions.getWhenVisible(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//b[@ng-bind-template='"+strData+"']"),60).click();
 	}
 	
 	public void selectHSIPackageByData(String strData ) {		

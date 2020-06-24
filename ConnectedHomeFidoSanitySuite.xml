@@ -12,9 +12,9 @@
 		<parameter name="strBrowser" value="saucechrome" />
 		<parameter name="strLanguage" value="en" />
 		<classes>
-			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class>
-			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_007_HSIDeleteOfferTest"></class>
-			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_008_HSIEditfromCartTest"></class>
+		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class> -->
+		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_007_HSIDeleteOfferTest"></class>
+		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_008_HSIEditfromCartTest"></class> -->
 <!-- 			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTest"></class> -->
 		</classes>
 	</test> 
@@ -26,6 +26,6 @@
 			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_011_HSIPayNowTest"></class>
 			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_014_HSIValidateDashboardTest"></class>
 		</classes>
-	</test>
+	</test> 
 </suite>
 
