@@ -23,7 +23,7 @@
 	</test>
 	
 	 <test name=" Fido login">
-   	<parameter name="strBrowser" value="saucesaucechrome"/>
+   	<parameter name="strBrowser" value="saucechrome"/>
 	<parameter name="strLanguage" value="en"/>
 	<classes>  
      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_002_HSIPlanUpgradeTest"></class>  
