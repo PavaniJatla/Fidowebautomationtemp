@@ -1,5 +1,5 @@
-fidoURL: https://www.qa06.fido.ca
-sspURL: https://champ-client-ui.qa01-ssp.app.ocp.stg.rci.rogers.com 
+fidoURL: https://www.qa01.fido.ca
+sspURL: https://uniloginqa01.rogers.com
 language: en
 cookieUserName: bypassfido13@mailinator.com
 cookieUserPassword: rogers123

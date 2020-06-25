@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
 <parameter name="strBrowser" value="chrome"/>
-<parameter name="strLanguage" value="en"/>
+<parameter name="strLanguage" value="fr"/>
 <listeners>
 		<listener class-name="ca.fido.test.listeners.TestListener" />
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
@@ -33,7 +33,7 @@
            
   -->      
   
-  <test name="FidoSS_Sanity_TC_10_UserAddNumberForRecovery" enabled="true">	
+  <test name="FidoSS_Sanity_TC_10_UserAddNumberForRecovery" enabled="false">	
 		<classes>		
 			<class
 				name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_10_UserAddNumberForRecovery">
@@ -50,7 +50,7 @@
          </classes>
     </test>
     
-      <test name="FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan" enabled="true">	
+      <test name="FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan" enabled="false">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan"> </class>
          </classes>
@@ -62,7 +62,7 @@
          </classes>
     </test>  
   
-   <test name="FidoSS_TC005_Prepaid_OneTimeRefill_CC" enabled="true">	
+   <test name="FidoSS_TC005_Prepaid_OneTimeRefill_CC" enabled="false">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_TC005_Prepaid_OneTimeRefill_CC"> </class>
          </classes>
@@ -146,7 +146,7 @@
 		</classes>
 	</test>
 
-	 <test name="FidoSS_Regression_TC018_PostpaidUpdateSIMCard" enabled="true">	
+	 <test name="FidoSS_Regression_TC018_PostpaidUpdateSIMCard" enabled="false">	
 		<classes>                                   
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC018_PostpaidUpdateSIMCard">
@@ -203,7 +203,7 @@
 			 </classes>
     </test>              
         
-	<test name="FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCancelledOrSuspendedBANWhichIsNotLinkedToAnyLegacyProfile" enabled="true">
+	<test name="FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCancelledOrSuspendedBANWhichIsNotLinkedToAnyLegacyProfile" enabled="false">
 		<classes>			
 			<class
 				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCancelledOrSuspendedBANWhichIsNotLinkedToAnyLegacyProfile">
@@ -229,7 +229,7 @@
 			 </classes>
     </test>                
            
-     <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile" enabled="true">	
+     <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile" enabled="false">	
 		<classes>
 			<class
 				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
@@ -237,7 +237,7 @@
 			 </classes>
     </test>                
 	
-	<test name="FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification" enabled="true">	
+	<test name="FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification" enabled="false">	
 		<classes>
 			<class
 				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification">
@@ -310,7 +310,7 @@
              </classes>
 	</test> 
 	
-	 <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine" enabled="true">	
+	 <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
@@ -319,7 +319,7 @@
 	</test> 
 	
 
-      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT" enabled="true">	
+      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT" enabled="false">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
          </classes>
@@ -327,14 +327,14 @@
               
         
 
- <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT" enabled="true">	
+ <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT" enabled="false">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
          </classes>
     </test> 
     
 
-    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="true">	
+    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
@@ -350,7 +350,7 @@
              </classes>
 	</test> 
 	
-	<test name="FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit" enabled="true">	
+	<test name="FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit">
@@ -358,7 +358,7 @@
              </classes>
 	</test> 
 	
-	<test name="FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan" enabled="true">	
+	<test name="FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan">
@@ -366,7 +366,7 @@
              </classes>
 	</test> 
 	
-	<test name="FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan" enabled="true">	
+	<test name="FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan">
@@ -376,7 +376,7 @@
 	
 	
 	
-	 <test name="FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile" enabled="true">	
+	 <test name="FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile">
@@ -392,7 +392,7 @@
              </classes>
 	</test>
 
-	<test name="FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail" enabled="true">	
+	<test name="FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail">
@@ -402,14 +402,14 @@
 	
 
 
-     <test name="FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS" enabled="true">	
+     <test name="FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS">
                     </class>                                       
              </classes>
 	</test> 
-	<test name="FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS" enabled="true">	
+	<test name="FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS">
@@ -417,7 +417,7 @@
              </classes>
 	</test> 
 	
-	<test name="FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS" enabled="true">	
+	<test name="FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS" enabled="false">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS">

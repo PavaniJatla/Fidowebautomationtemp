@@ -9,16 +9,18 @@
 	</listeners>
 
 
-
- 	<test name="FidoSS_TC005_Prepaid_OneTimeRefill_CC" enabled="true">	
+ <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile" enabled="true">	
 		<classes>
                     <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_TC005_Prepaid_OneTimeRefill_CC">
+                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC046_HSI_CX_UpdateProfile">
                     </class>                                       
              </classes>
 	</test> 
+    
 
-	 <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine" enabled="false">	
+ 
+
+	 <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine" enabled="true">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
@@ -26,23 +28,16 @@
              </classes>
 	</test> 
     
-   	 <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine" enabled="false">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
-                    </class>                                       
-             </classes>
-	</test> 
-	
+  
 
-      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT" enabled="false">	
+      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT" enabled="true">	
 		<classes>             
             <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
          </classes>
     </test>
                       
 
-    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="false">	
+    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="true">	
 		<classes>
                     <class
                     name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">

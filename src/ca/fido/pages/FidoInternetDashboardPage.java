@@ -231,10 +231,13 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkChangePackage() {
-		reusableActions.getWhenReady(lnkChangePackage,90).click();
+		reusableActions.waitForElementVisibility(lnkChangePackage,180);
+		reusableActions.getWhenReady(lnkChangePackage,180);
+		reusableActions.getWhenReady(lnkChangePackage,180).click();
 	}
 	
 	public void clkChangePackageSsp() {
+		reusableActions.waitForElementVisibility(lnkChangePackage,90);
 		reusableActions.getWhenReady(lnkChangePackage,120).click();
 	}
 
@@ -244,8 +247,11 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void selectHSIPackageByBandwidth(String strBandwidth) {
-		reusableActions.javascriptScrollToMiddleOfPage();
-		reusableActions.getWhenReady(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']"),60).click();
+	By packageNameLocator = By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update']");
+		WebElement pkg = driver.findElement(packageNameLocator);
+		reusableActions.scrollToElement(pkg);
+		reusableActions.waitForElementVisibility(pkg, 180);
+		reusableActions.getWhenReady(pkg, 90).click();
 	}
 	
 	/**
@@ -255,7 +261,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author Chinnarao.vattam
 	 */
 	public void selectHSIPackageByDatafromSameSpeed(String strBandwidth, String strData ) {		
-		reusableActions.getWhenVisible(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//b[@ng-bind-template='"+strData+"']"),10).click();
+		reusableActions.getWhenVisible(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//b[@ng-bind-template='"+strData+"']"),60).click();
 	}
 	
 	public void selectHSIPackageByData(String strData ) {		

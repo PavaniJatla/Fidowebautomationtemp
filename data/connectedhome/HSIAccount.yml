@@ -3,10 +3,10 @@
 name: FidoHSIAccount
 username: Autodatar520ch11@yahoo.com
 usernamePay: Autodatar520ch12@yahoo.com
-usernameDowngrade: Autodatar520ch11@yahoo.com
-usernameUpgrade: Autodatar520ch11@yahoo.com
-usernameDowngradeSameSpeed: Autodatar520ch11@yahoo.com
-usernameMobile: Autodatar520ch01@yahoo.com
+usernameDowngrade: Autodatar520ch35@yahoo.com
+usernameUpgrade: Autodatar520ch65@yahoo.com
+usernameDowngradeSameSpeed: Autodatar520ch67@yahoo.com
+usernameMobile: Autodatar520ch64@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Internet
@@ -17,7 +17,7 @@ accountDetails:
    upgradePlanCost: 75
    downgradePlanCost: 55
    upgradeDataPlan: Unlimited
-   downgradeDataPlan: 200  GB
+   downgradeDataPlan: 50
    address:
      line1: 706-10 Lisa St,
      line2: BRAMPTON ON L6T 4N4 

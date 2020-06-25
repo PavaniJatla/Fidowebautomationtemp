@@ -117,6 +117,21 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
 	}
 	
+	/**
+	 * To set the Lookup address on the service ability Lookup popup
+	 * @param strAddress address to check the service ability
+	 * @author chinnarao.vattam
+	 */
+	public void setAddressLookupMobile(String strAddress) {		
+		reusableActions.getWhenReady(txtAddressLookup,60).clear();
+		reusableActions.getWhenReady(txtAddressLookup, 20).sendKeys(strAddress);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.TAB);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.SPACE);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
+	}
 	
 	/**
 	 * This method enters character by character in the webElement
@@ -146,8 +161,6 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkCheckAvailabilityConfirmation() {
-		// this wait is mandatory , please do not remove it 	
-		
 		reusableActions.waitForElementVisibility(btnCheckAvailability, 120);
 		reusableActions.waitForElementTobeClickable(btnCheckAvailability, 120);
 		reusableActions.getWhenReady(btnCheckAvailability, 60).click();
@@ -189,23 +202,12 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.waitForElementTobeClickable(btnliveChat, 60);
 		reusableActions.getWhenReady(btnliveChat, 60).click();
 	}
-	
-		
-	/**
-	 * Select the plan based on the cost of the plan on shop Internet  page
-	 * @author chinnarao.vattam
-	 */
-	public void verifyPlanInfomation() {
-		//reusableActions.waitForElementInvisibility(popupBuyOnline);		
-		reusableActions.getWhenReady(By.xpath("//button[@id='add-button-0']"), 30).click();
-	}
-	
 	/**
 	 * Select the plan based on the cost of the plan on shop Internet page for existing customer
 	 * @param strPlanCost cost of the plan to be selected
 	 * @author chinnarao.vattam
 	 */
-	public void verifyPlanInfomationForExistingCustomer(String strPlanCost) {
+	public void selectPlanForExistingCustomer(String strPlanCost) {
 		By planLocator = By.xpath("//ins[contains(text(),'" + strPlanCost+ "')]/ancestor::div[@class='new-ts-package-cost']//button[@id='add-button-0']");
 		reusableActions.waitForElementInvisibility(btnContinueForInternet,180);
 		reusableActions.getWhenReady(planLocator, 60).click();

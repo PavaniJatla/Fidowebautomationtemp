@@ -3,10 +3,12 @@ package ca.fido.pages;
 import java.util.Hashtable;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
@@ -494,12 +496,24 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	public void clearMobilePhone() {
 		//for Chrome
 		reusableActions.getWhenVisible(txtMobilePhone).click();	
-				reusableActions.getWhenVisible(txtMobilePhone, 30).clear();				
-				//added extra for Firefox
-				reusableActions.getWhenVisible(txtMobilePhone).click();	
-				reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-				reusableActions.staticWait(1000);		
-				reusableActions.getWhenVisible(txtMobilePhone).sendKeys("");
+			reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.END));
+			 Capabilities cap = ((RemoteWebDriver) getDriver()).getCapabilities();
+			    String browserName = cap.getBrowserName().toLowerCase();
+			  if(browserName.contains("firefox"))
+			  {
+				  reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a",Keys.BACK_SPACE));
+				  reusableActions.getWhenVisible(txtMobilePhone).clear();
+			  }else
+			  {
+				  int length = reusableActions.getWhenVisible(txtMobilePhone).getAttribute("value").trim().length();
+					for(int itr=0;itr<length;itr++)
+					{
+						reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.BACK_SPACE));
+						reusableActions.staticWait(1000);
+					}				
+						
+			  }
+									
 	}
 	
 	/**

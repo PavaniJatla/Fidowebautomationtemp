@@ -46,7 +46,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTestClass {
 
 	@Test
-	public void checkInternetBuyFlow() {
+	public void checkHSIBuyFlowPickupAtStoreFlow() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
@@ -61,7 +61,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_Shop_internet_page.clkBuyOnline();
         reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
-        fido_Shop_internet_page.verifyPlanInfomation();
+        fido_Shop_internet_page.selectPlan();
         fido_cart_summary_page.clkCheckout();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.setCommunicationDetails();

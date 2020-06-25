@@ -109,6 +109,15 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	}
 	
 	/**
+	 * Verify the "TechInstall"  page
+	 * @return true, if the TechInstall page has launched, else false
+	 */
+	public boolean verifyTechInstalPage() {
+		reusableActions.waitForElementVisibility(btnTechInstalConfirm, 90);
+		return reusableActions.isElementVisible(btnTechInstalConfirm);
+	}
+	
+	/**
 	 * Click the continue button to continue the TechInstall on installation page
 	 * @author Chinnarao.Vattam
 	 */

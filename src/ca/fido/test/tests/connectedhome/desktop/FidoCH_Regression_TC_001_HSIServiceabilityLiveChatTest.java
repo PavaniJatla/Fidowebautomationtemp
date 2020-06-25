@@ -35,7 +35,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends BaseTestClass {
 
 	@Test
-	public void checkInternetBuyFlow() {
+	public void checkHSIServiceabilityLiveChatFlow() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
@@ -57,7 +57,7 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
         reporter.reportLogWithScreenshot("Launched Live chat frame");
         fido_Shop_internet_page.clkCloseChat();
         fido_Shop_internet_page.clkCloseChatConfirm();
-		reporter.hardAssert(fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
+		reporter.softAssert(!fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
         reporter.reportLogWithScreenshot("Service availability confirm Popup");
 	}
 

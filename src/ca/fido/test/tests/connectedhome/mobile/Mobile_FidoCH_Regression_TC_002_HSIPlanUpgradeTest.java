@@ -1,4 +1,4 @@
-package ca.fido.test.tests.connectedhome.desktop;
+package ca.fido.test.tests.connectedhome.mobile;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -36,25 +36,29 @@ import ca.fido.testdatamanagement.TestDataHandler;
  *
  **/
 
-public class FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTestClass {
+public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTestClass {
 
 	@Test
-	public void checkFidoHSIPlanUpgrade() {
+	public void checkFidoHSIPlanUpgradeMobile() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
-		fido_home_page.clkLogin();
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		fido_home_page.clkLoginMobile();
 		fido_login_page.switchToSignInFrame();
-		reporter.reportLogWithScreenshot("Launched the SignIn popup");
+		reporter.reportLogWithScreenshot("Launched the SignIn page");
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgrade());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Lohin Failed");
+		fido_account_overview_page.clkAccountSelectionDropDown();
+		fido_account_overview_page.selectAccountByType(TestDataHandler.fidoHSIAccount.getaccountDetails().getType());
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		fido_internet_dashboard_page.clkChangePackage();
 		reporter.reportLogWithScreenshot("Launched the packages Page");
+		
 		fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan());
 		reporter.reportLogWithScreenshot("Selected the package");
 		fido_internet_dashboard_page.clkConfirmPackageChange();

@@ -367,6 +367,15 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	}
 	
 	/**
+	 * Verify the "Payment"  page
+	 * @return true, if the payment page has launched, else false
+	 */
+	public boolean verifyPaymentPage() {
+		reusableActions.waitForElementVisibility(fraSemaphone, 90);
+		return reusableActions.isElementVisible(fraSemaphone);
+	}
+	
+	/**
 	 * Set the Pre-Auth credit card at semaphone frame on the payment options page
 	 * @param strAccountNumber account number of the Pre-Auth credit card 
 	 * @author chinnarao.vattam

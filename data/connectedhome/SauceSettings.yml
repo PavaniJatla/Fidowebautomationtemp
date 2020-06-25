@@ -6,7 +6,7 @@ sauceOptions:
    maxDuration: 600
    commandTimeout: 300
    idleTimeout: 120
-   build: June 24 Agile Release Sanity -CHFido 
+   build: July 8th Agile Release -CHFido 
 mutableFireFoxCapabilities:  
    platformVersion: Windows 10
    browserVersion: latest

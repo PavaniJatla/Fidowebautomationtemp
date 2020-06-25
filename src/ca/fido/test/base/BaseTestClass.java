@@ -147,7 +147,7 @@ public class BaseTestClass {
 	 * @param strBrowser                 string of browser name
 	 * @param strLanguage                string of language to use
 	 * @param strGroupName               string of group name of the test case
-	 * @param currentTestMethodName 
+	 * @param currentTestMethodName      string of Method Name of the test case
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
@@ -168,6 +168,10 @@ public class BaseTestClass {
 			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 			break;            
 
+		case "mobile_connectedhome":
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;
+			
 		case "selfserve":
 		case "selfserve_login":
 			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
@@ -267,7 +271,7 @@ public class BaseTestClass {
 	 * @param strBrowser                 string of browser name
 	 * @param strLanguage                string of language to use
 	 * @param strGroupName               string of group name of the test case
-	 * @param currentTestMethodName 
+	 * @param currentTestMethodName      string of Method Name  of the test case   
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */

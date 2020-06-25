@@ -119,7 +119,7 @@ public class AccountData {
 		return usernameDowngrade;
 	}
 	/**
-	 * @param username the usernameDowngrade to set
+	 * @param usernameDowngrade the usernameDowngrade to set
 	 */
 	public void setUsernameDowngrade(String usernameDowngrade) {
 		this.usernameDowngrade = usernameDowngrade;
@@ -131,7 +131,7 @@ public class AccountData {
 		return usernameUpgrade;
 	}
 	/**
-	 * @param username the usernameUpgrade to set
+	 * @param usernameUpgrade the usernameUpgrade to set
 	 */
 	public void setUsernameUpgrade(String usernameUpgrade) {
 		this.usernameUpgrade = usernameUpgrade;
@@ -180,7 +180,7 @@ public class AccountData {
 		return environment;
 	}
 	/**
-	 * @param ssp environment the ssp environment to set
+	 * @param environment the ssp environment to set
 	 */
 	public void setEnvironment(String environment) {
 		this.environment = environment;

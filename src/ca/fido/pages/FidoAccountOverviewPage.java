@@ -500,7 +500,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkAccountSelectionDropDown() {		
-		reusableActions.clickIfAvailable(ddlAccountSelection,5);		
+		reusableActions.getWhenReady(ddlAccountSelection,30).click();		
 	}
 	
 	/**
@@ -509,7 +509,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void selectAccountByType(String strAccountType) {		
-		reusableActions.clickIfAvailable(By.xpath("//div[@class='account-div-cover']/span[text()='"+strAccountType+"']"),5);
+		reusableActions.getWhenReady(By.xpath("//div[@class='account-div-cover']/span[text()='"+strAccountType+"']"),60).click();
 	}
 	
 	/**
@@ -526,7 +526,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkInternetBadge() {
-		reusableActions.javascriptScrollToMiddleOfPage();
 		reusableActions.getWhenReady(badgeInternet,120).click();
 	}
 	
@@ -550,7 +549,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true, if the account overview page display the Welcome heading, else false
 	 * @author chinnarao.vattam 
 	 */
-	public boolean verifySuccessfulLogin() {		
+	public boolean verifySuccessfulLogin() {	
+		reusableActions.waitForElementVisibility(msgWelcome,120);
 		return reusableActions.isElementVisible(msgWelcome,120);		
 	}
 	
