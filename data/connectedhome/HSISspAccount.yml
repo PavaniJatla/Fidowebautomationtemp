@@ -3,7 +3,7 @@
 name: FidoSSPHSIAccount
 username: chinnarao.vattam@rci.rogers.ca
 password: IELTS@mar2020
-dealerCode: FHQAB
+dealerCode: F9999
 environment: QA01
 sspEnv: QA01
 accountDetails:

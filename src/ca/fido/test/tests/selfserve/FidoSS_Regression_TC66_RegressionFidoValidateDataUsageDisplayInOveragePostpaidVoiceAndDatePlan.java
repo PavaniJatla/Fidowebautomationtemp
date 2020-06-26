@@ -20,12 +20,12 @@ import ca.fido.testdatamanagement.TestDataHandler;
 /**
 1. Navigate to Fido.ca
 2. login with valid credentials.
-3. Click on Usage & service tab 
+3. Click on Usage and service tab 
 4. Validate Data Overage details 
 
 1. Fido.ca landing page is opened successfully.
 2. Account overview page must be displayed.
-3. Usage & service page should be displayed.
+3. Usage and service page should be displayed.
 4. Data overage size, call out message and Overage details should be displayed
 
 

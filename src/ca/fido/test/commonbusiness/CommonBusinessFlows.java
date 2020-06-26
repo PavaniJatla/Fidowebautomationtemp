@@ -22,8 +22,8 @@ public class CommonBusinessFlows {
 
 	/**
 	 * 
-	 * @param strUserName
-	 * @param strPassword
+	 * @param strUserName for Application
+	 * @param strPassword for Application
 	 * @author Mirza.Kamran
 	 */
 	public void loginApplication(String strUserName, String strPassword) {
@@ -35,8 +35,8 @@ public class CommonBusinessFlows {
 	
 	/**
 	 * Resets the password back from the profile and setting page
-	 * @param oldPassword
-	 * @param newPassword
+	 * @param oldPassword for Application
+	 * @param newPassword for Application
 	 * @author Mirza.Kamran
 	 */
 	public void resetPasswordBack(String oldPassword, String newPassword) {

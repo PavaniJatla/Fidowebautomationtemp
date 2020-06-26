@@ -15,7 +15,7 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 /**
- * To validate bill notification in Billing and Setting section of Profile & Settings page, 
+ * To validate bill notification in Billing and Setting section of Profile and Settings page, 
  * the validation depends on set the mobile phone number in contact preference, if the mobile phone is set, 
  * it will verify the bill notification area of the number and on/off switch, otherwise, it will set the mobile
  * phone first, then verify bill notification area.

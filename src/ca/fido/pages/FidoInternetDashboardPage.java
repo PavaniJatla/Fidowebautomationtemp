@@ -234,6 +234,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lnkChangePackage,180);
 		reusableActions.getWhenReady(lnkChangePackage,180);
 		reusableActions.getWhenReady(lnkChangePackage,180).click();
+		reusableActions.javascriptScrollToMiddleOfPage();
 	}
 	
 	public void clkChangePackageSsp() {
@@ -276,7 +277,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkConfirmPackageChange() {		
-		reusableActions.getWhenVisible(btnConfirmPackageChange).click();		
+		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();		
 	}
 	
 	/**
