@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="1">
-<parameter name="strBrowser" value="saucechrome"/>
+<parameter name="strBrowser" value="chrome"/>
 <parameter name="strLanguage" value="en"/>
 	<listeners>
 		<listener class-name="ca.fido.test.listeners.TestListener" />
@@ -9,7 +9,16 @@
 	</listeners>
 
 
-  <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
+  <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
+		<classes>		
+			<class
+				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC011_PostPaidDashBoard">
+			</class>	
+	    </classes>
+    </test>         
+    
+  
+    <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
 		<classes>		
 			<class
 				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC006_PrepaidUpdateProfile">
@@ -23,5 +32,6 @@
             <class name="ca.fido.test.tests.selfserve.FidoSS_TC012_PostPaidChangeMOP"> </class>
          </classes>
     </test>        
+               
     
 </suite>
