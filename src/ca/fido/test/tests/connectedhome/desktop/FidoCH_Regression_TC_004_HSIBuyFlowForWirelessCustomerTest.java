@@ -45,7 +45,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  *
  **/
 
-public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends BaseTestClass {
+public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends BaseTestClass {
 
 	@Test
 	public void checkInternetBuyFlowForExistingCustomer() {
@@ -68,7 +68,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_internet_dashboard_page.clkContinueForInternet();
         reporter.reportLogWithScreenshot("launche ratecard page");
-        fido_internet_dashboard_page.selectHSIPackageByData(TestDataHandler.fidoWirelessAccount.getaccountDetails().getDowngradeDataPlan());
+        fido_internet_dashboard_page.selectHSIPackageByData(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
         fido_cart_summary_page.clkCheckout();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.clkUserProfileNextForExistingCustomer();
