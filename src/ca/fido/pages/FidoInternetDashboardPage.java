@@ -231,11 +231,14 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkChangePackage() {
-		reusableActions.waitForElementVisibility(lnkChangePackage,90);
-		reusableActions.getWhenReady(lnkChangePackage,90).click();
+		reusableActions.waitForElementVisibility(lnkChangePackage,180);
+		reusableActions.getWhenReady(lnkChangePackage,180);
+		reusableActions.getWhenReady(lnkChangePackage,180).click();
+		reusableActions.javascriptScrollToMiddleOfPage();
 	}
 	
 	public void clkChangePackageSsp() {
+		reusableActions.waitForElementVisibility(lnkChangePackage,90);
 		reusableActions.getWhenReady(lnkChangePackage,120).click();
 	}
 
@@ -249,7 +252,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		WebElement pkg = driver.findElement(packageNameLocator);
 		reusableActions.scrollToElement(pkg);
 		reusableActions.waitForElementVisibility(pkg, 180);
-		reusableActions.getWhenReady(packageNameLocator, 90).click();
+		reusableActions.getWhenReady(pkg, 90).click();
 	}
 	
 	/**
@@ -259,7 +262,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author Chinnarao.vattam
 	 */
 	public void selectHSIPackageByDatafromSameSpeed(String strBandwidth, String strData ) {		
-		reusableActions.getWhenVisible(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//b[@ng-bind-template='"+strData+"']"),10).click();
+		reusableActions.getWhenVisible(By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//b[@ng-bind-template='"+strData+"']"),60).click();
 	}
 	
 	public void selectHSIPackageByData(String strData ) {		
@@ -274,7 +277,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkConfirmPackageChange() {		
-		reusableActions.getWhenVisible(btnConfirmPackageChange).click();		
+		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();		
 	}
 	
 	/**

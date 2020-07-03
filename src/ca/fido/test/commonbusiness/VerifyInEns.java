@@ -38,8 +38,8 @@ public class VerifyInEns extends BaseTestClass{
 	 * To get the verify code in pdf file from ENS and close ENS window.
 	 * @param strPhoneNum, the recovery phone number
 	 * @return String, the verification code.
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws ClientProtocolException 	throws ClientProtocolException
+	 * @throws IOException throws IOException
 	 * @author ning.xue
 	 */
 	public String getVerifyCode(String strPhoneNum) throws ClientProtocolException, IOException {
@@ -59,9 +59,9 @@ public class VerifyInEns extends BaseTestClass{
 	
 	/**
 	 * To get the email notification by clicking the html link in ENS, and switch to the new openned tab.
-	 * @param strAccountId
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @param strAccountId is string Account Id
+	 * @throws ClientProtocolException throws ClientProtocolException
+	 * @throws IOException throws IOException
 	 * @author ning.xue
 	 */
 	public void getEmailVerifyPage(String strAccountId) throws ClientProtocolException, IOException {

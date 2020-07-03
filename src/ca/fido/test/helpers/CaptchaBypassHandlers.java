@@ -26,6 +26,7 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for Self serve Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
+	 * @throws IOException                throws IO Exceptions
 	 */
 		public void captchaBypassURLSelfserveFlows(String strUrl, String strLanguage) throws IOException {
 			driver.get(strUrl+"?setLanguage="+ strLanguage );
@@ -49,6 +50,7 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for Anonymous Buy Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
+	 * @throws IOException                throws IO Exceptions
 	 */
 	public void captchaBypassURLAnonymousBuyFlows(String strUrl, String strLanguage) throws IOException {
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
@@ -62,6 +64,7 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for login Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
+	 * @throws IOException                throws IO Exceptions
 	 */
 	public void captchaBypassURLLoginFlows(String strUrl, String strLanguage) throws IOException {
 		driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");		

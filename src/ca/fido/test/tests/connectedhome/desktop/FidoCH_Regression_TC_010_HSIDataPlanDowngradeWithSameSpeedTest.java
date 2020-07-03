@@ -44,10 +44,8 @@ public class FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest exte
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
-		fido_account_overview_page.clkAccountSelectionDropDown();
-		fido_account_overview_page
-				.selectAccountByType(TestDataHandler.fidoHSIAccountForDowngrade.getaccountDetails().getType());
+		fido_login_page.switchOutOfSignInFrame();
+		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");

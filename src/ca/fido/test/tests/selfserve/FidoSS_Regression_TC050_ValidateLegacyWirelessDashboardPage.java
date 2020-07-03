@@ -19,7 +19,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
  * The test will verify post paid account data and talk usage section of wireless dash board,
- * the test will be run for account which has Data, Talk & Text plan.
+ * the test will be run for account which has Data, Talk and Text plan.
  * The test include both scenarios of limited talk or unlimited talk.
  * @author Ning.Xue
  *
