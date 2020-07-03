@@ -1,12 +1,13 @@
 # Account Details -- BAN with single line
 ---
 name: FidoPreRegisterAccount
-username: singlelinectn520QA1Set1@yahoo.com
+username: singlelinectn520QA01Set2@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 934262684
+   ban: 934262726
    postalCode: M4L2Z8
    ctn: 4167315647
-   email: singlelinectn520QA1Set1@yahoo.com
+   recoveryNumber: 1234567890
+   email: singlelinectn520QA01Set2@yahoo.com
 ...

@@ -33,8 +33,9 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 	
 	@DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
-        return new Object[][] {           	
+        return new Object[][] {           	        	
         	{
+        		
                           	TestDataHandler.tc41.getaccountDetails().getBan()+"#"
                                   	  +TestDataHandler.tc41.getaccountDetails().getPostalCode()+"#"
                                   	  +TestDataHandler.tc41.getaccountDetails().getEmail()},
@@ -59,7 +60,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 		reporter.reportLogWithScreenshot("Register the BAN.");
 		fido_account_registration_page.clkContinueAccountRegister();
 		
-		String strPassword = TestDataHandler.tc0301.getPassword();
+ 		String strPassword = TestDataHandler.tc0301.getPassword();
 		String strEmail = strBanPostcodeEmail.split("#")[2];
 		if (fido_account_registration_page.isBtnSendEmailDisplayed()) {
 			fido_account_registration_page.clkBtnSendEmail();
