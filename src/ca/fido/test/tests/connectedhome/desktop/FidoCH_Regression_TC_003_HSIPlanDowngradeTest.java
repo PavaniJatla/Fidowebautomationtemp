@@ -45,6 +45,12 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
+		}
+		else
+		{
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
@@ -56,7 +62,8 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Plan downgarde ways popup has displayed");
 		reporter.hardAssert(fido_internet_dashboard_page.verifyDowngradePopup(),"Plan downgarde ways popup has displayed","Plan downgarde ways popup hasn't displayed");
-	}
+		}
+		}
 
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})

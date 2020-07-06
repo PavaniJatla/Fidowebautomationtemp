@@ -46,6 +46,12 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
+		}
+		else
+		{
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		String accountBalanceBeforePayment=fido_account_overview_page.getAccountBalanceBeforePayment();
 		reporter.reportLogWithScreenshot("Launched the Account overview Page");
@@ -75,7 +81,8 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
 		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.fidoConfig.getLanguage()),"Payment Success","Payment Failed");
-	}
+		}
+		}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method)

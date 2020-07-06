@@ -56,6 +56,15 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the credentials");
 		fido_login_page.clkLoginInFrame();
+		fido_login_page.switchOutOfSignInFrame();
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
+		}
+		else
+		{
+		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.reportLogWithScreenshot("Launched the Account Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Home Internet has selected");        
@@ -115,7 +124,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");	
-        
+		}
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})

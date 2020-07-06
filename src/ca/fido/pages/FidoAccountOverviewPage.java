@@ -550,8 +550,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {	
-		reusableActions.waitForElementVisibility(msgWelcome,120);
-		return reusableActions.isElementVisible(msgWelcome,120);		
+		return reusableActions.isElementVisible(infoAccountBalance,60);		
 	}
 	
 	/**
@@ -587,7 +586,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true if login fail message is displayed, otherwise false.
 	 */
 	public Boolean verifyLoginFailMsgIframe() {
-		return reusableActions.isElementVisible(failLoginDiv, 10);
+		return reusableActions.isElementVisible(failLoginDiv, 30);
 	}
 	
 	/**
