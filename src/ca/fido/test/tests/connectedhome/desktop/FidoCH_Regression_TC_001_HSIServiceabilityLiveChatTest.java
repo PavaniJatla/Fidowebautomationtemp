@@ -36,6 +36,8 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
 
 	@Test
 	public void checkHSIServiceabilityLiveChatFlow() {
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();

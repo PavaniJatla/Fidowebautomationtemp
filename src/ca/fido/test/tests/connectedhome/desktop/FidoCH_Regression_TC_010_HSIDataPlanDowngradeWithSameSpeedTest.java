@@ -36,6 +36,8 @@ public class FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest exte
 
 	@Test
 	public void checkFidoHSIPlanDowngrade() {
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -44,13 +46,13 @@ public class FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest exte
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
-		fido_login_page.switchOutOfSignInFrame();
 		if(fido_account_overview_page.verifyLoginFailMsgIframe())
 		{
 		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
 		}
 		else
 		{
+		fido_login_page.switchOutOfSignInFrame();
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();

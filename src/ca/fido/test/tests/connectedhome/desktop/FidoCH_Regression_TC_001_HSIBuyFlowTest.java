@@ -47,8 +47,8 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
 
 	@Test
 	public void checkInternetBuyFlow() {
-		/*reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();*/
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
