@@ -586,7 +586,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true if login fail message is displayed, otherwise false.
 	 */
 	public Boolean verifyLoginFailMsgIframe() {
-		return reusableActions.isElementVisible(failLoginDiv, 30);
+		return reusableActions.isElementVisible(failLoginDiv, 10);
 	}
 	
 	/**
