@@ -9,6 +9,9 @@
 	</listeners>
      
 
+
+
+
     <test name="FidoSS_Regression_TC046_HSI_CX_UpdateProfile" enabled="true">	
 		<classes>
                     <class
@@ -17,50 +20,5 @@
              </classes>
 	</test> 
 		
-	
-	 <test name="FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine" enabled="false">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine">
-                    </class>                                       
-             </classes>
-	</test> 
-	
 
-      <test name="FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT" enabled="false">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-         </classes>
-    </test>
-              
-        
-
- <test name="FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT" enabled="false">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPlanCTNWithSingleRegularMDT"> </class>
-         </classes>
-    </test> 
-    
-
-    <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT" enabled="false">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
-                    </class>                                       
-             </classes>
-	</test> 
-    
-  
-	<test name="FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit" enabled="false">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit">
-                    </class>                                       
-             </classes>
-	</test> 	
-	
-
-	
-			
-	
 </suite>

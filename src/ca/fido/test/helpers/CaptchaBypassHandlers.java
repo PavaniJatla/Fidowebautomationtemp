@@ -40,9 +40,10 @@ public class CaptchaBypassHandlers {
 		} else {
 			strBaseUrl = strUrl.substring(0, strUrl.lastIndexOf("ca")+2);
 		}
-		//Use https url in config.yml, replace https with http here will by pass the certificate issue	
+		//Use https url in config.yml, replace https with http here will by pass the certificate issue
+		//.replace("https", "http")
 		Cookie captchBypass = new Cookie ("temp_token_f",
-		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl.replace("https", "http")));			
+		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl));			
 		driver.manage().addCookie(captchBypass);
     }
 	
