@@ -64,7 +64,7 @@ public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest exte
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
-		//reporter.hardAssert(fido_ssp_retailer_shop_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");	
+
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})

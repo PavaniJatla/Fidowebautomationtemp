@@ -99,10 +99,12 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         fido_credit_check_page.clkCreditCheckConsent();
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
-        fido_technical_installation_page.verifyTechInstalPage();
+        
+        reporter.hardAssert(fido_technical_installation_page.verifyTechInstalPage(),"TechInstall page has Launched","TechInstall page has not Launched");
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
         fido_technical_installation_page.clkTechInstalConfirm();
-        fido_payment_options_page.verifyPaymentPage();
+        
+        reporter.hardAssert(fido_payment_options_page.verifyPaymentPage(),"Payment Mode page has Launched","Payment Mode page has not Launched");
         reporter.reportLogWithScreenshot("Payment page has launched");        
         fido_payment_options_page.setCreditCardNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
         reporter.reportLogWithScreenshot("Set Credit Card Number"); 
@@ -112,7 +114,8 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         fido_payment_options_page.setCVV();     
         reporter.reportLogWithScreenshot("Set the CVV");
         fido_payment_options_page.clkPaymentConfirm();    
-        fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions();
+        
+        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(),"Agreement has Launched","Agreement has not Launched");
         reporter.reportLogWithScreenshot("Order review page has launched");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();

@@ -47,12 +47,12 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		fido_login_page.clkLoginInFrame();
 		if(fido_account_overview_page.verifyLoginFailMsgIframe())
 		{
-		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
+			reporter.reportLogFail("Login Faied",true) ;			
 		}
 		else
 		{
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");

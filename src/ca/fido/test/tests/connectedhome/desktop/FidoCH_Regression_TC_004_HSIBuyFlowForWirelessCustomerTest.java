@@ -60,12 +60,12 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 		fido_login_page.clkLoginInFrame();
 		if(fido_account_overview_page.verifyLoginFailMsgIframe())
 		{
-		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
+			reporter.reportLogFail("Login Faied",true) ;			
 		}
 		else
 		{
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
@@ -118,7 +118,6 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
         reporter.reportLogWithScreenshot("Payment details has set");
 	    fido_payment_options_page.clkPaymentConfirm();
         reporter.reportLogWithScreenshot("Order review page has launched");
-        //reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Plan information has verifed", "Plan information has failed");
         reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();

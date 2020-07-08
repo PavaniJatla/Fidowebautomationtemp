@@ -53,12 +53,14 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
 		reporter.reportLogWithScreenshot("Entered the Dealercode");
 		retailer_champ_page.clkSubmit();
-		retailer_champ_page.verifyAuthorized();
+		
+		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
 		reporter.reportLogWithScreenshot("SSP launchpad has launched");
 		retailer_champ_page.selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
 		reporter.reportLogWithScreenshot("Launched the Customer Information Security Popup");
 		fido_ssp_retailer_shop_page.clkSecurityAccept();
-		fido_ssp_retailer_home_page.verifyLoginBanner();
+		
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
 		reporter.reportLogWithScreenshot("SSP dashboard has launched");
 		fido_ssp_retailer_home_page.setAccountNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan());
 		fido_ssp_retailer_home_page.setPostalCode(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getPostalCode());

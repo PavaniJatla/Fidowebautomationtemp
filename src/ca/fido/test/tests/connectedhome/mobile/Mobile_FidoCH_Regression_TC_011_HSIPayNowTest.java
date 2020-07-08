@@ -46,8 +46,14 @@ public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+			reporter.reportLogFail("Login Faied",true) ;			
+		}
+		else
+		{
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		String accountBalanceBeforePayment=fido_account_overview_page.getAccountBalanceBeforePayment();
 		reporter.reportLogWithScreenshot("Launched the Account Page");	
@@ -79,7 +85,7 @@ public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
 		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.fidoConfig.getLanguage()),"Payment Success","Payment Failed");
 	}
-
+	}
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {

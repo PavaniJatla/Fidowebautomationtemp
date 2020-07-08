@@ -48,12 +48,12 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		fido_login_page.clkLoginInFrame();
 		if(fido_account_overview_page.verifyLoginFailMsgIframe())
 		{
-		reporter.reportLogWithScreenshot("Login Failed, Login Successful");			
+			reporter.reportLogFail("Login Faied",true) ;		
 		}
 		else
 		{
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		String accountBalanceBeforePayment=fido_account_overview_page.getAccountBalanceBeforePayment();
 		reporter.reportLogWithScreenshot("Launched the Account overview Page");
 		fido_account_overview_page.clkPayNow();

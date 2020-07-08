@@ -63,12 +63,14 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
 		reporter.reportLogWithScreenshot("Entered the Dealercode");
 		retailer_champ_page.clkSubmit();
-		retailer_champ_page.verifyAuthorized();
+		
+		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
 		reporter.reportLogWithScreenshot("SSP launchpad has launched");
 		retailer_champ_page.selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
 		reporter.reportLogWithScreenshot("Launched the Customer Information Security Popup");
 		fido_ssp_retailer_shop_page.clkSecurityAccept();
-		fido_ssp_retailer_home_page.verifyLoginBanner();
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
+		
 		reporter.reportLogWithScreenshot("SSP dashboard has launched");		
 		fido_ssp_retailer_home_page.selectEnvironment(TestDataHandler.fidoSspHSIAccount.getEnvironment());
 		reporter.reportLogWithScreenshot("Shop home page has Lanched");
@@ -113,16 +115,12 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
-     /*   fido_technical_installation_page.clkFulfillmentTechInstall();        
-        fido_technical_installation_page.clkTechInstallSlot();*/
-        reporter.reportLogWithScreenshot("selected slot for Tech-Install");
         fido_technical_installation_page.clkTechInstalConfirm();      
         reporter.reportLogWithScreenshot("Order review page has launched");
-        //reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Plan information has verifed", "Plan information has failed");
-        //reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
-		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
-		fido_internet_package_change_review_order_page.verifyFidoTermsAndConditionsSsp();
+		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();	
+		
+		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditionsSsp(),"Fido Terms And Conditions are verified","Fido Terms And Conditions are not verified");
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Confirmation and details page");

@@ -52,6 +52,7 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_Shop_internet_page.clkLiveChat();
         fido_Shop_internet_page.verifyLiveChat();
+		reporter.softAssert(fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has opened", "Live chat frame hasn't opened");
         reporter.reportLogWithScreenshot("Launched Live chat frame");
         fido_Shop_internet_page.clkMinimizeChat();
         reporter.reportLogWithScreenshot("Live chat frame has minimized");
