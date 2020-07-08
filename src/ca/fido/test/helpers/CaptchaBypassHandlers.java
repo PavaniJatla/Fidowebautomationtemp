@@ -72,7 +72,7 @@ public class CaptchaBypassHandlers {
 		driver.get(strUrl+"?setLanguage="+ strLanguage );
 		String strCookieUserName= TestDataHandler.fidoConfig.getCookieUserName();
 		String strCookieUserPassword= TestDataHandler.fidoConfig.getCookieUserPassword();			
-		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl.replace("https", "http")));
+		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl));//.replace("https", "http")));
 		driver.manage().addCookie(captchBypass);
   }
 	

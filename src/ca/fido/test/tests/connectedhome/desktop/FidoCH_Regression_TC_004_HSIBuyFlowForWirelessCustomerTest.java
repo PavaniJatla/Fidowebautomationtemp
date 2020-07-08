@@ -45,10 +45,12 @@ import ca.fido.testdatamanagement.TestDataHandler;
  *
  **/
 
-public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends BaseTestClass {
+public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends BaseTestClass {
 
 	@Test
 	public void checkInternetBuyFlowForExistingCustomer() {
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -56,6 +58,15 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the credentials");
 		fido_login_page.clkLoginInFrame();
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+			reporter.reportLogFailWithScreenshot("Login Failed");			
+		}
+		else
+		{
+		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.reportLogWithScreenshot("Launched the Account Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Home Internet has selected");        
@@ -68,7 +79,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_internet_dashboard_page.clkContinueForInternet();
         reporter.reportLogWithScreenshot("launche ratecard page");
-        fido_internet_dashboard_page.selectHSIPackageByData(TestDataHandler.fidoWirelessAccount.getaccountDetails().getDowngradeDataPlan());
+        fido_internet_dashboard_page.selectHSIPackageByData(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
         fido_cart_summary_page.clkCheckout();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.clkUserProfileNextForExistingCustomer();
@@ -107,7 +118,6 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
         reporter.reportLogWithScreenshot("Payment details has set");
 	    fido_payment_options_page.clkPaymentConfirm();
         reporter.reportLogWithScreenshot("Order review page has launched");
-        //reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Plan information has verifed", "Plan information has failed");
         reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
@@ -115,7 +125,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest extends 
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");	
-        
+		}
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})

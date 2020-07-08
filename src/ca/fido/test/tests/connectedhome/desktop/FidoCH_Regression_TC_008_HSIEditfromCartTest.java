@@ -39,10 +39,9 @@ public class FidoCH_Regression_TC_008_HSIEditfromCartTest extends BaseTestClass 
 
 	@Test
 	public void checkEditfromCart()  {
-		/*reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();*/
-		reporter.reportLogWithScreenshot("Launched the Home Page");
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
+		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the Internet Page");
@@ -63,7 +62,7 @@ public class FidoCH_Regression_TC_008_HSIEditfromCartTest extends BaseTestClass 
         reporter.reportLogWithScreenshot("Confirm Internet Package Update Popup to confiram the new plan");     
         fido_Shop_internet_page.clkUpdateCart(); 
         reporter.reportLogWithScreenshot("Cart-summary Page with the upgarded package");
-        //reporter.hardAssert(fido_Shop_internet_page.verifyDownloadSpeed(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost()), "Edit cart Passed", "Edit cart Failed");      
+        reporter.hardAssert(fido_Shop_internet_page.verifyDownloadSpeed(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost()), "Edit cart Passed", "Edit cart Failed");      
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})

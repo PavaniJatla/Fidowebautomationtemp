@@ -50,8 +50,15 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
+		
+		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		{
+			reporter.reportLogFailWithScreenshot("Login Failed");			
+		}
+		else
+		{
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
@@ -61,16 +68,18 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		reporter.reportLogWithScreenshot("Selected the package");
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Order review page has launched");
-		reporter.softAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verifed the Plan Information","Plan Information Verification has failed");
+		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verifed the Plan Information","Plan Information Verification has failed");
 	       reporter.reportLogWithScreenshot("Order review page has launched");
-		reporter.softAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(),"Verifed the Terms And Conditions","Terms And Conditions Verification has failed");
+		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(),"Verifed the Terms And Conditions","Terms And Conditions Verification has failed");
 		fido_internet_package_change_review_order_page.chkConsentCheckbox();
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		reporter.hardAssert(fido_internet_package_change_review_order_page.verifySubmitButtonEnabled(),"button enabled","button disabled");
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
-	}
+	   }
+		}
+	
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {

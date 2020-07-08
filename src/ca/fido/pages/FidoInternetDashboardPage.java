@@ -266,7 +266,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	}
 	
 	public void selectHSIPackageByData(String strData ) {		
-		reusableActions.getWhenVisible(By.xpath("//b[@ng-bind-template='"+strData+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']"),60).click();
+		reusableActions.getWhenVisible(By.xpath("//b[@ng-bind-template='"+strData+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']"),90).click();
 	}
 	
 	public void selectHSIPackageByData() {
