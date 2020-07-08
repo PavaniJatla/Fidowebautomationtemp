@@ -48,7 +48,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		fido_login_page.clkLoginInFrame();
 		if(fido_account_overview_page.verifyLoginFailMsgIframe())
 		{
-			reporter.reportLogFail("Login Failed",true) ;		
+			reporter.reportLogFailWithScreenshot("Login Failed");	
 		}
 		else
 		{
