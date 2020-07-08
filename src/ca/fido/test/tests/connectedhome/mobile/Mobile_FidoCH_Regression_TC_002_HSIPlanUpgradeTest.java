@@ -53,7 +53,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		
 		if(fido_account_overview_page.verifyLoginFailMsgIframe())
 		{
-			reporter.reportLogFail("Login Faied",true) ;			
+			reporter.reportLogFail("Login Failed",true) ;			
 		}
 		else
 		{
