@@ -242,7 +242,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	
 	public boolean  verifyDownloadSpeed(String strPlanCost) {
-		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'" + strPlanCost+"')]"), 30);
+		return reusableActions.isElementVisible(By.xpath("//div[@class='subtotal-holder']//span[@price='" + strPlanCost+"']"), 30);
 	}
 
 	/**
