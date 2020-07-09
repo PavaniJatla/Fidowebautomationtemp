@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Self Serve Fido Tests SS" parallel="tests" thread-count="2">
+<suite name="Fido Sanity Tests SS" parallel="tests" thread-count="2">
 <parameter name="strBrowser" value="saucechrome"/>
 <parameter name="strLanguage" value="en"/>
 
@@ -9,70 +9,22 @@
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
 
- <test name="FidoSS_Regression_TC011_PostPaidDashBoard">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC011_PostPaidDashBoard">
-			</class>	
+ 	<test name="Fido Sanity Test Group1"  enabled="true">	
+		<classes>	
+			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>	
+			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>	
+			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC012_PostPaidChangeMOP"> </class>
+			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword"> </class> 
 	    </classes>
     </test>         
-    
-  
-    <test name="FidoSS_Regression_TC006_PrepaidUpdateProfile">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC006_PrepaidUpdateProfile">
-			</class>	
-	    </classes>
-    </test>         
-    	
-    
-	<test name="FidoSS_TC012_PostPaidChangeMOP">	
-		<classes>             
-            <class name="ca.fido.test.tests.selfserve.FidoSS_TC012_PostPaidChangeMOP"> </class>
-         </classes>
-    </test>        
-           
-           
-	<test name="FidoSS_TC013_FidoCA_PostpaidPaymentCC">	
+     
+	<test name="Fido Sanity Test Group2"  enabled="true">	
 		<classes>   
-          <class name="ca.fido.test.tests.selfserve.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC017_PostpaidViewAndEditProfile"> </class>	
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class> 
          </classes>
     </test>                           
-           
-           
-         <test name="FidoSS_TC016_FidoCA_PostpaidViewBill">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_TC016_FidoCA_PostpaidViewBill">
-			</class>									
-		</classes>
-	</test>
-           
-           
-	<test name="FidoSS_Regression_TC017_PostpaidViewAndEditProfile">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC017_PostpaidViewAndEditProfile">
-			</class>									
-		</classes>
-	</test>
-
-		
-	<test name="FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">	
-		<classes>
-               <class
-               name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword">
-               </class>                                       
-        </classes>
-	</test> 
-	
-	<test name="FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine">	
-		<classes>
-                    <class
-                    name="ca.fido.test.tests.selfserve.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine">
-                    </class>                                       
-             </classes>
-	</test> 
 	
 </suite>
