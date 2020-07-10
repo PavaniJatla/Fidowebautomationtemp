@@ -51,14 +51,9 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
 		
-		if(fido_account_overview_page.verifyLoginFailMsgIframe())
-		{
-			reporter.reportLogFailWithScreenshot("Login Failed");			
-		}
-		else
-		{
+		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
@@ -78,7 +73,6 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
 	   }
-		}
 	
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
