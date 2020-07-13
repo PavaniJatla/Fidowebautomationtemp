@@ -205,7 +205,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>ConnectedHomeFidoSanitySuite.xml</suiteXmlFile>
+                                <suiteXmlFile>ConnectedHomeFidoSanityPack.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
