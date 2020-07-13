@@ -8,7 +8,7 @@
 		<listener class-name="ca.fido.test.listeners.TestListener" />
 	</listeners>
  	 <test name=" Fido login">
-		<parameter name="strBrowser" value="chrome" />
+		<parameter name="strBrowser" value="saucechrome" />
 		<parameter name="strLanguage" value="en" />
 		<classes>
 			<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_014_HSIValidateDashboardTest"></class>  
