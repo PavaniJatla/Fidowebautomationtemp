@@ -24,13 +24,22 @@ public class FidoShopInternetPage extends BasePageClass {
 
 	@FindBy(id = "addressLookup")
 	WebElement txtAddressLookup;
-
+	
+	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-borders ds-bgcolor-white ds-brcolor-black ds-color-black']")
+	WebElement txtAddressLookupContainer;
+	
 	@FindBy(xpath = "//ins[@translate='global.cta.checkAvailability']")
 	WebElement btnCheckAvailability;
 
+	@FindBy(xpath = "//button[@class='mr-sm-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large']")
+	WebElement btnAvailabilityCheck;
+	
 	@FindBy(xpath = "//div[@class='col-xs-6 col-sm-3 modal-serviceability-options modal-serviceability-options-gap-first']/img[@class='modal-serviceability-image']")
 	WebElement btnBuyOnline;
-
+	
+	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -large ng-star-inserted']")
+	WebElement btnBuyNow;
+	
 	@FindBy(xpath = "//div[@class='modal-chat bcStatic']")
 	WebElement btnliveChat;
 		
@@ -122,6 +131,24 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @param strAddress address to check the service ability
 	 * @author chinnarao.vattam
 	 */
+	public void setInternetAddressLookup(String strAddress) {		
+		reusableActions.getWhenReady(txtAddressLookupContainer,60).click();
+		reusableActions.getWhenReady(txtAddressLookup,60).clear();
+		reusableActions.getWhenReady(txtAddressLookup, 20).sendKeys(strAddress);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.TAB);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.SPACE);
+		reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
+		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
+	}
+	
+	/**
+	 * To set the Lookup address on the service ability Lookup popup
+	 * @param strAddress address to check the service ability
+	 * @author chinnarao.vattam
+	 */
 	public void setAddressLookupMobile(String strAddress) {		
 		reusableActions.getWhenReady(txtAddressLookup,60).clear();
 		reusableActions.getWhenReady(txtAddressLookup, 20).sendKeys(strAddress);
@@ -160,12 +187,22 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * Click on availability confirmation button on the service ability Lookup popup
 	 * @author chinnarao.vattam
 	 */
+	public void clkServiceAvailabilityCheck() {
+		reusableActions.waitForElementVisibility(btnAvailabilityCheck, 120);
+		reusableActions.waitForElementTobeClickable(btnAvailabilityCheck, 120);
+		reusableActions.getWhenReady(btnAvailabilityCheck, 60).click();
+		reusableActions.staticWait(6000);
+	}
+	
+	/**
+	 * Click on availability confirmation button on the service ability Lookup popup
+	 * @author chinnarao.vattam
+	 */
 	public void clkCheckAvailabilityConfirmation() {
 		reusableActions.waitForElementVisibility(btnCheckAvailability, 120);
 		reusableActions.waitForElementTobeClickable(btnCheckAvailability, 120);
 		reusableActions.getWhenReady(btnCheckAvailability, 60).click();
 	}
-	
 	
 	/**
 	 * Click on buy online button on the buy options popup
@@ -193,6 +230,30 @@ public class FidoShopInternetPage extends BasePageClass {
 	}
 		
 	/**
+	 * Click on buy online button on the buy options popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkBuyNow() {
+		if (reusableActions.isElementVisible(btnBuyNow,90))
+		{
+			reusableActions.clickWhenReady(btnBuyNow, 20);
+		}
+		else if (reusableActions.isElementVisible(frmMultipleAddresses,30))
+		{
+			reusableActions.getWhenReady(rdoMultipleAddressesOptionOne, 10).click();
+			reusableActions.getWhenReady(btnSpecificaddress, 40).click();
+			reusableActions.clickWhenReady(btnBuyNow, 60);
+		} 		
+		else if (reusableActions.isElementVisible(frmMultipleAddresses,30))
+		{   			
+			reusableActions.getWhenReady(rdoMultipleAddressesOptionTwo, 10).click();
+			reusableActions.getWhenReady(btnSpecificaddress, 60).click();
+			reusableActions.clickWhenReady(btnBuyNow, 60);
+		}
+		else 		
+			throw new NoSuchElementException("Given Address dosen't have the service");	
+	}
+	/**
 	 * Click on availability confirmation button on the service ability Lookup popup
 	 * @author chinnarao.vattam
 	 */
@@ -219,6 +280,14 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void selectPlan() {
 		reusableActions.getWhenReady(By.xpath("//button[@id='add-button-0']"), 60).click();		
+	}
+	
+	/**
+	 * Select the plan the plan on shop Internet page
+	 * @author chinnarao.vattam
+	 */
+	public void selectInternetPlan(String strDowngradeDataPlan, String strUpgradePlanCost) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 90).click();		
 	}
 	
 	public void selectPlanforEdit() {

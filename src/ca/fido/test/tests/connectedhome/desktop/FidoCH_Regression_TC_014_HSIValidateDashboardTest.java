@@ -53,9 +53,12 @@ public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestC
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
-		reporter.softAssert(fido_internet_dashboard_page.verifyIfPlanInformationLoaded(),"Verifed the Plan Information Loaded link","Plan Information Loaded link Verification has failed");
-		reporter.softAssert(fido_internet_dashboard_page.verifyIfUsageInfoDisplayed(),"Verifed the Usage Info Displayed link","Usage Info Displayed link Verification has failed");
-		reporter.softAssert(fido_internet_dashboard_page.verifyIfDailyUsageChartVisible(),"Verifed Daily Usage Chart Visible link","Usage Info Displayed link Verification has failed");
+		reporter.softAssert(fido_internet_dashboard_page.verifyManageSettings(),"Verifed the Manage Settings link","Manage Settings link Verification has failed");
+    	reporter.softAssert(fido_internet_dashboard_page.verifyIfPlanInformationLoaded(),"Verifed the Plan Information Loaded link","Plan Information Loaded link Verification has failed");
+		reporter.softAssert(fido_internet_dashboard_page.verifyIfUsageInfoDisplayed(),"Verifed the Data Usage summary","Data Usage summary Verification has failed");
+		reporter.softAssert(fido_internet_dashboard_page.verifyIfDailyUsageLinkVisible(),"Verifed Daily Usage link","Daily Usage link Verification has failed");
+		reporter.softAssert(fido_internet_dashboard_page.verifyIfMonthlyUsageLinkVisible(),"Verifed Monthly Usage link","Monthly Usage link Verification has failed");
+		reporter.softAssert(fido_internet_dashboard_page.verifyIfChangePackageLinkVisible(),"Verifed Change Package link","Change Package link Verification has failed");
 		reporter.reportLogWithScreenshot("Internet Dashboard Page");
 	}
 
