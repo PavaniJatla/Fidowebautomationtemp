@@ -194,6 +194,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 			if(testResult.getStatus() == ITestResult.SUCCESS) {
 				if(ExtentTestManager.getFailFlag()) {
 					Reporter.getCurrentTestResult().setStatus(ITestResult.FAILURE);
+					Reporter.getCurrentTestResult().setThrowable(new AssertionError("Assertion Failed"));
 				}
 			}
 		}
