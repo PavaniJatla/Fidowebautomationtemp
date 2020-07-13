@@ -284,6 +284,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	
 	/**
 	 * Select the plan the plan on shop Internet page
+	 * @param strDowngradeDataPlan of the plan to be selected
+	 * @param strUpgradePlanCost cost of the plan to be selected
 	 * @author chinnarao.vattam
 	 */
 	public void selectInternetPlan(String strDowngradeDataPlan, String strUpgradePlanCost) {
