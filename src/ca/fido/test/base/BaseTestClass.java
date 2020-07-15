@@ -223,8 +223,7 @@ public class BaseTestClass {
 		return sauceOptions;
 	}
 
-	/* To start a session using given url, browser, language and test case group name.
->>>>>>> SelfServeTeam
+	/** To start a session using given url, browser, language and test case group name.
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
 	 * @param strLanguage                string of language to use

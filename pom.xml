@@ -240,7 +240,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>SelfServerFidoSanitySuite.xml</suiteXmlFile>
+                                <suiteXmlFile>SelfServerFidoSanityPack.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -258,7 +258,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>SelfServerFidoCompleteSuiteRunner.xml</suiteXmlFile>
+                                <suiteXmlFile>SelfServerFidoCompleteSuite.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
