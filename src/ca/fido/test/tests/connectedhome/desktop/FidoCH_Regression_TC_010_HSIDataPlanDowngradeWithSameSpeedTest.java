@@ -54,8 +54,8 @@ public class FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest exte
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		fido_internet_dashboard_page.clkChangePackage();
 		reporter.reportLogWithScreenshot("Launched the packages Page");
-		fido_internet_dashboard_page.selectHSIPackageByData();
-		//fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccountForDowngrade.getaccountDetails().getDowngradePlan());
+		//fido_internet_dashboard_page.selectHSIPackageByData();
+		fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradePlan());
 		reporter.reportLogWithScreenshot("Selected the package");
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Confirmed Package Change");
