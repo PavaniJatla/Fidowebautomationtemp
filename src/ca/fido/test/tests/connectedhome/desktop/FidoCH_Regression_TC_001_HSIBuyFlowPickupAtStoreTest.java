@@ -47,6 +47,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
 
 	@Test
 	public void checkHSIBuyFlowPickupAtStoreFlow() {
+		
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();

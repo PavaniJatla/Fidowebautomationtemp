@@ -45,6 +45,8 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
 
 	@Test
 	public void checkBuyUnwiredAddressTechInstallPreauthorizedChequingTest() {
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
@@ -90,12 +92,9 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
-    /*    fido_technical_installation_page.clkFulfillmentTechInstall();
-        fido_technical_installation_page.clkTechInstallSlot();*/
         reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
         fido_technical_installation_page.clkTechInstalConfirm();
         reporter.reportLogWithScreenshot("Payment page has launched");
-        //fido_payment_options_page.selectPaymentMode("pacc");
         fido_payment_options_page.setCreditCardNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
         fido_payment_options_page.selectExpiryMonth();
         fido_payment_options_page.selectExpiryYear();
@@ -103,7 +102,6 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
         reporter.reportLogWithScreenshot("Payment details has set");
         fido_payment_options_page.clkPaymentConfirm();
         reporter.reportLogWithScreenshot("Order review page has launched");
-        //reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Plan information has verifed", "Plan information has failed");
         reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();

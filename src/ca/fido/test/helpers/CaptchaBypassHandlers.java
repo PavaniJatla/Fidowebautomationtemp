@@ -26,6 +26,7 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for Self serve Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
+	 * @throws IOException                throws IO Exceptions
 	 */
 		public void captchaBypassURLSelfserveFlows(String strUrl, String strLanguage) throws IOException {
 			driver.get(strUrl+"?setLanguage="+ strLanguage );
@@ -39,9 +40,10 @@ public class CaptchaBypassHandlers {
 		} else {
 			strBaseUrl = strUrl.substring(0, strUrl.lastIndexOf("ca")+2);
 		}
-		//Use https url in config.yml, replace https with http here will by pass the certificate issue	
+		//Use https url in config.yml, replace https with http here will by pass the certificate issue
+		//.replace("https", "http")
 		Cookie captchBypass = new Cookie ("temp_token_f",
-		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl.replace("https", "http")));			
+		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl));			
 		driver.manage().addCookie(captchBypass);
     }
 	
@@ -49,6 +51,7 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for Anonymous Buy Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
+	 * @throws IOException                throws IO Exceptions
 	 */
 	public void captchaBypassURLAnonymousBuyFlows(String strUrl, String strLanguage) throws IOException {
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
@@ -62,13 +65,14 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for login Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
+	 * @throws IOException                throws IO Exceptions
 	 */
 	public void captchaBypassURLLoginFlows(String strUrl, String strLanguage) throws IOException {
 		driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");		
 		driver.get(strUrl+"?setLanguage="+ strLanguage );
 		String strCookieUserName= TestDataHandler.fidoConfig.getCookieUserName();
 		String strCookieUserPassword= TestDataHandler.fidoConfig.getCookieUserPassword();			
-		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl.replace("https", "http")));
+		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl));//.replace("https", "http")));
 		driver.manage().addCookie(captchBypass);
   }
 	

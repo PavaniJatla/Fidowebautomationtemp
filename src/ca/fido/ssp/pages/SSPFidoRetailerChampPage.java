@@ -124,7 +124,7 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	 */
 	public void selSSPEnvironment(String strBandwidth) {		
 		String mainWindow = driver.getWindowHandle();
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'Fido "+strBandwidth+"')]/ancestor::div[contains(@class,'ds-tile')]"),60).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'Fido "+strBandwidth+"')]/ancestor::div[contains(@class,'ds-tile')]"),180).click();
 		reusableActions.waitForNumberOfWindowsToBe(2);
 		reusableActions.switchToNewWindow(mainWindow);	
 	}

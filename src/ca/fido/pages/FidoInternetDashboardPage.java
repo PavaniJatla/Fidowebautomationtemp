@@ -22,14 +22,20 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.label.cannotProceed']")
 	WebElement popupDowngrade;
 	
-	@FindBy(xpath="//div[@ng-show=\"productInfo!=='LOADING' && productInfo!=='ERROR'\"]")
+	@FindBy(xpath="//div[@class='package-item-dashboard']")
 	WebElement infoPlan;
 	
-	@FindBy(xpath="//div[@ng-if='usageSummary && !usageSummary.error']")
+	@FindBy(xpath="//div[@class='col-sm-4 text-center']")
 	WebElement infoUsage;
 	
 	@FindBy(xpath="//div[@ng-if=\"dailyChartStatus==='SUCCESS'\"]")
 	WebElement infoDailyUsageChart;
+	
+	@FindBy(xpath="//a[@href='#/my-account/internet/usage/daily']")
+	WebElement lnkDailyUsage;
+	
+	@FindBy(xpath="//a[@href='#/my-account/internet/usage/monthly']")
+	WebElement lnkMonthlyUsage;
 	
 	@FindBy(xpath="//ins[@translate='global.cta.continue']")
 	WebElement btnContinueForInternet;
@@ -234,6 +240,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lnkChangePackage,180);
 		reusableActions.getWhenReady(lnkChangePackage,180);
 		reusableActions.getWhenReady(lnkChangePackage,180).click();
+		reusableActions.javascriptScrollToMiddleOfPage();
 	}
 	
 	public void clkChangePackageSsp() {
@@ -249,8 +256,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	public void selectHSIPackageByBandwidth(String strBandwidth) {
 	By packageNameLocator = By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update']");
 		WebElement pkg = driver.findElement(packageNameLocator);
-		reusableActions.scrollToElement(pkg);
 		reusableActions.waitForElementVisibility(pkg, 180);
+		reusableActions.scrollToElement(pkg);
 		reusableActions.getWhenReady(pkg, 90).click();
 	}
 	
@@ -265,7 +272,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	}
 	
 	public void selectHSIPackageByData(String strData ) {		
-		reusableActions.getWhenVisible(By.xpath("//b[@ng-bind-template='"+strData+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']"),60).click();
+		reusableActions.getWhenVisible(By.xpath("//b[@ng-bind-template='"+strData+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']"),90).click();
 	}
 	
 	public void selectHSIPackageByData() {
@@ -276,7 +283,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkConfirmPackageChange() {		
-		reusableActions.getWhenVisible(btnConfirmPackageChange).click();		
+		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();		
 	}
 	
 	/**
@@ -320,6 +327,33 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	}
 
 	/**
+	 * Verifies if the daily usage link is visible
+	 * @return true if the Usage link is visible
+	 * @author chinnarao.vattam
+	 */
+	public boolean verifyIfDailyUsageLinkVisible() {
+		return reusableActions.isElementVisible(lnkDailyUsage);
+	}
+	
+	/**
+	 * Verifies if the daily Change Package link is visible
+	 * @return true if the  Change Package link is visible
+	 * @author chinnarao.vattam
+	 */
+	public boolean verifyIfChangePackageLinkVisible() {
+		return reusableActions.isElementVisible(lnkChangePackage);
+	}
+	
+	/**
+	 * Verifies if the Monthly usage link is visible
+	 * @return true if the Monthly usage link is visible
+	 * @author chinnarao.vattam
+	 */
+	public boolean verifyIfMonthlyUsageLinkVisible() {
+		return reusableActions.isElementVisible(lnkDailyUsage);
+	}
+	
+	/**
 	 * Clicks the button Continue for internet
 	 * @author Mirza.Kamran
 	 */
@@ -358,6 +392,15 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		reusableActions.getWhenVisible(btnManageSettings, 60).click();
 	}
 
+	/**
+	 * Verifies if the Manage Settings is visible
+	 * @return true if the Manage Settings is visible
+	 * @author chinnarao. vattam
+	 */
+	public boolean verifyManageSettings() {
+		return reusableActions.isElementVisible(btnManageSettings);
+	}
+	
 	/**
 	 * Checks if the Label Internet  plans is visible
 	 * @return true if the label is visible else false

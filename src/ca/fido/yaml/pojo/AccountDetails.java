@@ -344,7 +344,7 @@ public class AccountDetails {
 		return upgradePlanCost;
 	}
 	/**
-	 * @param planCostToBeUpgrade
+	 * @param upgradePlanCost the upgradePlanCost 
 	 */
 	public void setUpgradePlanCost(String upgradePlanCost) {
 		this.upgradePlanCost = upgradePlanCost;

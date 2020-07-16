@@ -28,6 +28,9 @@ public class FidoCartSummaryPage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.cta.checkout']")
 	WebElement btnCheckout;
 	
+	@FindBy(xpath="//button[@class='checkout-button ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large']")
+	WebElement btnInternetCheckout;
+	
 	@FindBy(xpath="//span[@checkout-res='checkout_continue']/parent::button")
 	WebElement btnContinue;
 
@@ -72,6 +75,14 @@ public class FidoCartSummaryPage extends BasePageClass {
 	 */
 	public void clkCheckout() {
 		reusableActions.getWhenReady(btnCheckout, 90).click();
+	}
+	
+	/**
+	 * Clicks on checkout button on the cart Summary page
+	 * @author chinnarao.vattam 
+	 */
+	public void clkInternetCheckout() {
+		reusableActions.getWhenReady(btnInternetCheckout, 90).click();
 	}
 	
 	/**
