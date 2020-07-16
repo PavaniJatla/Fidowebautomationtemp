@@ -46,9 +46,12 @@ public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Lohin Failed");
-		fido_account_overview_page.clkAccountSelectionDropDown();
-		fido_account_overview_page.selectAccountByType(TestDataHandler.fidoHSIAccount.getaccountDetails().getType());
+		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
+		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
+		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.reportLogWithScreenshot("Launched the Account Page");
 		String accountBalanceBeforePayment=fido_account_overview_page.getAccountBalanceBeforePayment();
 		reporter.reportLogWithScreenshot("Launched the Account Page");	
 		fido_account_overview_page.clkPayNow();

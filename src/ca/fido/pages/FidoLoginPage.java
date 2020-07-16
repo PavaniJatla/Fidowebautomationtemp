@@ -100,8 +100,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public void clkLoginInFrame() {		
-		reusableActions.getWhenReady(btnLogIn,60).click();	   
-		reusableActions.clickIfAvailable(btnSkip,60);
+		reusableActions.getWhenReady(btnLogIn,60).click();	  
 	}
 	
 	/**
@@ -110,6 +109,7 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void switchOutOfSignInFrame() {	
 		//driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		reusableActions.clickIfAvailable(btnSkip,60);
 		driver.switchTo().defaultContent();	
 		reusableActions.waitForPageLoad();
 		if(reusableActions.isElementVisible(lblPageLoading)) {

@@ -550,8 +550,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {	
-		reusableActions.waitForElementVisibility(msgWelcome,120);
-		return reusableActions.isElementVisible(msgWelcome,120);		
+		return reusableActions.isElementVisible(infoAccountBalance,60);		
 	}
 	
 	/**
@@ -932,8 +931,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 	
 	/**
-	 * Checks if the Mobile Recovery Number is Not already set
-	 * @return true if the recovery is not set else false
+	 * Checks if the setup for Mobile Recovery Number is Not done
+	 * @return true if the recovery is not set; else false
 	 * @author Mirza.Kamran
 	 */
 	public boolean checkIfSetUpMobileRecoveryNumberIsNotComplete() {			
@@ -942,8 +941,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 
 	/**
-	 * Checks if the Mobile Recovery Number is set
-	 * @return true if the recovery is not set else false
+	 * Checks if the setup for Mobile Recovery Number is done
+	 * @return true if the recovery is set; else false
 	 * @author Mirza.Kamran
 	 */
 	public boolean checkIfSetUpMobileRecoveryNumberIsComplete() {			

@@ -35,8 +35,9 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 
 	@Test
 	public void checkFidoHSIPlanDowngrade() {
-		reporter.reportLogWithScreenshot("Launched the Home Page");
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
+		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		reporter.reportLogWithScreenshot("Launched the SignIn popup");
@@ -44,8 +45,9 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentails");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
@@ -56,8 +58,7 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Plan downgarde ways popup has displayed");
 		reporter.hardAssert(fido_internet_dashboard_page.verifyDowngradePopup(),"Plan downgarde ways popup has displayed","Plan downgarde ways popup hasn't displayed");
-	}
-
+		}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method)

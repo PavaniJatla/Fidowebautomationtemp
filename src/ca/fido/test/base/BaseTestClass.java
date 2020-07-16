@@ -223,8 +223,7 @@ public class BaseTestClass {
 		return sauceOptions;
 	}
 
-	/* To start a session using given url, browser, language and test case group name.
->>>>>>> SelfServeTeam
+	/** To start a session using given url, browser, language and test case group name.
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
 	 * @param strLanguage                string of language to use
@@ -269,9 +268,9 @@ public class BaseTestClass {
 	 * To start a session using given url, browser, language and test case group name.
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
+	 * @param currentTestMethodName      string of current Test Method Name
+	 * @param enumGroupName              string of enum Group Name
 	 * @param strLanguage                string of language to use
-	 * @param strGroupName               string of group name of the test case
-	 * @param currentTestMethodName      string of Method Name  of the test case   
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */

@@ -122,7 +122,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	/**
      * This method will select the city for which connection is required
-     * @param String cityName : name of the city
+     * @param cityName is name of the city
      * @author Saurav.Goyal  
      */
     public void selectCityForChooseYourTelephoneNum(String cityName) {
