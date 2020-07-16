@@ -57,7 +57,7 @@ dependencies {
     api 'automation-utils:common-utils:1.0-SNAPSHOT'
 }
 
-group = 'com.Fido'
+group = 'ca.fido'
 version = '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 

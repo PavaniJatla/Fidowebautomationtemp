@@ -19,5 +19,4 @@ gradlew.bat
 gradle
 .idea
 /build
-
 .settings/org.eclipse.buildship.core.prefs
