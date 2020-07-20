@@ -82,7 +82,7 @@ public class FidoCartSummaryPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkInternetCheckout() {
-		reusableActions.getWhenReady(btnInternetCheckout, 90).click();
+		reusableActions.getWhenReady(btnInternetCheckout, 120).click();
 	}
 	
 	/**

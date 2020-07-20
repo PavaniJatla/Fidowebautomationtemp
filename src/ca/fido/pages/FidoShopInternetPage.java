@@ -40,6 +40,10 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -large ng-star-inserted']")
 	WebElement btnBuyNow;
 	
+	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100']")
+	WebElement btnBuyNowReskin;
+	
+	
 	@FindBy(xpath = "//div[@class='modal-chat bcStatic']")
 	WebElement btnliveChat;
 		
@@ -191,7 +195,7 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(btnAvailabilityCheck, 120);
 		reusableActions.waitForElementTobeClickable(btnAvailabilityCheck, 120);
 		reusableActions.getWhenReady(btnAvailabilityCheck, 60).click();
-		reusableActions.staticWait(6000);
+		reusableActions.staticWait(10000);
 	}
 	
 	/**
@@ -253,6 +257,14 @@ public class FidoShopInternetPage extends BasePageClass {
 		else 		
 			throw new NoSuchElementException("Given Address dosen't have the service");	
 	}
+	
+	/**
+	 * Click on buy online button on the buy options popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkBuyNowReskin() {
+			reusableActions.clickWhenReady(btnBuyNowReskin, 90);	}
+	
 	/**
 	 * Click on availability confirmation button on the service ability Lookup popup
 	 * @author chinnarao.vattam
