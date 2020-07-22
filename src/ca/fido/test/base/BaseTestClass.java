@@ -253,9 +253,9 @@ public class BaseTestClass {
 		case "selfserve_login":
 			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
 			break;
-		case "buyflows": driver.get(strUrl);
-		break;
-	
+		case "buyflows": 
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;
 
   		default :
   			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);

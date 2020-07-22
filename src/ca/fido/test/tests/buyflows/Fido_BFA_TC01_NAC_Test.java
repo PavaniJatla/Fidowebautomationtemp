@@ -39,16 +39,6 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 	public void fidoNACFlow() {
 		reporter.reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
 		reporter.reportLogWithScreenshot("Home Page");
-		/*
-		 * //Need to delete below lines from 43 to 50 , added due to AWS link and
-		 * uncomment line 51 and 52
-		 * getDriver().findElement(By.xpath("//button[@id='details-button1']")).click();
-		 * getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click(); try {
-		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO Auto-generated
-		 * catch block e.printStackTrace(); }
-		 */
-		//fido_home_page.clkShop();
-		//fido_home_page.clkPhones();
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
 		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase01.getDeviceName()),"Device Found and Selected","Device Not Found");

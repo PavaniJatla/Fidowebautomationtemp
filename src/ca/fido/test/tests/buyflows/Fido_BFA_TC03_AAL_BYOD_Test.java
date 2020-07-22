@@ -34,14 +34,8 @@ public class Fido_BFA_TC03_AAL_BYOD_Test extends BaseTestClass{
 
 	@Test
 	public void aalBYODFlowTest() {
+		reporter.reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
 		reporter.reportLogWithScreenshot("Fido Home Page");
-		/*
-		 * //Need to delete below lines from 39 to 46 , added due to AWS link
-		 * getDriver().findElement(By.xpath("//button[@id='details-button']")).click();
-		 * getDriver().findElement(By.xpath("//a[@id='proceed-link']")).click(); try {
-		 * Thread.sleep(5000); } catch (InterruptedException e) { // TODO Auto-generated
-		 * catch block e.printStackTrace(); }
-		 */
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.testCase07.getUsername());

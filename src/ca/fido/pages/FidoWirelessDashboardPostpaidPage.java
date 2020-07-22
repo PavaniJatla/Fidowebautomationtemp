@@ -1048,7 +1048,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean verifyWirelessDashboardPageLoad() {
-		return reusableActions.isDisplayed(lblMobileDashboardTitle);
+		return reusableActions.isElementVisible(lblMobileDashboardTitle,60);
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import ca.fido.pages.base.BasePageClass;
@@ -13,7 +14,8 @@ public class FidoHomePage extends BasePageClass {
 		super(driver);		
 	}
 
-	@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]")
+	@FindAll({@FindBy(xpath="//a[contains(@class,'signin-interceptor') and @href]"),
+		@FindBy(xpath="//a[contains(@class,'m-navLink -navbar -login')]")})
 	WebElement lnkLogIn;
 	
 	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor') ]")
