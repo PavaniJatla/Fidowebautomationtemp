@@ -60,12 +60,9 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
         reporter.reportLogWithScreenshot("Good News for the Service availability");
-        fido_Shop_internet_page.clkBuyNow();
+        fido_Shop_internet_page.clkBuyNowReskin();
         reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");       
-        fido_cart_summary_page.clkInternetCheckout();
-        
-        
-        
+        fido_cart_summary_page.clkInternetCheckout();              
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.setCommunicationDetails();
         fido_create_user_page.setFirstName();
