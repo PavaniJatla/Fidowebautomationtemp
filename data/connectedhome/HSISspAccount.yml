@@ -4,8 +4,8 @@ name: FidoSSPHSIAccount
 username: chinnarao.vattam@rci.rogers.ca
 password: IELTS@mar2020
 dealerCode: FHQAE
-environment: QA01
-sspEnv: QA07
+environment: QA07
+sspEnv: QA03
 accountDetails:
    type: Internet
    ban: 227614971  

@@ -7,31 +7,31 @@
 			class-name="ca.fido.test.listeners.AnnotationTransformer" />
 		<listener class-name="ca.fido.test.listeners.TestListener" />
 	</listeners>
-  	<test name=" Fido anonymous">
+    	<test name=" Fido anonymous">
    	<parameter name="strBrowser" value="saucechrome"/>
 	<parameter name="strLanguage" value="en"/>
 		<classes>   
         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class>  
         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest"></class> 
-        <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest"></class>   
+         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest"></class>   
 	    <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_007_HSIDeleteOfferTest"></class>
     	<class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_008_HSIEditfromCartTest"></class>  
-        <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthorizedChequingTest"></class>          
+        <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthorizedChequingTest"></class>           
 		</classes>
-	</test>
+	</test>  
 	
-	 <test name=" Fido login">
+ 	 <test name=" Fido login">
    	<parameter name="strBrowser" value="saucechrome"/>
 	<parameter name="strLanguage" value="en"/>
 	<classes>  
-     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_002_HSIPlanUpgradeTest"></class>  
-     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_003_HSIPlanDowngradeTest"></class>  
-     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_004_HSIBuyFlowForExistingCustomerTest"></class>  
-   	 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest"></class>   
-     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_011_HSIPayNowTest"></class> 
-     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_014_HSIValidateDashboardTest"></class>                    
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_002_HSIPlanUpgradeTest"></class>   
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_003_HSIPlanDowngradeTest"></class> 
+     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest"></class>  
+  	 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest"></class>   
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_011_HSIPayNowTest"></class> 
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_014_HSIValidateDashboardTest"></class>                    
 	</classes>
-	</test> 
+	</test>  
 	
        <test name=" Fido retailer">
    	<parameter name="strBrowser" value="saucechrome"/>
@@ -44,7 +44,7 @@
 	</test>  
 	
        
-      	
+ 	
 	<test name="Fido Mobile">
 		<parameter name="strBrowser" value="sauceandroidchrome" />
 		<parameter name="strLanguage" value="en" />
