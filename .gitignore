@@ -18,3 +18,5 @@ fido_property.dat
 *.png
 *.html
 .project
+/.gradle/
+/build/
