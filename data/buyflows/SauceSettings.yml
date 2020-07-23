@@ -3,10 +3,10 @@
 sauceOptions:
    seleniumVersion: 3.141.59
    name: Fido - BFA
-   maxDuration: 3600
+   maxDuration: 600
    commandTimeout: 600
-   idleTimeout: 1000
-   build: Fido - BFA Release June 3rd 
+   idleTimeout: 120
+   build: Fido - BFA Release July 29th 
 mutableFireFoxCapabilities:  
    platformName: Windows 10
    browserVersion: latest
