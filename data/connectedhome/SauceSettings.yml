@@ -8,13 +8,13 @@ sauceOptions:
    idleTimeout: 120
    build: July 29th Agile Release -CHFido 
 mutableFireFoxCapabilities:  
-   platformVersion: Windows 10
+   platformName: Windows 10
    browserVersion: latest
 mutableChromeCapabilities:   
-   platformVersion: Windows 10
+   platformName: Windows 10
    browserVersion: latest
 mutableEdgeCapabilities:   
-   platformVersion: Windows 10
+   platformName: Windows 10
    browserVersion: latest   
 androidChromeCapabilities:
    platformName: Android
