@@ -20,3 +20,5 @@ fido_property.dat
 .project
 .idea/
 *.iml
+/.gradle/
+/build/

@@ -66,7 +66,7 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
+	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
 	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 

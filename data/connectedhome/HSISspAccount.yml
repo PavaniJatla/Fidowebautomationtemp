@@ -8,10 +8,10 @@ environment: QA07
 sspEnv: QA03
 accountDetails:
    type: Internet
-   ban: 227614971  
+   ban: 227614948  
    postalCode: L6T4N4
-   modem: FDD1704BC104
-   newModem: FDD1704BC105
+   modem: FDD1704BC098
+   newModem: FDD1704BC134
    address:
      line1: 706-10 Lisa St
      line2: BRAMPTON ON L6T 4N4 

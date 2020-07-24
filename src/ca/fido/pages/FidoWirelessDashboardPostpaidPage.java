@@ -313,7 +313,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public void clkShowMyUsageIfVisible() {
 
-		reusableActions.clickIfAvailable(lnkShowMyUsage, 10);
+		reusableActions.clickIfAvailable(lnkShowMyUsage, 5);
 	}
 	
 	/**

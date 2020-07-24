@@ -35,37 +35,9 @@ import ca.fido.testdatamanagement.TestDataHandler;
 
 public class FidoCH_Regression_TC_007_HSIDeleteOfferTest extends BaseTestClass {
 
+	
+	
 	@Test
-	public void checkDeleteOffer() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
-		reporter.reportLogWithScreenshot("Launched the Home Page");
-        fido_home_page.clkShop();
-        fido_home_page.clkHomeInternet();
-        reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
-        reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
-        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Good News for the Service availability");
-        fido_Shop_internet_page.clkBuyNow();
-        reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");	
-		
-/*		
-		fido_cart_summary_page.clkShoppingCartDelete();
-		reporter.reportLogWithScreenshot("Removal confirm popup");
-		fido_cart_summary_page.clkConfirmRemovalOfCart();
-		reporter.reportLogWithScreenshot("Cart-summary Page with deleted package");
-		reporter.hardAssert(fido_cart_summary_page.verifyEmptyCart(), "Delete cart Passed", "Delete cart Failed");*/
-
-	}
-	
-	
-	
-/*	@Test
 	public void checkDeleteOffer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -90,13 +62,13 @@ public class FidoCH_Regression_TC_007_HSIDeleteOfferTest extends BaseTestClass {
 		fido_cart_summary_page.clkConfirmRemovalOfCart();
 		reporter.reportLogWithScreenshot("Cart-summary Page with deleted package");
 		reporter.hardAssert(fido_cart_summary_page.verifyEmptyCart(), "Delete cart Passed", "Delete cart Failed");
-	}*/
+	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })
 	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.fidoConfig.getFidoURL(),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,method);
+		startSession(TestDataHandler.chConfig.getFidoURL(),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,method);
 
 	}
 

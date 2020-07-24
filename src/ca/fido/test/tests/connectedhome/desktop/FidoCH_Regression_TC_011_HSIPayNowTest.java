@@ -61,10 +61,10 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Launched the credit card widget");
 
 		// --------------------Pass it from yaml-----------------//
-		fido_payment_page.setCreditCardNumberIFrame(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
-		fido_payment_page.selectExpiryMonth(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getExpiryMonth());
-		fido_payment_page.selectExpiryYear(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_payment_page.setCVVNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getCVV());
+		fido_payment_page.setCreditCardNumberIFrame(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
+		fido_payment_page.selectExpiryMonth(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryMonth());
+		fido_payment_page.selectExpiryYear(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryYear());
+		fido_payment_page.setCVVNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getCVV());
 		reporter.reportLogWithScreenshot("set the credit card information");
 		fido_payment_page.clkReviewAndContinue();
 		reporter.reportLogWithScreenshot("payment confirmation widget");
@@ -73,17 +73,17 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		reporter.hardAssert(fido_payment_page.verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		reporter.reportLogWithScreenshot("payment success widget");
 		fido_payment_page.clkPaymentConfirmation();
-		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, TestDataHandler.fidoConfig.getLanguage());
+		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, TestDataHandler.chConfig.getLanguage());
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
-		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.fidoConfig.getLanguage()),"Payment Success","Payment Failed");
+		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.chConfig.getLanguage()),"Payment Success","Payment Failed");
 		}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
+	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
 	}
 
 

@@ -64,7 +64,7 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
+	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
 	
 	}
 
