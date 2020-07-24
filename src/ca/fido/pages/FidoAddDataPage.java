@@ -29,17 +29,16 @@ public class FidoAddDataPage extends BasePageClass {
 	//button[@class='ute-purchase-data-continue-btn']
 	@FindBy(xpath = "//fds-button[@class='continue-button']")
 	WebElement btnContinueOnAddDataOverlay;
-	
-	@FindBy(xpath = "//span[text()='Select amount' or text()='Sélectionnez le montant']")
-	WebElement cboSelectAmount;
+	//span[text()='Select amount' or text()='Sélectionnez le montant']
+	@FindBy(xpath = "//button[@data-toggle='dropdown']")
+	WebElement btnSelectAmount;
 	
 	@FindBy(xpath = "//ins[@translate='ute.purchaseData.continue']")
 	WebElement btnContinueMonthlyAddOn;
 	
-	@FindAll({@FindBy(xpath = "//span[@class='ui-select-choices-row-inner']/div")})
+	@FindAll({@FindBy(xpath = "//li[@class='list-group-item dropdown-item ng-star-inserted']")})
 	List<WebElement> optionsSelectDataOnAddDataOverLay;
-	
-	
+		
 	@FindBy(xpath = "//img[@class='close-btn']")
 	WebElement btnCloseMonthlyAddOnOverLay;
 	
@@ -113,7 +112,8 @@ public class FidoAddDataPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkSelectAmountDropDown() {
-		reusableActions.getWhenReady(cboSelectAmount, 60).click();		
+		reusableActions.waitForElementTobeClickable(btnSelectAmount, 10);
+		reusableActions.executeJavaScriptClick(btnSelectAmount);		
 	}
 	
 	/**

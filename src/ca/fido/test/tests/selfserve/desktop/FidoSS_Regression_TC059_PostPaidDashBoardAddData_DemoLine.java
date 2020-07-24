@@ -58,7 +58,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkCtnBadge();
 		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
+//		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
@@ -68,7 +68,10 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 							"add on overlay is displayed",
 							"data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
-		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
+		//For more than 3 data top-up options, it will show as drop down
+//		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
+		fido_add_data_page.clkSelectAmountDropDown();
+		fido_add_data_page.clkTheFirstDataPlanOptionFromDropDown();
 		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
 		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
