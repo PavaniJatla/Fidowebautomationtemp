@@ -3,6 +3,7 @@ package ca.fido.pages;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -96,8 +97,17 @@ public class FidoAddDataPage extends BasePageClass {
 	 * Perform click on the first data button on add data overlay
 	 * @author ning.xue
 	 */
-	public void clkTheFirstDataPlanBtnOnAddDataOverlay() {		
-		reusableActions.getWhenReady(btnsSelectDataOnAddDataOverLay.get(0),60).click();
+	public void clkTheFirstDataPlanBtnOnAddDataOverlay() {	
+		if(reusableActions.isElementVisible(getDriver().findElement(By.xpath("//ss-data-topup-dropdown"))))
+		{
+			reusableActions.getWhenReady(getDriver().findElement(By.xpath("//button/span[text()='Select amount']"))).click();
+			reusableActions.getWhenReady(getDriver().findElement(By.xpath("//ss-data-topup-dropdown//li[1]"))).click();
+		}else
+		{
+			reusableActions.getWhenReady(btnsSelectDataOnAddDataOverLay.get(1),60).click();
+		}
+		
+		
 	} 
 	
 	/**
