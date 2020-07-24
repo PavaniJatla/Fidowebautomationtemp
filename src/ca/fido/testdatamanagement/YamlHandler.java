@@ -37,7 +37,6 @@ public class YamlHandler {
 		}
 	}
 
-
 	public static Config getConfig() {
 		Yaml yaml = new Yaml(new Constructor(Config.class));
 		InputStream inputStream;
@@ -73,7 +72,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(Config.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/connectedhome/HSIConfig.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/connectedhome/Config.yml"));
 			Config config = yaml.load(inputStream);
 			return config;
 		} catch (FileNotFoundException e) {
@@ -103,7 +102,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(PaymentDetails.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/connectedhome/HSIPaymentInfo.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/connectedhome/PaymentInfo.yml"));
 			PaymentDetails paymentDetails = yaml.load(inputStream);
 			return paymentDetails;
 		} catch (FileNotFoundException e) {

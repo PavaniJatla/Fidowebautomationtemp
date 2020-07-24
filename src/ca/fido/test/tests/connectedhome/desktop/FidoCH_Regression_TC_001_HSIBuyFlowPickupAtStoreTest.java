@@ -102,7 +102,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
         fido_technical_installation_page.clkPickStoreConsent();
         fido_technical_installation_page.clkTechInstalConfirm();
         reporter.reportLogWithScreenshot("Payment page has launched");        
-        fido_payment_options_page.setCreditCardNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
+        fido_payment_options_page.setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
         fido_payment_options_page.selectExpiryMonth();
         fido_payment_options_page.selectExpiryYear();
         fido_payment_options_page.setCVV();     
@@ -195,7 +195,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
+	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
 	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 

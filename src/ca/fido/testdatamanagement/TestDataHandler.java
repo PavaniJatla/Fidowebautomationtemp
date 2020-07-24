@@ -11,10 +11,10 @@ import ca.fido.yaml.pojo.SauceSettings;
 public class TestDataHandler {
 	
 	public static Config config;
-	public static Config fidoConfig;
+	public static Config chConfig;
 	public static Config bfaConfig;
 	public static PaymentDetails paymentInfo;
-	public static PaymentDetails fidoPaymentInfo;
+	public static PaymentDetails chPaymentInfo;
 	public static PaymentDetails bfaPaymentInfo;
 	public static AccountData tc00101056;
 	public static AccountData tc0203;
@@ -86,12 +86,12 @@ public class TestDataHandler {
     	
 	}
 	private static void connectedHomeDataInit() {
-		fidoConfig =  YamlHandler.getHSIConfig();
+		chConfig =  YamlHandler.getHSIConfig();
 		sauceSettings = YamlHandler.getSauceSettings("/data/connectedhome/SauceSettings.yml");
         fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");
-        fidoPaymentInfo = YamlHandler.getHSIPaymentDetails();	
+        chPaymentInfo = YamlHandler.getHSIPaymentDetails();	
 	}
 	
 	private static void selfserveDataInit() {
@@ -138,7 +138,7 @@ public class TestDataHandler {
 	
 	private static void buyFlowsDataInit() {
 		sauceSettings = YamlHandler.getSauceSettings("/data/buyflows/SauceSettings.yml");
-		fidoConfig = YamlHandler.getBFAConfig();
+		chConfig = YamlHandler.getBFAConfig();
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();
     	testCase01 = YamlHandler.getNACData("tc01NAC");
