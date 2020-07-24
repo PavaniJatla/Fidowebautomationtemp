@@ -14,8 +14,6 @@ public class Config {
 	private String ensPassword;
 	private String brightStarURL;
 	private String sspURL;
-	private String loginFlow;
-	private String anonymousFlow;
 	private String hupURL;
 	private String fidoAWSUrl;
 	
