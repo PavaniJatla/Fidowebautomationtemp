@@ -18,7 +18,7 @@
 		</classes>
 	</test> 
  	<test name=" Fido anonymous">
-		<parameter name="strBrowser" value="firefox" />
+		<parameter name="strBrowser" value="saucechrome" />
 		<parameter name="strLanguage" value="en" />
 		<classes>
 		 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class>  
