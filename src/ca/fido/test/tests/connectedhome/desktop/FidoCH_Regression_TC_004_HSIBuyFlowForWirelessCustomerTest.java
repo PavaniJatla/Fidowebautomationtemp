@@ -48,7 +48,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends BaseTestClass {
 
 	
-	@Test
+/*	@Test
 	public void checkInternetBuyFlowForExistingCustomer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -118,9 +118,9 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");	
-		}
+		}*/
 	
-/*	@Test
+	@Test
 	public void checkInternetBuyFlowForExistingCustomer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -176,7 +176,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 	    reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
 	    fido_technical_installation_page.clkTechInstalConfirm();
 	    reporter.reportLogWithScreenshot("Payment page has launched"); 
-        fido_payment_options_page.setCreditCardNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
+        fido_payment_options_page.setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
         fido_payment_options_page.selectExpiryMonth();
         fido_payment_options_page.selectExpiryYear();
         fido_payment_options_page.setCVV();
@@ -190,7 +190,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");	
-		}*/
+		}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {

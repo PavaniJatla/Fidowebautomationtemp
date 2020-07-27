@@ -44,7 +44,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  **/
 
 public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
-	@Test
+/*	@Test
 	public void checkInternetBuyFlow() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -111,9 +111,9 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
 		reporter.reportLogWithScreenshot("Order details");
-	}
+	}*/
 	
-/*	@Test
+	@Test
 	public void checkInternetBuyFlow() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -166,7 +166,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
         reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
         fido_technical_installation_page.clkTechInstalConfirm();
         reporter.reportLogWithScreenshot("Payment page has launched");        
-        fido_payment_options_page.setCreditCardNumber(TestDataHandler.fidoPaymentInfo.getCreditCardDetails().getNumber());
+        fido_payment_options_page.setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
         fido_payment_options_page.selectExpiryMonth();
         fido_payment_options_page.selectExpiryYear();
         fido_payment_options_page.setCVV();     
@@ -181,7 +181,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
 		reporter.reportLogWithScreenshot("Order details");
-	}*/
+	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
