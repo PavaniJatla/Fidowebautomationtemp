@@ -66,7 +66,7 @@ public class FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountN
 			e.printStackTrace();
 		}
 		reporter.reportLogWithScreenshot("Create New Password");
-		String strNewPass = TestDataHandler.tc04To09.getaccountDetails().getNewPassword();
+		String strNewPass = TestDataHandler.tc04To09.getaccountDetails().getNewPassword();		
 		fido_recover_pass_or_name_page.setNewPassword(strNewPass);
 		fido_recover_pass_or_name_page.setConfirmPassword(strNewPass);
 		reporter.reportLogWithScreenshot("New passwords set");

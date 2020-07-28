@@ -33,7 +33,11 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 	
 	@DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
-        return new Object[][] {           	        	
+        return new Object[][] {   
+        	{
+            	TestDataHandler.tc0301.getaccountDetails().getBan()+"#"
+                    	  +TestDataHandler.tc0301.getaccountDetails().getPostalCode()+"#"
+                    	  +TestDataHandler.tc0301.getaccountDetails().getEmail()},
         	{
         		
                           	TestDataHandler.tc41.getaccountDetails().getBan()+"#"
