@@ -6,7 +6,6 @@ import java.util.Date;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
-import ca.fido.testdatamanagement.TestDataHandler;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import utils.CookieFetcher;
