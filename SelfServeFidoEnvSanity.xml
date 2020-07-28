@@ -10,9 +10,9 @@
 	</listeners>
   
 	
-  <test name="FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> 
+  <test name="FidoSS_Regression_TC011_PostPaidDashBoard"> 
   <classes>	 
-    <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile">        
+    <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard">        
       </class> 
          </classes>
     </test> 

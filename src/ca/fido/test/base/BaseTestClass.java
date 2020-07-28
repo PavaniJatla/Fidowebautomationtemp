@@ -142,49 +142,6 @@ public class BaseTestClass {
 	}
 	
 	/**
-	 * To start a session using given url, browser, language and test case group name.
-	 * @param strUrl                     string of test url
-	 * @param strBrowser                 string of browser name
-	 * @param strLanguage                string of language to use
-	 * @param strGroupName               string of group name of the test case
-	 * @param currentTestMethodName      string of Method Name of the test case
-	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
-	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
-	 */
-	public void startSession(String strUrl, String strBrowser,  String strLanguage, String strGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		if(strBrowser.contains("sauce"))
-		{
-			sauceParameters = initializeSauceParamsMap(strBrowser);
-		}
-		this.driver = browserdriver.driverInit(strBrowser, sauceParameters, currentTestMethodName, strGroupName);
-		System.out.println(strUrl + "----------------------------------------------------------------------------");
-		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
-		switch(strGroupName.toLowerCase().trim()) {			
-		case "connectedhome_anonymous":				
-			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
-			break;	
-			
-		case "connectedhome_login":
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;            
-
-		case "mobile_connectedhome":
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;
-			
-		case "selfserve":
-		case "selfserve_login":
-			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
-			break;
-
-  		default :
-  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-		}
-	    setImplicitWait(getDriver(), 120);
-	    init(strGroupName);
-  }
-	
-	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
 	 * @return hashmap with sauce capabilities
@@ -222,7 +179,7 @@ public class BaseTestClass {
 			 			  		        		
 		return sauceOptions;
 	}
-
+	 
 	/** To start a session using given url, browser, language and test case group name.
 	 * @param strUrl                     string of test url
 	 * @param strBrowser                 string of browser name
@@ -243,26 +200,32 @@ public class BaseTestClass {
 		switch(enumGroupName.toString().toLowerCase().trim()) {			
 		case "connectedhome_anonymous":				
 			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
+			break;				
+		case "connectedhome_login":			
+			driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+			driver.get(strUrl+"?setLanguage="+ strLanguage );
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
+			break;  			
+		case "mobile_connectedhome":
+			driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+			driver.get(strUrl+"?setLanguage="+ strLanguage );
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 			break;	
-			
-		case "connectedhome_login":
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;            
-
 		case "selfserve":
-		case "selfserve_login":
-			captcha_bypass_handlers.captchaBypassURLSelfserveFlows(strUrl, strLanguage);
+		case "selfserve_login":			
+			driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ strLanguage );			
+			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);			
 			break;
-		case "buyflows": 
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;
-
+		case "buyflows": driver.get(strUrl);
+		break;
+	
   		default :
   			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-		}
+		}		
 	    setImplicitWait(getDriver(), 10);
 	    init(enumGroupName.toString().toLowerCase().trim());	    
   }
+	
 
 	/**
 	 * To start a session using given url, browser, language and test case group name.
@@ -288,6 +251,7 @@ public class BaseTestClass {
 			break;	
 			
 		case "connectedhome_login":
+			
 			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
 			break;            
 
