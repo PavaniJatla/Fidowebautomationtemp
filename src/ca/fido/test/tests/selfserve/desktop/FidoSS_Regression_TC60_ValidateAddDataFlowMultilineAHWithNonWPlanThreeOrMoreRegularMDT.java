@@ -42,6 +42,9 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		closeSession();
 	}
 	
+	int countAddData = 0;
+	double dataAddedValue = 0;
+	
 	@Test(groups = { "AddMDT" })
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
@@ -88,18 +91,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		  
 		   6. Added Data section lists all add-ons separately and only Monthly Add ons have Cancel link
 		 */
-		int countAddData = 0;
-		double dataAdded = 0;
-		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
-			reporter.reportLogWithScreenshot("Add data limit reached.");
-		}else {
-			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
-					"Add data success message is displayed",
-					"Add data success message is not displayed");	
-			dataAdded = fido_add_data_page.getValueAddedData();
-			reporter.reportLogWithScreenshot("Add data success modal.");
-		}
-		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		
+		
 		
 		// 5.All the added MDTs are reflected in total bucket,plan section and manage data page
 	
@@ -203,9 +196,16 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 								"Confirm purchasing on overlay is not displayed");	
 			reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
 			fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
-			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
-					"Add data success message is displayed",
-					"Second Add data is not successful");	
+			if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
+				reporter.reportLogWithScreenshot("Add data limit reached.");
+				return false;
+			}else {
+				reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+						"Add data success message is displayed",
+						"Add data success message is not displayed");	
+				dataAddedValue = fido_add_data_page.getValueAddedData();
+				reporter.reportLogWithScreenshot("Add data success modal.");
+			}			
 			reporter.reportLogWithScreenshot("Click close");
 			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 			reporter.reportLogWithScreenshot("Verify added data");

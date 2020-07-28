@@ -43,7 +43,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	WebElement btnVerifyMe;
 	
 	//verified, the xpath can work both for EN and Fr.
-	@FindBy (xpath = "//span[contains(text(),'confirmation')]")
+	@FindBy (xpath = "//*[contains(text(),'confirmation')]")
 	WebElement divVerifyText;
 	
 	@FindBy(xpath = "//ajs-address")
