@@ -8,71 +8,15 @@
 		<listener class-name="ca.fido.test.listeners.TestListener" />
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
-<!-- 
-	
-	
-	       <test name="FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan">
-			</class>	
-	    </classes>
-    </test>  
-    
-     <test name="FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOveragePostpaidVoiceAndDatePlan">
-			</class>	
-	    </classes>
-    </test>  
   
-	 
 	
-    
-      <test name="FidoSS_Regression_TC001_PrePaidDashBoard">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC001_PrePaidDashBoard">
-			</class>	
-	    </classes>
+  <test name="FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> 
+  <classes>	 
+    <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile">        
+      </class> 
+         </classes>
     </test> 
-    
-     <test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-			</class>	
-	    </classes>
-    </test>   
-	 
-	   <test name="FidoSS_TC004_Prepaid_OneTimeRefill_Interac">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC004_Prepaid_OneTimeRefill_Interac">
-			</class>	
-	    </classes>
-    </test>  
-    
-  
- 
-  <test name="FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard">
-			</class>	
-	    </classes>
-    </test>  
- 
+	
 
- -->			
-   <test name="FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">	
-		<classes>		
-			<class
-				name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT">
-			</class>	
-	    </classes>
-    </test>  
-	 
    
 </suite>
