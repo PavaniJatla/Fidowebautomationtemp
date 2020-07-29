@@ -60,7 +60,7 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 		
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
 		reporter.reportLogWithScreenshot("View details page opened");
@@ -78,7 +78,7 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 			for(int itr=1;itr<=(3-intValue);itr++)
 			{
 				completeAddDataFlow(strAddOnValue);
-				reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+				reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 						"Add data success message is displayed",
 						"Add data success message is not displayed");					
 				reporter.reportLogWithScreenshot("Add data success modal.");			
@@ -100,14 +100,14 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 	
 	public void completeAddDataFlow(String strDataValue) {
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
 		
 		fido_add_data_page.clkTheDataAddOnValue(strDataValue);
 		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");

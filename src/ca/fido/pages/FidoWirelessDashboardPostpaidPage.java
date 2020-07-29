@@ -321,7 +321,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void closeOverlayPopup() {
-		reusableActions.clickIfAvailable(btnCloseOnPopup, 30);
+		reusableActions.clickIfAvailable(btnCloseOnPopup, 3);
 	}
 	
 	/**

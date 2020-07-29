@@ -66,7 +66,7 @@ public class FidoSS_Regression_TC053_ValidatewirelessDashboardPageWithRunningLow
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Is Displayed",
 							"Dashboard section data balance not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardUsageBarIsDisplayed(),
@@ -94,11 +94,11 @@ public class FidoSS_Regression_TC053_ValidatewirelessDashboardPageWithRunningLow
 				"Add data pop out not displayed for running low data");
 	
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
-		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+		reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
 				"Manage data overlay is not displayed");	
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
 				"Talk plan details section is displayed",
 				"Talk plan details section is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextPlanDetailsSectionIsDisplayed(),

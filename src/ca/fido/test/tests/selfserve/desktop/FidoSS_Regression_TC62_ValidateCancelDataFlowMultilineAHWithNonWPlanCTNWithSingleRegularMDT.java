@@ -64,13 +64,13 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		Map<String, Integer> countOfActiveAndCancelledAddDataOnMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection();			
 		
 		//4. Click on View details in usage dashboard
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
 		Map<String, Integer> countOfActiveAndCancelledAddData = fido_data_management_page.getAllExistingAddDataCountCancelledAndActive();
 		reporter.reportLogWithScreenshot("Manage Data page");
 		//Comparisions Before Cancel:
-		reporter.softAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled").intValue()==countOfActiveAndCancelledAddData.get("cancelled").intValue()
+		reporter.hardAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled").intValue()==countOfActiveAndCancelledAddData.get("cancelled").intValue()
 							&& countOfActiveAndCancelledAddDataOnMyPlan.get("active").intValue()==countOfActiveAndCancelledAddData.get("active").intValue()
 							&& countOfActiveAndCancelledAddDataOnMyPlan.get("nonMDT").intValue()==countOfActiveAndCancelledAddData.get("nonMDT").intValue())
 				, "The number of cancelled and active add on macth on my plans and manage data page", 
@@ -94,7 +94,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 			fido_data_management_page.scrollToTop();
 			fido_data_management_page.clkLinkBackOnManageDataOverlay();
 			reporter.reportLogWithScreenshot("Back on dashboard");
-			reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+			reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 					"'Data details' page is displayed after click on view details link",
 					"'Data details' page is NOT displayed after click on view details link");
 			//7. Verify that MDT is cancelled

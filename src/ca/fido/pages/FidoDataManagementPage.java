@@ -240,7 +240,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @param intCountOfSpeedPassBefore int, the previous record
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyMTTAddedDataInDataDetails(int listAddedData, int intCountOfSpeedPassBefore) {		
+	public boolean verifyMDTAddedDataInDataDetails(int listAddedData, int intCountOfSpeedPassBefore) {		
 		int totalSpeedPass = getAllExistingAddMTTCount();
 		return totalSpeedPass == listAddedData + intCountOfSpeedPassBefore;
 		

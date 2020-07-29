@@ -53,7 +53,7 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkNTextUsageModuleIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTalkNTextUsageModuleIsDisplayed(),
 							"Talk usage module is displayed",
 							"Talk usage module is not displayed");
 		reporter.reportLogWithScreenshot("Wireless dashboard page");

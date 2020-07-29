@@ -65,7 +65,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		//double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		//double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
 		reporter.reportLogWithScreenshot("View details page opened");
@@ -93,7 +93,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
 			dataAdded = fido_add_data_page.getValueAddedData();
@@ -114,7 +114,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		//Manage data page
-		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+		reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
 				"Manage data overlay is not displayed");	
 		reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
@@ -143,14 +143,15 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		}
 		
 		
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
-		reporter.softAssert(fido_data_management_page.verifyMTTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
-				"MTT data is added correctly in data details","MTT data is NOT added correctly it seems in data details");
+		reporter.softAssert(fido_data_management_page.verifyMDTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
+				"MDT data is added correctly in data details",
+				"MDT data is NOT added correctly it seems in data details");
 		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMDTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
-				"ALL the newly added MTT have the cancel link",
-				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MTT");
+				"ALL the newly added MDT have the cancel link",
+				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is NO Cancel link next to MDT");
 		
 				
 		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
@@ -190,7 +191,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 	{
 		boolean dataAdded = false;
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");

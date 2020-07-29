@@ -55,10 +55,10 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 		reporter.reportLogWithScreenshot("Click on Wireless badge");
 		fido_wireless_dashboard_postpaid_page.clickUpdateVoiceMailPassword();
 		reporter.reportLogWithScreenshot("Update voice mail password view");
-		reporter.softAssert(fido_reset_voicemail_password_page.verifyLabelResetNewPasswordisDisplayedOnPasswordChangePage(),
+		reporter.hardAssert(fido_reset_voicemail_password_page.verifyLabelResetNewPasswordisDisplayedOnPasswordChangePage(),
 							"Label reset new password is displayed",
 							"Label reset new password is not displayed");
-		reporter.softAssert(fido_reset_voicemail_password_page.verifyLabelWhereToChangeTheVoiceMailPasswordisDisplayed(),
+		reporter.hardAssert(fido_reset_voicemail_password_page.verifyLabelWhereToChangeTheVoiceMailPasswordisDisplayed(),
 							"Label where to change the voice mail password displayed",
 							"Label where to change the voice mail password Not displayed");
 		reporter.softAssert(fido_reset_voicemail_password_page.verifyVoiceMailPasswordDigitRuleIsDisplayed(),
@@ -69,9 +69,9 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 		fido_reset_voicemail_password_page.setConfirmVoiceMailPassword(strNewVoiceMailPassword);
 		reporter.reportLogWithScreenshot("New voice mail password "+strNewVoiceMailPassword+" is set");
 		fido_reset_voicemail_password_page.clkSubmit();
-		fido_reset_voicemail_password_page.waitForPageLoad();
+		fido_reset_voicemail_password_page.waitForBackBtnVisible();
 		reporter.reportLogWithScreenshot("After New voice mail password is submited");
-		reporter.softAssert(fido_reset_voicemail_password_page.verifyLabelResetNewPasswordisDisplayedOnChangeConfirmationPage(),
+		reporter.hardAssert(fido_reset_voicemail_password_page.verifyLabelResetNewPasswordisDisplayedOnChangeConfirmationPage(),
 							"LabelResetNewPasswordisDisplayedOnChangeConfirmationPage",
 							"LabelResetNewPassword is Not DisplayedOnChangeConfirmationPage");
 		reporter.softAssert(fido_reset_voicemail_password_page.verifyLabelYourPasswordHasBeenChanged(),
