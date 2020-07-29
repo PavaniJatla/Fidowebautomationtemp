@@ -100,7 +100,7 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.fidoConfig.getSspURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);
+		startSession(TestDataHandler.chConfig.getSspURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);
 	}
 
 	@AfterMethod(alwaysRun = true)

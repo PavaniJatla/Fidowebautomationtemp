@@ -1,11 +1,11 @@
 package ca.fido.test.helpers;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
-import ca.fido.testdatamanagement.TestDataHandler;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import utils.CookieFetcher;
@@ -21,32 +21,7 @@ public class CaptchaBypassHandlers {
 	public CaptchaBypassHandlers(AppiumDriver<MobileElement> adriver) {
 		this.adriver = adriver;
 	}
-	
-	/**
-	 * To Bypass Captcha for Self serve Flows
-	 * @param strUrl                     string of test url
-	 * @param strLanguage                string of language to use
-	 * @throws IOException                throws IO Exceptions
-	 */
-		public void captchaBypassURLSelfserveFlows(String strUrl, String strLanguage) throws IOException {
-			driver.get(strUrl+"?setLanguage="+ strLanguage );
-		
-		String strCookieUserName= TestDataHandler.config.getCookieUserName();
-		String strCookieUserPassword= TestDataHandler.config.getCookieUserPassword();
-		
-		String strBaseUrl = "";
-		if(strUrl.substring(strUrl.length()-3).equalsIgnoreCase("ca")) {
-			strBaseUrl = strUrl;
-		} else {
-			strBaseUrl = strUrl.substring(0, strUrl.lastIndexOf("ca")+2);
-		}
-		//Use https url in config.yml, replace https with http here will by pass the certificate issue
-		//.replace("https", "http")
-		Cookie captchBypass = new Cookie ("temp_token_f",
-		CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strBaseUrl));			
-		driver.manage().addCookie(captchBypass);
-    }
-	
+			
 	/**
 	 * To Bypass Captcha for Anonymous Buy Flows
 	 * @param strUrl                     string of test url
@@ -65,14 +40,31 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for login Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
-	 * @throws IOException                throws IO Exceptions
+	 * @param strGroupName 				 string Group Name 	
+	 * @throws IOException               throws IO Exceptions
 	 */
-	public void captchaBypassURLLoginFlows(String strUrl, String strLanguage) throws IOException {
-		driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");		
-		driver.get(strUrl+"?setLanguage="+ strLanguage );
-		String strCookieUserName= TestDataHandler.fidoConfig.getCookieUserName();
-		String strCookieUserPassword= TestDataHandler.fidoConfig.getCookieUserPassword();			
+	public void captchaBypassURLLoginFlows(String strUrl, String strLanguage) throws IOException {						
+		@SuppressWarnings("deprecation")	
+		 int strMin = new Date().getMinutes();
+		strMin = strMin/15;
+		int intRandom=0;
+		if(strMin>=0 && strMin <1)
+		{
+			intRandom = 1;
+		}else if(strMin>=1 && strMin <2)
+		{
+			intRandom = 2;	
+		}else if(strMin>=2 && strMin < 3)
+		{
+			intRandom = 3;
+		}else if(strMin>=3 && strMin <4)
+		{
+			intRandom = 4;
+		}
+		String strCookieUserName= "rogers"+ new Date().getDay()+new Date().getHours()+intRandom+"@hmail.com";//TestDataHandler.fidoConfig.getCookieUserName();
+		String strCookieUserPassword= strCookieUserName;//Not a sensitive information  //TestDataHandler.fidoConfig.getCookieUserPassword();			
 		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl));//.replace("https", "http")));
+		System.out.print(driver.getCurrentUrl());
 		driver.manage().addCookie(captchBypass);
   }
 	

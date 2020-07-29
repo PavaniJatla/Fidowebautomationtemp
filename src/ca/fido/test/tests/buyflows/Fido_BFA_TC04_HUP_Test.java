@@ -58,7 +58,7 @@ public class Fido_BFA_TC04_HUP_Test extends BaseTestClass{
 		fido_shipping_page.selectHomeAddress();
 		fido_shipping_page.clkContinueToOrderReview();
 		fido_order_review_page.clkTermsNConditionsConsent();
-		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase04.getUsername());
+		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase03.getUsername());
 		if(fido_order_review_page.isPaymentRequired()) {
 			fido_order_review_page.clkContinueToPayment();
 			fido_payment_page.setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),

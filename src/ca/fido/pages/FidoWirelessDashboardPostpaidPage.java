@@ -144,6 +144,12 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//h4[@class='talk-text-limited-heading']/span")
 	WebElement spanRemainingMinutes;
 	
+	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Minutes remaining')]")
+	WebElement talkRemainingMinutes;
+	
+	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Texts remaining')]")
+	WebElement textRemainingMinutes;
+	
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']")
 	WebElement tdAnytime;
 	
@@ -1048,7 +1054,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean verifyWirelessDashboardPageLoad() {
-		return reusableActions.isDisplayed(lblMobileDashboardTitle);
+		return reusableActions.isElementVisible(lblMobileDashboardTitle,60);
 	}
 	
 	/**
@@ -1254,4 +1260,24 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 				&& reusableActions.isElementVisible(btnAddDataOnRunningLowPopOut)
 				&& reusableActions.isElementVisible(btnCloseOnCallOut));
 	}
+
+
+	/**
+	 * Verifies if the talk mins remaining is displayed
+	 * @return true if the remaining minutes is displayed
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyTalkRemainingMinutesIsDisplayed() {
+		return reusableActions.isElementVisible(talkRemainingMinutes);
+	}
+	
+	/**
+	 * Verifies if the text mins remaining is displayed
+	 * @return true if the text remaining is displayed
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyTextRemainingMinutesIsDisplayed() {
+		return reusableActions.isElementVisible(textRemainingMinutes);
+	}
+	
 }

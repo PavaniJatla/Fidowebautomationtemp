@@ -1,10 +1,10 @@
 # Config
 ---
-fidoURL: https://qa6.fido.ca/consumer/easyloginriverpage
+fidoURL: https://qa6.fido.ca
 browser: chrome
 language: en
 cookieUserName: orphanRegRog1@mailinator.com
 cookieUserPassword: rogers123
-ensURL: http://ensqa4.rogers.com/ENS/notificationsViewer.action
+ensURL: http://ensqa3.rogers.com/ENS/notificationsViewer.action
 brightStarURL: https://stage-onlineportal-ca.brightstar.com/fido/login
 ...

@@ -14,6 +14,7 @@ public class FidoChoosePlanPage extends BasePageClass {
 		super(driver);		
 	}
 	
+	//@FindBy(xpath="(//span[@translate='_select']/parent::div[@role='button'])[3]")
 	@FindBy(xpath="//span[@translate='_select']/parent::div[@role='button']")
 	WebElement btnSelect;
 	
@@ -107,7 +108,7 @@ public class FidoChoosePlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean verifyChangePlanPageLoad() {
-		return reusableActions.isElementVisible(lblChangeYourPlan);
+		return reusableActions.isElementVisible(lblChangeYourPlan,60);
 	}
 	
 	/**

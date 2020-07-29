@@ -27,7 +27,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy (xpath = "//input[@formcontrolname='emailAddress']")
 	WebElement txtEmailAddress;
 	
-	@FindBy (xpath = "//button[@class='primary-button state-btn']")
+	@FindBy (xpath = "//button[contains(@class,'primary-button state-btn')]")
 	WebElement btnContinue;
 	
 	@FindBy (xpath = "//div[@class='email-recovery-method']/button")
@@ -42,10 +42,10 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy (xpath = "//button[@class='primary-button state-btn']")
 	WebElement btnVerifyMe;
 	
-	@FindBy (xpath = "//input[@id='password']")
+	@FindBy (xpath = "//input[@id='password' or @formcontrolname='newPassword']")
 	WebElement txtNewPass;
 	
-	@FindBy (xpath = "//input[@id='confirmPassword']")
+	@FindBy (xpath = "//input[@id='confirmPassword' or @formcontrolname='confirmPassword']")
 	WebElement txtConfirmNewPass;
 	
 	@FindBy (xpath = "//button[@class='primary-button state-btn']")
@@ -57,7 +57,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//*[@id='signin-interceptor-modal']//iframe")
 	WebElement iframe;
 
-	@FindBy(xpath = "//button[@class='primary-button state-btn']")
+	@FindBy(xpath = "//button[@class='primary-button state-btn' or text()='LOG IN TO MY ACCOUNT']")
 	WebElement btnLogInToMyAccount;
 
 	@FindBy(xpath = "//span[text()='Your password has been reset!' or text()='Votre mot de passe a été réinitialisé.']")

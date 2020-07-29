@@ -60,13 +60,13 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
         reporter.reportLogWithScreenshot("Launched Live chat frame");
         fido_Shop_internet_page.clkCloseChat();
         fido_Shop_internet_page.clkCloseChatConfirm();
-		reporter.softAssert(!fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
+		//reporter.softAssert(!fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
         reporter.reportLogWithScreenshot("Service availability confirm Popup");
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(TestDataHandler.fidoConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
+	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
 	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 

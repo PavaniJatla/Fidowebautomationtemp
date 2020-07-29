@@ -40,6 +40,8 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 
 	@Test
 	public void checkFidoHSIPlanUpgradeMobile() {
+		reporter.reportLogWithScreenshot("Launched Easy login Page");
+		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkNavMobile();
 		reporter.reportLogWithScreenshot("Launched the Navgation card");	
@@ -77,7 +79,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(TestDataHandler.fidoConfig.getFidoURL(),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,  method);
+	startSession(TestDataHandler.chConfig.getFidoURL(),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,  method);
 	xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 

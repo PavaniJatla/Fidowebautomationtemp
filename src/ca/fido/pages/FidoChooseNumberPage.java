@@ -36,7 +36,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkSelectNewNumber() {
-		reusableActions.clickWhenReady(btnSelectNewNumber);
+		reusableActions.clickWhenReady(btnSelectNewNumber,30);
 		reusableActions.staticWait(2000);
 	}
 	
