@@ -139,7 +139,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
-		reporter.softAssert(fido_data_management_page.verifyMTTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
+		reporter.softAssert(fido_data_management_page.verifyMDTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
 				"MTT data is added correctly in data details","MTT data is NOT added correctly it seems in data details");
 		reporter.softAssert( fido_data_management_page.verifyCancelIsDisplayedForAllActiveAndNewlyAddMDTData(countOfActiveAndCancelledAddData.get("active").intValue(),countAddData),
 				"ALL the newly added MTT have the cancel link",
