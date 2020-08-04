@@ -38,13 +38,16 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc28.getPassword());
 		reporter.reportLogWithScreenshot("After click on Login");	
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 
-		reporter.softAssert(fido_account_overview_page.verifyAccountSuspension(),
+		reporter.hardAssert(fido_account_overview_page.verifyAccountSuspension(),
 				"Message account suspended is displayed",
 				"Message account suspended not displayed");
 		reporter.reportLogWithScreenshot("Account overview page for account suspension");
-		reporter.softAssert(fido_account_overview_page.verifyAccountSuspendedWarning(),
+		reporter.hardAssert(fido_account_overview_page.verifyAccountSuspendedWarning(),
 				"Account suspension warning is displayed",
 				"Account suspension warning not displayed");
 		reporter.softAssert(!fido_account_overview_page.verifyTheAbsenceOfService(),

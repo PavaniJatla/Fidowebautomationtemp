@@ -39,12 +39,15 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+							"Login proceed without error.", 
+							"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overvew page.");
 		fido_account_overview_page.clkCtnBadge();
 
 		reporter.reportLogWithScreenshot("Dashboard View displayed");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyDataDashboardIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyDataDashboardIsDisplayed(),
 							"Data dashboard Verified",
 							"Data Dashboard has issue, please investigate.");
 		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyTalkDashboardDetails(),

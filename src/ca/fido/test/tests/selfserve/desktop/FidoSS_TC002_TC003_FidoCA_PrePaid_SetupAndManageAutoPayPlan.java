@@ -39,7 +39,10 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc0203.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc0203.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkBtnRefillNow();
@@ -65,7 +68,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 			reporter.reportLogWithScreenshot("Click on continue button");
 			fido_refill_page.clkSubmit();
 			reporter.reportLogWithScreenshot("After click on submit button");
-			reporter.softAssert(fido_refill_page.verifyAutoRefillSubmittedSuccessFully(),
+			reporter.hardAssert(fido_refill_page.verifyAutoRefillSubmittedSuccessFully(),
 								"Auto refill submitted successfully", 
 								"Auto refill not submitted successfully");
 			reporter.reportLogWithScreenshot("refill success");
@@ -93,7 +96,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 		fido_refill_page.clkContinue();		
 		//reporter.softAssert(fido_refill_page.verifyPlanSummarySumValuesMatch(),"Plan summary sum values","Plan summary sum values didnt match");
 		fido_refill_page.clkSubmit();
-		reporter.softAssert(fido_refill_page.verifyAutoRefillSubmittedSuccessFully(),
+		reporter.hardAssert(fido_refill_page.verifyAutoRefillSubmittedSuccessFully(),
 							"Auto refill submitted successfully", 
 							"Auto refill didn't submit successfully");
 		reporter.reportLogWithScreenshot("Page after submit auto refill.");
@@ -107,7 +110,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 		fido_refill_page.clkStopAutoPayment();
 		fido_refill_page.clkYesOnStopAutoPaymentOverlay();
 		reporter.reportLogWithScreenshot("Click yes on stop auto payment overlay");
-		reporter.softAssert(fido_refill_page.verifyAutoRefillStoppedSuccessfully(),
+		reporter.hardAssert(fido_refill_page.verifyAutoRefillStoppedSuccessfully(),
 							"Auto refill stopped",
 							"Auto refill stop didnt happen successfully");
 
@@ -118,7 +121,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 			fido_refill_page.clkRecurringAutoRefill();
 			fido_refill_page.clkStopAutoPayment();
 			fido_refill_page.clkYesOnStopAutoPaymentOverlay();
-			reporter.softAssert(fido_refill_page.verifyAutoRefillStoppedSuccessfully(),"Auto refill stopped","Auto refill stop didnt happen successfully");
+			reporter.hardAssert(fido_refill_page.verifyAutoRefillStoppedSuccessfully(),"Auto refill stopped","Auto refill stop didnt happen successfully");
 		}
 		
 	}

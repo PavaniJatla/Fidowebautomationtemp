@@ -43,6 +43,9 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page.");
 		fido_account_overview_page.clkCtnBadge();
@@ -51,7 +54,7 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 			reporter.reportLogWithScreenshot("The service seems is suspended, reactivating the same again");
 			fido_wireless_dashboard_prepaid_page.clkBtnReactivateDevice();
 			fido_report_lost_or_stolen_page.clkBtnReactivateDevice();
-			reporter.softAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
+			reporter.hardAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
 					"reactivate confirmation",
 					"some issue with reactivate confirmation, please investigate");
 			fido_account_overview_page.clkMenuUsageNService();
@@ -62,7 +65,7 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 		fido_report_lost_or_stolen_page.clkBtnReportLostContinue();
 		fido_report_lost_or_stolen_page.clkBtnSuspend();
 		reporter.reportLogWithScreenshot("After click on button suspend");
-		reporter.softAssert(fido_report_lost_or_stolen_page.verifySuspendConfirmMessage(),
+		reporter.hardAssert(fido_report_lost_or_stolen_page.verifySuspendConfirmMessage(),
 							"Suspended successfully", 
 							"Suspend is not successful");
 		reporter.reportLogWithScreenshot("Suspend confirmation page");
@@ -73,7 +76,7 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Clicking the button Reactivate Device");
 		fido_report_lost_or_stolen_page.clkBtnReactivateDevice();		
 		reporter.reportLogWithScreenshot("After click on button re activate device");
-		reporter.softAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
+		reporter.hardAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
 							"The Account reactivated sucessfully",
 							"The acocunt didn't reactivate sucessfully");
 	}

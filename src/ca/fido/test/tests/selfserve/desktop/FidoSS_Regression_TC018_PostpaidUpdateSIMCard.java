@@ -38,7 +38,10 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc18.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc18.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
+		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkCtnBadge();
@@ -52,7 +55,7 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 		reporter.reportLogWithScreenshot("Fill old and new sim card details");
 		fido_wireless_dashboard_postpaid_page.clkBtnUpdateSimNext();
 		reporter.reportLogWithScreenshot("Click Button update SIM card Next button");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyUpdateSimReview(strOldSimNum, strNewSimNum),
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyUpdateSimReview(strOldSimNum, strNewSimNum),
 				"SIM review successful",
 				"SIM review is not successful, please investigate");	
 		reporter.reportLogWithScreenshot("Update SIM card review page.");

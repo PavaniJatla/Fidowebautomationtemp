@@ -46,7 +46,10 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 		fido_login_page.setUsernameInFrame(strUserName);
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc104447.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page.");
 		fido_account_overview_page.clkMenuProfileNSetting();
@@ -63,13 +66,13 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 				fido_profile_and_setting_page.saveContactDetails();		
 				reporter.reportLogWithScreenshot("Bill Notification after add mobile phone number in contact details.");
 				
-				reporter.softAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(mobilePhoneNum),
+				reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(mobilePhoneNum),
 									"Bill notification show successfully with mobile phone set.",
 									"Some issue with bill notification area with mobile phone set.");
 				fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
 				reporter.reportLogWithScreenshot("Verify bill notification section with mobile phone set.");
 			} else {			
-				reporter.softAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(strGetMobileNum),
+				reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(strGetMobileNum),
 									"Bill notification show successfully with mobile phone set.",
 									"Some issue with bill notification area with mobile phone set.");
 				fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
@@ -82,7 +85,7 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 				
 				reporter.reportLogWithScreenshot("Bill Notification after cleared mobile phone in Contact details.");
 				//verify bill notification area again for no mobile phone set.
-				reporter.softAssert(fido_profile_and_setting_page.verifyBillNotificationWithoutMobilePhoneSet(),
+				reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationWithoutMobilePhoneSet(),
 						"Bill notification without mobile",
 						"Some issue with bill notification area without mobile phone");
 				fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();

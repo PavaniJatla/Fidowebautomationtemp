@@ -42,6 +42,9 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.waitforViewBillToLoad();
@@ -73,7 +76,7 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 			reporter.reportLogWithScreenshot("Set verify code");
 			fido_profile_and_setting_page.clkBtnVerifyMeIframe();
 			reporter.reportLogWithScreenshot("Button verify me clicked");
-			reporter.softAssert(fido_profile_and_setting_page.verifySuccessConfirmationMsg(), 
+			reporter.hardAssert(fido_profile_and_setting_page.verifySuccessConfirmationMsg(), 
 								"Recovery phone number set successfully",
 								"Got error when setting recovery phone number");
 			fido_profile_and_setting_page.clkBtnContinueToMyAccountIframe();
@@ -83,7 +86,7 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 //			reporter.reportLogWithScreenshot("Click Menu My Account after login");
 			fido_account_overview_page.clkMenuProfileNSetting();
 
-			reporter.softAssert(fido_profile_and_setting_page.verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
+			reporter.hardAssert(fido_profile_and_setting_page.verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
 								"recovery number set successfully",
 								"Recovery number did not set successfully");
 			reporter.reportLogWithScreenshot("Verify recovery number set in profile and settings page.");

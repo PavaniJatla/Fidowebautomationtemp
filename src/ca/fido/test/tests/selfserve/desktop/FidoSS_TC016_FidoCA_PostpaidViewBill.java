@@ -42,6 +42,9 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc16.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page.");
 		Integer totalCTN=fido_account_overview_page.getCTNUsers().size();		
@@ -67,7 +70,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 	//	    //sum = Double.parseDouble(format.format(sum));
 	//		Double totaltoPay = fido_bill_details_page.getTotalToPayValue();
 			fido_bill_details_page.switchToDefaultContent();	
-			reporter.softAssert(fido_bill_details_page.verifyIfBillValueInMainViewAndBillAmountInDropdownMatch(
+			reporter.hardAssert(fido_bill_details_page.verifyIfBillValueInMainViewAndBillAmountInDropdownMatch(
 					billValue.replaceAll("\\$", ""),billAmount.replaceAll(",", ".").replaceAll("\\$", "")),
 					"Bill value in main view matched the bill amount in drop down",
 					"Bill value in main view does not match the bill amount in drop down");
@@ -77,7 +80,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 			//reporter.softAssert(fido_bill_details_page.verifyAllCTNBillsMatchesTheSubTotalValue(subTotal)
 				// 	,"The total CTN bills match the sub total value"
 				//	,"The total CTN bills mismatc the sub total value");
-			reporter.softAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPage(totalCTN),
+			reporter.hardAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPage(totalCTN),
 					"CTN bill count matched the total number of CTN from overview page",
 					"CTN bill count mismatch the total number of CTN from overview page");	
 		
@@ -85,7 +88,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		{
 			fido_bill_details_page.selectOlderBillViewBillDropDown();
 			reporter.reportLogWithScreenshot("Older bills selected");
-			reporter.softAssert(fido_bill_details_page.isLabelComingSoonDisplayed(),
+			reporter.hardAssert(fido_bill_details_page.isLabelComingSoonDisplayed(),
 								"No bills generated yet for this account",
 								"Some issue with bills, please investigate");
 			

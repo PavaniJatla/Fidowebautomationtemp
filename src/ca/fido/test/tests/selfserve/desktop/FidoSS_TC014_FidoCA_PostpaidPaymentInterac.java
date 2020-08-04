@@ -41,6 +41,9 @@ public class FidoSS_TC014_FidoCA_PostpaidPaymentInterac extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc1417.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.waitForPayNowToBecomeClickable();
@@ -63,18 +66,18 @@ public class FidoSS_TC014_FidoCA_PostpaidPaymentInterac extends BaseTestClass{
 		reporter.reportLogWithScreenshot("reference number page");
 		String refNo=fido_make_payment_page.getRefNumber();
 		reporter.reportLogWithScreenshot("payment reference number is :"+refNo);		
-		reporter.softAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
+		reporter.hardAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
 							"Interac payment is successful", 
 							"Interac payment is not successful");	
 		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPage();
-		reporter.softAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Interac),
+		reporter.hardAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Interac),
 							"Interac transaction verified in payment history",
 							"seems the interac payment history record is not valid ");							
 		fido_account_overview_page.clkPayNow();
 		reporter.reportLogWithScreenshot("Pay now options overlay");
 		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);
 		reporter.reportLogWithScreenshot("Bank option selected");
-		reporter.softAssert(fido_make_payment_page.verifyBankSection(),
+		reporter.hardAssert(fido_make_payment_page.verifyBankSection(),
 							"Bank section verified",
 							"Bank section not verified");
 		fido_make_payment_page.closePayNowModal();					

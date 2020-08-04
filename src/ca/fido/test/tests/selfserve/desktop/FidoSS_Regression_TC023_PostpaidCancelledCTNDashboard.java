@@ -44,6 +44,9 @@ public class FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard extends BaseT
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc23.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Cancelled CTN account overview page");
 		reporter.hardAssert(fido_account_overview_page.verifyCancelledCTNAccountAccessLimitedMessage(),

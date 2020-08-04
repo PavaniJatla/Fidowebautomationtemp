@@ -64,7 +64,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
 		
-		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
 		{
 			strPassword = TestDataHandler.tc04To09.getPassword();
 			fido_login_page.setPasswordInFrame(strPassword);

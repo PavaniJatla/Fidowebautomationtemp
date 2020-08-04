@@ -48,7 +48,7 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
-		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
 		{
 			reporter.reportLogWithScreenshot("Login attempt one not successful, trying attempt two");
 			//second attempt
@@ -62,9 +62,9 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 			reporter.reportLogWithScreenshot("Login Credential is entered.");
 			fido_login_page.clkLoginInFrame();									
 			reporter.reportLogWithScreenshot("Login attempt two submitted.");
-			reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(), 
-								"Login Successful", 
-								"Two usernames failed to login, please check the user credentials");
+			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+					"Login proceed without error.", 
+					"Login failed with error.");
 			
 		}
 		fido_login_page.switchOutOfSignInFrame();
@@ -76,7 +76,7 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		fido_profile_and_setting_page.setNewUserName(newUserName);
 		reporter.reportLogWithScreenshot("New username is entered.");
 		fido_profile_and_setting_page.clkSaveButton();		
-		reporter.softAssert(fido_profile_and_setting_page.verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(newUserName),
+		reporter.hardAssert(fido_profile_and_setting_page.verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(newUserName),
 							"Username updated successfully",
 							"Username did not update successfully");
 		reporter.reportLogWithScreenshot("Username updated successfully");
@@ -88,12 +88,10 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login with new username Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with new username.");
 		fido_login_page.switchOutOfSignInFrame();
-		if(!fido_account_overview_page.verifyLoginFailMsgIframe()) {
-			reporter.reportLogWithScreenshot("Login with new username Credential succeed.");
-		}else {
-			reporter.reportLogWithScreenshot("Login with new username Credential failed, please investigate.");
-		}
 		
 		//reset back		
 		if(!newUserName.equalsIgnoreCase(oldUserName))
@@ -103,7 +101,7 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 			fido_profile_and_setting_page.setNewUserName(oldUserName);
 			reporter.reportLogWithScreenshot("Change username back to the old one.");
 			fido_profile_and_setting_page.clkSaveButton();
-			reporter.softAssert(fido_profile_and_setting_page.verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(oldUserName),
+			reporter.hardAssert(fido_profile_and_setting_page.verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(oldUserName),
 								"Username is successfully reset back",
 								"User name reset not successful");			
 			reporter.reportLogWithScreenshot("Change user name back is done.");

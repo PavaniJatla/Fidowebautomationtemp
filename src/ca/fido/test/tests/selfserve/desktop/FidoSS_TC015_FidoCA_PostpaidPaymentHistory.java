@@ -46,6 +46,9 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		fido_account_overview_page.clkMenuBillingAndPayments();
 		reporter.reportLogWithScreenshot("Menu Billings and payments selected");
@@ -63,7 +66,7 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 				{
 					reporter.reportLogWithScreenshot("Payment history Page :"+page);
 					fido_payment_history_page.clkPageNumber(page);
-					reporter.softAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
+					reporter.hardAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
 										"Payment history data is consistent in page: " + page, 
 										"Payment history data is not consistent for page no: " + page);
 				}
@@ -71,7 +74,7 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 			}else
 			{
 				reporter.reportLogWithScreenshot("Payment history records");
-				reporter.softAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
+				reporter.hardAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
 									"Payment history data is consistent ",  
 									"Payment history data is not consistent" );
 			}

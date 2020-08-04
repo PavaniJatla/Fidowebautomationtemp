@@ -45,6 +45,9 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc1122.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page.");
 		String oldCTN=fido_account_overview_page.getCTNUsers().get("CTN1").split("\n")[1];

@@ -46,6 +46,9 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc2732.getPassword());
 		reporter.reportLogWithScreenshot("After click on Login");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		
 		String strNewVoiceMailPassword = FormFiller.generateRandomNumber(5);	

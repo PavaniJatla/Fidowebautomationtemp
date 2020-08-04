@@ -41,6 +41,9 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Prepaid account overview page.");
 		fido_account_overview_page.clkBtnRefillNow();
@@ -68,7 +71,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		System.out.println("Balance after refill is: " + balanceAfterRefill);
 		reporter.reportLogWithScreenshot("Page after refill and before submit.");
 		fido_refill_page.clkSubmit();		
-		reporter.softAssert(fido_refill_page.verifyOneTimeRefillSubmittedSuccessFully(),
+		reporter.hardAssert(fido_refill_page.verifyOneTimeRefillSubmittedSuccessFully(),
 				"One time refill submitted successfully", 
 				"One time refill not submitted successfully");
 		fido_refill_page.clkBacktoMyAccount();
@@ -79,7 +82,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		fido_account_overview_page.clkFidoTransactions();
 		fido_account_overview_page.scrollToMiddleOfPage();
 		reporter.reportLogWithScreenshot("Verify Fido transaction on this page.");
-		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Recharge card Réapprovisionnement de carte",refillAmount),
+		reporter.hardAssert(fido_payment_history_page.verifyFidoTransactionRecord("Recharge card Réapprovisionnement de carte",refillAmount),
 				"Transaction history records matched", 
 				"transaction history records didnt match");
 	}

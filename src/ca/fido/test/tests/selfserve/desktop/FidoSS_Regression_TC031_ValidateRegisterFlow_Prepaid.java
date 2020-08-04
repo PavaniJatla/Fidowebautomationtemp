@@ -48,7 +48,7 @@ public class FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid extends BaseTe
 		fido_account_registration_page.setFidoPrepaidPassword(strPassword);
 		fido_account_registration_page.setConfirmFidoPrepaidPassword(strPassword);
 		fido_account_registration_page.clkBtnContinuePrepaidRegister();
-		reporter.softAssert(fido_account_registration_page.verifyMsgDisplayedForEmailSentToPrepaidRegisteredEmail(),
+		reporter.hardAssert(fido_account_registration_page.verifyMsgDisplayedForEmailSentToPrepaidRegisteredEmail(),
 				"Message email sent to registered email displayed.",
 				"Message email sent to registered email didn't display.");
 		fido_account_registration_page.clkBtnOkayPrepaidRegister();
@@ -57,7 +57,7 @@ public class FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid extends BaseTe
 		fido_login_page.switchToSignInFrame();
 		common_business_flows.loginApplication(strEmail, strPassword);
 		
-		reporter.softAssert(fido_prepaid_link_account_page.verifyHeaderConnectMyAccountDisplayed(),
+		reporter.hardAssert(fido_prepaid_link_account_page.verifyHeaderConnectMyAccountDisplayed(),
 				"Connect my account header displayed.",
 				"Connect my account header didn't display.");
 		fido_prepaid_link_account_page.clkLabelPrepaidService();

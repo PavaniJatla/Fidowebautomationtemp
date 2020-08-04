@@ -62,6 +62,9 @@ public class FidoLoginPage extends BasePageClass {
 
 	@FindBy(xpath = "//ins[@translate='global.message.accountPageInitializing']")
 	WebElement lblPageLoading;
+	
+	@FindBy (xpath = "//div[@class='recovery-error']")
+	WebElement lblErrorMsg;
 
 	/**
 	 * Set the user name on login page
@@ -101,6 +104,15 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void clkLoginInFrame() {		
 		reusableActions.getWhenReady(btnLogIn,60).click();	  
+	}
+	
+	/**
+	 * Check if the login failed error message is displayed.
+	 * @return true if error message displayed, otherwise false
+	 * @author ning.xue
+	 */
+	public boolean verifyIfErrorMsgIsDisplayedInFrame() {
+		return reusableActions.isElementVisible(lblErrorMsg);
 	}
 	
 	/**

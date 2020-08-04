@@ -47,7 +47,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 		fido_login_page.setPasswordInFrame(altPassword);
 		reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
 		fido_login_page.clkLoginInFrame();		
-		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
 		{			
 			reporter.reportLogWithScreenshot("Login attempt one not successful, trying with alternate password:"+newPassword);
 			String tempPwd=altPassword;			
@@ -57,6 +57,9 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 			fido_login_page.setPasswordInFrame(altPassword);
 			reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
 			fido_login_page.clkLoginInFrame();
+			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+					"Login proceed without error.", 
+					"Login failed with error.");
 
 		}
 		fido_login_page.switchOutOfSignInFrame();
@@ -75,22 +78,19 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 		fido_login_page.setPasswordInFrame(newPassword);
 		reporter.reportLogWithScreenshot("Verify login with new password.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with new password." + newPassword);
 		fido_login_page.switchOutOfSignInFrame();
 		//rechange to the original one
-		if(fido_account_overview_page.verifySuccessfulLogin())
-		{
-			reporter.reportLogWithScreenshot("Login with new password succeed.");
-			fido_account_overview_page.clkMenuProfileNSetting();
-			fido_profile_and_setting_page.clkChangePassword();				
-			fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);
-			reporter.reportLogWithScreenshot("Reset password back to default one.");
-			fido_profile_and_setting_page.clkSaveButton();
-			reporter.reportLogWithScreenshot("password reset back");
-		}else
-		{
-			reporter.reportLogWithScreenshot("Login with new password failed, please investigate.");
-			reporter.reportLogFail("The Re-Login is not successful after change of password, please investigate");
-		}
+		reporter.reportLogWithScreenshot("Login with new password succeed.");
+		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_profile_and_setting_page.clkChangePassword();				
+		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);
+		reporter.reportLogWithScreenshot("Reset password back to default one.");
+		fido_profile_and_setting_page.clkSaveButton();
+		reporter.reportLogWithScreenshot("password reset back");
+
 	}
 
 }
