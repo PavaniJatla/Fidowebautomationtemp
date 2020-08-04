@@ -1,15 +1,15 @@
 # Account Details --BAN with multiple-line
 ---
 name: FidoPreRegisterAccount
-username: SS720fido03@yahoo.com
+username: SS820fidoSet01@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 934658725
+   ban: 935753525
    postalCode: M4L2Z8
    newPassword: rogers123
    recoveryNumber: 1234567890
-   email: Auto720QA7Set3MultiLineSet3@yahoo.com
+   email: SS820fidoSet01@yahoo.com
    mobilePhone: 413-231-1111
    homePhone: 431-231-4817
    businessPhone: 431-231-0817
