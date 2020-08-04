@@ -64,7 +64,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
-		reporter.softAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
 							"data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
@@ -73,7 +73,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		fido_add_data_page.clkSelectAmountDropDown();
 		fido_add_data_page.clkTheFirstDataPlanOptionFromDropDown();
 		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
@@ -82,7 +82,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
 			dataAdded = fido_add_data_page.getValueAddedData();
@@ -118,7 +118,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			
 			fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 			//Manage data page
-			reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+			reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
 					"Manage data overlay is displayed",
 					"Manage data overlay is not displayed");	
 			reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
@@ -138,7 +138,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			fido_data_management_page.clkLinkBackOnManageDataOverlay();
 			reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
 			double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
+			reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 					"Total data in usage section align with total data in Manage data page.",
 					"Total data in usage section doesn't align with total data in Manage data page.");	
 		}else

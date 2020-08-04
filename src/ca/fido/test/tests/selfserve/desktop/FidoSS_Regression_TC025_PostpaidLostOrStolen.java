@@ -47,7 +47,7 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 			reporter.reportLogWithScreenshot("After click on link reactivate");
 			fido_report_lost_or_stolen_page.clkBtnReactivateDevice();
 			reporter.reportLogWithScreenshot("After click on Button reactivate device");
-			reporter.softAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
+			reporter.hardAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
 					"Reactivate confirmation Message is displayed",
 					"Reactivate confirmation message is not displayed");
 			fido_account_overview_page.clkMenuOverview();
@@ -61,7 +61,7 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 		reporter.reportLogWithScreenshot("Report lost suspend");
 		fido_report_lost_or_stolen_page.clkBtnSuspend();
 		reporter.reportLogWithScreenshot("After click on Button Suspend");
-		reporter.softAssert(fido_report_lost_or_stolen_page.verifySuspendConfirmMessage(),
+		reporter.hardAssert(fido_report_lost_or_stolen_page.verifySuspendConfirmMessage(),
 							"Suspend Confirmation message is displayed",
 							"Suspend Confirmation message is not displayed");
 		
@@ -72,7 +72,7 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 		fido_wireless_dashboard_postpaid_page.clkLnkReactivate();		
 		fido_report_lost_or_stolen_page.clkBtnReactivateDevice();
 		reporter.reportLogWithScreenshot("After click on button Reactivate");
-		reporter.softAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
+		reporter.hardAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
 							"Reactivate confirmation Message is displayed",
 							"Reactivate confirmation message is not displayed");
 	}

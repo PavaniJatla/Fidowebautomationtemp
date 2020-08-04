@@ -50,10 +50,10 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		String oldCTN=fido_account_overview_page.getCTNUsers().get("CTN1").split("\n")[1];
 		fido_account_overview_page.clkCtnBadge();	
 		reporter.reportLogWithScreenshot("Clicked on Wireless badge");
-		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
+//		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
 		fido_wireless_dashboard_postpaid_page.clickChangeCTN();
 		reporter.reportLogWithScreenshot("Click on Change CTN");
-		reporter.softAssert(fido_change_CTN_page.waitForChangeMyNumberPageToLoad(),
+		reporter.hardAssert(fido_change_CTN_page.waitForChangeMyNumberPageToLoad(),
 							"Change my number page loaded",
 							"Change my number page didn't load");
 		reporter.softAssert(fido_change_CTN_page.verifylblChangeMyNumberHeaderIsVisible(),
@@ -73,26 +73,27 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		
 		fido_change_CTN_page.clickFindAvailableNumbers();
 		reporter.reportLogWithScreenshot("Find Available Numbers");
-		reporter.softAssert(fido_change_CTN_page.verifyPickANewNumberPageLoaded(),
+		reporter.hardAssert(fido_change_CTN_page.verifyPickANewNumberPageLoaded(),
 							"Pick a new number page loaded",
 							"Pick a new number page not loaded");
 		String newCTN = fido_change_CTN_page.selectNewNumber(0);	
 		reporter.reportLogWithScreenshot("Select New number");
 		fido_change_CTN_page.clickSelectNumber();
-		fido_change_CTN_page.verifyReviewYourNewNumberPageLoaded();
-		reporter.reportLogWithScreenshot("Review your number page loaded");
+		reporter.hardAssert(fido_change_CTN_page.verifyReviewYourNewNumberPageLoaded(),
+							"Review your number page loaded",
+							"Review your number page didn't load");
 		
-		reporter.softAssert(fido_change_CTN_page.verifyNewNumberDetails(oldCTN, newCTN),
+		reporter.hardAssert(fido_change_CTN_page.verifyNewNumberDetails(oldCTN, newCTN),
 							"New Number Details page",
 							"Some error on new number details page");
-		reporter.softAssert(fido_change_CTN_page.verifyProvinceAndCityOnConfirmationPage(
+		reporter.hardAssert(fido_change_CTN_page.verifyProvinceAndCityOnConfirmationPage(
 									callingAreaDetails.get("province"),callingAreaDetails.get("city")),
 							"Confirmation page loaded",
 							"Confirmation page error it seems");
 		//reporter.softAssert(fido_change_CTN_page.verifyEmailSentLabelOnConfirmationPage(),"Email sent label on confirmation page","Email sent label on confirmation page not shown");
 		fido_change_CTN_page.clickButtonConfirm();
 		reporter.reportLogWithScreenshot("After Click on button confirm");
-		reporter.softAssert(fido_change_CTN_page.verifyTheCTNChangeSuccessPage(newCTN),
+		reporter.hardAssert(fido_change_CTN_page.verifyTheCTNChangeSuccessPage(newCTN),
 							"CTN change success page",
 							"CTN change success page not displayed");		
 		reporter.softAssert(fido_change_CTN_page.verifyLabelThatsAllIsDisplayed(),

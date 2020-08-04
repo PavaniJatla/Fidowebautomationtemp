@@ -63,11 +63,11 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 		
 
-		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
+//		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
+//		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 
 		
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
 		int countOfExistSpeedPass = fido_data_management_page.getAllExistingAddOTTCount();
@@ -79,14 +79,14 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
 		//4. Complete Add OTT flow
 		//4. Verify Only OTT options available (no MDT). OTT is added and reflected in total bucket,
-		reporter.softAssert(fido_add_data_page.verifyOverlayOTTDataAddOnDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyOverlayOTTDataAddOnDisplayed(),
 							"Verify Only OTT options available (no MDT)",
 							"It seems Only OTT options not available");			
 		reporter.reportLogWithScreenshot("Add OTT data add on overlay");
 				
 		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
 		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
@@ -96,7 +96,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 			reporter.reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
 			strValueAdded = fido_add_data_page.getAddedValueWithGBOrMB();
@@ -110,7 +110,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		//Manage data page		
 		//5. Click on View details in usage dashboard plan section and manage data page
 		//5. Added Data section lists all add-ons separately and there is NO Cancel link next to OTT"
-		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+		reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
 				"Manage data overlay is not displayed");	
 		reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),

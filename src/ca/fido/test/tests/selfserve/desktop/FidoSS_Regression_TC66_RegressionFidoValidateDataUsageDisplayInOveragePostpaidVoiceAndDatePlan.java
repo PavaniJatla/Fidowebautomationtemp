@@ -66,9 +66,9 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkCtnBadge();
 		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
+//		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyYouHaveAnOverageUsageBarOrGradientIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyYouHaveAnOverageUsageBarOrGradientIsDisplayed(),
 				"Data overage usage  gradient is displayed",
 				"Data overage usage gradient is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataOverageSizeIsDisplayed(),

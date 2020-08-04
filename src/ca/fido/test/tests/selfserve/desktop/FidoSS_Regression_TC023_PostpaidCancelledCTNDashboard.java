@@ -46,15 +46,15 @@ public class FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard extends BaseT
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Cancelled CTN account overview page");
-		reporter.softAssert(fido_account_overview_page.verifyCancelledCTNAccountAccessLimitedMessage(),
+		reporter.hardAssert(fido_account_overview_page.verifyCancelledCTNAccountAccessLimitedMessage(),
 							"CancelledCTNAccountAccessLimitedMessage",
 							"CancelledCTNAccountAccessLimitedMessage not displayed");
-		reporter.softAssert(fido_account_overview_page.verifyAccountOverviewCalcelledWarningUnderYourMobileAccount(),
+		reporter.hardAssert(fido_account_overview_page.verifyAccountOverviewCalcelledWarningUnderYourMobileAccount(),
 							"Account Overview Cancelled Warning Under Your Mobile Account",
 							"Account Overview Cancelled Warning Under Your Mobile Account  not displayed");
 		fido_account_overview_page.scrollToMiddleOfPage();
 		reporter.reportLogWithScreenshot("Cancelled CTN mid page view of account overview");
-		reporter.softAssert(fido_account_overview_page.getCTNUsers().keySet().size()==0,
+		reporter.hardAssert(fido_account_overview_page.getCTNUsers().keySet().size()==0,
 							"The CTN is not displayed of the cancelled CTN",
 							"It seems the CTN is displayed for cancelled CTN, please investigate"); //This will fail for now due to defect {CQ:CQUSR02260935} ALM 197990
 		

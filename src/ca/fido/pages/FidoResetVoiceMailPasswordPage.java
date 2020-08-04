@@ -212,9 +212,8 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * Waits for the confirmation page to load
 	 * @author Mirza.Kamran
 	 */
-	public void waitForPageLoad() {
-		reusableActions.waitForPageLoad();		
-		reusableActions.waitForElementVisibility(btnBackToMyAccount, 60);
+	public void waitForBackBtnVisible() {
+		reusableActions.waitForElementVisibility(btnBackToMyAccount, 30);
 		
 	}
 }

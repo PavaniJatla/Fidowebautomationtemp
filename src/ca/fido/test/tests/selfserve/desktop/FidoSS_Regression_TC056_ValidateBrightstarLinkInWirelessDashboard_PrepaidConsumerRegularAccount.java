@@ -60,12 +60,12 @@ public class FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_P
 				"Link Start or track a phone repair claim",
 				"Link Start or track a phone repair claim is not displayed");		
 		fido_wireless_dashboard_prepaid_page.clkRepairDeviceLink();
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyOverlayForRepairDeviceIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyOverlayForRepairDeviceIsDisplayed(),
 				"Overlay get help for you phone is displayed",
 				"Overlay get help for you phone is displayed is not displayed");
 		reporter.reportLogWithScreenshot("Overlay GET HELP FOR YOUR PHONE is displayed");
 		String strParentWindowHandle = fido_wireless_dashboard_prepaid_page.clkButtonContinueOnRepairDeviceOverlay();		
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyBrightStarNewTabAndURL(strParentWindowHandle,
+		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyBrightStarNewTabAndURL(strParentWindowHandle,
 				TestDataHandler.config.getBrightStarURL()),
 				"Bright star tab and url open",
 				"Bright star tab and url did not open");

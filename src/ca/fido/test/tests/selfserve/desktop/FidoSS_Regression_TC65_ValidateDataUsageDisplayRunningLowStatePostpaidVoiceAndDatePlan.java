@@ -64,7 +64,7 @@ public class FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostp
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
+		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Is Displayed",
 							"Dashboard section data balance not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardUsageBarIsDisplayed(),

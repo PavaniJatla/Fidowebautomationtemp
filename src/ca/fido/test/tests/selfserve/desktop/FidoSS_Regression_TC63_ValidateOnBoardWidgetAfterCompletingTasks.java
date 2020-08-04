@@ -62,7 +62,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 		if(fido_account_overview_page.checkIfSetUpMobileRecoveryNumberIsNotComplete())
 		{
 			fido_account_overview_page.clkSetUpMobileRecoveryNumber();
-			reporter.softAssert(fido_account_overview_page.isTitleSetUpRecoveryDisplayed(),
+			reporter.hardAssert(fido_account_overview_page.isTitleSetUpRecoveryDisplayed(),
 					"Set up recovery title is displayed",
 					"Set up recovery title is not displayed, please investigate");
 			fido_account_overview_page.clkSetUpNowButton();
@@ -86,7 +86,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 			reporter.reportLogWithScreenshot("Set verify code");
 			fido_profile_and_setting_page.clkBtnVerifyMeIframe();
 			reporter.reportLogWithScreenshot("Button verify me clicked");
-			reporter.softAssert(fido_profile_and_setting_page.verifySuccessConfirmationMsg(), 
+			reporter.hardAssert(fido_profile_and_setting_page.verifySuccessConfirmationMsg(), 
 								"Recovery phone number set successfully",
 								"Got error when setting recovery phone number");
 			fido_profile_and_setting_page.clkBtnContinueToMyAccountIframe();
