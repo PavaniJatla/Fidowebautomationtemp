@@ -40,9 +40,12 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");		
-		reporter.softAssert(fido_account_overview_page.isAccountSetUpProgressBarDisplayed(), 
+		reporter.hardAssert(fido_account_overview_page.isAccountSetUpProgressBarDisplayed(), 
 				"Progress bar displayed",
 				"progress bar is not displayed"); 		
 		reporter.softAssert(fido_account_overview_page.isAccountSetUpWidgetLoginToMyAccountPresent(), 

@@ -47,6 +47,9 @@ public class FidoSS_Regression_TC049_ValidateUsageDetailsOfDataOnlyInTheWireless
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login page, user name and password are set.");
 		fido_login_page.clkLoginInFrame();		
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkCtnBadge();

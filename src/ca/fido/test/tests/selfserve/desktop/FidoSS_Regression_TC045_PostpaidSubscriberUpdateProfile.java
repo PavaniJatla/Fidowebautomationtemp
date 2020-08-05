@@ -31,21 +31,24 @@ public class FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile extends Bas
 	}
 	
 	@Test
-	public void postPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
+	public void postPaidSubscriberUpdateProfile() throws InterruptedException, ParseException {
 		
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc4557.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc4557.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Login Account overview page");
 		fido_account_overview_page.clkMenuProfileNSetting();	
 		reporter.reportLogWithScreenshot("menu profile and settings selected");
 		fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
 		reporter.reportLogWithScreenshot("Check for links update contact, billing address");
-		reporter.softAssert(!fido_profile_and_setting_page.isLnkUpdateContactPresent(),
+		reporter.hardAssert(!fido_profile_and_setting_page.isLnkUpdateContactPresent(),
 				"Link update contact is not present",
 				"Link update contact is present");	
 		reporter.softAssert(fido_profile_and_setting_page.verifySubscriberAccountContactPreferenceSection(),

@@ -45,7 +45,10 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc4246.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc4246.getPassword());
 		reporter.reportLogWithScreenshot("HSI account credential has been set: ");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		fido_account_overview_page.clkMenuBillingAndPayments();
 		reporter.reportLogWithScreenshot("Menu billing and payments selected");
@@ -53,7 +56,7 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 		if(fido_account_overview_page.verifyIfAnyPaymentMade())
 		{
 			reporter.reportLogWithScreenshot("Transaction record table view page");
-			reporter.softAssert(fido_payment_history_page.getTotalRowCount() != 0,
+			reporter.hardAssert(fido_payment_history_page.getTotalRowCount() != 0,
 								"There have some transaction record",
 								"No transaction record is found, The row count is blank it seems.");		
 			if(fido_payment_history_page.isPaymenyHistoryTablePresent()) 
@@ -64,7 +67,7 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 					for(int page=1;page<=pageCount;page++)
 					{
 						fido_payment_history_page.clkPageNumber(page);
-						reporter.softAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
+						reporter.hardAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
 											"The payment history data is consistent for page number "+page,
 											"The payment history data is not consistent at page number"+page);
 						reporter.reportLogWithScreenshot("Page Number "+page+" is clicked");
@@ -72,7 +75,7 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 			
 				}else
 				{
-					reporter.softAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
+					reporter.hardAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
 										"The payment history data is consistent",
 										"The payment history data is not consistent");
 				}

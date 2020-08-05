@@ -40,7 +40,10 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc1417.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc1417.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		String newAddress;
 		fido_account_overview_page.clkMenuProfileNSetting();
@@ -63,10 +66,10 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 			fido_profile_and_setting_page.clkContinueUpdateNewAddress();
 			fido_profile_and_setting_page.clkSubmitNewAddress();	
 			reporter.reportLogWithScreenshot("New address submitted");
-			reporter.softAssert(fido_profile_and_setting_page.verifyAddressUpdatedSuccessFulOverlay(newAddress.substring(0, 10)),
+			reporter.hardAssert(fido_profile_and_setting_page.verifyAddressUpdatedSuccessFulOverlay(newAddress.substring(0, 10)),
 								"Address update successful overlay message displayed",
 								"Address update successful overlay message not displayed");
-			reporter.softAssert(fido_profile_and_setting_page.verifyAddressUpdatedSuccessFullyOnProfileAndSettingsPg(newAddress),
+			reporter.hardAssert(fido_profile_and_setting_page.verifyAddressUpdatedSuccessFullyOnProfileAndSettingsPg(newAddress),
 								"Address updated successfully on PnS page",
 								"Address did not update successful on PnS");
 		}catch(Exception ex)

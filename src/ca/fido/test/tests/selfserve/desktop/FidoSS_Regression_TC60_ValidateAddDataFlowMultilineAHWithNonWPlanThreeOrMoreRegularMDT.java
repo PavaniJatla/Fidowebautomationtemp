@@ -58,6 +58,9 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();		
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkCtnBadge();
@@ -68,7 +71,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		//double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		//double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
 		reporter.reportLogWithScreenshot("View details page opened");
@@ -83,7 +86,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		int countOfExistingAddOnsInMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddOns();				
 
 		reporter.hardAssert(this.addData(countOfAlreadyAddedData),
-	                         "Add on selected","Seems no add on found having existing value less than 3 please investigate");
+	                         "Add on selected",
+	                         "Seems no add on found having existing value less than 3 please investigate");
 		
 		/*
 		 * 4. Verify Only MDT options available (no OTT). 
@@ -107,7 +111,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		//Manage data page
-		reporter.softAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+		reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
 				"Manage data overlay is not displayed");	
 		reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
@@ -136,7 +140,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		}
 		
 		
-		reporter.softAssert(fido_data_management_page.validateViewDetailsLink(),
+		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
 		reporter.softAssert(fido_data_management_page.verifyMDTAddedDataInDataDetails(countAddData, countOfExistSpeedPass),
@@ -183,7 +187,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 	{
 		boolean dataAdded = false;
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.softAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		reporter.hardAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
 		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
@@ -191,7 +195,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		{							
 			fido_add_data_page.clkContinueBtnOnAddDataOverlay();
 			reporter.reportLogWithScreenshot("Add monthly data selected");
-			reporter.softAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+			reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
 								"Confirm purchasing on overlay is displayed",
 								"Confirm purchasing on overlay is not displayed");	
 			reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
@@ -200,7 +204,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				reporter.reportLogWithScreenshot("Add data limit reached.");
 				return false;
 			}else {
-				reporter.softAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+				reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 						"Add data success message is displayed",
 						"Add data success message is not displayed");	
 				dataAddedValue = fido_add_data_page.getValueAddedData();

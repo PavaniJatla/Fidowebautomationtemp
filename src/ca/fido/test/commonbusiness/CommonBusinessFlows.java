@@ -21,7 +21,7 @@ public class CommonBusinessFlows {
 	}
 
 	/**
-	 * 
+	 * Login to fido.ca flow, including verify error message after click login.
 	 * @param strUserName for Application
 	 * @param strPassword for Application
 	 * @author Mirza.Kamran
@@ -30,7 +30,10 @@ public class CommonBusinessFlows {
 		baseTestClass.fido_login_page.setUsernameInFrame(strUserName);
 		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);
 		baseTestClass.reporter.reportLogWithScreenshot("Login Credential is entered.");
-		baseTestClass.fido_login_page.clkLoginInFrame();			
+		baseTestClass.fido_login_page.clkLoginInFrame();	
+		baseTestClass.reporter.hardAssert(!baseTestClass.fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 	}
 	
 	/**

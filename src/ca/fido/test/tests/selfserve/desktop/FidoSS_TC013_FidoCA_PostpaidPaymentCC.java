@@ -46,6 +46,9 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.waitForPayNowToBecomeClickable();
@@ -65,12 +68,12 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		reporter.reportLogWithScreenshot("reference Number page");
 		String refNo=fido_make_payment_page.getRefNumber();	
 		reporter.reportLogWithScreenshot("reference number for payment is :"+refNo);
-		reporter.softAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
+		reporter.hardAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
 							"Payment successful message displayed",
 							"Payment successful message not displayed");
 		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPage();
 		reporter.reportLogWithScreenshot("Payment history page selected");
-		reporter.softAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),
+		reporter.hardAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),
 							"Payment history record is verified for credit  card :"+refNo,
 							"Payment history record is not verified for credit card payment ref no :"+refNo);
 	}

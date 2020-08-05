@@ -39,7 +39,10 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc2732.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc2732.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
+		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		
 		reporter.reportLogWithScreenshot("Account overview page.");
@@ -54,13 +57,13 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 		fido_device_reservation_system_page.cancelAllDeviceReservationBeforeReservingANewOneIFrame();		
 		String strSelectedFidoNumber = fido_device_reservation_system_page.getSelectedFidoNumberIFrame();
 		reporter.reportLogWithScreenshot("Number selected");
-		reporter.softAssert(strCTNContact.equals(strSelectedFidoNumber),
+		reporter.hardAssert(strCTNContact.equals(strSelectedFidoNumber),
 							"The CTN numbers matched",
 							"The CTN numbers mismatched");
 		if(fido_device_reservation_system_page.isReserveAPhoneButtonDisplayedIFrame()) {
 			fido_device_reservation_system_page.clkReserveAPhoneButtonIFrame();				
 		}
-		reporter.softAssert(fido_device_reservation_system_page.verifyThePhoneImageIsLoadedIFrame(),
+		reporter.hardAssert(fido_device_reservation_system_page.verifyThePhoneImageIsLoadedIFrame(),
 							"The phone image is displayed",
 							"The phone image is not loaded");
 		fido_device_reservation_system_page.setReservationContactEmailIFrame(FormFiller.generateEmail());
@@ -73,7 +76,7 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 		fido_device_reservation_system_page.clkGoFindAStoreByPickUpLocationIFrame();
 		reporter.reportLogWithScreenshot("Pick up location is set");
 		
-		reporter.softAssert(fido_device_reservation_system_page.verifyMapSectionIsDisplayedIFrame(),
+		reporter.hardAssert(fido_device_reservation_system_page.verifyMapSectionIsDisplayedIFrame(),
 							"The Map is displayed on Pick up address page",
 							"Map is not displayed"); 		
 		reporter.softAssert(fido_device_reservation_system_page.clkSelectAStoreFirstOptionIFrame(),
@@ -104,7 +107,7 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 		reporter.softAssert(fido_device_reservation_system_page.verifyIfSectionPickUpLocationIsDisplayedOnReviewPageIFrame(),
 							"Pick up location is displayed",
 							"Pick up location not displayed");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfTermsAndConditionsSectionIsDisplayedOnReviewPageIFrame(),
+		reporter.hardAssert(fido_device_reservation_system_page.verifyIfTermsAndConditionsSectionIsDisplayedOnReviewPageIFrame(),
 							"T & C displayed",
 							"T & C not displayed");
 		fido_device_reservation_system_page.clkIAgreeToTnCCheckBoxIFrame();		
@@ -112,7 +115,7 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 		
 		//reservation confirm section
 		reporter.reportLogWithScreenshot("Reservation confirmation page");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfPhoneImageIsDisplayedOnRservationConfirmedPageIFrame(),
+		reporter.hardAssert(fido_device_reservation_system_page.verifyIfPhoneImageIsDisplayedOnRservationConfirmedPageIFrame(),
 							"Phone image is displayed on Reservation confirmation page",
 							"Phone image not displayed");
 		reporter.softAssert(fido_device_reservation_system_page.verifyIfTableAccountDetailsIsDisplayedOnReservationConfirmationPageIFrame(),

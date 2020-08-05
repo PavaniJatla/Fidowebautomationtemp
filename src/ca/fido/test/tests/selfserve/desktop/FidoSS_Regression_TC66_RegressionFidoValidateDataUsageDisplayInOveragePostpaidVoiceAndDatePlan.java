@@ -61,7 +61,10 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkCtnBadge();
@@ -69,28 +72,28 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 //		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyYouHaveAnOverageUsageBarOrGradientIsDisplayed(),
-				"Data overage usage  gradient is displayed",
-				"Data overage usage gradient is not displayed");
+						"Data overage usage  gradient is displayed",
+						"Data overage usage gradient is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataOverageSizeIsDisplayed(),
 						"Data overage size is displayed",
 						"Data overage size is not displayed");
 		reporter.reportLogWithScreenshot("Attention Exclamation symbol for overage");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAttentionOverageSymbolIsDisplayed(),
-			"Attention Exclamation symbol is displayed for overage", 
-			"Attention Exclamation symbol is not displayed for overage");		
+						"Attention Exclamation symbol is displayed for overage", 
+						"Attention Exclamation symbol is not displayed for overage");		
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
-			"Talk plan is displayed",
-			"Talk plan is not displayed");		
+						"Talk plan is displayed",
+						"Talk plan is not displayed");		
 					
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataInUsageSectionIsDisplayed(),
-							"Data Section is displayed",
-							"Data section is not displayed");
+						"Data Section is displayed",
+						"Data section is not displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataDelayedIsDisplayed(),
-							"Data delay message display.",
-							"Data delay message didn't displayed");
+						"Data delay message display.",
+						"Data delay message didn't displayed");
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
-							"Label N days reming for Bill cycle is displayed",
-							"Label N days remaining for Bill cycle is not displayed");
+						"Label N days reming for Bill cycle is displayed",
+						"Label N days remaining for Bill cycle is not displayed");
 		
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
 						"Days remaining in bill cycle",

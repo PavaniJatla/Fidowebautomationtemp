@@ -92,7 +92,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 			fido_set_password_page.setConfirmPassword(strPassword);
 			reporter.reportLogWithScreenshot("Set password page.");
 			fido_set_password_page.clkBtnSetPassword();
-			reporter.softAssert(fido_set_password_page.verifyMsgReigistrationCompleteIsDisplayed(),
+			reporter.hardAssert(fido_set_password_page.verifyMsgReigistrationCompleteIsDisplayed(),
 					"Registration completed message displayed",
 					"Registration completed message does Not displayed");
 			reporter.reportLogWithScreenshot("Set password completed.");
@@ -103,7 +103,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 			reporter.reportLogWithScreenshot(e.getMessage());
 		}
 		fido_set_password_page.clkBtnGotoOverview();
-		reporter.softAssert(fido_account_overview_page.verifyEmailInSignInAsLink(strEmail),
+		reporter.hardAssert(fido_account_overview_page.verifyEmailInSignInAsLink(strEmail),
 				"Registered email matches the name in Sign In As",
 				"Registered email doesn't match the name in Sign In As");
 		fido_account_overview_page.clkLnkSignInAs();
@@ -112,8 +112,11 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 		fido_login_page.setPasswordInFrame(strPassword);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),
 				"Registration success, login success.",
 				"Didn't successfully login.");
 		reporter.reportLogWithScreenshot("Account overview page");

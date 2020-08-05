@@ -46,6 +46,9 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
+		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkChangeMethodOfPayment();
@@ -70,11 +73,11 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),"review credit card is displayed","review credit card is not displayed");
 		fido_payment_options_page.clkConfirm();
 		reporter.reportLogWithScreenshot("Verify the payment method set to credit card");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
+		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Success message displayed",
 							"Success message not displayed");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
-							"Label you rfuture bill is displayed",
+							"Label your future bill is displayed",
 							"Label your future bill is not displayed");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
 							"Payment method ending in displayed",
@@ -97,14 +100,14 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_payment_options_page.setInstitutionNumber(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
 		fido_payment_options_page.setAccountNumber(TestDataHandler.paymentInfo.getBankDetails().getAccountNumber());
 		fido_payment_options_page.clkContinue();
-		reporter.softAssert(fido_payment_options_page.verifyTnCPageIsOpen(),
+		reporter.hardAssert(fido_payment_options_page.verifyTnCPageIsOpen(),
 							"T n C is displayed",
 							"T n C is not displayed");
 		fido_payment_options_page.clkIAcceptTermsAndCondition();
 		reporter.reportLogWithScreenshot("Bank info entered, T n C accepted");
 		fido_payment_options_page.clkContinue();
 		reporter.reportLogWithScreenshot("Verify the payment method set to bank");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
+		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Success message displayed",
 							"Success message not displayed");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),

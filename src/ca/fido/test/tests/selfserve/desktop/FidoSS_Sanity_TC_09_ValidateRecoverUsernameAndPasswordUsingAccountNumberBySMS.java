@@ -71,7 +71,7 @@ public class FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountN
 		fido_recover_pass_or_name_page.setConfirmPassword(strNewPass);
 		reporter.reportLogWithScreenshot("New passwords set");
 		fido_recover_pass_or_name_page.clkBtnSetPassword();
-		reporter.softAssert(fido_recover_pass_or_name_page.isPasswordRestSuccessIsDisplayed()
+		reporter.hardAssert(fido_recover_pass_or_name_page.isPasswordRestSuccessIsDisplayed()
 				, "Password reset success message is displayed"
 				, "Password reset success message not displayed");
 		fido_recover_pass_or_name_page.clkLogInToMyAccount();
@@ -79,14 +79,16 @@ public class FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountN
 		fido_recover_pass_or_name_page.switchToDefaultContent();
 		fido_login_page.switchToSignInFrame();
 		common_business_flows.loginApplication(strUsername, strPassword);		
-		if(fido_account_overview_page.verifyLoginFailMsgIframe())
+		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
 		{			
 			reporter.reportLogWithScreenshot("Login attempt one not successful with old password, trying with new password:"+strNewPass);							
 			fido_login_page.setUsernameInFrame(strUsername);
 			fido_login_page.setPasswordInFrame(strNewPass);
 			reporter.reportLogWithScreenshot("Login with UserName: "+strUsername+" and Password: "+strNewPass);
 			fido_login_page.clkLoginInFrame();
-			reporter.reportLogWithScreenshot("Login successful");
+			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+					"Login proceed without error.", 
+					"Login failed with recovered username and password.");
 			fido_login_page.switchOutOfSignInFrame();
 			reporter.reportLogWithScreenshot("Account overview page");
 			common_business_flows.resetPasswordBack(strNewPass, strPassword);
