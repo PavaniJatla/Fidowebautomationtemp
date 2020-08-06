@@ -3,16 +3,16 @@
 name: FidoHSIAccount
 username: Autodatar820ch33@yahoo.com
 usernamePay: Autodatar820ch05@yahoo.com
-usernameDowngrade: Autodatar820ch39@yahoo.com
-usernameUpgrade: Autodatar820ch64@yahoo.com
-usernameDowngradeSameSpeed: Autodatar820ch39@yahoo.com
+usernameDowngrade: Autodatar820ch33@yahoo.com
+usernameUpgrade: Autodatar720ch04@yahoo.com
+usernameDowngradeSameSpeed: Autodatar820ch33@yahoo.com
 usernameMobile: Autodatar720ch05@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Internet
    postalCode: N3E0B4
    upgradePlan: 75
-   downgradePlan: 30
+   downgradePlan: 5
    payment: 1
    upgradePlanCost: 75
    downgradePlanCost: 55
