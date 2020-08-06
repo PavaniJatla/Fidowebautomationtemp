@@ -205,6 +205,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 */
 	public void selectPassportExpiryYear() {
 		String strPasspoartExpiryYear = FormFiller.generateExpiryYear();
+		reusableActions.waitForElementVisibility(ddlPasspoartExpiryYear, 30);
 		reusableActions.selectWhenReady(ddlPasspoartExpiryYear, strPasspoartExpiryYear);
 	}
 
