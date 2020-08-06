@@ -119,8 +119,6 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
         reporter.reportLogWithScreenshot("Order review page has launched");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();	
-		
-		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditionsSsp(),"Fido Terms And Conditions are verified","Fido Terms And Conditions are not verified");
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Confirmation and details page");

@@ -255,10 +255,10 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 */
 	public void selectHSIPackageByBandwidth(String strBandwidth) {
 	By packageNameLocator = By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update']");
+		reusableActions.getWhenReady(packageNameLocator, 90);
 		WebElement pkg = driver.findElement(packageNameLocator);
-		reusableActions.waitForElementVisibility(pkg, 180);
 		reusableActions.scrollToElement(pkg);
-		reusableActions.getWhenReady(pkg, 90).click();
+		reusableActions.getWhenReady(pkg, 30).click();
 	}
 	
 	/**
