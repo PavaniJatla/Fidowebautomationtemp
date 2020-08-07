@@ -3,7 +3,6 @@ package ca.fido.pages;
 import java.util.List;
 import java.util.Map;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -58,6 +57,14 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy (xpath = "//button[@class='close ng-star-inserted']")
 	WebElement btnCloseOnAddDataOverlay;
 	
+	@FindBy (xpath = "//ss-data-topup-dropdown")
+	WebElement dropdown;
+	
+	@FindBy (xpath = "//button/span[text()='Select amount']")
+	WebElement selectAmountInDropdown;
+	
+	@FindBy (xpath = "//ss-data-topup-dropdown//li")
+	List<WebElement> listInDropdown;
 	
 	/**
 	 * Verify Overlay Monthly Data Add On Displayed
@@ -97,10 +104,10 @@ public class FidoAddDataPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkTheFirstDataPlanBtnOnAddDataOverlay() {	
-		if(reusableActions.isElementVisible(getDriver().findElement(By.xpath("//ss-data-topup-dropdown"))))
+		if(reusableActions.isElementVisible(dropdown))
 		{
-			reusableActions.getWhenReady(getDriver().findElement(By.xpath("//button/span[text()='Select amount']"))).click();
-			reusableActions.getWhenReady(getDriver().findElement(By.xpath("//ss-data-topup-dropdown//li[1]"))).click();
+			reusableActions.getWhenReady(selectAmountInDropdown).click();
+			reusableActions.getWhenReady(listInDropdown.get(0)).click();
 		}else
 		{
 			reusableActions.getWhenReady(btnsSelectDataOnAddDataOverLay.get(1),60).click();
