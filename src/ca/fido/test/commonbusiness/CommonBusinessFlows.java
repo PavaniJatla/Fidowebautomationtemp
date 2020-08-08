@@ -31,9 +31,7 @@ public class CommonBusinessFlows {
 		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);
 		baseTestClass.reporter.reportLogWithScreenshot("Login Credential is entered.");
 		baseTestClass.fido_login_page.clkLoginInFrame();	
-		baseTestClass.reporter.hardAssert(!baseTestClass.fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
-				"Login proceed without error.", 
-				"Login failed with error.");
+		
 	}
 	
 	/**

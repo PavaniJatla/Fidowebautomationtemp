@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Fido ENV Sanity Tests SS" parallel="classes" thread-count="3">
-<parameter name="strBrowser" value="saucechrome"/>
+<suite name="Fido ENV Sanity Tests SS" parallel="classes" thread-count="1">
+<parameter name="strBrowser" value="chrome"/>
 <parameter name="strLanguage" value="en"/>
 
 	<listeners>
@@ -9,7 +9,32 @@
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
     
-
+  
+    <test name="Fido single test1"  enabled="true">	
+		<classes>	
+	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC001_PrePaidDashBoard"> </class>							
+  	    </classes>
+    </test>  
+   
+    
+     <test name="Fido single test2"  enabled="true">	
+		<classes>	
+	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard"> </class>							
+  	    </classes>
+    </test>
+  
+  
+     <test name="Fido single test65"  enabled="false">	
+		<classes>	
+	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan"> </class>							
+  	    </classes>
+    </test>
+  
+    <!-- 
+    
+     
+    
+    
  	<test name="Fido Sanity Test Group1"  enabled="true">	
 		<classes>	
 	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>		
@@ -28,5 +53,6 @@
 		<classes>	
 	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>		
   	    </classes>
-    </test>  
+    </test> 
+     --> 
 </suite>

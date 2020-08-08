@@ -1,14 +1,14 @@
 # Account Details 
 ---
 name: FidoPostPaidAccount
-username: AutoR820SS21@yahoo.com
+username: AutoR820SS22@yahoo.com
 password: DigiAuto@123
 accountDetails:
    type: Wireless
-   ban: 935752501
+   ban: 935752543
    newPassword: rogers123
-   email: AutoR820SS21@yahoo.com
+   email: AutoR820SS22@yahoo.com
    newPassword: rogers123
    recoveryNumber: 1234567890
-   emailAddress: AutoR820SS21@yahoo.com
+   emailAddress: AutoR820SS22@yahoo.com
 ...
