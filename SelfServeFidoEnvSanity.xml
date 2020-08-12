@@ -9,21 +9,9 @@
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
     
-  
-   
-  
-     
-       <test name="Fido single test2"  enabled="true">	
-		<classes>		 			
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>								
-  	    </classes>
-    </test>  
 
-  
-    <!-- 
-    
  
- 	<test name="Fido Sanity Test Group1"  enabled="true">	
+ 	<test name="Fido Sanity Test Group1"  enabled="false">	
 		<classes>	
 	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>		
 			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>	
@@ -37,10 +25,10 @@
          </classes>
     </test>  
     
-	<test name="Fido single test"  enabled="false">	
+	<test name="Fido single test"  enabled="true">	
 		<classes>	
-	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>		
+	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC055_ValidateBrightstarLinkInWirelessDashboard_postpaidConsumerRegularAccount"> </class>		
   	    </classes>
     </test> 
-     --> 
+
 </suite>

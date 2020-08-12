@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Fido Sanity Tests SS" parallel="tests" thread-count="1">
+<suite name="Fido Sanity Tests SS" parallel="tests" thread-count="2">
 <parameter name="strBrowser" value="saucechrome"/>
 <parameter name="strLanguage" value="en"/>
 
@@ -22,8 +22,8 @@
 		<classes>   
           <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
           <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
-          <!-- <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC017_PostpaidViewAndEditProfile"> </class>	
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class> --> 
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC017_PostpaidViewAndEditProfile"> </class>	
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class>  
          </classes>
     </test>                           
 	
