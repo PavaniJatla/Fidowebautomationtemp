@@ -238,8 +238,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 */
 	public void clkChangePackage() {
 		reusableActions.waitForElementVisibility(lnkChangePackage,180);
-		reusableActions.getWhenReady(lnkChangePackage,180);
-		reusableActions.getWhenReady(lnkChangePackage,180).click();
+		reusableActions.getWhenReady(lnkChangePackage,30);
+		reusableActions.getWhenReady(lnkChangePackage,30).click();
 		reusableActions.javascriptScrollToMiddleOfPage();
 	}
 	

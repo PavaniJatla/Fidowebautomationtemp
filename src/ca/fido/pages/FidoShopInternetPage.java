@@ -262,7 +262,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkBuyNowReskin() {
-			reusableActions.clickWhenReady(btnBuyNowReskin, 90);	}
+		//To bypass captcha manually
+			reusableActions.getWhenReady(btnBuyNowReskin, 180).click();	}
 	
 	/**
 	 * Click on availability confirmation button on the service ability Lookup popup

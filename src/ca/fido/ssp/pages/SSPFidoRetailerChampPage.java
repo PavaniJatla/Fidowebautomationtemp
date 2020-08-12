@@ -85,7 +85,7 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkAccept() {	
-		reusableActions.clickIfAvailable(btnAccept, 90);
+		reusableActions.clickIfAvailable(btnAccept, 20);
 	}
 	
 	/**
