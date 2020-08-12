@@ -413,8 +413,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectExpiryMonth() {		
-		String strMM = FormFiller.generateMonth();
+		String strMM = FormFiller.generateMonth();		
 		reusableActions.waitForElementVisibility(ddlExpiryMonth, 30);
+		reusableActions.scrollToElement(ddlExpiryMonth);
 		reusableActions.selectWhenReady(ddlExpiryMonth, strMM);
 	}
 	

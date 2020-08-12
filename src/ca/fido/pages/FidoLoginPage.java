@@ -120,7 +120,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchOutOfSignInFrame() {	
-		reusableActions.clickIfAvailable(btnSkip, 3);
+		reusableActions.clickIfAvailable(btnSkip, 20);
 		driver.switchTo().defaultContent();	
 
 	}

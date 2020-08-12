@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -526,7 +527,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkInternetBadge() {
-		reusableActions.getWhenReady(badgeInternet,120).click();
+		reusableActions.waitForElementVisibility(badgeInternet,30);
+		reusableActions.getWhenReady(badgeInternet,20).click();
 	}
 	
 	/**
@@ -546,11 +548,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	/**
 	 * Verify the Welcome heading on the account overview page
-	 * @return true, if the account overview page display the Welcome heading, else false
+	 * @return true, if the account overview page display the Account Balance, else false
 	 * @author chinnarao.vattam 
 	 */
-	public boolean verifySuccessfulLogin() {	
-		return reusableActions.isElementVisible(infoAccountBalance,60);		
+	public boolean verifySuccessfulLogin() {
+	 String strBalance = reusableActions.getWhenReady(infoAccountBalance,40).getText();
+     return NumberUtils.isCreatable(strBalance);	
 	}
 	
 	/**
