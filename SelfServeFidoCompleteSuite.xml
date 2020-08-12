@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Fido Regression Tests SS" parallel="classes" thread-count="3">
-<parameter name="strBrowser" value="saucechrome"/>
-<parameter name="strLanguage" value="en"/>
+<suite name="Fido Regression Tests SS" parallel="classes" thread-count="2">
 <listeners>
 		<listener class-name="ca.fido.test.listeners.TestListener" />
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
@@ -26,6 +24,8 @@
 <!-- Regression test cases grouped into 3 according to data sharing!! -->
   
   	<test name="Fido Regression Tests " enabled="true">
+  	<parameter name="strBrowser" value="saucefirefox"/>
+	<parameter name="strLanguage" value="en"/>
 		<classes>
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC001_PrePaidDashBoard"> </class> 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC018_PostpaidUpdateSIMCard"> </class>                
@@ -36,18 +36,12 @@
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class> 
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks"> </class>    
-              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit"> </class>
-              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> </class>
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS"> </class> 
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS"> </class> 
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>	
-              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_10_UserAddNumberForRecovery"> </class> 
+              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit"> </class>               
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>	              
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC046_HSI_CX_UpdateProfile"> </class>                 
 
 			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC010_PrepaidLostOrStolen"> </class>  
-            <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC009_PrePaidChangeCTN"> </class>  
-            <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder_MultipleCTN_SingleCTN_HSI"> </class>
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail"> </class>
+            <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC009_PrePaidChangeCTN"> </class>             			 
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC044_PostpaidAccHolderUpdateProfile"> </class>		
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>  
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>     
@@ -62,8 +56,7 @@
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC005_Prepaid_OneTimeRefill_CC"> </class>                     	           
 
 			 <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_PrepaidConsumerRegularAccount"> </class>
-             <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan"> </class>     
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS"> </class>   
+             <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan"> </class>     			  
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification"> </class>	
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC022_PostPaidChangeCTN"> </class>  
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC015_FidoCA_PostpaidPaymentHistory"> </class> 
@@ -78,6 +71,21 @@
         	  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC012_PostPaidChangeMOP"> </class>
          </classes>
 	</test>
+ 
+ 
+ 	<test name="Fido registration and recovery flows" enabled="true">
+	<parameter name="strBrowser" value="chrome"/>
+	<parameter name="strLanguage" value="en"/>
+		<classes>
+		 <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_10_UserAddNumberForRecovery"> </class>
+              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> </class>
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS"> </class> 
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS"> </class>			 
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder_MultipleCTN_SingleCTN_HSI"> </class>
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS"> </class>    
+         </classes>
+	</test>
+			
   
 
 <!-- Below tests are grouped by squads!!  -->
@@ -121,7 +129,7 @@
 		<classes>
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> </class>   
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder_MultipleCTN_SingleCTN_HSI"> </class>
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC04_ValidateRecoverPasswordByEmail"> </class>
+			  
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS"> </class> 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS"> </class> 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS"> </class> 

@@ -10,31 +10,19 @@
 	</listeners>
     
   
-    <test name="Fido single test1"  enabled="true">	
-		<classes>	
-	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC001_PrePaidDashBoard"> </class>							
+   
+  
+     
+       <test name="Fido single test2"  enabled="true">	
+		<classes>		 			
+			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>								
   	    </classes>
     </test>  
-   
-    
-     <test name="Fido single test2"  enabled="true">	
-		<classes>	
-	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard"> </class>							
-  	    </classes>
-    </test>
-  
-  
-     <test name="Fido single test65"  enabled="false">	
-		<classes>	
-	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostpaidVoiceAndDatePlan"> </class>							
-  	    </classes>
-    </test>
+
   
     <!-- 
     
-     
-    
-    
+ 
  	<test name="Fido Sanity Test Group1"  enabled="true">	
 		<classes>	
 	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>		

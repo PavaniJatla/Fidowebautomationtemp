@@ -109,10 +109,7 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkRetreivePUKCode(),
 							"Link PUK code is verfied",
 							"Link PUK code is not verified");
-		if(fido_home_page.isEasyloginDisplayed())
-		{
-			fido_home_page.clkEasylogin();
-		}
+	
 		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkShopForAccessoriesIsValid(),
 							"Link shop for accessories is valid",
 							"Seems the link shop for accessories is not valid");

@@ -185,7 +185,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setPaymentAmount(String strAmount){
-		reusableActions.clickIfAvailable(txtAmount);
+		reusableActions.getWhenReady(txtAmount).click();
 		//The default wrapper is not working on french henc added below line
 		reusableActions.enterText(txtAmount,Keys.chord(Keys.CONTROL,"a", Keys.DELETE), 30);	
 		reusableActions.enterText(txtAmount,strAmount, 30);		

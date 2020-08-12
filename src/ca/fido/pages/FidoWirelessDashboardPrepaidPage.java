@@ -388,7 +388,8 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 		reusableActions.switchToNewWindow(parentHandle);
 		reusableActions.staticWait(5000);
 		if(reusableActions.getDriver().getTitle().trim().toLowerCase().equals(strNewWindowTitleEn.trim().toLowerCase())
-		|| reusableActions.getDriver().getTitle().trim().toLowerCase().equals(strNewWindowTitleFrench.trim().toLowerCase()))
+		|| reusableActions.getDriver().getTitle().trim().toLowerCase().equals(strNewWindowTitleFrench.trim().toLowerCase())
+		|| reusableActions.getDriver().getCurrentUrl().trim().toLowerCase().contains(strNewWindowTitleFrench.trim().toLowerCase()))
 		{
 			reusableActions.closeCurrentWindow();
 			reusableActions.staticWait(2000);
@@ -405,8 +406,8 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @return true if the link is valid else fals
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyLinkShopForAccessoriesIsValid() {
-		return clickAndVerifyLinkForNewWindow(lnkShopForAccessories,"Accessories | Fido","Accessoires | Fido");
+	public boolean verifyLinkShopForAccessoriesIsValid() {		
+		return clickAndVerifyLinkForNewWindow(lnkShopForAccessories,"Accessories | Fido","Phones");
 	}
 	
 	/**
