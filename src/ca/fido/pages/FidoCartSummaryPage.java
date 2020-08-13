@@ -19,11 +19,19 @@ public class FidoCartSummaryPage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.cta.delete']")
 	WebElement lnkShoppingCartDelete;
 	
-	@FindBy(xpath="//ins[@translate='global.cta.confirmRemoval']")
+	@FindBy(xpath="//a[contains(@title,'Remove Fido Internet')]")
 	WebElement btnConfirmRemovalOfCart;
+	
 	
 	@FindBy(xpath="//ins[@translate='global.message.emptyCart']")
 	WebElement infoEmptyCart;
+	
+	@FindBy(xpath="//div[@class='summary-containter']")
+	WebElement infoSummaryCart;
+		
+	@FindBy(xpath="//div[@class='ng-star-inserted']//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100']")
+	WebElement btnConfiramRemoval;
+	
 	
 	@FindBy(xpath="//ins[@translate='global.cta.checkout']")
 	WebElement btnCheckout;
@@ -57,7 +65,7 @@ public class FidoCartSummaryPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkConfirmRemovalOfCart() {
-		reusableActions.clickWhenReady(btnConfirmRemovalOfCart, 10);
+		reusableActions.getWhenReady(btnConfirmRemovalOfCart, 30).click();
 	}
 	
 	/**
@@ -69,6 +77,23 @@ public class FidoCartSummaryPage extends BasePageClass {
 		return reusableActions.isElementVisible(infoEmptyCart);
 	}
 	
+	/**
+	 * Verify the  "your cart is empty" text on the cart Summary page
+	 * @return true, if the cart Summary page has "your cart is empty" text, else false
+	 * @author chinnarao.vattam 
+	 */
+	public boolean verifySummaryCart() {
+		return reusableActions.isElementVisible(infoSummaryCart,30);
+	}
+	
+	/**
+	 * Clicks on checkout button on the cart Summary page
+	 * @author chinnarao.vattam 
+	 */
+	public void clkConfiramRemoval() {
+		reusableActions.getWhenReady(btnConfiramRemoval, 20).click();
+	}
+		
 	/**
 	 * Clicks on checkout button on the cart Summary page
 	 * @author chinnarao.vattam 

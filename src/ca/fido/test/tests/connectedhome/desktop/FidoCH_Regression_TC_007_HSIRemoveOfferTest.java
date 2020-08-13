@@ -33,7 +33,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  *
  **/
 
-public class FidoCH_Regression_TC_007_HSIDeleteOfferTest extends BaseTestClass {
+public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 
 	
 	
@@ -42,26 +42,24 @@ public class FidoCH_Regression_TC_007_HSIDeleteOfferTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
-		fido_home_page.clkShop();
-		fido_home_page.clkHomeInternet();
-		reporter.reportLogWithScreenshot("Home Internet has selected");
-		fido_Shop_internet_page.clkCheckAvailability();
-		reporter.reportLogWithScreenshot("Launched the Internet Page");
-		String strAddressLine1 = (String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-		String strAddressLine2 = (String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-		fido_Shop_internet_page.setAddressLookup(strAddressLine1 + ", " + strAddressLine2 + ", CANADA");
-		reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-		fido_Shop_internet_page.clkCheckAvailabilityConfirmation();
-		reporter.reportLogWithScreenshot("Good News for the Service availability");
-		fido_Shop_internet_page.clkBuyOnline();
-		reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
-		fido_Shop_internet_page.selectPlan();
-		reporter.reportLogWithScreenshot("Selected Plan information");
-		fido_cart_summary_page.clkShoppingCartDelete();
-		reporter.reportLogWithScreenshot("Removal confirm popup");
+        fido_home_page.clkShop();
+        fido_home_page.clkHomeInternet();
+        reporter.reportLogWithScreenshot("Launched the packages Page");
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        reporter.reportLogWithScreenshot("Launched the serviceability check page");
+        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        fido_Shop_internet_page.clkServiceAvailabilityCheck();        
+        reporter.reportLogWithScreenshot("Good News for the Service availability");
+        fido_Shop_internet_page.clkBuyNowReskin();
+        reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
 		fido_cart_summary_page.clkConfirmRemovalOfCart();
-		reporter.reportLogWithScreenshot("Cart-summary Page with deleted package");
-		reporter.hardAssert(fido_cart_summary_page.verifyEmptyCart(), "Delete cart Passed", "Delete cart Failed");
+		fido_cart_summary_page.clkConfiramRemoval();		
+		reporter.reportLogWithScreenshot("package page");
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+		reporter.hardAssert(fido_cart_summary_page.verifySummaryCart(), "removed cart Passed", "remove cart Failed");
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })

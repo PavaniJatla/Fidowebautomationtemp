@@ -68,7 +68,7 @@ public class SSPFidoRetailerChampPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setPassword(String strPassword) {
-		reusableActions.getWhenReady(txtPassword,5).clear();
+		reusableActions.getWhenReady(txtPassword,10).clear();
 		reusableActions.getWhenReady(txtPassword, 2).sendKeys(strPassword);
 	}
 		
