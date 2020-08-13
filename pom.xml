@@ -249,7 +249,7 @@
         </profile>
 
         <profile>
-            <id>FidoCompleteSuiteSS</id>        
+            <id>FidoRegressionSS</id>        
  			<build>
                 <plugins>
                     <plugin>
