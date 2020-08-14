@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Fido ENV Sanity Tests SS" parallel="classes" thread-count="1">
-<parameter name="strBrowser" value="chrome"/>
+<parameter name="strBrowser" value="saucefirefox"/>
 <parameter name="strLanguage" value="en"/>
 
 	<listeners>
 		<listener class-name="ca.fido.test.listeners.TestListener" />
 		<listener class-name="ca.fido.test.listeners.AnnotationTransformer" />
 	</listeners>
-    
-  
-   
-  
-     
-       <test name="Fido single test2"  enabled="true">	
-		<classes>		 			
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>								
+   <!--    
+    <test name="Fido single test"  enabled="true">	
+		<classes>
+		 <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification"> </class>		 		
+		 
   	    </classes>
-    </test>  
+    </test> 
+    --> 
+  
+  <test name="Fido Regression Tests " enabled="true">
+  	<parameter name="strBrowser" value="firefox"/>
+	<parameter name="strLanguage" value="en"/>
+		<classes>						 			           	                                          
+             
+              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine"> </class>                                                                                                                                                       	         			                                                                                          	  
+         </classes>
+	</test>
+ 
 
   
     <!-- 
-    
- 
+      <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC033_ValidateChangeUserName"> </class> 
+  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_PrepaidConsumerRegularAccount"> </class>
  	<test name="Fido Sanity Test Group1"  enabled="true">	
 		<classes>	
 	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>		

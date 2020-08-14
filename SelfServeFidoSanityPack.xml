@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Fido Sanity Tests SS" parallel="tests" thread-count="1">
-<parameter name="strBrowser" value="saucechrome"/>
+<parameter name="strBrowser" value="chrome"/>
 <parameter name="strLanguage" value="en"/>
 
 	<listeners>
@@ -12,18 +12,14 @@
  	<test name="Fido Sanity Test Group1"  enabled="true">	
 		<classes>	
 			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>	
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>	
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC012_PostPaidChangeMOP"> </class>
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword"> </class> 
+			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>			 
 	    </classes>
     </test>         
      
 	<test name="Fido Sanity Test Group2"  enabled="true">	
 		<classes>   
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
-          <!-- <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC017_PostpaidViewAndEditProfile"> </class>	
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class> --> 
+          	
+          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class> 
          </classes>
     </test>                           
 	

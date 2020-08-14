@@ -73,7 +73,7 @@
 	</test>
  
  
- 	<test name="Fido registration and recovery flows" enabled="true">
+ 	<test name="Fido registration and recovery flows" enabled="false">
 	<parameter name="strBrowser" value="chrome"/>
 	<parameter name="strLanguage" value="en"/>
 		<classes>

@@ -82,8 +82,10 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		reporter.reportLogWithScreenshot("Username updated successfully");
 		fido_login_page.clkSignOut();
 		reporter.reportLogWithScreenshot("Sign Out");
+		
 		fido_login_page.clkResignInAs();
-		reporter.reportLogWithScreenshot("Re Sign In");
+		reporter.reportLogWithScreenshot("Re Sign In");		
+		fido_login_page.switchToSignInFrame();
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login with new username Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
