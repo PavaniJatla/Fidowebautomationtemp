@@ -237,7 +237,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkChangePackage() {
-		reusableActions.waitForElementVisibility(lnkChangePackage,180);
+		reusableActions.waitForElementVisibility(lnkChangePackage,120);
 		reusableActions.getWhenReady(lnkChangePackage,30);
 		reusableActions.getWhenReady(lnkChangePackage,30).click();
 		reusableActions.javascriptScrollToMiddleOfPage();
@@ -255,9 +255,9 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 */
 	public void selectHSIPackageByBandwidth(String strBandwidth) {
 	By packageNameLocator = By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update']");
-		reusableActions.getWhenReady(packageNameLocator, 90);
+	    reusableActions.javascriptScrollToMiddleOfPage();
+	     reusableActions.getWhenReady(packageNameLocator, 90);
 		WebElement pkg = driver.findElement(packageNameLocator);
-		reusableActions.scrollToElement(pkg);
 		reusableActions.getWhenReady(pkg, 30).click();
 	}
 	
@@ -379,7 +379,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 */
 	public void clkInternetService() {
 		reusableActions.waitForElementTobeClickable(navInternetService, 30);
-		reusableActions.getWhenReady(navInternetService, 20).click();
+		reusableActions.getWhenReady(navInternetService, 30).click();
 		
 		
 	}

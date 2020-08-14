@@ -74,14 +74,14 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 		reporter.reportLogWithScreenshot("SSP dashboard has launched");		
 		fido_ssp_retailer_home_page.selectEnvironment(TestDataHandler.fidoSspHSIAccount.getEnvironment());
 		reporter.reportLogWithScreenshot("Shop home page has Lanched");
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyInternetPlans(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");
 		reporter.reportLogWithScreenshot("Launched the Fido.ca Home page");
-		reporter.reportLogWithScreenshot("Cart-summary Page to select the plan");
         fido_Shop_internet_page.selectPlan();
         String  strAddressLine1=(String) TestDataHandler.fidoSspHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=(String) TestDataHandler.fidoSspHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        
         fido_Shop_internet_page.clkCheckAvailabilityConfirmation(); 
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_Shop_internet_page.clkpackselectedNContinue();

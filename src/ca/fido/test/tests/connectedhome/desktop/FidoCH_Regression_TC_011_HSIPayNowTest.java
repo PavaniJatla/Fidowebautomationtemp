@@ -40,7 +40,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
+		fido_login_page.switchToSignInFrameMobile();
 		reporter.reportLogWithScreenshot("Launched the SignIn popup");
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

@@ -405,7 +405,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectExpiryYear() {
-		reusableActions.selectWhenReady(ddlExpiryYear, "3");
+		String strYY = FormFiller.generateExpiryYear();
+		reusableActions.selectWhenReadyByVisibleText(ddlExpiryYear, strYY);
 	}
 
 	/**
@@ -415,7 +416,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void selectExpiryMonth() {		
 		String strMM = FormFiller.generateMonth();		
 		reusableActions.waitForElementVisibility(ddlExpiryMonth, 30);
-		reusableActions.scrollToElement(ddlExpiryMonth);
+		//reusableActions.javascriptScrollByVisibleElement(ddlExpiryMonth);
 		reusableActions.selectWhenReady(ddlExpiryMonth, strMM);
 	}
 	
@@ -441,7 +442,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void setCVV() {
 		String strCVV = FormFiller.generateCVVNumber();
-		reusableActions.getWhenReady(txtCVV).click();
+		reusableActions.getWhenReady(txtCVV,20).click();
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
 	}
 	

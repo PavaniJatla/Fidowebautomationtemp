@@ -60,6 +60,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//a[contains(@ui-sref,'myAccount.overview')]")
 	WebElement lblOverView;
 
+	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor')]//span[@class='m-mobileNavLink__caption']")
+	WebElement lnkLogInMobile;
+	
 	@FindBy(xpath = "//ins[@translate='global.message.accountPageInitializing']")
 	WebElement lblPageLoading;
 	
@@ -72,9 +75,9 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setUsernameInFrame(String strUsername) {
-		reusableActions.getWhenVisible(txtUsername,120).clear();
-		reusableActions.getWhenVisible(txtUsername,60).click();
-		reusableActions.getWhenVisible(txtUsername,60).sendKeys(strUsername);
+		reusableActions.getWhenReady(txtUsername,90).clear();
+		reusableActions.getWhenReady(txtUsername,10).click();
+		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
 	
 	/**
@@ -82,8 +85,16 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchToSignInFrame() {
-		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);
-		
+		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
+	}
+	
+	/**
+	 * Switch to SignIn iframe
+	 * @author ning.xue
+	 */
+	public void switchToSignInFrameMobile() {
+		reusableActions.executeJavaScriptClick(lnkLogInMobile);
+		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 30);		
 	}
 	
 	/**
@@ -93,7 +104,7 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void setPasswordInFrame(String strPassword) {
 		reusableActions.getWhenReady(txtPassword,10).clear();
-		reusableActions.getWhenVisible(txtPassword,10).click();
+		reusableActions.getWhenVisible(txtPassword,30).click();
 		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
 	}
 
@@ -120,7 +131,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchOutOfSignInFrame() {	
-		reusableActions.clickIfAvailable(btnSkip, 20);
+		reusableActions.clickIfAvailable(btnSkip, 30);
 		driver.switchTo().defaultContent();	
 
 	}

@@ -66,8 +66,8 @@ public boolean verifyFidoTermsAndConditionsSsp() {
  * @author Aditya.Dhingra
  */
 public void chkConsentCheckbox() {
-	reusableActions.scrollToElement(lnkUnsubscribe);
-	reusableActions.clickWhenReady(chkConsentCheckbox);
+	reusableActions.javascriptScrollByVisibleElement(lnkUnsubscribe);
+	reusableActions.getWhenReady(chkConsentCheckbox).click();
 }
 
 /**
@@ -84,11 +84,13 @@ public boolean verifySubmitButtonEnabled() {
  * @author Aditya.Dhingra
  */
 public void clkReviewSubmitButton() {
-	reusableActions.getWhenReady(btnSubmit,60).click();
+	reusableActions.waitForElementVisibility(btnSubmit,60);
+	//reusableActions.javascriptScrollByVisibleElement(btnSubmit);
+	reusableActions.getWhenReady(btnSubmit,10).click();
 }
 public void clkscrollToElement() {
 	reusableActions.waitForElementVisibility(lnkUnsubscribe,120);
-	reusableActions.scrollToElement(lnkUnsubscribe);
+	reusableActions.javascriptScrollByVisibleElement(lnkUnsubscribe);
 }
 
 /**
@@ -97,7 +99,8 @@ public void clkscrollToElement() {
  */
 public void chkAgreementConsentCheckbox() {
 	reusableActions.waitForElementVisibility(chkConsentCheckbox, 30);
-	reusableActions.clickWhenReady(chkConsentCheckbox, 10);
+	//reusableActions.javascriptScrollByVisibleElement(chkConsentCheckbox);
+	reusableActions.executeJavaScriptClick(chkConsentCheckbox);
 }
 
 public void clkEdit() {

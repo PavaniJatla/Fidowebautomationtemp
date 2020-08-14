@@ -112,8 +112,8 @@ public class FidoCreateUserPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkUserProfileNextForExistingCustomer() {
-		reusableActions.waitForElementVisibility(btnUserProfileNext, 20);
-		reusableActions.getWhenReady(btnUserProfileNext, 30).click();
+		reusableActions.waitForElementVisibility(btnUserProfileNext, 30);
+		reusableActions.executeJavaScriptClick(btnUserProfileNext);
 	}
 	
 	/**

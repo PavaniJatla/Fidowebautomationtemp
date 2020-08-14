@@ -525,8 +525,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkInternetBadge() {
-		reusableActions.waitForElementVisibility(badgeInternet,30);
-		reusableActions.getWhenReady(badgeInternet,20).click();
+		reusableActions.waitForElementVisibility(badgeInternet,60);
+		reusableActions.getWhenReady(badgeInternet,30).click();
 	}
 	
 	/**
@@ -550,7 +550,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {
-	 String strBalance = reusableActions.getWhenReady(infoAccountBalance,40).getText();
+	  reusableActions.waitForElementVisibility(infoAccountBalance,90);
+	 String strBalance = reusableActions.getWhenReady(infoAccountBalance,10).getText();
      return NumberUtils.isCreatable(strBalance);	
 	}
 	
