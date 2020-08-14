@@ -155,6 +155,10 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
 		fido_login_page.clkSignOut();
 		reporter.reportLogWithScreenshot("Sign out done");
+		if(fido_home_page.isEasyloginDisplayed())
+			{
+			 fido_home_page.clkEasylogin();
+		}
 		fido_login_page.clkResignInAs();
 		reporter.reportLogWithScreenshot("Click Re Sign In");
 		fido_login_page.switchToSignInFrame();

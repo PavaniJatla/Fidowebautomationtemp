@@ -654,7 +654,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
      */
     public void clkChangeMethodOfPayment() {
     	reusableActions.waitForElementTobeClickable(lnkChangeMethodOfPayment, 120);
-		reusableActions.executeJavaScriptClick(lnkChangeMethodOfPayment);				
+		reusableActions.getWhenReady(lnkChangeMethodOfPayment).click();				
 	}
     
     /**

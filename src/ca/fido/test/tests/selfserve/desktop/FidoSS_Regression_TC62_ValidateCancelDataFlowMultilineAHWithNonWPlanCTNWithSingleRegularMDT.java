@@ -112,6 +112,10 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 			reporter.reportLogWithScreenshot("Sign out done");
 			fido_login_page.clkResignInAs();
 			reporter.reportLogWithScreenshot("Click Re Sign In");
+			if(fido_home_page.isEasyloginDisplayed())
+			{
+			 fido_home_page.clkEasylogin();
+		    }
 			fido_login_page.switchToSignInFrame();
 			fido_login_page.setPasswordInFrame(password);
 			reporter.reportLogWithScreenshot("Verify login with new password.");

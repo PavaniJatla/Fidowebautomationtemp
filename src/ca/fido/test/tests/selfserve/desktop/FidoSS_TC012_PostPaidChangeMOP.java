@@ -72,7 +72,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_payment_options_page.clkContinue();
 		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),"review credit card is displayed","review credit card is not displayed");
 		fido_payment_options_page.clkConfirm();
-		reporter.reportLogWithScreenshot("Verify the payment method set to credit card");
+		reporter.reportLogWithScreenshot("Verify the payment me		thod set to credit card");
 		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Success message displayed",
 							"Success message not displayed");

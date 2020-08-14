@@ -1,5 +1,6 @@
 package ca.fido.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -92,6 +93,9 @@ public class FidoHomePage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='preloader loading-secondary']")
 	WebElement popLoadingFingerMobile;
+
+	@FindBy(xpath = "//button[@id='not-you-button']")
+	WebElement lblNotUser;
 	
 	
 	/**
@@ -169,7 +173,7 @@ public class FidoHomePage extends BasePageClass {
 	public void skipRecoveryOverlay() {
 		if(reusableActions.isElementVisible(overlayRecoveryHeaderContainer,20))
 		{
-			reusableActions.clickIfAvailable(lnkSkipAd,20);			
+			reusableActions.getWhenReady(lnkSkipAd,20).click();			
 		}
 	}
 	
@@ -284,6 +288,16 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public void clkHomeInternetMenuMobile() {
 		reusableActions.getWhenReady(menuHomeInternetMobile).click();
+	}
+
+	
+	/**
+	 * Clicks on not a username label on signin overlay
+	 * @author Mirza.Kamran
+	 */
+	public void clkNotUser() {
+		reusableActions.getWhenReady(lblNotUser).click();
+		
 	}
 		
 }

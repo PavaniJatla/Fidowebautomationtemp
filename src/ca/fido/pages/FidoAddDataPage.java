@@ -110,7 +110,7 @@ public class FidoAddDataPage extends BasePageClass {
 			reusableActions.getWhenReady(listInDropdown.get(0)).click();
 		}else
 		{
-			reusableActions.getWhenReady(btnsSelectDataOnAddDataOverLay.get(1),60).click();
+			reusableActions.getWhenReady(btnsSelectDataOnAddDataOverLay.get(0),60).click();
 		}
 		
 		

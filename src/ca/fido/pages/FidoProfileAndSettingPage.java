@@ -285,7 +285,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkUpdateBillingAddress() {
-		reusableActions.clickIfAvailable(lnkUpdateBillingAddress, 20);
+		reusableActions.getWhenReady(lnkUpdateBillingAddress, 20).click();
 		
 	}
 	
@@ -593,8 +593,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkSaveButton() {
-		reusableActions.clickIfAvailable(btnSave);
-		reusableActions.staticWait(5000);
+		reusableActions.getWhenReady(btnSave).click();		
 	}
 	
 	/**
@@ -602,8 +601,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void saveContactDetails() {
-		reusableActions.clickIfAvailable(btnSave,10);
-		reusableActions.staticWait(3000);
+		reusableActions.getWhenReady(btnSave,10).click();		
 	}
 	
 	/**
@@ -629,7 +627,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void clkContinueUpdateNewAddress() {
 		reusableActions.waitForElementTobeClickable(btnContinueChangeAddress, 30);
-		reusableActions.clickIfAvailable(btnContinueChangeAddress, 10);
+		reusableActions.getWhenReady(btnContinueChangeAddress, 10).click();
 		
 	}
 	

@@ -181,7 +181,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkResignInAs() {	
-		reusableActions.clickIfAvailable(By.xpath("//a[text()='My Account']"), 20);
+		reusableActions.getWhenReady(By.xpath("//div[@id='skipNavigation']//span[contains(text(),'Sign in as')]"), 20).click();
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {

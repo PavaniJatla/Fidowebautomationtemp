@@ -125,13 +125,11 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	public void clkSubmit() {
 		boolean clickSuccess=false;
 		int counter=0;
-		while (counter<=3 && !clickSuccess) {
-			reusableActions.staticWait(3000);//buffer
+		while (counter<=3 && !clickSuccess) {			
 			reusableActions.waitForElementVisibility(btnSubmitVoiceMailPassword, 120);
 			reusableActions.waitForElementTobeClickable(btnSubmitVoiceMailPassword, 120);
 			reusableActions.executeJavaScriptClick(btnSubmitVoiceMailPassword);
 			reusableActions.clickWhenReady(btnSubmitVoiceMailPassword, 10);
-			reusableActions.staticWait(1000);//buffer
 			if(reusableActions.isDisplayed(btnBackToMyAccount))
 			{
 				clickSuccess=true;
