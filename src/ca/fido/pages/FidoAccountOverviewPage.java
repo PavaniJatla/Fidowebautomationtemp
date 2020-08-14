@@ -429,10 +429,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkCtnBadge() {
 
 		reusableActions.getWhenVisible(divCtnBadge, 20).click();
-		if(reusableActions.isElementVisible(divGotANewLook, 5))
-		{
-			reusableActions.clickIfAvailable(btnCloseOverlay, 5);
-		}		
+		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
+		
 	}
 	
 	/**
