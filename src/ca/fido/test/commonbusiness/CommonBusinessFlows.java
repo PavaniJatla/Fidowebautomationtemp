@@ -26,7 +26,7 @@ public class CommonBusinessFlows {
 	 * @param strPassword for Application
 	 * @author Mirza.Kamran
 	 */
-	public void loginApplication(String strUserName, String strPassword) {
+	public void loginApplication(String strUserName, String strPassword) {		
 		baseTestClass.fido_login_page.setUsernameInFrame(strUserName);
 		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);
 		baseTestClass.reporter.reportLogWithScreenshot("Login Credential is entered.");

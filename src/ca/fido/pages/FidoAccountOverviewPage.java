@@ -317,7 +317,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.waitForElementTobeClickable(menuProfileNSetting, 360);
 				// buffer static wait added to handle anomalies on firefox
 				reusableActions.staticWait(4000);
-				reusableActions.executeJavaScriptClick(menuProfileNSetting);			
+				reusableActions.getWhenReady(menuProfileNSetting).click();		
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
 				if(reusableActions.isDisplayed(lblHeaderProfileAndSettings))
 				{
@@ -427,7 +427,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
      * @author Ning.Xue
      */
 	public void clkCtnBadge() {
-
 		reusableActions.getWhenVisible(divCtnBadge, 20).click();
 		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
 		
