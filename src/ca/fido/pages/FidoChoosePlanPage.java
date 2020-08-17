@@ -14,8 +14,8 @@ public class FidoChoosePlanPage extends BasePageClass {
 		super(driver);		
 	}
 	
-	//@FindBy(xpath="(//span[@translate='_select']/parent::div[@role='button'])[3]")
-	@FindBy(xpath="//span[@translate='_select']/parent::div[@role='button']")
+	@FindBy(xpath="(//span[@translate='_select']/parent::div[@role='button'])[7]")
+	//@FindBy(xpath="//span[@translate='_select']/parent::div[@role='button']")
 	WebElement btnSelect;
 	
 	@FindBy(xpath="//button[@translate='choose-addons-mini-cart-btn']")

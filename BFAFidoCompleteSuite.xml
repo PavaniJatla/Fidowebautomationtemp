@@ -49,5 +49,13 @@
 			</class>
 		</classes>
 	</test>
+	
+	<test name="TC06-Fido-Validate user able to perform HUP with PPC using Exisitng Subsidy acct" enabled="true">
+	<classes>
+			<class
+				name="ca.fido.test.tests.buyflows.Fido_BFA_TC06_HUPWithPPCUsingExistingSubsidyAcct_Test">
+			</class>
+		</classes>
+	</test>
 
 </suite>

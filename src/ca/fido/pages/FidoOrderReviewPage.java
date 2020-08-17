@@ -40,7 +40,8 @@ public class FidoOrderReviewPage extends BasePageClass {
 	@FindBy(xpath="//p[@class='msgLoad' and @checkout-res='checkout_waiting_msg']")
 	WebElement lblOrderProcessing;
 	
-	@FindBy(xpath="//span[@translate='btn_complete_order']/parent::button")
+	//span[@translate='btn_complete_order' or @translate='btn_continue_to_payment'  ]/parent::button
+	@FindBy(xpath="//span[@translate='btn_complete_order' or @translate='btn_continue_to_payment']/parent::button")
 	WebElement btnCompleteOrder;
 	
 	//@FindBy(xpath="//input[@id='email']")
@@ -88,7 +89,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkTermsNConditionsConsent() {
-		reusableActions.clickWhenVisible(lblTermsNConditionsConsent, 60);
+			reusableActions.clickWhenVisible(lblTermsNConditionsConsent, 60);
 	}
 	
 	/**
@@ -114,7 +115,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public void setContractDigitalCopyEmail(String strEmail) {
 		reusableActions.clickWhenReady(lblContractDigitalCopy);
-		if(reusableActions.isElementVisible(txtEmailAddress,1)) {
+		if(reusableActions.isElementVisible(txtEmailAddress,10)) {
 			txtEmailAddress.sendKeys(strEmail);
 		}
 	}
@@ -143,7 +144,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkCompleteOrder() {
-		reusableActions.clickWhenReady(btnCompleteOrder);
+		reusableActions.clickWhenReady(btnCompleteOrder,60);
 	}
 	
 	/**

@@ -183,7 +183,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	WebElement lnkAddALine;
 	
 	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlowDevice']/parent::button/preceding-sibling::div//span")
-	@FindBy (xpath = "//span[@translate='aal.cta.addALineFlow']/parent::button")
+	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlow']/parent::button")
+	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
 	WebElement buttonAALCurrentPhone;
 	
 	@FindBy (xpath = "//div[@class='modal-body']//div[@class='btn-padding hidden-xs']//following-sibling::button")
@@ -822,7 +823,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkSpecificCTNBadge(String strCTN) {
 		strCTN = strCTN.replace("-", "").replace(" ", "");
 		strCTN = strCTN.substring(0, 3) + "-" + strCTN.substring(3, 6) + "-" + strCTN.subSequence(6, 10);
-		reusableActions.clickWhenVisible(By.xpath("//span[text()='"+ strCTN +"']/ancestor::a[@class='btn']"));
+		reusableActions.clickWhenVisible(By.xpath("//span[text()='"+ strCTN +"']/ancestor::a[@class='btn']"),30);
 	}
 	
 	/**

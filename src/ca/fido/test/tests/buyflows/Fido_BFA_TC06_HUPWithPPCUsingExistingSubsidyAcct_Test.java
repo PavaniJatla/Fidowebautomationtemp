@@ -16,7 +16,7 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
- * TC03-Fido-Validate user able to perform HUP
+ * TC06-Fido-Validate user able to perform HUP with PPC using Exisitng Subsidy acct
  * 
  * Login to Fido.ca using valid credentials
  * Click on HUP eligible CTN 
@@ -29,10 +29,10 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * 
  * @author rajesh.varalli1
  */
-public class Fido_BFA_TC04_HUP_Test extends BaseTestClass{
+public class Fido_BFA_TC06_HUPWithPPCUsingExistingSubsidyAcct_Test extends BaseTestClass{
 
 	@Test
-	public void hupFlowTest() {
+	public void hupWithPPCUsingExistingSubsidyAcctFlowTest() {
 		reporter.reportLogWithScreenshot("Fido Home page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

@@ -108,7 +108,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkCloseDialogWindow() {
-		reusableActions.clickIfAvailable(closeDialogWindow, 120);
+		reusableActions.clickIfAvailable(closeDialogWindow, 40);
 	}
 	
 	/**
@@ -353,7 +353,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueToAddons() {
 		if(handleTodayOfferOverlay()) {
-			reusableActions.clickWhenVisible(btnContinueToAddons,120);
+			reusableActions.clickWhenVisible(btnContinueToAddons,40);
 		}
 		//reusableActions.waitForElementVisibility(btnContinueToAddons, 60);
 	}
@@ -376,8 +376,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public boolean handleTodayOfferOverlay() {
 		if(reusableActions.isElementVisible(btnGetThisOffer, 60)) {
-			reusableActions.clickWhenReady(btnGetThisOffer , 60);
-			reusableActions.clickWhenVisible(By.xpath("//button[@translate='continue_to_addons']"), 60);
+			reusableActions.clickWhenReady(btnGetThisOffer);
+			reusableActions.clickWhenVisible(By.xpath("//button[@translate='continue_to_addons']"), 30);
 			return false;
 		} else {
 			return true;

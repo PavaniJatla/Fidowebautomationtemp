@@ -51,7 +51,7 @@ public class Fido_BFA_TC02_AAL_Term_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Modal dialogue appeared");
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XS MAX"),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XR"),"Device Found and Selected","Device Not Found");
 		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
 		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
 		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");
