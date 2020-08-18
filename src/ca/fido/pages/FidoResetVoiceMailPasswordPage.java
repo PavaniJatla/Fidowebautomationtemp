@@ -128,7 +128,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 		while (counter<=3 && !clickSuccess) {			
 			reusableActions.waitForElementVisibility(btnSubmitVoiceMailPassword, 120);
 			reusableActions.waitForElementTobeClickable(btnSubmitVoiceMailPassword, 120);
-			reusableActions.executeJavaScriptClick(btnSubmitVoiceMailPassword);
+			//reusableActions.getWhenReady(btnSubmitVoiceMailPassword).click();
 			reusableActions.clickWhenReady(btnSubmitVoiceMailPassword, 10);
 			if(reusableActions.isDisplayed(btnBackToMyAccount))
 			{
