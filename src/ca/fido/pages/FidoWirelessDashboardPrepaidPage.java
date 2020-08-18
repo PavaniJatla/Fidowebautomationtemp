@@ -148,7 +148,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public Boolean verifyDataDashboardIsDisplayed() {
 		
-		return  reusableActions.isDisplayed(divData);		
+		return  divData.isDisplayed();
 		
 	}
 	
@@ -159,7 +159,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public Boolean verifyTalkDashboardDetails() {
 		
-		return  reusableActions.isDisplayed(divTalk);
+		return  divTalk.isDisplayed();
 	}	
 	
 	/**
@@ -169,7 +169,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public Boolean verifyTextDashboardDetails() {
 		
-		return  reusableActions.isDisplayed(divText);
+		return  divText.isDisplayed();
 	}
 	
 		
@@ -426,7 +426,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkReportLostOrStolenIsDisplayed() {
-		return reusableActions.isDisplayed(lnkReportLostOrStolen);
+		return lnkReportLostOrStolen.isDisplayed();
 	}
 	
 	/**
@@ -435,7 +435,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkShopForAccessoriesIsDisplayed() {
-		return reusableActions.isDisplayed(lnkShopForAccessories);
+		return lnkShopForAccessories.isDisplayed();
 	}
 	
 	/**
@@ -444,7 +444,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRetrievePUKCodeIsDisplayed() {
-		return reusableActions.isDisplayed(lnkRetreivePUKCode);
+		return lnkRetreivePUKCode.isDisplayed();
 	}
 	
 	/**
@@ -490,7 +490,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRetreivePUKCode() {
-		return reusableActions.isDisplayed(lnkRetreivePUKCode);
+		return lnkRetreivePUKCode.isDisplayed();
 	}
 
 	/**
@@ -516,7 +516,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRepairMyDeviceIsDisplayed() {
-		return reusableActions.isDisplayed(lnkRepairMobile);
+		return lnkRepairMobile.isDisplayed();
 	}
 	
 	/**

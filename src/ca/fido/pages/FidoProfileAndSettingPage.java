@@ -307,7 +307,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isLnkUpdateContactPresent() {
 		 
-		return reusableActions.isDisplayed(lnkUpdateContact);
+		return lnkUpdateContact.isDisplayed();
 				
 	}
 	
@@ -317,7 +317,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isLnkUpdateBillingAddressPresent() {		
-		return reusableActions.isDisplayed(lnkUpdateBillingAddress);
+		return lnkUpdateBillingAddress.isDisplayed();
 
 	}
 	
@@ -337,7 +337,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isChangeUserNameLinkPresent() {
 		
-			return reusableActions.isDisplayed(lnkChangeUsername);	
+			return lnkChangeUsername.isDisplayed();
 		
 	}
 	
@@ -408,7 +408,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifySubscriberAccountBillingAddressSection() {
-		return reusableActions.isDisplayed(lblBillingAddressUpdateRightsInfo);
+		return lblBillingAddressUpdateRightsInfo.isDisplayed();
 	}
 	
 	/**

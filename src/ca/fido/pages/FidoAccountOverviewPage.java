@@ -278,7 +278,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfAnyPaymentMade() {
-		return !reusableActions.isDisplayed(labelNoPaymentMade);
+		return !labelNoPaymentMade.isDisplayed();
 	}
 	
     /**
@@ -319,7 +319,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.staticWait(4000);
 				reusableActions.getWhenReady(menuProfileNSetting).click();		
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
-				if(reusableActions.isDisplayed(lblHeaderProfileAndSettings))
+				if(lblHeaderProfileAndSettings.isDisplayed())
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));
 					clickSuccess=true;				
@@ -484,7 +484,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
     		reusableActions.getWhenReady(buttonPayNow,120);    		
     		reusableActions.executeJavaScriptClick(buttonPayNow);
     		reusableActions.staticWait(3000);
-    		if(reusableActions.isDisplayed(txtAmount))
+    		if(txtAmount.isDisplayed())
     		{
     			displayed=true;
     		}

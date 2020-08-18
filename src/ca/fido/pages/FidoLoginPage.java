@@ -185,13 +185,13 @@ public class FidoLoginPage extends BasePageClass {
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {
-			if(!reusableActions.isDisplayed(fraSignIn))
+			if(!fraSignIn.isDisplayed())
 			{
 				reusableActions.waitForElementTobeClickable(lnkReSignInAs, 120);
 				reusableActions.javascriptScrollByVisibleElement(lnkReSignInAs);
 				reusableActions.executeJavaScriptClick(lnkReSignInAs);
 				reusableActions.staticWait(3000);
-				if(reusableActions.isDisplayed(fraSignIn))
+				if(fraSignIn.isDisplayed())
 				{
 					clickSuccess=true;
 					break;

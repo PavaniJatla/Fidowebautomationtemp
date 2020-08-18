@@ -24,7 +24,7 @@ public class FidoLogintoFacebookPage extends BasePageClass {
 	 * @return boolean
 	 */
 	public boolean isContinueBtnPresent() {
-		return reusableActions.isDisplayed(btnContinueToFacebook);
+		return btnContinueToFacebook.isDisplayed();
 	}
 	
 	/**
