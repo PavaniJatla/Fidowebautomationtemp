@@ -467,7 +467,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkNTextUsageModuleIsDisplayed() {
 		System.out.println("Talk & Text usage module is being checked");
-		return reusableActions.isDisplayed(divTalkNTextUsage);
+		return divTalkNTextUsage.isDisplayed();
 	} 
 	
 	/**
@@ -477,8 +477,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkUsageSectionofFullPlanIsDisplayed() {
 		System.out.println("Talk usage details message is being checked");
-		return (reusableActions.isDisplayed(limitedTalkUsage)
-				||reusableActions.isDisplayed(unlimitedTalkUsage));
+		return (limitedTalkUsage.isDisplayed()
+				||unlimitedTalkUsage.isDisplayed());
 	}
 	
 	/**
@@ -488,7 +488,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyUnlimitedTalkUsageIsDisplayed() {
 		System.out.println("Talk usage is unlimited or not being checked");
-		return (reusableActions.isDisplayed(unlimitedTalkUsage));
+		return (unlimitedTalkUsage.isDisplayed());
 	}
 	
 	/**
@@ -498,7 +498,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkUsageDetailsofTalkTextOnlyPlanIsDisplayed() {
 		System.out.println("Talk usage details is being checked");
-		return reusableActions.isDisplayed(txtRemainMinutes);
+		return txtRemainMinutes.isDisplayed();
 	}	
 	
 	/**
@@ -508,7 +508,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkAnytimeUsageDetailsIsDisplayed() {
 		System.out.println("Talk any time usage details is being checked");
-		return reusableActions.isDisplayed(tdAnytime);
+		return tdAnytime.isDisplayed();
 	}	
 	
 	/**
@@ -518,7 +518,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkEveningUsageDetailsIsDisplayed() {
 		System.out.println("Talk evening and weekend usage details is being checked");
-		return reusableActions.isDisplayed(tdEvening);
+		return tdEvening.isDisplayed();
 	}	
 	
 	/**
@@ -542,7 +542,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextUsageDetailsOfFullPlanIsDisplayed() {
 		System.out.println("Text usage details is being checked");
-		return reusableActions.isDisplayed(divTextUsage);
+		return divTextUsage.isDisplayed();
 	}	
 	
 	/**
@@ -552,7 +552,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextUsageDetailsOfTalkNTextOnlyIsDisplayed() {
 		System.out.println("Text usage details is being checked");
-		return reusableActions.isDisplayed(textUsageInTalkNTextOnly);
+		return textUsageInTalkNTextOnly.isDisplayed();
 	}
 	
 	/**
@@ -562,7 +562,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyPictureMsgDetailsIsDisplayed() {
 		System.out.println("Text usage details, picture message is being checked");
-		return reusableActions.isDisplayed(tdPictureMsg);
+		return tdPictureMsg.isDisplayed();
 	}	
 	
 	/**
@@ -572,7 +572,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyBundlesMsgDetailsIsDisplayed() {
 		System.out.println("Text usage details, bundles message is being checked");
-		return reusableActions.isDisplayed(tdBundlesMsg);
+		return tdBundlesMsg.isDisplayed();
 	}	
 	
 	/**
@@ -582,7 +582,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyInternationalMsgDetailsIsDisplayed() {
 		System.out.println("Text usage details, International message is being checked");
-		return reusableActions.isDisplayed(tdInternationalMsg);
+		return tdInternationalMsg.isDisplayed();
 	}	
 	
 	/**
@@ -592,7 +592,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextPlanDetailsSectionIsDisplayed() {
 		System.out.println("text plans details is being checked");
-		return reusableActions.isDisplayed(divMyPlanText);
+		return divMyPlanText.isDisplayed();
 	}	
 	
 	/**
@@ -602,7 +602,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkPlanDetailsSectionIsDisplayed() {
 		System.out.println("talk plans details is being checked");
-		return reusableActions.isDisplayed(divMyPlanTalkDetails);
+		return divMyPlanTalkDetails.isDisplayed();
 	}
 	
 	/**
@@ -612,7 +612,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyLabelDataDelayedIsDisplayed() {
 		System.out.println("Labeldata delayed is being checked");
-		return reusableActions.isDisplayed(divDataDelayedAlert);
+		return divDataDelayedAlert.isDisplayed();
 	} 
 	
 	/**
@@ -622,7 +622,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyDaysRemainingInBillCycleIsDisplayed() {
 		System.out.println("Days remaining in bill cycle is being checked");
-		return reusableActions.isDisplayed(daysRemainingofBillCycle);
+		return daysRemainingofBillCycle.isDisplayed();
 	}
 	
 	/**
@@ -633,7 +633,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyTotalDataInUsageSectionIsDisplayed() {
 		try {
 			System.out.println("Total data section is being checked");
-			return reusableActions.isDisplayed(divTotalData);
+			return divTotalData.isDisplayed();
 		}catch (TimeoutException te) {
 			te.printStackTrace();
 			return false;
@@ -713,7 +713,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyDataDashBoardUsageBarIsDisplayed() {
 		try {
 			System.out.println("data balance Usage Bar is being checked");
-			return (reusableActions.isDisplayed(divUsageBar) &&  reusableActions.isDisplayed(divUsageBarValue));
+			return (divUsageBar.isDisplayed() &&  divUsageBarValue.isDisplayed());
 		}catch (TimeoutException te) {
 			te.printStackTrace();
 			return false;
@@ -780,7 +780,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyButtonChangePlanMyMobilePlanDashBoardSectionIsDisplayed() {
 		System.out.println("Button change Plan  is being checked");
-		return reusableActions.isDisplayed(btnChangePlan);
+		return btnChangePlan.isDisplayed();
 				
 	}
 	
@@ -791,7 +791,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyMyMobilePlanDashBoardSectionIsDisplayed() {
 		System.out.println("My Mobile plan usage section is being checked");
-		return reusableActions.isDisplayed(divMyPlan);
+		return divMyPlan.isDisplayed();
 				
 	}
 	
@@ -803,7 +803,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyLinkViewFullPlanDetailsOnMyMobilePlanDashBoardSectionIsDisplayed() {
 		System.out.println("Link  is being checked");
-		return reusableActions.isDisplayed(lnkViewFullPlan);
+		return lnkViewFullPlan.isDisplayed();
 				
 	}
 	
@@ -815,7 +815,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public Boolean verifyMyDeviceDetails() {
 				
-	return reusableActions.isDisplayed(divMyDevice); 
+	return divMyDevice.isDisplayed();
 
 		}
 	
@@ -892,7 +892,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyLinkChangeCalldisplayNameIsDisplayed() {
 		System.out.println("If the account is not suspended the Chnage Call display name is displayed");
-		return reusableActions.isDisplayed(lnkChangeCallDisplayName);
+		return lnkChangeCallDisplayName.isDisplayed();
 	}
 	
 	/**
@@ -901,7 +901,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkChangeMyNumberIsDisplayed() {
-		return reusableActions.isDisplayed(lnkChangeMyNumber);
+		return lnkChangeMyNumber.isDisplayed();
 	}
 	
 	/**
@@ -910,7 +910,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkUpdateSIMCardIsDisplayed() {
-		return reusableActions.isDisplayed(lnkUpdateSimCard);
+		return lnkUpdateSimCard.isDisplayed();
 	}
 		
 	
@@ -920,7 +920,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkReportLostOrStolenIsDisplayed() {
-		return reusableActions.isDisplayed(lnkReportLostOrStolen);
+		return lnkReportLostOrStolen.isDisplayed();
 	}
 	
 	
@@ -930,7 +930,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRetrievePUKCodeIsDisplayed() {
-		return reusableActions.isDisplayed(lnkRetreivePUKCode);
+		return lnkRetreivePUKCode.isDisplayed();
 	}
 	
 	/**
@@ -1089,7 +1089,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRepairMyDeviceIsDisplayed() {
-		return reusableActions.isDisplayed(lnkRepairMobile);
+		return lnkRepairMobile.isDisplayed();
 	}
 	
 	/**
