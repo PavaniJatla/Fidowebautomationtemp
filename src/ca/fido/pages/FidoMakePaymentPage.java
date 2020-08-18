@@ -262,7 +262,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public Boolean verifyPaymentSuccessfulMessageDisplayed() {
 						
-		if(! reusableActions.isDisplayed(lblPaymentReceived)) {
+		if(! lblPaymentReceived.isDisplayed()) {
 			System.out.print("The Label payment received is not displayed it seems, please investigate");
 			return false;
 		}
