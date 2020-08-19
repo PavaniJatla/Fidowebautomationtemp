@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Connected Home Fido all Tests CH" parallel="classes"
+	thread-count="1">
+	<listeners>
+		<listener
+			class-name="ca.fido.test.listeners.AnnotationTransformer" />
+		<listener class-name="ca.fido.test.listeners.TestListener" />
+	</listeners>
+
+ 	 <test name=" Fido login scenarios">
+   	<parameter name="strBrowser" value="saucechrome"/>
+	<parameter name="strLanguage" value="en"/>
+	<classes>  
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_002_HSIPlanUpgradeTest"></class>   
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_003_HSIPlanDowngradeTest"></class>  
+     <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest"></class>  
+    	 <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest"></class>   
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_011_HSIPayNowTest"></class> 
+      <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_014_HSIValidateDashboardTest"></class>                    
+	</classes>
+	</test>   
+       	
+ 	<test name="Fido Mobile">
+		<parameter name="strBrowser" value="sauceandroidchrome" />
+		<parameter name="strLanguage" value="en" />
+		<classes>
+		     <class name="ca.fido.test.tests.connectedhome.mobile.Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest"></class>  
+ 			<class name="ca.fido.test.tests.connectedhome.mobile.Mobile_FidoCH_Regression_TC_011_HSIPayNowTest"></class> 
+		</classes>
+	</test>    
+</suite>
