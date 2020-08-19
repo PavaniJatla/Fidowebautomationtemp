@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Fido ENV Sanity Tests SS" parallel="classes" thread-count="1">
-<parameter name="strBrowser" value="chrome"/>
+<suite name="Fido ENV Sanity Tests SS" parallel="classes" thread-count="2">
+<parameter name="strBrowser" value="sauceFirefox"/>
 <parameter name="strLanguage" value="en"/>
 
 	<listeners>
@@ -27,8 +27,9 @@
     
 	<test name="Fido single test"  enabled="true">	
 		<classes>	
-	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC055_ValidateBrightstarLinkInWirelessDashboard_postpaidConsumerRegularAccount"> </class>		
+	 		<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_10_UserAddNumberForRecovery"> </class>
   	    </classes>
     </test> 
+    
 
 </suite>
