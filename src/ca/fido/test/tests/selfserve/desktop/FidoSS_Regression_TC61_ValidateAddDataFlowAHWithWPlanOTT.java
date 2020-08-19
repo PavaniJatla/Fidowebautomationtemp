@@ -147,7 +147,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		reporter.reportLogWithScreenshot("Click Re Sign In");
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Verify login with new password.");
+
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
 		//rechange to the original one

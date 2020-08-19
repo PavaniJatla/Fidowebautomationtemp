@@ -427,8 +427,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
      * @author Ning.Xue
      */
 	public void clkCtnBadge() {
+		reusableActions.getWhenReady(divCtnBadge, 20);
 		reusableActions.getWhenVisible(divCtnBadge, 20).click();
-		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
+//		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
 		
 	}
 	

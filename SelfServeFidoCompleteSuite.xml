@@ -47,8 +47,7 @@
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC050_ValidateLegacyWirelessDashboardPage"> </class>
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirelessDashboard"> </class>
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC057_ValidationBrightstarLinkInWirelessDashboard_SubscriberAccountPostpaid"> </class> 
-              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>
-              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks"> </class>    
+              <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanThreeOrMoreRegularMDT"> </class>                
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximumLimit"> </class>                             
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC046_HSI_CX_UpdateProfile"> </class>                 
 
@@ -78,17 +77,19 @@
          </classes>
 	</test>
  
- <!-- TCs could not run on Firefox -->
+ <!-- These TCs need to run on macOS 10.15 / Firefox -->
  	<test name="Fido registration and recovery flows" enabled="false">
 	<parameter name="strBrowser" value="chrome"/>
 	<parameter name="strLanguage" value="en"/>
 		<classes>
-		 <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_10_UserAddNumberForRecovery"> </class>
+		 	<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_10_UserAddNumberForRecovery"> </class>
               <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> </class>
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS"> </class> 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS"> </class>			 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder_MultipleCTN_SingleCTN_HSI"> </class>
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS"> </class>    
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS"> </class> 
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail"> </class> 
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks"> </class>     
          </classes>
 	</test>
 			
