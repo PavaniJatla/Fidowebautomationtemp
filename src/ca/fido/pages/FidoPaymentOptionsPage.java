@@ -643,9 +643,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @return true of the automatic payment is already on else false
 	 * @author Mirza.Kamran
 	 */
-	public boolean isAutopaymentAlreadySet() {
-		reusableActions.staticWait(5000);
-		return (lblAutomaticPaymentOn.isDisplayed() && lblAutomaticPayments.isDisplayed()) ;
+	public boolean isAutopaymentAlreadySet() {		
+		return (reusableActions.isElementVisible(lblAutomaticPaymentOn)
+				&& reusableActions.isElementVisible(lblAutomaticPayments)) ;
 	}
 
 	/**

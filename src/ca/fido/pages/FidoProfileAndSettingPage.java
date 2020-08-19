@@ -337,7 +337,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isChangeUserNameLinkPresent() {
 		
-			return lnkChangeUsername.isDisplayed();
+			return reusableActions.isElementVisible(lnkChangeUsername);
 		
 	}
 	

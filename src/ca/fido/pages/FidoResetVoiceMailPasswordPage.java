@@ -130,7 +130,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 			reusableActions.waitForElementTobeClickable(btnSubmitVoiceMailPassword, 120);
 			//reusableActions.getWhenReady(btnSubmitVoiceMailPassword).click();
 			reusableActions.clickWhenReady(btnSubmitVoiceMailPassword, 10);
-			if(btnBackToMyAccount.isDisplayed())
+			if(reusableActions.isElementVisible(btnBackToMyAccount))
 			{
 				clickSuccess=true;
 				break;
