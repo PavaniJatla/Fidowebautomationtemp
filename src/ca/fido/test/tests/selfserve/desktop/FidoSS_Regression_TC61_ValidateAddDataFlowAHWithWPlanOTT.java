@@ -139,6 +139,10 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		reporter.reportLogWithScreenshot("Back on dashboard");
 		fido_login_page.clkSignOut();
 		reporter.reportLogWithScreenshot("Sign out done");
+		if(fido_home_page.isEasyloginDisplayed())
+		{
+		 fido_home_page.clkEasylogin();
+	    }
 		fido_login_page.clkResignInAs();
 		reporter.reportLogWithScreenshot("Click Re Sign In");
 		fido_login_page.switchToSignInFrame();

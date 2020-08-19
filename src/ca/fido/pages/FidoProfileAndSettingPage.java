@@ -285,7 +285,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkUpdateBillingAddress() {
-		reusableActions.clickIfAvailable(lnkUpdateBillingAddress, 20);
+		reusableActions.getWhenReady(lnkUpdateBillingAddress, 20).click();
 		
 	}
 	
@@ -307,7 +307,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isLnkUpdateContactPresent() {
 		 
-		return reusableActions.isDisplayed(lnkUpdateContact);
+		return lnkUpdateContact.isDisplayed();
 				
 	}
 	
@@ -317,7 +317,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isLnkUpdateBillingAddressPresent() {		
-		return reusableActions.isDisplayed(lnkUpdateBillingAddress);
+		return lnkUpdateBillingAddress.isDisplayed();
 
 	}
 	
@@ -337,7 +337,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isChangeUserNameLinkPresent() {
 		
-			return reusableActions.isDisplayed(lnkChangeUsername);	
+			return lnkChangeUsername.isDisplayed();
 		
 	}
 	
@@ -408,7 +408,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifySubscriberAccountBillingAddressSection() {
-		return reusableActions.isDisplayed(lblBillingAddressUpdateRightsInfo);
+		return lblBillingAddressUpdateRightsInfo.isDisplayed();
 	}
 	
 	/**
@@ -593,8 +593,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkSaveButton() {
-		reusableActions.clickIfAvailable(btnSave);
-		reusableActions.staticWait(5000);
+		reusableActions.getWhenReady(btnSave).click();		
 	}
 	
 	/**
@@ -602,8 +601,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void saveContactDetails() {
-		reusableActions.clickIfAvailable(btnSave,10);
-		reusableActions.staticWait(3000);
+		reusableActions.getWhenReady(btnSave,10).click();		
 	}
 	
 	/**
@@ -629,7 +627,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void clkContinueUpdateNewAddress() {
 		reusableActions.waitForElementTobeClickable(btnContinueChangeAddress, 30);
-		reusableActions.clickIfAvailable(btnContinueChangeAddress, 10);
+		reusableActions.getWhenReady(btnContinueChangeAddress, 10).click();
 		
 	}
 	

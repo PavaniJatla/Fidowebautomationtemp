@@ -278,7 +278,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfAnyPaymentMade() {
-		return !reusableActions.isDisplayed(labelNoPaymentMade);
+		return !labelNoPaymentMade.isDisplayed();
 	}
 	
     /**
@@ -317,9 +317,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.waitForElementTobeClickable(menuProfileNSetting, 360);
 				// buffer static wait added to handle anomalies on firefox
 				reusableActions.staticWait(4000);
-				reusableActions.executeJavaScriptClick(menuProfileNSetting);			
+				reusableActions.getWhenReady(menuProfileNSetting).click();		
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
-				if(reusableActions.isDisplayed(lblHeaderProfileAndSettings))
+				if(lblHeaderProfileAndSettings.isDisplayed())
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));
 					clickSuccess=true;				
@@ -485,7 +485,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
     		reusableActions.getWhenReady(buttonPayNow,120);    		
     		reusableActions.executeJavaScriptClick(buttonPayNow);
     		reusableActions.staticWait(3000);
-    		if(reusableActions.isDisplayed(txtAmount))
+    		if(txtAmount.isDisplayed())
     		{
     			displayed=true;
     		}
@@ -525,8 +525,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author adittya.Dhingra 
 	 */
 	public void clkInternetBadge() {
-		reusableActions.waitForElementVisibility(badgeInternet,30);
-		reusableActions.getWhenReady(badgeInternet,20).click();
+		reusableActions.waitForElementVisibility(badgeInternet,60);
+		reusableActions.getWhenReady(badgeInternet,30).click();
 	}
 	
 	/**
@@ -550,7 +550,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {
-	 String strBalance = reusableActions.getWhenReady(infoAccountBalance,40).getText();
+	  reusableActions.waitForElementVisibility(infoAccountBalance,90);
+	 String strBalance = reusableActions.getWhenReady(infoAccountBalance,10).getText();
      return NumberUtils.isCreatable(strBalance);	
 	}
 	
@@ -653,7 +654,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
      */
     public void clkChangeMethodOfPayment() {
     	reusableActions.waitForElementTobeClickable(lnkChangeMethodOfPayment, 120);
-		reusableActions.executeJavaScriptClick(lnkChangeMethodOfPayment);				
+		reusableActions.getWhenReady(lnkChangeMethodOfPayment).click();				
 	}
     
     /**

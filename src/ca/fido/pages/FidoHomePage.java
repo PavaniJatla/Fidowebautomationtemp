@@ -18,7 +18,7 @@ public class FidoHomePage extends BasePageClass {
 		@FindBy(xpath="//a[contains(@class,'m-navLink -navbar -login')]")})
 	WebElement lnkLogIn;
 	
-	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor') ]")
+	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor')]//span[@class='m-mobileNavLink__caption']")
 	WebElement lnkLogInMobile;
 	
 	@FindBy(xpath="//a[@class='m-navLink']//span[@class='m-navLink__chevron fds-icon-down']")
@@ -92,6 +92,9 @@ public class FidoHomePage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='preloader loading-secondary']")
 	WebElement popLoadingFingerMobile;
+
+	@FindBy(xpath = "//button[@id='not-you-button']")
+	WebElement lblNotUser;
 	
 	
 	/**
@@ -133,15 +136,15 @@ public class FidoHomePage extends BasePageClass {
 	 * @author aditya.Dhingra
 	 */	
 	public void clkLogin() {						
-		reusableActions.getWhenVisible(lnkLogIn,40).click();
+		reusableActions.getWhenVisible(lnkLogIn,90).click();
 	}
 	
 	/**
 	 * Click on Mobile Login button on the home page
-	 * @author aditya.Dhingra
+	 * @author chinnarao.vattam
 	 */	
 	public void clkLoginMobile() {						
-		reusableActions.getWhenVisible(lnkLogInMobile,40).click();
+		reusableActions.getWhenReady(lnkLogInMobile,60).click();
 	}
 	
 	/**
@@ -169,7 +172,7 @@ public class FidoHomePage extends BasePageClass {
 	public void skipRecoveryOverlay() {
 		if(reusableActions.isElementVisible(overlayRecoveryHeaderContainer,20))
 		{
-			reusableActions.clickIfAvailable(lnkSkipAd,20);			
+			reusableActions.getWhenReady(lnkSkipAd,20).click();			
 		}
 	}
 	
@@ -284,6 +287,27 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public void clkHomeInternetMenuMobile() {
 		reusableActions.getWhenReady(menuHomeInternetMobile).click();
+	}
+
+	
+	/**
+	 * Clicks on not a username label on signin overlay
+	 * @author Mirza.Kamran
+	 */
+	public void clkNotUser() {
+		reusableActions.getWhenReady(lblNotUser).click();
+		
+	}
+	
+	
+	/**
+	 * Checks if Not you is shown
+	 * @author Mirza.Kamran
+	 * @return true if the not you element is displayed else false
+	 */
+	public boolean verifyIfNotYouIsDisplayed() {
+		return reusableActions.isElementVisible(lblNotUser);
+		
 	}
 		
 }

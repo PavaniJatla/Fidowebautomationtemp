@@ -29,9 +29,15 @@ public class SSPFidoRetailerHomePage extends BasePageClass {
 	@FindBy(id="searchButton")
 	WebElement btnSearchButton;
 	
-	@FindBy(xpath="//ins[@translate='global.label.internetHome']")
+	@FindBy(xpath="//a[@href='/html-fido/#internet']")
 	WebElement lnkFidoHomeInternet;
 	
+	@FindBy (xpath="//h1[@class='welcome-text']")
+	WebElement msgWelcome;
+	
+	@FindBy (xpath="//ins[@translate='global.label.internetPlans']")
+	WebElement msgInternetPlans;
+		
 	@FindBy(xpath="//a[@id='manageProfileSkip']")
 	WebElement lnkSkip;
 	
@@ -40,7 +46,15 @@ public class SSPFidoRetailerHomePage extends BasePageClass {
      * @return true, if the  Internet link present at the navigation bar else false
      */
 	public boolean verifyFidoHomeInternet() {		
-		return reusableActions.isElementVisible(lnkFidoHomeInternet,240);		
+		return reusableActions.isElementVisible(msgWelcome,120);		
+	}
+	
+    /**
+     * Verify the Internet link on the fido.ca navigation bar
+     * @return true, if the  Internet link present at the navigation bar else false
+     */
+	public boolean verifyInternetPlans() {		
+		return reusableActions.isElementVisible(msgInternetPlans,120);		
 	}
 	
 	/**

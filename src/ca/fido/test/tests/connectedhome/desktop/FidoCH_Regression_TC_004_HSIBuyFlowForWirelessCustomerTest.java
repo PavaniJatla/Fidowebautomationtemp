@@ -48,7 +48,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends BaseTestClass {
 
 	
-/*	@Test
+	@Test
 	public void checkInternetBuyFlowForExistingCustomer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -118,80 +118,9 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");	
-		}*/
-	
-	@Test
-	public void checkInternetBuyFlowForExistingCustomer() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
-		reporter.reportLogWithScreenshot("Launched the Home Page");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameMobile());
-		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
-		reporter.reportLogWithScreenshot("Entered the credentials");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
-		reporter.reportLogWithScreenshot("Launched the Account Page");
-        fido_home_page.clkShop();
-        fido_home_page.clkHomeInternet();
-        reporter.reportLogWithScreenshot("Home Internet has selected");        
-        fido_Shop_internet_page.clkCheckAvailability();
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
-        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        fido_Shop_internet_page.clkCheckAvailabilityConfirmation();
-        reporter.reportLogWithScreenshot("Good News for the Service availability");
-        fido_internet_dashboard_page.clkContinueForInternet();
-        reporter.reportLogWithScreenshot("launche ratecard page");
-        fido_internet_dashboard_page.selectHSIPackageByData(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
-        fido_cart_summary_page.clkCheckout();
-        reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
-        fido_create_user_page.clkUserProfileNextForExistingCustomer();
-        reporter.reportLogWithScreenshot("Credit evalution page has launched");
-        fido_credit_check_page.selectDOBYear();
-        fido_credit_check_page.selectDOBMonthSingleDigit();
-        fido_credit_check_page.selectDOBDay();
-        reporter.reportLogWithScreenshot("Entered the user DOB information");
-        fido_credit_check_page.selectFirstIdOption("2");
-        fido_credit_check_page.selectDrivingLicenseProvince("ON");
-        fido_credit_check_page.selectDrivingLicenseExpiryYear();
-        fido_credit_check_page.selectDrivingLicenseExpiryMonthSingleDigit();
-        fido_credit_check_page.selectDrivingLicenseExpiryDay();
-        fido_credit_check_page.setDrivingLicenseNumber("ONTARIO");
-        reporter.reportLogWithScreenshot("Entered the Driver's License information");
-        fido_credit_check_page.selectSecondIdOption("4");
-        fido_credit_check_page.setPassportNumber();
-        fido_credit_check_page.selectPassportExpiryYear();
-        fido_credit_check_page.selectPasspoartExpiryMonth();
-        fido_credit_check_page.selectPasspoartExpiryDay();
-        reporter.reportLogWithScreenshot("Entered the passport information");
-        fido_credit_check_page.clkCreditCheckConsent();
-        reporter.reportLogWithScreenshot("Credit consent Check Done");
-        fido_credit_check_page.clkCreditCheckSubmit();
-        reporter.reportLogWithScreenshot("Tech-Install page has launched");
-	    reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
-	    fido_technical_installation_page.clkTechInstalConfirm();
-	    reporter.reportLogWithScreenshot("Payment page has launched"); 
-        fido_payment_options_page.setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
-        fido_payment_options_page.selectExpiryMonth();
-        fido_payment_options_page.selectExpiryYear();
-        fido_payment_options_page.setCVV();
-        reporter.reportLogWithScreenshot("Payment details has set");
-	    fido_payment_options_page.clkPaymentConfirm();
-        reporter.reportLogWithScreenshot("Order review page has launched");
-        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
-		fido_internet_package_change_review_order_page.clkscrollToElement();
-		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
-		reporter.reportLogWithScreenshot("Consent Check has Done");
-		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
-		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
-		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");	
 		}
-
+	
+	
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(String strBrowser, String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login, method);

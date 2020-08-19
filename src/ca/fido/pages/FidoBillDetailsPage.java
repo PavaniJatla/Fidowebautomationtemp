@@ -270,7 +270,7 @@ public class FidoBillDetailsPage extends BasePageClass {
    public boolean isLabelComingSoonDisplayed()
    {
 	   reusableActions.waitForElementVisibility(lblNoBillLabel, 300);
-	   return reusableActions.isDisplayed(lblNoBillLabel);
+	   return lblNoBillLabel.isDisplayed();
 	 
    }
    
@@ -335,7 +335,7 @@ public class FidoBillDetailsPage extends BasePageClass {
     * @author Mirza.Kamran
     */
 	public double getBillBalanceForward() {
-		 if(reusableActions.isDisplayed(lblBalanceForward))
+		 if(lblBalanceForward.isDisplayed())
 		 {
 			 return Double.parseDouble(reusableActions.getWhenReady(lblBalanceForward).getText().split("\\$")[1].split("Details")[0].trim());
 		 }else
@@ -351,7 +351,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	    * @author Mirza.Kamran
 	    */
 	 public double getBillAccountChargeCredits() {
-		 if(reusableActions.isDisplayed(lblAccountChargesAndCredits))
+		 if(lblAccountChargesAndCredits.isDisplayed())
 		 {
 			 return Double.parseDouble(reusableActions.getWhenReady(lblAccountChargesAndCredits).getText().split("\\$")[1].split("Details")[0].trim());
 		 }else
