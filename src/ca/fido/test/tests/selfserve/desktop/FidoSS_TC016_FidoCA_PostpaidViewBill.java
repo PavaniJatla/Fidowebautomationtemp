@@ -46,6 +46,9 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+							"Login succeed.", 
+							"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
 		Integer totalCTN=fido_account_overview_page.getCTNUsers().size();		
 		fido_account_overview_page.clkViewBill();

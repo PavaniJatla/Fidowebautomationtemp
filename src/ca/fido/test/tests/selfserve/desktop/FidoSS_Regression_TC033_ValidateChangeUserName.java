@@ -68,6 +68,9 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 			
 		}
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
 		//Update userName
 		fido_account_overview_page.clkMenuProfileNSetting();

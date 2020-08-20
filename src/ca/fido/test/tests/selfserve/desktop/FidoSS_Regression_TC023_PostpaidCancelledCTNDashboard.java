@@ -48,6 +48,9 @@ public class FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard extends BaseT
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Cancelled CTN account overview page");
 		reporter.hardAssert(fido_account_overview_page.verifyCancelledCTNAccountAccessLimitedMessage(),
 							"CancelledCTNAccountAccessLimitedMessage",
