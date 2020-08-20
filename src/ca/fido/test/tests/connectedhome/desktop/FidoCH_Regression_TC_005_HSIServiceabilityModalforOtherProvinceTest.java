@@ -45,17 +45,31 @@ public class FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=(String) TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=(String) TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Good News for the Service availability");
-        fido_Shop_internet_page.clkBuyNowReskin();
-        reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
-		reporter.hardAssert(fido_cart_summary_page.verifySummaryCart(), "removed cart Passed", "remove cart Failed");
+        reporter.reportLogWithScreenshot("Service is Unavailabile");
+        reporter.hardAssert(fido_Shop_internet_page.verifyUnavailableInProvince(),"Service is unavailability in the given province","Service is availability");
+        fido_Shop_internet_page.verifyCancel();
+        fido_Shop_internet_page.verifyYes();
+        fido_Shop_internet_page.clkCancel();
+        reporter.reportLogWithScreenshot("Launched the packages Page");
+        reporter.hardAssert(fido_Shop_internet_page.verifyPackagesPage() ,"Packages Page has launched","Packages Page hasn't launched");
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        reporter.reportLogWithScreenshot("Launched the serviceability check page");
+        fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        fido_Shop_internet_page.clkServiceAvailabilityCheck();        
+        reporter.reportLogWithScreenshot("Service is Unavailabile");
+        reporter.hardAssert(fido_Shop_internet_page.verifyUnavailableInProvince(),"Service is unavailability in the given province","Service is availability");
+        fido_Shop_internet_page.verifyCancel();
+        fido_Shop_internet_page.verifyYes();
+        fido_Shop_internet_page.clkYes();
+        reporter.hardAssert(!fido_Shop_internet_page.verifyPackagesPage() ,"Packages Page hasn't launched","Packages Page has launched");
 	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })

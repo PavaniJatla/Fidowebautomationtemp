@@ -45,6 +45,9 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Prepaid account overview page.");
 		fido_account_overview_page.clkBtnRefillNow();
 		reporter.reportLogWithScreenshot("Refill now button is clicked.");

@@ -1,0 +1,11 @@
+# Account Details 
+---
+name: FidoHSIAnotherProvinceAddress
+accountDetails:
+   type: Internet
+   upgradePlanCost: 65
+   address:
+     line1: 9-21 Arden Street
+     line2: Moncton  NB  E1C4B5 
+...
+

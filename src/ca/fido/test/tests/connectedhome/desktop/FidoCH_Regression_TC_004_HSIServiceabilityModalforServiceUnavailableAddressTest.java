@@ -45,15 +45,20 @@ public class FidoCH_Regression_TC_004_HSIServiceabilityModalforServiceUnavailabl
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=(String) TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=(String) TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Good News for the Service availability");
-	}
+        reporter.reportLogWithScreenshot("Service is unavailability");
+        reporter.hardAssert(fido_Shop_internet_page.verifyIconUnavailable(),"Service is unavailability","Service is availability");
+        fido_Shop_internet_page.verifyIconCustomercare();
+        fido_Shop_internet_page.clkCheckAnotherAddress();
+        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        reporter.hardAssert(fido_Shop_internet_page.verifyAvailabilityCheck(),"Displayed to check the Service availability","Check Another Address is not working");
+   	}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })
 	public void beforeTest(String strBrowser, String strLanguage,ITestContext testContext, Method method)

@@ -64,7 +64,9 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 								"Login failed with both password.");
 		}
 		fido_login_page.switchOutOfSignInFrame();
-
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
 		fido_account_overview_page.clkMenuProfileNSetting();
 		reporter.reportLogWithScreenshot("menu profile and setting selected");

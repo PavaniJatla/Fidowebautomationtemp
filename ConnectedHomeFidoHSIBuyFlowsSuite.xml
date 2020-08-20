@@ -13,7 +13,8 @@
 		<classes>   
         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowTest"></class>  
          <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest"></class> 
-          <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest"></class>   
+         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_004_HSIServiceabilityModalforServiceUnavailableAddressTest"></class>
+         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest"></class>   
 	    <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_007_HSIRemoveOfferTest"></class>
         <class name="ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthorizedChequingTest"></class>         
 		</classes>

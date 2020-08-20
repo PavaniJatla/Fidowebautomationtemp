@@ -50,6 +50,9 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		fido_account_overview_page.clkMenuBillingAndPayments();
 		reporter.reportLogWithScreenshot("Menu Billings and payments selected");
 		fido_account_overview_page.selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);

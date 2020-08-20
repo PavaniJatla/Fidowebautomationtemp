@@ -50,6 +50,9 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");	
 					
 		// we are iterating three times with different accounts in case where the recovery is already set for a given account
