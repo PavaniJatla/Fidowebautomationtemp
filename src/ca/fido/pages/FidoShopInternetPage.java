@@ -104,6 +104,27 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath="//div[@id='bc-frame' and contains(@style,'block')]")
 	WebElement popupChat;
 	
+	@FindBy(xpath="//span[@class='ds-icon d-inline-flex fds-icon-error ds-color-error']")
+	WebElement iconUnavailable;
+	
+	@FindBy(xpath="//span[@class='ds-icon d-inline-flex fds-icon-phone']")
+	WebElement iconCustomercare;
+	
+	@FindBy(xpath="//button[@title='Check another address']")
+	WebElement btnCheckAnotherAddress;
+	
+	@FindBy(xpath="//p[@class='ng-star-inserted']")
+	WebElement txtUnavailableInProvince;
+	
+	@FindBy(xpath="//button[@title='Cancel']")
+	WebElement btnCancel;
+	
+	@FindBy(xpath="//button[@title='Yes']")
+	WebElement btnYes;
+	
+	@FindBy(xpath="//div[@id='undefined']//h2[@class='-left text-title-2 ds-color-black']")
+	WebElement txtPackagesPage;
+	
 	
 	/**
 	 * Click on Check availability button on Shop Internet page
@@ -328,6 +349,112 @@ public class FidoShopInternetPage extends BasePageClass {
 		return reusableActions.isElementVisible(By.xpath("//div[@class='subtotal-holder']//span[@price='" + strPlanCost+"']"), 30);
 	}
 
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyIconUnavailable() {
+		reusableActions.waitForElementVisibility(iconUnavailable, 30);
+		return reusableActions.isElementVisible(iconUnavailable, 10);
+	}
+	
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyCheckAnotherAddress() {
+		return reusableActions.isElementVisible(btnCheckAnotherAddress, 10);
+	}
+	
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyIconCustomercare() {
+		return reusableActions.isElementVisible(iconCustomercare, 10);
+	}
+	
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyAvailabilityCheck() {
+		return reusableActions.isElementVisible(btnAvailabilityCheck, 30);
+	}
+	
+	
+	/**
+	 * Click on minimize button on the chat popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkCheckAnotherAddress()  {		
+		reusableActions.getWhenReady(btnCheckAnotherAddress,30).click();
+	}
+	
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyUnavailableInProvince() {
+		return reusableActions.isElementVisible(txtUnavailableInProvince, 30);
+	}
+	
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyCancel() {
+		return reusableActions.isElementVisible(btnCancel, 10);
+	}
+	
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyYes() {
+		return reusableActions.isElementVisible(btnYes, 30);
+	}
+		
+	/**
+	 * Click on minimize button on the chat popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkCancel()  {		
+		reusableActions.getWhenReady(btnCancel,30).click();
+	}
+
+	/**
+	 * Click on update cart button on the buy options popup
+	 * @return true, if the checkout page shows the download speed of the selected package , else false
+	 * @author chinnarao.vattam
+	 */	
+	public boolean  verifyPackagesPage() {
+		return reusableActions.isElementVisible(txtPackagesPage, 20);
+	}
+	
+	/**
+	 * Click on minimize button on the chat popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkYes()  {		
+		reusableActions.getWhenReady(btnYes,30).click();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Click on update cart button on the live chat popup
 	 * @return true, if the checkout page shows the live chat popup , else false
