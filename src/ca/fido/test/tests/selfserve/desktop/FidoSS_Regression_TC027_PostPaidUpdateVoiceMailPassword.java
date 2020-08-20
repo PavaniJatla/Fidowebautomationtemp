@@ -50,7 +50,9 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
-		
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		String strNewVoiceMailPassword = FormFiller.generateRandomNumber(5);	
 		
 		reporter.reportLogWithScreenshot("Account overview page.");	

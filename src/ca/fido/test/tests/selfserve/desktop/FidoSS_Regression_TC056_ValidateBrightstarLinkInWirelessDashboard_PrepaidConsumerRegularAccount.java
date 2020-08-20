@@ -54,7 +54,10 @@ public class FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_P
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();		
+		fido_login_page.switchOutOfSignInFrame();	
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkMenuUsageNServicePrepaid();
 		reporter.reportLogWithScreenshot("Usage and Services page");
