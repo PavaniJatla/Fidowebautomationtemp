@@ -298,5 +298,16 @@ public class FidoHomePage extends BasePageClass {
 		reusableActions.getWhenReady(lblNotUser).click();
 		
 	}
+	
+	
+	/**
+	 * Checks if Not you is shown
+	 * @author Mirza.Kamran
+	 * @return true if the not you element is displayed else false
+	 */
+	public boolean verifyIfNotYouIsDisplayed() {
+		return reusableActions.isElementVisible(lblNotUser);
+		
+	}
 		
 }

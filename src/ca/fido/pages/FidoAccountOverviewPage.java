@@ -279,7 +279,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfAnyPaymentMade() {
-		return !reusableActions.isDisplayed(labelNoPaymentMade);
+		return !labelNoPaymentMade.isDisplayed();
 	}
 	
     /**
@@ -318,9 +318,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.waitForElementTobeClickable(menuProfileNSetting, 360);
 				// buffer static wait added to handle anomalies on firefox
 				reusableActions.staticWait(4000);
-				reusableActions.executeJavaScriptClick(menuProfileNSetting);			
+				reusableActions.getWhenReady(menuProfileNSetting).click();		
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
-				if(reusableActions.isDisplayed(lblHeaderProfileAndSettings))
+				if(lblHeaderProfileAndSettings.isDisplayed())
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));
 					clickSuccess=true;				
@@ -428,9 +428,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
      * @author Ning.Xue
      */
 	public void clkCtnBadge() {
-
+		reusableActions.getWhenReady(divCtnBadge, 20);
 		reusableActions.getWhenVisible(divCtnBadge, 20).click();
-		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
+//		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
 		
 	}
 	
@@ -486,7 +486,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
     		reusableActions.getWhenReady(buttonPayNow,120);    		
     		reusableActions.executeJavaScriptClick(buttonPayNow);
     		reusableActions.staticWait(3000);
-    		if(reusableActions.isDisplayed(txtAmount))
+    		if(txtAmount.isDisplayed())
     		{
     			displayed=true;
     		}

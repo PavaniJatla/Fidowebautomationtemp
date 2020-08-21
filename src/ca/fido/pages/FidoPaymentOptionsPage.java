@@ -354,7 +354,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyTnCPageIsOpen() {
-		return (reusableActions.isDisplayed(lblTnCContainer) && (reusableActions.isDisplayed(lbltnCHeader)));
+		return (lblTnCContainer.isDisplayed() && (lbltnCHeader.isDisplayed()));
 	}
 	
 	/**
@@ -536,7 +536,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyIfTheReviewCreditCardIsDisplayed() {
-		return reusableActions.isDisplayed(lblConfirmAccountDetails);
+		return lblConfirmAccountDetails.isDisplayed();
 	}
 	
 		
@@ -554,7 +554,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyIfTheLabelSuccessMessageIsDisplayed() {
-		return reusableActions.isDisplayed(lblSuccessYouAreSignedUpForAutomaticPayments);
+		return lblSuccessYouAreSignedUpForAutomaticPayments.isDisplayed();
 	}
 	
 	/**
@@ -563,7 +563,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyIfTheLabelYourFutureBillsIsDisplayed() {
-		return reusableActions.isDisplayed(lblYourFutureBillText);
+		return lblYourFutureBillText.isDisplayed();
 	}
 	
 	/**
@@ -572,7 +572,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyIfTheLabelPaymentMethodEndingInIsDisplayed() {
-		return reusableActions.isDisplayed(lblPaymentMethodEndingInText);
+		return lblPaymentMethodEndingInText.isDisplayed();
 	}
 	
 	/**
@@ -581,7 +581,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyIfTheLabelAutomaticPaymentEffectIsDisplayed() {
-		return reusableActions.isDisplayed(lblAutomaticPayementEffect);
+		return lblAutomaticPayementEffect.isDisplayed();
 	}
 		
 	/**
@@ -590,7 +590,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyIfTheButtonPayBalanceIsDisplayed() {
-		return reusableActions.isDisplayed(btnPaybalance);
+		return btnPaybalance.isDisplayed();
 	}
 	
 	/**
@@ -645,7 +645,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public boolean isAutopaymentAlreadySet() {
 		reusableActions.staticWait(5000);
-		return (reusableActions.isDisplayed(lblAutomaticPaymentOn) && reusableActions.isDisplayed(lblAutomaticPayments)) ;
+		return (lblAutomaticPaymentOn.isDisplayed() && lblAutomaticPayments.isDisplayed()) ;
 	}
 
 	/**
@@ -684,7 +684,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkYesCancelButtonIfAskedForAreYouSureOption() {
 		reusableActions.staticWait(3000);
-		if(reusableActions.isDisplayed(lblAreYourSure))
+		if(lblAreYourSure.isDisplayed())
 		{
 			reusableActions.getWhenReady(btnYesCancel).click();
 		}

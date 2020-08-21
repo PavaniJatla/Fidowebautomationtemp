@@ -50,6 +50,8 @@ public class TestDataHandler {
 	public static AccountData fidoHSIAccount;
 	public static AccountData fidoHSIAccountwithUnwiredAddress;
 	public static AccountData fidoSspHSIAccount;
+	public static AccountData fidoHSIAnotherProvinceAddress;
+	public static AccountData fidoHSIUnavailableAddress;
 	public static NACData testCase01;
 	public static NACData testCase02;
 	public static HUPData testCase03;
@@ -91,6 +93,8 @@ public class TestDataHandler {
         fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");
+        fidoHSIAnotherProvinceAddress=YamlHandler.getHSIAccountData("HSIAnotherProvinceAddress");
+        fidoHSIUnavailableAddress=YamlHandler.getHSIAccountData("HSIUnavailableAddress");
         chPaymentInfo = YamlHandler.getHSIPaymentDetails();	
 	}
 	

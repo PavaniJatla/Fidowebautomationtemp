@@ -50,6 +50,9 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkChangeMethodOfPayment();
 		reporter.reportLogWithScreenshot("Change Method of payment overlay");
@@ -70,12 +73,14 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_payment_options_page.setCreditcardCVC(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 		reporter.reportLogWithScreenshot("Credit card details entered");
 		fido_payment_options_page.clkContinue();
-		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),"review credit card is displayed","review credit card is not displayed");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),
+							"review credit card is displayed",
+							"review credit card is not displayed");
 		fido_payment_options_page.clkConfirm();
 		reporter.reportLogWithScreenshot("Verify the payment me		thod set to credit card");
 		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
-							"Success message displayed",
-							"Success message not displayed");
+							"Change MOP Success message displayed",
+							"Change MOP Success message not displayed");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
 							"Label your future bill is displayed",
 							"Label your future bill is not displayed");
@@ -108,8 +113,8 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_payment_options_page.clkContinue();
 		reporter.reportLogWithScreenshot("Verify the payment method set to bank");
 		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
-							"Success message displayed",
-							"Success message not displayed");
+							"Change MOP Success message displayed",
+							"Change MOP Success message not displayed");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
 							"Label your future bill is displayed",
 							"Label your future bill is not displayed");

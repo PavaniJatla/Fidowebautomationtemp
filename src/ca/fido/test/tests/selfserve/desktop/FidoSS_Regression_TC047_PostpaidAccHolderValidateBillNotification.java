@@ -51,54 +51,48 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
 		fido_account_overview_page.clkMenuProfileNSetting();
 		reporter.reportLogWithScreenshot("menu profile and settings selected");
-		try {
-			String strGetMobileNum = fido_profile_and_setting_page.getMobilePhoneNum();
-			//check if the mobile phone is set or not
-			if (strGetMobileNum.equalsIgnoreCase("None")) {
-				fido_profile_and_setting_page.clkUpdateContactDetails();
-				reporter.reportLogWithScreenshot("Update contact details selected");
-				String mobilePhoneNum = TestDataHandler.tc104447.getaccountDetails().getMobilePhone();
-				fido_profile_and_setting_page.setEmail(strUserName);
-				fido_profile_and_setting_page.setMobilePhone(mobilePhoneNum);
-				fido_profile_and_setting_page.saveContactDetails();		
-				reporter.reportLogWithScreenshot("Bill Notification after add mobile phone number in contact details.");
-				
-				reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(mobilePhoneNum),
-									"Bill notification show successfully with mobile phone set.",
-									"Some issue with bill notification area with mobile phone set.");
-				fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
-				reporter.reportLogWithScreenshot("Verify bill notification section with mobile phone set.");
-			} else {			
-				reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(strGetMobileNum),
-									"Bill notification show successfully with mobile phone set.",
-									"Some issue with bill notification area with mobile phone set.");
-				fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
-				reporter.reportLogWithScreenshot("Verify bill notification section with mobile phone set.");
-				//To clear the MobilePhone setting.
-				fido_profile_and_setting_page.clkUpdateContactDetails();
-				reporter.reportLogWithScreenshot("Update contact details selected");
-				fido_profile_and_setting_page.clearMobilePhone();
-				fido_profile_and_setting_page.saveContactDetails();	
-				
-				reporter.reportLogWithScreenshot("Bill Notification after cleared mobile phone in Contact details.");
-				//verify bill notification area again for no mobile phone set.
-				reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationWithoutMobilePhoneSet(),
-						"Bill notification without mobile",
-						"Some issue with bill notification area without mobile phone");
-				fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
-				reporter.reportLogWithScreenshot("Verify bill notification section without mobile phone set.");
-			}
-		
-		}catch(Exception ex)
-		{			
+
+		String strGetMobileNum = fido_profile_and_setting_page.getMobilePhoneNum();
+		//check if the mobile phone is set or not
+		if (strGetMobileNum.equalsIgnoreCase("None")) {
+			fido_profile_and_setting_page.clkUpdateContactDetails();
+			reporter.reportLogWithScreenshot("Update contact details selected");
+			String mobilePhoneNum = TestDataHandler.tc104447.getaccountDetails().getMobilePhone();
+			fido_profile_and_setting_page.setEmail(strUserName);
+			fido_profile_and_setting_page.setMobilePhone(mobilePhoneNum);
+			fido_profile_and_setting_page.saveContactDetails();		
+			reporter.reportLogWithScreenshot("Bill Notification after add mobile phone number in contact details.");
+			
+			reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(mobilePhoneNum),
+								"Bill notification show successfully with mobile phone set.",
+								"Some issue with bill notification area with mobile phone set.");
 			fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
-			reporter.reportLogWithScreenshot("Profile and settings middle page");
-			fido_profile_and_setting_page.scrollToProfileAndSettingsBottom();
-			reporter.reportLogWithScreenshot("Profile and settings bottom page");
-			reporter.reportLogFail("Failed due to exception :"+ex.getMessage());
+			reporter.reportLogWithScreenshot("Verify bill notification section with mobile phone set.");
+		} else {			
+			reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationUpdateSuccessfully(strGetMobileNum),
+								"Bill notification show successfully with mobile phone set.",
+								"Some issue with bill notification area with mobile phone set.");
+			fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
+			reporter.reportLogWithScreenshot("Verify bill notification section with mobile phone set.");
+			//To clear the MobilePhone setting.
+			fido_profile_and_setting_page.clkUpdateContactDetails();
+			reporter.reportLogWithScreenshot("Update contact details selected");
+			fido_profile_and_setting_page.clearMobilePhone();
+			fido_profile_and_setting_page.saveContactDetails();	
+			
+			reporter.reportLogWithScreenshot("Bill Notification after cleared mobile phone in Contact details.");
+			//verify bill notification area again for no mobile phone set.
+			reporter.hardAssert(fido_profile_and_setting_page.verifyBillNotificationWithoutMobilePhoneSet(),
+					"Bill notification without mobile",
+					"Some issue with bill notification area without mobile phone");
+			fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
+			reporter.reportLogWithScreenshot("Verify bill notification section without mobile phone set.");
 		}
 
 	}

@@ -86,7 +86,7 @@ public class FidoInteracOnlinePage extends BasePageClass {
 			reusableActions.waitForElementVisibility(imgChooseFinancialInstitution);
 			reusableActions.waitForElementTobeClickable(imgChooseFinancialInstitution, 60);		
 			reusableActions.executeJavaScriptClick(imgChooseFinancialInstitution);
-			if(reusableActions.isDisplayed(txtInteracID)){
+			if(txtInteracID.isDisplayed()){
 				clickSuccess=true;
 				break;
 			}
