@@ -16,10 +16,11 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
 /**
- * TC05- E2E FNAC - Validate NAC order submission for a NO TERM device using Talk and Text plan
+ * TC11- E2E FNAC-Validate order is submitted for Financing plan_EN_Chrome_ON
  * @author Saurav.Goyal
+ *
  */
-public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
+public class Fido_BFA_TC02_NAC_Test extends BaseTestClass{
 
 	@Test
 	public void fidoNACFlow() {
@@ -27,7 +28,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Home Page");
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase01.getDeviceName()),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase02.getDeviceName()),"Device Found and Selected","Device Not Found");
 		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
 		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
 		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");
@@ -55,7 +56,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		fido_create_user_page.setFirstName();
 		fido_create_user_page.setLastName();
 		fido_create_user_page.setPhone();
-		fido_create_user_page.setHomeAddress(TestDataHandler.testCase01.getBillingAddress());
+		fido_create_user_page.setHomeAddress(TestDataHandler.testCase02.getBillingAddress());
 		reporter.reportLogWithScreenshot("Create User page");
 		fido_create_user_page.clkContinue();
 		fido_credit_check_page.selectDOBYear();
@@ -64,8 +65,8 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		fido_credit_check_page.setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber());
 		fido_credit_check_page.setCreditCardExpiryMonth(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth());
 		fido_credit_check_page.setCreditCardExpiryYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_credit_check_page.selectDrivingLicenseProvince(TestDataHandler.testCase01.getDlProvinceCode());
-		fido_credit_check_page.setDrivingLicenseNumber(TestDataHandler.testCase01.getDlProvinceCode());
+		fido_credit_check_page.selectDrivingLicenseProvince(TestDataHandler.testCase02.getDlProvinceCode());
+		fido_credit_check_page.setDrivingLicenseNumber(TestDataHandler.testCase02.getDlProvinceCode());
 		fido_credit_check_page.selectDrivingLicenseExpiryYear();
 		fido_credit_check_page.selectDrivingLicenseExpiryMonth();
 		fido_credit_check_page.selectDrivingLicenseExpiryDay();
@@ -75,7 +76,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		fido_credit_check_page.waitForCreditCheckProcessing();
 		fido_credit_check_page.setSecurityDepositConsent();
 		fido_choose_number_page.clkSelectNewNumber();
-		fido_choose_number_page.selectCity(TestDataHandler.testCase01.getCtnCity());
+		fido_choose_number_page.selectCity(TestDataHandler.testCase02.getCtnCity());
 		fido_choose_number_page.clkFindAvailableNumbers();
 		fido_choose_number_page.selectFirstAvailableNumber();
 		reporter.reportLogWithScreenshot("Choose Phone Number page");

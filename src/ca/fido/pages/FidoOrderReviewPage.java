@@ -144,7 +144,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkCompleteOrder() {
-		reusableActions.clickWhenReady(btnCompleteOrder,60);
+		reusableActions.clickWhenReady(btnCompleteOrder,30);
 	}
 	
 	/**

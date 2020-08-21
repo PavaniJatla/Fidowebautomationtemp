@@ -276,7 +276,7 @@
                         <version>3.0.0-M4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>BFAFidoSanity.xml</suiteXmlFile>
+                                <suiteXmlFile>BFAFidoSanityPack.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
