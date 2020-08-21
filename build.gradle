@@ -37,6 +37,21 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 
 }
 
+task "localTest"(type: Test) {
+
+    outputs.upToDateWhen { false }  // Always run tests
+
+    useTestNG(){
+
+        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
+        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
+        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
+        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
+        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
+        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+    }
+
+}
 
 repositories {
 
