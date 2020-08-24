@@ -27,7 +27,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 
     useTestNG(){
 
-        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
+        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoSanityPack.xml' }
         if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
         if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
         if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
