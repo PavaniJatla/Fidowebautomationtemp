@@ -1,0 +1,124 @@
+boolean success(String message) {
+    currentBuild.result = 'SUCCESS'
+    echo message
+    return false;
+}
+
+boolean shouldRun() {
+    String message = sh(label: 'Get Commit Message', script: 'git log -1 --pretty=%B', returnStdout: true).trim()
+
+    if (message.matches('.*\\[skip ci].*')) {
+        return success('[skip] commit message contains [skip ci]')
+    } else if (env.BRANCH_NAME != 'master' && message.matches("^\\[release] 'v.*")) {
+        return success('[skip] only build releases on the master branch')
+    } else {
+        return true
+    }
+}
+
+void toolSh(String command) {
+    container('java-buildtools') {
+        sh command
+    }
+}
+def REPORT_URL= "https://qa1.rogers.com/Digital-QE/"
+pipeline {
+    agent {
+        kubernetes {
+            yamlFile 'jenkins-agent.yml'
+            defaultContainer 'tools'
+            podRetention never()
+        }
+    }
+    parameters {
+
+        string(name: 'TestProfile', defaultValue: 'PSanityCH', description: 'Test Profile Name')
+
+    }
+
+    triggers {
+        parameterizedCron('''
+                    # leave spaces where you want them around the parameters. They'll be trimmed.
+                    # we let the build run with the default name
+                    00 11 * * 1-5 %TestProfile=PSanitySS
+                    10 11 * * 1-5 %TestProfile=PSanityCH
+                    20 11 * * 1-5 %TestProfile=PSanityBFA
+                ''')
+    }
+
+    environment {
+        TEST_CRED = credentials('TEST_CRED')
+        SAUCE_USERNAME = credentials('SAUCE_USERNAME')
+        SAUCE_ACCESS_KEY = credentials('SAUCE_ACCESS_KEY')
+        FTP_SERVER = credentials('FTP_SERVER')
+        FTP_USERNAME = credentials('FTP_USERNAME')
+        FTP_PASSWORD = credentials('FTP_PASSWORD')
+
+    }
+    stages {
+        stage('Run CI?') {
+            when { expression { shouldRun() } }
+            stages {
+
+
+                stage('Environment Variables') {
+                    steps { sh 'env | sort' }
+                }
+                stage('Credentials') {
+                    environment {
+                        GITHUB_CREDENTIALS = credentials('github_daws_svc_account')
+                        ARTIFACTORY_CREDENTIALS = credentials('artifactory_serv_svc_dawsdev')
+                        SONARQUBE_TOKEN = credentials('sonarqube_serv_svc_dawsdev')
+                    }
+                    steps {
+
+                        toolSh 'github-credentials.sh'
+                        toolSh 'artifactory-credentials.sh'
+                        toolSh 'sonarqube-credentials.sh'
+                    }
+                }
+
+
+                stage('Regression Tests') {
+                    steps { toolSh "gradle sauceTest -${params.TestProfile} -i" }
+                    post {
+                        always {
+                            junit 'build/test-results/**/*.xml'
+                            script {
+                                def jobName = "${env.JOB_NAME}"
+                                def buildTimeStamp = "${env.BUILD_TIMESTAMP}"
+                                def testProfile = "${env.TestProfile}"
+                                def destinationFolder=jobName.replaceAll("\\s+", "").replace("digital-qe/","") + "/" +testProfile+"/"+ buildTimeStamp.replaceAll("\\s+", "")+"/"
+                                sh label: 'NS upload', script: """ 
+                                netstorage-upload.sh /mnt/ns/nskey.pem ./report Digital-QE/
+                                """
+                                REPORT_URL="${REPORT_URL}"+"/report/"+destinationFolder+"/results.html"
+                            }
+
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    post {
+
+        success {
+            echo "${env.BUILD_URL} has result success"
+            office365ConnectorSend message: "Finished ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${REPORT_URL}>)", webhookUrl: 'https://outlook.office.com/webhook/e3556c59-ec6f-42ad-b0e7-7e48d22625f9@0ab4cbbf-4bc7-4826-b52c-a14fed5286b9/JenkinsCI/5d661927cebd40b7aa69763ce38023d4/151ebd21-71c4-47a1-b389-3a13bf9ccbf1', status: "SUCCESS"
+        }
+        failure {
+            echo "${env.BUILD_URL} has result fail"
+            office365ConnectorSend message: "Finished ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${REPORT_URL}>)", webhookUrl: 'https://outlook.office.com/webhook/e3556c59-ec6f-42ad-b0e7-7e48d22625f9@0ab4cbbf-4bc7-4826-b52c-a14fed5286b9/JenkinsCI/5d661927cebd40b7aa69763ce38023d4/151ebd21-71c4-47a1-b389-3a13bf9ccbf1', status: "FAIL"
+        }
+        unstable {
+            echo "${env.BUILD_URL} is unstable"
+            office365ConnectorSend message: "Finished ${env.JOB_NAME} build #${env.BUILD_NUMBER} (<${REPORT_URL}>)", webhookUrl: 'https://outlook.office.com/webhook/e3556c59-ec6f-42ad-b0e7-7e48d22625f9@0ab4cbbf-4bc7-4826-b52c-a14fed5286b9/JenkinsCI/5d661927cebd40b7aa69763ce38023d4/151ebd21-71c4-47a1-b389-3a13bf9ccbf1', status: "UNSTABLE"
+        }
+    }
+
+
+}
