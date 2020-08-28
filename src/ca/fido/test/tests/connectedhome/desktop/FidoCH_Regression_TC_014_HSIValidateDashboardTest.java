@@ -6,10 +6,7 @@ import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
@@ -39,7 +36,7 @@ public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestC
 		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
+/*		fido_login_page.switchToSignInFrame();
 		reporter.reportLogWithScreenshot("Launched the SignIn popup");
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
@@ -59,17 +56,45 @@ public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestC
 		reporter.softAssert(fido_internet_dashboard_page.verifyIfDailyUsageLinkVisible(),"Verifed Daily Usage link","Daily Usage link Verification has failed");
 		reporter.softAssert(fido_internet_dashboard_page.verifyIfMonthlyUsageLinkVisible(),"Verifed Monthly Usage link","Monthly Usage link Verification has failed");
 		reporter.softAssert(fido_internet_dashboard_page.verifyIfChangePackageLinkVisible(),"Verifed Change Package link","Change Package link Verification has failed");
-		reporter.reportLogWithScreenshot("Internet Dashboard Page");
+		reporter.reportLogWithScreenshot("Internet Dashboard Page");*/
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(String strBrowser, String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage,FidoEnums.GroupName.connectedhome_login, method);
+/*	@BeforeMethod
+	public void beforeTest(ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		startSession("https://qa6.fido.ca",  FidoEnums.GroupName.connectedhome_login, method);
+	}*/
 
+	@BeforeMethod @Parameters({ "strBrowser","strLanguage"})
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		System.out.println("****************************************************  sys prop is >>>>>   "+ System.getProperties() + "**************************************************");
+		System.out.println("strBrowser before is >>>>>   "+strBrowser  );
+		System.out.println("strLanguage before is >>>>>   "+strLanguage  );
+		if (System.getProperty("Browser") == null)
+		{
+			System.setProperty("Browser", strBrowser);
+			System.out.println("strBrowser inside if  is >>>>>   "+strBrowser  );
+		}
+		if (System.getProperty("Language") == null )
+		{
+			System.setProperty("Language", strLanguage);
+			System.out.println("strLanguage inside if is >>>>>   "+strLanguage  );
+		}
+		if(System.getProperty("Browser").equals("") )
+		{
+			System.setProperty("Browser", "chrome");
+			System.out.println("when ran by testNG params is >>>>>   "+strBrowser  );
+		}
+		if(System.getProperty("Language").equals("")  )
+		{
+			System.setProperty("Language", "en");
+			System.out.println("when ran by testNG params is >>>>>   "+strLanguage );
+		}
+		strBrowser= System.getProperty("Browser");
+		strLanguage= System.getProperty("Language");
+		System.out.println("strBrowser is >>>>>   "+strBrowser  );
+		System.out.println("strLanguage is >>>>>   "+strLanguage  );
+		startSession("https://"+System.getProperty("QaUrl")+".fido.ca",strBrowser,strLanguage,FidoEnums.GroupName.connectedhome_login, method);
 	}
-
-
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
 		closeSession();
