@@ -44,12 +44,13 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 
 }
 
+
 task "localTest"(type: Test) {
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
-
     useTestNG(){
-
+        Set listeners = [ "ca.fido.test.listeners.TestListener" , "ca.fido.test.listeners.AnnotationTransformer"]
+        setListeners(listeners)
         if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
         if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
         if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
