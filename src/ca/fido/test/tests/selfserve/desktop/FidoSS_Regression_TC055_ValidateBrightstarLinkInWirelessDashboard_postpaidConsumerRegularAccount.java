@@ -1,21 +1,15 @@
 package ca.fido.test.tests.selfserve.desktop;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import javax.net.ssl.SSLHandshakeException;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import javax.net.ssl.SSLHandshakeException;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * The test will do Validation of brightstar link- clicking on usage and service form postpaid consumer regular account_IW_Chrome_EN
@@ -31,9 +25,9 @@ public class FidoSS_Regression_TC055_ValidateBrightstarLinkInWirelessDashboard_p
 	
 	 	
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
-		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("QaUrl"), strBrowser,
 				strLanguage, FidoEnums.GroupName.selfserve,method);			
 	}
 	

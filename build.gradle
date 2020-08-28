@@ -29,13 +29,13 @@ def sauce = [
 
 
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
-    /*  onlyIf {
-       !System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")
-   }*/
-    if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
+     onlyIf {
+         (!System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")) || (!System.getProperty("AWSQaUrl").equals(null) && !System.getProperty("AWSQaUrl").equals(""))
+   }
+ /*   if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
     {
         throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
-    }
+    }*/
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
 
@@ -56,13 +56,13 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 sauceTest.finalizedBy stopSauceConnect
 
 task "localTest"(type: Test) {
-  /*  onlyIf {
-        !System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")
-    }*/
-    if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
+    onlyIf {
+        (!System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")) || (!System.getProperty("AWSQaUrl").equals(null) && !System.getProperty("AWSQaUrl").equals(""))
+    }
+ /*   if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
     {
         throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
-    }
+    }*/
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG(){

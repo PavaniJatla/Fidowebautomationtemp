@@ -1,12 +1,6 @@
 package ca.fido.testdatamanagement;
 
-import ca.fido.yaml.pojo.AccountData;
-import ca.fido.yaml.pojo.Config;
-import ca.fido.yaml.pojo.HUPData;
-import ca.fido.yaml.pojo.NACData;
-import ca.fido.yaml.pojo.PPCData;
-import ca.fido.yaml.pojo.PaymentDetails;
-import ca.fido.yaml.pojo.SauceSettings;
+import ca.fido.yaml.pojo.*;
 
 public class TestDataHandler {
 	

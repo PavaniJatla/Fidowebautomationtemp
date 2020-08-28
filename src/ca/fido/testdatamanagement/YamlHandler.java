@@ -1,18 +1,13 @@
 package ca.fido.testdatamanagement;
+
+import ca.fido.yaml.pojo.*;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import ca.fido.yaml.pojo.AALData;
-import ca.fido.yaml.pojo.HUPData;
-import ca.fido.yaml.pojo.NACData;
-import ca.fido.yaml.pojo.PPCData;
-import ca.fido.yaml.pojo.AccountData;
-import ca.fido.yaml.pojo.Config;
-import ca.fido.yaml.pojo.PaymentDetails;
-import ca.fido.yaml.pojo.SauceSettings;
 
 public class YamlHandler {
 

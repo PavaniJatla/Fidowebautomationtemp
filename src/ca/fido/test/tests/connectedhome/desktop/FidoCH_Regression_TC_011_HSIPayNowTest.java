@@ -1,19 +1,14 @@
 package ca.fido.test.tests.connectedhome.desktop;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 
 /**
@@ -80,10 +75,10 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		}
 
 	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method)
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-	startSession(TestDataHandler.chConfig.getFidoURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+	startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,method);
 	}
 
 

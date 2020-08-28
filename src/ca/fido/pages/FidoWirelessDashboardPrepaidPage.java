@@ -1,16 +1,15 @@
 package ca.fido.pages;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import ca.fido.pages.base.BasePageClass;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * This class have all the pre paid wireless Dashboard page elements and corresponding methods which are used in test cases.

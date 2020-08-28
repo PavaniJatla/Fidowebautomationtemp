@@ -1,14 +1,13 @@
 package ca.fido.test.tests.selfserve.desktop;
 
-import java.net.MalformedURLException;
-import java.net.URL;
- 
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
- 
-import io.appium.java_client.remote.MobileCapabilityType;
+
+import java.net.MalformedURLException;
+import java.net.URL;
  
 public class AppiumTest {
   @Test

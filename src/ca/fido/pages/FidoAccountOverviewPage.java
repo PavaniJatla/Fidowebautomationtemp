@@ -1,22 +1,18 @@
 package ca.fido.pages;
 
 
+import ca.fido.pages.base.BasePageClass;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import utils.FormFiller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.math.NumberUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import ca.fido.pages.base.BasePageClass;
-import utils.FormFiller;
 
 
 

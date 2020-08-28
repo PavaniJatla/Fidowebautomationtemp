@@ -1,15 +1,15 @@
 package ca.fido.pages;
 
 
+import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import ca.fido.pages.base.BasePageClass;
 
 
 

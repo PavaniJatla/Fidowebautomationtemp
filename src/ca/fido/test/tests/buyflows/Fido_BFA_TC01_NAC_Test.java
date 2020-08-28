@@ -1,19 +1,15 @@
 package ca.fido.test.tests.buyflows;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * TC01-Fido-Validate User able to perform NAC Flow (Single Line) for $0 device- Without payment
@@ -37,7 +33,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 
 	@Test
 	public void fidoNACFlow() {
-		reporter.reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
+		reporter.reportLog("URL:" + System.getProperty("AWSQaUrl"));
 		reporter.reportLogWithScreenshot("Home Page");
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
@@ -118,9 +114,9 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("AWSQaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterMethod(alwaysRun = true)

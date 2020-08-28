@@ -1,16 +1,14 @@
 package ca.fido.test.tests.connectedhome.desktop;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
+import ca.fido.test.base.BaseTestClass;
+import ca.fido.test.helpers.FidoEnums;
+import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
-import ca.fido.test.base.BaseTestClass;
-import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 
 

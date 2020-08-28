@@ -1,11 +1,9 @@
 package ca.fido.test.listeners;
 
 
-import com.relevantcodes.extentreports.LogStatus;
-
 import ca.fido.test.base.BaseTestClass;
+import com.relevantcodes.extentreports.LogStatus;
 import extentreport.ExtentTestManager;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

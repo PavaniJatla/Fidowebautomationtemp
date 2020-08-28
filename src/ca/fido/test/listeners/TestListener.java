@@ -1,30 +1,23 @@
 package ca.fido.test.listeners;
-import com.relevantcodes.extentreports.LogStatus;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.testdatamanagement.TestDataHandler;
+import com.relevantcodes.extentreports.LogStatus;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
 import extentreport.FileUpload;
 import extentreport.SendEmail;
-import utils.SauceLabsUtils;
-
-import java.io.IOException;
-import java.util.HashMap;
-import javax.mail.MessagingException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.IInvokedMethod;
-import org.testng.IInvokedMethodListener;
-import org.testng.ISuite;
-import org.testng.ISuiteListener;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.Reporter;
+import org.testng.*;
+import utils.SauceLabsUtils;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.util.HashMap;
 
 
 

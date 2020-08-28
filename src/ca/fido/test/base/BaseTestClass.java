@@ -1,56 +1,6 @@
 package ca.fido.test.base;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.http.client.ClientProtocolException;
-import org.openqa.selenium.WebDriver;
-import ca.fido.pages.FidoAccountOverviewPage;
-import ca.fido.pages.FidoAccountRegistrationPage;
-import ca.fido.pages.FidoAddDataPage;
-import ca.fido.pages.FidoBillDetailsPage;
-import ca.fido.pages.FidoBuildPlanPage;
-import ca.fido.pages.FidoCartSummaryPage;
-import ca.fido.pages.FidoChangeCTNPage;
-import ca.fido.pages.FidoChooseAddonsPage;
-import ca.fido.pages.FidoChooseNumberPage;
-import ca.fido.pages.FidoChoosePhonePage;
-import ca.fido.pages.FidoChoosePlanPage;
-import ca.fido.pages.FidoChooseSimPage;
-import ca.fido.pages.FidoCommunityPage;
-import ca.fido.pages.FidoCreateUserPage;
-import ca.fido.pages.FidoCreditCheckPage;
-import ca.fido.pages.FidoDataManagementPage;
-import ca.fido.pages.FidoDeviceConfigPage;
-import ca.fido.pages.FidoDeviceReservationSystemPage;
-import ca.fido.pages.FidoHomePage;
-import ca.fido.pages.FidoInteracOnlinePage;
-import ca.fido.pages.FidoInternetDashboardPage;
-import ca.fido.pages.FidoInternetPackageChangeReviewOrderPage;
-import ca.fido.pages.FidoInternetPackagePage;
-import ca.fido.pages.FidoLoginPage;
-import ca.fido.pages.FidoLogintoFacebookPage;
-import ca.fido.pages.FidoMakePaymentPage;
-import ca.fido.pages.FidoOrderConfirmationPage;
-import ca.fido.pages.FidoOrderReviewPage;
-import ca.fido.pages.FidoPaymentHistoryPage;
-import ca.fido.pages.FidoPaymentOptionsPage;
-import ca.fido.pages.FidoPaymentPage;
-import ca.fido.pages.FidoPrepaidLinkAccountPage;
-import ca.fido.pages.FidoProfileAndSettingPage;
-import ca.fido.pages.FidoRecoverPassOrNamePage;
-import ca.fido.pages.FidoRefillPage;
-import ca.fido.pages.FidoReportLostOrStolenPage;
-import ca.fido.pages.FidoResetVoiceMailPasswordPage;
-import ca.fido.pages.FidoSetPasswordPage;
-import ca.fido.pages.FidoShippingPage;
-import ca.fido.pages.FidoShopInternetPage;
-import ca.fido.pages.FidoTechnicalInstallationPage;
-import ca.fido.pages.FidoWirelessDashboardPostpaidPage;
-import ca.fido.pages.FidoWirelessDashboardPrepaidPage;
+import ca.fido.pages.*;
 import ca.fido.pages.ens.EnsHomePage;
 import ca.fido.pages.ens.EnsNotificationViewPage;
 import ca.fido.ssp.pages.SSPFidoRetailerChampPage;
@@ -66,12 +16,16 @@ import ca.fido.testdatamanagement.TestDataHandler;
 import extentreport.ExtentTestManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.apache.http.client.ClientProtocolException;
+import org.openqa.selenium.WebDriver;
 import utils.BrowserDrivers;
 import utils.Reporter;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /*@Listeners ({ca.fido.test.listeners.TestListener.class , ca.fido.test.listeners.AnnotationTransformer.class , ca.fido.test.listeners.TestListener.class })*/
