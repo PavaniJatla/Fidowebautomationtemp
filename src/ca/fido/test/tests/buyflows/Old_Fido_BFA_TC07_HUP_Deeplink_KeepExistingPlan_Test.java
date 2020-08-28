@@ -28,19 +28,19 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * 
  * @author rajesh.varalli1
  */
-public class Fido_BFA_TC07_HUP_Deeplink_KeepExistingPlan_Test extends BaseTestClass{
+public class Old_Fido_BFA_TC07_HUP_Deeplink_KeepExistingPlan_Test extends BaseTestClass{
 
 	@Test
 	public void ppcUpgradeTierFlow() {
 		getDriver().get(TestDataHandler.bfaConfig.getHupURL());
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.testCase05.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.testCase05.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.testCase04.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.testCase04.getPassword());
 		reporter.reportLogWithScreenshot("Login overlay");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
-		fido_choose_phone_page.selectSubscriber(TestDataHandler.testCase05.getCtn());
-		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase05.getNewDevice()),"Device Found and Selected","Device Not Found");
+		fido_choose_phone_page.selectSubscriber(TestDataHandler.testCase04.getCtn());
+		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase04.getNewDevice()),"Device Found and Selected","Device Not Found");
 		fido_build_plan_page.keepExistingPlan();
 		fido_build_plan_page.clkContinueToAddons();
 		fido_choose_addons_page.clkContinueToShipping();

@@ -1,5 +1,6 @@
 package ca.fido.testdatamanagement;
 
+import ca.fido.yaml.pojo.AALData;
 import ca.fido.yaml.pojo.AccountData;
 import ca.fido.yaml.pojo.Config;
 import ca.fido.yaml.pojo.HUPData;
@@ -56,8 +57,8 @@ public class TestDataHandler {
 	public static NACData testCase02;
 	public static HUPData testCase03;
 	public static HUPData testCase04;
-	public static HUPData testCase05;
-	public static PPCData testCase06;
+	public static AALData testCase05;
+	public static AALData testCase06;
 	public static PPCData testCase07;
 	public static PPCData testCase08;
 	public static AccountData tc6062;
@@ -149,9 +150,9 @@ public class TestDataHandler {
     	testCase02 = YamlHandler.getNACData("tc02NAC");
     	testCase03 = YamlHandler.getHUPData("tc03HUP");
     	testCase04 = YamlHandler.getHUPData("tc04HUP");
-    	testCase05 = YamlHandler.getHUPData("tc05HUP");
-    	testCase06 = YamlHandler.getPPCData("tc06PPC");
-    	testCase07 = YamlHandler.getPPCData("tc07AAL");
+    	testCase05 = YamlHandler.getAALData("tc05AALTerm");
+    	testCase06 = YamlHandler.getAALData("tc06AALByod");
+    	testCase07 = YamlHandler.getPPCData("tc07PPC");
     	testCase08 = YamlHandler.getPPCData("tc08AALTerm");
 	}
 

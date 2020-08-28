@@ -30,7 +30,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * 
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC02_AAL_Term_Test extends BaseTestClass{
+public class Fido_BFA_TC05_AAL_Term_Test extends BaseTestClass{
 
 	@Test
 	public void aalTermFlowTest() {
@@ -38,8 +38,8 @@ public class Fido_BFA_TC02_AAL_Term_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Fido Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.testCase08.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.testCase08.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.testCase05.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.testCase05.getPassword());
 		reporter.reportLogWithScreenshot("Login overlay");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
@@ -51,7 +51,7 @@ public class Fido_BFA_TC02_AAL_Term_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Modal dialogue appeared");
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
-		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XS MAX"),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(fido_choose_phone_page.selectDevice("Iphone XR"),"Device Found and Selected","Device Not Found");
 		reporter.reportLogWithScreenshot("Required device is available on the choose phone page");
 		reporter.hardAssert(fido_device_config_Page.clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
 		reporter.reportLogWithScreenshot("Continue button clicked on the device config page");
@@ -77,7 +77,7 @@ public class Fido_BFA_TC02_AAL_Term_Test extends BaseTestClass{
 		fido_build_plan_page.clkContinueBelowCartSummary();
 		fido_shipping_page.clkContinueToOrderReview();
 		fido_order_review_page.clkTermsNConditionsConsent();
-		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase08.getUsername());
+		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase05.getUsername());
 		if(fido_order_review_page.isPaymentRequired()) {
 			fido_order_review_page.clkContinueToPayment();
 			fido_payment_page.setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),
