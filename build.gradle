@@ -29,11 +29,19 @@ def sauce = [
 
 
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
+    /*  onlyIf {
+       !System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")
+   }*/
+    if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
+    {
+        throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
+    }
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
 
     useTestNG(){
-
+        Set listeners = [ "ca.fido.test.listeners.TestListener" , "ca.fido.test.listeners.AnnotationTransformer"]
+        setListeners(listeners)
         if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoSanityPack.xml' }
         if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
         if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
@@ -44,8 +52,17 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 
 }
 
+//To shutdown the sauceconnect
+sauceTest.finalizedBy stopSauceConnect
 
 task "localTest"(type: Test) {
+  /*  onlyIf {
+        !System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")
+    }*/
+    if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
+    {
+        throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
+    }
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG(){
