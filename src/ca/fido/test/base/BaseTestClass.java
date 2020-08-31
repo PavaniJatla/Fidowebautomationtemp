@@ -371,7 +371,9 @@ public class BaseTestClass {
 	}
 
 	/** To start a session using given url, browser, language and test case group name.
-
+	 * @param strLanguage    string of test Language
+	 * @param strBrowser     string of browser name
+	 * @return HashMap of test TestParameters
 	 */
 		public static HashMap<String, String>  getExecutionParameters(String strBrowser,String strLanguage) {
 		if (System.getProperty("Browser") == null || System.getProperty("Browser").isEmpty())
