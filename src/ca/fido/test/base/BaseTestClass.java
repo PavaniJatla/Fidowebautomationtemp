@@ -191,41 +191,6 @@ public class BaseTestClass {
 
 
 	/**
-	 * To start a session using given url, browser, language and test case group name.
-	 * @param strUrl                     string of test url
-	 * @param strBrowser                 string of browser name
-	 * @param currentTestMethodName      string of current Test Method Name
-	 * @param enumGroupName              string of enum Group Name
-	 * @param strLanguage                string of language to use
-	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
-	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
-	 */
-	public void startMobileSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		if(strBrowser.contains("sauce"))
-		{
-			sauceParameters = initializeSauceParamsMap(strBrowser);
-		}
-		this.driver = browserdriver.driverInit(strBrowser,sauceParameters, currentTestMethodName, enumGroupName.toString());
-		System.out.println(strUrl + "----------------------------------------------------------------------------");
-		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
-		switch(enumGroupName.toString().toLowerCase().trim()) {			
-		case "connectedhome_anonymous":				
-			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
-			break;	
-			
-		case "connectedhome_login":
-			
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;            
-
-  		default :
-  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-		}
-	    setImplicitWait(adriver, 10);
-	    init(enumGroupName.toString().toLowerCase().trim());
-  }
-	
-	/**
 	 * To initiate the page objects based on test case group, will read group name from xml file.
 	 * @param strGroupName string of group name.
 	 */
