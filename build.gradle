@@ -1,0 +1,164 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+    id 'com.jfrog.artifactory' version '4.15.1'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'net.researchgate.release' version '2.8.1'
+    id 'net.saliman.properties' version '1.5.1'
+    id "io.johnroach.SauceConnectPlugin" version "0.0.35"
+
+}
+sauceconnect {
+    username = System.getenv('SAUCE_USERNAME')
+    key = System.getenv('SAUCE_ACCESS_KEY')
+    options = "-i myTunnel"
+}
+
+def sauce = [
+        username: sauceconnect.username,
+        key     : sauceconnect.key,
+]
+
+
+task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
+
+    outputs.upToDateWhen { false }  // Always run tests
+
+    useTestNG(){
+
+        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoSanityPack.xml' }
+        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
+        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
+        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
+        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
+        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+    }
+
+}
+
+task "localTest"(type: Test) {
+
+    outputs.upToDateWhen { false }  // Always run tests
+
+    useTestNG(){
+
+        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
+        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
+        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
+        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
+        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
+        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+    }
+
+}
+
+repositories {
+
+    maven {
+        url = "${artifactory_url}/${artifactory_repoKey}"
+        credentials {
+            username "${artifactory_username}"
+            password "${artifactory_password}"
+        }
+    }
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.relevantcodes:extentreports:2.41.2'
+    api 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    api 'org.testng:testng:6.14.3'
+    api 'automation-utils:common-utils:latest.release'
+}
+
+group = 'ca.fido'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+sourceSets {
+
+    test {
+        java {
+            srcDir 'src'
+        }
+    }
+
+}
+
+
+jar {
+    enabled = true
+    manifest {
+        attributes 'provider': 'gradle'
+    }
+
+}
+
+
+
+configurations {
+    published
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
+}
+
+javadoc {
+    exclude 'com/Fido/test/**'
+    exclude 'com/Fido/yaml/**'
+    source = sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    exclude 'com/Fido/test/**'
+    exclude 'com/Fido/yaml/**'
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
+
+artifacts {
+    published sourceJar
+    published javadocJar
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId = "${project.group}"
+        }
+    }
+}
+
+artifactory {
+    contextUrl = "${artifactory_url}"
+    publish {
+        repository {
+            repoKey = "${artifactory_repoKey}"
+            username = "${artifactory_username}"
+            password = "${artifactory_password}"
+        }
+        defaults {
+            publications('maven')
+            publishConfigs('archives', 'published')
+            publishBuildInfo = true
+            publishArtifacts = true
+            publishPom = true
+            publishIvy = false
+        }
+    }
+}
+
+artifactoryPublish {
+    dependsOn jar, sourceJar, javadocJar
+}
