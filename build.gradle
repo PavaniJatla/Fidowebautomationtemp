@@ -1,8 +1,3 @@
-buildscript {
-    dependencies {
-        classpath group: 'gradle.plugin.SCPlugin', name: 'Gradle-Sauce-Connect-Plugin', version: '0.0.15'}
-                             }
-
 plugins {
     id 'java'
     id 'java-library'
@@ -11,10 +6,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'net.researchgate.release' version '2.8.1'
     id 'net.saliman.properties' version '1.5.1'
+    id 'com.aditya.SauceConnectPlugin' version '0.0.15'
 }
 
-
-apply plugin: 'com.aditya.SauceConnectPlugin'
 
 sauceconnect {
     username = System.getenv('SAUCE_USERNAME')
