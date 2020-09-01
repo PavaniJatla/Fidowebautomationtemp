@@ -29,6 +29,8 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG() {
+        parallel = test_parallel
+        threadCount = test_threadCount as int
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
         includeGroups System.getProperty('groupName', 'NONE')
