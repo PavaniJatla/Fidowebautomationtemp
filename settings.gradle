@@ -3,9 +3,10 @@
  */
 
 pluginManagement {
+
     repositories {
         maven {
-            url '/libs'
+            url 'libs'
         }
         gradlePluginPortal()
     }
