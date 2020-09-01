@@ -31,6 +31,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     useTestNG() {
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
+        includeGroups System.getProperty('groupName', 'NONE')
         if (project.hasProperty('SanityCH')) {
             suites 'ConnectedHomeFidoSanityPack.xml'
         }
@@ -67,6 +68,7 @@ task "localTest"(type: Test) {
         threadCount = test_threadCount as int
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
+        includeGroups System.getProperty('groupName', 'NONE')
         if (project.hasProperty('SanityCH')) {
             suites 'ConnectedHomeFidoEnvSanity.xml'
         }

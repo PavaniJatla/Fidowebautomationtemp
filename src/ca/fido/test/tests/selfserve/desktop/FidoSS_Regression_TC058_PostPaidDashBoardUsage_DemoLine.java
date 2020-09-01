@@ -34,7 +34,7 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"SSsanity","SSDashboard"})
 	public void verifyDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();

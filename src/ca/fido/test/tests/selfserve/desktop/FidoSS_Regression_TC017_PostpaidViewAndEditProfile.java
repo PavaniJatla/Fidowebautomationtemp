@@ -27,7 +27,7 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 	}
 	
 
-	@Test
+	@Test(groups = {"SSsanity","SSPnS"})
 	public void postPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
 		
 		fido_home_page.clkLogin();
