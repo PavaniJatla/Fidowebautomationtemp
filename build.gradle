@@ -1,8 +1,3 @@
-buildscript {
-    dependencies {
-        classpath group: 'gradle.plugin.SCPlugin', name: 'Gradle-Sauce-Connect-Plugin', version: '0.0.15'}
-                             }
-
 plugins {
     id 'java'
     id 'java-library'
@@ -11,10 +6,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'net.researchgate.release' version '2.8.1'
     id 'net.saliman.properties' version '1.5.1'
+    id 'com.aditya.SauceConnectPlugin' version '0.0.15'
 }
 
-
-apply plugin: 'com.aditya.SauceConnectPlugin'
 
 sauceconnect {
     username = System.getenv('SAUCE_USERNAME')
@@ -29,30 +23,32 @@ def sauce = [
 
 
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
-     onlyIf {
-         (!System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")) || (!System.getProperty("AWSQaUrl").equals(null) && !System.getProperty("AWSQaUrl").equals(""))
-  }
- /*   if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
-    {
-        throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
-    }*/
+    systemProperty 'QaUrl', test_QaUrl
+    systemProperty 'Browser', test_Browser
+    systemProperty 'Language', test_Language
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
-
-    useTestNG(){
-        Set listeners = [ "ca.fido.test.listeners.TestListener" , "ca.fido.test.listeners.AnnotationTransformer"]
+    useTestNG() {
+        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
-        threadCount="${threadCount}"
-        parallel="${parallel}"       
-        //parallel=System.getProperty('parallel','none') 
-    	//threadCount=System.getProperty('threadCount','1') 
-    	includeGroups System.getProperty('group','NONE') 
-        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoSanityPack.xml' }
-        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
-        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
-        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+        if (project.hasProperty('SanityCH')) {
+            suites 'ConnectedHomeFidoSanityPack.xml'
+        }
+        if (project.hasProperty('SanitySS')) {
+            suites 'SelfServeFidoSanityPack.xml'
+        }
+        if (project.hasProperty('SanityBFA')) {
+            suites 'BFAFidoSanityPack.xml'
+        }
+        if (project.hasProperty('RegressionCH')) {
+            suites 'ConnectedHomeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionSS')) {
+            suites 'SelfServeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionBFA')) {
+            suites 'BFAFidoCompleteSuite.xml'
+        }
     }
 
 }
@@ -61,29 +57,34 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 sauceTest.finalizedBy stopSauceConnect
 
 task "localTest"(type: Test) {
-    onlyIf {
-        (!System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")) || (!System.getProperty("AWSQaUrl").equals(null) && !System.getProperty("AWSQaUrl").equals(""))
-    }
- /*   if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
-    {
-        throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
-    }*/
+    systemProperty 'QaUrl', test_QaUrl
+    systemProperty 'Browser', test_Browser
+    systemProperty 'Language', test_Language
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
-    useTestNG(){
-    	threadCount="${test_threadCount}" as int
-        parallel="${test_parallel}" 
-    	//parallel=System.getProperty('parallel','none') 
-    	//threadCount=System.getProperty('threadCount','1') 
-        Set listeners = [ "ca.fido.test.listeners.TestListener" , "ca.fido.test.listeners.AnnotationTransformer"]
+    useTestNG() {
+        parallel = test_parallel
+        threadCount = test_threadCount as int
+        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
-        includeGroups System.getProperty('group','NONE') 
-        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
-        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
-        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
-        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+        if (project.hasProperty('SanityCH')) {
+            suites 'ConnectedHomeFidoEnvSanity.xml'
+        }
+        if (project.hasProperty('SanitySS')) {
+            suites 'SelfServeFidoSanityPack.xml'
+        }
+        if (project.hasProperty('SanityBFA')) {
+            suites 'BFAFidoSanityPack.xml'
+        }
+        if (project.hasProperty('RegressionCH')) {
+            suites 'ConnectedHomeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionSS')) {
+            suites 'SelfServeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionBFA')) {
+            suites 'BFAFidoCompleteSuite.xml'
+        }
     }
 
 }
@@ -97,6 +98,7 @@ repositories {
             password "${artifactory_password}"
         }
     }
+
     mavenCentral()
 }
 
@@ -163,7 +165,6 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
-
 
 
 artifacts {

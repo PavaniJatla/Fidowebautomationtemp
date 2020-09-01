@@ -150,79 +150,46 @@ public class BaseTestClass {
 
 	public void startSession(String strUrl, String strBrowser,  String strLanguage,FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
 		RunParameters = getExecutionParameters(strBrowser, strLanguage);
+		String browser = RunParameters.get("Browser");
+		String language = RunParameters.get("Language");
 
-	    if(RunParameters.get("Browser").contains("sauce"))
+	    if(browser.contains("sauce"))
 		{
-			sauceParameters = initializeSauceParamsMap(RunParameters.get("Browser"));
+			sauceParameters = initializeSauceParamsMap(browser);
 		}
-		this.driver = browserdriver.driverInit(RunParameters.get("Browser"),sauceParameters, currentTestMethodName, enumGroupName.toString());
+		this.driver = browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString());
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
-				captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, RunParameters.get("Language"));
+				captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, language);
 				break;
 			case "connectedhome_login":
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"?setLanguage="+ RunParameters.get("Language") );
-				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, RunParameters.get("Language"));
+				driver.get(strUrl+"?setLanguage="+ language );
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 			case "mobile_connectedhome":
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"?setLanguage="+ RunParameters.get("Language") );
-				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, RunParameters.get("Language"));
+				driver.get(strUrl+"?setLanguage="+ language);
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 			case "selfserve":
 			case "selfserve_login":
-				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ RunParameters.get("Language") );
-				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, RunParameters.get("Language"));
+				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 			case "buyflows": driver.get(strUrl);
 				break;
 
 			default :
-				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, RunParameters.get("Language"));
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 		}
 
 		init(enumGroupName.toString().toLowerCase().trim());
 	}
 
 
-	/**
-	 * To start a session using given url, browser, language and test case group name.
-	 * @param strUrl                     string of test url
-	 * @param strBrowser                 string of browser name
-	 * @param currentTestMethodName      string of current Test Method Name
-	 * @param enumGroupName              string of enum Group Name
-	 * @param strLanguage                string of language to use
-	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
-	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
-	 */
-	public void startMobileSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		if(strBrowser.contains("sauce"))
-		{
-			sauceParameters = initializeSauceParamsMap(strBrowser);
-		}
-		this.driver = browserdriver.driverInit(strBrowser,sauceParameters, currentTestMethodName, enumGroupName.toString());
-		System.out.println(strUrl + "----------------------------------------------------------------------------");
-		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
-		switch(enumGroupName.toString().toLowerCase().trim()) {			
-		case "connectedhome_anonymous":				
-			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
-			break;	
-			
-		case "connectedhome_login":
-			
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;            
-
-  		default :
-  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-		}
-	    setImplicitWait(adriver, 10);
-	    init(enumGroupName.toString().toLowerCase().trim());
-  }
-	
 	/**
 	 * To initiate the page objects based on test case group, will read group name from xml file.
 	 * @param strGroupName string of group name.
@@ -369,35 +336,29 @@ public class BaseTestClass {
 	}
 
 	/** To start a session using given url, browser, language and test case group name.
-
+	 * @param strLanguage    string of test Language
+	 * @param strBrowser     string of browser name
+	 * @return HashMap of test TestParameters
 	 */
 		public static HashMap<String, String>  getExecutionParameters(String strBrowser,String strLanguage) {
-		System.out.println("System Browser is >>>>>   "+strBrowser  );
-		System.out.println("System Language is >>>>>   "+strLanguage  );
 		if (System.getProperty("Browser") == null || System.getProperty("Browser").isEmpty())
 		{
 			System.setProperty("Browser", strBrowser);
-			System.out.println("strBrowser inside if  is >>>>>   "+strBrowser  );
 		}
 		if (System.getProperty("Language") == null ||  System.getProperty("Language").isEmpty())
 		{
 			System.setProperty("Language", strLanguage);
-			System.out.println("strLanguage inside if is >>>>>   "+strLanguage  );
 		}
 		if(System.getProperty("Browser").equals("") && strBrowser.isEmpty())
 		{
 			System.setProperty("Browser", "chrome");
-			System.out.println("when ran by testNG params is >>>>>   "+strBrowser  );
 		}
 		if(System.getProperty("Language").equals("") && strLanguage.isEmpty() )
 		{
 			System.setProperty("Language", "en");
-			System.out.println("when ran by testNG params is >>>>>   "+strLanguage );
 		}
 		strBrowser= System.getProperty("Browser");
 		strLanguage= System.getProperty("Language");
-		System.out.println("strBrowser is >>>>>   "+strBrowser  );
-		System.out.println("strLanguage is >>>>>   "+strLanguage  );
 		HashMap<String, String> TestParameters = new HashMap<>();
 		TestParameters.put("Browser", strBrowser);
 		TestParameters.put("Language", strLanguage );

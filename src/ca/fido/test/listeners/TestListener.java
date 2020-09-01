@@ -233,9 +233,14 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 
 
 		try {
-
-			String strResPath= FileUpload.extentReportsUpload();
-			SendEmail.sendEmail(suite.getName(), strResPath);
+			/**
+			 * The if block will get executed if the test run is triggered from local machine or any machine
+			 * where BUILD_TIMESTAMP is not setup. BUILD_TIMESTAMP env variable is set by Jenkins job.
+			 */
+			if((System.getenv("BUILD_TIMESTAMP")==null) || System.getenv("BUILD_TIMESTAMP").equals("")){
+				String strResPath= FileUpload.extentReportsUpload();
+				SendEmail.sendEmail(suite.getName(), strResPath);
+			}
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
