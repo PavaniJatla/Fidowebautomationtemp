@@ -33,10 +33,12 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"sanity","dashboard"})
 	public void postPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification started");
 		fido_home_page.clkLogin();
+		
+		/*
 		String userName = "";
 		String password = "";
 		
@@ -125,7 +127,7 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Dashboad mid veiw");
 		fido_wireless_dashboard_postpaid_page.scrollToBottomOfPage();
 		reporter.reportLogWithScreenshot("Dashboad bottom veiw");
-				
+				*/
 	}
 	
 }

@@ -31,7 +31,7 @@ def sauce = [
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
      onlyIf {
          (!System.getProperty("QaUrl").equals(null) && !System.getProperty("QaUrl").equals("")) || (!System.getProperty("AWSQaUrl").equals(null) && !System.getProperty("AWSQaUrl").equals(""))
-   }
+  }
  /*   if (System.getProperty("QaUrl").equals(null) || System.getProperty("QaUrl").equals(""))
     {
         throw new GradleException(" Please pass the QA URL commandline argument as '-DQaUrl=qaX'  ")
@@ -42,6 +42,11 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     useTestNG(){
         Set listeners = [ "ca.fido.test.listeners.TestListener" , "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
+        threadCount="${threadCount}"
+        parallel="${parallel}"       
+        //parallel=System.getProperty('parallel','none') 
+    	//threadCount=System.getProperty('threadCount','1') 
+    	includeGroups System.getProperty('group','NONE') 
         if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoSanityPack.xml' }
         if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
         if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
@@ -66,8 +71,13 @@ task "localTest"(type: Test) {
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG(){
+    	threadCount="${test_threadCount}" as int
+        parallel="${test_parallel}" 
+    	//parallel=System.getProperty('parallel','none') 
+    	//threadCount=System.getProperty('threadCount','1') 
         Set listeners = [ "ca.fido.test.listeners.TestListener" , "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
+        includeGroups System.getProperty('group','NONE') 
         if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
         if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
         if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }

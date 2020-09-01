@@ -33,10 +33,13 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"sanity","PnS"})
 	public void prePaidPaymentViewAndEditProfile() throws InterruptedException, ParseException, IOException {
 		
 		fido_home_page.clkLogin();
+		
+		/*
+		
 		fido_login_page.switchToSignInFrame();
 		String altUserName=TestDataHandler.tc006009.getUsername();
 		String altPassword=TestDataHandler.tc006009.getPassword();
@@ -96,6 +99,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);		
 		fido_profile_and_setting_page.clkSaveButton();
 		reporter.reportLogWithScreenshot("password set back to initial one");
+		*/
 	}
 
 }
