@@ -1,8 +1,0 @@
-# Config
----
-fidoURL: https://qa6.fido.ca/consumer/easyloginriverpage
-fidoAWSUrl: https://cexqa-aal-nac-1.fido.ca/phones/
-hupURL: "https://www.qa05.fido.ca/hup/#/choose-phone"
-cookieUserName: 194603leg@mailinator.com
-cookieUserPassword: rogers@123
-...
