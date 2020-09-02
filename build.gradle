@@ -23,14 +23,29 @@ def sauce = [
 
 
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
+
+    if(!test_Browser){
+        test_Browser='saucechrome'
+    }
+
+    if (!test_Browser.contains('sauce')){
+        def browser = 'sauce'+test_Browser
+        test_Browser = browser
+    }
+    System.out.println(test_Browser)
+
     systemProperty 'QaUrl', test_QaUrl
     systemProperty 'Browser', test_Browser
     systemProperty 'Language', test_Language
+
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG() {
+        parallel = test_parallel
+        threadCount = test_threadCount as int
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
+        if (!System.getProperty('groupName')==null&&!System.getProperty('groupName').contains(''))
         includeGroups System.getProperty('groupName', 'NONE')
         if (project.hasProperty('SanityCH')) {
             suites 'ConnectedHomeFidoSanityPack.xml'
@@ -58,9 +73,13 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 sauceTest.finalizedBy stopSauceConnect
 
 task "localTest"(type: Test) {
-    systemProperty 'QaUrl', test_QaUrl
-    systemProperty 'Browser', test_Browser
-    systemProperty 'Language', test_Language
+
+    if (test_Browser && test_Browser.contains('sauce')){
+        def browser = test_Browser.replace('sauce','')
+        test_Browser = browser
+    }
+
+
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG() {
@@ -68,6 +87,7 @@ task "localTest"(type: Test) {
         threadCount = test_threadCount as int
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
+        if (!System.getProperty('groupName')==null&&!System.getProperty('groupName').contains(''))
         includeGroups System.getProperty('groupName', 'NONE')
         if (project.hasProperty('SanityCH')) {
             suites 'ConnectedHomeFidoEnvSanity.xml'

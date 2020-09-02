@@ -32,7 +32,11 @@ pipeline {
     }
     parameters {
 
-        string(name: 'TestProfile', defaultValue: 'PSanityCH', description: 'Test Profile Name')
+        string(name: 'Browser', defaultValue: "saucechrome", description: 'Test Browser')
+        string(name: 'Language', defaultValue: "en", description: 'Test Language')
+        string(name: 'threadCount', defaultValue: "2", description: 'Number of parallel test sessions')
+        string(name: 'QaUrl', defaultValue: "https://qa6.fido.ca", description: 'QA Env Url')
+        string(name: 'Tests', defaultValue: "FidoCH_Regression_TC_014_HSIValidateDashboardTest", description: 'Tests to run')
 
     }
 
@@ -40,9 +44,7 @@ pipeline {
         parameterizedCron('''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
-                    00 11 * * 1-5 %TestProfile=PSanitySS
-                    10 11 * * 1-5 %TestProfile=PSanityCH
-                    20 11 * * 1-5 %TestProfile=PSanityBFA
+                    05 13 * * 1-5 %Browser=saucechrome;Language=en;Tests=FidoCH_Regression_TC_014_HSIValidateDashboardTest;threadCount=1;QaUrl=https://qa6.fido.ca
                 ''')
     }
 
@@ -80,7 +82,7 @@ pipeline {
 
 
                 stage('Regression Tests') {
-                    steps { toolSh "gradle sauceTest -${params.TestProfile} -i" }
+                    steps { toolSh "gradle sauceTest -Ptest_Browser=${params.Browser} -Ptest_Language=${params.Language} -Ptest_QaURL=${params.QaUrl} --tests '${params.Tests}' -Ptest_threadCount=${params.threadCount} -i --stacktrace" }
                     post {
                         always {
                             junit 'build/test-results/**/*.xml'
