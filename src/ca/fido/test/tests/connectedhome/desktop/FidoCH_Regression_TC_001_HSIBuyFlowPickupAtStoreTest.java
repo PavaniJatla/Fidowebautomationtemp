@@ -41,7 +41,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIBuyFlowPickupAtStoreFlow() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();

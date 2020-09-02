@@ -32,7 +32,7 @@ public class FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest
 
 	
 	
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkDeleteOffer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();

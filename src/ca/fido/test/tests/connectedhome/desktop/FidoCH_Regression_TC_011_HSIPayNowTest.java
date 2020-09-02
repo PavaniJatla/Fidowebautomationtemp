@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPayNowFunctionality() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();

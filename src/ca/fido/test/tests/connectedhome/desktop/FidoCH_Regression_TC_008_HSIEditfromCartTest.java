@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_008_HSIEditfromCartTest extends BaseTestClass {
 	
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkEditfromCart()  {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();

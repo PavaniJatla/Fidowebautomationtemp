@@ -38,7 +38,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthorizedChequingTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkBuyUnwiredAddressTechInstallPreauthorizedChequingTest() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();

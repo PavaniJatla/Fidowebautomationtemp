@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIValidateDashboard() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();

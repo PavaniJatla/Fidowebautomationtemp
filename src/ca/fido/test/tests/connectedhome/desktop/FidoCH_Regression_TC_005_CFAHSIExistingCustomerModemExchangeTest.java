@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerModemExchangeTest() {
 		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
 		retailer_champ_page.setUsername(TestDataHandler.fidoSspHSIAccount.getUsername());
