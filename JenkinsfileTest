@@ -36,6 +36,7 @@ pipeline {
         string(name: 'Language', defaultValue: "en", description: 'Test Language')
         string(name: 'ThreadCount', defaultValue: "2", description: 'Number of parallel test sessions')
         string(name: 'Groups', defaultValue: "SanityCH", description: 'Tests to run')
+        string(name: 'TestProfile', defaultValue: "ConnectedHome", description: 'Test Profile Name')
 
     }
 
@@ -43,8 +44,8 @@ pipeline {
         parameterizedCron('''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
-                    00 12 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=2
-                    30 12 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanitySS;ThreadCount=3
+                    00 12 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=2;TestProfile=ConnectedHome
+                    30 12 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanitySS;ThreadCount=3;TestProfile=SelfServe
                     
                 ''')
     }
