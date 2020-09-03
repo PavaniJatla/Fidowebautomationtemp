@@ -82,7 +82,7 @@ pipeline {
 
 
                 stage('Regression Tests') {
-                    steps { toolSh "gradle sauceTest -Ptest_Browser=${params.Browser} -Ptest_Language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace" }
+                    steps { toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace" }
                     post {
                         always {
                             junit 'build/test-results/**/*.xml'

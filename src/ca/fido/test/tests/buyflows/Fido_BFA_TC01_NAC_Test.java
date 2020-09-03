@@ -33,7 +33,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 
 	@Test
 	public void fidoNACFlow() {
-		reporter.reportLog("URL:" + System.getProperty("AWSQaUrl"));
+		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Home Page");
 		reporter.hardAssert(fido_choose_phone_page.verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		reporter.reportLogWithScreenshot("PHONES & DEVICES page");
@@ -116,7 +116,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 	@BeforeMethod
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(System.getProperty("AWSQaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterMethod(alwaysRun = true)
