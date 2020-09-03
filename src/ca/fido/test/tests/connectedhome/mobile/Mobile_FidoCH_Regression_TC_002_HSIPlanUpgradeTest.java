@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 
 public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTestClass {
 
-	@Test(groups = {"MobileRegressionCH"})
+	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkFidoHSIPlanUpgradeMobile() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -72,7 +72,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 	   }
 	
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 	startSession(System.getProperty("QaUrl"),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,  method);
 	// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());

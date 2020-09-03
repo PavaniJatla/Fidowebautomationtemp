@@ -73,7 +73,7 @@ public class FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTes
 		reporter.hardAssert(fido_internet_dashboard_page.verifylblInternetPlans(), "The internet packages are displayed ", "Failed to display the Internet packages");	
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(TestDataHandler.chConfig.getSspURL(),  strBrowser, strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);

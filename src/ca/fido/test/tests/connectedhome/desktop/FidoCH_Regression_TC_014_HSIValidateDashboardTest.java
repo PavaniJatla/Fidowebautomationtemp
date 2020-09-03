@@ -57,7 +57,7 @@ public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestC
 		reporter.reportLogWithScreenshot("Internet Dashboard Page");
 	}
 
-	@BeforeMethod
+	@BeforeMethod (alwaysRun = true)
 	@Parameters({ "strBrowser","strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login, method);

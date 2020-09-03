@@ -55,7 +55,7 @@ public class FidoCH_Regression_TC_004_HSIServiceabilityModalforServiceUnavailabl
         reporter.hardAssert(fido_Shop_internet_page.verifyAvailabilityCheck(),"Displayed to check the Service availability","Check Another Address is not working");
    	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
