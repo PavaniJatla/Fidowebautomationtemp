@@ -34,9 +34,9 @@ pipeline {
 
         string(name: 'Browser', defaultValue: "saucechrome", description: 'Test Browser')
         string(name: 'Language', defaultValue: "en", description: 'Test Language')
-        string(name: 'threadCount', defaultValue: "2", description: 'Number of parallel test sessions')
-        string(name: 'QaUrl', defaultValue: "https://qa6.fido.ca", description: 'QA Env Url')
-        string(name: 'Tests', defaultValue: "FidoCH_Regression_TC_014_HSIValidateDashboardTest", description: 'Tests to run')
+        string(name: 'ThreadCount', defaultValue: "2", description: 'Number of parallel test sessions')
+        string(name: 'Groups', defaultValue: "SanityCH", description: 'Tests to run')
+        string(name: 'TestProfile', defaultValue: "ConnectedHome", description: 'Test Profile Name')
 
     }
 
@@ -44,12 +44,13 @@ pipeline {
         parameterizedCron('''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
-                    05 13 * * 1-5 %Browser=saucechrome;Language=en;Tests=FidoCH_Regression_TC_014_HSIValidateDashboardTest;threadCount=1;QaUrl=https://qa6.fido.ca
+                    00 12 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=2;TestProfile=ConnectedHome
+                    30 12 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanitySS;ThreadCount=3;TestProfile=SelfServe
+                    
                 ''')
     }
 
     environment {
-        TEST_CRED = credentials('TEST_CRED')
         SAUCE_USERNAME = credentials('SAUCE_USERNAME')
         SAUCE_ACCESS_KEY = credentials('SAUCE_ACCESS_KEY')
         FTP_SERVER = credentials('FTP_SERVER')
@@ -82,7 +83,7 @@ pipeline {
 
 
                 stage('Regression Tests') {
-                    steps { toolSh "gradle sauceTest -Ptest_Browser=${params.Browser} -Ptest_Language=${params.Language} -Ptest_QaURL=${params.QaUrl} --tests '${params.Tests}' -Ptest_threadCount=${params.threadCount} -i --stacktrace" }
+                    steps { toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace" }
                     post {
                         always {
                             junit 'build/test-results/**/*.xml'

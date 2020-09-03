@@ -32,7 +32,7 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 
 	
 	
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkDeleteOffer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -57,7 +57,7 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 		reporter.hardAssert(fido_cart_summary_page.verifySummaryCart(), "removed cart Passed", "remove cart Failed");
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());

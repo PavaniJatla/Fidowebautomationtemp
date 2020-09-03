@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"SanityCH","RegressionCH","FidoUpgradePlanCH"})
 	public void checkFidoHSIPlanDowngrade() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -55,7 +55,7 @@ public class FidoCH_Regression_TC_003_HSIPlanDowngradeTest extends BaseTestClass
 		reporter.hardAssert(fido_internet_dashboard_page.verifyDowngradePopup(),"Plan downgarde ways popup has displayed","Plan downgarde ways popup hasn't displayed");
 		}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());

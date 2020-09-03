@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerModemExchangeTest() {
 		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
 		retailer_champ_page.setUsername(TestDataHandler.fidoSspHSIAccount.getUsername());
@@ -90,12 +90,11 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 		reporter.hardAssert(fido_internet_package_page.verifyAcountNumberOnReceipt(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan()),"Verified the receipt","Selef serve receipt is doesent have the right account number");
 	}
 
-	@BeforeMethod
-	@Parameters({ "strBrowser", "strLanguage" })
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.chConfig.getSspURL(), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);
+		startSession(System.getProperty("SSPUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);
 	}
 
 	@AfterMethod(alwaysRun = true)

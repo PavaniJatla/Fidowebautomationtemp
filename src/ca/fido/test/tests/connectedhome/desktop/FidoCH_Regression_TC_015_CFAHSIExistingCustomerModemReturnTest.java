@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest extends BaseTestClass {
 
-	@Test(invocationCount = 1)
+	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerValidateDashboardTest() {
 		reporter.reportLogWithScreenshot("Launched the SSP SignIn Page");
 		fido_ssp_retailer_shop_page.setUserName(TestDataHandler.fidoSspHSIAccount.getUsername());
@@ -62,7 +62,7 @@ public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest exte
 
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(TestDataHandler.chConfig.getSspURL(),  strBrowser, strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);

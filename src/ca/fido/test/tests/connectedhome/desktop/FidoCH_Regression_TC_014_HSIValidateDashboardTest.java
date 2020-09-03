@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIValidateDashboard() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -57,7 +57,7 @@ public class FidoCH_Regression_TC_014_HSIValidateDashboardTest extends BaseTestC
 		reporter.reportLogWithScreenshot("Internet Dashboard Page");
 	}
 
-	@BeforeMethod
+	@BeforeMethod (alwaysRun = true)
 	@Parameters({ "strBrowser","strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login, method);

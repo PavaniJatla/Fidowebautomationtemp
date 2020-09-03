@@ -24,19 +24,21 @@ def sauce = [
 
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 
-    if(!test_Browser){
-        test_Browser='saucechrome'
+    if(!test_browser){
+        test_browser='saucechrome'
     }
 
-    if (!test_Browser.contains('sauce')){
-        def browser = 'sauce'+test_Browser
-        test_Browser = browser
+    if (!test_browser.contains('sauce')){
+        def browser = 'sauce'+test_browser
+        test_browser = browser
     }
-    System.out.println(test_Browser)
 
-    systemProperty 'QaUrl', test_QaUrl
-    systemProperty 'Browser', test_Browser
-    systemProperty 'Language', test_Language
+
+    systemProperty 'QaUrl', test_qaURL
+    systemProperty 'SSPUrl', test_sspURL
+    systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'Browser', test_browser
+    systemProperty 'Language', test_language
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -45,8 +47,10 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
         threadCount = test_threadCount as int
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
-        if (!System.getProperty('groupName')==null&&!System.getProperty('groupName').contains(''))
-        includeGroups System.getProperty('groupName', 'NONE')
+        if (project.hasProperty('test_groupName')){
+            includeGroups test_groupName
+            System.out.println("**************************************"+test_groupName)
+        }
         if (project.hasProperty('SanityCH')) {
             suites 'ConnectedHomeFidoSanityPack.xml'
         }
@@ -74,11 +78,15 @@ sauceTest.finalizedBy stopSauceConnect
 
 task "localTest"(type: Test) {
 
-    if (test_Browser && test_Browser.contains('sauce')){
-        def browser = test_Browser.replace('sauce','')
-        test_Browser = browser
+    if (test_browser && test_browser.contains('sauce')){
+        def browser = test_browser.replace('sauce','')
+        test_browser = browser
     }
-
+    systemProperty 'QaUrl', test_qaURL
+    systemProperty 'SSPUrl', test_sspURL
+    systemProperty 'Browser', test_browser
+    systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'Language', test_language
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -87,8 +95,10 @@ task "localTest"(type: Test) {
         threadCount = test_threadCount as int
         Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
-        if (!System.getProperty('groupName')==null&&!System.getProperty('groupName').contains(''))
-        includeGroups System.getProperty('groupName', 'NONE')
+        if (project.hasProperty('test_groupName')){
+            includeGroups test_groupName
+            System.out.println("**************************************"+test_groupName)
+        }
         if (project.hasProperty('SanityCH')) {
             suites 'ConnectedHomeFidoEnvSanity.xml'
         }

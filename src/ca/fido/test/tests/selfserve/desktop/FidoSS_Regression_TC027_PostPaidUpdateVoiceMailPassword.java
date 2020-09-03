@@ -33,7 +33,7 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 		closeSession();
 	}
 	
-	@Test(groups = {"SSsanity","SSDashboard"})
+	@Test(groups = {"SanitySS","SSDashboard"})
 	public void postPaidUpdateVoiceMailPassword() {
 		fido_home_page.clkLogin();	
 		fido_login_page.switchToSignInFrame();

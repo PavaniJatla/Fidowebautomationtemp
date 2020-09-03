@@ -29,7 +29,7 @@ public class Fido_BFA_TC03_AAL_BYOD_Test extends BaseTestClass{
 
 	@Test
 	public void aalBYODFlowTest() {
-		reporter.reportLog("URL:" + System.getProperty("AWSQaUrl"));
+		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Fido Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -73,7 +73,7 @@ public class Fido_BFA_TC03_AAL_BYOD_Test extends BaseTestClass{
 	@BeforeMethod
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(System.getProperty("AWSQaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
+		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
     }
 
 	@AfterMethod(alwaysRun = true)

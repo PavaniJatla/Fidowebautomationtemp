@@ -32,7 +32,7 @@ public class FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest
 
 	
 	
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkDeleteOffer() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -67,7 +67,7 @@ public class FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest
         reporter.hardAssert(!fido_Shop_internet_page.verifyPackagesPage() ,"Packages Page hasn't launched","Packages Page has launched");
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage" })
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method)
 			throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());

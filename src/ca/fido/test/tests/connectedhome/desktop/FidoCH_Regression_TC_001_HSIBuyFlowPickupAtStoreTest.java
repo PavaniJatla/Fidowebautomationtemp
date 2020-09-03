@@ -41,7 +41,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIBuyFlowPickupAtStoreFlow() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
@@ -115,7 +115,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
 		reporter.reportLogWithScreenshot("Order details");
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 	startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_anonymous,  method);
 	// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
