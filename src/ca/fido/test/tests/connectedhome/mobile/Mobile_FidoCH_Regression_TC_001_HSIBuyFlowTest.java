@@ -41,7 +41,7 @@ import java.lang.reflect.Method;
 
 public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
+	@Test(groups = {"MobileRegressionCH"})
 	public void checkInternetBuyFlowMobile() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
