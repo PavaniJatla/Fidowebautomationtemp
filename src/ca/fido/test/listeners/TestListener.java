@@ -152,10 +152,10 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 		String base64Screenshot = "";
 		try {
 			webDriver = ((BaseTestClass) testClass).getDriver();
-			Object xmlTestParams = iTestResult.getInstance();
-			HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
-			//if(strBrowser.contains("sauce"))
-			if(xmlTestParameters.get("strBrowser").contains("sauce"))
+	//		Object xmlTestParams = iTestResult.getInstance();
+	//		HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
+			if(strBrowser.contains("sauce"))
+	//		if(xmlTestParameters.get("strBrowser").contains("sauce"))
 			{
 				((JavascriptExecutor) webDriver).executeScript("sauce:job-result=" + "skipped");
 			}
