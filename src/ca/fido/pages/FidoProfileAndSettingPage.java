@@ -111,6 +111,9 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Change password' or text()='Modifier le mot de passe']")
 	WebElement lnkChangePassword;
 	
+	@FindBy(xpath = "//button//span[text()='LOG-IN DETAILS']")
+	WebElement paneLoginInDetailsMobile;
+	
 	@FindBy(id="mobilePhone")
 	WebElement txtMobilePhone;
 	
@@ -898,6 +901,15 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void clkAccountOverView() {
 		reusableActions.clickWhenReady(btnAccountOverView);
+		
+	}
+	
+	/**
+	 * Clicks on Log in details
+	 * @author Mirza.Kamran
+	 */
+	public void clkButtonLogInDetails() {
+		reusableActions.getWhenReady(paneLoginInDetailsMobile).click();
 		
 	}
 }

@@ -130,6 +130,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//a[@ui-sref='myAccount.overview({accountNumber: selectedAccountNumber})']")
 	WebElement menuOverview;
 	
+	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
+	WebElement menuOverviewMobile;
+	
+	@FindBy(xpath = "//a[@class='tab-focus-header']//*[@translate='global.label.profileAndSettings']")
+	WebElement menuProfileAndSettingsMobile;
+	
 	@FindBy(xpath = "//ins[@translate='global.message.myAccountNoPaymentHistory']")
 	WebElement labelNoPaymentMade;
 	
@@ -331,6 +337,17 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		}
 				
 	}
+	
+	/**
+	 * Click profile and Setting menu in overview page
+	 * @author Mirza.Kamran
+	 */
+	public void clkMenuProfileNSettingMobile() {
+		reusableActions.getWhenReady(menuOverviewMobile).click();	
+		reusableActions.getWhenReady(menuProfileAndSettingsMobile).click();	
+	}
+	
+	
 	
 	/**
 	 * Click on the menu Usage Service
