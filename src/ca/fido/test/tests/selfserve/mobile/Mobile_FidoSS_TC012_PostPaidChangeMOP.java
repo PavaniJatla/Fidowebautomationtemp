@@ -33,9 +33,11 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	}
 	
 	
-	@Test(groups = {"SSsanity","SSBillingAndPayments"})
+	@Test(groups = {"SS12","SSBillingAndPayments"})
 	public void postPaidChangeMOP() {
-		fido_home_page.clkLogin();
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		fido_home_page.clkLoginMobile();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());

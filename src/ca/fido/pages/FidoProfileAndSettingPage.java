@@ -114,6 +114,9 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//button//span[text()='LOG-IN DETAILS']")
 	WebElement paneLoginInDetailsMobile;
 	
+	@FindBy(xpath = "//button//span[text()='BILLING SETTINGS']")
+	WebElement paneBillingSettingsMobile;
+	
 	@FindBy(id="mobilePhone")
 	WebElement txtMobilePhone;
 	
@@ -910,6 +913,15 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void clkButtonLogInDetails() {
 		reusableActions.getWhenReady(paneLoginInDetailsMobile).click();
+		
+	}
+	
+	/**
+	 * Clicks on Billing settings pane
+	 * @author Mirza.Kamran
+	 */
+	public void clkButtonBillingSettings() {
+		reusableActions.getWhenReady(paneBillingSettingsMobile).click();
 		
 	}
 }
