@@ -35,11 +35,11 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerModemExchangeTest() {
 		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
-		retailer_champ_page.setUsername(TestDataHandler.fidoSspHSIAccount.getUsername());
+		retailer_champ_page.setUsername(System.getenv("SSPUsername"));
 		reporter.reportLogWithScreenshot("Entered the username");
 		retailer_champ_page.clkNext();
 		reporter.reportLogWithScreenshot("sign in has launched");
-		retailer_champ_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
+		retailer_champ_page.setPassword(System.getenv("SSPPassword"));
 		reporter.reportLogWithScreenshot("Entered the password");
 		retailer_champ_page.clkSignIn();		
 		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
