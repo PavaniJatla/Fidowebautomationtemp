@@ -40,7 +40,7 @@ import java.lang.reflect.Method;
  **/
 
 public class FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
-	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH"})
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlow() {
 		reporter.reportLogWithScreenshot("Launched Easy login Page");
 		fido_home_page.clkEasylogin();
