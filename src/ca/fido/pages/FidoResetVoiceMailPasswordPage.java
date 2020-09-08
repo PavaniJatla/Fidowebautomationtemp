@@ -68,7 +68,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyLabelResetNewPasswordisDisplayedOnPasswordChangePage() {
-		return lblResetVoiceMailPasswordOnPasswordChangePage.isDisplayed();
+		return reusableActions.isElementVisible(lblResetVoiceMailPasswordOnPasswordChangePage);
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyLabelResetNewPasswordisDisplayedOnChangeConfirmationPage() {
-		return lblResetVoiceMailPasswordOnConfirmationPage.isDisplayed();
+		return reusableActions.isElementVisible(lblResetVoiceMailPasswordOnConfirmationPage);
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyLabelWhereToChangeTheVoiceMailPasswordisDisplayed() {
-		return lblWhereYouChangeYourPassword.isDisplayed();
+		return reusableActions.isElementVisible(lblWhereYouChangeYourPassword);
 	}
 	
 	/**
@@ -95,7 +95,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean verifyVoiceMailPasswordDigitRuleIsDisplayed() {
-		return lblPasswordDigits.isDisplayed();
+		return reusableActions.isElementVisible(lblPasswordDigits);
 	}
 	
 	/**
@@ -145,7 +145,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLabelYourPasswordHasBeenChanged() {		
-		return lblYourVoiceMailpassowrdHasChanged.isDisplayed();
+		return reusableActions.isElementVisible(lblYourVoiceMailpassowrdHasChanged);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLabelToAccessFidoVoiceMailfromDevice() {		
-		return lblToAccessFidoVoiceMailfromDevice.isDisplayed();
+		return reusableActions.isElementVisible(lblToAccessFidoVoiceMailfromDevice);
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLabelLearnHowToChangeFidoVoiceMailfromDevice() {		
-		return lblLearnHowToChangeFidoVoiceMailfromDevice.isDisplayed();
+		return reusableActions.isElementVisible(lblLearnHowToChangeFidoVoiceMailfromDevice);
 	}
 	
 	/**
@@ -172,7 +172,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkVoiceMailFAQ() {		
-		return lnkVoiceMailFAQ.isDisplayed();
+		return reusableActions.isElementVisible(lnkVoiceMailFAQ);
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class FidoResetVoiceMailPasswordPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLabelYourNewPasswordForCTNIs() {		
-		return lblYourNewPasswordForCtnIs.isDisplayed();
+		return reusableActions.isElementVisible(lblYourNewPasswordForCtnIs);
 	}
 	
 	/**

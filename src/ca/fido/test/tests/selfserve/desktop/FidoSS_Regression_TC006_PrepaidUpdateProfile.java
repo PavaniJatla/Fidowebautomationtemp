@@ -33,14 +33,14 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"SanitySS","SSPnS","SSPrepaid"})
+	@Test(groups = {"SanitySS","SSPnS","SSPrepaid6"})
 	public void prePaidPaymentViewAndEditProfile() throws InterruptedException, ParseException, IOException {
 		
 		fido_home_page.clkLogin();				
 		fido_login_page.switchToSignInFrame();
 		String altUserName=TestDataHandler.tc006009.getUsername();
 		String altPassword=TestDataHandler.tc006009.getPassword();
-		String newPassword=TestDataHandler.tc006009.getaccountDetails().getNewPassword();						
+		String newPassword="rogers123";//TestDataHandler.tc006009.getaccountDetails().getNewPassword();						
 		fido_login_page.setUsernameInFrame(altUserName);
 		fido_login_page.setPasswordInFrame(altPassword);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
@@ -73,6 +73,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		reporter.reportLogWithScreenshot("New password set");
 		fido_profile_and_setting_page.clkSaveButton();	
 		reporter.reportLogWithScreenshot("New password changes saved");
+		reporter.reportLogWithScreenshot("New password changes saved");
 		fido_login_page.clkSignOut();
 		if(fido_home_page.isEasyloginDisplayed())
 		{
@@ -82,6 +83,10 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		fido_login_page.clkResignInAs();
 		reporter.reportLogWithScreenshot("Clicked ReSign In");
 		fido_login_page.switchToSignInFrame();
+		if(fido_login_page.isUserNameDisplayed())
+		{
+			fido_login_page.setUsernameInFrame(altUserName);
+		}
 		fido_login_page.setPasswordInFrame(newPassword);			
 		fido_login_page.clkLoginInFrame();
 		reporter.reportLogWithScreenshot("Login with new password performed");

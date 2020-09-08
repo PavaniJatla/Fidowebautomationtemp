@@ -477,8 +477,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkUsageSectionofFullPlanIsDisplayed() {
 		System.out.println("Talk usage details message is being checked");
-		return (limitedTalkUsage.isDisplayed()
-				||unlimitedTalkUsage.isDisplayed());
+		return (reusableActions.isElementVisible(limitedTalkUsage)
+				||reusableActions.isElementVisible(unlimitedTalkUsage));
 	}
 	
 	/**
@@ -488,7 +488,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyUnlimitedTalkUsageIsDisplayed() {
 		System.out.println("Talk usage is unlimited or not being checked");
-		return (unlimitedTalkUsage.isDisplayed());
+		return (reusableActions.isElementVisible(unlimitedTalkUsage));
 	}
 	
 	/**
@@ -713,7 +713,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyDataDashBoardUsageBarIsDisplayed() {
 		try {
 			System.out.println("data balance Usage Bar is being checked");
-			return (divUsageBar.isDisplayed() &&  divUsageBarValue.isDisplayed());
+			return (reusableActions.isElementVisible(divUsageBar) &&  reusableActions.isElementVisible(divUsageBarValue));
 		}catch (TimeoutException te) {
 			te.printStackTrace();
 			return false;

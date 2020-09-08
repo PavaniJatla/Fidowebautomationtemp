@@ -25,11 +25,21 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//a[@title='user name']")
 	WebElement lnkUserName;
 	
+	@FindBy(xpath = "//nav[@nav-id='main']//span[contains(@class,'user-loggedin')]")
+	WebElement lnkUserNameMobile;
+		
 	@FindBy(xpath = "//div[@id='skipNavigation']//a[@id='f_logoutAction']")
 	WebElement lnkSignOut;
 	
+	@FindBy(xpath = "//a[@title='Sign Out']")
+	WebElement lnkSignOutMobile;
+	
 	@FindBy(xpath = "//div[@class='fdl-navbar-nav']//li[contains(@class,'stateActive')]/a//span[contains(text(),'Sign in') or contains(text(),'Ouvrir une session')]")
 	WebElement lnkReSignInAs;
+	
+	@FindBy(xpath = "//li[@class='o-navLinkList__item clicktale-mask loginStates stateCookied stateActive']/a[@aria-label='Sign in to My Fido']//span[contains(text(),'Sign in as')]")
+	WebElement lnlResignInAsMobile;
+	
 	
 	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn')]")
 	WebElement btnLogIn;
@@ -167,13 +177,25 @@ public class FidoLoginPage extends BasePageClass {
 	 * Click on SignOut in header Navigation bar after login
 	 * @author ning.xue
 	 */
-	public void clkSignOut() {
-		reusableActions.clickIfAvailable(lnkUserName);
+	public void clkSignOut() {	
+		reusableActions.waitForElementTobeClickable(lnkUserName, 30);
+		reusableActions.getWhenReady(lnkUserName).click();
 		reusableActions.waitForElementVisibility(lnkSignOut, 20);
-		reusableActions.clickIfAvailable(lnkSignOut);
+		reusableActions.clickWhenReady(lnkSignOut);
 
 	}
 	
+	
+	/**
+	 * Click on SignOut in header Navigation bar after login
+	 * @author ning.xue
+	 */
+	public void clkSignOutMobile() {
+		reusableActions.getWhenReady(lnkUserName).click();
+		reusableActions.waitForElementVisibility(lnkSignOutMobile, 20);
+		reusableActions.getWhenReady(lnkSignOutMobile).click();
+
+	}
 	/**
 	 * Click on ResignInAs in header Navigation bar after user logout
 	 * @author ning.xue
@@ -183,13 +205,13 @@ public class FidoLoginPage extends BasePageClass {
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {
-			if(!fraSignIn.isDisplayed())
+			if(!reusableActions.isElementVisible(fraSignIn))
 			{
 				reusableActions.waitForElementTobeClickable(lnkReSignInAs, 120);
 				reusableActions.javascriptScrollByVisibleElement(lnkReSignInAs);
 				reusableActions.executeJavaScriptClick(lnkReSignInAs);
 				reusableActions.staticWait(3000);
-				if(fraSignIn.isDisplayed())
+				if(reusableActions.isElementVisible(fraSignIn))
 				{
 					clickSuccess=true;
 					break;
@@ -204,5 +226,21 @@ public class FidoLoginPage extends BasePageClass {
 		}
 		
 	}
+	
+	/**
+	 * Click on ResignInAs in header Navigation bar after user logout
+	 * @author Mirza.Kamran
+	 */
+	public void clkResignInAsMobile() {
+		reusableActions.getWhenReady(lnlResignInAsMobile).click();
+	}
 
+	/**
+	 * Is username field displayed
+	 * @return true fi displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isUserNameDisplayed() {	
+		return reusableActions.isElementVisible(txtUsername);
+	}
 }

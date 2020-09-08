@@ -111,6 +111,12 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Change password' or text()='Modifier le mot de passe']")
 	WebElement lnkChangePassword;
 	
+	@FindBy(xpath = "//button//span[text()='LOG-IN DETAILS']")
+	WebElement paneLoginInDetailsMobile;
+	
+	@FindBy(xpath = "//button//span[text()='BILLING SETTINGS']")
+	WebElement paneBillingSettingsMobile;
+	
 	@FindBy(id="mobilePhone")
 	WebElement txtMobilePhone;
 	
@@ -301,7 +307,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isLnkUpdateContactPresent() {
 		 
-		return lnkUpdateContact.isDisplayed();
+		return reusableActions.isElementVisible(lnkUpdateContact);
 				
 	}
 	
@@ -311,7 +317,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isLnkUpdateBillingAddressPresent() {		
-		return lnkUpdateBillingAddress.isDisplayed();
+		return reusableActions.isElementVisible(lnkUpdateBillingAddress);
 
 	}
 	
@@ -392,7 +398,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @return true if lblContactPrefUpdateRights is displayed else false
 	 */
 	public boolean verifySubscriberAccountContactPreferenceSection() {
-		return reusableActions.getWhenReady(lblContactPrefUpdateRights).isDisplayed();
+		return reusableActions.isElementVisible(lblContactPrefUpdateRights);
 				
 	}
 	
@@ -402,7 +408,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifySubscriberAccountBillingAddressSection() {
-		return lblBillingAddressUpdateRightsInfo.isDisplayed();
+		return reusableActions.isElementVisible(lblBillingAddressUpdateRightsInfo);
 	}
 	
 	/**
@@ -651,7 +657,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean verifyAddressUpdatedSuccessFulOverlay(String strAddress)
 	{
-		if(reusableActions.getWhenReady(lblAddressUpdateSuccessful).isDisplayed()
+		if(reusableActions.isElementVisible((lblAddressUpdateSuccessful))
 			&& reusableActions.getWhenReady(lblNewAddressNameOnOverlay).getText().toUpperCase().contains(strAddress.toUpperCase()))
 		{
 			reusableActions.clickIfAvailable(btnDoneAddressUpdate);
@@ -898,6 +904,24 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void clkAccountOverView() {
 		reusableActions.clickWhenReady(btnAccountOverView);
+		
+	}
+	
+	/**
+	 * Clicks on Log in details
+	 * @author Mirza.Kamran
+	 */
+	public void clkButtonLogInDetails() {
+		reusableActions.getWhenReady(paneLoginInDetailsMobile).click();
+		
+	}
+	
+	/**
+	 * Clicks on Billing settings pane
+	 * @author Mirza.Kamran
+	 */
+	public void clkButtonBillingSettings() {
+		reusableActions.getWhenReady(paneBillingSettingsMobile).click();
 		
 	}
 }

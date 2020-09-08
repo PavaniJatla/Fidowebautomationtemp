@@ -144,7 +144,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isReserveAPhoneButtonDisplayedIFrame() {
-		return btnReserveAPhone.isDisplayed();
+		return reusableActions.isElementVisible(btnReserveAPhone);
 	}
 	/**
 	 * select model and config for the  phone device to be reserved
@@ -204,7 +204,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(rowFirstStore, 60);
 		reusableActions.waitForElementTobeClickable(rowFirstStore, 30);
 		
-		if(rowFirstStore.isDisplayed())
+		if(reusableActions.isElementVisible(rowFirstStore))
 		{
 		  reusableActions.executeJavaScriptClick(rowFirstStore);
 		  reusableActions.staticWait(4000);
@@ -281,7 +281,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void cancelAllDeviceReservationBeforeReservingANewOneIFrame() {	
-		while (lnkCancelReservation.isDisplayed()) {
+		while (reusableActions.isElementVisible(lnkCancelReservation)) {
 			reusableActions.clickIfAvailable(lnkCancelReservation);
 			reusableActions.waitForElementTobeClickable(btnYesOnOverlay, 10);
 			reusableActions.javascriptScrollByVisibleElement(btnYesOnOverlay);
@@ -301,7 +301,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyThePhoneImageIsLoadedIFrame() {
-		return imgPhone.isDisplayed();
+		return reusableActions.isElementVisible(imgPhone);
 	}
 	
 	/**
@@ -310,7 +310,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyStoreDetailsIsDisplayedBelowTheMapAfterAddressIsSelectedIFrame() {
-		return divStoreDetails.isDisplayed() && lblStoreNameSelected.isDisplayed();
+		return reusableActions.isElementVisible(divStoreDetails) && reusableActions.isElementVisible(lblStoreNameSelected);
 	}
 	
 	/**
@@ -319,7 +319,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyWarningNoteIsDisplayedAfterAddressIsSelectedIFrame() {
-		return divNoteOnlyAccountHolderCanPickUp.isDisplayed();
+		return reusableActions.isElementVisible(divNoteOnlyAccountHolderCanPickUp);
 	}
 	
 	/**
@@ -328,7 +328,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyMapSectionIsDisplayedIFrame() {	
-		return divMapCanvas.isDisplayed();
+		return reusableActions.isElementVisible(divMapCanvas);
 		
 	}
 	
@@ -339,7 +339,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfPhoneImageIsDisplayedOnReviewPageIFrame() {
-		return imgPhoneOnReviewPage.isDisplayed();
+		return reusableActions.isElementVisible(imgPhoneOnReviewPage);
 	}
 	
 	
@@ -349,7 +349,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfSectionPickUpLocationIsDisplayedOnReviewPageIFrame() {
-		return divPickUpLocationAddress.isDisplayed();
+		return reusableActions.isElementVisible(divPickUpLocationAddress);
 	}
 	
 	/**
@@ -358,7 +358,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfPhoneModelDetailsIsDisplayedOnReviewPageIFrame() {
-		return labelPhoneModelName.isDisplayed();
+		return reusableActions.isElementVisible(labelPhoneModelName);
 	}
 	
 	
@@ -368,7 +368,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfTermsAndConditionsSectionIsDisplayedOnReviewPageIFrame() {
-		return divProductTnCText.isDisplayed();
+		return reusableActions.isElementVisible(divProductTnCText);
 	}
 	
 	
@@ -378,7 +378,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfContactInfoSectionIsDisplayedOnReviewPageIFrame() {
-		return lblreservationContactInforSection.isDisplayed();
+		return reusableActions.isElementVisible(lblreservationContactInforSection);
 	}
 	
 	
@@ -388,7 +388,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfLabelAccountDetailsIsDisplayedOnReviewPageIFrame() {
-		return lblAccountDetails.isDisplayed();
+		return reusableActions.isElementVisible(lblAccountDetails);
 	}
 	
 	//Your reservation is confirmed section
@@ -400,7 +400,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 */
 	public boolean verifyIfPhoneImageIsDisplayedOnRservationConfirmedPageIFrame() {
 		reusableActions.waitForElementVisibility(imgPhoneOnReservationConfirmedPage, 60);
-		return imgPhoneOnReservationConfirmedPage.isDisplayed();
+		return reusableActions.isElementVisible(imgPhoneOnReservationConfirmedPage);
 	}
 	
 	/**
@@ -409,7 +409,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfTablePickUpLocationIsDisplayedOnReservationConfirmationPageIFrame() {
-		return tablePickUpLocationDetails.isDisplayed();
+		return reusableActions.isElementVisible(tablePickUpLocationDetails);
 	}
 	
 	/**
@@ -418,7 +418,7 @@ public class FidoDeviceReservationSystemPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfTableAccountDetailsIsDisplayedOnReservationConfirmationPageIFrame() {
-		return tableAccountDetails.isDisplayed();
+		return reusableActions.isElementVisible(tableAccountDetails);
 	}
 
 	/**

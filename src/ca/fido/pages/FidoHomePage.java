@@ -308,5 +308,7 @@ public class FidoHomePage extends BasePageClass {
 		return reusableActions.isElementVisible(lblNotUser);
 		
 	}
+
+	
 		
 }

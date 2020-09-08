@@ -130,6 +130,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//a[@ui-sref='myAccount.overview({accountNumber: selectedAccountNumber})']")
 	WebElement menuOverview;
 	
+	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
+	WebElement menuOverviewMobile;
+	
+	@FindBy(xpath = "//a[@class='tab-focus-header']//*[@translate='global.label.profileAndSettings']")
+	WebElement menuProfileAndSettingsMobile;
+	
 	@FindBy(xpath = "//ins[@translate='global.message.myAccountNoPaymentHistory']")
 	WebElement labelNoPaymentMade;
 	
@@ -274,7 +280,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfAnyPaymentMade() {
-		return !labelNoPaymentMade.isDisplayed();
+		return !reusableActions.isElementVisible(labelNoPaymentMade);
 	}
 	
     /**
@@ -315,7 +321,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.staticWait(4000);
 				reusableActions.getWhenReady(menuProfileNSetting).click();		
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
-				if(lblHeaderProfileAndSettings.isDisplayed())
+				if(reusableActions.isElementVisible(lblHeaderProfileAndSettings))
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));
 					clickSuccess=true;				
@@ -331,6 +337,17 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		}
 				
 	}
+	
+	/**
+	 * Click profile and Setting menu in overview page
+	 * @author Mirza.Kamran
+	 */
+	public void clkMenuProfileNSettingMobile() {
+		reusableActions.getWhenReady(menuOverviewMobile).click();	
+		reusableActions.getWhenReady(menuProfileAndSettingsMobile).click();	
+	}
+	
+	
 	
 	/**
 	 * Click on the menu Usage Service
@@ -435,7 +452,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
      * @author Mirza.Kamran
      */
 	public boolean isCTNBadgeVisible() {
-		return reusableActions.getWhenReady(divCtnBadge,10).isDisplayed();
+		return reusableActions.isElementVisible(divCtnBadge,10);
 	}
 	
 	/**
@@ -481,7 +498,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
     		reusableActions.getWhenReady(buttonPayNow,120);    		
     		reusableActions.executeJavaScriptClick(buttonPayNow);
     		reusableActions.staticWait(3000);
-    		if(txtAmount.isDisplayed())
+    		if(reusableActions.isElementVisible(txtAmount))
     		{
     			displayed=true;
     		}

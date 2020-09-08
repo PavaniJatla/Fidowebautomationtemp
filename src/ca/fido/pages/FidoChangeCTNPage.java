@@ -124,7 +124,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 */
 	public Boolean waitForChangeMyNumberPageToLoad() {
 		reusableActions.waitForPageLoad();
-		if(!lblErrorMessage.isDisplayed())
+		if(!reusableActions.isElementVisible(lblErrorMessage))
 		{
 			reusableActions.waitForElementVisibility(btnFindAvailableNumber);
 			reusableActions.waitForElementTobeClickable(btnFindAvailableNumber,60);
@@ -334,7 +334,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyEmailSentLabelOnConfirmationPage() {
-		return lblConfirmationEmailWillBeSentTo.isDisplayed();
+		return reusableActions.isElementVisible(lblConfirmationEmailWillBeSentTo);
 	}
 	
 	/**
