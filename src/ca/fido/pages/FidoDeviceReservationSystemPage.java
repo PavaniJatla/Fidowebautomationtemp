@@ -1,13 +1,13 @@
 package ca.fido.pages;
 
 
-import java.util.Hashtable;
-import java.util.Map;
-
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ca.fido.pages.base.BasePageClass;
+
+import java.util.Hashtable;
+import java.util.Map;
 
 public class FidoDeviceReservationSystemPage extends BasePageClass {
 

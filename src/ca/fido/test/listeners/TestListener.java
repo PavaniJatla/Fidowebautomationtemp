@@ -1,35 +1,31 @@
 package ca.fido.test.listeners;
-import com.relevantcodes.extentreports.LogStatus;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.testdatamanagement.TestDataHandler;
+import com.relevantcodes.extentreports.LogStatus;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
 import extentreport.FileUpload;
 import extentreport.SendEmail;
-import utils.SauceLabsUtils;
-
-import java.io.IOException;
-import java.util.HashMap;
-import javax.mail.MessagingException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.IInvokedMethod;
-import org.testng.IInvokedMethodListener;
-import org.testng.ISuite;
-import org.testng.ISuiteListener;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.Reporter;
+import org.testng.*;
+import utils.SauceLabsUtils;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
+import java.util.HashMap;
 
 
 
 public class TestListener extends BaseTestClass implements ITestListener , ISuiteListener, IInvokedMethodListener {
 
+	private String strBrowser=System.getProperty("Browser");
+	private String strLanguage=System.getProperty("Language");
+	
 	private static String getTestMethodName(ITestResult iTestResult) {
 		return iTestResult.getMethod().getConstructorOrMethod().getName();
 	} 
@@ -58,16 +54,19 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 		//Start operation for extentreports.
 		String fullTestClassName[] = iTestResult.getMethod().getTestClass().getName().split("\\.");
 		//Get XMLTest Parameters from BaseTest and assign to local webdriver variable.
-		Object xmlTestParams = iTestResult.getInstance();
-		HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
-		String testClassName = fullTestClassName[fullTestClassName.length-1] +"_" + xmlTestParameters.get("strBrowser") +"_" + xmlTestParameters.get("strLanguage").toUpperCase();
-		if(xmlTestParameters.get("strExecutionType") != null) {
-			testClassName += "_"+xmlTestParameters.get("strExecutionType");
-		}
+		//Object xmlTestParams = iTestResult.getInstance();
+		//HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
+		//String testClassName = fullTestClassName[fullTestClassName.length-1] +"_" + xmlTestParameters.get("strBrowser") +"_" + xmlTestParameters.get("strLanguage").toUpperCase();
+		String testClassName = fullTestClassName[fullTestClassName.length-1] +"_" + strBrowser +"_" + strLanguage.toUpperCase();
+		//if(xmlTestParameters.get("strExecutionType") != null) {
+		//	testClassName += "_"+xmlTestParameters.get("strExecutionType");
+		//}
 		ExtentTestManager.startTest(testClassName,iTestResult.getName());	
 		Object testClass = iTestResult.getInstance();
 		WebDriver driver = ((BaseTestClass) testClass).getDriver(); 
-		if(xmlTestParameters.get("strBrowser").contains("sauce")) {
+		if(strBrowser.contains("sauce"))
+		//if(xmlTestParameters.get("strBrowser").contains("sauce"))
+		{
 			((JavascriptExecutor)driver).executeScript("sauce:job-name="+getTestMethodName(iTestResult));
 			sauceSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 			String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sauceSessionId, getTestMethodName(iTestResult));
@@ -86,8 +85,9 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 			//Extentreports log operation for passed tests.
 			Object testClass = iTestResult.getInstance();
 			WebDriver driver = ((BaseTestClass) testClass).getDriver();        
-			HashMap<String, String> xmlTestParameters = ((BaseTestClass) testClass).getXMLParameters();
-			if(xmlTestParameters.get("strBrowser").contains("sauce"))
+			//HashMap<String, String> xmlTestParameters = ((BaseTestClass) testClass).getXMLParameters();
+			if(strBrowser.contains("sauce"))
+			//if(xmlTestParameters.get("strBrowser").contains("sauce"))
 			{
 				((JavascriptExecutor) driver).executeScript("sauce:job-result=" + "passed");
 			}      
@@ -106,9 +106,10 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 		WebDriver webDriver = null;
 		try {        		        
 			webDriver = ((BaseTestClass) testClass).getDriver();
-			Object xmlTestParams = iTestResult.getInstance();
-			HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
-			if(xmlTestParameters.get("strBrowser").contains("sauce"))
+			//Object xmlTestParams = iTestResult.getInstance();
+			//HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
+			if(strBrowser.contains("sauce"))
+			//if(xmlTestParameters.get("strBrowser").contains("sauce"))
 			{
 				((JavascriptExecutor) webDriver).executeScript("sauce:job-result=" + "failed");
 			}
@@ -142,7 +143,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 	}
 
 	@Override
-	public void onTestSkipped(ITestResult iTestResult) {   
+	public void onTestSkipped(ITestResult iTestResult) {  
 		System.out.println(" in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
 
 		// Get driver from BaseTest and assign to local webdriver variable.
@@ -151,9 +152,10 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 		String base64Screenshot = "";
 		try {
 			webDriver = ((BaseTestClass) testClass).getDriver();
-			Object xmlTestParams = iTestResult.getInstance();
-			HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
-			if(xmlTestParameters.get("strBrowser").contains("sauce"))
+	//		Object xmlTestParams = iTestResult.getInstance();
+	//		HashMap<String, String> xmlTestParameters = ((BaseTestClass) xmlTestParams).getXMLParameters();
+			if(strBrowser.contains("sauce"))
+	//		if(xmlTestParameters.get("strBrowser").contains("sauce"))
 			{
 				((JavascriptExecutor) webDriver).executeScript("sauce:job-result=" + "skipped");
 			}
@@ -231,9 +233,14 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 
 
 		try {
-
-			String strResPath= FileUpload.extentReportsUpload();
-			SendEmail.sendEmail(suite.getName(), strResPath);
+			/**
+			 * The if block will get executed if the test run is triggered from local machine or any machine
+			 * where BUILD_TIMESTAMP is not setup. BUILD_TIMESTAMP env variable is set by Jenkins job.
+			 */
+			if((System.getenv("BUILD_TIMESTAMP")==null) || System.getenv("BUILD_TIMESTAMP").equals("")){
+				String strResPath= FileUpload.extentReportsUpload();
+				SendEmail.sendEmail(suite.getName(), strResPath);
+			}
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

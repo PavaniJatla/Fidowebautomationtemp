@@ -6,9 +6,10 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'net.researchgate.release' version '2.8.1'
     id 'net.saliman.properties' version '1.5.1'
-    id "io.johnroach.SauceConnectPlugin" version "0.0.35"
-
+    id 'com.aditya.SauceConnectPlugin' version '0.0.15'
 }
+
+
 sauceconnect {
     username = System.getenv('SAUCE_USERNAME')
     key = System.getenv('SAUCE_ACCESS_KEY')
@@ -23,32 +24,99 @@ def sauce = [
 
 task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
 
+    if(!test_browser){
+        test_browser='saucechrome'
+    }
+
+    if (!test_browser.contains('sauce')){
+        def browser = 'sauce'+test_browser
+        test_browser = browser
+    }
+
+
+    systemProperty 'QaUrl', test_qaURL
+    systemProperty 'SSPUrl', test_sspURL
+    systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'Browser', test_browser
+    systemProperty 'Language', test_language
+
+    systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
-
-    useTestNG(){
-
-        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoSanityPack.xml' }
-        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
-        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
-        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+    useTestNG() {
+        parallel = test_parallel
+        threadCount = test_threadCount as int
+        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
+        setListeners(listeners)
+        if (project.hasProperty('test_groupName')){
+            includeGroups test_groupName
+            System.out.println("**************************************"+test_groupName)
+        }
+        if (project.hasProperty('SanityCH')) {
+            suites 'ConnectedHomeFidoSanityPack.xml'
+        }
+        if (project.hasProperty('SanitySS')) {
+            suites 'SelfServeFidoSanityPack.xml'
+        }
+        if (project.hasProperty('SanityBFA')) {
+            suites 'BFAFidoSanityPack.xml'
+        }
+        if (project.hasProperty('RegressionCH')) {
+            suites 'ConnectedHomeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionSS')) {
+            suites 'SelfServeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionBFA')) {
+            suites 'BFAFidoCompleteSuite.xml'
+        }
     }
 
 }
 
+//To shutdown the sauceconnect
+sauceTest.finalizedBy stopSauceConnect
+
 task "localTest"(type: Test) {
 
+    if (test_browser && test_browser.contains('sauce')){
+        def browser = test_browser.replace('sauce','')
+        test_browser = browser
+    }
+    systemProperty 'QaUrl', test_qaURL
+    systemProperty 'SSPUrl', test_sspURL
+    systemProperty 'Browser', test_browser
+    systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'Language', test_language
+
+    systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
-
-    useTestNG(){
-
-        if (project.hasProperty('SanityCH')) { suites 'ConnectedHomeFidoEnvSanity.xml' }
-        if (project.hasProperty('SanitySS')) { suites 'SelfServeFidoSanityPack.xml' }
-        if (project.hasProperty('SanityBFA')) { suites 'BFAFidoSanityPack.xml' }
-        if (project.hasProperty('RegressionCH')) { suites 'ConnectedHomeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionSS')) { suites 'SelfServeFidoCompleteSuite.xml' }
-        if (project.hasProperty('RegressionBFA')) { suites 'BFAFidoCompleteSuite.xml' }
+    useTestNG() {
+        parallel = test_parallel
+        threadCount = test_threadCount as int
+        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
+        setListeners(listeners)
+        if (project.hasProperty('test_groupName')){
+            includeGroups test_groupName
+            System.out.println("**************************************"+test_groupName)
+        }
+        if (project.hasProperty('SanityCH')) {
+            suites 'ConnectedHomeFidoEnvSanity.xml'
+        }
+        if (project.hasProperty('SanitySS')) {
+            suites 'SelfServeFidoSanityPack.xml'
+        }
+        if (project.hasProperty('SanityBFA')) {
+            suites 'BFAFidoSanityPack.xml'
+        }
+        if (project.hasProperty('RegressionCH')) {
+            suites 'ConnectedHomeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionSS')) {
+            suites 'SelfServeFidoCompleteSuite.xml'
+        }
+        if (project.hasProperty('RegressionBFA')) {
+            suites 'BFAFidoCompleteSuite.xml'
+        }
     }
 
 }
@@ -62,6 +130,7 @@ repositories {
             password "${artifactory_password}"
         }
     }
+
     mavenCentral()
 }
 
@@ -96,7 +165,6 @@ jar {
 }
 
 
-
 configurations {
     published
 }
@@ -105,6 +173,12 @@ compileJava {
     options.encoding = 'UTF-8'
 
 }
+
+tasks.withType(JavaCompile)
+        {
+            options.compilerArgs << '-Xlint:unchecked'
+            options.deprecation = true
+        }
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
@@ -123,7 +197,6 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
-
 
 
 artifacts {
@@ -162,3 +235,4 @@ artifactory {
 artifactoryPublish {
     dependsOn jar, sourceJar, javadocJar
 }
+

@@ -1,19 +1,14 @@
 package ca.fido.test.tests.connectedhome.desktop;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 
 /**
@@ -47,14 +42,14 @@ import ca.fido.testdatamanagement.TestDataHandler;
 
 public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestClass {
 
-	@Test(invocationCount = 1)
+	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiAnonymousLogin() {
 		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
-		retailer_champ_page.setUsername(TestDataHandler.fidoSspHSIAccount.getUsername());
+		retailer_champ_page.setUsername(System.getenv("SSPUsername"));
 		reporter.reportLogWithScreenshot("Entered the username");
 		retailer_champ_page.clkNext();
 		reporter.reportLogWithScreenshot("sign in has launched");
-		retailer_champ_page.setPassword(TestDataHandler.fidoSspHSIAccount.getPassword());
+		retailer_champ_page.setPassword(System.getenv("SSPPassword"));
 		reporter.reportLogWithScreenshot("Entered the password");
 		retailer_champ_page.clkSignIn();		
 		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
@@ -125,10 +120,10 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.chConfig.getSspURL(), strBrowser,strLanguage,FidoEnums.GroupName.connectedhome_anonymous,  method);
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("SSPUrl"), strBrowser,strLanguage,FidoEnums.GroupName.connectedhome_anonymous,  method);
 	}
 
 

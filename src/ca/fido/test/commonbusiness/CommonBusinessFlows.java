@@ -1,8 +1,7 @@
 package ca.fido.test.commonbusiness;
 
-import org.testng.annotations.Listeners;
-
 import ca.fido.test.base.BaseTestClass;
+import org.testng.annotations.Listeners;
 
 @Listeners ({ca.fido.test.listeners.TestListener.class 
 	, ca.fido.test.listeners.AnnotationTransformer.class 

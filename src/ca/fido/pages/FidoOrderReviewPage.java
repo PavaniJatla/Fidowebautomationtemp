@@ -1,11 +1,10 @@
 package ca.fido.pages;
 
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-
-import ca.fido.pages.base.BasePageClass;
 
 
 public class FidoOrderReviewPage extends BasePageClass {

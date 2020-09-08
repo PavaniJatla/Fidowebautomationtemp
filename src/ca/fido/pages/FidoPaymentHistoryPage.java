@@ -1,14 +1,13 @@
 package ca.fido.pages;
 
-import java.util.List;
-
+import ca.fido.pages.FidoMakePaymentPage.MakePayOptions;
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import ca.fido.pages.FidoMakePaymentPage.MakePayOptions;
-import ca.fido.pages.base.BasePageClass;
+import java.util.List;
 
 public class FidoPaymentHistoryPage extends BasePageClass {
 

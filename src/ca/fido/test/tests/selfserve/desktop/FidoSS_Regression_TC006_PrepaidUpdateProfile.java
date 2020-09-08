@@ -1,20 +1,15 @@
 package ca.fido.test.tests.selfserve.desktop;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.text.ParseException;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.text.ParseException;
 
 /**
  * This Test will update the password from profile and settings page for pre paid account
@@ -25,9 +20,9 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 	
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());	        
-		startSession(TestDataHandler.config.getFidoURL(), strBrowser,
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("QaUrl"), strBrowser,
 				strLanguage, FidoEnums.GroupName.selfserve,method);			
 	}
 	
@@ -38,10 +33,10 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"SanitySS","SSPnS","SSPrepaid"})
 	public void prePaidPaymentViewAndEditProfile() throws InterruptedException, ParseException, IOException {
 		
-		fido_home_page.clkLogin();
+		fido_home_page.clkLogin();				
 		fido_login_page.switchToSignInFrame();
 		String altUserName=TestDataHandler.tc006009.getUsername();
 		String altPassword=TestDataHandler.tc006009.getPassword();
@@ -100,7 +95,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		fido_profile_and_setting_page.clkChangePassword();				
 		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);		
 		fido_profile_and_setting_page.clkSaveButton();
-		reporter.reportLogWithScreenshot("password set back to initial one");
+		reporter.reportLogWithScreenshot("password set back to initial one");		
 	}
 
 }

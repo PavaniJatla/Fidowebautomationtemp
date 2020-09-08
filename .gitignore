@@ -20,3 +20,6 @@ gradle
 .idea
 /build
 .settings/org.eclipse.buildship.core.prefs
+*.log
+
+rogers_property.dat

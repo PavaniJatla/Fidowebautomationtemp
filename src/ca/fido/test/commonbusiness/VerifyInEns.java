@@ -1,10 +1,10 @@
 package ca.fido.test.commonbusiness;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+
+import java.io.IOException;
 
 public class VerifyInEns extends BaseTestClass{
 

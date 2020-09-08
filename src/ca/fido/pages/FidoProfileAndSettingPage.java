@@ -1,17 +1,11 @@
 package ca.fido.pages;
 
-import java.util.Hashtable;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import ca.fido.pages.base.BasePageClass;
+import java.util.Hashtable;
 
 public class FidoProfileAndSettingPage extends BasePageClass {
 	
