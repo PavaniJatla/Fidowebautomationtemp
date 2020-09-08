@@ -353,7 +353,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyTnCPageIsOpen() {
-		return (lblTnCContainer.isDisplayed() && (lbltnCHeader.isDisplayed()));
+		return (reusableActions.isElementVisible(lblTnCContainer) && (reusableActions.isElementVisible(lbltnCHeader)));
 	}
 	
 	/**

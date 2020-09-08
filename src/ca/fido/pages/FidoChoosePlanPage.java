@@ -95,7 +95,7 @@ public class FidoChoosePlanPage extends BasePageClass {
 	
 	/**
 	 * Clicks on the 'CONTINUE TO ADD-ONS' button at the bottom of the page
-	 * @author rajesh.varalli1
+	 * @author rajesh.varalli1	
 	 */
 	public void clkContinueToAddons() {
 		reusableActions.clickWhenVisible(btnContinueToAddons,30);

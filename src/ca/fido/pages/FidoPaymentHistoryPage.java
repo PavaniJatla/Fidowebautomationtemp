@@ -475,7 +475,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public Boolean verifyNoPaymentRecordMessage() {
-	return lblNoHistoryRecordsPresentForThisAccountMsg.isDisplayed();
+	return reusableActions.isElementVisible(lblNoHistoryRecordsPresentForThisAccountMsg);
 	
    }
 

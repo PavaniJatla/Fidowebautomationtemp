@@ -307,7 +307,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isLnkUpdateContactPresent() {
 		 
-		return lnkUpdateContact.isDisplayed();
+		return reusableActions.isElementVisible(lnkUpdateContact);
 				
 	}
 	
@@ -317,7 +317,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isLnkUpdateBillingAddressPresent() {		
-		return lnkUpdateBillingAddress.isDisplayed();
+		return reusableActions.isElementVisible(lnkUpdateBillingAddress);
 
 	}
 	
@@ -337,7 +337,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isChangeUserNameLinkPresent() {
 		
-			return lnkChangeUsername.isDisplayed();
+			return reusableActions.isElementVisible(lnkChangeUsername);
 		
 	}
 	
@@ -398,7 +398,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @return true if lblContactPrefUpdateRights is displayed else false
 	 */
 	public boolean verifySubscriberAccountContactPreferenceSection() {
-		return reusableActions.getWhenReady(lblContactPrefUpdateRights).isDisplayed();
+		return reusableActions.isElementVisible(lblContactPrefUpdateRights);
 				
 	}
 	
@@ -408,7 +408,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifySubscriberAccountBillingAddressSection() {
-		return lblBillingAddressUpdateRightsInfo.isDisplayed();
+		return reusableActions.isElementVisible(lblBillingAddressUpdateRightsInfo);
 	}
 	
 	/**
@@ -657,7 +657,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean verifyAddressUpdatedSuccessFulOverlay(String strAddress)
 	{
-		if(reusableActions.getWhenReady(lblAddressUpdateSuccessful).isDisplayed()
+		if(reusableActions.isElementVisible((lblAddressUpdateSuccessful))
 			&& reusableActions.getWhenReady(lblNewAddressNameOnOverlay).getText().toUpperCase().contains(strAddress.toUpperCase()))
 		{
 			reusableActions.clickIfAvailable(btnDoneAddressUpdate);
