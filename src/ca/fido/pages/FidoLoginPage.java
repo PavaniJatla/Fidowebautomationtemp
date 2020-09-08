@@ -177,10 +177,11 @@ public class FidoLoginPage extends BasePageClass {
 	 * Click on SignOut in header Navigation bar after login
 	 * @author ning.xue
 	 */
-	public void clkSignOut() {
-		reusableActions.getWhenReady(lnkUserName);
+	public void clkSignOut() {	
+		reusableActions.waitForElementTobeClickable(lnkUserName, 30);
+		reusableActions.getWhenReady(lnkUserName).click();
 		reusableActions.waitForElementVisibility(lnkSignOut, 20);
-		reusableActions.clickIfAvailable(lnkSignOut);
+		reusableActions.clickWhenReady(lnkSignOut);
 
 	}
 	
@@ -232,5 +233,14 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void clkResignInAsMobile() {
 		reusableActions.getWhenReady(lnlResignInAsMobile).click();
+	}
+
+	/**
+	 * Is username field displayed
+	 * @return true fi displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isUserNameDisplayed() {	
+		return reusableActions.isElementVisible(txtUsername);
 	}
 }
