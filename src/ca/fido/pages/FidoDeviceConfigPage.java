@@ -12,13 +12,13 @@ public class FidoDeviceConfigPage extends BasePageClass {
 		super(driver);		
 	}
 	
-	@FindBy(xpath = "//button[@id='continue-button']")
+	@FindBy(xpath = "//button[@id='continue-button' or contains(@class,'-primary -large')]")
 	WebElement continueButton;
 	
 	@FindBy(xpath = "//ds-modal-container")
 	WebElement modalContainer;
 	
-	@FindBy(xpath = "//button[@id='trident-cta0']")
+	@FindBy(xpath = "//button[@id='trident-cta0' or @id='trident-cta-nac']")
 	WebElement modalContainerGetStartedbutton;
 	
 	
@@ -41,8 +41,8 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 * @author saurav.goyal
 	 */
 	public boolean clickContinueButton() {	
-		if(reusableActions.isElementVisible(continueButton)) {
-			reusableActions.clickIfAvailable(continueButton, 10);
+		if(reusableActions.isElementVisible(continueButton , 60)) {
+			reusableActions.clickWhenReady(continueButton, 10);
 			return true; 
 		}else {
 			return false;

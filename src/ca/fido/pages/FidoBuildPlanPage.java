@@ -25,22 +25,26 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	////f-cart-summary//button[contains(@class,'-primary -large') or @id='main-continue-button']//span[contains(@class,'ds-no-overflow mw-100')]
 	//@FindBy(xpath = "//button[@id='main-continue-button']")
-	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large']")
+	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @data-test='build-plan-checkout-flow-button']")
 	WebElement btnContinueBelowCartSummary;
 	
-	@FindBy(xpath = "//button[@id='step-1-continue-button']")
+	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
+	WebElement lblNoTermTierDeviceCost;
+	
+	//@FindBy(xpath = "//button[@id='step-1-continue-button']")
+	@FindBy(xpath = "//p[contains(text(),'1.')]/ancestor::div[contains(@class,'ds-step__content')]//button[contains(@class,'-primary -large')]")
 	WebElement btnContinueDeviceCost;
 	
-	@FindBy(xpath = "//button[@id='step-2-continue-button']")
+	@FindBy(xpath = "//button[@id='step-2-continue-button' or @data-test='stepper-2-edit-step-continue-button']")
 	WebElement btnContinueDataOption;
 	
-	@FindBy(xpath = "//button[@id='step-3-continue-button']")
+	@FindBy(xpath = "//button[@id='step-3-continue-button' or @data-test='stepper-3-edit-step-continue-button']")
 	WebElement btnContinueTalkOptions;
 
 	@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]")
 	WebElement btnNoBPOOffer;
 	
-	@FindBy(xpath = "//button[@id='step-4-continue-button']")
+	@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']")
 	WebElement btnContinueAddOns;
 	
 	@FindBy(xpath = "//span[@translate='createAccount']/parent::button")
@@ -101,6 +105,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	@FindBy(xpath = "//img[@alt='Close']")
 	WebElement closeDialogWindow;
+	
+	/**
+	 * Clicks on the 'Continue' button for select your device cost
+	 * @author Saurav.Goyal
+	 */
+	public void clkNoTermTierInDeviceCost() {
+		reusableActions.waitForElementVisibility(lblNoTermTierDeviceCost, 60);
+		reusableActions.clickIfAvailable(lblNoTermTierDeviceCost, 10);
+	}
 	
 	/**
 	 * Clicks on the X - close Dialogue window
@@ -185,7 +198,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueYourDataAAL() {
-		reusableActions.waitForElementVisibility(btnContinueDeviceCost, 60);
+		//reusableActions.waitForElementVisibility(btnContinueDeviceCost, 60);
 		reusableActions.clickIfAvailable(btnContinueDeviceCost, 60);
 	}
 	
@@ -194,7 +207,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueDeviceCost() {
-		reusableActions.waitForElementVisibility(btnContinueDeviceCost, 60);
+		//reusableActions.waitForElementVisibility(btnContinueDeviceCost, 30);
 		reusableActions.clickIfAvailable(btnContinueDeviceCost, 60);
 	}
 	
@@ -203,8 +216,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueDataOption() {
-		reusableActions.waitForElementVisibility(btnContinueDataOption, 60);
-		reusableActions.clickIfAvailable(btnContinueDataOption, 60);
+		//reusableActions.waitForElementVisibility(btnContinueDataOption, 60);
+		reusableActions.clickIfAvailable(btnContinueDataOption, 30);
 	}
 	
 	/**
@@ -212,7 +225,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueTalkOptions() {
-		reusableActions.clickIfAvailable(btnContinueTalkOptions, 60);
+		reusableActions.clickIfAvailable(btnContinueTalkOptions, 30);
 	}
 	
 	/**
@@ -236,8 +249,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueAddOns() {
-		reusableActions.waitForElementVisibility(btnContinueAddOns, 60);
-		reusableActions.clickIfAvailable(btnContinueAddOns, 60);
+		//reusableActions.waitForElementVisibility(btnContinueAddOns, 60);
+		reusableActions.clickIfAvailable(btnContinueAddOns, 30);
 	}
 	
 	/**

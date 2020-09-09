@@ -58,7 +58,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		fido_credit_check_page.selectDOBMonth();
 		fido_credit_check_page.selectDOBDay();
 		fido_credit_check_page.setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber());
-		fido_credit_check_page.setCreditCardExpiryMonth(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth());
+		fido_credit_check_page.setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth());
 		fido_credit_check_page.setCreditCardExpiryYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear());
 		fido_credit_check_page.selectDrivingLicenseProvince(TestDataHandler.testCase01.getDlProvinceCode());
 		fido_credit_check_page.setDrivingLicenseNumber(TestDataHandler.testCase01.getDlProvinceCode());
@@ -69,7 +69,7 @@ public class Fido_BFA_TC01_NAC_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Credit Evaluation page");
 		fido_credit_check_page.clkContinue();
 		fido_credit_check_page.waitForCreditCheckProcessing();
-		fido_credit_check_page.setSecurityDepositConsent();
+		fido_credit_check_page.clkBtnSecurityDepositConsentAccept();
 		fido_choose_number_page.clkSelectNewNumber();
 		fido_choose_number_page.selectCity(TestDataHandler.testCase01.getCtnCity());
 		fido_choose_number_page.clkFindAvailableNumbers();

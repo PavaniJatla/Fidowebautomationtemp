@@ -12,13 +12,17 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	public FidoOrderConfirmationPage(WebDriver driver) {
 		super(driver);
 	}
-	@FindBy(xpath ="//ins[@translate='global.label.orderConfirmation']")
+	@FindAll({
+		@FindBy(xpath ="//ins[@translate='global.label.orderConfirmation']"),
+		@FindBy(xpath ="//h1[@id='bfa-page-title']")
+	})	
 	WebElement infoOrderConfirm;
 	
 	//@FindBy(xpath="//div[contains(@class,'thanksForOrder')]//span[contains(@checkout-res,'checkout_thank_you')]")
 	@FindAll({
 		@FindBy(xpath="//div[contains(@class,'thanksForOrder')]//span[contains(@checkout-res,'checkout_thank_you')]"),
-		@FindBy(xpath="//h1[text()='THANKS FOR YOUR ORDER!' or text()='MERCI POUR VOTRE COMMANDE!']")
+		@FindBy(xpath="//h1[text()='THANKS FOR YOUR ORDER!' or text()='MERCI POUR VOTRE COMMANDE!']"),
+		@FindBy(xpath="//p[text()='Thank you for your order!' or text()='Merci pour votre commande!']")
 	})
 	WebElement lblThankYou;
 

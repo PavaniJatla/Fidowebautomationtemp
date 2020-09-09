@@ -6,6 +6,7 @@ public class NACData {
 	private String dlProvinceCode;
 	private String ctnCity;
 	private String deviceName;
+	private String identificationType;
 	
 	/**
 	 * @return the name of the device
@@ -55,6 +56,20 @@ public class NACData {
 	 */
 	public void setCtnCity(String ctnCity) {
 		this.ctnCity = ctnCity;
+	}
+	
+	/**
+	 * @return the identificationType
+	 */
+	public String getIdentificationType() {
+		return identificationType;
+	}
+
+	/**
+	 * @param identificationType the identificationType to set
+	 */
+	public void setIdentificationType(String identificationType) {
+		this.identificationType = identificationType;
 	}
 	
 }
