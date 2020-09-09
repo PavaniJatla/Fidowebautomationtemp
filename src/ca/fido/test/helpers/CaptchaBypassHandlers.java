@@ -1,14 +1,13 @@
 package ca.fido.test.helpers;
 
-import java.io.IOException;
-import java.util.Date;
-
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
 import utils.CookieFetcher;
+
+import java.io.IOException;
+import java.util.Date;
 
 public class CaptchaBypassHandlers {
 	

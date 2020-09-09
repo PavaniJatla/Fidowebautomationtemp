@@ -1,18 +1,13 @@
 package ca.fido.testdatamanagement;
+
+import ca.fido.yaml.pojo.*;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import ca.fido.yaml.pojo.AALData;
-import ca.fido.yaml.pojo.HUPData;
-import ca.fido.yaml.pojo.NACData;
-import ca.fido.yaml.pojo.PPCData;
-import ca.fido.yaml.pojo.AccountData;
-import ca.fido.yaml.pojo.Config;
-import ca.fido.yaml.pojo.PaymentDetails;
-import ca.fido.yaml.pojo.SauceSettings;
 
 public class YamlHandler {
 
@@ -27,7 +22,7 @@ public class YamlHandler {
 		InputStream inputStream;
 		try {
 			inputStream = new FileInputStream(
-					new File(System.getProperty("user.dir") + "/data/selfserve/" + accountName + ".yml"));
+					new File(System.getProperty("user.dir") + "/test-data/fido/selfserve/" + accountName + ".yml"));
 			AccountData account = yaml.load(inputStream);
 			return account;
 		} catch (FileNotFoundException e) {
@@ -41,7 +36,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(Config.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/selfserve/Config.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/selfserve/Config.yml"));
 			Config config = yaml.load(inputStream);
 			return config;
 		} catch (FileNotFoundException e) {
@@ -56,7 +51,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(PaymentDetails.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/selfserve/PaymentInfo.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/selfserve/PaymentInfo.yml"));
 			PaymentDetails paymentDetails = yaml.load(inputStream);
 			return paymentDetails;
 		} catch (FileNotFoundException e) {
@@ -72,7 +67,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(Config.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/connectedhome/Config.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/connectedhome/Config.yml"));
 			Config config = yaml.load(inputStream);
 			return config;
 		} catch (FileNotFoundException e) {
@@ -88,7 +83,7 @@ public class YamlHandler {
 		InputStream inputStream;
 		try {
 			inputStream = new FileInputStream(
-					new File(System.getProperty("user.dir") + "/data/connectedhome/" + accountName + ".yml"));
+					new File(System.getProperty("user.dir") + "/test-data/fido/connectedhome/" + accountName + ".yml"));
 			AccountData account = yaml.load(inputStream);
 			return account;
 		} catch (FileNotFoundException e) {
@@ -102,7 +97,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(PaymentDetails.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/connectedhome/PaymentInfo.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/connectedhome/PaymentInfo.yml"));
 			PaymentDetails paymentDetails = yaml.load(inputStream);
 			return paymentDetails;
 		} catch (FileNotFoundException e) {
@@ -117,7 +112,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(NACData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/" + dataFileName + ".yml"));
 			NACData nacData = yaml.load(inputStream);
 			return nacData;
 		} catch (FileNotFoundException e) {
@@ -130,7 +125,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(AALData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/" + dataFileName + ".yml"));
 			AALData aalData = yaml.load(inputStream);
 			return aalData;
 		} catch (FileNotFoundException e) {
@@ -143,7 +138,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(HUPData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/" + dataFileName + ".yml"));
 			HUPData hupData = yaml.load(inputStream);
 			return hupData;
 		} catch (FileNotFoundException e) {
@@ -156,7 +151,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(PPCData.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/" + dataFileName + ".yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/" + dataFileName + ".yml"));
 			PPCData ppcData = yaml.load(inputStream);
 			return ppcData;
 		} catch (FileNotFoundException e) {
@@ -169,7 +164,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(Config.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/Config.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/Config.yml"));
 			Config config = yaml.load(inputStream);
 			return config;
 		} catch (FileNotFoundException e) {
@@ -184,7 +179,7 @@ public class YamlHandler {
 		Yaml yaml = new Yaml(new Constructor(PaymentDetails.class));
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/data/buyflows/PaymentInfo.yml"));
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/PaymentInfo.yml"));
 			PaymentDetails paymentDetails = yaml.load(inputStream);
 			return paymentDetails;
 		} catch (FileNotFoundException e) {

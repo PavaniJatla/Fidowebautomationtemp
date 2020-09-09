@@ -1,5 +1,12 @@
 package ca.fido.pages;
 
+import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -9,13 +16,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
-import ca.fido.pages.base.BasePageClass;
 
 
 
@@ -270,7 +270,7 @@ public class FidoBillDetailsPage extends BasePageClass {
    public boolean isLabelComingSoonDisplayed()
    {
 	   reusableActions.waitForElementVisibility(lblNoBillLabel, 300);
-	   return lblNoBillLabel.isDisplayed();
+	   return reusableActions.isElementVisible(lblNoBillLabel);
 	 
    }
    
@@ -335,7 +335,7 @@ public class FidoBillDetailsPage extends BasePageClass {
     * @author Mirza.Kamran
     */
 	public double getBillBalanceForward() {
-		 if(lblBalanceForward.isDisplayed())
+		 if(reusableActions.isElementVisible(lblBalanceForward))
 		 {
 			 return Double.parseDouble(reusableActions.getWhenReady(lblBalanceForward).getText().split("\\$")[1].split("Details")[0].trim());
 		 }else
@@ -351,7 +351,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	    * @author Mirza.Kamran
 	    */
 	 public double getBillAccountChargeCredits() {
-		 if(lblAccountChargesAndCredits.isDisplayed())
+		 if(reusableActions.isElementVisible(lblAccountChargesAndCredits))
 		 {
 			 return Double.parseDouble(reusableActions.getWhenReady(lblAccountChargesAndCredits).getText().split("\\$")[1].split("Details")[0].trim());
 		 }else

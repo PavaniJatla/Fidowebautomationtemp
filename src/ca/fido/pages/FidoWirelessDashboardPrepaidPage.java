@@ -1,16 +1,15 @@
 package ca.fido.pages;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import ca.fido.pages.base.BasePageClass;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * This class have all the pre paid wireless Dashboard page elements and corresponding methods which are used in test cases.
@@ -148,7 +147,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public Boolean verifyDataDashboardIsDisplayed() {
 		
-		return  divData.isDisplayed();
+		return  reusableActions.isElementVisible(divData);
 		
 	}
 	
@@ -159,7 +158,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public Boolean verifyTalkDashboardDetails() {
 		
-		return  divTalk.isDisplayed();
+		return  reusableActions.isElementVisible(divTalk);
 	}	
 	
 	/**
@@ -169,7 +168,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public Boolean verifyTextDashboardDetails() {
 		
-		return  divText.isDisplayed();
+		return  reusableActions.isElementVisible(divText);
 	}
 	
 		
@@ -426,7 +425,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkReportLostOrStolenIsDisplayed() {
-		return lnkReportLostOrStolen.isDisplayed();
+		return reusableActions.isElementVisible(lnkReportLostOrStolen);
 	}
 	
 	/**
@@ -435,7 +434,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkShopForAccessoriesIsDisplayed() {
-		return lnkShopForAccessories.isDisplayed();
+		return reusableActions.isElementVisible(lnkShopForAccessories);
 	}
 	
 	/**
@@ -444,7 +443,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRetrievePUKCodeIsDisplayed() {
-		return lnkRetreivePUKCode.isDisplayed();
+		return reusableActions.isElementVisible(lnkRetreivePUKCode);
 	}
 	
 	/**
@@ -490,7 +489,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRetreivePUKCode() {
-		return lnkRetreivePUKCode.isDisplayed();
+		return reusableActions.isElementVisible(lnkRetreivePUKCode);
 	}
 
 	/**
@@ -516,7 +515,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyLinkRepairMyDeviceIsDisplayed() {
-		return lnkRepairMobile.isDisplayed();
+		return reusableActions.isElementVisible(lnkRepairMobile);
 	}
 	
 	/**

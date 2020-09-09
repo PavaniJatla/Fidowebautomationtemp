@@ -1,56 +1,6 @@
 package ca.fido.test.base;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.http.client.ClientProtocolException;
-import org.openqa.selenium.WebDriver;
-import ca.fido.pages.FidoAccountOverviewPage;
-import ca.fido.pages.FidoAccountRegistrationPage;
-import ca.fido.pages.FidoAddDataPage;
-import ca.fido.pages.FidoBillDetailsPage;
-import ca.fido.pages.FidoBuildPlanPage;
-import ca.fido.pages.FidoCartSummaryPage;
-import ca.fido.pages.FidoChangeCTNPage;
-import ca.fido.pages.FidoChooseAddonsPage;
-import ca.fido.pages.FidoChooseNumberPage;
-import ca.fido.pages.FidoChoosePhonePage;
-import ca.fido.pages.FidoChoosePlanPage;
-import ca.fido.pages.FidoChooseSimPage;
-import ca.fido.pages.FidoCommunityPage;
-import ca.fido.pages.FidoCreateUserPage;
-import ca.fido.pages.FidoCreditCheckPage;
-import ca.fido.pages.FidoDataManagementPage;
-import ca.fido.pages.FidoDeviceConfigPage;
-import ca.fido.pages.FidoDeviceReservationSystemPage;
-import ca.fido.pages.FidoHomePage;
-import ca.fido.pages.FidoInteracOnlinePage;
-import ca.fido.pages.FidoInternetDashboardPage;
-import ca.fido.pages.FidoInternetPackageChangeReviewOrderPage;
-import ca.fido.pages.FidoInternetPackagePage;
-import ca.fido.pages.FidoLoginPage;
-import ca.fido.pages.FidoLogintoFacebookPage;
-import ca.fido.pages.FidoMakePaymentPage;
-import ca.fido.pages.FidoOrderConfirmationPage;
-import ca.fido.pages.FidoOrderReviewPage;
-import ca.fido.pages.FidoPaymentHistoryPage;
-import ca.fido.pages.FidoPaymentOptionsPage;
-import ca.fido.pages.FidoPaymentPage;
-import ca.fido.pages.FidoPrepaidLinkAccountPage;
-import ca.fido.pages.FidoProfileAndSettingPage;
-import ca.fido.pages.FidoRecoverPassOrNamePage;
-import ca.fido.pages.FidoRefillPage;
-import ca.fido.pages.FidoReportLostOrStolenPage;
-import ca.fido.pages.FidoResetVoiceMailPasswordPage;
-import ca.fido.pages.FidoSetPasswordPage;
-import ca.fido.pages.FidoShippingPage;
-import ca.fido.pages.FidoShopInternetPage;
-import ca.fido.pages.FidoTechnicalInstallationPage;
-import ca.fido.pages.FidoWirelessDashboardPostpaidPage;
-import ca.fido.pages.FidoWirelessDashboardPrepaidPage;
+import ca.fido.pages.*;
 import ca.fido.pages.ens.EnsHomePage;
 import ca.fido.pages.ens.EnsNotificationViewPage;
 import ca.fido.ssp.pages.SSPFidoRetailerChampPage;
@@ -66,15 +16,23 @@ import ca.fido.testdatamanagement.TestDataHandler;
 import extentreport.ExtentTestManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.apache.http.client.ClientProtocolException;
+import org.openqa.selenium.WebDriver;
 import utils.BrowserDrivers;
 import utils.Reporter;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /*@Listeners ({ca.fido.test.listeners.TestListener.class , ca.fido.test.listeners.AnnotationTransformer.class , ca.fido.test.listeners.TestListener.class })*/
 
 
 public class BaseTestClass {
-		    
+
 	private WebDriver driver;
 	private AppiumDriver<MobileElement> adriver;
 	public Reporter reporter;	
@@ -135,6 +93,7 @@ public class BaseTestClass {
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	protected FidoDeviceConfigPage fido_device_config_Page;
 	private Map<String,String> sauceParameters;
+	private Map<String,String> RunParameters;
 
 	public BaseTestClass() {
 		 browserdriver =  new BrowserDrivers();
@@ -179,89 +138,58 @@ public class BaseTestClass {
 			 			  		        		
 		return sauceOptions;
 	}
-	 
+
+
 	/** To start a session using given url, browser, language and test case group name.
 	 * @param strUrl                     string of test url
-	 * @param strBrowser                 string of browser name
-	 * @param strLanguage                string of language to use
 	 * @param enumGroupName              string of group name of the test case
-	 * @param currentTestMethodName 	 string of the current test name	
+	 * @param currentTestMethodName 	 string of the current test name
 	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
 	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
 	 */
-	public void startSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		if(strBrowser.contains("sauce"))
+
+	public void startSession(String strUrl, String strBrowser,  String strLanguage,FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
+		RunParameters = getExecutionParameters(strBrowser, strLanguage);
+		String browser = RunParameters.get("Browser");
+		String language = RunParameters.get("Language");
+
+	    if(browser.contains("sauce"))
 		{
-			sauceParameters = initializeSauceParamsMap(strBrowser);
+			sauceParameters = initializeSauceParamsMap(browser);
 		}
-		this.driver = browserdriver.driverInit(strBrowser,sauceParameters, currentTestMethodName, enumGroupName.toString());
+		this.driver = browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString());
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
-		switch(enumGroupName.toString().toLowerCase().trim()) {			
-		case "connectedhome_anonymous":				
-			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
-			break;				
-		case "connectedhome_login":			
-			driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-			driver.get(strUrl+"?setLanguage="+ strLanguage );
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;  			
-		case "mobile_connectedhome":
-			driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-			driver.get(strUrl+"?setLanguage="+ strLanguage );
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;	
-		case "selfserve":
-		case "selfserve_login":			
-			driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ strLanguage );			
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);			
-			break;
-		case "buyflows": driver.get(strUrl);
-		break;
-	
-  		default :
-  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-		}		
-//	    setImplicitWait(getDriver(), 10);
-	    init(enumGroupName.toString().toLowerCase().trim());	    
-  }
-	
+		switch(enumGroupName.toString().toLowerCase().trim()) {
+			case "connectedhome_anonymous":
+				captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, language);
+				break;
+			case "connectedhome_login":
+				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				driver.get(strUrl+"?setLanguage="+ language );
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				break;
+			case "mobile_connectedhome":
+				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				driver.get(strUrl+"?setLanguage="+ language);
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				break;
+			case "selfserve":
+			case "selfserve_login":
+				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				break;
+			case "buyflows": driver.get(strUrl);
+				break;
 
-	/**
-	 * To start a session using given url, browser, language and test case group name.
-	 * @param strUrl                     string of test url
-	 * @param strBrowser                 string of browser name
-	 * @param currentTestMethodName      string of current Test Method Name
-	 * @param enumGroupName              string of enum Group Name
-	 * @param strLanguage                string of language to use
-	 * @throws ClientProtocolException   org.apache.http.client.ClientProtocolException, Signals an error in the HTTP protocol.
-	 * @throws IOException               java.io.IOException, Signals that an I/O exception of some sort has occurred, produced by failed or interrupted I/O operations.
-	 */
-	public void startMobileSession(String strUrl, String strBrowser,  String strLanguage, FidoEnums.GroupName enumGroupName, Method currentTestMethodName) throws ClientProtocolException, IOException {
-		if(strBrowser.contains("sauce"))
-		{
-			sauceParameters = initializeSauceParamsMap(strBrowser);
+			default :
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 		}
-		this.driver = browserdriver.driverInit(strBrowser,sauceParameters, currentTestMethodName, enumGroupName.toString());
-		System.out.println(strUrl + "----------------------------------------------------------------------------");
-		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
-		switch(enumGroupName.toString().toLowerCase().trim()) {			
-		case "connectedhome_anonymous":				
-			captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, strLanguage); 
-			break;	
-			
-		case "connectedhome_login":
-			
-			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-			break;            
 
-  		default :
-  			captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, strLanguage);
-		}
-	    setImplicitWait(adriver, 10);
-	    init(enumGroupName.toString().toLowerCase().trim());
-  }
-	
+		init(enumGroupName.toString().toLowerCase().trim());
+	}
+
+
 	/**
 	 * To initiate the page objects based on test case group, will read group name from xml file.
 	 * @param strGroupName string of group name.
@@ -406,8 +334,35 @@ public class BaseTestClass {
 	public HashMap<String, String> getXMLParameters() {
 		return xmlTestParameters;
 	}
-		
-	
-	
-	
+
+	/** To start a session using given url, browser, language and test case group name.
+	 * @param strLanguage    string of test Language
+	 * @param strBrowser     string of browser name
+	 * @return HashMap of test TestParameters
+	 */
+		public static HashMap<String, String>  getExecutionParameters(String strBrowser,String strLanguage) {
+		if (System.getProperty("Browser") == null || System.getProperty("Browser").isEmpty())
+		{
+			System.setProperty("Browser", strBrowser);
+		}
+		if (System.getProperty("Language") == null ||  System.getProperty("Language").isEmpty())
+		{
+			System.setProperty("Language", strLanguage);
+		}
+		if(System.getProperty("Browser").equals("") && strBrowser.isEmpty())
+		{
+			System.setProperty("Browser", "chrome");
+		}
+		if(System.getProperty("Language").equals("") && strLanguage.isEmpty() )
+		{
+			System.setProperty("Language", "en");
+		}
+		strBrowser= System.getProperty("Browser");
+		strLanguage= System.getProperty("Language");
+		HashMap<String, String> TestParameters = new HashMap<>();
+		TestParameters.put("Browser", strBrowser);
+		TestParameters.put("Language", strLanguage );
+		return TestParameters;
+	}
+
 }

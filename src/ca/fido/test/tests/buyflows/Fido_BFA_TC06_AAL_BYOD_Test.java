@@ -1,20 +1,15 @@
 package ca.fido.test.tests.buyflows;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
  * TC07 - Fido - Validate user able to perform AAL BYOD using existing finance account
@@ -34,7 +29,7 @@ public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 
 	@Test
 	public void aalBYODFlowTest() {
-		reporter.reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
+		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Fido Home Page");
 		//fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -77,9 +72,9 @@ public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 	
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
-    public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
+    public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
     }
 
 	@AfterMethod(alwaysRun = true)

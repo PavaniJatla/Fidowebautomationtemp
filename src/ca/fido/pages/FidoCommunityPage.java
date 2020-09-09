@@ -1,11 +1,10 @@
 package ca.fido.pages;
 
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
-import ca.fido.pages.base.BasePageClass;
 /**
  * This page is created for Fido community forum, it support English only for now. 
  * Update should be done later to support French.

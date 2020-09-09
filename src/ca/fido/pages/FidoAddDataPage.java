@@ -1,15 +1,14 @@
 package ca.fido.pages;
 
-import java.util.List;
-import java.util.Map;
-
+import ca.fido.pages.base.BasePageClass;
+import ca.fido.test.helpers.StringHelpers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
-import ca.fido.pages.base.BasePageClass;
-import ca.fido.test.helpers.StringHelpers;
+import java.util.List;
+import java.util.Map;
 
 
 public class FidoAddDataPage extends BasePageClass {

@@ -1,17 +1,11 @@
 package ca.fido.pages;
 
-import java.util.Hashtable;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import ca.fido.pages.base.BasePageClass;
+import java.util.Hashtable;
 
 public class FidoProfileAndSettingPage extends BasePageClass {
 	
@@ -116,6 +110,12 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	//Text is the only unique feature for this element
 	@FindBy(xpath = "//span[text()='Change password' or text()='Modifier le mot de passe']")
 	WebElement lnkChangePassword;
+	
+	@FindBy(xpath = "//button//span[text()='LOG-IN DETAILS']")
+	WebElement paneLoginInDetailsMobile;
+	
+	@FindBy(xpath = "//button//span[text()='BILLING SETTINGS']")
+	WebElement paneBillingSettingsMobile;
 	
 	@FindBy(id="mobilePhone")
 	WebElement txtMobilePhone;
@@ -307,7 +307,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isLnkUpdateContactPresent() {
 		 
-		return lnkUpdateContact.isDisplayed();
+		return reusableActions.isElementVisible(lnkUpdateContact);
 				
 	}
 	
@@ -317,7 +317,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isLnkUpdateBillingAddressPresent() {		
-		return lnkUpdateBillingAddress.isDisplayed();
+		return reusableActions.isElementVisible(lnkUpdateBillingAddress);
 
 	}
 	
@@ -337,7 +337,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean isChangeUserNameLinkPresent() {
 		
-			return lnkChangeUsername.isDisplayed();
+			return reusableActions.isElementVisible(lnkChangeUsername);
 		
 	}
 	
@@ -398,7 +398,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @return true if lblContactPrefUpdateRights is displayed else false
 	 */
 	public boolean verifySubscriberAccountContactPreferenceSection() {
-		return reusableActions.getWhenReady(lblContactPrefUpdateRights).isDisplayed();
+		return reusableActions.isElementVisible(lblContactPrefUpdateRights);
 				
 	}
 	
@@ -408,7 +408,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifySubscriberAccountBillingAddressSection() {
-		return lblBillingAddressUpdateRightsInfo.isDisplayed();
+		return reusableActions.isElementVisible(lblBillingAddressUpdateRightsInfo);
 	}
 	
 	/**
@@ -657,7 +657,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public Boolean verifyAddressUpdatedSuccessFulOverlay(String strAddress)
 	{
-		if(reusableActions.getWhenReady(lblAddressUpdateSuccessful).isDisplayed()
+		if(reusableActions.isElementVisible((lblAddressUpdateSuccessful))
 			&& reusableActions.getWhenReady(lblNewAddressNameOnOverlay).getText().toUpperCase().contains(strAddress.toUpperCase()))
 		{
 			reusableActions.clickIfAvailable(btnDoneAddressUpdate);
@@ -904,6 +904,24 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void clkAccountOverView() {
 		reusableActions.clickWhenReady(btnAccountOverView);
+		
+	}
+	
+	/**
+	 * Clicks on Log in details
+	 * @author Mirza.Kamran
+	 */
+	public void clkButtonLogInDetails() {
+		reusableActions.getWhenReady(paneLoginInDetailsMobile).click();
+		
+	}
+	
+	/**
+	 * Clicks on Billing settings pane
+	 * @author Mirza.Kamran
+	 */
+	public void clkButtonBillingSettings() {
+		reusableActions.getWhenReady(paneBillingSettingsMobile).click();
 		
 	}
 }

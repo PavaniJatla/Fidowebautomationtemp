@@ -1,11 +1,11 @@
 package ca.fido.pages;
 
 
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ca.fido.pages.base.BasePageClass;
 
 public class FidoRefillPage extends BasePageClass {
 
@@ -176,14 +176,14 @@ public class FidoRefillPage extends BasePageClass {
         	reusableActions.executeJavaScriptClick(lnkLowbalanceAutoRefill);   	
         	reusableActions.waitForPageLoad();
         	
-        	if(lblWarning.isDisplayed())
+        	if(reusableActions.isElementVisible(lblWarning))
         	{
         		reusableActions.executeJavaScriptClick(lnkRecurringAutoRefill);
         		reusableActions.waitForPageLoad();
         		reusableActions.executeJavaScriptClick(lnkLowbalanceAutoRefill);
-        		if(cmbRefillWhenMyBalanceIs.isDisplayed()
-        		    	&& cmbRefillAmount.isDisplayed()
-        		    	&& (btnContinue.isDisplayed()||btnStopAutoPayment.isDisplayed()))
+        		if(reusableActions.isElementVisible(cmbRefillWhenMyBalanceIs)
+        		    	&& reusableActions.isElementVisible(cmbRefillAmount)
+        		    	&& (reusableActions.isElementVisible(btnContinue)||reusableActions.isElementVisible(btnStopAutoPayment)))
         		{
             		clickSuccess=true;
             		break;
@@ -193,9 +193,9 @@ public class FidoRefillPage extends BasePageClass {
             		attemp++;
             	}        		
         		
-        	}else if(cmbRefillWhenMyBalanceIs.isDisplayed()
-    		    	&& cmbRefillAmount.isDisplayed()
-    		    	&& (btnContinue.isDisplayed()||btnStopAutoPayment.isDisplayed()))
+        	}else if(reusableActions.isElementVisible(cmbRefillWhenMyBalanceIs)
+    		    	&& reusableActions.isElementVisible(cmbRefillAmount)
+    		    	&& (reusableActions.isElementVisible(btnContinue)||reusableActions.isElementVisible(btnStopAutoPayment)))
         	{
         		clickSuccess=true;
         		break;
@@ -298,7 +298,7 @@ public class FidoRefillPage extends BasePageClass {
     public String getRefillAmount() {
     	reusableActions.waitForPageLoad();
     	reusableActions.waitForElementVisibility(refillAmount);
-    	if (refillAmount.isDisplayed()) {
+    	if (reusableActions.isElementVisible(refillAmount)) {
         	return refillAmount.getText();
     	}
     	return null;
@@ -347,7 +347,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyButtonContinueIsDisplayed() {
-    	return btnContinue.isDisplayed();
+    	return reusableActions.isElementVisible(btnContinue);
     }
     
     /**
@@ -356,7 +356,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyComboRefillAmountIsDisplayed() {
-    	return cmbRefillAmount.isDisplayed();
+    	return reusableActions.isElementVisible(cmbRefillAmount);
     }
     
     /**
@@ -365,7 +365,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyComboRefillWhenMyBalanceIsDisplayed() {
-    	return cmbRefillWhenMyBalanceIs.isDisplayed();
+    	return reusableActions.isElementVisible(cmbRefillWhenMyBalanceIs);
     }
     
     
@@ -375,7 +375,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyLabelCreditCardRegistrationIsDisplayed() {
-    	return lblCreditCardRegistrationStatus.isDisplayed();
+    	return reusableActions.isElementVisible(lblCreditCardRegistrationStatus);
     }
     
     
@@ -385,7 +385,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyDivAirTimeBalanceIsDisplayed() {
-    	return divAirTimeBalance.isDisplayed();
+    	return reusableActions.isElementVisible(divAirTimeBalance);
     }
     
     /**
@@ -394,7 +394,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyLabelSubscriberNumberIsDisplayed() {
-    	return lblSubscriberNumber.isDisplayed();
+    	return reusableActions.isElementVisible(lblSubscriberNumber);
     }
     
     
@@ -404,7 +404,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public boolean verifyLabelReadySetRefillIsDisplayed() {
-    	return lblReadysetRefill.isDisplayed();
+    	return reusableActions.isElementVisible(lblReadysetRefill);
     }
     
     
@@ -514,7 +514,7 @@ public class FidoRefillPage extends BasePageClass {
      */
     public Boolean verifyAutoRefillStoppedSuccessfully() {
     	String lblStopSuccesstext=reusableActions.getWhenReady(lblStopPaymentSuccessNotifier).getText();
-    	if(!lblStopPaymentSuccessNotifier.isDisplayed()
+    	if(!reusableActions.isElementVisible(lblStopPaymentSuccessNotifier)
     		&& lblStopSuccesstext==null	)
     	{
     		System.out.println("Auto refill stopped label is not displayed, please investigate");
@@ -573,7 +573,7 @@ public class FidoRefillPage extends BasePageClass {
 	public Boolean isCardAlreadyRegistered() {
 		//
 		reusableActions.staticWait(3000);
-		if(!lblRegisteredCard.isDisplayed()) {
+		if(!reusableActions.isElementVisible(lblRegisteredCard)) {
 			System.out.println("Label card already registred is not displayed, please investigate");
 			return false;
 		}
@@ -596,7 +596,7 @@ public class FidoRefillPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean isRecurringAutoRefillAlreadySet() {		
-		return lblFidoTickIconRecurringAutoRefill.isDisplayed();
+		return reusableActions.isElementVisible(lblFidoTickIconRecurringAutoRefill);
 	}
 
 	/**

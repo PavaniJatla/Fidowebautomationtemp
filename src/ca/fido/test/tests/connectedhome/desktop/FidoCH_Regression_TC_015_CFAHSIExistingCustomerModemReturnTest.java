@@ -1,19 +1,14 @@
 package ca.fido.test.tests.connectedhome.desktop;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 
 /**
@@ -38,7 +33,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 
 public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest extends BaseTestClass {
 
-	@Test(invocationCount = 1)
+	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerValidateDashboardTest() {
 		reporter.reportLogWithScreenshot("Launched the SSP SignIn Page");
 		fido_ssp_retailer_shop_page.setUserName(TestDataHandler.fidoSspHSIAccount.getUsername());
@@ -67,9 +62,9 @@ public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest exte
 
 	}
 
-	@BeforeMethod @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(String strBrowser, String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(TestDataHandler.chConfig.getSspURL(),  strBrowser, strLanguage, FidoEnums.GroupName.connectedhome_anonymous, method);
 		}
 

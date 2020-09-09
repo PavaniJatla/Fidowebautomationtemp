@@ -26,14 +26,14 @@
  	<parameter name="strBrowser" value="saucefirefox"/>
 	<parameter name="strLanguage" value="en"/>
 		<classes>	
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>	
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>	
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC012_PostPaidChangeMOP"> </class>
-			<class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword"> </class>   
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC017_PostpaidViewAndEditProfile"> </class>	
-          <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class>  
+		   <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC006_PrepaidUpdateProfile"> </class>	
+		   <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC011_PostPaidDashBoard"> </class>	
+		   <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC012_PostPaidChangeMOP"> </class>
+		   <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword"> </class>   
+           <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC013_FidoCA_PostpaidPaymentCC"></class>
+           <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_TC016_FidoCA_PostpaidViewBill"> </class>
+           <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC017_PostpaidViewAndEditProfile"> </class>	
+           <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine"> </class>  
          </classes>
     </test>     
 <!-- separated sanity tests and ENS related tests from this regression list -->  
@@ -135,8 +135,7 @@
 	<parameter name="strLanguage" value="en"/>
 		<classes>
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile"> </class>   
-			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder_MultipleCTN_SingleCTN_HSI"> </class>
-			  
+			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder_MultipleCTN_SingleCTN_HSI"> </class>			  
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS"> </class> 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS"> </class> 
 			  <class name="ca.fido.test.tests.selfserve.desktop.FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountNumberBySMS"> </class> 

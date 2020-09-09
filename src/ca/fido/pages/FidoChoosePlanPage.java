@@ -1,11 +1,10 @@
 package ca.fido.pages;
 
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import ca.fido.pages.base.BasePageClass;
 
 
 public class FidoChoosePlanPage extends BasePageClass {
@@ -96,7 +95,7 @@ public class FidoChoosePlanPage extends BasePageClass {
 	
 	/**
 	 * Clicks on the 'CONTINUE TO ADD-ONS' button at the bottom of the page
-	 * @author rajesh.varalli1
+	 * @author rajesh.varalli1	
 	 */
 	public void clkContinueToAddons() {
 		reusableActions.clickWhenVisible(btnContinueToAddons,30);

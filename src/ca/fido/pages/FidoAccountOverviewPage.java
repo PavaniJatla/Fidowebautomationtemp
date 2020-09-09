@@ -1,22 +1,18 @@
 package ca.fido.pages;
 
 
+import ca.fido.pages.base.BasePageClass;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import utils.FormFiller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.math.NumberUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import ca.fido.pages.base.BasePageClass;
-import utils.FormFiller;
 
 
 
@@ -134,6 +130,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//a[@ui-sref='myAccount.overview({accountNumber: selectedAccountNumber})']")
 	WebElement menuOverview;
 
+	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
+	WebElement menuOverviewMobile;
+	
+	@FindBy(xpath = "//a[@class='tab-focus-header']//*[@translate='global.label.profileAndSettings']")
+	WebElement menuProfileAndSettingsMobile;
+	
 	@FindBy(xpath = "//ins[@translate='global.message.myAccountNoPaymentHistory']")
 	WebElement labelNoPaymentMade;
 
@@ -279,7 +281,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyIfAnyPaymentMade() {
-		return !labelNoPaymentMade.isDisplayed();
+		return !reusableActions.isElementVisible(labelNoPaymentMade);
 	}
 
 	/**
@@ -320,7 +322,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.staticWait(4000);
 				reusableActions.getWhenReady(menuProfileNSetting).click();		
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
-				if(lblHeaderProfileAndSettings.isDisplayed())
+				if(reusableActions.isElementVisible(lblHeaderProfileAndSettings))
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));
 					clickSuccess=true;				
@@ -337,6 +339,17 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	}
 
+	/**
+	 * Click profile and Setting menu in overview page
+	 * @author Mirza.Kamran
+	 */
+	public void clkMenuProfileNSettingMobile() {
+		reusableActions.getWhenReady(menuOverviewMobile).click();	
+		reusableActions.getWhenReady(menuProfileAndSettingsMobile).click();	
+	}
+	
+	
+	
 	/**
 	 * Click on the menu Usage Service
 	 * @author Ning.Xue
@@ -440,7 +453,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean isCTNBadgeVisible() {
-		return reusableActions.getWhenReady(divCtnBadge,10).isDisplayed();
+		return reusableActions.isElementVisible(divCtnBadge,10);
 	}
 
 	/**
@@ -478,18 +491,19 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			buttonPayNow = btnPayNow;
 		}
 
-		while (counter<=3 && !displayed) {
-			//Long wait time to make the page load 
-			reusableActions.staticWait(10000);
-			reusableActions.waitForElementVisibility(buttonPayNow,120);		
-			reusableActions.waitForElementTobeClickable(buttonPayNow, 240);
-			reusableActions.getWhenReady(buttonPayNow,120);    		
-			reusableActions.executeJavaScriptClick(buttonPayNow);
-			reusableActions.staticWait(3000);
-			if(txtAmount.isDisplayed())
-			{
-				displayed=true;
-			}
+        while (counter<=3 && !displayed) {
+        	//Long wait time to make the page load 
+        	reusableActions.staticWait(10000);
+    		reusableActions.waitForElementVisibility(buttonPayNow,120);		
+    		reusableActions.waitForElementTobeClickable(buttonPayNow, 240);
+    		reusableActions.getWhenReady(buttonPayNow,120);    		
+    		reusableActions.executeJavaScriptClick(buttonPayNow);
+    		reusableActions.staticWait(3000);
+    		if(reusableActions.isElementVisible(txtAmount))
+    		{
+    			displayed=true;
+    		}
+    		
 			counter++;
 			reusableActions.staticWait(3000);
 		}

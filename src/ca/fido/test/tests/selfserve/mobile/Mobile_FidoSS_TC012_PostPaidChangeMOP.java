@@ -1,4 +1,4 @@
-package ca.fido.test.tests.selfserve.desktop;
+package ca.fido.test.tests.selfserve.mobile;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
+public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -33,9 +33,11 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	}
 	
 	
-	@Test(groups = {"SanitySS","SSBillingAndPayments"})
+	@Test(groups = {"SS12","SSBillingAndPayments"})
 	public void postPaidChangeMOP() {
-		fido_home_page.clkLogin();
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		fido_home_page.clkLoginMobile();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
@@ -72,7 +74,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 							"review credit card is displayed",
 							"review credit card is not displayed");
 		fido_payment_options_page.clkConfirm();
-		reporter.reportLogWithScreenshot("Verify the payment method set to credit card");
+		reporter.reportLogWithScreenshot("Verify the payment me		thod set to credit card");
 		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Change MOP Success message displayed",
 							"Change MOP Success message not displayed");

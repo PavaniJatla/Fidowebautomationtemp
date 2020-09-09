@@ -1,13 +1,12 @@
 package ca.fido.pages;
+
+import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
-import ca.fido.pages.base.BasePageClass;
-
 import utils.FormFiller;
 
 public class FidoMakePaymentPage extends BasePageClass {
@@ -262,7 +261,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public Boolean verifyPaymentSuccessfulMessageDisplayed() {
 						
-		if(! lblPaymentReceived.isDisplayed()) {
+		if(! reusableActions.isElementVisible(lblPaymentReceived)) {
 			System.out.print("The Label payment received is not displayed it seems, please investigate");
 			return false;
 		}
