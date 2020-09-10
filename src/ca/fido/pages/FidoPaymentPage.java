@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import utils.FormFiller;
 
-
 public class FidoPaymentPage extends BasePageClass {
 
 	public FidoPaymentPage(WebDriver driver) {
