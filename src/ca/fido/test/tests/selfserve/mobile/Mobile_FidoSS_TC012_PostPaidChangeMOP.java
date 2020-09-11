@@ -33,8 +33,8 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	}
 	
 	
-	@Test(groups = {"SS12","SSBillingAndPayments"})
-	public void postPaidChangeMOP() {
+	@Test(groups = {"MobileSanitySS","SSBillingAndPayments"})
+	public void mobilePostPaidChangeMOP() {
 		fido_home_page.clkNavMobile();
 		reporter.reportLogWithScreenshot("Launched the Navgation card");	
 		fido_home_page.clkLoginMobile();

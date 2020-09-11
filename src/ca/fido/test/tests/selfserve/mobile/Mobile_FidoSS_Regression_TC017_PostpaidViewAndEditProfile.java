@@ -28,7 +28,7 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 	
 
 	@Test(groups = {"SS17","SSPnS"})
-	public void postPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
+	public void mobilePostPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
 		fido_home_page.clkNavMobile();
 		reporter.reportLogWithScreenshot("Launched the Navgation card");	
 		fido_home_page.clkLoginMobile();
