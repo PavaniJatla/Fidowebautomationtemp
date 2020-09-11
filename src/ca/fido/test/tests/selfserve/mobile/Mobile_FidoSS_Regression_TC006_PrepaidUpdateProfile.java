@@ -38,7 +38,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		closeSession();
 	}
 	
-	@Test(groups = {"MobileSS"})
+	@Test(groups = {"MobileSanitySS"})
 	public void mobilePrePaidPaymentViewAndEditProfile() throws InterruptedException, ParseException, IOException {
 		fido_home_page.clkNavMobile();
 		reporter.reportLogWithScreenshot("Launched the Navgation card");	
