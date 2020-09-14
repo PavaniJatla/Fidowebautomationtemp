@@ -28,6 +28,7 @@ import java.lang.reflect.Method;
  **/
 
 public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
+	private String strLanguage=System.getProperty("Language");
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPayNowFunctionality() {
@@ -68,7 +69,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		reporter.hardAssert(fido_payment_page.verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		reporter.reportLogWithScreenshot("payment success widget");
 		fido_payment_page.clkPaymentConfirmation();
-		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, TestDataHandler.chConfig.getLanguage());
+		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, strLanguage);
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
 		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.chConfig.getLanguage()),"Payment Success","Payment Failed");
