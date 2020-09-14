@@ -5,15 +5,15 @@ public class CreditCardDetails {
 	private String number1;
 	private String expiryMonth1;
 	private String expiryYear1;
-	private String cvv1;
 	private String number2;
 	private String expiryMonth2;
 	private String expiryYear2;
-	private String cvv2;
 	private String number;
 	private String expiryMonth;
 	private String expiryYear;
-	private String cvv;
+	private String CVV;
+	private String cvv1;
+	private String cvv2;
 	
 	public String getNumber() {
 		return number;
@@ -33,12 +33,6 @@ public class CreditCardDetails {
 	public void setExpiryYear(String expiryYear) {
 		this.expiryYear = expiryYear;
 	}
-	public String getCVV() {
-		return cvv;
-	}
-	public void setCvv(String cvv) {
-		this.cvv = cvv;
-	}
 	public String getNumber1() {
 		return number1;
 	}
@@ -57,12 +51,7 @@ public class CreditCardDetails {
 	public void setExpiryYear1(String expiryYear1) {
 		this.expiryYear1 = expiryYear1;
 	}
-	public String getCvv1() {
-		return cvv1;
-	}
-	public void setCvv1(String cvv1) {
-		this.cvv1 = cvv1;
-	}
+
 	public String getNumber2() {
 		return number2;
 	}
@@ -80,6 +69,19 @@ public class CreditCardDetails {
 	}
 	public void setExpiryYear2(String expiryYear2) {
 		this.expiryYear2 = expiryYear2;
+	}
+	
+	public String getCVV() {
+		return CVV;
+	}
+	public void setCVV(String cVV) {
+		CVV = cVV;
+	}
+	public String getCvv1() {
+		return cvv1;
+	}
+	public void setCvv1(String cvv1) {
+		this.cvv1 = cvv1;
 	}
 	public String getCvv2() {
 		return cvv2;

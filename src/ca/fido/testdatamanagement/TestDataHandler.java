@@ -53,7 +53,6 @@ public class TestDataHandler {
 	public static AALData testCase05;
 	public static AALData testCase06;
 	public static PPCData testCase07;
-	public static PPCData testCase08;
 	public static AccountData tc6062;
 	public static AccountData tc002003;
 	public static AccountData tc61;
@@ -144,9 +143,8 @@ public class TestDataHandler {
     	testCase03 = YamlHandler.getHUPData("tc03HUP");
     	testCase04 = YamlHandler.getHUPData("tc04HUP");
     	testCase05 = YamlHandler.getAALData("tc05AALTerm");
-    	testCase06 = YamlHandler.getAALData("tc06AALByod");
+    	testCase06 = YamlHandler.getAALData("tc06AALBYOD");
     	testCase07 = YamlHandler.getPPCData("tc07PPC");
-    	testCase08 = YamlHandler.getPPCData("tc08AALTerm");
 	}
 
 }

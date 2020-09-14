@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","AALBFA"})
 	public void aalBYODFlowTest() {
 		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Fido Home Page");

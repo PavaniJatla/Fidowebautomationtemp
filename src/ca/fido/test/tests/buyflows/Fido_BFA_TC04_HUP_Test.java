@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC04_HUP_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","HUPBFA"})
 	public void hupFlowTest() {
 		reporter.reportLogWithScreenshot("Fido Home page");
 		fido_home_page.clkLogin();

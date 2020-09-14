@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC07_PPC_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
 	public void ppcFlowTest() {
 		reporter.reportLogWithScreenshot("Fido Home page");
 		fido_home_page.clkLogin();

@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC05_AAL_Term_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
 	public void aalTermFlowTest() {
 		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Fido Home Page");

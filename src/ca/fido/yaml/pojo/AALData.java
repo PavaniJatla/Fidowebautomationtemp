@@ -7,6 +7,10 @@ public class AALData {
 	private String username;
 	private String password;
 	private String ctnCity;
+	private String ctn;
+	private String newPlanType;
+	
+	
 	/**
 	 * @return the newDevice
 	 */
@@ -66,6 +70,18 @@ public class AALData {
 	 */
 	public void setCtnCity(String ctnCity) {
 		this.ctnCity = ctnCity;
+	}
+	public String getCtn() {
+		return ctn;
+	}
+	public void setCtn(String ctn) {
+		this.ctn = ctn;
+	}
+	public String getNewPlanType() {
+		return newPlanType;
+	}
+	public void setNewPlanType(String newPlanType) {
+		this.newPlanType = newPlanType;
 	}
 	
 }

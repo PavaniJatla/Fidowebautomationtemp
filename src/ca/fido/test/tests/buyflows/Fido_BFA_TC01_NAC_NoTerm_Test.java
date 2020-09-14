@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC01_NAC_NoTerm_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA"})
 	public void fidoNACFlow() {
 		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Home Page");

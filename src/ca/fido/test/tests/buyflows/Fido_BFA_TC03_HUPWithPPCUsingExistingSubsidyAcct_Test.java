@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC03_HUPWithPPCUsingExistingSubsidyAcct_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
 	public void hupWithPPCUsingExistingSubsidyAcctFlowTest() {
 		reporter.reportLogWithScreenshot("Fido Home page");
 		fido_home_page.clkLogin();
