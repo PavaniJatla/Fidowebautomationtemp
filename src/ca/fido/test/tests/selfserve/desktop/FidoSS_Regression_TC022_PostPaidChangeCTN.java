@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		closeSession();
 	} 
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postPaidDashBoardChangeCTN() {
 		
 		fido_home_page.clkLogin();

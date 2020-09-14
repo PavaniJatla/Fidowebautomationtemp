@@ -25,7 +25,7 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 	}
 	
 	
-	@Test 
+	@Test (groups = {"RegressionSS","DashboardSS"})
 	public void postpaidSuspendedCTN() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

@@ -26,7 +26,7 @@ public class FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountN
 	}
 	
 	
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc05ValidateRecoverPassUsingSms() {
 		fido_home_page.clkLogin();
 		reporter.reportLogWithScreenshot("Login Page");

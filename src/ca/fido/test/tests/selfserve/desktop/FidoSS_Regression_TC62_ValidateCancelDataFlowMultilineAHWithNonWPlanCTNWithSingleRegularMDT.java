@@ -36,7 +36,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 	}
 	
 	
-	@Test(groups = { "CancelMDT" })
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();

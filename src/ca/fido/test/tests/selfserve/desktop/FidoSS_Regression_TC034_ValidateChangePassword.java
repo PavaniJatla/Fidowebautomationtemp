@@ -28,7 +28,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 	}
 	
 	
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndEditProfileUpdatePassword() throws InterruptedException, ParseException, IOException {
 
 		fido_home_page.clkLogin();

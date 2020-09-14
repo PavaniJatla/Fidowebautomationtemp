@@ -26,7 +26,7 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 		closeSession();
 	}
 	
-	@Test 
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postpaidUpdateSIMCard() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

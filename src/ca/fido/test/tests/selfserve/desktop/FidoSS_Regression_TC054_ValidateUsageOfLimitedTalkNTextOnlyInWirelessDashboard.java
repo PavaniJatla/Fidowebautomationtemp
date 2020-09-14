@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateLimitedTalkNTextUsageinWirelessDashboard(){
 		reporter.reportLogWithScreenshot("DashBoard Talk and Text Usage verification started");
 		fido_home_page.clkLogin();

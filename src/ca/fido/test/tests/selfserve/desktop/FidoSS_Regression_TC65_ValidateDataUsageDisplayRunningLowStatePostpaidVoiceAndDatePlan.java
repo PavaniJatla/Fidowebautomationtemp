@@ -41,7 +41,7 @@ public class FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostp
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validatewirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();

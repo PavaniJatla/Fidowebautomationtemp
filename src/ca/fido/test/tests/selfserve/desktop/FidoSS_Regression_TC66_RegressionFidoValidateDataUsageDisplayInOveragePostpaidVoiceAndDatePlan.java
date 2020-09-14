@@ -42,7 +42,7 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateDemolineValidateUTEwirelessDashboardPageWithOverageDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();

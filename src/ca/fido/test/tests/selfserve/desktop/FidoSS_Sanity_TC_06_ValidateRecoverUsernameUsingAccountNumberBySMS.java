@@ -26,7 +26,7 @@ public class FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS 
 	}
 
 	
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc06ValidtRecvUsrnameByAccNumUsingSms() {				
 		fido_home_page.clkLogin();
 		reporter.reportLogWithScreenshot("Login Page");

@@ -132,10 +132,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
 	WebElement menuOverviewMobile;
-	
+
 	@FindBy(xpath = "//*[@class='modal-dialog']//*[@translate='global.label.profileAndSettings']")
 	WebElement menuProfileAndSettingsMobile;
-	
+
 	@FindBy(xpath = "//ins[@translate='global.message.myAccountNoPaymentHistory']")
 	WebElement labelNoPaymentMade;
 
@@ -348,9 +348,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.waitForElementTobeClickable(menuProfileAndSettingsMobile, 10);
 		reusableActions.getWhenReady(menuProfileAndSettingsMobile).click();	
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Click on the menu Usage Service
 	 * @author Ning.Xue
@@ -492,19 +492,19 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			buttonPayNow = btnPayNow;
 		}
 
-        while (counter<=3 && !displayed) {
-        	//Long wait time to make the page load 
-        	reusableActions.staticWait(10000);
-    		reusableActions.waitForElementVisibility(buttonPayNow,120);		
-    		reusableActions.waitForElementTobeClickable(buttonPayNow, 240);
-    		reusableActions.getWhenReady(buttonPayNow,120);    		
-    		reusableActions.executeJavaScriptClick(buttonPayNow);
-    		reusableActions.staticWait(3000);
-    		if(reusableActions.isElementVisible(txtAmount))
-    		{
-    			displayed=true;
-    		}
-    		
+		while (counter<=3 && !displayed) {
+			//Long wait time to make the page load 
+			reusableActions.staticWait(10000);
+			reusableActions.waitForElementVisibility(buttonPayNow,120);		
+			reusableActions.waitForElementTobeClickable(buttonPayNow, 240);
+			reusableActions.getWhenReady(buttonPayNow,120);    		
+			reusableActions.executeJavaScriptClick(buttonPayNow);
+			reusableActions.staticWait(3000);
+			if(reusableActions.isElementVisible(txtAmount))
+			{
+				displayed=true;
+			}
+
 			counter++;
 			reusableActions.staticWait(3000);
 		}
@@ -566,10 +566,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {
-		reusableActions.waitForElementVisibility(infoAccountBalance,90);
-		String strBalance = reusableActions.getWhenReady(infoAccountBalance,10).getText();
-		return NumberUtils.isCreatable(strBalance);		
-		//return reusableActions.isElementVisible(infoAccountBalance,20);
+		reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+		String strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+		return NumberUtils.isCreatable(strBalance);	
 	}
 
 	/**

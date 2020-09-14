@@ -32,7 +32,7 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","BillingAndPaymentsSS"})
 	public void postPaidPaymentHistoryDataValidations() throws InterruptedException {
 		
 		fido_home_page.clkLogin();

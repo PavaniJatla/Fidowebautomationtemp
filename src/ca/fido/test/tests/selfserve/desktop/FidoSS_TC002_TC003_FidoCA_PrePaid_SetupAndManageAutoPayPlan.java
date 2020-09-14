@@ -27,7 +27,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 	}
 	
 	  	
-	@Test
+	@Test(groups = {"RegressionSS","BillingAndPaymentsSS","PrepaidSS"})
 	public void prepaidSetUpAutoPayRefill() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

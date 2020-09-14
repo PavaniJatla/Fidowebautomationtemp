@@ -29,7 +29,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 	}
 	
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void userAddNumberForRecovery() {
 		int itr = 1;
 		fido_home_page.clkLogin();

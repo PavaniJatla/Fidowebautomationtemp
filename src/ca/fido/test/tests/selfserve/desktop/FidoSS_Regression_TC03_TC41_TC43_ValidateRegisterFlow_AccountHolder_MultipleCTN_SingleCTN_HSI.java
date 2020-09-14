@@ -43,7 +43,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
                     	  +TestDataHandler.tc43.getaccountDetails().getEmail()}};
     }
  
-    @Test(dataProvider = "data-provider")
+    @Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"})
 	public void acctHolderValidateRegisterFlow(String strBanPostcodeEmail) {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

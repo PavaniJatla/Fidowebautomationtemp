@@ -34,7 +34,7 @@ public class FidoSS_Regression_TC050_ValidateLegacyWirelessDashboardPage extends
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validatePostPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		fido_home_page.clkLogin();
 		String userName = TestDataHandler.tc5055.getUsername();

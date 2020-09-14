@@ -25,7 +25,7 @@ public class FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile extends Bas
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidSubscriberUpdateProfile() throws InterruptedException, ParseException {
 		
 		fido_home_page.clkLogin();
