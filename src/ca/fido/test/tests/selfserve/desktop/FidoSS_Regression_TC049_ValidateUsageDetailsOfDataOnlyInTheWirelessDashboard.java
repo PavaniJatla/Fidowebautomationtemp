@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC049_ValidateUsageDetailsOfDataOnlyInTheWireless
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateUsageDetailOfDataOnly() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		fido_home_page.clkLogin();	
 		String userName = TestDataHandler.tc49.getUsername();

@@ -30,7 +30,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 	}
 	
 
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndEditProfileContactsForHSI() throws InterruptedException, ParseException {
 		
 		fido_home_page.clkLogin();

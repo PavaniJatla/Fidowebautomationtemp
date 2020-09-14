@@ -33,7 +33,7 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 	}
 	
 
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postpaidVerifyBillNotification() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

@@ -29,7 +29,7 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
         						+TestDataHandler.tc40.getaccountDetails().getPostalCode() } };
     }
 	
-	@Test(dataProvider = "data-provider") 
+	@Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"}) 
 	public void acctHolderValidateRegisterFlowWithCancelledOrSuspended(String strUserDetails) {
 		reporter.reportLogWithScreenshot("Home Page");
 		fido_home_page.clkLogin();

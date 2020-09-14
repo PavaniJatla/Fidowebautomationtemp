@@ -26,7 +26,7 @@ public class FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile extends 
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"})
 	public void validateRegisterWithExistingProfile() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

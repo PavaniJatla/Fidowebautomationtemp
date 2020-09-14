@@ -27,7 +27,7 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		closeSession();
 	}
 
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndEditProfileUpdateUserName() throws InterruptedException, ParseException, IOException {
 		
 		//First attempt

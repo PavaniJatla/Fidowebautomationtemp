@@ -24,7 +24,7 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 		closeSession();
 	}
 	
-	@Test 
+	@Test(groups = {"RegressionSS","DashboardSS"}) 
 	public void postpaidLostOrStolen() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

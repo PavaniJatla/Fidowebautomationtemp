@@ -27,7 +27,7 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 	}
 	
 	
-	@Test
+	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void userAddNumberForRecovery() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

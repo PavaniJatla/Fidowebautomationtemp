@@ -33,7 +33,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	}
 	
 	
-	@Test(groups = {"SanitySS","SSBillingAndPayments"})
+	@Test(groups = {"SanitySS","BillingAndPaymentsSS"})
 	public void postPaidChangeMOP() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

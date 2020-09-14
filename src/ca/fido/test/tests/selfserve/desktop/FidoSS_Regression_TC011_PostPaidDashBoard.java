@@ -33,7 +33,7 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"SanitySS","SSDashboard"})
+	@Test(groups = {"SanitySS","RegressionSS","DashboardSS"})
 	public void postPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification started");
 		fido_home_page.clkLogin();
