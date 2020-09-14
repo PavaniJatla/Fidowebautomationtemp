@@ -564,8 +564,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {
-	  reusableActions.waitForElementVisibility(infoAccountBalance,90);
-	 String strBalance = reusableActions.getWhenReady(infoAccountBalance,10).getText();
+	 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+	 String strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
      return NumberUtils.isCreatable(strBalance);	
 	}
 	
