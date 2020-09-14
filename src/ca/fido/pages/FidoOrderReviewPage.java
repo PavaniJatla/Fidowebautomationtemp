@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -18,6 +19,9 @@ public class FidoOrderReviewPage extends BasePageClass {
 	@FindBy(xpath="//label[@for='terms1']")
 	WebElement lblTermsNConditionsConsent;
 	
+	@FindBy(xpath="//div[@class='ds-terms-conditions__consent']//div[@class='ds-checkbox__box my-12']")
+	List<WebElement> termsCheckBoxes;
+	
 	@FindBy(xpath="//div[contains(@class,'ds-checkbox__box my')]")
 	WebElement chkBoxTermsNConditionsConsentAAL;
 	
@@ -29,7 +33,8 @@ public class FidoOrderReviewPage extends BasePageClass {
 	
 	@FindAll({
 		@FindBy(xpath = "//div[@class='ds-terms-conditions__consent']//following-sibling::div//input[@id='ds-radio-input-id-11']//ancestor::ds-radio-button//div[@class='ds-radioButton__innerCircle']"),
-		@FindBy(xpath = "//label[@for='digital-copy' or @for='ds-radio-input-id-2']")
+		@FindBy(xpath = "//label[@for='digital-copy' or @for='ds-radio-input-id-2']"),
+		@FindBy(xpath = "//ds-radio-button[@class='ds-radioButton']//label[@for='ds-radio-input-id-19']//div[@class='ds-radioButton__innerCircle']")
 	})
 	WebElement lblContractDigitalCopy;
 	
@@ -39,7 +44,8 @@ public class FidoOrderReviewPage extends BasePageClass {
 	@FindBy(xpath="//p[@class='msgLoad' and @checkout-res='checkout_waiting_msg']")
 	WebElement lblOrderProcessing;
 	
-	@FindBy(xpath="//span[@translate='btn_complete_order']/parent::button")
+	//span[@translate='btn_complete_order' or @translate='btn_continue_to_payment'  ]/parent::button
+	@FindBy(xpath="//span[@translate='btn_complete_order' or @translate='btn_continue_to_payment']/parent::button")
 	WebElement btnCompleteOrder;
 	
 	//@FindBy(xpath="//input[@id='email']")
@@ -59,7 +65,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public void clkSubmitMyOrder() {
 		reusableActions.clickWhenReady(btnSubmitMyOrder);
-		reusableActions.waitForElementVisibility(btnSubmitMyOrder, 60);
+		//reusableActions.waitForElementVisibility(btnSubmitMyOrder, 60);
 	}
 	
 	/**
@@ -87,7 +93,19 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkTermsNConditionsConsent() {
-		reusableActions.clickWhenVisible(lblTermsNConditionsConsent, 60);
+			reusableActions.clickWhenVisible(lblTermsNConditionsConsent, 60);
+	}
+	
+	/**
+	 * Clicks on all 'Terms and Agreement' checkbox for NAC flow
+	 * @author Saurav.Goyal
+	 */
+	public void clkAllTermsAgreementCheckboxsNAC() {
+		reusableActions.waitForAllElementsVisible(termsCheckBoxes, 60);
+		for(WebElement element:termsCheckBoxes) {
+			reusableActions.waitForElementVisibility(element, 30);
+			reusableActions.clickWhenReady(element,30);
+		}
 	}
 	
 	/**
@@ -113,7 +131,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public void setContractDigitalCopyEmail(String strEmail) {
 		reusableActions.clickWhenReady(lblContractDigitalCopy);
-		if(reusableActions.isElementVisible(txtEmailAddress,1)) {
+		if(reusableActions.isElementVisible(txtEmailAddress,10)) {
 			txtEmailAddress.sendKeys(strEmail);
 		}
 	}
@@ -142,7 +160,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkCompleteOrder() {
-		reusableActions.clickWhenReady(btnCompleteOrder);
+		reusableActions.clickWhenReady(btnCompleteOrder,30);
 	}
 	
 	/**

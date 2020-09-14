@@ -3,6 +3,7 @@ package ca.fido.pages;
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -12,7 +13,10 @@ public class FidoChooseNumberPage extends BasePageClass {
 		super(driver);		
 	}
 
-	@FindBy(xpath="//span[@checkout-res='checkout_select_new_number']")
+	@FindAll({
+		@FindBy(xpath="//span[@checkout-res='checkout_select_new_number']"),
+		@FindBy(xpath="//button[contains(@id,'ds-tabs-2-tab-0')]//div")
+	})
 	WebElement btnSelectNewNumber;
 	
 	@FindBy(xpath="//span[@checkout-res='checkout_use_existing_number']")
@@ -21,14 +25,20 @@ public class FidoChooseNumberPage extends BasePageClass {
 	@FindBy(xpath="//button[@name='button_avail' and contains(@ng-click,'getAvailableNumbers')]")
 	WebElement btnFindAvailableNumbers;
 	
-	@FindBy(xpath="//select[@name='selectedCity']")
+	@FindAll({
+		@FindBy(xpath="//select[@name='selectedCity']"),
+		@FindBy(xpath="//ds-form-field[@data-test='choose-number-city']//select")
+	})
 	WebElement ddlCity;
 	
-	@FindBy(xpath="//div[contains(@class,'ctn-available-numbers')]//label")
+	@FindBy(xpath="(//ds-radio-group[@formcontrolname='newNumber']//div[@class='ds-radioButton__innerCircle'])[1]")
 	WebElement lblAvailableNumbers;
 	
-	@FindBy(xpath="//button[@name='button_continue']")
-	WebElement btnContinue;
+	@FindBy(xpath="//button[@data-test='choose-number-continue']")
+	WebElement btnContinueChooseANumberSection;
+	
+	@FindBy(xpath="//button[@data-test='choose-number-continue' and @disabled='true']")
+	WebElement disabledBtnContinueChooseANumberSection;
 	
 	/**
 	 * Clicks on the 'Select a number for your new phone' button
@@ -69,6 +79,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void selectFirstAvailableNumber() {
+		reusableActions.waitForElementTobeClickable(btnContinueChooseANumberSection, 30);
 		reusableActions.executeJavaScriptClick(lblAvailableNumbers);
 	}
 	
@@ -77,7 +88,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkContinue() {
-		reusableActions.clickWhenVisible(btnContinue);
+		reusableActions.clickWhenVisible(btnContinueChooseANumberSection);
 	}
 	
 }

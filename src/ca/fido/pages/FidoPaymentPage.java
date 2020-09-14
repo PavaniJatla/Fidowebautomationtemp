@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-
-
+import utils.FormFiller;
 
 public class FidoPaymentPage extends BasePageClass {
 
@@ -50,8 +50,10 @@ public class FidoPaymentPage extends BasePageClass {
 	   
 	@FindBy(xpath = "//button[contains(@class,'pay-now-button-secondary uppercase width-100 ds-button -primary')]")
 	WebElement btnPaymentConfirmationMobile;
-	
-	@FindBy(xpath="//iframe[@id='sema']")
+	@FindAll({
+		@FindBy(xpath="//iframe[@id='sema']"),
+		@FindBy(xpath="//div[contains(@class,'iframe')]//iframe")
+	})
 	WebElement frmCreditCard;
 	
 	@FindBy(xpath="//input[@id='maskedPan']")
@@ -71,6 +73,81 @@ public class FidoPaymentPage extends BasePageClass {
 	
 	@FindBy(xpath="//span[@translate='btn_complete_order']/parent::button")
 	WebElement btnCompleteOrder;
+	
+	@FindBy(xpath="//input[@id='ds-radio-input-id-21']/parent::label//div[@class='ds-radioButton__outerCircle my-12']")
+	WebElement rdoPayWithAnotherCC;
+	
+	@FindBy(xpath = "//button[contains(@class,'-primary -large')]")
+	WebElement btnSubmitMyOrder;
+	
+	@FindAll({
+		@FindBy(xpath="//select[@name='month']"),
+		@FindBy(xpath="//input[@formcontrolname='expiryDate']/parent::div")
+	})
+	WebElement ddlCreditCardExpiryMonthAndYear;
+	
+	@FindBy(xpath="//input[@formcontrolname='expiryDate']")
+	WebElement lblDdlCreditCardExpiryMonthAndYear;
+	
+	@FindBy(xpath="//input[@formcontrolname='cvv']/parent::div")
+	WebElement creditCardCvv;
+	
+	@FindBy(xpath="//input[@formcontrolname='cvv']")
+	WebElement lblCreditCardCvv;
+	
+	@FindBy(xpath="//input[@formcontrolname='name']/parent::div")
+	WebElement txtFirstName;
+	
+	@FindBy(xpath="//input[@formcontrolname='name']")
+	WebElement lblTxtFirstName;
+	
+	/**
+	 * Set the dynamic Name on the credit card
+	 * @author Saurav.Goyal
+	 */
+	public void setCreditCardName(){
+		String strName = FormFiller.generateRandomName();
+		String strFname="Fido"+ strName;
+		reusableActions.getWhenReady(txtFirstName, 3).click();
+		reusableActions.getWhenReady(lblTxtFirstName,3).sendKeys(strFname);
+	}
+	
+	/**
+	 * Enter Credit Card Expiry month and year 
+	 * @param monthAndYear in numbers like 0112,0212,....,1212
+	 * @author Saurav.Goyal
+	 */
+	public void setCreditCardExpiryMonthAndYear(String monthAndYear) {
+		reusableActions.getWhenReady(ddlCreditCardExpiryMonthAndYear, 10).click();
+		reusableActions.getWhenReady(lblDdlCreditCardExpiryMonthAndYear,10).sendKeys(monthAndYear);
+	}
+	
+	/**
+	 * Enter Credit Card cvv number
+	 * @param cvv in numbers like 011
+	 * @author Saurav.Goyal
+	 */
+	public void setCreditCardCvv(String cvv) {
+		reusableActions.getWhenReady(creditCardCvv, 10).click();
+		reusableActions.getWhenReady(lblCreditCardCvv,10).sendKeys(cvv);
+	}	
+	
+	/**
+	 * Clicks on the 'Submit my order' button
+	 * @author Saurav.Goyal
+	 */
+	public void clkSubmitMyOrder() {
+		reusableActions.clickWhenReady(btnSubmitMyOrder);
+		//reusableActions.waitForElementVisibility(btnSubmitMyOrder, 60);
+	}
+	
+	/**
+	 * Selects pay with another Credit card option radio button on the one time payment page
+	 * @author Saurav.Goyal
+	 */
+	public void clkRadioPayWithAnotherCreditCard() {		
+		reusableActions.getWhenReady(rdoPayWithAnotherCC,30).click();
+	}
 	
 	/**
 	 * Selects the Credit card option radio button on the payment page
@@ -226,6 +303,19 @@ public class FidoPaymentPage extends BasePageClass {
 		reusableActions.selectWhenReadyByVisibleText(ddlCreditCardExpiryYear, strCCYr);
 		
 		txtCreditCardCVV.sendKeys(strCVV);
+	}
+	
+	/**
+	 * Enters the Credit Card Number
+	 * @param ccNumber Credit Card Number
+	 * @author rajesh.varalli1
+	 */
+	public void setCreditCardNumber(String ccNumber) {
+		driver.switchTo().frame(frmCreditCard);
+		reusableActions.staticWait(5000);
+		txtCreditCardNumber.click();
+		txtCreditCardNumber.sendKeys(ccNumber);
+		driver.switchTo().defaultContent();//checkout-res="checkout_credit_card_number"
 	}
 	
 	/**
