@@ -107,7 +107,8 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[contains(@class,'hidden-xs')]//ins[@translate='global.label.paymentHistoryView']")
 	WebElement lnkPaymentHistoryOnConfirmationPageFooter;
 	
-	
+	@FindBy(xpath = "//ins[@translate='global.label.paymentHistoryView']")
+	WebElement lnkPaymentHistoryOnConfirmationPageFooterMobile;
 	
 	/**
 	 * Set the Pre-Auth credit card at semaphone frame on the payment options page
@@ -195,9 +196,9 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 * @param interac payment option to pay to buy Internet offer
 	 * @author Mirza.Kamran
 	 */
-	public void selectHowWouldYouLikeToPay(ca.fido.test.helpers.FidoEnums.MakePayOptions interac) {
+	public void selectHowWouldYouLikeToPay(ca.fido.test.helpers.FidoEnums.MakePayOptions enumPaymentOpt) {
 		//writing the below element in method since we want to dynamically generate this at run time
-		By rdoPaymentOptionLocater=By.xpath("//label[@for='"+interac.toString()+"']/ins");		
+		By rdoPaymentOptionLocater=By.xpath("//label[@for='"+enumPaymentOpt.toString()+"']/ins");		
 		WebElement rdoPaymentOption=reusableActions.getDriver().findElement(rdoPaymentOptionLocater);
 		reusableActions.javascriptScrollByVisibleElement(rdoPaymentOption);//(rdoPaymentOption);
 		reusableActions.executeJavaScriptClick(rdoPaymentOption);
@@ -280,6 +281,14 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public void clkPaymentHistoryLinkOnConfirmationPage() {
 		reusableActions.clickWhenReady(lnkPaymentHistoryOnConfirmationPageFooter);
+	}
+	
+	/**
+	 * Cliks on the link 'Payment history' on the transaction confirmation page
+	 * @author Mirza.Kamran
+	 */
+	public void clkPaymentHistoryLinkOnConfirmationPageMobile() {
+		reusableActions.clickWhenReady(lnkPaymentHistoryOnConfirmationPageFooterMobile);
 	}
 	
 	/**
