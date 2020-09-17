@@ -344,8 +344,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkMenuProfileNSettingMobile() {
+		reusableActions.waitForElementTobeClickable(menuOverviewMobile, 60);
 		reusableActions.getWhenReady(menuOverviewMobile).click();
-		reusableActions.waitForElementTobeClickable(menuProfileAndSettingsMobile, 10);
+		reusableActions.waitForElementTobeClickable(menuProfileAndSettingsMobile, 30);
 		reusableActions.getWhenReady(menuProfileAndSettingsMobile).click();	
 	}
 
