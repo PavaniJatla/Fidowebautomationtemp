@@ -92,6 +92,7 @@ public class Mobile_FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestCl
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyMobilePlanDashBoardSectionIsDisplayed(),
 							"My Mobile plan dashboard section is displayed",
 							"My mobile plan details section is not displayed");
+		fido_wireless_dashboard_postpaid_page.clkViewDetailsMyPlan();
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkViewFullPlanDetailsOnMyMobilePlanDashBoardSectionIsDisplayed(),
 							"Link View Flull plan details is displayed on My mobile plan section",
 							"Link View Flull plan details is NOT displayed on My mobile plan section");

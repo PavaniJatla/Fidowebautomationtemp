@@ -294,6 +294,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']/div[@title='Close' or @title='Fermer']")
 	WebElement btnCloseOnCallOut;
+
+	@FindBy(xpath = "//a/span[@translate='wireless.dashboard.myPlan.viewDetailsCTA']")
+	WebElement lnkViewDetailsMyPlan;
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -1278,6 +1281,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextRemainingMinutesIsDisplayed() {
 		return reusableActions.isElementVisible(textRemainingMinutes);
+	}
+
+
+	/**
+	 * Clicks on the view details link
+	 * @author Mirza.Kamran
+	 */
+	public void clkViewDetailsMyPlan() {
+		reusableActions.getWhenReady(lnkViewDetailsMyPlan).click();
 	}
 	
 }
