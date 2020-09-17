@@ -98,6 +98,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//button/span[text()='CHANGE PLAN' or text()='CHANGER DE FORFAIT']")
 	WebElement btnChangePlan;	
 	
+	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA']")
+	WebElement btnChangePlanMobile;
+	
 	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.planDetailsModel.fullPlanDetails']")
 	WebElement headerFullPlanDetailsOverlay;
 	
@@ -106,6 +109,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.talk']")
 	WebElement divMyPlanTalkDetails;
+	
+	@FindBy(xpath = "//span[@translate='usageModule.talkAndText.unlimited']")
+	WebElement divTalkAndTextMobile;
 	
 	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.text']")
 	WebElement divMyPlanText;
@@ -788,6 +794,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	}
 	
 	/**
+	 * checks link view full plan details on My Mobile Plan section on dashboard page is displayed
+	 * @return true if the element is displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyButtonChangePlanMyMobilePlanDashBoardSectionIsDisplayedMobile() {
+		System.out.println("Button change Plan  is being checked");
+		return reusableActions.isElementVisible(btnChangePlanMobile);
+				
+	}
+	
+	
+	/**
 	 * checks My Mobile Plan section on dashboard page is displayed
 	 * @return true if the element is displayed else false
 	 * @author Mirza.Kamran
@@ -1291,5 +1309,14 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public void clkViewDetailsMyPlan() {
 		reusableActions.getWhenReady(lnkViewDetailsMyPlan).click();
 	}
+	
+	/**
+	 * Checks if talk and text section for mobile is displayed
+	 * @return
+	 */
+	public boolean verifyTalkandTextPlanDetailsSectionIsDisplayedMobile() {		
+		return reusableActions.isElementVisible(divTalkAndTextMobile);
+	}
+
 	
 }
