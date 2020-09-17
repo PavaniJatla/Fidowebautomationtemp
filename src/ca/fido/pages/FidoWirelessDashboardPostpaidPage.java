@@ -755,7 +755,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public Boolean verifyViewFullPlanDetails()
 	{						
-		reusableActions.clickIfAvailable(lnkViewFullPlan);
+		reusableActions.getWhenReady(lnkViewFullPlan).click();
 		reusableActions.waitForElementTobeClickable(headerFullPlanDetailsOverlay, 30);		
 		if(!reusableActions.isElementVisible(headerFullPlanDetailsOverlay))
 		{		
