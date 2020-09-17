@@ -41,8 +41,7 @@ public class Mobile_FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestCl
 		fido_home_page.clkLoginMobile();
 		String userName = "";
 		String password = "";
-		
-		
+				
 		userName = TestDataHandler.tc1122.getUsername();
 		password = TestDataHandler.tc1122.getPassword();	
 		fido_login_page.switchToSignInFrame();
@@ -74,17 +73,17 @@ public class Mobile_FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestCl
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Label N days reming for Bill cycle is displayed",
 							"Label N days remaining for Bill cycle is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
-							"Talk plan is displayed",
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkandTextPlanDetailsSectionIsDisplayedMobile(),
+							"Talk and Text plan is displayed",
 							"Talk plan is not displayed");
 	
 			reporter.reportLogWithScreenshot("Non-demo line account dashboard page is displayed");
 			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataDelayedIsDisplayed(),
 								"label data delayed is displayed for Non demo line account",
 								"label data delayed is  not displayed for non-demoline account");		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
-							"Talk plan details section is displayed",
-							"Talk plan details section is not displayed");
+		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
+		//					"Talk plan details section is displayed",
+		//					"Talk plan details section is not displayed");
 		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextPlanDetailsSectionIsDisplayed(),
 		//					"Text plan details section is displayed",
 		//					"Text plan details section is not displayed");
