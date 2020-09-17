@@ -71,9 +71,9 @@ public class Mobile_FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		reporter.hardAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
 							"Payment successful message displayed",
 							"Payment successful message not displayed");
-		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPage();
+		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPageMobile();
 		reporter.reportLogWithScreenshot("Payment history page selected");
-		reporter.hardAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),
+		reporter.hardAssert(fido_payment_history_page.verifyThePaymentHistoryRecordMobile(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),
 							"Payment history record is verified for credit  card :"+refNo,
 							"Payment history record is not verified for credit card payment ref no :"+refNo);
 	}

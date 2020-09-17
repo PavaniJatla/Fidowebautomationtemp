@@ -28,6 +28,9 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 		
 	@FindBy(xpath = "//td[@data-title=\"'wireless.label.amount' | translate\"]")
 	WebElement cellAmount;
+
+	@FindBy(xpath = "//td[@data-title=\"'global.label.referenceNumber' | translate\"]")
+	List<WebElement> rowPaymentHistoryMobile;
 	 
 	/**
 	 * Will verify the Fido transaction record
@@ -407,6 +410,26 @@ public class FidoPaymentHistoryPage extends BasePageClass {
    			return true;
    		}
    }
+   
+   
+   
+   /**
+	 * Checks the payment history for reference number
+	 * @param strRefNumber Reference number string
+	 * @return true if reference matches else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyThePaymentHistoryRecordMobile(String strRefrenceNumber,MakePayOptions enumPayOption) {
+		reusableActions.waitForElementTobeClickable(rowPaymentHistoryMobile.get(0), 30);
+		for (WebElement row : rowPaymentHistoryMobile) {
+			if(row.getText().contains(strRefrenceNumber))
+			{
+				return true;				
+			}
+		}		
+		return false;
+	}
+	
    
    /**
     * It will verify if the successful transaction row is displayed correctly in the payment history table
