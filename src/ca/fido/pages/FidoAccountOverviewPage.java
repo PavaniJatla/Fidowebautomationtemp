@@ -570,9 +570,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifySuccessfulLogin() {
-		reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
-		String strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
-		return NumberUtils.isCreatable(strBalance);	
+		String strBalance ="";
+		try {
+			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			 strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+		}catch (StaleElementReferenceException e) {
+			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+		}
+     return NumberUtils.isCreatable(strBalance);	
 	}
 
 	/**
