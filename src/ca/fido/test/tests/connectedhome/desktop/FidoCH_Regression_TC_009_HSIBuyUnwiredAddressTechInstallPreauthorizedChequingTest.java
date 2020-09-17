@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 
 
 /**
- * This class contains the test method to test the HSI buy flow with unwired address, techinstall and preauthorized chequing for Fido.ca   
+ * This class contains the test method to test the HSI buy flow with un-wired address, tech-install and preauthorized chequing for Fido.ca
  * 
  * @author chinnarao.vattam
  * 
@@ -40,16 +40,14 @@ public class FidoCH_Regression_TC_009_HSIBuyUnwiredAddressTechInstallPreauthoriz
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkBuyUnwiredAddressTechInstallPreauthorizedChequingTest() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
         fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        

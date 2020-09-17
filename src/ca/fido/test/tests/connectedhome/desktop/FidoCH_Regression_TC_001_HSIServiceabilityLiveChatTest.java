@@ -32,16 +32,14 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends Base
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIServiceabilityLiveChatFlow() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Home Internet has selected");
         fido_Shop_internet_page.clkCheckAvailability();
         reporter.reportLogWithScreenshot("Launched the Internet Page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkCheckAvailabilityConfirmation(); 

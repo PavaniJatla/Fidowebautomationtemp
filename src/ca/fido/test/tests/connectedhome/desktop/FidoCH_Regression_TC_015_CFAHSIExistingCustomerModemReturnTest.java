@@ -55,7 +55,7 @@ public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest exte
 		reporter.hardAssert(fido_ssp_retailer_search_results_page.verifyCustomerAuthRemainder(), "Customer Authentication remainder popup has displayed", "Customer Authentication remainder popup hasn't displayed");
 		reporter.reportLogWithScreenshot("Customer Authentication remainder popup");
 		fido_ssp_retailer_search_results_page.clkContinue();		
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");		
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");

@@ -40,9 +40,9 @@ public class FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTes
 		retailer_champ_page.clkSignIn();		
 		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
 		retailer_champ_page.clkAccept();
-		reporter.reportLogWithScreenshot("Dealercode page has Launched"); 
+		reporter.reportLogWithScreenshot("Dealer code page has Launched");
 		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
-		reporter.reportLogWithScreenshot("Entered the Dealercode");
+		reporter.reportLogWithScreenshot("Entered the Dealer code");
 		retailer_champ_page.clkSubmit();
 		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
 		
@@ -63,7 +63,7 @@ public class FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTes
 		reporter.hardAssert(fido_ssp_retailer_search_results_page.verifyCustomerAuthRemainder(), "Customer Authentication remainder popup has displayed", "Customer Authentication remainder popup hasn't displayed");
 		reporter.reportLogWithScreenshot("Customer Authentication remainder popup");
 		fido_ssp_retailer_search_results_page.clkContinue();		
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");		
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_internet_dashboard_page.clkUsageNService();
 		fido_internet_dashboard_page.clkInternetService();
