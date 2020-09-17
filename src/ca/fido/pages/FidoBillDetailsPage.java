@@ -238,6 +238,8 @@ public class FidoBillDetailsPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public String getsTheSelectedValueInViewBillDropDown() {
+	   reusableActions.waitForElementTobeClickable(ddlViewBill, 30);
+	   reusableActions.staticWait(5000); //buffer waits for mobile scenarios
 	   Select dropdown = new Select(ddlViewBill);		
 	   return dropdown.getFirstSelectedOption().getText();
    }

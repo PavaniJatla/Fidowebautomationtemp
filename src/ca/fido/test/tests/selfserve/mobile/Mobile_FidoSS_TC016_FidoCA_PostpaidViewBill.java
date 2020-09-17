@@ -52,6 +52,7 @@ public class Mobile_FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		fido_account_overview_page.scrollToMiddleOfPage();
 		reporter.reportLogWithScreenshot("Middle of view bill page");
 		fido_bill_details_page.switchToDefaultContent();
+		reporter.reportLogWithScreenshot("Get the bill amount from View Bill drop dwon");
 		String billAmount = fido_bill_details_page.getBillAmountFromViewBillDropDown();	
 		reporter.reportLogWithScreenshot("Bills selected from drop down");
 		if(!billAmount.equals(""))
