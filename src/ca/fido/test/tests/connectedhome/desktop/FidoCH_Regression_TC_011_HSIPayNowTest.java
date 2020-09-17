@@ -72,7 +72,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, strLanguage);
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
-		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.chConfig.getLanguage()),"Payment Success","Payment Failed");
+		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
 		}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

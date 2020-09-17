@@ -28,6 +28,7 @@ import java.lang.reflect.Method;
  **/
 
 public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
+	private String strLanguage=System.getProperty("Language");
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH1"})
 	public void checkFidoHSIPayNowFunctionalityMobile() {
@@ -74,10 +75,10 @@ public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass
 		reporter.hardAssert(fido_payment_page.verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		reporter.reportLogWithScreenshot("payment success widget");	
 		fido_payment_page.clkPaymentConfirmationMobile();		
-		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, TestDataHandler.chConfig.getLanguage());
+		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, strLanguage);
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
-		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.chConfig.getLanguage()),"Payment Success","Payment Failed");
+		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
