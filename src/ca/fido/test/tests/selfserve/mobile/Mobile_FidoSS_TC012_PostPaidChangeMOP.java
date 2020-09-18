@@ -97,7 +97,7 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_account_overview_page.clkChangeMethodOfPayment();
 		reporter.reportLogWithScreenshot("Change method of payment");
 		common_business_flows.scrollToMiddleOfWebPage();
-		fido_payment_options_page.clkPaymentOption(TestDataHandler.paymentInfo.getPaymentType().getBank());
+		fido_payment_options_page.clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getBank());
 		reporter.reportLogWithScreenshot("Change method of payment to bank selected");
 		fido_payment_options_page.setBankTransitNumber(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
 		fido_payment_options_page.setInstitutionNumber(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
