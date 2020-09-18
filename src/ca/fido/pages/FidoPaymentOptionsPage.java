@@ -242,7 +242,24 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		}
 	}
 	
-	
+	/**
+	 * This will select the payment type
+	 * @param strPaymentMode String containing the payment type name
+	 * @author Mirza.Kamran
+	 */
+	public void clkPaymentOptionMobile(String strPaymentMode) {
+		switch (strPaymentMode) {
+		case "Credit Card":
+			clkButtonCreditCard();
+			break;
+
+		case "Bank Account":
+			clkButtonBankAccountMobile();
+			break;
+		default:
+			break;
+		}
+	}
 	
 	/**
 	 * perform click on the Credit card payment type button
@@ -259,6 +276,13 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.clickWhenReady(btnBankAccount);
 	}
 	
+	/**
+	 * Perform click on the bank Account Button
+	 */
+	public void clkButtonBankAccountMobile() {
+		reusableActions.scrollToElement(btnBankAccount);
+		reusableActions.executeJavaScriptClick(btnBankAccount);
+	}
 	
 	/**
 	 * Click on the Paper bill radio button on the make payment page

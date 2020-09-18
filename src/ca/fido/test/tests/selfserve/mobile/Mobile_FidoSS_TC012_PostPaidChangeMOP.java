@@ -88,7 +88,7 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 							"label automatic payment effects displayed",
 							"label automatic payment effects not displayed");
 		
-		//commenting the below check point due to stroy : DC-2754
+		//commenting the below check point due to story : DC-2754
 		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
 							"Button pay balance is displayed",
 							"button pay balanc is not displayed"); */
@@ -96,7 +96,8 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		
 		fido_account_overview_page.clkChangeMethodOfPayment();
 		reporter.reportLogWithScreenshot("Change method of payment");
-		fido_payment_options_page.clkPaymentOption(TestDataHandler.paymentInfo.getPaymentType().getBank());
+		common_business_flows.scrollToMiddleOfWebPage();
+		fido_payment_options_page.clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getBank());
 		reporter.reportLogWithScreenshot("Change method of payment to bank selected");
 		fido_payment_options_page.setBankTransitNumber(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
 		fido_payment_options_page.setInstitutionNumber(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
