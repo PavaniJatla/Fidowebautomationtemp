@@ -83,12 +83,15 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		fido_home_page.clkNavMobile();
 		
 		fido_login_page.clkSignOutMobile();
-		if(fido_home_page.isEasyloginDisplayed())
-		{
-			fido_home_page.clkEasylogin();
-		}
 		reporter.reportLogWithScreenshot("Sign Out clicked.");
+		reporter.reportLogWithScreenshot("waiting to check easy login page is avaialable or not...");
+		if(fido_home_page.isEasyloginDisplayedMobile())
+		{
+			reporter.reportLogWithScreenshot("Easy login page is available");
+			fido_home_page.clkEasylogin();
+		}		
 		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Navigation menu clicked.");
 		fido_login_page.clkResignInAsMobile();
 		reporter.reportLogWithScreenshot("Clicked ReSign In");
 		fido_login_page.switchToSignInFrame();
