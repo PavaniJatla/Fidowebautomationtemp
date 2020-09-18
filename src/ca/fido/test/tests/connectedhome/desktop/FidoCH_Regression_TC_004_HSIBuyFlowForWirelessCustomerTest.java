@@ -45,8 +45,6 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlowForExistingCustomer() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -63,8 +61,8 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
         reporter.reportLogWithScreenshot("Launched the packages Page");
         fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
@@ -74,7 +72,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
         fido_cart_summary_page.clkInternetCheckout();             
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.clkUserProfileNextForExistingCustomer();
-        reporter.reportLogWithScreenshot("Credit evalution page has launched");
+        reporter.reportLogWithScreenshot("Credit evaluation page has launched");
         fido_credit_check_page.selectDOBYear();
         fido_credit_check_page.selectDOBMonthSingleDigit();
         fido_credit_check_page.selectDOBDay();
@@ -96,7 +94,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
-	    reporter.reportLogWithScreenshot(" selected the slot for Tech-Instal");
+	    reporter.reportLogWithScreenshot(" selected the slot for Tech-Install");
 	    fido_technical_installation_page.clkTechInstalConfirm();
 	    reporter.reportLogWithScreenshot("Payment page has launched"); 
         fido_payment_options_page.setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
@@ -106,7 +104,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowForWirelessCustomerTest extends 
         reporter.reportLogWithScreenshot("Payment details has set");
 	    fido_payment_options_page.clkPaymentConfirm();
         reporter.reportLogWithScreenshot("Order review page has launched");
-        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
+        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verified", "Terms And Conditions verification has failed");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
 		reporter.reportLogWithScreenshot("Consent Check has Done");

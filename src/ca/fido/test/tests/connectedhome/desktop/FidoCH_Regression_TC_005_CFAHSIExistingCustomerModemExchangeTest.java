@@ -44,9 +44,9 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 		retailer_champ_page.clkSignIn();		
 		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
 		retailer_champ_page.clkAccept();
-		reporter.reportLogWithScreenshot("Dealercode page has Launched"); 
+		reporter.reportLogWithScreenshot("Dealer code page has Launched");
 		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
-		reporter.reportLogWithScreenshot("Entered the Dealercode");
+		reporter.reportLogWithScreenshot("Entered the Dealer code");
 		retailer_champ_page.clkSubmit();
 		
 		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
@@ -70,7 +70,7 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 				"Customer Authentication remainder popup hasn't displayed");
 		reporter.reportLogWithScreenshot("Customer Authentication remainder popup");
 		fido_ssp_retailer_search_results_page.clkContinue();
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
 		fido_internet_dashboard_page.clkUsageNService();
 		fido_internet_dashboard_page.clkInternetService();
@@ -85,9 +85,9 @@ public class FidoCH_Regression_TC_005_CFAHSIExistingCustomerModemExchangeTest ex
 		reporter.reportLogWithScreenshot("Exchange modem Success popup");
 		fido_internet_package_page.clkPrintReceipt();
 		reporter.reportLogWithScreenshot("Launched the modem receipt page");
-		reporter.hardAssert(fido_internet_package_page.verifyPrintReceiptLink(),"The print receipt link is preset on the receipt to print the receipt","Selef serve receipt is doesent have the print receipt link");
+		reporter.hardAssert(fido_internet_package_page.verifyPrintReceiptLink(),"The print receipt link is preset on the receipt to print the receipt","Self serve receipt is doesn't have the print receipt link");
 		reporter.reportLogWithScreenshot("updated modem changes receipt");
-		reporter.hardAssert(fido_internet_package_page.verifyAcountNumberOnReceipt(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan()),"Verified the receipt","Selef serve receipt is doesent have the right account number");
+		reporter.hardAssert(fido_internet_package_page.verifyAcountNumberOnReceipt(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan()),"Verified the receipt","Self serve receipt is doesn't have the right account number");
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

@@ -35,15 +35,13 @@ public class FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoUpgradePlanCH"})
 	public void checkFidoHSIPlanUpgrade() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		reporter.reportLogWithScreenshot("Launched the SignIn popup");
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgrade());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
-		reporter.reportLogWithScreenshot("Entered the account credentails");
+		reporter.reportLogWithScreenshot("Entered the account credentials");
 		fido_login_page.clkLoginInFrame();
 		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		fido_login_page.switchOutOfSignInFrame();
@@ -57,8 +55,8 @@ public class FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTestClass {
 		reporter.reportLogWithScreenshot("Selected the package");
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Order review page has launched");
-		reporter.softAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verifed the Plan Information","Plan Information Verification has failed");
-		reporter.softAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(),"Verifed the Terms And Conditions","Terms And Conditions Verification has failed");
+		reporter.softAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verified the Plan Information","Plan Information Verification has failed");
+		reporter.softAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(),"Verified the Terms And Conditions","Terms And Conditions Verification has failed");
 		fido_internet_package_change_review_order_page.chkConsentCheckbox();
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		reporter.hardAssert(fido_internet_package_change_review_order_page.verifySubmitButtonEnabled(),"button enabled","button disabled");

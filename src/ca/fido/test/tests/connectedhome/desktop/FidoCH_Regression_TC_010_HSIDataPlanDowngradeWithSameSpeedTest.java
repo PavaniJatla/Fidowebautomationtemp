@@ -31,8 +31,6 @@ public class FidoCH_Regression_TC_010_HSIDataPlanDowngradeWithSameSpeedTest exte
 
 	@Test(groups = {"RegressionCH","FidoUpgradePlanCH"})
 	public void checkFidoHSIPlanDowngrade() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

@@ -33,16 +33,14 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_008_HSIEditfromCartTest extends BaseTestClass {
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
-	public void checkEditfromCart()  {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
+	public void checkEditFromCart()  {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the Internet Page");
         fido_Shop_internet_page.clkCheckAvailability();
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkCheckAvailabilityConfirmation();
@@ -54,9 +52,9 @@ public class FidoCH_Regression_TC_008_HSIEditfromCartTest extends BaseTestClass 
         fido_cart_summary_page.clkShoppingCartEdit();
         reporter.reportLogWithScreenshot("Internet Page to reselect new plan");
         fido_Shop_internet_page.selectNewPlan();
-        reporter.reportLogWithScreenshot("Confirm Internet Package Update Popup to confiram the new plan");     
+        reporter.reportLogWithScreenshot("Confirm Internet Package Update Popup to confirm the new plan");
         fido_Shop_internet_page.clkUpdateCart(); 
-        reporter.reportLogWithScreenshot("Cart-summary Page with the upgarded package");
+        reporter.reportLogWithScreenshot("Cart-summary Page with the upgraded package");
         reporter.hardAssert(fido_Shop_internet_page.verifyDownloadSpeed(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost()), "Edit cart Passed", "Edit cart Failed");      
 	}
 

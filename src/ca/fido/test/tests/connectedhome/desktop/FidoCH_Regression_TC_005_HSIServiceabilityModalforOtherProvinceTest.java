@@ -34,20 +34,18 @@ public class FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkDeleteOffer() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
         fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Service is Unavailabile");
+        reporter.reportLogWithScreenshot("Service is Unavailable");
         reporter.hardAssert(fido_Shop_internet_page.verifyUnavailableInProvince(),"Service is unavailability in the given province","Service is availability");
         fido_Shop_internet_page.verifyCancel();
         fido_Shop_internet_page.verifyYes();
@@ -59,7 +57,7 @@ public class FidoCH_Regression_TC_005_HSIServiceabilityModalforOtherProvinceTest
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Service is Unavailabile");
+        reporter.reportLogWithScreenshot("Service is Unavailable");
         reporter.hardAssert(fido_Shop_internet_page.verifyUnavailableInProvince(),"Service is unavailability in the given province","Service is availability");
         fido_Shop_internet_page.verifyCancel();
         fido_Shop_internet_page.verifyYes();

@@ -2,13 +2,15 @@ package ca.fido.test.tests.connectedhome.desktop;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
-import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+
+import static ca.fido.testdatamanagement.TestDataHandler.chPaymentInfo;
+import static ca.fido.testdatamanagement.TestDataHandler.fidoHSIAccount;
 
 
 /**
@@ -43,16 +45,14 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIBuyFlowPickupAtStoreFlow() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        fido_Shop_internet_page.selectInternetPlan(fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(), fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1= fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
@@ -68,7 +68,7 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
         fido_create_user_page.setPhone();
         reporter.reportLogWithScreenshot("Entered the user communication information");
         fido_create_user_page.clkUserProfileNext();
-        reporter.reportLogWithScreenshot("Credit evalution page has launched");
+        reporter.reportLogWithScreenshot("Credit evaluation page has launched");
         fido_credit_check_page.selectDOBYear();
         fido_credit_check_page.selectDOBMonthSingleDigit();
         fido_credit_check_page.selectDOBDay();
@@ -92,26 +92,26 @@ public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTe
         reporter.reportLogWithScreenshot("Tech-Install page has launched");
         fido_technical_installation_page.clkPickUpAtStore();
         reporter.reportLogWithScreenshot("Pickup at store option has launched");
-        String  strAddressStore=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressStore=fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_technical_installation_page.setAddressLookup(strAddressStore+", CANADA");
         reporter.reportLogWithScreenshot("new Pickup store location");
         fido_technical_installation_page.clkPickStoreConsent();
         fido_technical_installation_page.clkTechInstalConfirm();
         reporter.reportLogWithScreenshot("Payment page has launched");        
-        fido_payment_options_page.setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
+        fido_payment_options_page.setCreditCardNumber(chPaymentInfo.getCreditCardDetails().getNumber());
         fido_payment_options_page.selectExpiryMonth();
         fido_payment_options_page.selectExpiryYear();
         fido_payment_options_page.setCVV();     
         reporter.reportLogWithScreenshot("Payment details has set");
         fido_payment_options_page.clkPaymentConfirm();        
         reporter.reportLogWithScreenshot("Order review page has launched");
-        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verifed", "Terms And Conditions verification has failed");
+        reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(), "Terms And Conditions are verified", "Terms And Conditions verification has failed");
 		fido_internet_package_change_review_order_page.clkscrollToElement();
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
-		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
+		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");
 		reporter.reportLogWithScreenshot("Order details");
 	}
 

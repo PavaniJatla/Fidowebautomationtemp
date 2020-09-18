@@ -43,19 +43,18 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkInternetBuyFlowMobile() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
+
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");
+		reporter.reportLogWithScreenshot("Launched the Navigation card");
 		fido_home_page.clkShopMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation shop links");
+		reporter.reportLogWithScreenshot("Launched the Navigation shop links");
 		fido_home_page.clkHomeInternetMobile();
         reporter.reportLogWithScreenshot("Launched the Internet Page");
 		fido_home_page.clkCheckAvailabilityMobile();	
         reporter.reportLogWithScreenshot("Launched the Serviceability model");
-        String  strAddressLine1=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");        
+        String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setAddressLookupMobile(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Checking the Service availability");
         fido_Shop_internet_page.clkCheckAvailabilityConfirmation();        
@@ -73,7 +72,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         fido_create_user_page.setPhone();
         reporter.reportLogWithScreenshot("Entered the user mobile information");
         fido_create_user_page.clkUserProfileNext();
-        reporter.reportLogWithScreenshot("Credit evalution page has launched");
+        reporter.reportLogWithScreenshot("Credit evaluation page has launched");
         fido_credit_check_page.selectDOBYear();
         fido_credit_check_page.selectDOBMonthSingleDigit();
         fido_credit_check_page.selectDOBDay();
@@ -84,7 +83,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         fido_credit_check_page.selectDrivingLicenseExpiryYear();
         fido_credit_check_page.selectDrivingLicenseExpiryMonthSingleDigit();
         fido_credit_check_page.selectDrivingLicenseExpiryDay();
-        reporter.reportLogWithScreenshot("Entered the Driver's License expairy details");
+        reporter.reportLogWithScreenshot("Entered the Driver's License expiry details");
         fido_credit_check_page.setDrivingLicenseNumber("ONTARIO");
         reporter.reportLogWithScreenshot("Entered the Driver's License number");
         fido_credit_check_page.selectSecondIdOption("4");
@@ -93,7 +92,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         fido_credit_check_page.selectPassportExpiryYear();
         fido_credit_check_page.selectPasspoartExpiryMonth();
         fido_credit_check_page.selectPasspoartExpiryDay();
-        reporter.reportLogWithScreenshot("Entered the passport  expairy details");
+        reporter.reportLogWithScreenshot("Entered the passport  expiry details");
         fido_credit_check_page.clkCreditCheckConsent();
         reporter.reportLogWithScreenshot("Credit consent Check Done");
         fido_credit_check_page.clkCreditCheckSubmit();
@@ -108,7 +107,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         reporter.reportLogWithScreenshot("Set Credit Card Number"); 
         fido_payment_options_page.selectExpiryMonth();
         fido_payment_options_page.selectExpiryYear();
-        reporter.reportLogWithScreenshot("set Card expairy details");  
+        reporter.reportLogWithScreenshot("set Card expiry details");
         fido_payment_options_page.setCVV();     
         reporter.reportLogWithScreenshot("Set the CVV");
         fido_payment_options_page.clkPaymentConfirm();    
@@ -119,7 +118,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 		fido_internet_package_change_review_order_page.chkAgreementConsentCheckbox();
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
-		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
+		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");
 		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
 	}
 
