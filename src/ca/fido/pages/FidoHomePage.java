@@ -124,10 +124,19 @@ public class FidoHomePage extends BasePageClass {
 	/**
 	 * Click on myAccount button on the home page
 	 * @author aditya.Dhingra
-	 * @return true or false based on availaibility of the element
+	 * @return true or false based on availability of the element
 	 */	
 	public boolean isEasyloginDisplayed() {
 		return reusableActions.isElementVisible(linkeasylogin,2);
+	}
+	
+	/**
+	 * Click on myAccount button on the home page Mobile
+	 * @author Mirza.Kamran
+	 * @return true or false based on availability of the element
+	 */	
+	public boolean isEasyloginDisplayedMobile() {
+		return reusableActions.isElementVisible(linkeasylogin,30);
 	}
 	
 	/**
