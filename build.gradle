@@ -51,24 +51,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
             includeGroups test_groupName
             System.out.println("**************************************"+test_groupName)
         }
-        if (project.hasProperty('SanityCH')) {
-            suites 'ConnectedHomeFidoSanityPack.xml'
-        }
-        if (project.hasProperty('SanitySS')) {
-            suites 'SelfServeFidoSanityPack.xml'
-        }
-        if (project.hasProperty('SanityBFA')) {
-            suites 'BFAFidoSanityPack.xml'
-        }
-        if (project.hasProperty('RegressionCH')) {
-            suites 'ConnectedHomeFidoCompleteSuite.xml'
-        }
-        if (project.hasProperty('RegressionSS')) {
-            suites 'SelfServeFidoCompleteSuite.xml'
-        }
-        if (project.hasProperty('RegressionBFA')) {
-            suites 'BFAFidoCompleteSuite.xml'
-        }
+        
     }
 
 }
@@ -99,24 +82,7 @@ task "localTest"(type: Test) {
             includeGroups test_groupName
             System.out.println("**************************************"+test_groupName)
         }
-        if (project.hasProperty('SanityCH')) {
-            suites 'ConnectedHomeFidoEnvSanity.xml'
-        }
-        if (project.hasProperty('SanitySS')) {
-            suites 'SelfServeFidoSanityPack.xml'
-        }
-        if (project.hasProperty('SanityBFA')) {
-            suites 'BFAFidoSanityPack.xml'
-        }
-        if (project.hasProperty('RegressionCH')) {
-            suites 'ConnectedHomeFidoCompleteSuite.xml'
-        }
-        if (project.hasProperty('RegressionSS')) {
-            suites 'SelfServeFidoCompleteSuite.xml'
-        }
-        if (project.hasProperty('RegressionBFA')) {
-            suites 'BFAFidoCompleteSuite.xml'
-        }
+        
     }
 
 }
