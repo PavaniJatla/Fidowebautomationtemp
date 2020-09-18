@@ -166,12 +166,7 @@ public class BaseTestClass {
 				break;
 			case "connectedhome_login":
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"?setLanguage="+ language );
-				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				break;
-			case "mobile_connectedhome":
-				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"?setLanguage="+ language);
+				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 			case "selfserve":

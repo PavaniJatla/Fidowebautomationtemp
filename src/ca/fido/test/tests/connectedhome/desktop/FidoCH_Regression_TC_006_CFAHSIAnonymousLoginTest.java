@@ -54,9 +54,9 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 		retailer_champ_page.clkSignIn();		
 		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
 		retailer_champ_page.clkAccept();
-		reporter.reportLogWithScreenshot("Dealercode page has Launched"); 
+		reporter.reportLogWithScreenshot("Dealer code page has Launched");
 		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
-		reporter.reportLogWithScreenshot("Entered the Dealercode");
+		reporter.reportLogWithScreenshot("Entered the Dealer code");
 		retailer_champ_page.clkSubmit();
 		
 		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
@@ -68,12 +68,12 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 		
 		reporter.reportLogWithScreenshot("SSP dashboard has launched");		
 		fido_ssp_retailer_home_page.selectEnvironment(TestDataHandler.fidoSspHSIAccount.getEnvironment());
-		reporter.reportLogWithScreenshot("Shop home page has Lanched");
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyInternetPlans(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failied");
+		reporter.reportLogWithScreenshot("Shop home page has Launched");
+		reporter.hardAssert(fido_ssp_retailer_home_page.verifyInternetPlans(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
 		reporter.reportLogWithScreenshot("Launched the Fido.ca Home page");
         fido_Shop_internet_page.selectPlan();
-        String  strAddressLine1=(String) TestDataHandler.fidoSspHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=(String) TestDataHandler.fidoSspHSIAccount.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoSspHSIAccount.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoSspHSIAccount.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         
@@ -88,7 +88,7 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
         fido_create_user_page.setPhone();
         reporter.reportLogWithScreenshot("Entered the user communication information");
         fido_create_user_page.clkUserProfileNext();
-        reporter.reportLogWithScreenshot("Credit evalution page has launched");
+        reporter.reportLogWithScreenshot("Credit evaluation page has launched");
         fido_credit_check_page.selectDOBYear();
         fido_credit_check_page.selectDOBMonthSingleDigit();
         fido_credit_check_page.selectDOBDay();
@@ -117,7 +117,7 @@ public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestC
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
 		reporter.reportLogWithScreenshot("Order Confirmation and details page");
-		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has careted", "Order hasn't careted");
+		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Order has created", "Order hasn't created");
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

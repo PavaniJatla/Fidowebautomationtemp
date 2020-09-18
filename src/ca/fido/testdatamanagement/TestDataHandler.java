@@ -5,7 +5,6 @@ import ca.fido.yaml.pojo.*;
 public class TestDataHandler {
 	
 	public static Config config;
-	public static Config chConfig;
 	public static Config bfaConfig;
 	public static PaymentDetails paymentInfo;
 	public static PaymentDetails chPaymentInfo;
@@ -81,7 +80,6 @@ public class TestDataHandler {
     	
 	}
 	private static void connectedHomeDataInit() {
-		chConfig =  YamlHandler.getHSIConfig();
 		sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/connectedhome/SauceSettings.yml");
         fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
@@ -135,7 +133,7 @@ public class TestDataHandler {
 	
 	private static void buyFlowsDataInit() {
 		sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/buyflows/SauceSettings.yml");
-		chConfig = YamlHandler.getBFAConfig();
+		bfaConfig = YamlHandler.getBFAConfig();
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();
     	testCase01 = YamlHandler.getNACData("tc01NAC");

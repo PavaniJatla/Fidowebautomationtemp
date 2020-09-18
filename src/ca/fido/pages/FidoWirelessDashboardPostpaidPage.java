@@ -95,7 +95,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//span[@class='ss-plan-container-data']")
 	WebElement lblPlanData;
 	
-	@FindBy (xpath = "//button/span[text()='CHANGE PLAN' or text()='CHANGER DE FORFAIT']")
+	@FindAll({
+		@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA']"),	
+	    @FindBy (xpath = "//button/span[text()='CHANGE PLAN' or text()='CHANGER DE FORFAIT']")})
 	WebElement btnChangePlan;	
 	
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA']")

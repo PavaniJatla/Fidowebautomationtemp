@@ -28,19 +28,17 @@ import java.lang.reflect.Method;
  **/
 
 public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
-	private String strLanguage=System.getProperty("Language");
+	final String strLanguage=System.getProperty("Language");
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPayNowFunctionality() {
-		reporter.reportLogWithScreenshot("Launched Easy login Page");
-		fido_home_page.clkEasylogin();
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrameMobile();
 		reporter.reportLogWithScreenshot("Launched the SignIn popup");
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
-		reporter.reportLogWithScreenshot("Entered the account credentails");
+		reporter.reportLogWithScreenshot("Entered the account credentials");
 		fido_login_page.clkLoginInFrame();
 		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		fido_login_page.switchOutOfSignInFrame();
@@ -65,14 +63,14 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		fido_payment_page.clkReviewAndContinue();
 		reporter.reportLogWithScreenshot("payment confirmation widget");
 		fido_payment_page.clkPayNow();
-		reporter.reportLogWithScreenshot("payment processing with pament gateway");
+		reporter.reportLogWithScreenshot("payment processing with payment gateway");
 		reporter.hardAssert(fido_payment_page.verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		reporter.reportLogWithScreenshot("payment success widget");
 		fido_payment_page.clkPaymentConfirmation();
 		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, strLanguage);
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
-		String accountBalanceAfterpaymen=fido_account_overview_page.getAccountBalanceAfterpayment();
-		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterpaymen,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), TestDataHandler.chConfig.getLanguage()),"Payment Success","Payment Failed");
+		String accountBalanceAfterPayment=fido_account_overview_page.getAccountBalanceAfterpayment();
+		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterPayment,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
 		}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

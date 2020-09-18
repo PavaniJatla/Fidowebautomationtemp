@@ -37,7 +37,7 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='fdl-navbar-nav']//li[contains(@class,'stateActive')]/a//span[contains(text(),'Sign in') or contains(text(),'Ouvrir une session')]")
 	WebElement lnkReSignInAs;
 	
-	@FindBy(xpath = "//li[@class='o-navLinkList__item clicktale-mask loginStates stateCookied stateActive']/a[@aria-label='Sign in to My Fido']//span[contains(text(),'Sign in as')]")
+	@FindBy(xpath = "//nav[@nav-id='main']//li[contains(@class,'loginStates stateCookied stateActive')]/a[@aria-label='Sign in to My Fido']//span[contains(text(),'Sign in as')]")
 	WebElement lnlResignInAsMobile;
 	
 	
@@ -191,7 +191,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkSignOutMobile() {
-		reusableActions.getWhenReady(lnkUserName).click();
+		reusableActions.getWhenReady(lnkUserNameMobile).click();
 		reusableActions.waitForElementVisibility(lnkSignOutMobile, 20);
 		reusableActions.getWhenReady(lnkSignOutMobile).click();
 
