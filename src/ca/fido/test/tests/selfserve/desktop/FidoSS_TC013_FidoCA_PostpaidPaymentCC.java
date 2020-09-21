@@ -32,7 +32,7 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"SanitySS","BillingAndPaymentsSS"})
+	@Test(groups = {"SanitySS","BillingAndPaymentsSS","TC13"})
 	public void postPaidPaymentCC() throws InterruptedException {
 		String amountEntered="0.01";
 		fido_home_page.clkLogin();

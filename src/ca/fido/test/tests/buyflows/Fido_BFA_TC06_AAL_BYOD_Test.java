@@ -25,22 +25,22 @@ import java.lang.reflect.Method;
  * 
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC03_AAL_BYOD_Test extends BaseTestClass{
+public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","AALBFA"})
 	public void aalBYODFlowTest() {
 		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
 		reporter.reportLogWithScreenshot("Fido Home Page");
-		fido_home_page.clkLogin();
+		//fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.testCase07.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.testCase07.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.testCase06.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.testCase06.getPassword());
 		reporter.reportLogWithScreenshot("Login overlay");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login Successful", "Login Error");
+		//reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login Successful", "Login Error");
 		reporter.reportLogWithScreenshot("Account Overview page");
-		fido_account_overview_page.clkLnkAddALine();
+		//fido_account_overview_page.clkLnkAddALine();
 		reporter.reportLogWithScreenshot("Clicked on add a line");
 		fido_account_overview_page.clkButtonAddALine();
 		reporter.reportLogWithScreenshot("Modal dialogue appeared");
@@ -60,9 +60,10 @@ public class Fido_BFA_TC03_AAL_BYOD_Test extends BaseTestClass{
 		fido_build_plan_page.clkChooseNumberContinueButton();
 		reporter.reportLogPass("Continue button on choose your telephone number clicked");
 		fido_build_plan_page.clkContinueBelowCartSummary();
+		reporter.reportLogPass("Review Page");
 		//fido_order_review_page.verifyCheckBoxTermsAndCondition();
 		fido_order_review_page.clkTermsNConditionsConsentAAL();
-		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase07.getUsername());
+		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase06.getUsername());
 		fido_order_review_page.clkSubmitMyOrder();
 		reporter.hardAssert(fido_order_confirmation_page.verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
 		reporter.reportLogWithScreenshot("Order Confirmation page");

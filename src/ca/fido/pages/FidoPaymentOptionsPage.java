@@ -189,10 +189,16 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.cta.done']")
 	private WebElement btnDone;
 	
-	@FindBy(xpath="//select[@id='nacPaymentMethod']")
+	@FindAll({
+		@FindBy(xpath="//select[@id='nacPaymentMethod']"),
+		@FindBy(xpath="//select[@data-test='select-payment-option']")
+	})
 	WebElement ddlPaymentMethod;
 	
-	@FindBy(xpath="//span[@checkout-res='checkout_pay_submit']/parent::button")
+	@FindAll({
+		@FindBy(xpath="//span[@checkout-res='checkout_pay_submit']/parent::button"),
+		@FindBy(xpath="//button[@id='main-continue-button']")
+	})
 	WebElement btnSubmit;
 
 	@FindBy(xpath = "//input[@id='agree-to-terms-and-conditions']")
@@ -201,7 +207,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//ins/p[contains(text(),'I/We acknowledge that I/we have read, understood and accepted')]")
 	WebElement divTnCBottom;
 	
-
+	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
+	WebElement btnBillingOptionClkContinue;
+	
 	//--------------------------------------------------------------------------------
 	
 	/**
@@ -719,8 +727,18 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void setManualPaymentMethod() {
-		reusableActions.selectWhenReady(ddlPaymentMethod, "invoice");
+		reusableActions.selectWhenReady(ddlPaymentMethod, "INVOICE");
 	}
+	
+	/**
+	 * click continue on billing Option for NAC flow
+	 * @author Saurav.Goyal
+	 */
+	public void billingOptionClkContinue() {
+		reusableActions.clickWhenReady(btnBillingOptionClkContinue , 30);
+	}
+	
+	
 	
 	/**
 	 * Clicks on the 'Submit' button

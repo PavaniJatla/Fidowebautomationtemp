@@ -23,33 +23,33 @@ import java.lang.reflect.Method;
  * 
  * @author rajesh.varalli1
  */
-public class Fido_BFA_TC05_PPC_Test extends BaseTestClass{
+public class Fido_BFA_TC07_PPC_Test extends BaseTestClass{
 
-	@Test
+	@Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
 	public void ppcFlowTest() {
 		reporter.reportLogWithScreenshot("Fido Home page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.testCase06.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.testCase06.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.testCase07.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.testCase07.getPassword());
 		reporter.reportLogWithScreenshot("Login overlay");
 		fido_login_page.clkLoginInFrame();
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login Successful", "Login Error");
 		reporter.reportLogWithScreenshot("Account Overview page");
-		fido_account_overview_page.clkSpecificCTNBadge(TestDataHandler.testCase06.getCtn());
+		fido_account_overview_page.clkSpecificCTNBadge(TestDataHandler.testCase07.getCtn());
 		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
 		reporter.reportLogWithScreenshot("Mobile Dashboard page");
 		fido_wireless_dashboard_postpaid_page.clkChangePlan();
 		reporter.hardAssert(fido_choose_plan_page.verifyChangePlanPageLoad(), "Price Plan Change page loaded", "Price Plan Change page load error");
-		fido_choose_plan_page.clkPlanType(TestDataHandler.testCase06.getNewPlanType());
+		fido_choose_plan_page.clkPlanType(TestDataHandler.testCase07.getNewPlanType());
 		fido_choose_plan_page.selectFirstAvailablePricePlan();
 		reporter.reportLogWithScreenshot("Change Your Plan page");
 		fido_choose_plan_page.clkContinue();
 		fido_choose_addons_page.clkCheckOut();
 		fido_order_review_page.clkTermsNConditionsConsent();
-		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase06.getUsername());
+		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase07.getUsername());
 		reporter.reportLogWithScreenshot("Order Review page");
 		fido_order_review_page.clkCompleteOrder();
 		fido_order_review_page.waitForOrderProcessing();

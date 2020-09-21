@@ -35,8 +35,9 @@ pipeline {
         string(name: 'Browser', defaultValue: "saucechrome", description: 'Test Browser')
         string(name: 'Language', defaultValue: "en", description: 'Test Language')
         string(name: 'ThreadCount', defaultValue: "2", description: 'Number of parallel test sessions')
-        string(name: 'Groups', defaultValue: "SanityCH", description: 'Tests to run')
-        string(name: 'TestProfile', defaultValue: "ConnectedHome", description: 'Test Profile Name')
+        string(name: 'Groups', defaultValue: "SanityCH", description: 'Groups names separated by comma')
+        string(name: 'TestProfile', defaultValue: "DefaultProfile", description: 'Only used for reporting - has no impact on test runs')
+        string(name: 'IndividualTests', defaultValue: "", description: "Individual test to be passes as --test 'Test1' --test 'Test2' --test 'Test 3' and so on ")
 
     }
 
@@ -83,7 +84,16 @@ pipeline {
 
 
                 stage('Regression Tests') {
-                    steps { toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace" }
+                      steps {
+                        script {
+
+                            if(params.IndividualTests.isEmpty())
+                                toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
+                            else
+                                toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} ${params.IndividualTests} -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
+
+                        }
+                    }
                     post {
                         always {
                             junit 'build/test-results/**/*.xml'
