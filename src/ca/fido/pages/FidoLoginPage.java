@@ -13,7 +13,7 @@ public class FidoLoginPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@formcontrolname='username']")
+	@FindBy(id = "username")
 	WebElement txtUsername;
 
 	@FindBy(xpath = "//input[@formcontrolname='password']")
@@ -84,7 +84,7 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void setUsernameInFrame(String strUsername) {
 		reusableActions.getWhenReady(txtUsername,90).clear();
-		reusableActions.getWhenReady(txtUsername,10).click();
+		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
 	

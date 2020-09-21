@@ -67,7 +67,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 
 		//double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		//double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
-		
+		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
 		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");

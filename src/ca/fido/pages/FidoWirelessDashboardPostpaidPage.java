@@ -338,7 +338,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void closeOverlayPopup() {
-		reusableActions.clickIfAvailable(btnCloseOnPopup, 3);
+		reusableActions.clickIfAvailable(btnCloseOnPopup, 10);
 	}
 	
 	/**
@@ -603,7 +603,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextPlanDetailsSectionIsDisplayed() {
 		System.out.println("text plans details is being checked");
-		return reusableActions.isElementVisible(divMyPlanText);
+		return reusableActions.isElementVisible(divMyPlanText,60);
 	}	
 	
 	/**
@@ -613,7 +613,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkPlanDetailsSectionIsDisplayed() {
 		System.out.println("talk plans details is being checked");
-		return reusableActions.isElementVisible(divMyPlanTalkDetails);
+		return reusableActions.isElementVisible(divMyPlanTalkDetails,60);
 	}
 	
 	/**

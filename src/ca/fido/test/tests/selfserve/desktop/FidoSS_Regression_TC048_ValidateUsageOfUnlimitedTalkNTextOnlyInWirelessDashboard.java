@@ -57,7 +57,7 @@ public class FidoSS_Regression_TC048_ValidateUsageOfUnlimitedTalkNTextOnlyInWire
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTalkNTextUsageModuleIsDisplayed(),
 							"Talk usage module is displayed",
 							"Talk usage module is not displayed");
-
+		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTalkAnytimeUsageDetailsIsDisplayed(),
 							"Talk anytime usage details section is displayed",
 							"Talk anytime usage details section is not displayed");

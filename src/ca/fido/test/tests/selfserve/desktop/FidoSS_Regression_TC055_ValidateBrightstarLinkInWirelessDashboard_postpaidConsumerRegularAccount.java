@@ -61,6 +61,7 @@ public class FidoSS_Regression_TC055_ValidateBrightstarLinkInWirelessDashboard_p
 		reporter.reportLogWithScreenshot("Usage and Services page");				
 		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 		reporter.reportLogWithScreenshot("Dashboad veiw");
+		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyLinkRepairMyDeviceIsDisplayed(),
 				"Link Start or track a phone repair claim",
 				"Link Start or track a phone repair claim is not displayed");		
