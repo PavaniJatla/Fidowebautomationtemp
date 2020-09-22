@@ -46,7 +46,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	@FindBy(xpath="//input[@id='dlLicenseNumber' or @name='dlCardNumber' or @formcontrolname='number']")
 	WebElement lblTxtDlLicenseNumber;
 
-	@FindBy(name = "secondIdOption")
+	@FindBy(name = "secondIdOption1")
 	WebElement ddlSecondIdOption;
 
 	@FindBy(xpath = "//input[@id='ppNumber' and @ng-model='passport.ppNumber']")

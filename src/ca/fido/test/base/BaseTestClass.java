@@ -162,6 +162,7 @@ public class BaseTestClass {
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
+				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, language);
 				break;
 			case "connectedhome_login":

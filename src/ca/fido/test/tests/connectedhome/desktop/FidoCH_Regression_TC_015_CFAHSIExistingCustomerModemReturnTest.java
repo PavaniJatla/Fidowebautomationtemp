@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemReturnTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
+	@Test(groups = {"RegressionCH"})
 	public void checkSSPhsiExistingCustomerValidateDashboardTest() {
 		reporter.reportLogWithScreenshot("Launched the SSP SignIn Page");
 		fido_ssp_retailer_shop_page.setUserName(TestDataHandler.fidoSspHSIAccount.getUsername());
