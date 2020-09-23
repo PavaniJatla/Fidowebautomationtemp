@@ -36,7 +36,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
         		
                           	TestDataHandler.tc41.getaccountDetails().getBan()+"#"
                                   	  +TestDataHandler.tc41.getaccountDetails().getPostalCode()+"#"
-                                  	  +TestDataHandler.tc41.getaccountDetails().getEmail()},
+                                 	  +TestDataHandler.tc41.getaccountDetails().getEmail()},
         	{
             	TestDataHandler.tc43.getaccountDetails().getBan()+"#"
                     	  +TestDataHandler.tc43.getaccountDetails().getPostalCode()+"#"
@@ -48,7 +48,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.clkRegisterIframe();
-		fido_account_registration_page.clkRegisterNow();
+		//fido_account_registration_page.clkRegisterNow();
 		reporter.reportLogWithScreenshot("Register now is clicked.");
 		fido_account_registration_page.clkAccountHolder();
 		String strFidoAccountNumber = strBanPostcodeEmail.split("#")[0] ;
@@ -58,7 +58,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 		reporter.reportLogWithScreenshot("Register the BAN.");
 		fido_account_registration_page.clkContinueAccountRegister();
 		
- 		String strPassword = TestDataHandler.tc0301.getPassword();
+ 		String strPassword = "DigiAuto@123";
 		String strEmail = strBanPostcodeEmail.split("#")[2];
 		if (fido_account_registration_page.isBtnSendEmailDisplayed()) {
 			fido_account_registration_page.clkBtnSendEmail();
@@ -68,7 +68,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 			fido_account_registration_page.setFidoEmail(strEmail);
 			fido_account_registration_page.setFidoConfirmEmail(strEmail);
  			fido_account_registration_page.clkContinueAccountRegister();
-			
+ 			
 			reporter.softAssert(fido_account_registration_page.verifyVerificationEmailMsgIsDisplayed(),
 					"Verification email sent message displayed",
 					"Verification email sent message does Not displayed");
@@ -102,7 +102,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 				"Registered email doesn't match the name in Sign In As");
 		fido_account_overview_page.clkLnkSignInAs();
 		fido_login_page.switchToSignInFrame();
-
+		fido_login_page.setUsernameInFrame(strEmail);
 		fido_login_page.setPasswordInFrame(strPassword);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();

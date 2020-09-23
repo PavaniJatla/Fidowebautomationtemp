@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC02_ValidateRegisterFlow_Subscriber extends Base
 		reporter.reportLogWithScreenshot("Login page.");
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.clkRegisterIframe();
-		fido_account_registration_page.clkRegisterNow();
+		//fido_account_registration_page.clkRegisterNow();
 		reporter.reportLogWithScreenshot("Register now is clicked.");
 		
 		fido_account_registration_page.clkSubscriber();

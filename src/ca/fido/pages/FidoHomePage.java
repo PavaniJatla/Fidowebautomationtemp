@@ -127,7 +127,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @return true or false based on availability of the element
 	 */	
 	public boolean isEasyloginDisplayed() {
-		return reusableActions.isElementVisible(linkeasylogin,2);
+		return reusableActions.isElementVisible(linkeasylogin,10);
 	}
 	
 	/**
@@ -303,7 +303,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkNotUser() {
-		reusableActions.getWhenReady(lblNotUser).click();
+		reusableActions.clickIfAvailable(lblNotUser); //optional click
 		
 	}
 	

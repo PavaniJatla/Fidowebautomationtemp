@@ -109,7 +109,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer']")
 	WebElement btnCloseFullPlanDetailsOverlay;
 	
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.talk']")
+	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate=\"usageModule.talkAndText.talkTextTitle\"]")
 	WebElement divMyPlanTalkDetails;
 	
 	@FindBy(xpath = "//span[@translate='usageModule.talkAndText.unlimited']")

@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile extends 
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.clkRegisterIframe();
-		fido_account_registration_page.clkRegisterNow();
+		//fido_account_registration_page.clkRegisterNow();
 		reporter.reportLogWithScreenshot("Register now is clicked.");
 		fido_account_registration_page.clkAccountHolder();
 		String strFidoAccountNumber = TestDataHandler.tc0301.getaccountDetails().getBan();

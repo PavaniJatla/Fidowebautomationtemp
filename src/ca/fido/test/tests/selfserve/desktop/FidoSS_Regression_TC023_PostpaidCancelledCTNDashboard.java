@@ -31,7 +31,7 @@ public class FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard extends BaseT
 		closeSession();
 	}
 	
-	@Test
+	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postpaidCancelledCTNDashBoard() throws InterruptedException, IllegalArgumentException, IllegalAccessException {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();

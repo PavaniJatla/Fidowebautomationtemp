@@ -67,7 +67,7 @@ public class VerifyInEns extends BaseTestClass{
 	public void getEmailVerifyPage(String strAccountId) throws ClientProtocolException, IOException {
 		this.startVerify();
 		this.loginToEns();
-		
+
 		baseTestClass.ensNoteViewPage.clkMenuNotifViewer();
 		baseTestClass.ensNoteViewPage.clkBtnSearchNotification();
 		baseTestClass.ensNoteViewPage.clkLnkHtmlForEmailVerify(strAccountId);		

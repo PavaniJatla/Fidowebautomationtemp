@@ -34,8 +34,8 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 		int itr = 1;
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		String userName1 = TestDataHandler.tc41.getUsername();
-		String password = TestDataHandler.tc41.getPassword();
+		String userName1 = TestDataHandler.tc41.getaccountDetails().getEmail();
+		String password = TestDataHandler.tc1122.getPassword();
 		String strUserName2 = TestDataHandler.tc1122.getUsername();
 		String strUserName3 = TestDataHandler.tc121315.getUsername();
 		fido_login_page.setUsernameInFrame(userName1);
@@ -98,7 +98,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 				fido_account_overview_page.clkSetUpNowButton();
 				reporter.reportLogWithScreenshot("Set recovery number");
 				String strTestingTab = getDriver().getWindowHandle();
-				String strRecoveryNumber =  TestDataHandler.tc41.getaccountDetails().getRecoveryNumber();
+				String strRecoveryNumber =  TestDataHandler.tc41.getaccountDetails().getCtn();
 				fido_profile_and_setting_page.switchToSetRecoveryNumIFrame();
 				fido_profile_and_setting_page.setPhoneNumberIframe(strRecoveryNumber);
 				reporter.reportLogWithScreenshot("Recovery Number");

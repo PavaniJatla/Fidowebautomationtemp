@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -34,7 +35,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//a[@title='Sign Out']")
 	WebElement lnkSignOutMobile;
 	
-	@FindBy(xpath = "//div[@class='fdl-navbar-nav']//li[contains(@class,'stateActive')]/a//span[contains(text(),'Sign in') or contains(text(),'Ouvrir une session')]")
+	@FindAll({		
+	@FindBy(xpath = "//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as')]"),
+	@FindBy(xpath = "//div[@class='fdl-navbar-nav']//li[contains(@class,'stateActive')]/a//span[contains(text(),'Sign in') or contains(text(),'Ouvrir une session')]")})
 	WebElement lnkReSignInAs;
 	
 	@FindBy(xpath = "//nav[@nav-id='main']//li[contains(@class,'loginStates stateCookied stateActive')]/a[@aria-label='Sign in to My Fido']//span[contains(text(),'Sign in as')]")
@@ -201,7 +204,10 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkResignInAs() {	
-		reusableActions.getWhenReady(By.xpath("//div[@id='skipNavigation']//span[contains(text(),'Sign in as')]"), 20).click();
+		
+		//updated in 920 ----		
+		//reusableActions.getWhenReady(By.xpath("//div[@id='skipNavigation']//span[contains(text(),'Sign in as')]"), 20).click();
+		reusableActions.getWhenReady(By.xpath("//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as')]"), 20).click();
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {
