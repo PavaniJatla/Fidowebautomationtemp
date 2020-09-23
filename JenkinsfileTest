@@ -57,6 +57,8 @@ pipeline {
         FTP_SERVER = credentials('FTP_SERVER')
         FTP_USERNAME = credentials('FTP_USERNAME')
         FTP_PASSWORD = credentials('FTP_PASSWORD')
+        ENS_USERNAME= credentials('ENS_USERNAME')
+        ENS_PASSWORD= credentials('ENS_PASSWORD')
 
     }
     stages {
@@ -90,7 +92,7 @@ pipeline {
                             if(params.IndividualTests.isEmpty())
                                 toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
                             else
-                                toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} ${params.IndividualTests} -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
+                                toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} ${generateTestString(params.IndividualTests)} -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
 
                         }
                     }
@@ -134,4 +136,14 @@ pipeline {
     }
 
 
+}
+String generateTestString(String tests) {
+    tests =tests.trim();
+    String[] strArray=tests.split(" ");
+    String finalTestString="";
+    for (int i=0;i<=strArray.length-1;i++){
+        finalTestString=finalTestString+"--tests '"+strArray[i].replace(".java","")+"' ";
+    }
+
+    return finalTestString;
 }
