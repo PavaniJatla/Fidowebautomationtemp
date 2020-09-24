@@ -49,9 +49,16 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		String strUsername = fido_recover_pass_or_name_page.getRecoveryUsername();	
 		String strPassword = TestDataHandler.tc04To09.getaccountDetails().getNewPassword();
 		reporter.reportLogWithScreenshot("Get recovered username page.");
-		fido_recover_pass_or_name_page.clkBtnReturnToSignin();	
-		fido_recover_pass_or_name_page.switchToSigninPage(3);
+		fido_recover_pass_or_name_page.clkBtnReturnToSignin();
+		reporter.reportLogWithScreenshot("Checking if easy login is displayed");		
+		 reporter.reportLogWithScreenshot("Switching to Sign in frame");
+		fido_recover_pass_or_name_page.switchToSigninPage(4);
 		fido_home_page.launchHomePage(TestDataHandler.config.getFidoURL());
+		if(fido_home_page.isEasyloginDisplayed())
+		{
+		 fido_home_page.clkEasylogin();
+		 reporter.reportLogWithScreenshot("Easy login clicked");
+		}
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(strUsername);
