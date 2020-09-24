@@ -250,7 +250,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void clkPaymentOptionMobile(String strPaymentMode) {
 		switch (strPaymentMode) {
 		case "Credit Card":
-			clkButtonCreditCard();
+			clkButtonCreditCardAccountMobile();
 			break;
 
 		case "Bank Account":
@@ -282,6 +282,14 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void clkButtonBankAccountMobile() {
 		reusableActions.scrollToElement(btnBankAccount);
 		reusableActions.executeJavaScriptClick(btnBankAccount);
+	}
+	
+	/**
+	 * Perform click on the bank Account Button
+	 */
+	public void clkButtonCreditCardAccountMobile() {
+		reusableActions.scrollToElement(btnCreditCard);
+		reusableActions.executeJavaScriptClick(btnCreditCard);
 	}
 	
 	/**
