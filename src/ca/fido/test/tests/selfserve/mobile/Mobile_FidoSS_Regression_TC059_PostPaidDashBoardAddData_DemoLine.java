@@ -1,4 +1,4 @@
-package ca.fido.test.tests.selfserve.desktop;
+package ca.fido.test.tests.selfserve.mobile;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  * @author Ning.Xue
  *
  */
-public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends BaseTestClass{
+public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends BaseTestClass{
 	
 	
 	 	
@@ -35,10 +35,12 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","DashboardSS"})
+	@Test(groups = {"MobileSanitySS","MobileRegressionSS","MobileDashboardSS"})
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		fido_home_page.clkLogin();
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		fido_home_page.clkLoginMobile();
 	
 		String	userName = TestDataHandler.tc5859.getUsername();
 		String	password = TestDataHandler.tc5859.getPassword();
@@ -92,20 +94,24 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		//log out and login
 		
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
-		fido_login_page.clkSignOut();
-		reporter.reportLogWithScreenshot("Sign Out");
-		reporter.reportLogWithScreenshot("Checking if easy login is displayed");
-		if(fido_home_page.isEasyloginDisplayed())
+		reporter.reportLogWithScreenshot("Starting sign out scenario");
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Clicked Navigation elipsis");
+		fido_login_page.clkSignOutMobile();
+		reporter.reportLogWithScreenshot("Sign Out clicked.");
+		reporter.reportLogWithScreenshot("waiting to check easy login page is avaialable or not...");
+		if(fido_home_page.isEasyloginDisplayedMobile())
 		{
-		 fido_home_page.clkEasylogin();
-		 reporter.reportLogWithScreenshot("Easy login clicked");
-		}
-		reporter.reportLogWithScreenshot("Click on resign in");
-		fido_login_page.clkResignInAs();
-		reporter.reportLogWithScreenshot("Re Sign In");		
+			reporter.reportLogWithScreenshot("Easy login page is available");
+			fido_home_page.clkEasylogin();
+		}		
+		fido_home_page.clkNavMobile();
+		reporter.reportLogWithScreenshot("Navigation menu clicked.");
+		fido_login_page.clkResignInAsMobile();
+		reporter.reportLogWithScreenshot("Clicked ReSign In");
 		fido_login_page.switchToSignInFrame();
 		fido_home_page.clkNotUser();
-		fido_login_page.setUsernameInFrame(userName);
+		fido_login_page.setUsernameAfterReSignInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Re-login with password.");
 		fido_login_page.clkLoginInFrame();

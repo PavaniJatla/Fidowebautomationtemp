@@ -63,7 +63,7 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 			fido_payment_options_page.clkClose();
 			fido_account_overview_page.clkChangeMethodOfPayment();
 		}
-		fido_payment_options_page.clkPaymentOption(TestDataHandler.paymentInfo.getPaymentType().getCredit());
+		fido_payment_options_page.clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getCredit());
 		reporter.reportLogWithScreenshot("Change payment option to Credit card selected");
 		fido_payment_options_page.setCreditCardNumberOnChangeMOP(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 		fido_payment_options_page.setExpiryDate(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());

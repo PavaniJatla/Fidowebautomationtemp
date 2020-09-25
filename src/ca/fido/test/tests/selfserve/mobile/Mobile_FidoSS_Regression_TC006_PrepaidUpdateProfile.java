@@ -80,8 +80,9 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		reporter.reportLogWithScreenshot("New password set");
 		fido_profile_and_setting_page.clkSaveButton();	
 		reporter.reportLogWithScreenshot("New password changes saved");
+		reporter.reportLogWithScreenshot("Starting sign out scenario");
 		fido_home_page.clkNavMobile();
-		
+		reporter.reportLogWithScreenshot("Clicked Navigation elipsis");
 		fido_login_page.clkSignOutMobile();
 		reporter.reportLogWithScreenshot("Sign Out clicked.");
 		reporter.reportLogWithScreenshot("waiting to check easy login page is avaialable or not...");

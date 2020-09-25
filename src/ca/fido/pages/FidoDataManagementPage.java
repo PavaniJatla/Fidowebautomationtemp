@@ -120,10 +120,21 @@ public class FidoDataManagementPage extends BasePageClass {
 		double doubleTotalData = Double.parseDouble(strTotalData.substring(0, strTotalData.length()-3));
 		String strAddData = listData.get(listData.size()-1).getText();
 		double doubleAddData = Double.parseDouble(strAddData.substring(1, strAddData.length()-3));
-		if (strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")) {
-			doubleAddData = doubleAddData / 1000;
+		double doubleAddDataToGB =0;
+		
+		if (strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")
+				|| strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")) {
+			doubleAddDataToGB = doubleAddData / 1000;
 		}
-		return doubleTotalData + doubleAddData;
+		
+		if((strTotalData.toLowerCase().contains("mb")|| strTotalData.toLowerCase().contains("mo"))&& (strAddData.toLowerCase().contains("mb")||strAddData.toLowerCase().contains("mo")))		
+		{
+			if(doubleTotalData+doubleAddData>=1000)
+			{
+				return (doubleTotalData+doubleAddData)/1000;
+			}
+		}
+		return doubleTotalData + doubleAddDataToGB;
 	}
 	
 	/**
@@ -182,16 +193,24 @@ public class FidoDataManagementPage extends BasePageClass {
 				
 		String strTotalData = rowsTotalData.get(0).getText();
 		double intTotalData = Double.parseDouble(getNumbersFromString(strTotalData));
-		double intAddData = 0;		
+		double intAddData = 0;	
+		double intTempAddData = 0;	
 		List<WebElement> rows = strType.equalsIgnoreCase("ott") ? rowsAddedData : tableRowsAddData;
-		
+		String totalInitialPlanConatinsMB =rowPlanData.getText();
 			for (int iLoop = 0; iLoop <= rows.size()-1; iLoop++) {
-				String strAddData = rows.get(iLoop).getText();				
-				if (strAddData.toLowerCase().contains("mo")?strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")
-						: strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")) {
-					intAddData = Double.parseDouble(getNumbersFromString(strAddData)) / 1000;					
-				}
-				intAddData = intAddData + Double.parseDouble(strAddData.substring(0, strAddData.length()-3));
+				String strAddData = rows.get(iLoop).getText();	
+					if (strAddData.toLowerCase().contains("mo")?strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")
+							: strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")) {
+						if(totalInitialPlanConatinsMB.toLowerCase().contains("mo")||totalInitialPlanConatinsMB.toLowerCase().contains("mb"))
+						{
+								//Keep it MB if the total initial data  is already in MB							
+							intTempAddData =Double.parseDouble(getNumbersFromString(strAddData));
+						}else {
+							intTempAddData = Double.parseDouble(getNumbersFromString(strAddData)) / 1000;
+						}
+					}
+					intTempAddData = Double.parseDouble(strAddData.substring(0, strAddData.length()-3));
+				intAddData = intAddData + intTempAddData;
 			}
 			String strTotalAddon = rowsTotalData.get(1).getText();
 			double intTotalAddon = Double.parseDouble(getNumbersFromString(strTotalAddon)); 

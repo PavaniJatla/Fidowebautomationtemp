@@ -276,7 +276,8 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	 * @param intTabIndex, integer, the index of the tab
 	 * @author ning.xue
 	 */
-	public void switchToSigninPage(int intTabIndex) {
+	public void switchToSigninPage(int intTabIndex) {	
+		intTabIndex=3;
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
 		getDriver().switchTo().window(tabs.get(intTabIndex));
 	}
