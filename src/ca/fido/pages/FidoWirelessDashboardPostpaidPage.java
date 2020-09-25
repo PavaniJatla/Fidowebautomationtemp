@@ -682,7 +682,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyTotalDataAlignWithManageDataPage(double totalDataValue, double totalDataInManageDataPage) {
-		return totalDataValue == totalDataInManageDataPage;
+		double diff=0;
+		if(totalDataValue>totalDataInManageDataPage)
+		{
+			diff=totalDataValue-totalDataInManageDataPage;
+		}else
+		{
+			diff=totalDataInManageDataPage-totalDataValue;
+		}
+		return totalDataValue == totalDataInManageDataPage || (diff<0.1);
 	}
 	
 	/**
