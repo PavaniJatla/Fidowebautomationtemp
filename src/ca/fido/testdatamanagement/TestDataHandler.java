@@ -60,7 +60,8 @@ public class TestDataHandler {
 	public static AccountData tc65;
 	public static AccountData tc66;
 
-	public static void dataInit (String strApplicationType) {	    	
+	public static void dataInit (String strApplicationType) {	   
+			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
 	    	if(strApplicationType.toUpperCase().trim().endsWith("CH")) {	    	
 	    		//HSI Fido Data files
 	    		connectedHomeDataInit();            
@@ -80,7 +81,7 @@ public class TestDataHandler {
     	
 	}
 	private static void connectedHomeDataInit() {
-		sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/connectedhome/SauceSettings.yml");
+		//sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/connectedhome/SauceSettings.yml");
         fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");
@@ -91,7 +92,7 @@ public class TestDataHandler {
 	
 	private static void selfserveDataInit() {
 		config =  YamlHandler.getConfig();		
-		sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/selfserve/SauceSettings.yml");
+		//sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/selfserve/SauceSettings.yml");
     	paymentInfo = YamlHandler.getPaymentDetails();
     	tc00101056 = YamlHandler.getAccountData("tc001_010_56Prepaid");
     	tc0203 = YamlHandler.getAccountData("tc02_03Prepaid");
@@ -132,7 +133,7 @@ public class TestDataHandler {
 	}
 	
 	private static void buyFlowsDataInit() {
-		sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/buyflows/SauceSettings.yml");
+		//sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/buyflows/SauceSettings.yml");
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();
