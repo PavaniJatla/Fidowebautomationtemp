@@ -579,7 +579,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
 			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
 		}
-     return NumberUtils.isCreatable(strBalance);	
+     return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
 	}
 
 	/**
