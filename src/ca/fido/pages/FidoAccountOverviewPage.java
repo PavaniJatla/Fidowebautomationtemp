@@ -445,11 +445,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkCtnBadge() {
 		try {
 		reusableActions.getWhenReady(divCtnBadge, 20);
-		reusableActions.getWhenVisible(divCtnBadge, 20).click();
+		reusableActions.getWhenReady(divCtnBadge, 20).click();
 		//		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
 		}catch (StaleElementReferenceException e) {
 			reusableActions.waitForElementTobeClickable(divCtnBadge, 20);
-			reusableActions.getWhenVisible(divCtnBadge, 20).click();
+			reusableActions.getWhenReady(divCtnBadge, 20).click();
 		}
 	}
 
@@ -573,11 +573,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public boolean verifySuccessfulLogin() {
 		String strBalance ="";
 		try {
-			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
-			 strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+//			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			 strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),90).getText();
 		}catch (StaleElementReferenceException e) {
-			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
-			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+//			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),90).getText();
 		}
      return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
 	}
