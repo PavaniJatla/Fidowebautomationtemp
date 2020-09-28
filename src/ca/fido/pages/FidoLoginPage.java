@@ -110,7 +110,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchToSignInFrame() {
-		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
+		getDriver().switchTo().frame(fraSignIn);
+//		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
 	}
 	
 	/**
