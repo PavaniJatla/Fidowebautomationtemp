@@ -36,7 +36,7 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement lnkSignOutMobile;
 	
 	@FindAll({		
-	@FindBy(xpath = "//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as')]"),
+	@FindBy(xpath = "//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as') or contains(text(),'Ouvrir une session')]"),
 	@FindBy(xpath = "//div[@class='fdl-navbar-nav']//li[contains(@class,'stateActive')]/a//span[contains(text(),'Sign in') or contains(text(),'Ouvrir une session')]")})
 	WebElement lnkReSignInAs;
 	
@@ -222,7 +222,7 @@ public class FidoLoginPage extends BasePageClass {
 		
 		//updated in 920 ----		
 		//reusableActions.getWhenReady(By.xpath("//div[@id='skipNavigation']//span[contains(text(),'Sign in as')]"), 20).click();
-		reusableActions.getWhenReady(By.xpath("//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as')]"), 20).click();
+		reusableActions.getWhenReady(By.xpath("//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as') or contains(text(),'Ouvrir une session en tant que ')]"), 20).click();
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {
