@@ -690,7 +690,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		{
 			diff=totalDataInManageDataPage-totalDataValue;
 		}
-		return totalDataValue == totalDataInManageDataPage || (diff<0.1);
+		return totalDataValue == totalDataInManageDataPage || (diff<=0.1);
 	}
 	
 	/**
