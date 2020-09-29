@@ -23,3 +23,15 @@ gradle
 *.log
 
 rogers_property.dat
+*.lock
+*.properties
+*.jar
+*.pom
+*.bin
+*.class
+*.txt
+*.bat
+*.ok
+*.lck
+*.zip
+*.dll

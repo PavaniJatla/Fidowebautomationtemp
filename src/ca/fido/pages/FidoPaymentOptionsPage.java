@@ -288,8 +288,13 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * Perform click on the bank Account Button
 	 */
 	public void clkButtonCreditCardAccountMobile() {
-		reusableActions.scrollToElement(btnCreditCard);
+		try {
+		reusableActions.scrollToElement(btnCreditCard);		
 		reusableActions.executeJavaScriptClick(btnCreditCard);
+		}
+		catch (Exception e) {
+			// TODO: supressing error to debug mobile execution
+		}
 	}
 	
 	/**
