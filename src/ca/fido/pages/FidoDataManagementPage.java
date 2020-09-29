@@ -187,18 +187,18 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyDataAccuracyManageDataOverlay(String strType) {
-		String strPlanData = rowPlanData.getText();		
+		String strPlanData = rowPlanData.getText().replaceAll(",", ".");		
 		strPlanData=getNumbersFromString(strPlanData);				
 		double intPlanData = Double.parseDouble(strPlanData);
 				
-		String strTotalData = rowsTotalData.get(0).getText();
+		String strTotalData = rowsTotalData.get(0).getText().replaceAll(",", ".");
 		double intTotalData = Double.parseDouble(getNumbersFromString(strTotalData));
 		double intAddData = 0;	
 		double intTempAddData = 0;	
 		List<WebElement> rows = strType.equalsIgnoreCase("ott") ? rowsAddedData : tableRowsAddData;
-		String totalInitialPlanConatinsMB =rowPlanData.getText();
+		String totalInitialPlanConatinsMB =rowPlanData.getText().replaceAll(",", ".");
 			for (int iLoop = 0; iLoop <= rows.size()-1; iLoop++) {
-				String strAddData = rows.get(iLoop).getText();	
+				String strAddData = rows.get(iLoop).getText().replaceAll(",", ".");	
 					if (strAddData.toLowerCase().contains("mo")?strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")
 							: strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")) {
 						if(totalInitialPlanConatinsMB.toLowerCase().contains("mo")||totalInitialPlanConatinsMB.toLowerCase().contains("mb"))
@@ -212,7 +212,7 @@ public class FidoDataManagementPage extends BasePageClass {
 					intTempAddData = Double.parseDouble(strAddData.substring(0, strAddData.length()-3));
 				intAddData = intAddData + intTempAddData;
 			}
-			String strTotalAddon = rowsTotalData.get(1).getText();
+			String strTotalAddon = rowsTotalData.get(1).getText().replaceAll(",", ".");
 			double intTotalAddon = Double.parseDouble(getNumbersFromString(strTotalAddon)); 
 			return intTotalData == intPlanData 
 					&& intTotalAddon == intAddData;

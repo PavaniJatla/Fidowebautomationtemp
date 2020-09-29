@@ -670,7 +670,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyTotalDataReflectedAddedData(double previousTotalDataValue, double addedDataValue) {
-		return Double.parseDouble(divTotalData.getText().trim()) == addedDataValue + previousTotalDataValue;
+		return Double.parseDouble(divTotalData.getText().trim().replaceAll(",", ".")) == addedDataValue + previousTotalDataValue;
 	}
 		
 	
