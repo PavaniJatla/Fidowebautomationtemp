@@ -63,6 +63,8 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();		
 		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
+	
+		
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
 		reporter.hardAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
@@ -133,7 +135,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("mdt"),
 				"Accuracy of data in Manage data overlay is verified.",
 				"Accuracy of data in Manage data overlay didn't verify successfully.");	
-		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
+		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay("mdt");
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
 		double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();

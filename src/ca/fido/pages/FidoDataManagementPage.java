@@ -114,31 +114,67 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * To get the value of total data in manage data overlay.
 	 * @return double, the value of plan data plus add-ons.
 	 * @author ning.xue
+	 * @param strAddDataType 
 	 */
-	public double getTotalDataInManageDataOverlay() {
+	public double getTotalDataInManageDataOverlay(String strAddDataType) {
 		String strTotalData = listData.get(listData.size()-2).getText();
 		double doubleTotalData = Double.parseDouble(strTotalData.substring(0, strTotalData.length()-3));
-		String strAddData = listData.get(listData.size()-1).getText();
-		double doubleAddData = Double.parseDouble(strAddData.substring(1, strAddData.length()-3));
-		double doubleAddDataToGB =0;
-		
-		if (strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MB")
-				|| strAddData.substring(strAddData.length()-2).equalsIgnoreCase("MO")) {
-			doubleAddDataToGB = doubleAddData / 1000;
+		HashMap<String, Double> hashMapDataType = getAllExistingAddDataInMBAndGB(strAddDataType);
+		double intAddData = 0;
+		double finalCalculatedData = 0;
+		boolean isTotalExistingDataInMB =false;
+		if((strTotalData.toLowerCase().contains("mb")|| strTotalData.toLowerCase().contains("mo")))		
+		{
+			isTotalExistingDataInMB =true;
 		}
 		
-		if((strTotalData.toLowerCase().contains("mb")|| strTotalData.toLowerCase().contains("mo"))&& (strAddData.toLowerCase().contains("mb")||strAddData.toLowerCase().contains("mo")))		
+		
+		if(hashMapDataType.get("totalgb").equals(0.0) && hashMapDataType.get("totalgb")<1000 && isTotalExistingDataInMB)
 		{
-			if(doubleTotalData+doubleAddData>=1000)
+			intAddData = hashMapDataType.get("AllDataTotal");
+			if(intAddData+doubleTotalData<1000)
 			{
-				return (doubleTotalData+doubleAddData)/1000;
+			finalCalculatedData = intAddData+doubleTotalData;
+			}else
+			{
+				finalCalculatedData = intAddData+doubleTotalData;
+				finalCalculatedData = finalCalculatedData/1000;
 			}
-		}
-		if(doubleAddDataToGB==0)
+			
+			
+			
+		}if(hashMapDataType.get("totalgb").equals(0.0) && hashMapDataType.get("totalgb")<1000 && !isTotalExistingDataInMB)
 		{
-			doubleAddDataToGB = doubleAddData;
+			intAddData = hashMapDataType.get("AllDataTotal");
+			
+				finalCalculatedData = (intAddData/1000)+doubleTotalData;				
+			
 		}
-		return doubleTotalData + doubleAddDataToGB;
+		else if(hashMapDataType.get("totalgb").equals(0.0) && isTotalExistingDataInMB)
+		{
+			intAddData = hashMapDataType.get("AllDataTotal")/1000; //convert this to GB since its more than 1000
+			finalCalculatedData = intAddData+(doubleTotalData/1000);			
+			
+		}else if(hashMapDataType.get("totalgb").equals(0.0) && !isTotalExistingDataInMB)
+		{
+			intAddData = hashMapDataType.get("AllDataTotal")/1000; //convert this to GB since its more than 1000
+			finalCalculatedData = intAddData+doubleTotalData;
+			
+		}else if(isTotalExistingDataInMB)
+		{
+			intAddData = hashMapDataType.get("AllDataTotal");
+			finalCalculatedData = intAddData+(doubleTotalData/1000);
+		}else if(!isTotalExistingDataInMB)
+		{
+
+			intAddData = hashMapDataType.get("AllDataTotal");
+			finalCalculatedData = intAddData+doubleTotalData;
+		}
+		
+		
+		
+		
+		return finalCalculatedData;
 	}
 	
 	/**
@@ -185,12 +221,98 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 
 	/**
+	 * This method gets all the existing added data records.
+	 * @return int count of all speed pass
+	 * @author Mirza.Kamran
+	 */
+	public HashMap<String, Double> getAllExistingAddDataInMBAndGB(String strType) {
+		Double mb=0.0;
+		Double gb=0.0;
+		HashMap<String, Double> dataType = new HashMap<String, Double>();
+		List<WebElement> rowsAddMDTData = strType.equalsIgnoreCase("ott") ? rowsAddedData : tableRowsAddData;
+		for(WebElement row:rowsAddMDTData)
+		{
+			String strAddData = row.getText().replaceAll(",", ".");	
+			if(strAddData.toLowerCase().contains("mb") ||strAddData.toLowerCase().contains("mo"))
+			{
+				mb +=  Double.parseDouble(getNumbersFromString(strAddData));
+				
+				
+			}else if(strAddData.toLowerCase().contains("gb") || strAddData.toLowerCase().contains("go"))
+			{
+				gb+=  Double.parseDouble(getNumbersFromString(strAddData));
+			}
+		}
+		
+		dataType.put("totalmb", mb);
+		dataType.put("totalgb", gb);
+		if(dataType.get("totalgb").equals(0.0))
+		{
+			dataType.put("AllDataTotal", dataType.get("totalmb"));			
+		}else
+		{
+			dataType.put("AllDataTotal",(dataType.get("totalgb") + dataType.get("totalmb")/1000));
+		}
+		
+		return dataType;
+	}
+	
+	
+
+	/**
 	 * Verify data accuracy in manage data overlay, total data should show plan data + data add-ons 
 	 * @return true if the data matches displayed, otherwise false
 	 * @param strType ott and mtt type
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyDataAccuracyManageDataOverlay(String strType) {
+		
+		//Plan Data values
+		boolean isPlanDataInMB = false;
+		String strPlanData = rowPlanData.getText().replaceAll(",", ".");	
+		if(strPlanData.toLowerCase().contains("mb") ||strPlanData.toLowerCase().contains("mo"))
+		{
+			isPlanDataInMB =true;
+		}
+		strPlanData=getNumbersFromString(strPlanData);				
+		double intPlanData = Double.parseDouble(strPlanData);
+				
+		
+		//Bottom total data value 
+		boolean isTotalAddedInMB = false;
+		String strTotalData = rowsTotalData.get(0).getText().replaceAll(",", ".");
+		double intTotalData = Double.parseDouble(getNumbersFromString(strTotalData));
+		HashMap<String, Double> hashMapDataType = getAllExistingAddDataInMBAndGB(strType);
+		double intAddData = 0;
+		if(hashMapDataType.get("totalgb").equals(0.0) && hashMapDataType.get("totalgb")<1000)
+		{
+			intAddData = hashMapDataType.get("AllDataTotal");	
+			isTotalAddedInMB = true;
+		}else if(hashMapDataType.get("totalgb").equals(0.0))
+		{
+			intAddData = hashMapDataType.get("AllDataTotal")/1000; //convert this to GB since its more than 1000	
+			isTotalAddedInMB = true;
+			
+		}else
+		{
+			intAddData = hashMapDataType.get("AllDataTotal");
+		}
+		
+			String strTotalAddon = rowsTotalData.get(1).getText().replaceAll(",", ".");
+			double intTotalAddon = Double.parseDouble(getNumbersFromString(strTotalAddon)); 
+			return intTotalData == intPlanData 
+					&& (intTotalAddon == intAddData || (intAddData-intTotalAddon <0.1) );
+	}
+	
+	
+	
+	/**
+	 * Verify data accuracy in manage data overlay, total data should show plan data + data add-ons 
+	 * @return true if the data matches displayed, otherwise false
+	 * @param strType ott and mtt type
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyDataAccuracyManageDataOverlayObs(String strType) {
 		String strPlanData = rowPlanData.getText().replaceAll(",", ".");		
 		strPlanData=getNumbersFromString(strPlanData);				
 		double intPlanData = Double.parseDouble(strPlanData);
@@ -329,6 +451,8 @@ public class FidoDataManagementPage extends BasePageClass {
 		return addData;
 	}
 	
+	
+	
 	/**
 	 * This method gets the MDT values and their counts already added in the view details
 	 * @return int count of all speed pass
@@ -366,6 +490,7 @@ public class FidoDataManagementPage extends BasePageClass {
 		boolean isDisplayed=false;
 		reusableActions.waitForElementTobeClickable(lnkViewDetails, 30);
 		reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		reusableActions.waitForElementTobeClickable(titleManageData, 30);
 		if(reusableActions.isElementVisible(titleManageData,30)
 			&& reusableActions.isElementVisible(titlePlanData, 30)	)
 		{				
