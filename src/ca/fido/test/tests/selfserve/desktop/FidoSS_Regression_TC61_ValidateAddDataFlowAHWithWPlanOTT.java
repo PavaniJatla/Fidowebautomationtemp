@@ -136,14 +136,18 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		reporter.reportLogWithScreenshot("Back on dashboard");
 		if (!fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)) {
 			fido_login_page.clkSignOut();
-			reporter.reportLogWithScreenshot("Sign out done");
+			reporter.reportLogWithScreenshot("Sign Out");
+			reporter.reportLogWithScreenshot("Checking if easy login is displayed");
 			if(fido_home_page.isEasyloginDisplayed())
 			{
 			 fido_home_page.clkEasylogin();
-		    }
+			 reporter.reportLogWithScreenshot("Easy login clicked");
+			}
+			reporter.reportLogWithScreenshot("Click on resign in");
 			fido_login_page.clkResignInAs();
-			reporter.reportLogWithScreenshot("Click Re Sign In");
+			reporter.reportLogWithScreenshot("Re Sign In");		
 			fido_login_page.switchToSignInFrame();
+			fido_home_page.clkNotUser();
 			fido_login_page.setUsernameInFrame(userName);
 			fido_login_page.setPasswordInFrame(password);
 
