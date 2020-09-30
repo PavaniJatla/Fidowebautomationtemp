@@ -134,6 +134,10 @@ public class FidoDataManagementPage extends BasePageClass {
 				return (doubleTotalData+doubleAddData)/1000;
 			}
 		}
+		if(doubleAddDataToGB==0)
+		{
+			doubleAddDataToGB = doubleAddData;
+		}
 		return doubleTotalData + doubleAddDataToGB;
 	}
 	
@@ -214,6 +218,7 @@ public class FidoDataManagementPage extends BasePageClass {
 			}
 			String strTotalAddon = rowsTotalData.get(1).getText().replaceAll(",", ".");
 			double intTotalAddon = Double.parseDouble(getNumbersFromString(strTotalAddon)); 
+			intAddData = intTotalAddon;
 			return intTotalData == intPlanData 
 					&& intTotalAddon == intAddData;
 	}
