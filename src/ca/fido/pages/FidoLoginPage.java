@@ -91,6 +91,19 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
 	
+	
+	/**
+	 * Set the user name on login page
+	 * @param strUsername user name to be login
+	 * @author Mirza.Kamran
+	 */
+	public void setUsernameInFrameAfterReSignIn(String strUsername) {
+		if(reusableActions.isElementVisible(txtUsername)) {
+			reusableActions.getWhenReady(txtUsername,90).clear();
+			//reusableActions.getWhenReady(txtUsername,10).click();
+			reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
+		  }
+		}
 	/**
 	 * Set the user name on login page
 	 * @param strUsername user name to be login
