@@ -159,25 +159,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				
 		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();		
-		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
-		fido_login_page.clkSignOut();
-		reporter.reportLogWithScreenshot("Sign Out");
-		reporter.reportLogWithScreenshot("Checking if easy login is displayed");
-		if(fido_home_page.isEasyloginDisplayed())
-		{
-		 fido_home_page.clkEasylogin();
-		 reporter.reportLogWithScreenshot("Easy login clicked");
-		}
-		reporter.reportLogWithScreenshot("Click on resign in");
-		fido_login_page.clkResignInAs();
-		reporter.reportLogWithScreenshot("Re Sign In");		
-		fido_login_page.switchToSignInFrame();
-		fido_home_page.clkNotUser();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Verify login with new password.");
-		fido_login_page.clkLoginInFrame();
-		fido_login_page.switchOutOfSignInFrame();
+		common_business_flows.logOutAndResignIn(userName, password);
 		//rechange to the original one
 		if(fido_account_overview_page.verifySuccessfulLogin())
 		{

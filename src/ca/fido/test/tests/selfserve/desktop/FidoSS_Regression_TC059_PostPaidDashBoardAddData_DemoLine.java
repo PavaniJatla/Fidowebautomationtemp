@@ -93,27 +93,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 			reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
 			
-			fido_login_page.clkSignOut();
-			reporter.reportLogWithScreenshot("Sign Out");
-			reporter.reportLogWithScreenshot("Checking if easy login is displayed");
-			if(fido_home_page.isEasyloginDisplayed())
-			{
-			 fido_home_page.clkEasylogin();
-			 reporter.reportLogWithScreenshot("Easy login clicked");
-			}
-			reporter.reportLogWithScreenshot("Click on resign in");
-			fido_login_page.clkResignInAs();
-			reporter.reportLogWithScreenshot("Re Sign In");		
-			fido_login_page.switchToSignInFrame();
-			fido_home_page.clkNotUser();
-			fido_login_page.setUsernameInFrame(userName);
-			fido_login_page.setPasswordInFrame(password);
-			reporter.reportLogWithScreenshot("Re-login with password.");
-			fido_login_page.clkLoginInFrame();
-			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
-					"Login proceed without error.", 
-					"Login failed with error.");
-			fido_login_page.switchOutOfSignInFrame();
+			common_business_flows.logOutAndResignIn(userName, password);						
 			//check added data reflecting
 			reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 					"Login succeed.", 

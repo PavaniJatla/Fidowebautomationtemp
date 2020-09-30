@@ -68,4 +68,33 @@ public class CommonBusinessFlows {
 		baseTestClass.fido_account_overview_page.scrollToBottomOfPage();
 	}
 	
+	/**
+	 * Log out and re sign In
+	  * @param strUserName for Application
+	 * @param strPassword for Application
+	 * @author Mirza.Kamran
+	 */
+	public void logOutAndResignIn(String strUserName, String strPassword) {
+		baseTestClass.reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
+		baseTestClass.fido_login_page.clkSignOut();
+		baseTestClass.reporter.reportLogWithScreenshot("Sign Out");
+		baseTestClass.reporter.reportLogWithScreenshot("Checking if easy login is displayed");
+		if(baseTestClass.fido_home_page.isEasyloginDisplayed())
+		{
+			baseTestClass.fido_home_page.clkEasylogin();
+			baseTestClass.reporter.reportLogWithScreenshot("Easy login clicked");
+		}
+		baseTestClass.reporter.reportLogWithScreenshot("Click on resign in");
+		baseTestClass.fido_login_page.clkResignInAs();
+		baseTestClass.reporter.reportLogWithScreenshot("Re Sign In");		
+		baseTestClass.fido_login_page.switchToSignInFrame();
+		baseTestClass.fido_home_page.clkNotUser();
+		baseTestClass.fido_login_page.setUsernameInFrameAfterReSignIn(strUserName);
+		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);
+		baseTestClass.reporter.reportLogWithScreenshot("Verify login with new password.");
+		baseTestClass.fido_login_page.clkLoginInFrame();
+		baseTestClass.fido_login_page.switchOutOfSignInFrame();
+	}
+	
+	
 }
