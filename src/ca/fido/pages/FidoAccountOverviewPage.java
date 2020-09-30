@@ -443,14 +443,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Ning.Xue
 	 */
 	public void clkCtnBadge() {
-		try {
-		reusableActions.getWhenReady(divCtnBadge, 20);
-		reusableActions.getWhenReady(divCtnBadge, 20).click();
+		WebElement elmCtnBadge = getDriver().findElement(By.xpath("//div[@class='item content']"));
+		reusableActions.getWhenReady(elmCtnBadge, 20).click();
 		//		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
-		}catch (StaleElementReferenceException e) {
-			reusableActions.waitForElementTobeClickable(divCtnBadge, 20);
-			reusableActions.getWhenReady(divCtnBadge, 20).click();
-		}
+
 	}
 
 	/**
