@@ -25,19 +25,19 @@ public class FidoCreateUserPage extends BasePageClass {
 	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @formcontrolname='confirmEmail']")
 	WebElement lbltxtConfirmEmail;
 
-	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']/parent::div")
+	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']")
 	WebElement txtFirstName;
-	
+
 	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']")
 	WebElement lblTxtFirstName;
 
-	@FindBy(xpath="//input[@id='lastName' or @id='lname' or @formcontrolname='lastName']/parent::div")
+	@FindBy(xpath="//input[@id='lastName' or @id='lname' or @formcontrolname='lastName']")
 	WebElement txtLastName;
 	
 	@FindBy(xpath="//input[@id='lastName' or @id='lname' or @formcontrolname='lastName']")
 	WebElement lblTxtLastName;
 
-	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or @formcontrolname='contact']/parent::div")
+	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or @formcontrolname='contact']")
 	WebElement txtPhone;
 	
 	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or @formcontrolname='contact']")
@@ -88,8 +88,8 @@ public class FidoCreateUserPage extends BasePageClass {
  */
 public void setEmail(){
 	String strEmail = FormFiller.generateEmail();
-	reusableActions.getWhenReady(txtEmail, 3).click();
-	reusableActions.getWhenReady(lblTxtPhone,3).sendKeys(strEmail);
+	reusableActions.getWhenReady(txtEmail, 10).click();
+	reusableActions.getWhenReady(lblTxtEmail,3).sendKeys(strEmail);
 }
 /**
  * Set the dynamic first name on user creation page
@@ -98,7 +98,8 @@ public void setEmail(){
 public void setFirstName(){
 	String strName = FormFiller.generateRandomName();
 	String strFname="Fido"+ strName;
-	reusableActions.getWhenReady(txtFirstName, 3).click();
+	reusableActions.staticWait(10000);
+	reusableActions.getWhenReady(txtFirstName, 10).click();
 	reusableActions.getWhenReady(lblTxtFirstName,3).sendKeys(strFname);
 }
 
