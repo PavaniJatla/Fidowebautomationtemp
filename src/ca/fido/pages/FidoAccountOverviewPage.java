@@ -569,10 +569,13 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public boolean verifySuccessfulLogin() {
 		String strBalance ="";
 		try {
+			//adding static buffers to avoid stale ref error
+			reusableActions.staticWait(5000);			
 //			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
 			 strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),90).getText();
 		}catch (StaleElementReferenceException e) {
 //			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			reusableActions.staticWait(5000);
 			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),90).getText();
 		}
      return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	

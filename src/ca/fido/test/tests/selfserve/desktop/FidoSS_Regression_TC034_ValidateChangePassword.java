@@ -66,7 +66,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 		fido_profile_and_setting_page.clkChangePassword();				
 		fido_profile_and_setting_page.setNewPassword(altPassword, newPassword);
 		reporter.reportLogWithScreenshot("Password enetered , Old passowrd: "+altPassword+" and New Password: "+newPassword);
-		fido_profile_and_setting_page.clkSaveButton();
+		fido_profile_and_setting_page.clkSaveButton();		
 		fido_login_page.clkSignOut();
 		reporter.reportLogWithScreenshot("Sign Out");
 		reporter.reportLogWithScreenshot("Checking if easy login is displayed");
@@ -79,6 +79,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 		fido_login_page.clkResignInAs();
 		reporter.reportLogWithScreenshot("Click Re Sign In");
 		fido_login_page.switchToSignInFrame();
+		fido_home_page.clkNotUser();
 		fido_login_page.setUsernameInFrame(altUserName);
 		fido_login_page.setPasswordInFrame(newPassword);
 		reporter.reportLogWithScreenshot("Verify login with new password.");
