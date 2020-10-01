@@ -156,6 +156,7 @@ public class FidoHomePage extends BasePageClass {
 	 */	
 	public void clkLoginMobile() {		
 		try {
+		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(lnkLogInMobile,60).click();
 		}catch (Exception e) {
 			reusableActions.clickIfAvailable(btnCloseChat);
@@ -332,6 +333,7 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public void closeNewChatIfVisibleMobile() {
 		reusableActions.clickIfAvailable(btnCloseChat);
+		reusableActions.staticWait(5000);
 		
 	}
 
