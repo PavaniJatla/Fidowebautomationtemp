@@ -94,6 +94,9 @@ public class FidoHomePage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@id='not-you-button']")
 	WebElement lblNotUser;
+
+	@FindBy(xpath = "//a[@id='bc-close-dialog']")
+	WebElement btnCloseChat;
 	
 	
 	/**
@@ -151,8 +154,13 @@ public class FidoHomePage extends BasePageClass {
 	 * Click on Mobile Login button on the home page
 	 * @author chinnarao.vattam
 	 */	
-	public void clkLoginMobile() {						
+	public void clkLoginMobile() {		
+		try {
 		reusableActions.getWhenReady(lnkLogInMobile,60).click();
+		}catch (Exception e) {
+			reusableActions.clickIfAvailable(btnCloseChat);
+			reusableActions.getWhenReady(lnkLogInMobile,60).click();
+		}
 	}
 	
 	/**
@@ -315,6 +323,15 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public boolean verifyIfNotYouIsDisplayed() {
 		return reusableActions.isElementVisible(lblNotUser);
+		
+	}
+
+	/**
+	 * Clicks on close chat
+	 * @author Mirza.Kamran
+	 */
+	public void closeNewChatIfVisibleMobile() {
+		reusableActions.clickIfAvailable(btnCloseChat);
 		
 	}
 

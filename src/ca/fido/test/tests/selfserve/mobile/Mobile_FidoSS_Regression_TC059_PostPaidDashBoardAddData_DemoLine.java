@@ -39,7 +39,8 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		reporter.reportLogWithScreenshot("Launched the Navgation card");
+		fido_home_page.closeNewChatIfVisibleMobile();
 		fido_home_page.clkLoginMobile();
 	
 		String	userName = TestDataHandler.tc5859.getUsername();

@@ -984,7 +984,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public String getAccountSetUpProgressPercentage() {
-		return reusableActions.getWhenReady(progressBar).getAttribute("aria-valuenow").trim();
+		return reusableActions.getWhenReady(progressBar).getAttribute("aria-valuenow").trim().replaceAll(",", "");
 	}
 
 	/**
