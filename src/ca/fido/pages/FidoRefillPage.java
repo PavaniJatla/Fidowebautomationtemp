@@ -3,6 +3,7 @@ package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -513,6 +514,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
     public Boolean verifyAutoRefillStoppedSuccessfully() {
+    	try {
     	String lblStopSuccesstext=reusableActions.getWhenReady(lblStopPaymentSuccessNotifier).getText();
     	if(!reusableActions.isElementVisible(lblStopPaymentSuccessNotifier)
     		&& lblStopSuccesstext==null	)
@@ -521,6 +523,17 @@ public class FidoRefillPage extends BasePageClass {
     		return false;
     	}
     	return true;
+    	}catch (StaleElementReferenceException e) {
+    		String lblStopSuccesstext=reusableActions.getWhenReady(lblStopPaymentSuccessNotifier).getText();
+        	if(!reusableActions.isElementVisible(lblStopPaymentSuccessNotifier)
+        		&& lblStopSuccesstext==null	)
+        	{
+        		System.out.println("Auto refill stopped label is not displayed, please investigate");
+        		return false;
+        	}
+        	return true;
+		}
+    	
     }
 
     /**

@@ -40,8 +40,8 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyFidoTransactionRecord(String strTransactionType, String strAmount) {		
-		if(strTransactionType.trim().contains(reusableActions.getWhenReady(cellTransactionType).getText().toString().trim())
-			&& reusableActions.getWhenReady(cellAmount).getText().toString().trim().contains(strAmount.trim()))
+		if(strTransactionType.trim().contains(reusableActions.getWhenReady(cellTransactionType).getText().toString().trim().substring(4))
+			&& reusableActions.getWhenReady(cellAmount).getText().toString().trim().replaceAll(",", ".").contains(strAmount.replaceAll(",", ".").trim()))
 		{
 			return true;
 		}
@@ -343,7 +343,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     */
    public Boolean verifyTransationTypeValue(int intRow, String strTransactionTypeValue)
    {
-	   if(!strTransactionTypeValue.toLowerCase().contains(getCellTransactionData(intRow).toLowerCase()))
+	   if(!strTransactionTypeValue.toLowerCase().contains(getCellTransactionData(intRow).toLowerCase().substring(0,getCellTransactionData(intRow).toLowerCase().length()-4)))
 	   {
 		   System.out.println("The transaction expected value was : "+strTransactionTypeValue+ " But displayed value is : "+getCellTransactionData(intRow));
 		   return false;

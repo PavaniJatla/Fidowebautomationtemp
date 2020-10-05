@@ -86,6 +86,11 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 	                         "Add on selected",
 	                         "Seems no add on found having existing value less than 3 please investigate");
 		
+		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
+			reporter.reportLogWithScreenshot("Add data limit reached for this account");
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		}else
+		{
 		/*
 		 * 4. Verify Only MDT options available (no OTT). 
 		 * MDT is added and reflected in total bucket,plan section and manage data page
@@ -133,7 +138,12 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		
 		if(this.addData(countOfAlreadyAddedData))
 		{
+			if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
+				reporter.reportLogWithScreenshot("Add data limit reached.");
+				fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+			}else {
 			countAddData++;
+			}
 		}
 		
 		
@@ -149,25 +159,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				
 		//double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();		
-		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
-		fido_login_page.clkSignOut();
-		reporter.reportLogWithScreenshot("Sign Out");
-		reporter.reportLogWithScreenshot("Checking if easy login is displayed");
-		if(fido_home_page.isEasyloginDisplayed())
-		{
-		 fido_home_page.clkEasylogin();
-		 reporter.reportLogWithScreenshot("Easy login clicked");
-		}
-		reporter.reportLogWithScreenshot("Click on resign in");
-		fido_login_page.clkResignInAs();
-		reporter.reportLogWithScreenshot("Re Sign In");		
-		fido_login_page.switchToSignInFrame();
-		fido_home_page.clkNotUser();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Verify login with new password.");
-		fido_login_page.clkLoginInFrame();
-		fido_login_page.switchOutOfSignInFrame();
+		common_business_flows.logOutAndResignIn(userName, password);
 		//rechange to the original one
 		if(fido_account_overview_page.verifySuccessfulLogin())
 		{
@@ -186,6 +178,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 					,"My plans displayes the addons correctly","My Plan doesnt displays add ons correctly");
 			
 		}
+		
+		} //add data limit else bloc ends
 			
 	}
 	
@@ -208,7 +202,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
 			if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
 				reporter.reportLogWithScreenshot("Add data limit reached.");
-				return false;
+				return true;
 			}else {
 				reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 						"Add data success message is displayed",
@@ -221,7 +215,25 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			reporter.reportLogWithScreenshot("Verify added data");
 			dataAdded= true;			
 		}else
-		{   dataAdded = false;
+			
+		{   
+					
+			fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
+			fido_add_data_page.clkContinueBtnOnAddDataOverlay();
+			reporter.reportLogWithScreenshot("Add monthly data selected");
+			reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+								"Confirm purchasing on overlay is displayed",
+								"Confirm purchasing on overlay is not displayed");	
+			reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
+			fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+			if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
+				reporter.reportLogWithScreenshot("Add data limit reached.");
+				return true;
+			}else
+			{
+				reporter.hardAssert(false, "Seems the limit reach message didnt displaye",
+						"The limit reached message is displayed");				
+			}
 			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 		}
 		return dataAdded;

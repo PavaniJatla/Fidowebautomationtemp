@@ -56,10 +56,10 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//*[@id='signin-interceptor-modal']//iframe")
 	WebElement iframe;
 
-	@FindBy(xpath = "//button[@class='primary-button state-btn' or text()='LOG IN TO MY ACCOUNT']")
+	@FindBy(xpath = "//button[@class='primary-button state-btn' or text()='LOG IN TO MY ACCOUNT' or contains(text(),' MON COMPTE')]")
 	WebElement btnLogInToMyAccount;
 
-	@FindBy(xpath = "//span[text()='Your password has been reset!' or text()='Votre mot de passe a été réinitialisé.']")
+	@FindBy(xpath = "//span[text()='Your password has been reset!' or contains(text(),'Votre mot de passe a')]")
 	WebElement txtYourPasswordHasBeenReset;
 	
 	@FindBy(xpath = "//i[@class='rogers-icon-circle-x']")
@@ -68,7 +68,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//input[@formcontrolname='accountNumber']")
 	WebElement txtAcountNumber;
 	
-	@FindBy (xpath = "//td[contains(text(),'Your username is') or contains(text(),'Votre nom d’utilisateur est')]")
+	@FindBy (xpath = "//td[contains(text(),'Your username is') or contains(text(),'utilisateur est')]")
 	WebElement lblYourUsername;
 	
 	@FindBy (xpath = "//img[@alt='Return to sign in' or @alt='Ouvrir une session']")

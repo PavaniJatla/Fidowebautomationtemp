@@ -72,7 +72,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//*[@id='terms-conditions-scroll']/ins/div/ins/p[7]")
 	WebElement lbltermsAndConditionBottom;
 	
-	@FindBy(xpath="//div[@class='pay-now-modal']//input[@value='Review & continue' or @value='Vérifier et continuer']")
+	@FindBy(xpath="//div[@class='pay-now-modal']//input[@value='Review & continue' or contains(@value,'rifier et continuer')]")
 	WebElement btnReviewAndContinue;
 
 	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payNow']")
@@ -212,7 +212,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	{	
 		Actions act=new Actions(reusableActions.getDriver());		
 		act.moveToElement(reusableActions.getWhenReady(btnReviewAndContinue)).click().build().perform();
-
+	   
 	}
 	
 	/**
