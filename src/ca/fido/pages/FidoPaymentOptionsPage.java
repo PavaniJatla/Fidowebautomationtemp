@@ -407,7 +407,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkIAcceptTermsAndCondition() {				
 		reusableActions.staticWait(1000);
-		reusableActions.clickIfAvailable(chkAcceptTnC);
+		reusableActions.getWhenReady(chkAcceptTnC).click();
 	}
 	
 	/**
