@@ -94,8 +94,9 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			reporter.reportLogWithScreenshot("Add data success modal.");
 			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 			reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
+
+			common_business_flows.logOutAndResignIn(userName, password);		
 			
-			common_business_flows.logOutAndResignIn(userName, password);						
 			//check added data reflecting
 			reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 					"Login succeed.", 
