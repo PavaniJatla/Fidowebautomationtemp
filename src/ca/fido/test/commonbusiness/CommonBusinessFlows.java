@@ -92,7 +92,10 @@ public class CommonBusinessFlows {
 		baseTestClass.fido_login_page.setUsernameInFrameAfterReSignIn(strUserName);
 		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);
 		baseTestClass.reporter.reportLogWithScreenshot("Verify login with new password.");
-		baseTestClass.fido_login_page.clkLoginInFrame();
+		baseTestClass.fido_login_page.clkLoginInFrame();		
+		baseTestClass.reporter.hardAssert(!baseTestClass.fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
+				"Login failed");
 		baseTestClass.fido_login_page.switchOutOfSignInFrame();
 	}
 	
