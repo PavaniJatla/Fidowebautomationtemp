@@ -316,7 +316,6 @@ public class FidoDataManagementPage extends BasePageClass {
 		String strPlanData = rowPlanData.getText().replaceAll(",", ".");		
 		strPlanData=getNumbersFromString(strPlanData);				
 		double intPlanData = Double.parseDouble(strPlanData);
-				
 		String strTotalData = rowsTotalData.get(0).getText().replaceAll(",", ".");
 		double intTotalData = Double.parseDouble(getNumbersFromString(strTotalData));
 		double intAddData = 0;	
