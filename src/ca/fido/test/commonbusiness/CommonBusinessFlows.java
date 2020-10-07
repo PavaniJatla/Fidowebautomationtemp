@@ -74,8 +74,7 @@ public class CommonBusinessFlows {
 	 * @param strPassword for Application
 	 * @author Mirza.Kamran
 	 */
-	public void logOutAndResignIn(String strUserName, String strPassword) {
-		baseTestClass.reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");		
+	public void logOutAndResignIn(String strUserName, String strPassword) {			
 		baseTestClass.fido_login_page.clkSignOut();
 		baseTestClass.reporter.reportLogWithScreenshot("Sign Out");
 		baseTestClass.reporter.reportLogWithScreenshot("Checking if easy login is displayed");
@@ -91,7 +90,7 @@ public class CommonBusinessFlows {
 		baseTestClass.fido_home_page.clkNotUser();
 		baseTestClass.fido_login_page.setUsernameInFrameAfterReSignIn(strUserName);
 		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);
-		baseTestClass.reporter.reportLogWithScreenshot("Verify login with new password.");
+		baseTestClass.reporter.reportLogWithScreenshot("Login credentials entered");
 		baseTestClass.fido_login_page.clkLoginInFrame();		
 		baseTestClass.reporter.hardAssert(!baseTestClass.fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 

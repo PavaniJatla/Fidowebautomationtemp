@@ -308,7 +308,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkNotUser() {
-		reusableActions.clickIfAvailable(lblNotUser); //optional click
+		reusableActions.clickIfAvailable(lblNotUser,30); //optional click
 		
 	}
 	
