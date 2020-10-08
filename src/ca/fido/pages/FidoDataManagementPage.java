@@ -20,7 +20,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 	
 	
-	@FindBy (xpath = "//h1[@class='manage-data-title mb-10 ng-star-inserted' or @class='manage-data-title']")
+	@FindBy (xpath = "//h1[contains(@class,'manage-data-title') or @class='manage-data-title']")
 	WebElement titleManageData;
 	
 	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")
@@ -39,7 +39,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]/parent::div/parent::div//strong")
 	List<WebElement> rowsTotalData;
 	
-	@FindBy (xpath = "//span[contains(text(),'Back') or contains(text(),'Précédent')]")
+	@FindBy (xpath = "//span[contains(text(),'Back') or contains(text(),'Précédent') or contains(text(),'Mobile Dashboard') or contains(text(),'Tableau de bord mobile')]")
 	WebElement lnkBackOnManageDataOverlay;
 	
 	@FindBy (xpath = "//strong")

@@ -96,7 +96,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	WebElement lblPlanData;
 	
 	@FindAll({
-		@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA']"),	
+		@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA' or text()='Upgrade Plan' or text()='Améliorez votre plan']"),	
 	    @FindBy (xpath = "//button/span[text()='CHANGE PLAN' or text()='CHANGER DE FORFAIT']")})
 	WebElement btnChangePlan;	
 	
@@ -109,13 +109,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer']")
 	WebElement btnCloseFullPlanDetailsOverlay;
 	
-	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate='usageModule.talkAndText.talkTextTitle']")
+	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
 	WebElement divMyPlanTalkDetails;
 	
 	@FindBy(xpath = "//span[@translate='usageModule.talkAndText.unlimited']")
 	WebElement divTalkAndTextMobile;
 	
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.text']")
+	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage unlimited')]")
 	WebElement divMyPlanText;
 	
 	@FindBy (xpath = "//img[@class='hours-data']")
@@ -127,7 +127,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//img[@class='fido-roam']")
 	WebElement imgPlanBenefitsRoam;
 	
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.viewFullPlanCTA']")
+	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.viewFullPlanCTA' or text()='View full plan details']")
 	WebElement lnkViewFullPlan;
 	
 	//My device Section
@@ -194,7 +194,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//td[contains(text(),'International') or contains(text(),'Internationaux')]")
 	WebElement tdInternationalMsg;
 	
-	@FindBy(xpath = "//span[@translate='usageModule.nonRealTimeLabel']")
+		
+	@FindAll({
+	@FindBy(xpath = "//ss-non-realtime"),
+	@FindBy(xpath = "//*[@translate='usageModule.nonRealTimeLabel']")})
 	WebElement divDataDelayedAlert;
 	
 	@FindBy(xpath = "//div[@class='ss-data-section-bill-cycle']")
@@ -209,7 +212,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='ss-data-usage-bar-background']")
 	WebElement divUsageBar;
 	
-	@FindBy (xpath = "//ins[contains(text(),'days remaining') or contains(text(),'votre cycle')]")
+	@FindBy (xpath = "//*[contains(text(),'days remaining') or contains(text(),'votre cycle')]")
 	WebElement daysRemainingofBillCycle;
 	
 	@FindBy(xpath = "//button[@translate='wirelessDashboard.deviceSection.upgradeBtnText']")
@@ -230,19 +233,29 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//div[@cdktrapfocus]//button[@title='Close']")
 	WebElement btnCloseOnPopup;
 	
-	@FindBy (xpath = "//span[@translate=\"wireless.dashboard.quickActions.quickActions03\"]")
+	@FindAll({		
+	@FindBy(xpath = "//span[text()='Report lost or stolen device' or text()='Signaler la perte ou le vol d’un appareil']"),
+	@FindBy (xpath = "//span[@translate=\"wireless.dashboard.quickActions.quickActions03\"]")})
 	WebElement lnkReportLostOrStolen;
 	
-	@FindBy (xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions01\"]")
+	@FindAll({
+	@FindBy(xpath = "//span[text()='Change call display name' or text()='Modifier le nom d’affichage des appels']"),
+	@FindBy (xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions01\"]")})
 	WebElement lnkChangeCallDisplayName;
 
-	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions04\"]")
+	@FindAll({		
+	@FindBy(xpath = "//span[text()='Update SIM Card' or text()='Mettre à jour la carte SIM']"),
+	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions04\"]")})
 	WebElement lnkUpdateSIMCard;
 	
-	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions07\"]")
+	@FindAll({
+	@FindBy(xpath = "//span[text()='Retrieve PUK Code' or text()='Obtenir un code PUK']"),	
+	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions07\"]")})
 	WebElement lnkRetreivePUKCode;
 	
-	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")
+	@FindAll({
+	@FindBy(xpath = "//span[text()='Change my number' or text()='Changer mon numéro']"),
+	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
 	
 	@FindBy(xpath = "//button[@class='ss-data-usage-ondemand-button']")
@@ -261,13 +274,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//fds-link[@class='ng-star-inserted']")
 	WebElement lnkReactivate;
 
-	@FindBy (xpath = "//span[@translate='usageModule.manage']")
+	@FindBy (xpath = "//span[@translate='usageModule.manage' or text()='View Details' or text()='Afficher les détails']")
 	WebElement lnkViewDetailsInUsageSection;
 	
 	@FindBy(xpath="//div[contains(@class,'wireless-dashboard')]/div[contains(@class,'wireless-title')]")
 	WebElement lblMobileDashboardTitle;
 	
-	@FindBy(xpath="//span[@translate='wireless.dashboard.quickActions.quickActions08']")
+	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")
 	WebElement lnkRepairMobile;
 
 	@FindBy(xpath = "//button[@translate='global.cta.continue']")
@@ -305,6 +318,12 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 
 	@FindBy(xpath = "//a/span[@translate='wireless.dashboard.myPlan.viewDetailsCTA']")
 	WebElement lnkViewDetailsMyPlan;
+	
+	@FindBy(xpath = "//button[@title='Voir les détails des appels et textos' or @title='View Talk and Text details']")
+	WebElement lnkViewDetailsTalkAndText;
+
+	@FindBy(xpath = "//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")
+	WebElement lnkRepairOrTradeInMyDevice;
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -1124,6 +1143,23 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	}
 	
 	/**
+	 * Verify link repair or trade in my device is displayed
+	 * @return true if the link is available else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyLinkRepairOrTradeInMyDeviceIsDisplayed() {
+		return reusableActions.isElementVisible(lnkRepairOrTradeInMyDevice);
+	}
+	
+	/**
+	 * Clicks on Repair or trade in device link
+	 * @author Mirza.Kamran
+	 */
+	public void clkRepairOrTradeInDeviceLink() {
+		reusableActions.clickWhenReady(lnkRepairOrTradeInMyDevice);
+	}
+	
+	/**
 	 * Clicks on Repair device link
 	 * @author Mirza.Kamran
 	 */
@@ -1326,6 +1362,16 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTalkandTextPlanDetailsSectionIsDisplayedMobile() {		
 		return reusableActions.isElementVisible(divTalkAndTextMobile);
+	}
+
+
+	/**
+	 * Verifies if view details displayed below talk and text
+	 * @return true if displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited() {
+		return reusableActions.isElementVisible(lnkViewDetailsTalkAndText);
 	}
 
 	
