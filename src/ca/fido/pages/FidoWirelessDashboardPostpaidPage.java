@@ -103,7 +103,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA']")
 	WebElement btnChangePlanMobile;
 	
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.planDetailsModel.fullPlanDetails']")
+	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.planDetailsModel.fullPlanDetails' or text()='full plan details' or text()='détails du plan']")
 	WebElement headerFullPlanDetailsOverlay;
 	
 	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer']")
@@ -127,12 +127,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//img[@class='fido-roam']")
 	WebElement imgPlanBenefitsRoam;
 	
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.viewFullPlanCTA' or text()='View full plan details']")
+	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.viewFullPlanCTA' or text()='View full plan details' or contains(text(),'Voir les détails du plan')]")
 	WebElement lnkViewFullPlan;
 	
 	//My device Section
-	
-	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")
+	@FindAll({
+	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
+	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
 		
 	@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions03']")
