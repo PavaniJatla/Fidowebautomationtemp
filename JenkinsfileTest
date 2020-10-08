@@ -37,7 +37,7 @@ pipeline {
         string(name: 'ThreadCount', defaultValue: "2", description: 'Number of parallel test sessions')
         string(name: 'Groups', defaultValue: "", description: 'Groups names separated by comma')
         string(name: 'TestProfile', defaultValue: "DefaultProfile", description: 'Only used for reporting - has no impact on test runs')
-        string(name: 'IndividualTests', defaultValue: "FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT", description: "Individual tests to be passed as Test1 Test2 Test3 Test4 and so on ")
+        string(name: 'IndividualTests', defaultValue: "", description: "Individual tests to be passed as Test1 Test2 Test3 Test4 and so on ")
 
     }
 
