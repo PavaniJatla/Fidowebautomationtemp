@@ -106,7 +106,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.planDetailsModel.fullPlanDetails' or text()='full plan details' or text()='détails du plan']")
 	WebElement headerFullPlanDetailsOverlay;
 	
-	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer']")
+	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer' or @title='Close my plan']")
 	WebElement btnCloseFullPlanDetailsOverlay;
 	
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
@@ -793,7 +793,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 			System.out.println("View full plan details link did not open the expected overlay, please investigate");			
 			return false;			
 		}
-		reusableActions.clickIfAvailable(btnCloseFullPlanDetailsOverlay);
+		reusableActions.getWhenReady(btnCloseFullPlanDetailsOverlay).click();
 		return true;
 	}
 	
