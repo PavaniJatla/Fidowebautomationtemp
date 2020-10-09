@@ -91,6 +91,7 @@ public class Fido_BFA_TC05_AAL_Term_Test extends BaseTestClass{
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		//System.setProperty("Browser" , "saucechrome");
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }

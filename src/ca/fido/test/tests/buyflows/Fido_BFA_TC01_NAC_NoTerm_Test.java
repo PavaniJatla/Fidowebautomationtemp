@@ -46,6 +46,7 @@ public class Fido_BFA_TC01_NAC_NoTerm_Test extends BaseTestClass{
 		reporter.reportLogPass("skipped BPO option");
 		fido_build_plan_page.clkContinueAddOns();
 		reporter.reportLogPass("Continue button on AddOns clicked");
+		fido_build_plan_page.clkNoBPOOfferButtonTalkOptions();
 		fido_build_plan_page.clkContinueBelowCartSummary();
 		fido_create_user_page.setCommunicationDetails();
 		fido_create_user_page.setFirstName();
@@ -67,8 +68,8 @@ public class Fido_BFA_TC01_NAC_NoTerm_Test extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Credit Evaluation page");
 		fido_credit_check_page.clkContinue();
 		fido_credit_check_page.waitForCreditCheckProcessing();
-		fido_credit_check_page.clkBtnSecurityDepositConsentAccept();
-		fido_choose_number_page.clkSelectNewNumber();
+		//fido_credit_check_page.clkBtnSecurityDepositConsentAccept();
+		//fido_choose_number_page.clkSelectNewNumber();
 		fido_choose_number_page.selectCity(TestDataHandler.testCase01.getCtnCity());
 		fido_choose_number_page.selectFirstAvailableNumber();
 		reporter.reportLogWithScreenshot("Choose Phone Number page");

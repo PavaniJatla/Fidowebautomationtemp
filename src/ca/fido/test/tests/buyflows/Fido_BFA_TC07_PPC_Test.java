@@ -60,6 +60,7 @@ public class Fido_BFA_TC07_PPC_Test extends BaseTestClass{
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		//System.setProperty("Browser" , "saucechrome");
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
