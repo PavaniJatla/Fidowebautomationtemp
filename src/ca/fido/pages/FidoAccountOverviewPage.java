@@ -443,14 +443,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Ning.Xue
 	 */
 	public void clkCtnBadge() {
-		try {
-		reusableActions.getWhenReady(divCtnBadge, 20);
-		reusableActions.getWhenVisible(divCtnBadge, 20).click();
+		WebElement elmCtnBadge = getDriver().findElement(By.xpath("//div[@class='item content']"));
+		reusableActions.getWhenReady(elmCtnBadge, 20).click();
 		//		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
-		}catch (StaleElementReferenceException e) {
-			reusableActions.waitForElementTobeClickable(divCtnBadge, 20);
-			reusableActions.getWhenVisible(divCtnBadge, 20).click();
-		}
+
 	}
 
 	/**
@@ -573,11 +569,14 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public boolean verifySuccessfulLogin() {
 		String strBalance ="";
 		try {
-			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
-			 strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+			//adding static buffers to avoid stale ref error
+			reusableActions.staticWait(5000);			
+//			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			 strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),90).getText();
 		}catch (StaleElementReferenceException e) {
-			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
-			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),10).getText();
+//			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			reusableActions.staticWait(5000);
+			strBalance = reusableActions.getWhenReady(By.xpath("//span[@class='account-balance-font-size']"),90).getText();
 		}
      return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
 	}
@@ -985,7 +984,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public String getAccountSetUpProgressPercentage() {
-		return reusableActions.getWhenReady(progressBar).getAttribute("aria-valuenow").trim();
+		return reusableActions.getWhenReady(progressBar).getAttribute("aria-valuenow").trim().replaceAll(",", "");
 	}
 
 	/**

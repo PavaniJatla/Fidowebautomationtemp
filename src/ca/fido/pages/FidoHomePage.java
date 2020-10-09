@@ -17,7 +17,7 @@ public class FidoHomePage extends BasePageClass {
 		@FindBy(xpath="//a[contains(@class,'m-navLink -navbar -login')]")})
 	WebElement lnkLogIn;
 	
-	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor')]//span[@class='m-mobileNavLink__caption']")
+	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor')]//span[contains(@class,'m-mobileNavLink__caption')]")
 	WebElement lnkLogInMobile;
 	
 	@FindBy(xpath="//a[@class='m-navLink']//span[@class='m-navLink__chevron fds-icon-down']")
@@ -94,6 +94,9 @@ public class FidoHomePage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@id='not-you-button']")
 	WebElement lblNotUser;
+
+	@FindBy(xpath = "//a[@id='bc-close-dialog']")
+	WebElement btnCloseChat;
 	
 	
 	/**
@@ -151,8 +154,10 @@ public class FidoHomePage extends BasePageClass {
 	 * Click on Mobile Login button on the home page
 	 * @author chinnarao.vattam
 	 */	
-	public void clkLoginMobile() {						
+	public void clkLoginMobile() {		
+				
 		reusableActions.getWhenReady(lnkLogInMobile,60).click();
+		
 	}
 	
 	/**
@@ -303,7 +308,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkNotUser() {
-		reusableActions.clickIfAvailable(lblNotUser); //optional click
+		reusableActions.clickIfAvailable(lblNotUser,30); //optional click
 		
 	}
 	
@@ -315,6 +320,16 @@ public class FidoHomePage extends BasePageClass {
 	 */
 	public boolean verifyIfNotYouIsDisplayed() {
 		return reusableActions.isElementVisible(lblNotUser);
+		
+	}
+
+	/**
+	 * Clicks on close chat
+	 * @author Mirza.Kamran
+	 */
+	public void closeNewChatIfVisibleMobile() {
+		reusableActions.clickIfAvailable(btnCloseChat);
+		reusableActions.staticWait(5000);
 		
 	}
 

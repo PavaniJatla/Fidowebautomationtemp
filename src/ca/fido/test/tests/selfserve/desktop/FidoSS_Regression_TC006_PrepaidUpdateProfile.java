@@ -74,21 +74,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		fido_profile_and_setting_page.clkSaveButton();	
 		reporter.reportLogWithScreenshot("New password changes saved");
 		reporter.reportLogWithScreenshot("New password changes saved");
-		fido_login_page.clkSignOut();
-		if(fido_home_page.isEasyloginDisplayed())
-		{
-			fido_home_page.clkEasylogin();
-		}
-		reporter.reportLogWithScreenshot("Sign Out clicked.");
-		fido_login_page.clkResignInAs();
-		reporter.reportLogWithScreenshot("Clicked ReSign In");
-		fido_login_page.switchToSignInFrame();
-		if(fido_login_page.isUserNameDisplayed())
-		{
-			fido_login_page.setUsernameInFrame(altUserName);
-		}
-		fido_login_page.setPasswordInFrame(newPassword);			
-		fido_login_page.clkLoginInFrame();
+		common_business_flows.logOutAndResignIn(altUserName,newPassword);			
 		reporter.reportLogWithScreenshot("Login with new password performed");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),

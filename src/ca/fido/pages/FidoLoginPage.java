@@ -36,7 +36,7 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement lnkSignOutMobile;
 	
 	@FindAll({		
-	@FindBy(xpath = "//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as')]"),
+	@FindBy(xpath = "//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as') or contains(text(),'Ouvrir une session')]"),
 	@FindBy(xpath = "//div[@class='fdl-navbar-nav']//li[contains(@class,'stateActive')]/a//span[contains(text(),'Sign in') or contains(text(),'Ouvrir une session')]")})
 	WebElement lnkReSignInAs;
 	
@@ -91,6 +91,19 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
 	
+	
+	/**
+	 * Set the user name on login page
+	 * @param strUsername user name to be login
+	 * @author Mirza.Kamran
+	 */
+	public void setUsernameInFrameAfterReSignIn(String strUsername) {
+		if(reusableActions.isElementVisible(txtUsername)) {
+			reusableActions.getWhenReady(txtUsername,90).clear();
+			//reusableActions.getWhenReady(txtUsername,10).click();
+			reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
+		  }
+		}
 	/**
 	 * Set the user name on login page
 	 * @param strUsername user name to be login
@@ -110,7 +123,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchToSignInFrame() {
-		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
+		getDriver().switchTo().frame(fraSignIn);
+//		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
 	}
 	
 	/**
@@ -221,7 +235,7 @@ public class FidoLoginPage extends BasePageClass {
 		
 		//updated in 920 ----		
 		//reusableActions.getWhenReady(By.xpath("//div[@id='skipNavigation']//span[contains(text(),'Sign in as')]"), 20).click();
-		reusableActions.getWhenReady(By.xpath("//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as')]"), 20).click();
+		reusableActions.getWhenReady(By.xpath("//header[contains(@class,'headerDesk')]//span[contains(text(),'Sign in as') or contains(text(),'Ouvrir une session en tant que ')]"), 20).click();
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {

@@ -1,5 +1,9 @@
 package ca.fido.testdatamanagement;
 
+import java.util.List;
+
+import org.testng.ITestNGMethod;
+
 import ca.fido.yaml.pojo.*;
 
 public class TestDataHandler {
@@ -60,19 +64,27 @@ public class TestDataHandler {
 	public static AccountData tc65;
 	public static AccountData tc66;
 
-	public static void dataInit (String strApplicationType) {	   
+	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {	   
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
-	    	if(strApplicationType.toUpperCase().trim().endsWith("CH")) {	    	
+
+			String strTestMethodName = lstTestMethodName.toString();
+			boolean match = false; 
+	    	if(strTestMethodName.contains("connectedhome.")) {	    	
 	    		//HSI Fido Data files
-	    		connectedHomeDataInit();            
-	    	} else if(strApplicationType.toUpperCase().trim().endsWith("SS")
-	    			||strApplicationType.toUpperCase().trim().endsWith("SS]")) {
+	    		connectedHomeDataInit();   
+	    		match = true;
+	    	} 
+	    	if(strTestMethodName.contains("selfserve.")) {
 		    	//Self-Service Data files
 	    		selfserveDataInit();
-	    	} else if(strApplicationType.toUpperCase().trim().endsWith("BFA")) {
+	    		match = true;
+	    	} 
+	    	if(strTestMethodName.contains("buyflows.")) {
 	    		//Buy-Flows Data files
 	    		buyFlowsDataInit();
-	    	} else {
+	    		match = true;
+	    	} 
+	    	if (!match) {
 	    		//All Data files
 	    		connectedHomeDataInit(); 
 	    		selfserveDataInit();

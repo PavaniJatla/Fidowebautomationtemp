@@ -39,7 +39,8 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
+		reporter.reportLogWithScreenshot("Launched the Navgation card");
+		fido_home_page.closeNewChatIfVisibleMobile();
 		fido_home_page.clkLoginMobile();
 	
 		String	userName = TestDataHandler.tc5859.getUsername();
@@ -153,7 +154,7 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("mdt"),
 				"Accuracy of data in Manage data overlay is verified.",
 				"Accuracy of data in Manage data overlay didn't verify successfully.");	
-		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay();
+		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay("mdt");
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
 		double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();

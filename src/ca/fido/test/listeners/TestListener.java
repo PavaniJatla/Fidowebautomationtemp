@@ -224,7 +224,7 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 
 	@Override
 	public void onStart(ISuite suite) {	 
-		TestDataHandler.dataInit(suite.getName());
+		TestDataHandler.dataInit(suite.getAllMethods());
 		System.out.println("Data File Initialized");
 	}
 

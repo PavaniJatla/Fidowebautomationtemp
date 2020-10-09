@@ -21,16 +21,16 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	  }
 	//--------- New elements after change in Method of payment
 	
-	@FindBy(xpath = "//p[text()='Credit Card' or text()='Carte de Crédit']")
+	@FindBy(xpath = "//p[text()='Credit Card' or contains(text(),'Carte de Cr')]/ancestor::a")
 	WebElement btnCreditCard;
 	
-	@FindBy(xpath = "//fds-chip/a//p[text()='Credit Card' or text()='Carte de Crédit' or text()='Switch to credit card']")
+	@FindBy(xpath = "//fds-chip/a//p[text()='Credit Card' or contains(text(),'Carte de Cr') or text()='Switch to credit card']")
 	WebElement btnSwitchToCreditCard;
 		
-	@FindBy(xpath = "//fds-chip/a//p[text()='Bank Account' or text()='Compte bancaire' or text()='Switch to bank account' or text()='Passer à un compte bancaire']")
+	@FindBy(xpath = "//fds-chip/a//p[text()='Bank Account' or text()='Compte bancaire' or text()='Switch to bank account' or contains(text(),'un compte bancaire')]")
 	WebElement btnSwitchToBank;
 	
-	@FindBy(xpath = "//p[text()='Bank Account' or text()='Compte bancaire' or text()='Switch to bank account' or text()='Passer à un compte bancaire']")
+	@FindBy(xpath = "//p[text()='Bank Account' or text()='Compte bancaire' or text()='Switch to bank account' or contains(text(),'un compte bancaire')]")
 	WebElement btnBankAccount;
 	
 	@FindBy(id = "expiryDate")
@@ -266,14 +266,14 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkButtonCreditCard() {
-		reusableActions.clickWhenReady(btnCreditCard);
+		reusableActions.executeJavaScriptClick(btnCreditCard);
 	}
 	
 	/**
 	 * Perform click on the bank Account Button
 	 */
 	public void clkButtonBankAccount() {
-		reusableActions.clickWhenReady(btnBankAccount);
+		reusableActions.getWhenReady(btnBankAccount).click();
 	}
 	
 	/**
@@ -407,7 +407,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkIAcceptTermsAndCondition() {				
 		reusableActions.staticWait(1000);
-		reusableActions.clickIfAvailable(chkAcceptTnC);
+		reusableActions.getWhenReady(chkAcceptTnC).click();
 	}
 	
 	/**

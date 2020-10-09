@@ -37,7 +37,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
-	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
+	public void verifyAddOTTDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		fido_home_page.clkLogin();
 	
@@ -94,80 +94,71 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		double dataAdded = 0;
 		String strValueAdded = null;
 		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
-			reporter.reportLogWithScreenshot("Add data limit reached.");
-		}else {
+			reporter.reportLogWithScreenshot("Add data limit reached for this account");
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		}else
+		 {
 			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
 			strValueAdded = fido_add_data_page.getAddedValueWithGBOrMB();
 			dataAdded = fido_add_data_page.getValueAddedData();
 			reporter.reportLogWithScreenshot("Add data success modal.");
-		}
-		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 			
 			
-		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
-		//Manage data page		
-		//5. Click on View details in usage dashboard plan section and manage data page
-		//5. Added Data section lists all add-ons separately and there is NO Cancel link next to OTT"
-		reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
-				"Manage data overlay is displayed",
-				"Manage data overlay is not displayed");	
-		reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
-				"Plan data in Manage data overlay is displayed",
-				"Plan data in Manage data overlay is not displayed");	
-		reporter.reportLogWithScreenshot("Manage data overlay.");
-		reporter.softAssert(fido_data_management_page.verifyAddedDataInManageDataOverlayDisplayed(),
-				"Added data in Manage data overlay is displayed",
-				"Added data in Manage data overlay is not displayed");	
-		reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
-				"Total data in Manage data overlay is displayed",
-				"Total data in Manage data overlay is not displayed");	
-		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("ott"),
-				"Accuracy of data in Manage data overlay is verified.",
-				"Accuracy of data in Manage data overlay didn't verify successfully.");		
-		
-		reporter.softAssert((fido_data_management_page.verifyAddedDataInDataDetails(1, countOfExistSpeedPass)
-				&& fido_data_management_page.verifyNoCancelLinkDisplayedForAddedData()),
-				"Added Data section lists all add-ons separately and there is NO Cancel link next to OTT",
-				"It seems AddedAdded Data section doesnt lists all add-ons separately or there is Cancel link next to OTT");
-		
-		fido_data_management_page.clkLinkBackOnManageDataOverlay();
-		reporter.reportLogWithScreenshot("Back on dashboard");
-		if (!fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)) {
-			fido_login_page.clkSignOut();
-			reporter.reportLogWithScreenshot("Sign out done");
-			if(fido_home_page.isEasyloginDisplayed())
-			{
-			 fido_home_page.clkEasylogin();
-		    }
-			fido_login_page.clkResignInAs();
-			reporter.reportLogWithScreenshot("Click Re Sign In");
-			fido_login_page.switchToSignInFrame();
-			fido_login_page.setUsernameInFrame(userName);
-			fido_login_page.setPasswordInFrame(password);
-
-			fido_login_page.clkLoginInFrame();
-			fido_login_page.switchOutOfSignInFrame();
-			//rechange to the original one
-			if(fido_account_overview_page.verifySuccessfulLogin())
-			{
-				reporter.reportLogWithScreenshot("Click on CTN badge");
-				fido_account_overview_page.clkCtnBadge();
-				reporter.reportLogWithScreenshot("dashboard page");			
+			fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
+			//Manage data page		
+			//5. Click on View details in usage dashboard plan section and manage data page
+			//5. Added Data section lists all add-ons separately and there is NO Cancel link next to OTT"
+			reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+					"Manage data overlay is displayed",
+					"Manage data overlay is not displayed");	
+			reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
+					"Plan data in Manage data overlay is displayed",
+					"Plan data in Manage data overlay is not displayed");	
+			reporter.reportLogWithScreenshot("Manage data overlay.");
+			reporter.softAssert(fido_data_management_page.verifyAddedDataInManageDataOverlayDisplayed(),
+					"Added data in Manage data overlay is displayed",
+					"Added data in Manage data overlay is not displayed");	
+			reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
+					"Total data in Manage data overlay is displayed",
+					"Total data in Manage data overlay is not displayed");	
+			reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("ott"),
+					"Accuracy of data in Manage data overlay is verified.",
+					"Accuracy of data in Manage data overlay didn't verify successfully.");		
+			
+			reporter.softAssert((fido_data_management_page.verifyAddedDataInDataDetails(1, countOfExistSpeedPass)
+					&& fido_data_management_page.verifyNoCancelLinkDisplayedForAddedData()),
+					"Added Data section lists all add-ons separately and there is NO Cancel link next to OTT",
+					"It seems AddedAdded Data section doesnt lists all add-ons separately or there is Cancel link next to OTT");
+			
+			fido_data_management_page.clkLinkBackOnManageDataOverlay();
+			reporter.reportLogWithScreenshot("Back on dashboard");
+			if (!fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)) {
+				common_business_flows.logOutAndResignIn(userName, password);
+				//rechange to the original one
+				if(fido_account_overview_page.verifySuccessfulLogin())
+				{
+					reporter.reportLogWithScreenshot("Click on CTN badge");
+					fido_account_overview_page.clkCtnBadge();
+					reporter.reportLogWithScreenshot("dashboard page");			
+				}
 			}
-		}
 
-		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
-		reporter.reportLogWithScreenshot("My Plan Details");
-		//All the added OTT are reflected in total bucket,plan section and manage data page
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)
-				,"My plans displayes the addons correctly","My Plan doesnt displays add ons correctly");
-	
-		if(strValueAdded.toLowerCase().contains("mo")||strValueAdded.toLowerCase().contains("mb"))
-		{			
-			dataAdded = (dataAdded/1000);
+			fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
+			reporter.reportLogWithScreenshot("My Plan Details");
+			//All the added OTT are reflected in total bucket,plan section and manage data page
+			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)
+					,"My plans displayes the addons correctly","My Plan doesnt displays add ons correctly");
+		
+			if(strValueAdded.toLowerCase().contains("mo")||strValueAdded.toLowerCase().contains("mb"))
+			{			
+				dataAdded = (dataAdded/1000);
+			}
+			
 		}
+		
 		/*
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 								"The data add-on reflected in total data.",
