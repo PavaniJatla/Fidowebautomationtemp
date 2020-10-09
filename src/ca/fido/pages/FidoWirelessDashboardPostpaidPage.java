@@ -27,8 +27,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		super(driver);
 	}
 
-	
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions04']")
+	@FindAll({		
+	@FindBy(xpath = "//span[text()='Update SIM Card ' or text()='Mettre à jour la carte SIM']"),
+	@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions04']")})
 	WebElement lnkUpdateSimCard;
 	
 	@FindBy (xpath = "//input[@name='oldSimNumber']")
@@ -219,7 +220,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//button[@translate='wirelessDashboard.deviceSection.upgradeBtnText']")
 	WebElement btnUpgradeDevice;
 	
-	@FindBy(xpath = "//a//span[@translate='wireless.dashboard.quickActions.quickActions05']")
+	@FindAll({		
+	@FindBy(xpath = "//span[text()='Change my number' or text()='Changer mon numéro']"),
+	@FindBy(xpath = "//a//span[@translate='wireless.dashboard.quickActions.quickActions05']")})
 	WebElement lnkChangeMyNumber;
 
 	@FindBy (xpath = "//button[@translate='wirelessDashboard.deviceSection.reserveNewPhone']")
