@@ -13,7 +13,7 @@ plugins {
 sauceconnect {
     username = System.getenv('SAUCE_USERNAME')
     key = System.getenv('SAUCE_ACCESS_KEY')
-    options = "-i myTunnel"
+    options = "-i myTunnel --no-remove-colliding-tunnels"
 }
 
 def sauce = [
