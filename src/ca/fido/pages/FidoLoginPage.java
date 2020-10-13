@@ -14,7 +14,7 @@ public class FidoLoginPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(id = "username")
+	@FindBy(xpath = "//input[@id='username']")
 	WebElement txtUsername;
 
 	@FindBy(xpath = "//input[@formcontrolname='password']")
