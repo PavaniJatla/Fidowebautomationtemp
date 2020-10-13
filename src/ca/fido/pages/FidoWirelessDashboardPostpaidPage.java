@@ -231,7 +231,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//button[@translate='wirelessDashboard.deviceSection.modalMessages.statusReserve']")
 	WebElement btnReserve;
 
-	@FindBy (xpath = "//a/span[@translate='wireless.dashboard.quickActions.quickActions02']")
+	@FindAll({		
+		@FindBy(xpath = "//span[text()='Reset voicemail password' or text()='Réinitialiser le mot de passe pour la messagerie vocale']"),
+		@FindBy (xpath = "//a/span[@translate='wireless.dashboard.quickActions.quickActions02']")})	
 	WebElement lnkResetVoiceMailPassword;
 	
 	@FindBy (xpath = "//div[@cdktrapfocus]//button[@title='Close']")
