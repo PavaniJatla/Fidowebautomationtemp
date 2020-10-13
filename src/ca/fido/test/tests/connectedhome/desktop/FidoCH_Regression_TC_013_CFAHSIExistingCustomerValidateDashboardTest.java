@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
  **/
 public class FidoCH_Regression_TC_013_CFAHSIExistingCustomerValidateDashboardTest extends BaseTestClass {
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoCableRetailCH"})
+	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerValidateDashboardTest() {
 		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
 		retailer_champ_page.setUsername(System.getenv("SSPUsername"));
