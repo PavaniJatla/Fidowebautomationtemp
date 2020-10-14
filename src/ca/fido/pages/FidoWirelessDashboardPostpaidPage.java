@@ -137,7 +137,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
 		
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions03']")
+	
+	@FindAll({		
+		@FindBy(xpath = "//span[text()='Report lost or stolen device' or text()='Signaler la perte ou le vol d’un appareil']"),
+		@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions03']")})	
 	WebElement lnkReportLostOrStolenCard;
 			
 	//--- New data section on dashboard

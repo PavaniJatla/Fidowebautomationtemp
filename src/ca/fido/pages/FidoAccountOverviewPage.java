@@ -445,7 +445,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkCtnBadge() {
 		WebElement elmCtnBadge = getDriver().findElement(By.xpath("//div[@class='item content']"));
 		reusableActions.getWhenReady(elmCtnBadge, 20).click();
-		//		reusableActions.clickIfAvailable(btnCloseOverlay, 5);
+		reusableActions.clickIfAvailable(btnCloseOverlay, 10);
 
 	}
 
