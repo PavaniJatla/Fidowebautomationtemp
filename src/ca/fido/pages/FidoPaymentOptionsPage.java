@@ -472,12 +472,14 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void setExpiryDate(String strExpiryYear)
 	{
-		String strDDMM=FormFiller.generateMonth()+ strExpiryYear;
-		if(strDDMM.length()==5)
+		String str2DigitYear = strExpiryYear.substring(2);
+		String strMMYY=FormFiller.generateMonth()+ str2DigitYear;
+		if(strMMYY.length()==3)
 		{
-			strDDMM="0"+strDDMM;
+			strMMYY="0"+strMMYY;
 		}
-		reusableActions.enterText(txtExpiryDate, strDDMM, 10);
+		reusableActions.getWhenReady(txtExpiryDate,10).click();
+		reusableActions.getWhenReady(txtExpiryDate,10).sendKeys(strMMYY);
 	}
 	
 	/**
