@@ -118,6 +118,6 @@ public class FidoSetPasswordPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkBtnGotoOverview() {
-		reusableActions.clickWhenReady(btnGotoOverview, 30);
+		reusableActions.clickIfAvailable(btnGotoOverview, 30);//optional
 	} 
 }

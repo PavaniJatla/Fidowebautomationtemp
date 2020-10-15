@@ -37,7 +37,7 @@ public class Mobile_FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc16.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc16.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		fido_login_page.clkLoginInFrameMobile();		
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");

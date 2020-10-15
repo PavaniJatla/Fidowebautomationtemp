@@ -289,7 +289,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath="//div[contains(@class,'wireless-dashboard')]/div[contains(@class,'wireless-title')]")
 	WebElement lblMobileDashboardTitle;
 	
-	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")
+	@FindAll({
+	@FindBy(xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions08']"),	
+	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")})
 	WebElement lnkRepairMobile;
 
 	@FindBy(xpath = "//button[@translate='global.cta.continue']")

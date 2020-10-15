@@ -50,7 +50,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		fido_login_page.setUsernameInFrame(altUserName);
 		fido_login_page.setPasswordInFrame(altPassword);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
+		fido_login_page.clkLoginInFrameMobile();
 		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
 		{	reporter.reportLogWithScreenshot("Login not successful with user name :"+altUserName+"and password :"+altPassword);		
 			String tempPwd=altPassword;
