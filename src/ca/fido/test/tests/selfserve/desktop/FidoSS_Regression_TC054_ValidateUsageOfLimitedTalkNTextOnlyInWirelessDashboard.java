@@ -59,22 +59,17 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 							"Talk usage module is not displayed");
 		reporter.reportLogWithScreenshot("Wireless dashboard page");
 
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkUsageDetailsofTalkTextOnlyPlanIsDisplayed(),
-							"Talk usage details section is displayed",
-							"Talk usage details section is not displayed");
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkRemainingMinutesIsDisplayed(),
+				"Talk usage detail is checked successfully.",	
+				"Talk usage detail has issue, please investigate.");
 		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkAnytimeUsageDetailsIsDisplayed(),
 		//					"Talk anytime usage details section is displayed",
 		//					"Talk anytime usage details section is not displayed");
 		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkEveningUsageDetailsIsDisplayed(),
 		//					"Talk evening and weekend usage details section is displayed",
 		//					"Talk evening and weekend usage details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkRemainingMinutesIsDisplayed(),
-							"Talk usage detail is checked successfully.",	
-							"Talk usage detail has issue, please investigate.");
-		
-		
 
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextRemainingMinutesIsDisplayed(),
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextRemainingIsDisplayed(),
 							"Text usage details section is displayed",
 							"Text usage details section is not displayed");
 		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPictureMsgDetailsIsDisplayed(),
