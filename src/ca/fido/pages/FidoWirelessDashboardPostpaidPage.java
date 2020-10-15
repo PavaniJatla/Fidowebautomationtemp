@@ -157,11 +157,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//h4[@class='talk-text-limited-heading']/span")
 	WebElement spanRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Minutes remaining')]")
+	@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")
 	WebElement talkRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Texts remaining')]")
-	WebElement textRemainingMinutes;
+	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Texts')]")
+	WebElement textRemaining;
 	
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']")
 	WebElement tdAnytime;
@@ -1352,8 +1352,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @return true if the text remaining is displayed
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyTextRemainingMinutesIsDisplayed() {
-		return reusableActions.isElementVisible(textRemainingMinutes);
+	public boolean verifyTextRemainingIsDisplayed() {
+		return reusableActions.isElementVisible(textRemaining);
 	}
 
 
