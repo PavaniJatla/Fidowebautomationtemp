@@ -99,6 +99,13 @@ pipeline {
                     post {
                         always {
                             junit 'build/test-results/**/*.xml'
+                            publishHTML (target : [allowMissing: false,
+		                       alwaysLinkToLastBuild: true,
+		                       keepAll: true,
+		                       reportDir: 'build/reports/tests/sauceTest',
+		                       reportFiles: 'index.html',
+		                       reportName: 'Gradle Reports',
+		                       reportTitles: 'The Gradle Report'])
                             script {
                                 def jobName = "${env.JOB_NAME}"
                                 def buildTimeStamp = "${env.BUILD_TIMESTAMP}"
