@@ -137,7 +137,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
 		
-	@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions03']")
+	
+	@FindAll({		
+		@FindBy(xpath = "//span[text()='Report lost or stolen device' or text()='Signaler la perte ou le vol d’un appareil']"),
+		@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions03']")})	
 	WebElement lnkReportLostOrStolenCard;
 			
 	//--- New data section on dashboard
@@ -154,11 +157,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//h4[@class='talk-text-limited-heading']/span")
 	WebElement spanRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Minutes remaining')]")
+	@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")
 	WebElement talkRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Texts remaining')]")
-	WebElement textRemainingMinutes;
+	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Texts')]")
+	WebElement textRemaining;
 	
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']")
 	WebElement tdAnytime;
@@ -286,7 +289,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath="//div[contains(@class,'wireless-dashboard')]/div[contains(@class,'wireless-title')]")
 	WebElement lblMobileDashboardTitle;
 	
-	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")
+	@FindAll({
+	@FindBy(xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions08']"),	
+	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")})
 	WebElement lnkRepairMobile;
 
 	@FindBy(xpath = "//button[@translate='global.cta.continue']")
@@ -1349,8 +1354,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @return true if the text remaining is displayed
 	 * @author Mirza.Kamran
 	 */
-	public boolean verifyTextRemainingMinutesIsDisplayed() {
-		return reusableActions.isElementVisible(textRemainingMinutes);
+	public boolean verifyTextRemainingIsDisplayed() {
+		return reusableActions.isElementVisible(textRemaining);
 	}
 
 

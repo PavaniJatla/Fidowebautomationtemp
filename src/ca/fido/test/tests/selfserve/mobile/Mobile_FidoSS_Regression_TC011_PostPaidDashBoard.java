@@ -48,7 +48,7 @@ public class Mobile_FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestCl
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
+		fido_login_page.clkLoginInFrameMobile();	
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");

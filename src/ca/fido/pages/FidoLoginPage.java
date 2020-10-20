@@ -157,6 +157,16 @@ public class FidoLoginPage extends BasePageClass {
 	}
 	
 	/**
+	 * Click on the login button
+	 * @author Mirza.Kamran
+	 */
+	public void clkLoginInFrameMobile() {		
+		reusableActions.getWhenReady(btnLogIn,60).click();	
+		reusableActions.staticWait(5000);
+		reusableActions.clickIfAvailable(btnLogIn); //optonal;
+	}
+	
+	/**
 	 * Check if the login failed error message is displayed.
 	 * @return true if error message displayed, otherwise false
 	 * @author ning.xue

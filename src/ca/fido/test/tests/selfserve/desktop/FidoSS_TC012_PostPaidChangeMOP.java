@@ -76,6 +76,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Change MOP Success message displayed",
 							"Change MOP Success message not displayed");
+		reporter.reportLogWithScreenshot("Change MOP Success message");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
 							"Label your future bill is displayed",
 							"Label your future bill is not displayed");
@@ -91,7 +92,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 							"Button pay balance is displayed",
 							"button pay balanc is not displayed"); */
 		fido_payment_options_page.clkCloseButton();
-		
+		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.clkChangeMethodOfPayment();
 		reporter.reportLogWithScreenshot("Change method of payment");
 		fido_payment_options_page.clkPaymentOption(TestDataHandler.paymentInfo.getPaymentType().getBank());
@@ -110,6 +111,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Change MOP Success message displayed",
 							"Change MOP Success message not displayed");
+		reporter.reportLogWithScreenshot("Change MOP Success message");
 		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
 							"Label your future bill is displayed",
 							"Label your future bill is not displayed");
