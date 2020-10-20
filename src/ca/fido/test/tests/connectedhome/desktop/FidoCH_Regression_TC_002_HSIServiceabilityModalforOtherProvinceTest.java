@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_004_HSIServiceabilityModalforServiceUnavailableAddressTest extends BaseTestClass {
+public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest extends BaseTestClass {
 
 	
 	
@@ -38,20 +38,32 @@ public class FidoCH_Regression_TC_004_HSIServiceabilityModalforServiceUnavailabl
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
-        String  strAddressLine1=TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line2");
+        String  strAddressLine1=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line1");
+        String  strAddressLine2=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line2");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Service is unavailability");
-        reporter.hardAssert(fido_Shop_internet_page.verifyIconUnavailable(),"Service is unavailability","Service is availability");
-        fido_Shop_internet_page.verifyIconCustomercare();
-        fido_Shop_internet_page.clkCheckAnotherAddress();
+        reporter.reportLogWithScreenshot("Service is Unavailable");
+        reporter.hardAssert(fido_Shop_internet_page.verifyUnavailableInProvince(),"Service is unavailability in the given province","Service is availability");
+        fido_Shop_internet_page.verifyCancel();
+        fido_Shop_internet_page.verifyYes();
+        fido_Shop_internet_page.clkCancel();
+        reporter.reportLogWithScreenshot("Launched the packages Page");
+        reporter.hardAssert(fido_Shop_internet_page.verifyPackagesPage() ,"Packages Page has launched","Packages Page hasn't launched");
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        reporter.reportLogWithScreenshot("Launched the serviceability check page");
+        fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        reporter.hardAssert(fido_Shop_internet_page.verifyAvailabilityCheck(),"Displayed to check the Service availability","Check Another Address is not working");
-   	}
+        fido_Shop_internet_page.clkServiceAvailabilityCheck();        
+        reporter.reportLogWithScreenshot("Service is Unavailable");
+        reporter.hardAssert(fido_Shop_internet_page.verifyUnavailableInProvince(),"Service is unavailability in the given province","Service is availability");
+        fido_Shop_internet_page.verifyCancel();
+        fido_Shop_internet_page.verifyYes();
+        fido_Shop_internet_page.clkYes();
+        reporter.hardAssert(!fido_Shop_internet_page.verifyPackagesPage() ,"Packages Page hasn't launched","Packages Page has launched");
+	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,ITestContext testContext, Method method)

@@ -41,7 +41,7 @@ import static ca.fido.testdatamanagement.TestDataHandler.fidoHSIAccount;
  *
  **/
 
-public class FidoCH_Regression_TC_001_HSIBuyFlowPickupAtStoreTest extends BaseTestClass {
+public class FidoCH_Regression_TC_005_HSIBuyFlowPickupAtStoreTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIBuyFlowPickupAtStoreFlow() {

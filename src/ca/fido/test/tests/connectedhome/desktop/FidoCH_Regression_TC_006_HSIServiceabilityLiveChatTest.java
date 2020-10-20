@@ -28,9 +28,9 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_001_HSIServiceabilityLiveChatTest extends BaseTestClass {
+public class FidoCH_Regression_TC_006_HSIServiceabilityLiveChatTest extends BaseTestClass {
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH"})
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIServiceabilityLiveChatFlow() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();

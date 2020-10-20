@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class Mobile_FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
+public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass {
 	final String strLanguage=System.getProperty("Language");
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})

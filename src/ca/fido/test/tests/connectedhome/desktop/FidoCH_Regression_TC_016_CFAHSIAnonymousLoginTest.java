@@ -40,7 +40,7 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_006_CFAHSIAnonymousLoginTest extends BaseTestClass {
+public class FidoCH_Regression_TC_016_CFAHSIAnonymousLoginTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiAnonymousLogin() {
