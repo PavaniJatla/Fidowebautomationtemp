@@ -35,7 +35,6 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkFidoHSIPlanUpgradeMobile() {
-
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkNavMobile();
 		reporter.reportLogWithScreenshot("Launched the Navigation card");
@@ -45,7 +44,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgrade());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentials");
-		fido_login_page.clkLoginInFrame();
+		fido_login_page.clkLoginInFrameMobile();
 		
 		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		fido_login_page.switchOutOfSignInFrame();

@@ -162,19 +162,21 @@ public class BaseTestClass {
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
-				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
-				captcha_bypass_handlers.captchaBypassURLAnonymousBuyFlows(strUrl, language);
-				break;
-			case "connectedhome_login":
 				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);break;
+
+				case "connectedhome_login":
+					driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
+
 			case "selfserve":
 			case "selfserve_login":
 				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
+			case "connectedhome_ssp":
 			case "buyflows": driver.get(strUrl);
 				break;
 
@@ -248,28 +250,29 @@ public class BaseTestClass {
 			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
 			fido_internet_package_page=new FidoInternetPackagePage(driver); 
 			break;
-			
-		case "connectedhome_anonymous":			
-			fido_home_page = new FidoHomePage(driver);
-			fido_payment_page = new FidoPaymentPage(driver);
-			fido_internet_dashboard_page = new FidoInternetDashboardPage(driver);
-			fido_account_registration_page= new FidoAccountRegistrationPage(driver);
-			fido_internet_package_change_review_order_page= new FidoInternetPackageChangeReviewOrderPage(driver);
-			fido_Shop_internet_page= new FidoShopInternetPage(driver);
-			fido_cart_summary_page= new FidoCartSummaryPage(driver);
-			fido_create_user_page= new FidoCreateUserPage(driver); 
-			fido_credit_check_page= new FidoCreditCheckPage(driver);
-			fido_payment_page = new FidoPaymentPage(driver);
-			fido_technical_installation_page= new FidoTechnicalInstallationPage(driver);
-			fido_payment_options_page= new FidoPaymentOptionsPage(driver);
-			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);		
-			fido_ssp_retailer_shop_page= new SSPFidoRetailerShopPage(driver);
-			fido_ssp_retailer_home_page= new SSPFidoRetailerHomePage(driver);
-			fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
-			fido_internet_package_page=new FidoInternetPackagePage(driver);
-			retailer_champ_page= new SSPFidoRetailerChampPage(driver);
-			break;
-			
+
+			case "connectedhome_anonymous":
+			case "connectedhome_ssp":
+				fido_home_page = new FidoHomePage(driver);
+				fido_payment_page = new FidoPaymentPage(driver);
+				fido_internet_dashboard_page = new FidoInternetDashboardPage(driver);
+				fido_account_registration_page= new FidoAccountRegistrationPage(driver);
+				fido_internet_package_change_review_order_page= new FidoInternetPackageChangeReviewOrderPage(driver);
+				fido_Shop_internet_page= new FidoShopInternetPage(driver);
+				fido_cart_summary_page= new FidoCartSummaryPage(driver);
+				fido_create_user_page= new FidoCreateUserPage(driver);
+				fido_credit_check_page= new FidoCreditCheckPage(driver);
+				fido_payment_page = new FidoPaymentPage(driver);
+				fido_technical_installation_page= new FidoTechnicalInstallationPage(driver);
+				fido_payment_options_page= new FidoPaymentOptionsPage(driver);
+				fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
+				fido_ssp_retailer_shop_page= new SSPFidoRetailerShopPage(driver);
+				fido_ssp_retailer_home_page= new SSPFidoRetailerHomePage(driver);
+				fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
+				fido_internet_package_page=new FidoInternetPackagePage(driver);
+				retailer_champ_page= new SSPFidoRetailerChampPage(driver);
+				break;
+
 		case "buyflows":
 			fido_home_page = new FidoHomePage(getDriver());
 			fido_login_page = new FidoLoginPage(getDriver());
