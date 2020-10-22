@@ -170,13 +170,13 @@ public class BaseTestClass {
 				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
-			case "connectedhome_ssp": driver.get(strUrl);
-				break;
+
 			case "selfserve":
 			case "selfserve_login":
 				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
+			case "connectedhome_ssp":
 			case "buyflows": driver.get(strUrl);
 				break;
 
