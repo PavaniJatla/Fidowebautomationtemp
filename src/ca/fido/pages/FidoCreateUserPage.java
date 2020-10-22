@@ -98,8 +98,7 @@ public void setEmail(){
 public void setFirstName(){
 	String strName = FormFiller.generateRandomName();
 	String strFname="Fido"+ strName;
-	reusableActions.staticWait(10000);
-	reusableActions.getWhenReady(txtFirstName, 10).click();
+	reusableActions.getWhenReady(txtFirstName, 60).click();
 	reusableActions.getWhenReady(lblTxtFirstName,3).sendKeys(strFname);
 }
 
