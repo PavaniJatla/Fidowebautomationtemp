@@ -50,13 +50,13 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//label[text()='Bill type:' or text()='Type de facture :']/parent::div/following-sibling::div")
 	WebElement lblBillType;
 	
-	@FindBy(id="addressLookup")
+	@FindBy(xpath = "//input[@id='addressLookup']")
 	WebElement txtEnterNewAddress;
 	 
 	@FindBy(xpath = "//button[@data-caption]")
 	WebElement btnContinueChangeAddress;
 	
-	@FindBy(className = "new-address")
+	@FindBy(xpath = "//*[contains(@class,'new-address')]")
 	WebElement lblNewAddressNameOnOverlay;
 	 
 	@FindBy(xpath = "//button[@data-caption]")
@@ -126,13 +126,13 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(id="confirm-email")
 	WebElement txtConfirmUserName;
 	
-	@FindBy(id="current-password")
+	@FindBy(xpath = "//input[@id='current-password']")
 	WebElement txtCurrentPassword;
 	
-	@FindBy(id="new-password")
+	@FindBy(xpath = "//input[@id='new-password']")
 	WebElement txtNewPassword;
 	
-	@FindBy(id="confirm-password")
+	@FindBy(xpath = "//input[@id='confirm-password']")
 	WebElement txtReEnterNewPassword;
 	
 	@FindBy(id="emailAddress")
@@ -374,6 +374,39 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	}	
 	
 	/**
+	 * Performs click on Change password 
+	 * @author Mirza.Kamran
+	 */
+	public void clkChangePasswordMobile() {
+		
+		reusableActions.staticWait(2000);
+		Integer reattempt=0;
+		Boolean found=false;
+		
+		while (reattempt<3 && !found) {
+			
+			reusableActions.executeJavaScriptClick(lnkChangePassword);
+
+			try {
+				reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//input[@id='current-password']")),30);
+				if(reusableActions.getDriver().findElement(By.xpath("//input[@id='current-password']")).isDisplayed())
+				{
+					found=true;
+					break;
+				}
+				reattempt++;
+				reusableActions.staticWait(1000);
+			}catch(NoSuchElementException e)
+			{
+				found=false;
+				reattempt++;
+			}
+			
+		}		
+	}	
+	
+	
+	/**
 	 * Gets the address details 
 	 * @return String containing address details
 	 * @author Mirza.Kamran
@@ -593,6 +626,16 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkSaveButton() {
+		reusableActions.getWhenReady(btnSave).click();	
+		reusableActions.staticWait(5000);
+		reusableActions.waitForElementTobeClickable(getDriver().findElement(By.xpath("//a[@title='user name']")),30);
+	}
+	
+	/**
+	 * generic click on the save button
+	 * @author Mirza.Kamran
+	 */
+	public void clkSaveButtonMobile() {
 		reusableActions.getWhenReady(btnSave).click();		
 	}
 	

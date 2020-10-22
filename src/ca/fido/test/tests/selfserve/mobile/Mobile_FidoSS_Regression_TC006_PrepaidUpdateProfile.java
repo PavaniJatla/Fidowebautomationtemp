@@ -75,10 +75,10 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		reporter.softAssert(!fido_profile_and_setting_page.isChangeUserNameLinkPresent(),
 							"The change username link is not displayed for pre-paid accounts",
 							"The change username is present for prepaid account");
-		fido_profile_and_setting_page.clkChangePassword();				
+		fido_profile_and_setting_page.clkChangePasswordMobile();				
 		fido_profile_and_setting_page.setNewPassword(altPassword, newPassword);		
 		reporter.reportLogWithScreenshot("New password set");
-		fido_profile_and_setting_page.clkSaveButton();	
+		fido_profile_and_setting_page.clkSaveButtonMobile();	
 		reporter.reportLogWithScreenshot("New password changes saved");
 		reporter.reportLogWithScreenshot("Starting sign out scenario");
 		fido_home_page.clkNavMobile();
@@ -107,7 +107,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		//rechange to the original one		
 		fido_account_overview_page.clkMenuProfileNSettingMobile();
 		fido_profile_and_setting_page.clkButtonLogInDetails();
-		fido_profile_and_setting_page.clkChangePassword();				
+		fido_profile_and_setting_page.clkChangePasswordMobile();				
 		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);		
 		fido_profile_and_setting_page.clkSaveButton();
 		reporter.reportLogWithScreenshot("password set back to initial one");

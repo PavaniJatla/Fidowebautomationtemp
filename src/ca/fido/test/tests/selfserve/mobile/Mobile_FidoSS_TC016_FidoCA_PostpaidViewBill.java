@@ -53,12 +53,12 @@ public class Mobile_FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Middle of view bill page");
 		fido_bill_details_page.switchToDefaultContent();
 		reporter.reportLogWithScreenshot("Get the bill amount from View Bill drop dwon");
-		String billAmount = fido_bill_details_page.getBillAmountFromViewBillDropDown();	
+		String billAmount = fido_bill_details_page.getBillAmountFromViewBillDropDownMobile();	
 		reporter.reportLogWithScreenshot("Bills selected from drop down");
 		if(!billAmount.equals(""))
 		{				
-			fido_bill_details_page.switchToFrameViewBill();		
-			String billValue = fido_bill_details_page.getMyBillValueDetails();	
+			fido_bill_details_page.switchToFrameViewBillMobile();		
+			String billValue = fido_bill_details_page.getMyBillValueDetailsMobile();	
 			
 			//===old code ======================
 			/*Double subTotal = fido_bill_details_page.getBillSubTotal();
@@ -80,13 +80,13 @@ public class Mobile_FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 			//reporter.softAssert(fido_bill_details_page.verifyAllCTNBillsMatchesTheSubTotalValue(subTotal)
 				// 	,"The total CTN bills match the sub total value"
 				//	,"The total CTN bills mismatc the sub total value");
-			reporter.hardAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPage(totalCTN),
+			reporter.hardAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPageMobile(totalCTN),
 					"CTN bill count matched the total number of CTN from overview page",
 					"CTN bill count mismatch the total number of CTN from overview page");	
 		
 		}else
 		{
-			fido_bill_details_page.selectOlderBillViewBillDropDown();
+			fido_bill_details_page.selectOlderBillViewBillDropDownMobile();
 			reporter.reportLogWithScreenshot("Older bills selected");
 			reporter.hardAssert(fido_bill_details_page.isLabelComingSoonDisplayed(),
 								"No bills generated yet for this account",

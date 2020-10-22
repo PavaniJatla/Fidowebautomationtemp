@@ -105,7 +105,9 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		{
 			reporter.reportLogWithScreenshot("Easy login page is available");
 			fido_home_page.clkEasylogin();
-		}		
+			reporter.reportLogWithScreenshot("Easy login clicked");
+		}	
+		reporter.reportLogWithScreenshot("click Navigation for mobile");
 		fido_home_page.clkNavMobile();
 		reporter.reportLogWithScreenshot("Navigation menu clicked.");
 		fido_login_page.clkResignInAsMobile();

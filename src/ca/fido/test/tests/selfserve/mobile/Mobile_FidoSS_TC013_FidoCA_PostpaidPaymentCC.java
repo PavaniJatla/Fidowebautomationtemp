@@ -51,20 +51,20 @@ public class Mobile_FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.waitForPayNowToBecomeClickable();
-		fido_account_overview_page.clkPayNow();
+		fido_account_overview_page.waitForPayNowToBecomeClickableMobile();
+		fido_account_overview_page.clkPayNowMobile();
 		reporter.reportLogWithScreenshot("Pay now");
 		fido_make_payment_page.setPaymentAmount(amountEntered);
 		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
 		reporter.reportLogWithScreenshot("Credit card option selected");
 		fido_make_payment_page.setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-		fido_make_payment_page.selectExpiryMonth();
-		fido_make_payment_page.selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_make_payment_page.setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		fido_make_payment_page.selectExpiryMonthMobile();
+		fido_make_payment_page.selectCreditcardExpiryYearMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
+		fido_make_payment_page.setCreditcardCVVMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 		reporter.reportLogWithScreenshot("Credit card details entered");
-		fido_make_payment_page.clkReviewAndContinueButton();
+		fido_make_payment_page.clkReviewAndContinueButtonMobile();
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_make_payment_page.clkPayNow();
+		fido_make_payment_page.clkPayNowMobile();
 		reporter.reportLogWithScreenshot("reference Number page");
 		String refNo=fido_make_payment_page.getRefNumber();	
 		reporter.reportLogWithScreenshot("reference number for payment is :"+refNo);

@@ -33,7 +33,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//p[text()='Bank Account' or text()='Compte bancaire' or text()='Switch to bank account' or contains(text(),'un compte bancaire')]")
 	WebElement btnBankAccount;
 	
-	@FindBy(id = "expiryDate")
+	@FindBy(xpath = "//input[@id = 'expiryDate' and @formcontrolname='expiryDate']")
 	WebElement txtExpiryDate;
 	
 	@FindBy(xpath = "//button[@title='Continue' or @title='Continuer']")
@@ -51,6 +51,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(className ="tnc-container")
 	WebElement lblTnCContainer;
 	
+	@FindBy(xpath = "//*[contains(@class,'tnc-container')]")
+	WebElement lblTnCContainerMobile;
+	
 	@FindBy(xpath = "//ins[@translate='payment-method.terms-conditions.tnc']")
 	WebElement lbltnCHeader;
 	
@@ -65,6 +68,15 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy(id="accountNumber")
 	WebElement txtAcountNumber;
+	
+	@FindBy(xpath = "//*[@id = 'transitNumber']")
+	WebElement txtTransitNumberMobile;
+	
+	@FindBy(xpath = "//*[@id = 'institutionNumber']")
+	WebElement txtInstitutionNumberMobile;
+	
+	@FindBy(xpath = "//*[@id = 'accountNumber']")
+	WebElement txtAcountNumberMobile;
 	
 	@FindBy(xpath = "//div[@class='a-input semafone-cc-parent']//descendant::iframe")
 	WebElement frameCreditCardNumberText;
@@ -150,8 +162,11 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	})
 	WebElement txtCVV;
 	
-	@FindBy(id = "cvc")
+	@FindBy(xpath = "//*[@id = 'cvc' and @formcontrolname='cvc']")
 	WebElement txtCVC;
+	
+	@FindBy(xpath = "//*[@id = 'cvc' and @formcontrolname='cvc']")
+	WebElement txtCVCMobile;
 	
 	@FindBy(xpath="//*[@id='amount']")
 	WebElement txtAmount;
@@ -280,7 +295,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * Perform click on the bank Account Button
 	 */
 	public void clkButtonBankAccountMobile() {
-		reusableActions.scrollToElement(btnBankAccount);
+		//reusableActions.scrollToElement(btnBankAccount);
 		reusableActions.executeJavaScriptClick(btnBankAccount);
 	}
 	
@@ -289,7 +304,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkButtonCreditCardAccountMobile() {
 		try {
-		reusableActions.scrollToElement(btnCreditCard);		
+		//reusableActions.scrollToElement(btnCreditCard);		
 		reusableActions.executeJavaScriptClick(btnCreditCard);
 		}
 		catch (Exception e) {
@@ -354,6 +369,27 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	}
 	
 	/**
+	 *  Set the transit number for  bank
+	 * @param strTransitNumber  bank transit code of the account
+	 * @author Mirza.Kamran
+	 */
+	public void setBankTransitNumberMobile(String strTransitNumber) {
+		reusableActions.clickWhenVisible(txtTransitNumberMobile);
+		reusableActions.getWhenReady(txtTransitNumberMobile).sendKeys(strTransitNumber);
+	}
+	
+	
+	/**
+	 * Set the institution number
+	 * @param strInstitutionNumber bank code of the account
+	 * @author Mirza.Kamran
+	 */
+	public void setInstitutionNumberMobile(String strInstitutionNumber) {
+		reusableActions.clickWhenVisible(txtInstitutionNumberMobile);
+		reusableActions.getWhenReady(txtInstitutionNumberMobile).sendKeys(strInstitutionNumber);
+	}
+	
+	/**
 	 * Set the account number for Pre-Auth Debit card
 	 * @param strBankAccountNumber account number of the debit card
 	 * @author chinnarao.vattam
@@ -371,6 +407,16 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void setAccountNumber(String strBankAccountNumber) {
 		reusableActions.clickWhenVisible(txtAcountNumber);
 		reusableActions.getWhenReady(txtAcountNumber).sendKeys(strBankAccountNumber);
+	}
+	
+	/**
+	 * Set the account number for Bank payment option 
+	 * @param strBankAccountNumber account number of the debit card
+	 * @author Mirza.Kamran
+	 */
+	public void setAccountNumberMobile(String strBankAccountNumber) {
+		reusableActions.clickWhenVisible(txtAcountNumberMobile);
+		reusableActions.getWhenReady(txtAcountNumberMobile).sendKeys(strBankAccountNumber);
 	}
 	
 	/**
@@ -402,10 +448,28 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	}
 	
 	/**
+	 * Checks if the T and C page is open
+	 * @return true if the T and C page is available, else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyTnCPageIsOpenMobile() {
+		return (reusableActions.isElementVisible(lblTnCContainerMobile) && (reusableActions.isElementVisible(lbltnCHeader)));
+	}
+	
+	/**
 	 * click on  the Terms and Conditions check box on change payment option page
 	 * @author Mirza.Kamran
 	 */
 	public void clkIAcceptTermsAndCondition() {				
+		reusableActions.staticWait(1000);
+		reusableActions.getWhenReady(chkAcceptTnC).click();
+	}
+	
+	/**
+	 * click on  the Terms and Conditions check box on change payment option page
+	 * @author Mirza.Kamran
+	 */
+	public void clkIAcceptTermsAndConditionMobile() {				
 		reusableActions.staticWait(1000);
 		reusableActions.getWhenReady(chkAcceptTnC).click();
 	}
@@ -540,6 +604,16 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void setCreditcardCVC(String strCVC) {
 		reusableActions.clickWhenVisible(txtCVC);
 		reusableActions.getWhenReady(txtCVC).sendKeys(strCVC);
+	}
+	
+	/**
+	 * Set the CVV for  card
+	 * @param strCVC CVC for credit card
+	 * @author Mirza.Kamran
+	 */
+	public void setCreditcardCVCMobile(String strCVC) {
+		reusableActions.clickWhenVisible(txtCVCMobile);
+		reusableActions.getWhenReady(txtCVCMobile).sendKeys(strCVC);
 	}
 	
 	/**

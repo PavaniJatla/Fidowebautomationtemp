@@ -94,11 +94,20 @@ public class FidoBillDetailsPage extends BasePageClass {
 	@FindBy(id ="bbAppIFrame")
 	WebElement frameViewBill;
 	
+	@FindBy(xpath = "//*[@id='billDate']")
+	WebElement ddlViewBillMobile;
+	
+	@FindBy(xpath = "//*[@id='bbAppIFrame']")
+	WebElement frameViewBillMobile;
+	
 	@FindBy(xpath = "//div[@class='amount ng-scope']")
 	WebElement divBillValue;
 		
-	@FindBy(xpath = "//*[@id=\"bb-bs-bill-total\"]//div[@class='text-right title-right-part']/bb-amount")
+	@FindBy(xpath = "//*[@id='bb-bs-bill-total']//div[@class='text-right title-right-part']/bb-amount")
 	WebElement divBillValueNew;
+		
+	@FindBy(xpath = "//div[@class='visible-mobile hidden-desktop']//bb-amount")
+	WebElement divBillValueNewMobile;
 	
 	@FindBy(xpath = "//div[@class='amount ng-scope']")
 	WebElement divBillValueTaxes;
@@ -231,6 +240,21 @@ public class FidoBillDetailsPage extends BasePageClass {
 		return ctnSubTotal.size();
 	}
   
+   /**
+    * Get the total CTN count on Bill Details page
+    * @return Integer value containing the count of CTN badges displayed on Bill details page
+    * @author Mirza.Kamran
+    */
+   public Integer getCTNBillCountMobile() {
+	   ///=== commented the old code =====Not deleting this for time being
+	    getDriver().switchTo().defaultContent();
+	    getDriver().switchTo().frame(frameViewBillMobile);	    
+		//List<WebElement> ctnTotal=reusableActions.getDriver().findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));				
+		List<WebElement> ctnSubTotal=reusableActions.getDriver().findElements(
+				By.xpath("//div[@class='product-header']/span[contains(text(),'Mobile') or contains(text(),'Phone')]"));
+		return ctnSubTotal.size();
+	}
+  
    
    /**
     * Gets the first selected option of View Bill Drop down
@@ -245,12 +269,33 @@ public class FidoBillDetailsPage extends BasePageClass {
    }
    
    /**
+    * Gets the first selected option of View Bill Drop down
+    * @return the string containing the selected value of drop down view bill
+    * @author Mirza.Kamran
+    */
+   public String getsTheSelectedValueInViewBillDropDownMobile() {
+	   reusableActions.waitForElementTobeClickable(ddlViewBillMobile, 30);
+	   reusableActions.staticWait(5000); //buffer waits for mobile scenarios
+	   Select dropdown = new Select(ddlViewBillMobile);		
+	   return dropdown.getFirstSelectedOption().getText();
+   }
+   
+   /**
     * Gets the Bill AMount from the View Bill Drop Down on Bill Details page
     * @return string value containing the Bill amount from the view Bill drop down
     * @author Mirza.Kamran 
     */
    public String getBillAmountFromViewBillDropDown() {	   
 	   return getsTheSelectedValueInViewBillDropDown().split("-")[0].trim();	   
+   }     
+   
+   /**
+    * Gets the Bill AMount from the View Bill Drop Down on Bill Details page
+    * @return string value containing the Bill amount from the view Bill drop down
+    * @author Mirza.Kamran 
+    */
+   public String getBillAmountFromViewBillDropDownMobile() {	   
+	   return getsTheSelectedValueInViewBillDropDownMobile().split("-")[0].trim();	   
    }     
    
    /**
@@ -265,6 +310,17 @@ public class FidoBillDetailsPage extends BasePageClass {
    }    
    
    /**
+    * Selects the older Bill  from the View Bill Drop Down on Bill Details page
+    * @return string value containing bill from the view Bill drop down
+    * @author Mirza.Kamran 
+    */
+   public String selectOlderBillViewBillDropDownMobile() {	   
+	   Select dropdown = new Select(ddlViewBillMobile);	
+	   dropdown.selectByIndex(1);
+	   return dropdown.getFirstSelectedOption().getText();
+   }  
+   
+   /**
     * Checks if the label no bill is displayed
     * @return true if the label is displayed else false
     * @author Mirza.Kamran
@@ -275,6 +331,8 @@ public class FidoBillDetailsPage extends BasePageClass {
 	   return reusableActions.isElementVisible(lblNoBillLabel);
 	 
    }
+   
+   
    
    /**
     * Gets the Bill cycle form the View Bill drop down
@@ -320,6 +378,17 @@ public class FidoBillDetailsPage extends BasePageClass {
 	   return reusableActions.getWhenReady(divBillValueNew).getAttribute("amount").trim();
    }
    
+   /**
+    * Gets the My Bill Value from the Bill Details View
+    * @return Bill Value from the My Bill Box section
+    * @author Mirza.Kamran
+    */
+   public String getMyBillValueDetailsMobile() {
+	   
+	   //===commenting the old code below ================
+	   //return reusableActions.getWhenReady(divBillValue).getText().trim();
+	   return reusableActions.getWhenReady(divBillValueNewMobile).getAttribute("amount").trim();
+   }
    
    /**
     * Gets the Bill Sub Total value 
@@ -384,6 +453,14 @@ public class FidoBillDetailsPage extends BasePageClass {
 	 }
 	 
 	 /**
+	  * Switches to the iframe View Bill
+	  * @author Mirza.Kamran 
+	  */
+	 public void switchToFrameViewBillMobile() {
+		 getDriver().switchTo().frame(frameViewBillMobile);
+	 }
+	 
+	 /**
 	  * Switches to the Default frame
 	  * @author Mirza.Kamran
 	  */
@@ -444,6 +521,16 @@ public class FidoBillDetailsPage extends BasePageClass {
 	 */
 	public Boolean verifyCTNBillCountMatchesTheTotalCTNFromOverviewPage(Integer totalCTN) {
 		return getCTNBillCount().equals(totalCTN);		
+	}
+	
+	/**
+	 * verifies if the total CTN displayed on the Bills page is equal to the total CTN badges displayed on account overview page
+	 * @param totalCTN Integer value of total CTN displayed on account overview page
+	 * @return true if the count matches else false
+	 *@author Mirza.Kamran
+	 */
+	public Boolean verifyCTNBillCountMatchesTheTotalCTNFromOverviewPageMobile(Integer totalCTN) {
+		return getCTNBillCountMobile().equals(totalCTN);		
 	}
 	
    /**

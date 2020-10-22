@@ -67,7 +67,7 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Change payment option to Credit card selected");
 		fido_payment_options_page.setCreditCardNumberOnChangeMOP(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 		fido_payment_options_page.setExpiryDate(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_payment_options_page.setCreditcardCVC(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		fido_payment_options_page.setCreditcardCVCMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 		reporter.reportLogWithScreenshot("Credit card details entered");
 		fido_payment_options_page.clkContinue();
 		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),
@@ -99,11 +99,11 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		common_business_flows.scrollToMiddleOfWebPage();
 		fido_payment_options_page.clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getBank());
 		reporter.reportLogWithScreenshot("Change method of payment to bank selected");
-		fido_payment_options_page.setBankTransitNumber(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
-		fido_payment_options_page.setInstitutionNumber(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
-		fido_payment_options_page.setAccountNumber(TestDataHandler.paymentInfo.getBankDetails().getAccountNumber());
+		fido_payment_options_page.setBankTransitNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
+		fido_payment_options_page.setInstitutionNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
+		fido_payment_options_page.setAccountNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getAccountNumber());
 		fido_payment_options_page.clkContinue();
-		reporter.hardAssert(fido_payment_options_page.verifyTnCPageIsOpen(),
+		reporter.hardAssert(fido_payment_options_page.verifyTnCPageIsOpenMobile(),
 							"T n C is displayed",
 							"T n C is not displayed");
 		fido_payment_options_page.clkIAcceptTermsAndCondition();

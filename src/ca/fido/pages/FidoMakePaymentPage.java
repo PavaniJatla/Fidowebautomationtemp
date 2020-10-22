@@ -48,6 +48,15 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(id = "cvv")
 	WebElement txtCVV;
 	
+	@FindBy(xpath = "//*[@id = 'expiry-date']")
+	WebElement ddlExpiryMonthMobile;
+
+	@FindBy(xpath = "//*[@name = 'expYear']")
+	WebElement ddlExpiryYearMobile;
+
+	@FindBy(xpath = "//*[@id = 'cvv']")
+	WebElement txtCVVMobile;
+	
 	@FindBy(xpath="//*[@id='amount']")
 	WebElement txtAmount;
 	
@@ -77,6 +86,12 @@ public class FidoMakePaymentPage extends BasePageClass {
 
 	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payNow']")
 	WebElement btnPayNow;
+	
+	@FindBy(xpath="//div[@class='pay-now-modal']//input[@value='Review & continue' or contains(@value,'rifier et continuer')]")
+	WebElement btnReviewAndContinueMobile;
+
+	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payNow']")
+	WebElement btnPayNowMobile;
 	
 	@FindBy(xpath="//ins[@translate='global.label.paymentConfirmationHeading']")
 	WebElement lblPaymentReceived;
@@ -153,6 +168,35 @@ public class FidoMakePaymentPage extends BasePageClass {
 	
 	/**
 	 * Selects the expire year for Pre-Auth credit card
+	 * @author chinnarao.vattam
+	 */
+	public void selectExpiryYearMobile() {
+		String strYYYY = FormFiller.generateMonth();
+		reusableActions.selectWhenReady(ddlExpiryYearMobile, strYYYY);
+	}
+
+	/**
+	 * Selects the expire month for Pre-Auth credit card
+	 * @author chinnarao.vattam
+	 */
+	public void selectExpiryMonthMobile() {
+		String strMM = FormFiller.generateMonth();
+		reusableActions.selectWhenReady(ddlExpiryMonthMobile, strMM);
+	}
+
+	/**
+	 * Set the CVV for Pre-Auth credit card
+	 * @author chinnarao.vattam
+	 */
+	public void setCVVMobile() {
+		String strCVV = FormFiller.generateCVVNumber();
+		reusableActions.clickWhenVisible(txtCVVMobile);
+		reusableActions.getWhenReady(txtCVVMobile).sendKeys(strCVV);
+
+	}
+	
+	/**
+	 * Selects the expire year for Pre-Auth credit card
 	 * @param strYYYY expire year for Pre-Auth credit card
 	 * @author chinnarao.vattam
 	 */
@@ -160,6 +204,15 @@ public class FidoMakePaymentPage extends BasePageClass {
 		reusableActions.selectWhenReadyByVisibleText(ddlExpiryYear, strYYYY);
 	}
 
+	/**
+	 * Selects the expire year for Pre-Auth credit card
+	 * @param strYYYY expire year for Pre-Auth credit card
+	 * @author chinnarao.vattam
+	 */
+	public void selectCreditcardExpiryYearMobile(String strYYYY) {
+		reusableActions.selectWhenReadyByVisibleText(ddlExpiryYearMobile, strYYYY);
+	}
+	
 	/**
 	 * Selects the expire month for Pre-Auth credit card
 	 * @param strMM expire month for Pre-Auth credit card
@@ -177,6 +230,16 @@ public class FidoMakePaymentPage extends BasePageClass {
 	public void setCreditcardCVV(String strCVV) {
 		reusableActions.clickWhenVisible(txtCVV);
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
+	}
+	
+	/**
+	 * Set the CVV for Pre-Auth credit card
+	 * @param strCVV CVV for Pre-Auth credit card
+	 * @author chinnarao.vattam
+	 */
+	public void setCreditcardCVVMobile(String strCVV) {
+		reusableActions.clickWhenVisible(txtCVVMobile);
+		reusableActions.getWhenReady(txtCVVMobile).sendKeys(strCVV);
 	}
 	
 	/**
@@ -223,6 +286,26 @@ public class FidoMakePaymentPage extends BasePageClass {
 	{		
 		Actions act=new Actions(reusableActions.getDriver());
 		act.moveToElement(reusableActions.getWhenReady(btnPayNow)).click().build().perform();
+
+	}
+	
+	/**
+	 * Click on  the Review And Continue button on the make payment page
+	 * @author Aditya.Dhingra
+	 */
+	public void clkReviewAndContinueButtonMobile()
+	{	
+		reusableActions.getWhenReady(btnReviewAndContinue).click();
+	   
+	}
+	
+	/**
+	 * Click on  the Paynow button on the make payment page
+	 * @author Aditya.Dhingra
+	 */
+	public void clkPayNowMobile()
+	{		
+		reusableActions.getWhenReady(btnPayNow).click();
 
 	}
 	

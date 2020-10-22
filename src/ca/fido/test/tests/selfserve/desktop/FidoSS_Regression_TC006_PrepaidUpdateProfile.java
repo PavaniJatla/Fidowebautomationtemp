@@ -1,4 +1,4 @@
-package ca.fido.test.tests.selfserve.desktop;
+	package ca.fido.test.tests.selfserve.desktop;
 
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;

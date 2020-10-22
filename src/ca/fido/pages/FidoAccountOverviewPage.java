@@ -35,9 +35,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy (xpath="//div[@class='col-xs-12 col-sm-3 vertical-divider payment-info']//ins")
 	WebElement btnPayNow;
-
+	
+	@FindBy(xpath = "//div[contains(@class,'pay-now-button-section mobile pay-now-padding-0 visible-xs')]//ins")
+	WebElement btnPayNowMobile;
+	
 	@FindBy (xpath="//ins[@translate='global.cta.payNow']")
 	WebElement btnPayNowDefault;
+	
+	@FindBy (xpath="//div[contains(@class,'visible-xs')]//ins[@translate='global.cta.payNow']")
+	WebElement btnPayNowDefaultMobile;
 
 	@FindBy (xpath="//div[@class='list-item']//a[@href='#/my-account/internet']")
 	WebElement badgeInternet;	
@@ -512,6 +518,41 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 
 	/**
+	 * Click on the payNow button on the account overview page
+	 * @author adittya.Dhingra 
+	 */
+	public void clkPayNowMobile() {	
+		boolean displayed=false;
+		int counter=0;
+
+		WebElement buttonPayNow=null;
+		if(reusableActions.isElementVisible(btnPayNowDefaultMobile))
+		{
+			buttonPayNow= btnPayNowDefaultMobile;
+		}else
+		{
+			buttonPayNow = btnPayNowMobile;
+		}
+
+		while (counter<=3 && !displayed) {
+			//Long wait time to make the page load 
+			reusableActions.staticWait(10000);
+			reusableActions.waitForElementVisibility(buttonPayNow,120);		
+			reusableActions.waitForElementTobeClickable(buttonPayNow, 240);
+			reusableActions.getWhenReady(buttonPayNow,120);    		
+			reusableActions.executeJavaScriptClick(buttonPayNow);
+			reusableActions.staticWait(3000);
+			if(reusableActions.isElementVisible(txtAmount))
+			{
+				displayed=true;
+			}
+
+			counter++;
+			reusableActions.staticWait(3000);
+		}
+	}
+	
+	/**
 	 * Selects the type of account from the Drop down on the account overview page
 	 * @author adittya.Dhingra 
 	 */
@@ -835,6 +876,24 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		}else
 		{
 			reusableActions.waitForElementTobeClickable(btnPayNow, 60);
+		}
+
+
+	}
+	
+	/**
+	 * Waits for paynow button to become clickable
+	 * @author Mirza.Kamran
+	 */
+	public void waitForPayNowToBecomeClickableMobile() {
+
+		reusableActions.clickIfAvailable(btnCloseAccountSetupProgress);	
+		if(reusableActions.isElementVisible(btnPayNowDefaultMobile))
+		{
+			reusableActions.waitForElementTobeClickable(btnPayNowDefaultMobile, 60);
+		}else
+		{
+			reusableActions.waitForElementTobeClickable(btnPayNowMobile, 60);
 		}
 
 
