@@ -57,7 +57,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 			fido_payment_options_page.clkRemoveAutomaticPayment();
 			fido_payment_options_page.clkYesCancelButtonIfAskedForAreYouSureOption();
 			fido_payment_options_page.waitForRemovalOfAutoPaymentIsSuccessFulMessageToBeAvailable();
-			reporter.reportLogWithScreenshot("Auto payment successful");
+			reporter.reportLogWithScreenshot("Remove auto payment successful");
 			fido_payment_options_page.clkClose();
 			fido_account_overview_page.clkChangeMethodOfPayment();
 		}
