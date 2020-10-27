@@ -88,9 +88,9 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 							"Text plan details section is displayed",
 							"Text plan details section is not displayed");
 		
-		//reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited(),
-		//		"View details displayed below talk and text unlimited", 
-		//		"View details is NOT displayed below talk and text unlimited");		
+		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited(),
+				"View details displayed below talk and text unlimited", 
+				"View details is NOT displayed below talk and text unlimited");		
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyMobilePlanDashBoardSectionIsDisplayed(),
 							"My Mobile plan dashboard section is displayed",
 							"My mobile plan details section is not displayed");
@@ -125,11 +125,11 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkUpdateSIMCardIsDisplayed(),
 							"Link Update SIM card is displayed",
 							"Link update SIM card is not displayed");
-		/** Nov release 
+		
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkRepairMyDeviceIsDisplayed(),
 				"Link Repair or trade in device is displayed",
 				"Link Repair or trade in device is not displayed");
-				**/
+				
 		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 		reporter.reportLogWithScreenshot("Dashboad mid veiw");
 		fido_wireless_dashboard_postpaid_page.scrollToBottomOfPage();

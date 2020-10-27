@@ -55,10 +55,10 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
 	List<WebElement> rowsAddMDTData;
 
-	@FindBy (xpath = "//span[@translate='usageModule.manage']")
+	@FindBy (xpath = "//*[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container' or text()='View Details' or text()='Afficher les détails']")
 	WebElement lnkViewDetails;
 
-	@FindBy (xpath = "//a[@title='Cancel this add-on' or contains(@title,'Annuler')]")
+	@FindBy (xpath = "//*[@title='Cancel this add-on' or contains(@title,'Annuler')]")
 	WebElement lnkCancel;
 	 
 	@FindBy(xpath = "//p[text()='CANCEL ADD-ON' or text()='ANNULER L’OPTION']")

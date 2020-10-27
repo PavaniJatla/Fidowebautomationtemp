@@ -175,7 +175,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']/following-sibling::td[@class='usage-content']/div")
 	WebElement divAnytimeUsed;
 	
-	@FindBy (xpath = "//div[@translate='usageModule.talkAndText.talkTextTitle']")
+	@FindBy (xpath = "//div[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
 	WebElement divTalkNTextUsage;
 	
 	@FindBy (xpath = "//p[contains(text(),'remaining') or contains(text(),'restantes')]")
@@ -315,7 +315,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
 	List<WebElement> lstMyPlanAddOns;
 
-	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title']") 
+	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title' or @class='ss-data-usage-bar-background']") 
 	WebElement lblYouAreRunningLow;
 	
 	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']")
