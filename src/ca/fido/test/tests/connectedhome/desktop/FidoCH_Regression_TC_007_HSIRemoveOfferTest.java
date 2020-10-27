@@ -32,7 +32,7 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 
 	
 	
-	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
+	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH"})
 	public void checkDeleteOffer() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();

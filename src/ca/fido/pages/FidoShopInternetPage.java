@@ -205,8 +205,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkServiceAvailabilityCheck() {
-		reusableActions.waitForElementVisibility(btnAvailabilityCheck, 120);
-		reusableActions.waitForElementTobeClickable(btnAvailabilityCheck, 120);
+		reusableActions.waitForElementVisibility(btnAvailabilityCheck, 60);
+		reusableActions.waitForElementTobeClickable(btnAvailabilityCheck, 60);
 		reusableActions.getWhenReady(btnAvailabilityCheck, 60).click();
 	}
 	
