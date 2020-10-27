@@ -127,7 +127,11 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkAccountHolder() {
+		try {
 		reusableActions.clickWhenReady(btnAccountHolder,2);
+		}catch (Exception e) {
+			reusableActions.clickIfAvailable(btnAccountHolder,2);
+		}
 	}
 	
 	/**
