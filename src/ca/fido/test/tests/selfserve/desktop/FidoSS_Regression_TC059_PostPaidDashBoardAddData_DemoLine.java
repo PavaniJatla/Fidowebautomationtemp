@@ -63,7 +63,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();		
 		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
-	
+		
 		
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
 		reporter.hardAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),

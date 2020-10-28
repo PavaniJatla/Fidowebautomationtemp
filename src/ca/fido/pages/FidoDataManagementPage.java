@@ -2,8 +2,11 @@ package ca.fido.pages;
 
 
 import ca.fido.pages.base.BasePageClass;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
@@ -23,20 +26,29 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy (xpath = "//h1[contains(@class,'manage-data-title') or @class='manage-data-title']")
 	WebElement titleManageData;
 	
-	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES DU FORFAIT') or text()='plan data']"),
+	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")})
 	WebElement titlePlanData;
 	
-	@FindBy(xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]/parent::div/parent::div//tr")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES DU FORFAIT') or text()='plan data']/parent::div/parent::div//tr"),
+	@FindBy(xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]/parent::div/parent::div//tr")})
 	WebElement rowPlanData;
 	
-	@FindBy (xpath = "//h4[contains(text(),'ADDED DATA') or contains(text(),'DONNÉES AJOUTÉES')]")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']"),
+	@FindBy (xpath = "//h4[contains(text(),'ADDED DATA') or contains(text(),'DONNÉES AJOUTÉES')]")})
 	WebElement titleAddedData;
 	
-	
-	@FindBy (xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'TOTAL DES DONNÉES') or text()='total data']"),
+	@FindBy (xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]")})
 	WebElement titleTotalData;
 	
-	@FindBy(xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]/parent::div/parent::div//strong")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'TOTAL DES DONNÉES') or text()='total data']/parent::div/parent::div//strong"),
+	@FindBy(xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]/parent::div/parent::div//strong")})
 	List<WebElement> rowsTotalData;
 	
 	@FindBy (xpath = "//span[contains(text(),'Back') or contains(text(),'Précédent') or contains(text(),'Mobile Dashboard') or contains(text(),'Tableau de bord mobile')]")
@@ -45,14 +57,21 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy (xpath = "//strong")
 	List<WebElement> listData;
 
-	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']/parent::div/parent::div//table//strong"),
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")})
 	List<WebElement> rowsAddedData;
 			
+	
 	//@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//a[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")
-	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//strong[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']/parent::div/parent::div//table//tr//strong[(contains(text(), 'cancel'))=false and (contains(text(), 'expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]"),
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//strong[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")})
 	List<WebElement> tableRowsAddData;
 	
-	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")
+	@FindAll({
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']/parent::div/parent::div//table//tr"),
+	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")})
 	List<WebElement> rowsAddMDTData;
 
 	@FindBy (xpath = "//*[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container' or text()='View Details' or text()='Afficher les détails']")
@@ -116,7 +135,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @author ning.xue
 	 * @param strAddDataType 
 	 */
-	public double getTotalDataInManageDataOverlay(String strAddDataType) {
+	public double getTotalDataInManageDataOverlay(String strAddDataType) {		
 		String strTotalData = listData.get(listData.size()-2).getText();
 		double doubleTotalData = Double.parseDouble(strTotalData.substring(0, strTotalData.length()-3));
 		HashMap<String, Double> hashMapDataType = getAllExistingAddDataInMBAndGB(strAddDataType);
@@ -228,7 +247,8 @@ public class FidoDataManagementPage extends BasePageClass {
 	public HashMap<String, Double> getAllExistingAddDataInMBAndGB(String strType) {
 		Double mb=0.0;
 		Double gb=0.0;
-		HashMap<String, Double> dataType = new HashMap<String, Double>();
+		HashMap<String, Double> dataType = new HashMap<String, Double>();		
+		
 		List<WebElement> rowsAddMDTData = strType.equalsIgnoreCase("ott") ? rowsAddedData : tableRowsAddData;
 		for(WebElement row:rowsAddMDTData)
 		{
@@ -297,10 +317,10 @@ public class FidoDataManagementPage extends BasePageClass {
 		{
 			intAddData = hashMapDataType.get("AllDataTotal");
 		}
-		
+				
 			String strTotalAddon = rowsTotalData.get(1).getText().replaceAll(",", ".");
 			double intTotalAddon = Double.parseDouble(getNumbersFromString(strTotalAddon)); 
-			return intTotalData == intPlanData 
+			return intTotalData == intPlanData
 					&& (intTotalAddon == intAddData || (intAddData-intTotalAddon <0.1) );
 	}
 	
