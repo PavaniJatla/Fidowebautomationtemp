@@ -94,7 +94,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			reporter.reportLogWithScreenshot("Add data success modal.");
 			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
 			reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
-
+			//log out and login
 			common_business_flows.logOutAndResignIn(userName, password);		
 			
 			//check added data reflecting
@@ -106,17 +106,14 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			reporter.reportLogWithScreenshot("Click on CTN badge");
 			fido_account_overview_page.clkCtnBadge();
 			reporter.reportLogWithScreenshot("dashboard page");	
+			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
+					"The data add-on reflected in total data.",
+					"The data add-on didn't reflect in total data.");	
+			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
+					"The data add-on reflected in total data.",
+					"The data add-on didn't reflect in total data.");	
+
 		}
-		
-		//log out and login
-		
-		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
-				"The data add-on reflected in total data.",
-				"The data add-on didn't reflect in total data.");	
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
-				"The data add-on reflected in total data.",
-				"The data add-on didn't reflect in total data.");	
 		
 		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
 		//Manage data page
@@ -143,7 +140,6 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 				"Total data in usage section align with total data in Manage data page.",
 				"Total data in usage section doesn't align with total data in Manage data page.");	
-
 	}
 	
 }
