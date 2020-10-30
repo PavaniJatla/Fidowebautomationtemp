@@ -102,7 +102,6 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 					"Login succeed.", 
 					"Login failed, please investigate");
 
-			fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 			reporter.reportLogWithScreenshot("Click on CTN badge");
 			fido_account_overview_page.clkCtnBadge();
 			reporter.reportLogWithScreenshot("dashboard page");	
