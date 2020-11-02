@@ -46,7 +46,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy(xpath = "//img[@class='close-btn']")
 	WebElement btnCloseMonthlyAddOnOverLay;
 	
-	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title' or text()='Confirm data purchase' or text()=\"Confirmez l'achat de données\"]")
+	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title' or text()='Confirm data purchase' or contains(text(),'Confirmez')]")
 	WebElement msgConfirmPurchasing;
 	//ins[@translate='ute.purchaseData.purchaseBtn']/parent::button
 	
@@ -102,7 +102,7 @@ public class FidoAddDataPage extends BasePageClass {
 	 */
 	public boolean verifyOverlayOTTDataAddOnDisplayed() {
 		String strOverlaytitleText = reusableActions.getWhenReady(overlayOTTDataAddOn, 30).getText().trim();
-		return ((strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"))
+		return ((strOverlaytitleText.contains("One-time") || strOverlaytitleText.contains("DONNÉES"))
 				&& (!strOverlaytitleText.contains("Month")||!strOverlaytitleText.contains("Mois")));
 	} 
 	

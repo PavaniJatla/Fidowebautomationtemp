@@ -25,7 +25,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 		closeSession();
 	}
 	
-	@DataProvider(name = "data-provider")
+	@DataProvider(name = "data-provider", parallel=true)
     public Object[][] dataProviderMethod() {
         return new Object[][] {   
         	{
