@@ -41,7 +41,7 @@ import java.lang.reflect.Method;
 
 public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH"})
+	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkInternetBuyFlowMobile() {
 
 		reporter.reportLogWithScreenshot("Launched the Home Page");
@@ -50,19 +50,18 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 		fido_home_page.clkShopMobile();
 		reporter.reportLogWithScreenshot("Launched the Navigation shop links");
 		fido_home_page.clkHomeInternetMobile();
-        reporter.reportLogWithScreenshot("Launched the Internet Page");
-		fido_home_page.clkCheckAvailabilityMobile();	
-        reporter.reportLogWithScreenshot("Launched the Serviceability model");
+		fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        reporter.reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        fido_Shop_internet_page.setAddressLookupMobile(strAddressLine1+", "+strAddressLine2+", CANADA");
-        reporter.reportLogWithScreenshot("Checking the Service availability");
-        fido_Shop_internet_page.clkCheckAvailabilityConfirmation();        
+        fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        fido_Shop_internet_page.clkServiceAvailabilityCheck();
+        //fido_home_page.clkCheckAvailabilityMobile();
         reporter.reportLogWithScreenshot("Good News for the Service availability");
-        fido_Shop_internet_page.clkBuyOnline();
-        reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");      
-        fido_Shop_internet_page.selectPlan();
-        fido_cart_summary_page.clkCheckout();
+        fido_Shop_internet_page.clkBuyNowReskin();
+        reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
+        fido_cart_summary_page.clkInternetCheckout();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.setCommunicationDetails();
         reporter.reportLogWithScreenshot("Entered the user mail communication information");

@@ -315,8 +315,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy(xpath = "//img[@alt='Attention']")
 	WebElement imgAttentionOverage;
-	
-	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
+	@FindAll({
+		@FindBy (xpath = "//div[contains(@class,'ss-plan-container-addons-holder')]//li"),
+		@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")})
 	List<WebElement> lstMyPlanAddOns;
 
 	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title' or @class='ss-data-usage-bar-background']") 

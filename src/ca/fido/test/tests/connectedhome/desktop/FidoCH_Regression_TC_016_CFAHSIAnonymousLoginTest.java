@@ -42,7 +42,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_016_CFAHSIAnonymousLoginTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
+	@Test(groups = {"RegressionCH", "FidoCableRetailCH"})
 	public void checkSSPhsiAnonymousLogin() {
 		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
 		retailer_champ_page.setUsername(System.getenv("SSPUsername"));

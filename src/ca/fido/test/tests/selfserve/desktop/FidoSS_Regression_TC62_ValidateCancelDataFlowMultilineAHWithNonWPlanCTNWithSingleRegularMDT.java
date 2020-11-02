@@ -78,7 +78,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		
 		if((countOfActiveAndCancelledAddData.get("active")>=1))
 		{
-			fido_data_management_page.scrollToMiddle();
+//			fido_data_management_page.scrollToMiddle();
 			reporter.reportLogWithScreenshot("Click on cancel MDT Link");
 			fido_data_management_page.clkCancelMDTLink();			
 

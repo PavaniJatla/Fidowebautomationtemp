@@ -21,11 +21,11 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='cc-payment-section']//descendant::iframe")
 	WebElement fraSemaphone;
 
-	@FindBy(id = "amount")
+	@FindBy(xpath = "//div[@class='ute-pay-now-content ss-pay-now-payment-amount']//input[@id='amount']")
 	WebElement txtPaymentAmount;
 
-	@FindBy(name = "pan")
-	WebElement txtCreditCardNumber;
+	@FindBy(xpath = "//input[@id='pan']")
+	WebElement 	txtCreditCardNumber;
 
 	@FindBy(xpath = "//select[@id='expiry-date']")
 	WebElement ddlExpiryMonth;
@@ -163,17 +163,33 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void setPaymentAmount(String strPaymentAmount) {
-		reusableActions.clickWhenVisible(txtPaymentAmount,60);
-		reusableActions.getWhenReady(txtPaymentAmount).clear();
+		reusableActions.getWhenReady(txtPaymentAmount,60).click();
+		reusableActions.getWhenReady(txtPaymentAmount,5).clear();
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(strPaymentAmount);
+		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(strPaymentAmount);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 	}
-	
+
+	/**
+	 * Set the payment amount on the payment page
+	 * @param strPaymentAmount amount to be paid to buy the offer
+	 * @author  Aditya.Dhingra
+	 */
+	public void setPaymentAmountMobile(String strPaymentAmount) {
+		reusableActions.getWhenReady(txtPaymentAmount,120).click();
+		reusableActions.getWhenReady(txtPaymentAmount,5).clear();
+		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(strPaymentAmount);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
+	}
 	/**
 	 * Set the credit card at semaphone frame on the payment page
 	 * @param strCreditCard number of the credit card
@@ -181,11 +197,22 @@ public class FidoPaymentPage extends BasePageClass {
 	 */
 	public void setCreditCardNumberIFrame(String strCreditCard) {
 		driver.switchTo().frame(reusableActions.getWhenVisible(fraSemaphone));
-		reusableActions.clickWhenVisible(txtCreditCardNumber);
+		reusableActions.getWhenVisible(txtCreditCardNumber).click();
 		reusableActions.getWhenReady(txtCreditCardNumber).sendKeys(strCreditCard);
 		driver.switchTo().defaultContent();
 	}
-	
+
+	/**
+	 * Set the credit card at semaphone frame on the payment page
+	 * @param strCreditCard number of the credit card
+	 * @author  Aditya.Dhingra
+	 */
+	public void setCreditCardNumberIFrameMobile(String strCreditCard) {
+		driver.switchTo().frame(reusableActions.getWhenVisible(fraSemaphone));
+		reusableActions.getWhenVisible(txtCreditCardNumber,90).click();
+		reusableActions.getWhenReady(txtCreditCardNumber).sendKeys(strCreditCard);
+		driver.switchTo().defaultContent();
+	}
 	/**
 	 * Set the CVV for Pre-Auth credit card
 	 * @param strCVV  CVV for Pre-Auth credit card
@@ -195,13 +222,33 @@ public class FidoPaymentPage extends BasePageClass {
 		reusableActions.clickWhenVisible(txtCVV);
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
 	}
-	
+
+	/**
+	 * Set the CVV for Pre-Auth credit card
+	 * @param strCVV  CVV for Pre-Auth credit card
+	 * @author  Aditya.Dhingra
+	 */
+	public void setCVVNumberMobile(String strCVV) {
+		reusableActions.clickWhenVisible(txtCVV,20);
+		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
+	}
 	/**
 	 * Selects the credit card expire month for Pre-Auth credit card
 	 * @param strMM expire month for Pre-Auth credit card
 	 * @author  Aditya.Dhingra
 	 */
 	public void selectExpiryMonth(String strMM) {
+		reusableActions.selectWhenReady(ddlExpiryMonth, strMM);
+	}
+
+
+	/**
+	 * Selects the credit card expire month for Pre-Auth credit card
+	 * @param strMM expire month for Pre-Auth credit card
+	 * @author  Aditya.Dhingra
+	 */
+	public void selectExpiryMonthMobile(String strMM) {
+		reusableActions.waitForElementVisibility(ddlExpiryMonth,20);
 		reusableActions.selectWhenReady(ddlExpiryMonth, strMM);
 	}
 	
@@ -213,13 +260,23 @@ public class FidoPaymentPage extends BasePageClass {
 	public void selectExpiryYear(String strYYYY) {
 		reusableActions.selectWhenReady(ddlExpiryYear, strYYYY);
 	}
-	
+
+	/**
+	 * Selects the credit card expire year for Pre-Auth credit card
+	 * @param strYYYY expire year for Pre-Auth credit card
+	 * @author  Aditya.Dhingra
+	 */
+	public void selectExpiryYearMobile(String strYYYY) {
+		reusableActions.waitForElementVisibility(ddlExpiryYear,20);
+		reusableActions.selectWhenReady(ddlExpiryYear, strYYYY);
+	}
+
 	/**
 	 * clicks review and Continue button
 	 * @author Mirza.Kamran
 	 */
 	public void clkReviewAndContinue() {
-		reusableActions.getWhenVisible(btnReviewAndContinue).sendKeys(Keys.ENTER);
+		reusableActions.getWhenVisible(btnReviewAndContinue,10).sendKeys(Keys.ENTER);
 	}
 	
 	/**
@@ -227,7 +284,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkPayNow() {
-		reusableActions.getWhenReady(btnPayNow).click();
+		reusableActions.getWhenReady(btnPayNow,20).click();
 	}
 	
 	/**
