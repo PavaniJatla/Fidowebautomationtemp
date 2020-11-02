@@ -96,6 +96,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		fido_login_page.clkResignInAsMobile();
 		reporter.reportLogWithScreenshot("Clicked ReSign In");
 		fido_login_page.switchToSignInFrame();
+		fido_login_page.setUsernameAfterReSignInFrame(altUserName);
 		fido_login_page.setPasswordInFrame(newPassword);			
 		fido_login_page.clkLoginInFrame();
 		reporter.reportLogWithScreenshot("Login with new password performed");
@@ -109,7 +110,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		fido_profile_and_setting_page.clkButtonLogInDetails();
 		fido_profile_and_setting_page.clkChangePasswordMobile();				
 		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);		
-		fido_profile_and_setting_page.clkSaveButton();
+		fido_profile_and_setting_page.clkSaveButtonMobile();
 		reporter.reportLogWithScreenshot("password set back to initial one");
 	}
 

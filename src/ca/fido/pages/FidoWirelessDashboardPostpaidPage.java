@@ -101,7 +101,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	    @FindBy (xpath = "//button/span[text()='CHANGE PLAN' or text()='CHANGER DE FORFAIT']")})
 	WebElement btnChangePlan;	
 	
-	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA']")
+	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.changePlanCTA' or text()='Upgrade Plan' or text()='Améliorez votre plan']")
 	WebElement btnChangePlanMobile;
 	
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.planDetailsModel.fullPlanDetails' or text()='full plan details' or text()='détails du plan']")
@@ -113,7 +113,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
 	WebElement divMyPlanTalkDetails;
 	
-	@FindBy(xpath = "//span[@translate='usageModule.talkAndText.unlimited']")
+	@FindBy(xpath = "//*[@translate='usageModule.talkAndText.unlimited' or contains(@class,'talk-and-text-unlimited')]")
 	WebElement divTalkAndTextMobile;
 	
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage unlimited')]")
@@ -282,7 +282,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='ute.purchaseData.continue']/parent::button/parent::div/following-sibling::a/ins[@translate='ute.purchaseData.backBtn']/parent::a")
 	WebElement btnCancelMonthlyDataPlan;	
 
-	@FindBy (xpath = "//fds-link[@class='ng-star-inserted']")
+	@FindAll({
+	@FindBy(xpath = "//a[@title='Reactivate your service now.']"),
+	@FindBy (xpath = "//fds-link[@class='ng-star-inserted']")})
 	WebElement lnkReactivate;
 
 	@FindBy (xpath = "//span[@translate='usageModule.manage' or text()='View Details' or text()='Afficher les détails']")
@@ -329,7 +331,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']/div[@title='Close' or @title='Fermer']")
 	WebElement btnCloseOnCallOut;
 
-	@FindBy(xpath = "//a/span[@translate='wireless.dashboard.myPlan.viewDetailsCTA']")
+	@FindBy(xpath = "//a/span[@translate='wireless.dashboard.myPlan.viewDetailsCTA' or text()='View details']")
 	WebElement lnkViewDetailsMyPlan;
 	
 	@FindBy(xpath = "//button[@title='Voir les détails des appels et textos' or @title='View Talk and Text details']")
@@ -396,7 +398,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Ning.Xue
 	 */
 	public Boolean isServiceSuspended() {
-		return reusableActions.isElementVisible(lnkReactivate, 60);
+		return reusableActions.isElementVisible(By.xpath("//a[@title='Reactivate your service now.']"), 60);
 	}
 	
 	/**
@@ -404,7 +406,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkLnkReactivate() { 
-		reusableActions.getWhenReady(lnkReactivate, 60).click();		
+		reusableActions.getWhenReady(By.xpath("//a[@title='Reactivate your service now.']"), 60).click();		
 	}
 	
 	/**

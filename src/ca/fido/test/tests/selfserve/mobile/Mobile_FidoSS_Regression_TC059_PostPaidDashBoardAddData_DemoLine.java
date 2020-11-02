@@ -67,6 +67,8 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
 		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
+		reporter.reportLogWithScreenshot("Click Add data");
+		reporter.reportLogWithScreenshot("Verify add data overlay");
 		reporter.hardAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
 							"data add on overlay is not displayed");			

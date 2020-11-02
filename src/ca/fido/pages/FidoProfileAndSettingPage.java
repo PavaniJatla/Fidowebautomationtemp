@@ -636,7 +636,8 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkSaveButtonMobile() {
-		reusableActions.getWhenReady(btnSave).click();		
+		reusableActions.getWhenReady(btnSave).click();	
+		reusableActions.clickIfAvailable(btnSave);
 	}
 	
 	/**
