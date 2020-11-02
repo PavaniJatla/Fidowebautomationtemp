@@ -65,7 +65,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	
 	//@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//a[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")
 	@FindAll({
-	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']/parent::div/parent::div//table//tr//strong[(contains(text(), 'cancel'))=false and (contains(text(), 'expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]"),
+	@FindBy(xpath = "//tr[@class='ds-table-row']//strong[@class='ng-star-inserted']/span[1]"),
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr//strong[(contains(text(), 'CANCEL'))=false and (contains(text(), 'Expires'))=false and (contains(text(),'ANNULER')=false) and (contains(text(),'Prend')=false)]")})
 	List<WebElement> tableRowsAddData;
 	
@@ -83,10 +83,14 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//p[text()='CANCEL ADD-ON' or text()='ANNULER L’OPTION']")
 	WebElement titleCancelAddOn;
 	
-	@FindBy(xpath = "//button//span[text()='YES, CANCEL' or text()='OUI, ANNULER']")
+	@FindAll({
+		@FindBy (xpath = "//button//span[text()='yes, cancel' or text()='oui, annuler']"),
+		@FindBy(xpath = "//button//span[text()='YES, CANCEL' or text()='OUI, ANNULER']")})
 	WebElement btnYesCancel;
 	
-	@FindBy(xpath = "//p[text()='ADD-ON CANCELLED' or contains(text(),'OPTION ANNUL')]")
+	@FindAll({
+		@FindBy (xpath = "//h2[text()='add-on cancelled' or contains(text(),'option annul')]"),
+		@FindBy(xpath = "//p[text()='ADD-ON CANCELLED' or contains(text(),'OPTION ANNUL')]")})
 	WebElement titleAddOnCancelled;
 	
 	@FindBy(xpath = "//button[@title='Close' or @title='FERMER']//span[contains(text(),'FERMER') or contains(text(),'Close')]/parent::span/parent::button")
