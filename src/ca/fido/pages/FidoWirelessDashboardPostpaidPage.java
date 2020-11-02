@@ -175,13 +175,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']/following-sibling::td[@class='usage-content']/div")
 	WebElement divAnytimeUsed;
 	
-	@FindBy (xpath = "//div[@translate='usageModule.talkAndText.talkTextTitle']")
+	@FindBy (xpath = "//div[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
 	WebElement divTalkNTextUsage;
 	
 	@FindBy (xpath = "//p[contains(text(),'remaining') or contains(text(),'restantes')]")
 	WebElement limitedTalkUsage;
 	
-	@FindBy (xpath = "//span[text()='minutes']/parent::h4/following-sibling::p")
+	@FindAll({		
+	@FindBy(xpath = "//div[@class='talk-text-usage']//span[text()='minutes']"),
+	@FindBy (xpath = "//span[text()='minutes']/parent::h4/following-sibling::p")})
 	WebElement unlimitedTalkUsage;
 	
 	@FindBy(xpath = "//div[@class='talk-text-usage']//span[contains(text(),'Textos') or contains(text(),'Text')]")
@@ -294,10 +296,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")})
 	WebElement lnkRepairMobile;
 
-	@FindBy(xpath = "//button[@translate='global.cta.continue']")
+	@FindBy(xpath = "//*[@translate='global.cta.continue' or text()=' Continuer' or text()=' Continue']")
 	WebElement btnContinue;
 	
-	@FindBy(xpath = "//h2[@translate='wireless.dashboard.quickActions.trackRepairClaim.heading']")
+	@FindBy(xpath = "//h2[@translate='wireless.dashboard.quickActions.trackRepairClaim.heading' or text()='Repairing or trading-in your device' or text()='Réparer ou échanger votre appareil']")
 	WebElement lblGetHelpForYourPhoneOverlay;
 
 	@FindBy(xpath = "//*[text()='Add data to avoid further overage charges']")
@@ -315,7 +317,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")
 	List<WebElement> lstMyPlanAddOns;
 
-	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title']") 
+	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title' or @class='ss-data-usage-bar-background']") 
 	WebElement lblYouAreRunningLow;
 	
 	@FindBy(xpath = "//div[@class='data-callout-wrapper running-low']")
@@ -700,7 +702,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyTotalDataReflectedAddedData(double previousTotalDataValue, double addedDataValue) {
-		return Double.parseDouble(divTotalData.getText().trim().replaceAll(",", ".")) == addedDataValue + previousTotalDataValue;
+		double diff=0;
+		double totalDataValue = Double.parseDouble(divTotalData.getText().trim().replaceAll(",", "."));
+		double addition = (addedDataValue + previousTotalDataValue);
+		if(totalDataValue>addition)
+		{
+			diff=totalDataValue-addition;
+		}else
+		{
+			diff=addition-totalDataValue;
+		}
+		return totalDataValue == addition || (diff<=0.1);
+				
 	}
 		
 	
@@ -751,7 +764,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyRemainingDataReflectedAddedData(double previousRemainingDataValue, double addedDataValue) {
-		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim()) == addedDataValue + previousRemainingDataValue;
+		double diff=0;
+		double totalDataValue = Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim());
+		double addition = (addedDataValue + previousRemainingDataValue);
+		if(totalDataValue>addition)
+		{
+			diff=totalDataValue-addition;
+		}else
+		{
+			diff=addition-totalDataValue;
+		}
+		return totalDataValue == addition || (diff<=0.1);
+				
 	}
 	
 	/**
@@ -1210,7 +1234,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyBrightStarNewTabAndURL(String strParentWindowHandle, String strURL) {
 		reusableActions.waitForNumberOfWindowsToBe(2, 60);
 		reusableActions.switchToNewWindow(strParentWindowHandle);
-		return reusableActions.getDriver().getCurrentUrl().trim().contains(strURL);
+		return (reusableActions.getDriver().getCurrentUrl().trim().contains(strURL)||
+ 				strURL.contains(reusableActions.getDriver().getCurrentUrl().trim()));
 		
 	}
 

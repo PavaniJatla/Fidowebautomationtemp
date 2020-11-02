@@ -90,11 +90,11 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextPlanDetailsSectionIsDisplayed(),
 						"Text plan details section is displayed",
 						"Text plan details section is not displayed");
-		/* for 4th nov new dashboard release 
+	
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited(),
 				"View details displayed below talk and text unlimited", 
 				"View details is NOT displayed below talk and text unlimited");
-			*/
+		
 		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyMobilePlanDashBoardSectionIsDisplayed(),
 						"My Mobile plan dashboard section is displayed",
 						"My mobile plan details section is not displayed");

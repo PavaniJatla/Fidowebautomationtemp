@@ -23,10 +23,15 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
 	WebElement overlayOTTDataAddOn;
 	
-	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
+	@FindAll({
+	@FindBy(xpath = "//div[@class='selected-plan-details-item']"),	
+	@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	//button[@class='ute-purchase-data-continue-btn']
-	@FindBy(xpath = "//fds-button[@class='continue-button']")
+	
+	@FindAll({		
+	@FindBy(xpath = "//button//span[text()=' Continue ' or text()=' Continuer ']"),
+	@FindBy(xpath = "//fds-button[@class='continue-button']")})
 	WebElement btnContinueOnAddDataOverlay;
 	//span[text()='Select amount' or text()='Sélectionnez le montant']
 	@FindBy(xpath = "//button[@data-toggle='dropdown']")
@@ -41,10 +46,13 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy(xpath = "//img[@class='close-btn']")
 	WebElement btnCloseMonthlyAddOnOverLay;
 	
-	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title']")
+	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title' or text()='Confirm data purchase' or text()=\"Confirmez l'achat de données\"]")
 	WebElement msgConfirmPurchasing;
 	//ins[@translate='ute.purchaseData.purchaseBtn']/parent::button
-	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")
+	
+	@FindAll({		
+	@FindBy(xpath = "//button//span[text()='Purchase' or text()='Acheter']"),
+	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")})
 	WebElement btnPurchaseOnAddDataOverlay;
 	
 	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
@@ -53,7 +61,7 @@ public class FidoAddDataPage extends BasePageClass {
 	@FindBy (xpath = "//*[contains(text(),'Limit reached') or contains(text(),'Limite atteinte')]")
 	WebElement msgLimitReached;
 	
-	@FindBy (xpath = "//button[@class='close ng-star-inserted']")
+	@FindBy (xpath = "//button[@class='close ng-star-inserted' or contains(@class,'ds-modal__closeButton')]")
 	WebElement btnCloseOnAddDataOverlay;
 	
 	@FindBy (xpath = "//ss-data-topup-dropdown")
@@ -191,11 +199,16 @@ public class FidoAddDataPage extends BasePageClass {
 	 */
 	public double getValueAddedData() {
 		String strDataAdded = msgSuccessOnAddDataOverlay.getText();
-		double valueAddedData = Double.parseDouble( StringHelpers.getNumbersFromString(strDataAdded.replace(",", ".")));		
-		if(strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MB")
-			||strDataAdded.substring(strDataAdded.length()-2).equalsIgnoreCase("MO")) {
+		double valueAddedData=0;		
+		if(strDataAdded.contains("MB")
+			||strDataAdded.contains("MO")) {
+			valueAddedData = Double.parseDouble( StringHelpers.getNumbersFromString(strDataAdded.replace(",", ".")));
 			valueAddedData = valueAddedData / 1000;
+		}else
+		{
+			valueAddedData = Double.parseDouble( StringHelpers.getNumbersFromString(strDataAdded.replace(",", ".")));
 		}
+		
 		return valueAddedData;
 	}
 	

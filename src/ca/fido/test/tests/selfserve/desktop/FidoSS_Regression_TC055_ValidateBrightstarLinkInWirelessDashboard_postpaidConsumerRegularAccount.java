@@ -75,7 +75,8 @@ public class FidoSS_Regression_TC055_ValidateBrightstarLinkInWirelessDashboard_p
 				TestDataHandler.config.getBrightStarURL()),
 				"Bright star tab and url open",
 				"Bright star tab and url did not open");
-		reporter.reportLogWithScreenshot("BrighStar page");
+		reporter.reportLogWithScreenshot("BrighStar page expected url : "+TestDataHandler.config.getBrightStarURL());
+		reporter.reportLogWithScreenshot("BrighStar page actual url : "+getDriver().getCurrentUrl().trim());
 	}
 	
 }

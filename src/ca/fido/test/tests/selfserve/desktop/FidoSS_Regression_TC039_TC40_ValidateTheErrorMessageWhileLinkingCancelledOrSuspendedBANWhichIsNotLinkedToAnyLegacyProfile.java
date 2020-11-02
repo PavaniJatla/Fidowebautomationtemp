@@ -36,7 +36,7 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.clkRegisterIframe();
 		reporter.reportLogWithScreenshot("Registration Page opened");
-		fido_account_registration_page.clkRegisterNow();
+		//fido_account_registration_page.clkRegisterNow();
 		fido_account_registration_page.pageRefresh();		
 		reporter.reportLogWithScreenshot("Account Holder option to select");
 		fido_account_registration_page.clkAccountHolder();		
