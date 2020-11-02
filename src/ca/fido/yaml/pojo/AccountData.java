@@ -12,6 +12,7 @@ public class AccountData {
 	public String usernamePay;
 	public String usernameDowngrade;
 	public String usernameUpgrade;
+	public String usernameUpgradeMobile;
 	public String usernameDowngradeSameSpeed;
 	public String usernameMobile;
 	private String dealerCode;
@@ -198,5 +199,17 @@ public class AccountData {
 	public void setSspEnv(String sspEnv) {
 		this.sspEnv = sspEnv;
 	}
-	
+
+	/**
+	 * @return the usernameUpgradeMobile
+	 */
+	public String getUsernameUpgradeMobile() {
+		return usernameUpgradeMobile;
+	}
+	/**
+	 * @param usernameUpgradeMobile the usernameUpgradeMobile to set
+	 */
+	public void setUsernameUpgradeMobile(String usernameUpgradeMobile) {
+		this.usernameUpgradeMobile = usernameUpgradeMobile;
+	}
 }

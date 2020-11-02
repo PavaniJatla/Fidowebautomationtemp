@@ -33,12 +33,12 @@ public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest
 	
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
-	public void checkDeleteOffer() {
+	public void serviceabilityModalforOtherProvinceTest() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line2");
@@ -52,7 +52,7 @@ public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest
         fido_Shop_internet_page.clkCancel();
         reporter.reportLogWithScreenshot("Launched the packages Page");
         reporter.hardAssert(fido_Shop_internet_page.verifyPackagesPage() ,"Packages Page has launched","Packages Page hasn't launched");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+       fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradePlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
         fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");

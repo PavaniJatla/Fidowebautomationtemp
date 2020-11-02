@@ -51,7 +51,7 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
 		reporter.reportLogWithScreenshot("Launched the Account Page");	
 		fido_account_overview_page.clkPayNow();
 		reporter.reportLogWithScreenshot("Launched the payment widget");
-		fido_payment_page.setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
+		fido_payment_page.setPaymentAmountMobile(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
 		reporter.reportLogWithScreenshot("set the payment amount");
 		fido_payment_page.selectCreditCardOption();
 		// -- Need to be fixed--workaround/
@@ -59,11 +59,11 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
 		reporter.reportLogWithScreenshot("set the payment mode");
 
 		// --------------------Pass it from yaml-----------------//
-		fido_payment_page.setCreditCardNumberIFrame(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
+		fido_payment_page.setCreditCardNumberIFrameMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
 		reporter.reportLogWithScreenshot("set the credit card number");
-		fido_payment_page.selectExpiryMonth(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryMonth());
-		fido_payment_page.selectExpiryYear(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_payment_page.setCVVNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getCVV());
+		fido_payment_page.selectExpiryMonthMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryMonth());
+		fido_payment_page.selectExpiryYearMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryYear());
+		fido_payment_page.setCVVNumberMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getCVV());
 		reporter.reportLogWithScreenshot("set the credit card information");
 		fido_payment_page.clkReviewAndContinue();
 		reporter.reportLogWithScreenshot("payment confirmation widget");

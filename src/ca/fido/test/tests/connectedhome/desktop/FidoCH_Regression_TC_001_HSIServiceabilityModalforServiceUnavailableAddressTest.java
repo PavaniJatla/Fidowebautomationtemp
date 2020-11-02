@@ -33,12 +33,12 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityModalforServiceUnavailabl
 	
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
-	public void checkDeleteOffer() {
+	public void serviceabilityModalforServiceUnavailableAddressTest() {
 		reporter.reportLogWithScreenshot("Launched the Home Page");
         fido_home_page.clkShop();
         fido_home_page.clkHomeInternet();
         reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getUpgradePlanCost());
         reporter.reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line2");

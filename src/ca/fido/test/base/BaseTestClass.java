@@ -185,7 +185,7 @@ public class BaseTestClass {
 		}
 
 		setImplicitWait(getDriver(), 50);
-		getDriver().manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		getDriver().manage().timeouts().pageLoadTimeout(90, TimeUnit.SECONDS);
 		init(enumGroupName.toString().toLowerCase().trim());
 	}
 

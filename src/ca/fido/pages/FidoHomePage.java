@@ -154,10 +154,8 @@ public class FidoHomePage extends BasePageClass {
 	 * Click on Mobile Login button on the home page
 	 * @author chinnarao.vattam
 	 */	
-	public void clkLoginMobile() {		
-				
-		reusableActions.getWhenReady(lnkLogInMobile,60).click();
-		
+	public void clkLoginMobile() {
+		reusableActions.getWhenReady(lnkLogInMobile,120).click();
 	}
 	
 	/**
@@ -233,7 +231,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */	
 	public void clkNavMobile() {
-		reusableActions.clickWhenReady(lnkNavMobile,20);
+		reusableActions.getWhenReady(lnkNavMobile,60).click();
 	}
 	
 	/**
@@ -241,7 +239,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkShopMobile() {		
-		reusableActions.getWhenReady(lnkShopMobile,10).click();
+		reusableActions.getWhenReady(lnkShopMobile,60).click();
 	}
 	
 	/**
@@ -258,7 +256,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkCheckAvailabilityMobile() {
-    reusableActions.waitForElementInvisibility(popLoadingFingerMobile,60);
+    reusableActions.waitForElementInvisibility(popLoadingFingerMobile,90);
 	reusableActions.getWhenReady(btnCheckAvailabilityMobile,20).click();			
 	}
 	
