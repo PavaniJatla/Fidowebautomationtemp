@@ -59,6 +59,7 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
+	
 		fido_account_overview_page.clkCtnBadge();
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 //		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
@@ -119,7 +120,7 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		fido_login_page.setUsernameAfterReSignInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
 		reporter.reportLogWithScreenshot("Re-login with password.");
-		fido_login_page.clkLoginInFrame();
+		fido_login_page.clkLoginInFrameMobile();
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
@@ -128,7 +129,7 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Login failed, please investigate");
-
+		
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_account_overview_page.clkCtnBadge();
@@ -165,7 +166,7 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 				"Total data in usage section align with total data in Manage data page.",
 				"Total data in usage section doesn't align with total data in Manage data page.");	
-
+	
 	}
 	
 }

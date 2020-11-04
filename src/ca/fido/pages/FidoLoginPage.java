@@ -26,7 +26,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//a[@title='user name' or @class='m-navLink -navbar -login']")
 	WebElement lnkUserName;
 		
-	@FindBy(xpath = "//span[@class='m-mobileNavLink__caption user-loggedin']")
+	@FindAll({
+	@FindBy(xpath = "//span[@class='m-mobileNavLink__caption user-loggedin']"),
+	@FindBy(xpath = "//span[@class=\"m-mobileNavLink__icon fds-icon-account\"]/parent::a")})
 	WebElement lnkUserNameMobile;
 		
 	@FindBy(xpath = "//*[@id='skipNavigation' or contains(@class,'o-headerNavDropdown')]//a[@id='f_logoutAction' or @title='Sign out']")
@@ -157,6 +159,8 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(btnLogIn,60).click();	  
 	}
 	
+
+	
 	/**
 	 * Click on the login button
 	 * @author Mirza.Kamran
@@ -232,7 +236,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * Click on SignOut in header Navigation bar after login
 	 * @author ning.xue
 	 */
-	public void clkSignOutMobile() {
+	public void clkSignOutMobile() {	
 		reusableActions.getWhenReady(lnkUserNameMobile).click();
 		reusableActions.waitForElementVisibility(lnkSignOutMobile, 20);
 		reusableActions.getWhenReady(lnkSignOutMobile).click();

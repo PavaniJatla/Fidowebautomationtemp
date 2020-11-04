@@ -99,4 +99,36 @@ public class CommonBusinessFlows {
 	}
 	
 	
+	/**
+	 * Log out and re sign In
+	  * @param strUserName for Application
+	 * @param strPassword for Application
+	 * @author Mirza.Kamran
+	 */
+	public void logOutAndResignInMobile(String strUserName, String strPassword) {	
+		baseTestClass.reporter.reportLogWithScreenshot("Starting sign out scenario");
+		baseTestClass.fido_home_page.clkNavMobile();
+		baseTestClass.reporter.reportLogWithScreenshot("Clicked Navigation elipsis");
+		baseTestClass.fido_login_page.clkSignOutMobile();
+		baseTestClass.reporter.reportLogWithScreenshot("Sign Out clicked.");
+		baseTestClass.reporter.reportLogWithScreenshot("waiting to check easy login page is avaialable or not...");
+		if(baseTestClass.fido_home_page.isEasyloginDisplayedMobile())
+		{
+			baseTestClass.reporter.reportLogWithScreenshot("Easy login page is available");
+			baseTestClass.fido_home_page.clkEasylogin();
+			baseTestClass.reporter.reportLogWithScreenshot("Easy login is clicked.");
+		}
+		baseTestClass.reporter.reportLogWithScreenshot("Click Navigate To Mobile");
+		baseTestClass.fido_home_page.clkNavMobile();
+		baseTestClass.reporter.reportLogWithScreenshot("Navigation menu clicked.");
+		baseTestClass.fido_login_page.clkResignInAsMobile();
+		baseTestClass.reporter.reportLogWithScreenshot("Clicked ReSign In");
+		baseTestClass.fido_login_page.switchToSignInFrame();
+		baseTestClass.fido_login_page.setUsernameAfterReSignInFrame(strUserName);
+		baseTestClass.fido_login_page.setPasswordInFrame(strPassword);			
+		baseTestClass.fido_login_page.clkLoginInFrameMobile();
+		baseTestClass.reporter.reportLogWithScreenshot("Relogin steps completed");
+		baseTestClass.fido_login_page.switchOutOfSignInFrame();	
+	}
+	
 }

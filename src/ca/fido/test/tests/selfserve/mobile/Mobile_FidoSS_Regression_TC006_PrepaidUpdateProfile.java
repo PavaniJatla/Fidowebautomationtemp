@@ -58,7 +58,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 			newPassword=tempPwd;	
 			fido_login_page.setUsernameInFrame(altUserName);
 			fido_login_page.setPasswordInFrame(altPassword);
-			fido_login_page.clkLoginInFrame();
+			fido_login_page.clkLoginInFrameMobile();
 			reporter.reportLogWithScreenshot("Login attempt with alternate password :"+newPassword);
 			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(),
 								"Login successful",
@@ -80,27 +80,9 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		reporter.reportLogWithScreenshot("New password set");
 		fido_profile_and_setting_page.clkSaveButtonMobile();	
 		reporter.reportLogWithScreenshot("New password changes saved");
-		reporter.reportLogWithScreenshot("Starting sign out scenario");
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Clicked Navigation elipsis");
-		fido_login_page.clkSignOutMobile();
-		reporter.reportLogWithScreenshot("Sign Out clicked.");
-		reporter.reportLogWithScreenshot("waiting to check easy login page is avaialable or not...");
-		if(fido_home_page.isEasyloginDisplayedMobile())
-		{
-			reporter.reportLogWithScreenshot("Easy login page is available");
-			fido_home_page.clkEasylogin();
-		}		
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Navigation menu clicked.");
-		fido_login_page.clkResignInAsMobile();
-		reporter.reportLogWithScreenshot("Clicked ReSign In");
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameAfterReSignInFrame(altUserName);
-		fido_login_page.setPasswordInFrame(newPassword);			
-		fido_login_page.clkLoginInFrame();
-		reporter.reportLogWithScreenshot("Login with new password performed");
-		fido_login_page.switchOutOfSignInFrame();
+		
+		common_business_flows.logOutAndResignInMobile(altUserName, newPassword);
+		
 		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
 							"Login successful with new password.",
 							"Login with new password is Not successful");
