@@ -64,6 +64,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		}
 		reporter.reportLogWithScreenshot("Click Login");
 		fido_home_page.clkLogin(); 
+		reporter.reportLogWithScreenshot("Login button clicked");
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(strUsername);
 		fido_login_page.setPasswordInFrame(strPassword);

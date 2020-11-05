@@ -1,6 +1,8 @@
 package ca.fido.test.commonbusiness;
 
 import ca.fido.test.base.BaseTestClass;
+import utils.ReusableActions;
+
 import org.testng.annotations.Listeners;
 
 @Listeners ({ca.fido.test.listeners.TestListener.class 
@@ -104,8 +106,9 @@ public class CommonBusinessFlows {
 	  * @param strUserName for Application
 	 * @param strPassword for Application
 	 * @author Mirza.Kamran
+	 * @throws InterruptedException 
 	 */
-	public void logOutAndResignInMobile(String strUserName, String strPassword) {	
+	public void logOutAndResignInMobile(String strUserName, String strPassword) throws InterruptedException {	
 		baseTestClass.reporter.reportLogWithScreenshot("Starting sign out scenario");
 		baseTestClass.fido_home_page.clkNavMobile();
 		baseTestClass.reporter.reportLogWithScreenshot("Clicked Navigation elipsis");
@@ -119,6 +122,7 @@ public class CommonBusinessFlows {
 			baseTestClass.reporter.reportLogWithScreenshot("Easy login is clicked.");
 		}
 		baseTestClass.reporter.reportLogWithScreenshot("Click Navigate To Mobile");
+		Thread.sleep(10000);
 		baseTestClass.fido_home_page.clkNavMobile();
 		baseTestClass.reporter.reportLogWithScreenshot("Navigation menu clicked.");
 		baseTestClass.fido_login_page.clkResignInAsMobile();
