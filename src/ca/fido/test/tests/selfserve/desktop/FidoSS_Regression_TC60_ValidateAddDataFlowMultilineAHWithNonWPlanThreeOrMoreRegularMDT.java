@@ -46,7 +46,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 	
 		String	userName = TestDataHandler.tc6062.getUsername();
 		String	password = TestDataHandler.tc6062.getPassword();
-		
+		String ctn = TestDataHandler.tc6062.getaccountDetails().getCtn();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
@@ -60,7 +60,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		fido_account_overview_page.clkCtnBadge(ctn.substring(ctn.length()-4));
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");

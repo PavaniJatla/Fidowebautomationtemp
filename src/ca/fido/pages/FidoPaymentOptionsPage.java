@@ -225,7 +225,19 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
 	WebElement btnBillingOptionClkContinue;
 	
+	@FindBy (xpath = "//div[@class='ss-payment-modal-container']")
+	WebElement modalPaymentMethod;
+	
 	//--------------------------------------------------------------------------------
+	
+	/**
+	 * Verify if the payment method modal is displayed
+	 * @return true if the modal displayed, else false.
+	 * @author ning.xue
+	 */
+	public boolean verifyPaymentMethodModalDisplayed() {
+		return reusableActions.isElementVisible(modalPaymentMethod, 10);
+	}
 	
 	/**
 	 * Selects the payment modes (pac, pacc, invoice) on the payment options page

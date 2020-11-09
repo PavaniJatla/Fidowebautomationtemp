@@ -42,7 +42,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 	
 		String	userName = TestDataHandler.tc5859.getUsername();
 		String	password = TestDataHandler.tc5859.getPassword();
-		
+		String ctn = TestDataHandler.tc5859.getaccountDetails().getCtn();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
@@ -56,7 +56,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		fido_account_overview_page.clkCtnBadge(ctn.substring(ctn.length()-4));
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 //		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
@@ -131,7 +131,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 				"Total data in Manage data overlay is not displayed");	
 		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("mdt"),
 				"Accuracy of data in Manage data overlay is verified.",
-				"Accuracy of data in Manage data overlay didn't verify successfully.");	
+				"Accuracy of data in Manage data overlay didn't verify successfully.");
 		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay("mdt");
 		fido_data_management_page.clkLinkBackOnManageDataOverlay();
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
