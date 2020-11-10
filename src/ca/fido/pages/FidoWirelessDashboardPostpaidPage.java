@@ -116,7 +116,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//*[@translate='usageModule.talkAndText.unlimited' or contains(@class,'talk-and-text-unlimited')]")
 	WebElement divTalkAndTextMobile;
 	
-	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage unlimited')]")
+	@FindAll({
+		@FindBy (xpath = "//ss-talk-text//span[contains(text(),'Texts')]"),
+		@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage unlimited')]")
+	})
 	WebElement divMyPlanText;
 	
 	@FindBy (xpath = "//img[@class='hours-data']")
@@ -133,8 +136,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	//My device Section
 	@FindAll({
-	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
-	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
+		@FindBy (xpath = "//fss-device"),
+		@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
+		@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
 		
 	

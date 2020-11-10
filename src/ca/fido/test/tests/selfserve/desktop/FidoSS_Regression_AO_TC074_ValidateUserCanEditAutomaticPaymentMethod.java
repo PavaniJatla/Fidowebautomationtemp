@@ -33,7 +33,7 @@ public class FidoSS_Regression_AO_TC074_ValidateUserCanEditAutomaticPaymentMetho
 	}
 	
 	
-	@Test(groups = {"SanitySS","AccountOverviewSS"})
+	@Test(groups = {"AccountOverviewSS"})
 	public void postPaidChangeMOP() {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -56,7 +56,7 @@ public class FidoSS_Regression_AO_TC074_ValidateUserCanEditAutomaticPaymentMetho
 					"Change payment method modal displayed.",
 					"Change payment method modal didn't display as expected.");
 		} else {
-			
+			// solution not ready
 		}
 		
 		fido_payment_options_page.clkCloseButton();
