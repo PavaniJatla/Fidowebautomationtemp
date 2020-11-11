@@ -357,7 +357,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 
 			try {
 				reusableActions.waitForElementVisibility(getDriver().findElement(By.id("current-password")),30);
-				if(reusableActions.getDriver().findElement(By.id("current-password")).isDisplayed())
+				if(driver.findElement(By.id("current-password")).isDisplayed())
 				{
 					found=true;
 					break;
@@ -389,7 +389,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 
 			try {
 				reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//input[@id='current-password']")),30);
-				if(reusableActions.getDriver().findElement(By.xpath("//input[@id='current-password']")).isDisplayed())
+				if(driver.findElement(By.xpath("//input[@id='current-password']")).isDisplayed())
 				{
 					found=true;
 					break;

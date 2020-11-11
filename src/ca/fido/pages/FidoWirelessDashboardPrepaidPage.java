@@ -293,7 +293,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lblMyDevice, 10);
 		reusableActions.javascriptScrollByVisibleElement(lblMyDevice);
 		reusableActions.staticWait(2000);
-		//reusableActions.javascriptScrollScrollByVisibleElement(reusableActions.getDriver().findElement(By.partialLinkText("Retrieve PUK Code")));
+		//reusableActions.javascriptScrollScrollByVisibleElement(driver.findElement(By.partialLinkText("Retrieve PUK Code")));
 
 		if(reusableActions.isElementVisible(lblMyDevice,60)
 		   && reusableActions.isElementVisible(lblMyDeviceName,60)) 
@@ -369,15 +369,15 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 */
 	public boolean clickAndVerifyLinkForNewWindow(WebElement elementLink, String strNewWindowTitleEn,String strNewWindowTitleFrench) {		
 		
-		String parentHandle=reusableActions.getDriver().getWindowHandle();
-		//WebElement lnk=reusableActions.getDriver().findElement(By.partialLinkText(strLinkText));
+		String parentHandle=driver.getWindowHandle();
+		//WebElement lnk=driver.findElement(By.partialLinkText(strLinkText));
 		reusableActions.waitForElementVisibility(elementLink);
 		reusableActions.scrollToElementAndClick(elementLink);
 		//reusableActions.moveToElementAndClick(lnk,10);
 		reusableActions.waitForPageLoad();
 		reusableActions.waitForNumberOfWindowsToBe(2,10);
 		reusableActions.staticWait(5000);
-		if(!(reusableActions.getDriver().getWindowHandles().size()>1))
+		if(!(driver.getWindowHandles().size()>1))
 		{
 			reusableActions.executeJavaScriptClick(elementLink);
 			reusableActions.waitForPageLoad();
@@ -386,9 +386,9 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 		}
 		reusableActions.switchToNewWindow(parentHandle);
 		reusableActions.staticWait(5000);
-		if(reusableActions.getDriver().getTitle().trim().toLowerCase().equals(strNewWindowTitleEn.trim().toLowerCase())
-		|| reusableActions.getDriver().getTitle().trim().toLowerCase().equals(strNewWindowTitleFrench.trim().toLowerCase())
-		|| reusableActions.getDriver().getCurrentUrl().trim().toLowerCase().contains(strNewWindowTitleFrench.trim().toLowerCase()))
+		if(driver.getTitle().trim().toLowerCase().equals(strNewWindowTitleEn.trim().toLowerCase())
+		|| driver.getTitle().trim().toLowerCase().equals(strNewWindowTitleFrench.trim().toLowerCase())
+		|| driver.getCurrentUrl().trim().toLowerCase().contains(strNewWindowTitleFrench.trim().toLowerCase()))
 		{
 			reusableActions.closeCurrentWindow();
 			reusableActions.staticWait(2000);
@@ -542,7 +542,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public String clkButtonContinueOnRepairDeviceOverlay() {
-		String strCurrenthandle = reusableActions.getDriver().getWindowHandle();
+		String strCurrenthandle = driver.getWindowHandle();
 		reusableActions.clickWhenReady(btnContinue);
 		return strCurrenthandle;
 	}
@@ -557,7 +557,7 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	public boolean verifyBrightStarNewTabAndURL(String strParentWindowHandle, String strURL) {
 		reusableActions.waitForNumberOfWindowsToBe(2, 60);
 		reusableActions.switchToNewWindow(strParentWindowHandle);
-		return reusableActions.getDriver().getCurrentUrl().trim().contains(strURL);
+		return driver.getCurrentUrl().trim().contains(strURL);
 		
 	}
 }

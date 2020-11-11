@@ -55,7 +55,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 	 */
 	public int getTotalPage() {
 		
-		List < WebElement > pages = reusableActions.getDriver().findElements(By.xpath("//div[@class='payment-history-pager']//li/a"));
+		List < WebElement > pages = driver.findElements(By.xpath("//div[@class='payment-history-pager']//li/a"));
 	   	//To calculate no of rows In table.
 		if(pages.size()==0)
 		{

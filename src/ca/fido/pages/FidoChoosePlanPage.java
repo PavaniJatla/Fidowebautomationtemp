@@ -79,7 +79,7 @@ public class FidoChoosePlanPage extends BasePageClass {
 		////a[@class='plan-tab col-xs-12']//span[@res='category-FID_FIN2-title']
 		//reusableActions.clickWhenVisible(By.xpath("//span[@res='category-"+ planType +"-title']/ancestor::a"));
 		try {
-			reusableActions.getDriver().findElement(By.xpath("//li[@mapping-key='no-term-plans']//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']")).isDisplayed();
+			driver.findElement(By.xpath("//li[@mapping-key='no-term-plans']//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']")).isDisplayed();
 		} catch (Exception e) {
 			reusableActions.clickWhenVisible(By.xpath("//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']"),60);
 		}

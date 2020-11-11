@@ -62,11 +62,11 @@ public class FidoChoosePhonePage extends BasePageClass {
 			String strXpathViewDetails = "//span[text()='"+ strDeviceName +"']/ancestor::div[contains(@class,'col-xs-12')]//following-sibling::div[@class='col-xs-12']//button[@class='ute-btn-primary ute-lg']";
 			String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='px-24 dsa-nacTile__deviceInfo']//following-sibling::div[@class='pt-16 pb-24 px-24']//span[contains(@class,'ds-button__copy')]";
 			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetails),60)) {
-				reusableActions.executeJavaScriptClick(reusableActions.getDriver().findElement(By.xpath(strXpathViewDetails)));
+				reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathViewDetails)));
 				return true;
 			}
 			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetailsAws),60)) {
-				reusableActions.executeJavaScriptClick(reusableActions.getDriver().findElement(By.xpath(strXpathViewDetailsAws)));
+				reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathViewDetailsAws)));
 				return true;
 			}
 		return false;
