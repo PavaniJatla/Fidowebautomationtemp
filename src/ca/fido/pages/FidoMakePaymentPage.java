@@ -262,7 +262,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	public void selectHowWouldYouLikeToPay(ca.fido.test.helpers.FidoEnums.MakePayOptions enumPaymentOpt) {
 		//writing the below element in method since we want to dynamically generate this at run time
 		By rdoPaymentOptionLocater=By.xpath("//label[@for='"+enumPaymentOpt.toString()+"']/ins");		
-		WebElement rdoPaymentOption=reusableActions.getDriver().findElement(rdoPaymentOptionLocater);
+		WebElement rdoPaymentOption=driver.findElement(rdoPaymentOptionLocater);
 		reusableActions.javascriptScrollByVisibleElement(rdoPaymentOption);//(rdoPaymentOption);
 		reusableActions.executeJavaScriptClick(rdoPaymentOption);
 	}
@@ -273,7 +273,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public void clkReviewAndContinueButton()
 	{	
-		Actions act=new Actions(reusableActions.getDriver());		
+		Actions act=new Actions(driver);		
 		act.moveToElement(reusableActions.getWhenReady(btnReviewAndContinue)).click().build().perform();
 	   
 	}
@@ -284,7 +284,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public void clkPayNow()
 	{		
-		Actions act=new Actions(reusableActions.getDriver());
+		Actions act=new Actions(driver);
 		act.moveToElement(reusableActions.getWhenReady(btnPayNow)).click().build().perform();
 
 	}
@@ -315,7 +315,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public void clkPayOnInteracSite()
 	{	
-		Actions act=new Actions(reusableActions.getDriver());
+		Actions act=new Actions(driver);
 		act.moveToElement(reusableActions.getWhenReady(btnPayOntheInteracSite)).click().build().perform();
 
 	}	

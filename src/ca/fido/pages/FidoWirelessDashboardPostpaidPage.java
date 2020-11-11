@@ -116,7 +116,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//*[@translate='usageModule.talkAndText.unlimited' or contains(@class,'talk-and-text-unlimited')]")
 	WebElement divTalkAndTextMobile;
 	
-	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage ')]")
+	@FindAll({
+		@FindBy (xpath = "//ss-talk-text//span[contains(text(),'Texts')]"),
+		@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage ')]")
+	})
 	WebElement divMyPlanText;
 	
 	@FindBy (xpath = "//img[@class='hours-data']")
@@ -1029,11 +1032,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean clickAndVerifyLinkForNewWindow(String strLinkText, String strNewWindowTitle) {
-		String parentHandle=reusableActions.getDriver().getWindowHandle();
+		String parentHandle=driver.getWindowHandle();
 		reusableActions.clickIfAvailable(By.partialLinkText(strLinkText));
 		reusableActions.waitForNumberOfWindowsToBe(2);
 		reusableActions.switchToNewWindow(parentHandle);
-		if(reusableActions.getDriver().getTitle().trim().toLowerCase().equals(strNewWindowTitle.trim().toLowerCase()))
+		if(driver.getTitle().trim().toLowerCase().equals(strNewWindowTitle.trim().toLowerCase()))
 		{
 			reusableActions.closeCurrentWindow();
 			reusableActions.switchToMainWindow(parentHandle);
@@ -1221,7 +1224,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public String clkButtonContinueOnRepairDeviceOverlay() {
-		String strCurrenthandle = reusableActions.getDriver().getWindowHandle();
+		String strCurrenthandle = driver.getWindowHandle();
 		reusableActions.clickWhenReady(btnContinue);
 		reusableActions.staticWait(3000);// adding static buffer for firefox
 		return strCurrenthandle;
@@ -1237,8 +1240,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyBrightStarNewTabAndURL(String strParentWindowHandle, String strURL) {
 		reusableActions.waitForNumberOfWindowsToBe(2, 60);
 		reusableActions.switchToNewWindow(strParentWindowHandle);
-		return (reusableActions.getDriver().getCurrentUrl().trim().contains(strURL)||
- 				strURL.contains(reusableActions.getDriver().getCurrentUrl().trim()));
+		return (driver.getCurrentUrl().trim().contains(strURL)||
+ 				strURL.contains(driver.getCurrentUrl().trim()));
 		
 	}
 

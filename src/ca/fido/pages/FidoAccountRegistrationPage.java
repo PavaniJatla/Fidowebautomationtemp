@@ -364,7 +364,7 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	 */
 	public void pageRefresh() {		
 		reusableActions.staticWait(5000);
-		reusableActions.getDriver().navigate().refresh();
+		driver.navigate().refresh();
 	}
 	
 }

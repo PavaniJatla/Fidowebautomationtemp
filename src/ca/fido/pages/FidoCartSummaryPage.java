@@ -108,6 +108,15 @@ public class FidoCartSummaryPage extends BasePageClass {
 	public void clkInternetCheckout() {
 		reusableActions.getWhenReady(btnInternetCheckout, 120).click();
 	}
+
+	/**
+	 * Clicks on checkout button on the cart Summary page
+	 * @author chinnarao.vattam
+	 */
+	public void clkInternetCheckoutMobile() {
+		reusableActions.waitForElementVisibility(btnInternetCheckout,120);
+		reusableActions.executeJavaScriptClick(btnInternetCheckout);
+	}
 	
 	/**
 	 * Clicks on the 'Continue' button

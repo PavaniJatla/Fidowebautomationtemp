@@ -258,7 +258,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 */
 	public String selectNewNumber(int intIndex) {
 		String newCTNString="";
-		List<WebElement> newNumbers=reusableActions.getDriver().findElements(By.xpath("//input[@name='phoneNumber']/parent::div/label"));
+		List<WebElement> newNumbers=driver.findElements(By.xpath("//input[@name='phoneNumber']/parent::div/label"));
 		if(newNumbers.size()>0)
 		{
 			newCTNString=reusableActions.getWhenReady(newNumbers.get(intIndex)).getText();

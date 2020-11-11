@@ -61,7 +61,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
         reporter.reportLogWithScreenshot("Good News for the Service availability");
         fido_Shop_internet_page.clkBuyNowReskin();
         reporter.reportLogWithScreenshot("Cart-summary Page with the selected plan");
-        fido_cart_summary_page.clkInternetCheckout();
+        fido_cart_summary_page.clkInternetCheckoutMobile();
         reporter.reportLogWithScreenshot("Create user page has launched to give the user information");
         fido_create_user_page.setCommunicationDetails();
         reporter.reportLogWithScreenshot("Entered the user mail communication information");

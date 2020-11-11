@@ -216,7 +216,7 @@ public class FidoBillDetailsPage extends BasePageClass {
    public Double getCTNBilltotal() {
 	    getDriver().switchTo().defaultContent();
 	    getDriver().switchTo().frame(frameViewBill);
-		List<WebElement> ctnTotal=reusableActions.getDriver().findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));		
+		List<WebElement> ctnTotal=driver.findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));		
 		Double total=0.00;
 		for(WebElement ele:ctnTotal) {			
 			total=total+Double.parseDouble(ele.getText().split("\\$")[1]);
@@ -234,8 +234,8 @@ public class FidoBillDetailsPage extends BasePageClass {
 	   ///=== commented the old code =====Not deleting this for time being
 	    getDriver().switchTo().defaultContent();
 	    getDriver().switchTo().frame(frameViewBill);	    
-		//List<WebElement> ctnTotal=reusableActions.getDriver().findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));				
-		List<WebElement> ctnSubTotal=reusableActions.getDriver().findElements(
+		//List<WebElement> ctnTotal=driver.findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));				
+		List<WebElement> ctnSubTotal=driver.findElements(
 				By.xpath("//div[@class='product-header']/span[contains(text(),'Mobile') or contains(text(),'Phone')]"));
 		return ctnSubTotal.size();
 	}
@@ -249,8 +249,8 @@ public class FidoBillDetailsPage extends BasePageClass {
 	   ///=== commented the old code =====Not deleting this for time being
 	    getDriver().switchTo().defaultContent();
 	    getDriver().switchTo().frame(frameViewBillMobile);	    
-		//List<WebElement> ctnTotal=reusableActions.getDriver().findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));				
-		List<WebElement> ctnSubTotal=reusableActions.getDriver().findElements(
+		//List<WebElement> ctnTotal=driver.findElements(By.xpath("//*[@id='detail-list']//b[@class='serviceSubTotalB total-amount ng-binding']"));				
+		List<WebElement> ctnSubTotal=driver.findElements(
 				By.xpath("//div[@class='product-header']/span[contains(text(),'Mobile') or contains(text(),'Phone')]"));
 		return ctnSubTotal.size();
 	}

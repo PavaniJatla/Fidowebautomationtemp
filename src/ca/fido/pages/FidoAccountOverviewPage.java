@@ -221,6 +221,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//h1[@translate='onboarding-module.tasks.setRecoveryNumber.title']")
 	WebElement titleRecoveryNumber;
+	
+	@FindBy (xpath = "//fss-preauth-payment/div")
+	WebElement lblAutoPayment;
+	
+	@FindBy (xpath = "//fss-preauth-payment//span[@class='ds-link__copy']")
+	WebElement lnkEditAutoPayment;
 
 
 	/**
@@ -443,13 +449,24 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		}
 
 	}
-
+	
 	/**
 	 * click on CTN badge in overview page.
 	 * @author Ning.Xue
 	 */
 	public void clkCtnBadge() {
 		WebElement elmCtnBadge = getDriver().findElement(By.xpath("//div[@class='item content']"));
+		reusableActions.getWhenReady(elmCtnBadge, 20).click();
+		reusableActions.clickIfAvailable(btnCloseOverlay, 10);
+
+	}
+
+	/**
+	 * click on CTN badge in overview page.
+	 * @author Ning.Xue
+	 */
+	public void clkCtnBadge(String last4DigitCtn) {
+		WebElement elmCtnBadge = getDriver().findElement(By.xpath("//div[@class='item content']//span[contains(text(),'" + last4DigitCtn +"')]"));
 		reusableActions.getWhenReady(elmCtnBadge, 20).click();
 		reusableActions.clickIfAvailable(btnCloseOverlay, 10);
 
@@ -678,8 +695,18 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		return strBalanceAfterpayment;
 	}
 
+	/**
+	 * Check if the automatic payment is set
+	 * @return true if the auto payment is set, otherwise false
+	 * @author ning.xue
+	 */
+	public boolean checkIfAutoPaymentIsSet() {
+		return reusableActions.isElementVisible(lblAutoPayment, 10);
+	}
 
-
+	public void clkLnkEditAutoPayment() {
+		reusableActions.getWhenReady(lnkEditAutoPayment, 10).click();
+	}
 
 	/**
 	 * Verify whether the payment happened or not
