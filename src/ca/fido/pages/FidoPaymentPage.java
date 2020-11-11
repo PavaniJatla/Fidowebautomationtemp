@@ -229,7 +229,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void setCVVNumberMobile(String strCVV) {
-		reusableActions.clickWhenVisible(txtCVV,20);
+		reusableActions.clickWhenVisible(txtCVV,120);
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
 	}
 	/**
@@ -267,7 +267,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void selectExpiryYearMobile(String strYYYY) {
-		reusableActions.waitForElementVisibility(ddlExpiryYear,20);
+		reusableActions.waitForElementVisibility(ddlExpiryYear,120);
 		reusableActions.selectWhenReady(ddlExpiryYear, strYYYY);
 	}
 
@@ -276,7 +276,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkReviewAndContinue() {
-		reusableActions.getWhenVisible(btnReviewAndContinue,10).sendKeys(Keys.ENTER);
+		reusableActions.getWhenVisible(btnReviewAndContinue,120).sendKeys(Keys.ENTER);
 	}
 	
 	/**

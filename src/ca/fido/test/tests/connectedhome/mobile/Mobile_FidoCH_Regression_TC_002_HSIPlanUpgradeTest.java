@@ -41,7 +41,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		fido_home_page.clkLoginMobile();
 		fido_login_page.switchToSignInFrame();
 		reporter.reportLogWithScreenshot("Launched the SignIn page");
-		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgrade());
+		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameMobile());
 		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		reporter.reportLogWithScreenshot("Entered the account credentials");
 		fido_login_page.clkLoginInFrameMobile();
@@ -53,8 +53,8 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		fido_account_overview_page.clkInternetBadge();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		fido_internet_dashboard_page.clkChangePackage();
-		reporter.reportLogWithScreenshot("Launched the packages Page");		
-		fido_internet_dashboard_page.selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan());
+		reporter.reportLogWithScreenshot("Launched the packages Page");
+		fido_internet_dashboard_page.selectHSIPackageByBandwidthMobile(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan());
 		reporter.reportLogWithScreenshot("Selected the package");
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Order review page has launched");
