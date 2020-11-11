@@ -99,33 +99,7 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 		
 		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
 		reporter.reportLogWithScreenshot("Starting sign out scenario");
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Clicked Navigation elipsis");
-		fido_login_page.clkSignOutMobile();
-		reporter.reportLogWithScreenshot("Sign Out clicked.");
-		reporter.reportLogWithScreenshot("waiting to check easy login page is avaialable or not...");
-		if(fido_home_page.isEasyloginDisplayedMobile())
-		{
-			reporter.reportLogWithScreenshot("Easy login page is available");
-			fido_home_page.clkEasylogin();
-			reporter.reportLogWithScreenshot("Easy login clicked");
-		}	
-		reporter.reportLogWithScreenshot("click Navigation for mobile");
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Navigation menu clicked.");
-		fido_login_page.clkResignInAsMobile();
-		reporter.reportLogWithScreenshot("Clicked ReSign In");
-		fido_login_page.switchToSignInFrame();
-		fido_home_page.clkNotUser();
-		fido_login_page.setUsernameAfterReSignInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Re-login with password.");
-		fido_login_page.clkLoginInFrameMobile();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
-				"Login proceed without error.", 
-				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		//check added data reflecting
+		common_business_flows.logOutAndResignInMobile(userName, password);
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Login failed, please investigate");

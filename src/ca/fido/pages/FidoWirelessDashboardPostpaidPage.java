@@ -116,7 +116,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//*[@translate='usageModule.talkAndText.unlimited' or contains(@class,'talk-and-text-unlimited')]")
 	WebElement divTalkAndTextMobile;
 	
-	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage unlimited')]")
+	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage ')]")
 	WebElement divMyPlanText;
 	
 	@FindBy (xpath = "//img[@class='hours-data']")
@@ -133,7 +133,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	//My device Section
 	@FindAll({
-	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
+	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil' or text()='Fido Payment Program']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
 	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
 		
@@ -638,7 +638,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextPlanDetailsSectionIsDisplayed() {
 		System.out.println("text plans details is being checked");
-		return reusableActions.isElementVisible(divMyPlanText,60);
+		return reusableActions.isElementVisible(By.xpath("//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage ')]"),60);
 	}	
 	
 	/**
