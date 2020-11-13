@@ -227,6 +227,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy (xpath = "//div[@class='ss-payment-modal-container']")
 	WebElement modalPaymentMethod;
+
 	
 	//--------------------------------------------------------------------------------
 	
@@ -877,5 +878,6 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.clickWhenReady(btnSwitchToBank);
 		
 	}
+
 
 }

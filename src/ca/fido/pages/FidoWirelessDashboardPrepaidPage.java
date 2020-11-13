@@ -557,8 +557,8 @@ public class FidoWirelessDashboardPrepaidPage extends BasePageClass {
 	public boolean verifyBrightStarNewTabAndURL(String strParentWindowHandle, String strURL) {
 		reusableActions.waitForNumberOfWindowsToBe(2, 60);
 		reusableActions.switchToNewWindow(strParentWindowHandle);
-		return (reusableActions.getDriver().getCurrentUrl().trim().contains(strURL.trim())
-				|| strURL.contains(reusableActions.getDriver().getCurrentUrl().trim()));
+		return (driver.getCurrentUrl().trim().contains(strURL.trim())
+				|| strURL.contains(driver.getCurrentUrl().trim()));
 		
 	}
 }

@@ -228,6 +228,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//fss-preauth-payment//span[@class='ds-link__copy']")
 	WebElement lnkEditAutoPayment;
 
+	@FindBy (xpath = "//fss-account-detail//fss-preauth-payment//span[text()='Account balance will be automatically withdrawn from:' or text()='Le solde du compte sera prélevé automatiquement du :']")
+	WebElement divAutoPaymentContainer;
+	
+	@FindBy(xpath = "//fss-account-detail//fss-preauth-payment//a[@aria-label='Change payment method' or @aria-label='Changer le mode de paiement']")
+	WebElement btnPenIconForChangeAutoPaymentMethod;
 
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -639,6 +644,26 @@ public class FidoAccountOverviewPage extends BasePageClass {
      return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
 	}
 
+	/**
+	 * Verify the Welcome heading on the account overview page
+	 * @return true, if the account overview page display the Account Balance, else false
+	 * @author chinnarao.vattam 
+	 */
+	public boolean verifySuccessfulLoginNew() {
+		String strBalance ="";
+		try {
+			//adding static buffers to avoid stale ref error
+			reusableActions.staticWait(5000);			
+//			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			 strBalance = reusableActions.getWhenReady(By.xpath("//div[contains(@class,'ds-price__amountDollars')]"),90).getText();
+		}catch (StaleElementReferenceException e) {
+//			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			reusableActions.staticWait(5000);
+			strBalance = reusableActions.getWhenReady(By.xpath("//div[contains(@class,'ds-price__amountDollars')]"),90).getText();
+		}
+     return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
+	}
+	
 	/**
 	 * Verify the Welcome heading on the account overview page
 	 * @param strIntialBalance Intial Balance
@@ -1098,4 +1123,23 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public boolean isTitleSetUpRecoveryDisplayed() {
 		return reusableActions.isElementVisible(titleRecoveryNumber);
 	}
+
+	/**
+	 * @author Mirza.Kamran
+	 */
+	public void clkPenIconForChangePaymentMethod() {
+		reusableActions.getWhenReady(btnPenIconForChangeAutoPaymentMethod).click();
+	}
+	
+	/**
+	 * 
+	 * @return true if element visisble
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyIfAtleastOneUserHasAutoPaymentSet() {
+		// TODO Auto-generated method stub
+		return reusableActions.isElementVisible(divAutoPaymentContainer,20) 
+				 && reusableActions.isElementVisible(btnPenIconForChangeAutoPaymentMethod);
+	}
+
 }

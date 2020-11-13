@@ -46,6 +46,7 @@ public class CaptchaBypassHandlers {
 		{
 			intRandom = 4;
 		}
+		@SuppressWarnings("deprecation")
 		String strCookieUserName= "rogers"+ new Date().getDay()+new Date().getHours()+intRandom+"@hmail.com";//TestDataHandler.fidoConfig.getCookieUserName();
 		String strCookieUserPassword= strCookieUserName;//Not a sensitive information  //TestDataHandler.fidoConfig.getCookieUserPassword();			
 		Cookie captchBypass = new Cookie ("temp_token_f",CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl));//.replace("https", "http")));
