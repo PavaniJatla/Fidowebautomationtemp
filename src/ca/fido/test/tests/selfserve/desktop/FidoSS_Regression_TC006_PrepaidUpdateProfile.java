@@ -33,7 +33,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"SanitySS","RegressionSS","ProfileAndSettingSS","PrepaidSS"})
+	@Test(groups = {"SanitySS","ProfileAndSettingSS","PrepaidSS"})
 	public void prePaidPaymentViewAndEditProfile() throws InterruptedException, ParseException, IOException {
 		
 		fido_home_page.clkLogin();				
