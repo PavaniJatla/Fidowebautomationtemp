@@ -234,6 +234,21 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//fss-account-detail//fss-preauth-payment//a[@aria-label='Change payment method' or @aria-label='Changer le mode de paiement']")
 	WebElement btnPenIconForChangeAutoPaymentMethod;
 
+	@FindBy(xpath = "//fss-app-alert//p")
+	WebElement divCLMNotification;
+
+	@FindBy(xpath = "//fss-app-alert//a[contains(@title,'Make payment') or contains(@title,'Effectuer un paiement')]")
+	WebElement  lnkMakePaymentCLMNotification;
+
+	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Profile & Settings' or @data-text='Profil et paramètres']")
+	WebElement subNavProfileAndSettings;
+
+	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Account Overview' or @data-text='Aperçu du compte']")
+	WebElement subNavAccountOverview;
+	
+
+	@FindBy(xpath = "//dsa-subnav-desktop//p[text()='Account Overview' or text()='Aperçu du compte']")
+	WebElement headerAccountOverview;
 	/**
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
@@ -1142,4 +1157,92 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				 && reusableActions.isElementVisible(btnPenIconForChangeAutoPaymentMethod);
 	}
 
+	/**
+	 * Check if Credit limit exceeded notification is displayed
+	 * @return true if displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyIfCLMNotificationIsDisplayed() {		
+		return reusableActions.isElementVisible(divCLMNotification);
+	}
+
+	/**
+	 * Checks make payment link in CLM notification
+	 * @return true if displayed else false
+	 */
+	public boolean verifyIfMakePaymentIsDisplayedCLMNotificationIsDisplayed() {
+		
+		return reusableActions.isElementVisible(lnkMakePaymentCLMNotification);
+	}
+
+	/**
+	 * Click make payment link on CLM notification
+	 * @author Mirza.Kamran
+	 */
+	public void clkMakePaymentOnCLMNotification() {
+	reusableActions.getWhenReady(lnkMakePaymentCLMNotification).click();
+		
+	}
+
+	/**
+	 * Cheks if Sub Navigation shows Account Overview and Profile and Settings 
+	 * @return true if both visible else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifySubNavHasAOandPnSNavigationOptions() {		
+		return (reusableActions.isElementVisible(subNavAccountOverview)
+				&& reusableActions.isElementVisible(subNavProfileAndSettings));
+	}
+
+	/**
+	 * Account overview is open by default
+	 * @author Mirza.Kamran
+	 */
+	public boolean verifyAccountOverviewIsOpenByDefault() {
+		return reusableActions.isElementVisible(headerAccountOverview);
+	}
+
+
+	/**
+	 * Click profile and Setting menu in overview page
+	 * @author Mirza.Kamran
+	 */
+	public void clkSubNavProfileAndSettings() {
+		boolean clickSuccess=false;
+		int count=0;
+		try {	
+			while (count<=3 && !clickSuccess) {
+				System.out.println("Attempt: "+(count+1)+" Profile and settings click");
+				reusableActions.waitForElementTobeClickable(subNavProfileAndSettings, 60);
+				// buffer static wait added to handle anomalies on firefox
+				reusableActions.staticWait(4000);
+				reusableActions.getWhenReady(subNavProfileAndSettings).click();		
+				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
+				if(reusableActions.isElementVisible(lblHeaderProfileAndSettings))
+				{
+					System.out.println("Profile and settings click successful in attempt: "+(count+1));
+					clickSuccess=true;				
+					break;
+
+				}
+				count++;
+			}
+		}catch (StaleElementReferenceException e) {
+			String exceptionName[] = e.getClass().getCanonicalName().split("\\.");
+			throw new WebDriverException("Failed due to  " + exceptionName[exceptionName.length - 1] + " on the \""
+					+ Thread.currentThread().getStackTrace()[2].getMethodName() + "\"" + " action method");
+		}
+
+	}
+	
+	/**
+	 * Checks if PnS page is open
+	 * @return true if open else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isProfileAndSettingsPageDisplayed()
+	{
+	 return	reusableActions.isElementVisible(lblHeaderProfileAndSettings);
+	}
+	
 }

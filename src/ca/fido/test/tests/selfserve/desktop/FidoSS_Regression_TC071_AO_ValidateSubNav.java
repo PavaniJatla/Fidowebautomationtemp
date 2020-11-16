@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_BC extends BaseTestClass{
+public class FidoSS_Regression_TC071_AO_ValidateSubNav extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -25,8 +25,15 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 				strLanguage, FidoEnums.GroupName.selfserve,method);			
 	}
 	
-
-	
+/*
+ * 1. Fido.ca up and running
+2. The sign-in pop-up will be displayed
+3. The account overview page will be displayed with the subnav (Account Overview + Profile & Settings)
+Validate:
+- Sub Nav have two options Account Overview and Profiles and Settings
+- By default sub-nav is selected on Account Overview
+4- User will be navigate to Profiles and Settings on old application	
+ */
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() throws InterruptedException {
 		closeSession();
@@ -52,18 +59,17 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
 				
-		reporter.hardAssert(fido_account_overview_page.verifyIfCLMNotificationIsDisplayed(),
-				"The user has atleast 1 active account which has already automatic payments option",
-				"The user should have atleast 1 active account which has already automatic payments option");
-		
-		reporter.hardAssert(fido_account_overview_page.verifyIfMakePaymentIsDisplayedCLMNotificationIsDisplayed(),
-				"The user has atleast 1 active account which has already automatic payments option",
-				"The user should have atleast 1 active account which has already automatic payments option");
-		
-		fido_account_overview_page.clkMakePaymentOnCLMNotification();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
-				"Change payment method modal displayed.",
-				"Change payment method modal didn't display as expected.");
+		reporter.hardAssert(fido_account_overview_page.verifySubNavHasAOandPnSNavigationOptions(),
+				"Sub Nav have two options Account Overview and Profiles and Settings",
+				"Sub Nav doesnt have two options Account Overview and Profiles and Settings");
+		reporter.hardAssert(fido_account_overview_page.verifyAccountOverviewIsOpenByDefault(),
+				"By default sub-nav is selected on Account Overview",
+				"By default sub-nav is NOT selected on Account Overview");
+		fido_account_overview_page.clkSubNavProfileAndSettings();
+		reporter.reportLogWithScreenshot("click on profile and settings");
+		reporter.hardAssert(fido_account_overview_page.isProfileAndSettingsPageDisplayed(),
+				" User will be navigate to Profiles and Settings on old application",
+				"It seems User did not navigate to Profiles and Settings on old application");
 							
 	}
 	
