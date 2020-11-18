@@ -1,7 +1,6 @@
 package ca.fido.test.commonbusiness;
 
 import ca.fido.test.base.BaseTestClass;
-import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 
 import java.io.IOException;
@@ -18,7 +17,8 @@ public class VerifyInEns extends BaseTestClass{
 	 * @author ning.xue
 	 */
 	private void startVerify() {
-		baseTestClass.ensHomePage.openNewTabForEns(TestDataHandler.config.getEnsURL());
+		//baseTestClass.ensHomePage.openNewTabForEns(TestDataHandler.config.getEnsURL());
+		baseTestClass.ensHomePage.openNewTabForEns(System.getProperty("EnsUrl"));
 		baseTestClass.reporter.reportLogWithScreenshot("Ens Window");
 	}
 	

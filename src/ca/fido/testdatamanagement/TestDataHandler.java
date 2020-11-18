@@ -1,10 +1,9 @@
 package ca.fido.testdatamanagement;
 
-import java.util.List;
-
+import ca.fido.yaml.pojo.*;
 import org.testng.ITestNGMethod;
 
-import ca.fido.yaml.pojo.*;
+import java.util.List;
 
 public class TestDataHandler {
 	
@@ -49,6 +48,7 @@ public class TestDataHandler {
 	public static AccountData fidoSspHSIAccount;
 	public static AccountData fidoHSIAnotherProvinceAddress;
 	public static AccountData fidoHSIUnavailableAddress;
+	public static AccountData fidoHSIRegisterAccount;
 	public static NACData testCase01;
 	public static NACData testCase02;
 	public static HUPData testCase03;
@@ -94,12 +94,14 @@ public class TestDataHandler {
 	}
 	private static void connectedHomeDataInit() {
 		//sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/connectedhome/SauceSettings.yml");
-        fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
+		fidoHSIRegisterAccount = YamlHandler.getHSIAccountData("HSIRegisterAccount");
+		fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");
         fidoHSIAnotherProvinceAddress=YamlHandler.getHSIAccountData("HSIAnotherProvinceAddress");
         fidoHSIUnavailableAddress=YamlHandler.getHSIAccountData("HSIUnavailableAddress");
-        chPaymentInfo = YamlHandler.getHSIPaymentDetails();	
+        chPaymentInfo = YamlHandler.getHSIPaymentDetails();
+		config =  YamlHandler.getConfig();
 	}
 	
 	private static void selfserveDataInit() {

@@ -232,7 +232,6 @@ public class BaseTestClass {
 			break;
 			
 		case "connectedhome_login":
-			
 			fido_home_page = new FidoHomePage(driver);
 			fido_login_page = new FidoLoginPage(driver);
 			fido_account_overview_page = new FidoAccountOverviewPage(driver);
@@ -247,7 +246,11 @@ public class BaseTestClass {
 			fido_technical_installation_page= new FidoTechnicalInstallationPage(driver);
 			fido_payment_options_page= new FidoPaymentOptionsPage(driver);
 			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
-			fido_internet_package_page=new FidoInternetPackagePage(driver); 
+			fido_internet_package_page=new FidoInternetPackagePage(driver);
+			fido_set_password_page = new FidoSetPasswordPage(driver);
+			ensHomePage = new EnsHomePage(driver);
+			ensNoteViewPage = new EnsNotificationViewPage(driver);
+			ensVerifications = new VerifyInEns(this);
 			break;
 
 			case "connectedhome_anonymous":

@@ -39,6 +39,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'AWSUrl', test_awsURL
     systemProperty 'Browser', test_browser
     systemProperty 'Language', test_language
+    systemProperty 'EnsUrl', test_ensURL
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -70,6 +71,7 @@ task "localTest"(type: Test) {
     systemProperty 'Browser', test_browser
     systemProperty 'AWSUrl', test_awsURL
     systemProperty 'Language', test_language
+    systemProperty 'EnsUrl', test_ensURL
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
