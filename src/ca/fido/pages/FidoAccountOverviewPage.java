@@ -249,6 +249,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//dsa-subnav-desktop//p[text()='Account Overview' or text()='Aperçu du compte']")
 	WebElement headerAccountOverview;
+	
+	@FindBy(xpath = "//section[@class='fss-account-detail']")
+	List<WebElement> lstOfAllAccounts;
+	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
@@ -1243,6 +1247,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public boolean isProfileAndSettingsPageDisplayed()
 	{
 	 return	reusableActions.isElementVisible(lblHeaderProfileAndSettings);
+	}
+
+	public boolean validateCancelledBadgeAndThePlacementOfBadgeInAOpage() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
