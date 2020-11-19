@@ -39,8 +39,8 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.tc75.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.tc75.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 

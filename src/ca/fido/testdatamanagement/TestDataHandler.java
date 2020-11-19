@@ -1,10 +1,9 @@
 package ca.fido.testdatamanagement;
 
-import java.util.List;
-
+import ca.fido.yaml.pojo.*;
 import org.testng.ITestNGMethod;
 
-import ca.fido.yaml.pojo.*;
+import java.util.List;
 
 public class TestDataHandler {
 	
@@ -49,6 +48,7 @@ public class TestDataHandler {
 	public static AccountData fidoSspHSIAccount;
 	public static AccountData fidoHSIAnotherProvinceAddress;
 	public static AccountData fidoHSIUnavailableAddress;
+	public static AccountData fidoHSIRegisterAccount;
 	public static NACData testCase01;
 	public static NACData testCase02;
 	public static HUPData testCase03;
@@ -64,6 +64,7 @@ public class TestDataHandler {
 	public static AccountData tc65;
 	public static AccountData tc66;
 	public static AccountData tc70;
+	public static AccountData tc75;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {	   
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -95,12 +96,14 @@ public class TestDataHandler {
 	}
 	private static void connectedHomeDataInit() {
 		//sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/connectedhome/SauceSettings.yml");
-        fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
+		fidoHSIRegisterAccount = YamlHandler.getHSIAccountData("HSIRegisterAccount");
+		fidoHSIAccount = YamlHandler.getHSIAccountData("HSIAccount");
     	fidoHSIAccountwithUnwiredAddress=YamlHandler.getHSIAccountData("HSIAccountwithUnwiredAddress");
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");
         fidoHSIAnotherProvinceAddress=YamlHandler.getHSIAccountData("HSIAnotherProvinceAddress");
         fidoHSIUnavailableAddress=YamlHandler.getHSIAccountData("HSIUnavailableAddress");
-        chPaymentInfo = YamlHandler.getHSIPaymentDetails();	
+        chPaymentInfo = YamlHandler.getHSIPaymentDetails();
+		config =  YamlHandler.getConfig();
 	}
 	
 	private static void selfserveDataInit() {
@@ -144,6 +147,7 @@ public class TestDataHandler {
     	tc66 = YamlHandler.getAccountData("tc66PostPaidWithVoiceAndDataOverage");
     	tc70 = YamlHandler.getAccountData("tc70PostPaidBanWithCancelledAndActive");
     	
+    	tc75 = YamlHandler.getAccountData("tc75PostPaidCreditLimit75");
 	}
 	
 	private static void buyFlowsDataInit() {
