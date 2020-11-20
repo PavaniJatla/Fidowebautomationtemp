@@ -54,7 +54,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		 reporter.reportLogWithScreenshot("Switching to Sign in frame");
 		fido_recover_pass_or_name_page.switchToSigninPage(4);
 		reporter.reportLogWithScreenshot("Repointing the URL to QA env");
-		fido_home_page.launchHomePage(TestDataHandler.config.getFidoURL());
+		fido_home_page.launchHomePage(System.getProperty("QaUrl"));
 		reporter.reportLogWithScreenshot("URL refreshed");
 		reporter.reportLogWithScreenshot("Checking for Contentful URL");
 		if(fido_home_page.isEasyloginDisplayed())

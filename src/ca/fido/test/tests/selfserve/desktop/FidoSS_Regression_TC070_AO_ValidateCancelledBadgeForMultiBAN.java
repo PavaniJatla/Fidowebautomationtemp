@@ -60,6 +60,8 @@ with that account
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc70.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc70.getPassword());
+		String strActiveBAN = TestDataHandler.tc70.getaccountDetails().getBan();
+		String strCancelledBAN ="227664265"; 
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -76,18 +78,39 @@ with that account
 		//Validate ""View Bill History"" link in AO page and click on it
 		//Validate the same details for the other cancelled accounts as before
 		//Verify the details for other active accounts."
+		common_business_flows.scrollToMiddleOfWebPage();
+		reporter.reportLogWithScreenshot("Account overview page Middle Page View");
+		reporter.hardAssert(fido_account_overview_page.IsAnyCancelledAccountDisplayed(strCancelledBAN),
+				"Cancelled account is present",
+				"No cancelled account present it seems");
 		
-		reporter.hardAssert(fido_account_overview_page.validateCancelledBadgeAndThePlacementOfBadgeInAOpage(),
-				"",
+		reporter.hardAssert(fido_account_overview_page.validateAccountBalanceNotDisplayedForCancelledAccount(strCancelledBAN),
+				"Account balance is not displayed for cancelled account",
+				"Account balance is displayed for cancelled account");
+		
+		reporter.hardAssert(fido_account_overview_page.validateCancelledBadgeAndThePlacementOfBadgeInAOpage(strCancelledBAN),
+				"Cancelled Badge is displayed next to the account type label in the account container",
+				" It seems the Cancelled Badge is displayed NOT next to the account type label, please investigate");
+		
+		reporter.hardAssert(fido_account_overview_page.validateBillingCTAButtonAndAALOfferForCancelledAccount(strCancelledBAN),
+				"Billing CTA buttons (View Billing, Make Payment) and AAL offer are not displayed as expected",
 				"");
-		reporter.hardAssert(fido_account_overview_page.verifyAccountOverviewIsOpenByDefault(),
-				"By default sub-nav is selected on Account Overview",
-				"By default sub-nav is NOT selected on Account Overview");
-		fido_account_overview_page.clkSubNavProfileAndSettings();
-		reporter.reportLogWithScreenshot("click on profile and settings");
-		reporter.hardAssert(fido_account_overview_page.isProfileAndSettingsPageDisplayed(),
-				" User will be navigate to Profiles and Settings on old application",
-				"It seems User did not navigate to Profiles and Settings on old application");
+		reporter.hardAssert(fido_account_overview_page.validateViewBillHistoryLink(strCancelledBAN),
+				"View bill history link is prsent for the cancelled account",
+				"View Bill history link is not present for the cancelled account");
+		
+		
+		reporter.hardAssert(fido_account_overview_page.validateDetailsForActiveAccounts(strActiveBAN),
+				"Details of other active accounts are displayed as usual",
+				"Details of other active accounts seem to be not displayed as usual, please investigate");
+		
+		reporter.reportLogWithScreenshot("Click on View Bill History Link");
+		fido_account_overview_page.clkViewBillHistoryink(strCancelledBAN);
+		//User is directed to the invoice history page successfully as expected
+		reporter.reportLogWithScreenshot("User is directed to the invoice history page successfully as expected ");
+		reporter.hardAssert(fido_account_overview_page.validateUserIsDirectedToInvoiceHistoryPageSuccessFully(),
+				"User is directed to the invoice history page successfully as expected",
+				"User is NOT directed to the invoice history page successfully as expected");
 							
 	}
 	

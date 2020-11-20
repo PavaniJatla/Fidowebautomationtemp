@@ -252,6 +252,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//section[@class='fss-account-detail']")
 	List<WebElement> lstOfAllAccounts;
+
+	@FindBy(xpath = "//*[@translate='global.label.accountBillBalance']")
+	WebElement headerYourBillAndAccountBalance;
 	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -1249,9 +1252,77 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 return	reusableActions.isElementVisible(lblHeaderProfileAndSettings);
 	}
 
-	public boolean validateCancelledBadgeAndThePlacementOfBadgeInAOpage() {
-		// TODO Auto-generated method stub
-		return false;
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean validateCancelledBadgeAndThePlacementOfBadgeInAOpage(String strCancelledBAN) {	
+		WebElement cancelledBadge = getDriver().findElement(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled')]"));
+		WebElement accountType = getDriver().findElement(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//h2"));
+		int xDiff = cancelledBadge.getLocation().x-accountType.getLocation().x;
+		int yDiff = Math.abs(accountType.getLocation().y-cancelledBadge.getLocation().y);
+		return (reusableActions.isElementVisible(cancelledBadge)
+				&& (xDiff>50 && yDiff<=10));
+	}
+
+	public boolean validateBillingCTAButtonAndAALOfferForCancelledAccount(String strCancelledBAN) {
+		
+		return (!reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]"),1))
+				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]"),1)
+				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"),1);
+	}
+
+	public boolean validateViewBillHistoryLink(String strCancelledBAN) {
+		
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'View all bills from past')]"));
+	}
+
+	public void clkViewBillHistoryink(String strCancelledBAN) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'View all bills from past')]")).click();
+		
+	}
+
+	/**
+	 * Validates if the details of active account is displayed as expected
+	 * @param strActiveBan string of Active BAN
+	 * @return true if all details displayed as expected else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean validateDetailsForActiveAccounts(String strActiveBan) {
+		
+		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//ds-price"))
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]")))
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]"))
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"));
+	}
+
+	/**
+	 * validate account balance is not displayed for cancelled account
+	 * @param strCancelledBan cancelled BAN
+	 * @return true if the balance is not displayed
+	 * @author Mirza.Kamran
+	 */
+	public boolean validateAccountBalanceNotDisplayedForCancelledAccount(String strCancelledBan) {		
+		return !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBan+"')]/ancestor::section[@class='fss-account-detail']//ds-price"));
+	}
+
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean validateUserIsDirectedToInvoiceHistoryPageSuccessFully() {
+		
+		return reusableActions.isElementVisible(headerYourBillAndAccountBalance);
+	}
+
+	/**
+	 * 
+	 * @param strCancelledBAN
+	 * @return
+	 */
+	public boolean IsAnyCancelledAccountDisplayed(String strCancelledBAN) {
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled')]"));
 	}
 	
 }
