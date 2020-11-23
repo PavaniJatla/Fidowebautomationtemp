@@ -22,7 +22,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	@FindBy(xpath="//select[@id='creditCheckDay' or @id='dobday' or @data-test='dob-select-day']")
 	WebElement ddlDOBDay;
 
-	@FindBy(id = "firstIdOption")
+	@FindBy(xpath="//select[@id='firstIdOption']")
 	WebElement ddlFirstIdOption;
 
 	@FindBy(xpath = "//select[(@ng-model='driverLicense.dlProvince' or @ng-model='obj.drivingLicenseProvince') and (@name='dlProvince' or @name='province') or @formcontrolname='province']")
@@ -46,7 +46,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	@FindBy(xpath="//input[@id='dlLicenseNumber' or @name='dlCardNumber' or @formcontrolname='number']")
 	WebElement lblTxtDlLicenseNumber;
 
-	@FindBy(name = "secondIdOption1")
+	@FindBy(xpath="//select[@name='secondIdOption1']")
 	WebElement ddlSecondIdOption;
 
 	@FindBy(xpath = "//input[@id='ppNumber' and @ng-model='passport.ppNumber']")
@@ -58,19 +58,19 @@ public class FidoCreditCheckPage extends BasePageClass {
 	@FindBy(xpath="//ds-form-field[@data-test='license-number-expiry']//input[@formcontrolname='expiryDate']")
 	WebElement lblTxtdLExpiryDate;
 	
-	@FindBy(name = "ppExpiryYear")
+	@FindBy(xpath="//select[@name='ppExpiryYear']")
 	WebElement drLExpiryDate;
 	
-	@FindBy(name = "ppExpiryYear")
+	@FindBy(xpath="//select[@name='ppExpiryYear']")
 	WebElement lblDrLExpiryDate;
 	
-	@FindBy(name = "ppExpiryYear")
+	@FindBy(xpath="//select[@name='ppExpiryYear']")
 	WebElement ddlPasspoartExpiryYear;
 
-	@FindBy(name = "ppExpiryMonth")
+	@FindBy(xpath="//select[@name='ppExpiryMonth']")
 	WebElement ddlPasspoartExpiryMonth;
 
-	@FindBy(name = "ppExpiryDay")
+	@FindBy(xpath="//select[@name='ppExpiryDay']")
 	WebElement ddlPasspoartExpiryDay;
 
 	@FindAll({
@@ -79,7 +79,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	})
 	WebElement lblCreditCheckConsent;
  
-	@FindBy(name = "submit")
+	@FindBy(xpath="//input[@name='submit']")
 	WebElement btnCreditCheckSubmit;
 	
 	@FindBy(xpath="//div[contains(@class,'iframe')]//iframe")

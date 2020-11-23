@@ -34,7 +34,7 @@ public class FidoTechnicalInstallationPage extends BasePageClass {
 	@FindBy(xpath ="//ins[@translate='global.label.orderConfirmation']")
 	WebElement infoOrderConfirm;
 	
-	@FindBy(name = "submit")
+	@FindBy(xpath="//input[@name='submit']")
 	WebElement btnCreditCheckSubmit;
 	
 	@FindBy(xpath ="//ins[@translate='global.label.fulfillmentPickUpAtStore']")

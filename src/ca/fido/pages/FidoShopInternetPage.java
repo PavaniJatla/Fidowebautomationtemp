@@ -14,7 +14,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='button-new']")
 	WebElement lnkCheckAvailability;
 
-	@FindBy(id = "addressLookup")
+	@FindBy(xpath = "//input[@id='addressLookup']")
 	WebElement txtAddressLookup;
 	
 	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-borders ds-bgcolor-white ds-brcolor-black ds-color-black']")
@@ -157,7 +157,7 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.SPACE);
-		reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
+		//reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
 	}
 	
@@ -276,7 +276,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void clkBuyNowReskin() {
 		//To bypass captcha manually
-			reusableActions.getWhenReady(btnBuyNowReskin, 180).click();	}
+			reusableActions.getWhenReady(btnBuyNowReskin, 90).click();	}
 	
 	/**
 	 * Click on availability confirmation button on the service ability Lookup popup
@@ -316,7 +316,19 @@ public class FidoShopInternetPage extends BasePageClass {
 	public void selectInternetPlan(String strDowngradeDataPlan, String strUpgradePlanCost) {
 		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 120).click();
 	}
-	
+
+	/**
+	 * Select the plan the plan on shop Internet page
+	 * @param strDowngradeDataPlan of the plan to be selected
+	 * @param strUpgradePlanCost cost of the plan to be selected
+	 * @author chinnarao.vattam
+	 */
+	public void selectInternetPlanMobile(String strDowngradeDataPlan, String strUpgradePlanCost) {
+		reusableActions.javascriptScrollToMiddleOfPage();
+		By packageName = By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']");
+		reusableActions.getWhenVisible(packageName,120).sendKeys(Keys.ENTER);
+	}
+
 	public void selectPlanforEdit() {
 		reusableActions.getWhenReady(By.xpath("//button[@id='add-button-1']"), 60).click();		
 	}
