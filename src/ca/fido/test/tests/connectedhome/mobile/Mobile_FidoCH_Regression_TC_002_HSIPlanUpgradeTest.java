@@ -59,8 +59,8 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		fido_internet_dashboard_page.clkConfirmPackageChange();
 		reporter.reportLogWithScreenshot("Order review page has launched");
 		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verified the Plan Information","Plan Information Verification has failed");
-	       reporter.reportLogWithScreenshot("Order review page has launched");
-		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditions(),"Verified the Terms And Conditions","Terms And Conditions Verification has failed");
+		reporter.reportLogWithScreenshot("Order review page has launched");
+		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditionsMobile(),"Verified the Terms And Conditions","Terms And Conditions Verification has failed");
 		fido_internet_package_change_review_order_page.chkConsentCheckbox();
 		reporter.reportLogWithScreenshot("Consent Check has Done");
 		reporter.hardAssert(fido_internet_package_change_review_order_page.verifySubmitButtonEnabled(),"button enabled","button disabled");

@@ -30,10 +30,10 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//select[@id='expiry-date']")
 	WebElement ddlExpiryMonth;
 
-	@FindBy(name = "expYear")
+	@FindBy(xpath  = "//select[@name='expYear']")
 	WebElement ddlExpiryYear;
 
-	@FindBy(id = "cvv")
+	@FindBy(xpath = "//input[@id='cvv']")
 	WebElement txtCVV;
 
 	@FindBy(xpath = "//input[@type=\"submit\" and contains(@class,'continue')]")
@@ -267,7 +267,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void selectExpiryYearMobile(String strYYYY) {
-		reusableActions.waitForElementVisibility(ddlExpiryYear,120);
+		reusableActions.waitForElementVisibility(ddlExpiryYear,20);
 		reusableActions.selectWhenReady(ddlExpiryYear, strYYYY);
 	}
 

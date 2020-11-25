@@ -157,7 +157,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	WebElement ddlExpiryYear;
 
 	@FindAll({
-		@FindBy(name = "cvv"),
+		@FindBy(xpath = "//input[@name='cvv']"),
 		@FindBy(name = "securityCode")
 	})
 	WebElement txtCVV;

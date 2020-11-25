@@ -12,7 +12,7 @@ public class FidoInternetPackageChangeReviewOrderPage extends BasePageClass {
 		super(driver);
 	}
 
-@FindBy(id="terms-conditions")
+@FindBy(xpath ="//div[@id='terms-conditions']")
 WebElement termsAndConditionsFido;
 
 @FindBy(xpath="//input[@id='tos_consent']")
@@ -25,7 +25,7 @@ WebElement lnkUnsubscribe;
 @FindBy(xpath="//*[contains(@translate,'label.reviewConsent')]")
 WebElement chkConsentCheckbox;
 
-@FindBy(name="submit")
+@FindBy(xpath="//input[@name='submit']")
 WebElement btnSubmit;
 
 @FindBy(name="submit")
@@ -56,6 +56,15 @@ public boolean verifyFidoTermsAndConditions() {
 	return reusableActions.isElementVisible(termsAndConditionsFido,180);
 }
 
+	/**
+	 * Verify the presence of the agreement on the order review page
+	 * @return true, if the the order review page displays agreement, else false
+	 * @author Aditya.Dhingra
+	 */
+	public boolean verifyFidoTermsAndConditionsMobile() {
+		reusableActions.javascriptScrollToMiddleOfPage();
+		return reusableActions.isElementVisible(termsAndConditionsFido,180);
+	}
 public boolean verifyFidoTermsAndConditionsSsp() {
 	return reusableActions.isElementVisible(termsAndConditionsSspFido);
 }
