@@ -206,7 +206,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 				||cellTransaction.contains("Other")
 				||cellTransaction.contains("**** **** ****") 								
 				//french								
-				|| (cellTransaction.toLowerCase().contains("carte de crédit") 
+				|| (cellTransaction.toLowerCase().contains("arte de crédit") 
 						||cellTransaction.toLowerCase().contains("interac")
 						||cellTransaction.contains("Fido Store")
 						||cellTransaction.contains("Autre")
@@ -480,7 +480,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 			transactionType="**** **** ****";
 			break;
 		case Creditcard:
-			transactionType="Payment by credit card Paiement - carte de crédit";	
+			transactionType="Payment by credit card Paiement - carte de crédit Carte de crédit";	
 			break;
 		case Interac:
 			transactionType="Payment by Interac Paiement - Interac";

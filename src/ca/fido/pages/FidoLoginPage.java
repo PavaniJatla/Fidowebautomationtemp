@@ -31,7 +31,7 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//span[@class=\"m-mobileNavLink__icon fds-icon-account\"]/parent::a")})
 	WebElement lnkUserNameMobile;
 		
-	@FindBy(xpath = "//*[@id='skipNavigation' or contains(@class,'o-headerNavDropdown')]//a[@id='f_logoutAction' or @title='Sign out']")
+	@FindBy(xpath = "//*[@id='skipNavigation' or contains(@class,'o-headerNavDropdown')]//a[@id='f_logoutAction' or @title='Sign out' or @title='Fermer la session']")	
 	WebElement lnkSignOut;
 	
 	@FindAll({

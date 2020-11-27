@@ -27,7 +27,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	WebElement titleManageData;
 	
 	@FindAll({
-	@FindBy(xpath = "//h2[contains(text(),'DONNÉES DU FORFAIT') or text()='plan data']"),
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES DU FORFAIT') or text()='plan data' or contains(text(),'données du forfait')]"),
 	@FindBy (xpath = "//h4[contains(text(),'PLAN DATA') or contains(text(),'DONNÉES DU FORFAIT')]")})
 	WebElement titlePlanData;
 	
@@ -70,7 +70,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	List<WebElement> tableRowsAddData;
 	
 	@FindAll({
-	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']/parent::div/parent::div//table//tr"),
+	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or contains(text(),'Données ajoutées') or text()='added data']/parent::div/parent::div//table//tr"),
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")})
 	List<WebElement> rowsAddMDTData;
 
@@ -89,7 +89,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	WebElement btnYesCancel;
 	
 	@FindAll({
-		@FindBy (xpath = "//h2[text()='add-on cancelled' or contains(text(),'option annul')]"),
+		@FindBy (xpath = "//h2[text()='add-on cancelled' or contains(text(),'option annul') or contains(text(),'OPTION ANNUL')]"),
 		@FindBy(xpath = "//p[text()='ADD-ON CANCELLED' or contains(text(),'OPTION ANNUL')]")})
 	WebElement titleAddOnCancelled;
 	

@@ -255,6 +255,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//*[@translate='global.label.accountBillBalance']")
 	WebElement headerYourBillAndAccountBalance;
+
+	@FindBy(xpath = "//ins[@translate='global.label.paymentHistory']")
+	WebElement lnkPaymentHistory;
 	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -1323,6 +1326,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 */
 	public boolean IsAnyCancelledAccountDisplayed(String strCancelledBAN) {
 		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled')]"));
+	}
+
+	public void clkPaymentHistoryLink() {
+		reusableActions.getWhenReady(lnkPaymentHistory).click();
 	}
 	
 }

@@ -163,7 +163,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")
 	WebElement talkRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Texts')]")
+	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Text')]")
 	WebElement textRemaining;
 	
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']")
@@ -410,7 +410,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkLnkReactivate() { 
-		reusableActions.getWhenReady(By.xpath("//a[@title='Reactivate your service now.']"), 60).click();		
+		reusableActions.getWhenReady(By.xpath("//a[@title='Reactivate your service now.' or @title='top-banner.reactivate-suspended-service-cta-alt']"), 60).click();		
 	}
 	
 	/**
