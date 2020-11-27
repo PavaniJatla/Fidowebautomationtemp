@@ -36,8 +36,8 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 
 	@Test(groups = {"AccountOverviewSS"})
 	public void postPaidChangeMOP() {
-		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
-		//fido_home_page.clkLogin();
+//		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
+		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc75.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc75.getPassword());
@@ -61,9 +61,9 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 				"The user should have atleast 1 active account which has already automatic payments option");
 		
 		fido_account_overview_page.clkMakePaymentOnCLMNotification();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
-				"Change payment method modal displayed.",
-				"Change payment method modal didn't display as expected.");
+		reporter.hardAssert(fido_make_payment_page.verifyPaymentModalIsDisplayed(),
+				"Make payment modal displayed.",
+				"Make payment modal didn't display as expected.");
 							
 	}
 	

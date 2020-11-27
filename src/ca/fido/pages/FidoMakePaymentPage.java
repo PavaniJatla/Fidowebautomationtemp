@@ -118,6 +118,8 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='bank-section']")
 	WebElement divBankPayment;
 	
+	@FindBy (xpath = "//div[@class='row pay-now-content']")
+	WebElement paymentModal;
 	
 	@FindBy(xpath = "//div[contains(@class,'hidden-xs')]//ins[@translate='global.label.paymentHistoryView']")
 	WebElement lnkPaymentHistoryOnConfirmationPageFooter;
@@ -387,6 +389,15 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public void closePayNowModal() {
 		reusableActions.clickIfAvailable(btnCloseMakePayment);		
+	}
+	
+	/**
+	 * Verify if the make payment modal is displayed
+	 * @return true if the make payment modal displayed, otherwise false
+	 * @author ning.xue
+	 */
+	public boolean verifyPaymentModalIsDisplayed() {
+		return reusableActions.isElementVisible(paymentModal, 10);
 	}
 	
 }
