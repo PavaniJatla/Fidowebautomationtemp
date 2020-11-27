@@ -258,6 +258,18 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//ins[@translate='global.label.paymentHistory']")
 	WebElement lnkPaymentHistory;
+
+	@FindBy(xpath = "//fss-subscription-details/div/a[contains(text(),'Show all lines')]")
+	WebElement lnkShowAllLines;
+	
+	@FindBy(xpath = "//fss-subscription-details/div/a[contains(text(),'Hide all lines')]")
+	WebElement lnkHideAllLines;
+
+	@FindBy(xpath = "//div[@class='fss-subscription-detail']")
+	List<WebElement> lstCTNs;
+
+	@FindBy(xpath = "//select[@id='selectCtn']")
+	WebElement cmbSelectedCTNonDashboard;
 	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -1331,5 +1343,132 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkPaymentHistoryLink() {
 		reusableActions.getWhenReady(lnkPaymentHistory).click();
 	}
+
+	public boolean verifyIfShowAllLinesLinkIsDisplayd(String strBAN) {		
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(text(),'Show all lines') or contains(text(),'Afficher toutes les lignes')]"));
+	}
+	
+	public boolean validateIfMoreThan5CTNSDisplayedInTheViewAllCTNList(String strBAN)
+	{
+		List<WebElement> lstCTN = driver.findElements((By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//fss-subscription-details/div/ss-smooth-height/fss-subscription-detail//div[@class='subscription-number']")));
+		return lstCTN.size()>5;
+	}
+
+	public void clkShowAllLinesLink() {
+		reusableActions.getWhenReady(lnkShowAllLines).click();
+		
+	}
+	
+	public void clkHideAllLinesLink() {
+		reusableActions.getWhenReady(lnkHideAllLines).click();
+		
+	}
+
+	public boolean verifyIfAddLineLinkIsDisplayed(String strBAN) {	
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account') or contains(@title,'Ajouter une ligne au compte mobile')]"));
+	}
+
+	public boolean verifyAllCTNsPresentinTheBANwithCorrectNameNumberAndAddManageLink(String strBANIWithMoreThan5CTNS) {
+		boolean allDetailsCorrect = false;
+		
+		for (WebElement ctnRow : lstCTNs) {					
+			String subscriberName = ctnRow.findElement(By.xpath("//div[@class='subscription-name text-semi']")).getText();
+			String strCTN = ctnRow.findElement(By.xpath("//div[@class='subscription-name text-semi']//following-sibling::div[@class='subscription-number']")).getText();
+			String strCTNValue = strCTN.trim().replaceAll(" ", "").replaceAll("-", "");
+			WebElement lnkUsage = getDriver().findElement(By.xpath("//div[@class='fss-subscription-detail']//a[contains(@aria-label,'"+strCTNValue+"')]"));
+			if(!subscriberName.isEmpty()
+				&& isCTNFormatCorrect(strCTN)
+				&& reusableActions.isElementVisible(lnkUsage))					
+					{
+					allDetailsCorrect = true;
+					}else
+					{
+						allDetailsCorrect =false;
+						break;
+					}
+											
+		}
+		
+		return allDetailsCorrect;
+	}
+
+	private boolean isCTNFormatCorrect(String strCTN) {
+		return Pattern.matches("\\d{3}[\\s]\\d{3}-\\d{4}", strCTN);
+	}
+
+	/**
+	 * 
+	 * @param strBANIWithMoreThan5CTNS
+	 * @return
+	 */
+	public boolean verifyIfUserReDirectsToCorrectCTNDashboard(String strBANIWithMoreThan5CTNS) {
+		List<WebElement> lstCTNNumbers = driver.findElements(By.xpath("//fss-subscription-detail//div[@class='subscription-name text-semi']//following-sibling::div[@class='subscription-number']"));
+		String []arrayCTNS = getAllCTNS(lstCTNNumbers);
+		
+		
+		boolean dashboardvalidated = false;
+		
+		for (String strCTNValue : arrayCTNS) {
+				reusableActions.clickIfAvailable(lnkShowAllLines); //click only when available
+				//Click on the respective CTN
+				
+				clickCTNsViewUsageAndManageLink(strCTNValue.trim().replaceAll(" ", "").replaceAll("-", ""));
+				
+				if(IsCorrectDashboardOpen(strCTNValue))
+				{
+					dashboardvalidated =true;
+					NavigateToAccountOverViewFromDashbOard();
+				}else
+				{
+					dashboardvalidated =false;
+					break;
+				}
+			
+			
+		}
+		
+		return dashboardvalidated;
+	}
+	
+	public void NavigateToAccountOverViewFromDashbOard() {
+		reusableActions.getWhenReady(By.xpath("//a[@title='Account Overview']")).click();
+		
+	}
+
+	public boolean IsCorrectDashboardOpen(String strCTNValue) {
+		return reusableActions.getSelectedValue(cmbSelectedCTNonDashboard).trim().contains(strCTNValue.trim());
+	}
+
+	public void clickCTNsViewUsageAndManageLink(String strCTNValue) {
+
+		reusableActions.getWhenReady(By.xpath("//div[@class='fss-subscription-detail']//a[contains(@aria-label,'"+strCTNValue+"')]")).click();
+	}
+
+	
+	/**
+	 * 
+	 * @param lstCTNNumbers
+	 * @return
+	 */
+	public String[] getAllCTNS(List<WebElement> lstCTNNumbers) {
+		String[] arrayCTN = new String[lstCTNNumbers.size()];
+		int counter=0;
+		for (WebElement ctn : lstCTNNumbers) {
+			arrayCTN[counter]=ctn.getText().trim();
+			counter++;
+		}
+		return arrayCTN;
+	}
+
+	public void clkIfAvailableShowAllLinesLink() {
+		reusableActions.clickIfAvailable(lnkShowAllLines);
+		
+	}
+
+	public List<WebElement> getListOfCTNNumbers() {		
+		return driver.findElements(By.xpath("//fss-subscription-detail//div[@class='subscription-name text-semi']//following-sibling::div[@class='subscription-number']"));
+	}
+
+	
 	
 }
