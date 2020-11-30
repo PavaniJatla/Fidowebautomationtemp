@@ -47,7 +47,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Login Account overview page");
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("menu profile and settings selected");
 		Hashtable<String, String> existingContactDetailsDict=fido_profile_and_setting_page.getOldContactDetails();
 		

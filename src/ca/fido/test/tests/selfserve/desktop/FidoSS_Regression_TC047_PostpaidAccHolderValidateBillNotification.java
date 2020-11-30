@@ -50,7 +50,7 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("menu profile and settings selected");
 
 		String strGetMobileNum = fido_profile_and_setting_page.getMobilePhoneNum();

@@ -51,7 +51,8 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 		String strNewVoiceMailPassword = FormFiller.generateRandomNumber(5);	
 		
 		reporter.reportLogWithScreenshot("Account overview page.");	
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc2732.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Click on Wireless badge");
 		fido_wireless_dashboard_postpaid_page.clickUpdateVoiceMailPassword();
 		reporter.reportLogWithScreenshot("Update voice mail password view");
@@ -94,9 +95,9 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 							"Link VoiceMail FAQ not available");
 		fido_reset_voicemail_password_page.clkBackToMyAccountPageButton();	
 		reporter.reportLogWithScreenshot("After click on Back to My Account page button");
-		reporter.softAssert(fido_account_overview_page.isCTNBadgeVisible(),
-							"CTN Badge Visible",
-							"CTN Badge Not Visible");		
+		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
+							"Back to account overview page",
+							"Seems didnt come back on Account overview after setting the voicemail");		
 	}
 	
 	

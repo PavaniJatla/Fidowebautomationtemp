@@ -46,7 +46,8 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc006009.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("click wireless badge");
 		String oldCTN=fido_wireless_dashboard_prepaid_page.getTheExistingCTN();
 		fido_wireless_dashboard_prepaid_page.clickChangeCTN();
@@ -109,7 +110,7 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 							"Changing will affect your bill is not displayed");			
 		fido_change_CTN_page.clkBackToMyAccount();
 		reporter.reportLogWithScreenshot("click back to my account page");
-		fido_account_overview_page.clkCtnBadge();		
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);		
 						
 	}
 	

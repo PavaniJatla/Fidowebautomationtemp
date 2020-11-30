@@ -67,7 +67,7 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
 		//Update userName
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("Profile and settings page");
 		fido_profile_and_setting_page.clkChangeUserName();			
 		fido_profile_and_setting_page.setNewUserName(newUserName);
@@ -82,7 +82,7 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		//reset back		
 		if(!newUserName.equalsIgnoreCase(oldUserName))
 		{
-			fido_account_overview_page.clkMenuProfileNSetting();
+			fido_account_overview_page.clkSubNavProfileAndSettings();
 			fido_profile_and_setting_page.clkChangeUserName();					
 			fido_profile_and_setting_page.setNewUserName(oldUserName);
 			reporter.reportLogWithScreenshot("Change username back to the old one.");

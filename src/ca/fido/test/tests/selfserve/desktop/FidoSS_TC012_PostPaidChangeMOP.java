@@ -49,7 +49,11 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkChangeMethodOfPayment();
+		//fido_account_overview_page.clkChangeMethodOfPayment();
+		fido_account_overview_page.clkPenIconForChangePaymentMethod();
+		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+				"Change payment method modal displayed.",
+				"Change payment method modal didn't display as expected.");
 		reporter.reportLogWithScreenshot("Change Method of payment overlay");
 		if(fido_payment_options_page.isAutopaymentAlreadySet())
 		{
@@ -93,7 +97,12 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 							"button pay balanc is not displayed"); */
 		fido_payment_options_page.clkCloseButton();
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkChangeMethodOfPayment();
+		//fido_account_overview_page.clkChangeMethodOfPayment();
+		fido_account_overview_page.clkPenIconForChangePaymentMethod();
+		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+				"Change payment method modal displayed.",
+				"Change payment method modal didn't display as expected.");
+		
 		reporter.reportLogWithScreenshot("Change method of payment");
 		fido_payment_options_page.clkPaymentOption(TestDataHandler.paymentInfo.getPaymentType().getBank());
 		reporter.reportLogWithScreenshot("Change method of payment to bank selected");

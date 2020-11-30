@@ -43,7 +43,8 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		
 		
 		userName = TestDataHandler.tc1122.getUsername();
-		password = TestDataHandler.tc1122.getPassword();	
+		password = TestDataHandler.tc1122.getPassword();
+		String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
@@ -57,7 +58,8 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		//fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");

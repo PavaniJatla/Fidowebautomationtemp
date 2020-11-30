@@ -42,7 +42,8 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc18.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("After click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkLnkUpdateSimCard();
 		reporter.reportLogWithScreenshot("Click on Link : Update Sim card");

@@ -46,7 +46,8 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 		reporter.reportLogWithScreenshot("Account overview page.");
 		String strCTNDetails = fido_account_overview_page.getCTNUsers().get("CTN1");
 		String strCTNContact=strCTNDetails.replaceAll("[^0-9]", "");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc2732.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Wireless DashBoard Page");
 		fido_wireless_dashboard_postpaid_page.clkBtnReserveNewPhone();
 		fido_wireless_dashboard_postpaid_page.clkBtnReserve();

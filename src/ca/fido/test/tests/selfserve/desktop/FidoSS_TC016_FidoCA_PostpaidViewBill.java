@@ -45,8 +45,10 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 							"Login succeed.", 
 							"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
-		Integer totalCTN=fido_account_overview_page.getCTNUsers().size();		
-		fido_account_overview_page.clkViewBill();
+		//Integer totalCTN=fido_account_overview_page.getCTNUsers().size();		
+		//fido_account_overview_page.clkViewBill();
+		String strBAN = TestDataHandler.tc16.getaccountDetails().getBan();
+		fido_account_overview_page.clkViewBillNew(strBAN);
 		reporter.reportLogWithScreenshot("View bill page is open");
 		fido_account_overview_page.scrollToMiddleOfPage();
 		reporter.reportLogWithScreenshot("Middle of view bill page");
@@ -78,9 +80,9 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 			//reporter.softAssert(fido_bill_details_page.verifyAllCTNBillsMatchesTheSubTotalValue(subTotal)
 				// 	,"The total CTN bills match the sub total value"
 				//	,"The total CTN bills mismatc the sub total value");
-			reporter.hardAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPage(totalCTN),
-					"CTN bill count matched the total number of CTN from overview page",
-					"CTN bill count mismatch the total number of CTN from overview page");	
+			//reporter.hardAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPage(totalCTN),
+				//	"CTN bill count matched the total number of CTN from overview page",
+				//	"CTN bill count mismatch the total number of CTN from overview page");	
 		
 		}else
 		{

@@ -52,7 +52,8 @@ public class FidoSS_Regression_TC050_ValidateLegacyWirelessDashboardPage extends
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc5055.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Clicked on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		

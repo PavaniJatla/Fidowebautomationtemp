@@ -49,7 +49,8 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
 		String oldCTN=fido_account_overview_page.getCTNUsers().get("CTN1").split("\n")[1];
-		fido_account_overview_page.clkCtnBadge();	
+		String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);	
 		reporter.reportLogWithScreenshot("Clicked on Wireless badge");
 //		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
 		fido_wireless_dashboard_postpaid_page.clickChangeCTN();
@@ -115,7 +116,7 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 							"Changing will affect your bill is not displayed");		
 		fido_change_CTN_page.clkBackToMyAccount();
 		reporter.reportLogWithScreenshot("After click on back to my account");
-		fido_account_overview_page.clkCtnBadge();		
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);		
 		reporter.reportLogWithScreenshot("After click on wireless badge");						
 	}
 	

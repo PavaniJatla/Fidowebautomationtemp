@@ -63,7 +63,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("menu profile and setting selected");
 		reporter.softAssert(!fido_profile_and_setting_page.isChangeUserNameLinkPresent(),
 							"The change username link is not displayed for pre-paid accounts",
@@ -82,7 +82,7 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 							"Login with new password is Not successful");
 		
 		//rechange to the original one		
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		fido_profile_and_setting_page.clkChangePassword();				
 		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);		
 		fido_profile_and_setting_page.clkSaveButton();

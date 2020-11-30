@@ -53,7 +53,8 @@ public class Mobile_FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword exte
 		String strNewVoiceMailPassword = FormFiller.generateRandomNumber(5);	
 		
 		reporter.reportLogWithScreenshot("Account overview page.");	
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc2732.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Click on Wireless badge");
 		fido_wireless_dashboard_postpaid_page.clickUpdateVoiceMailPassword();
 		reporter.reportLogWithScreenshot("Update voice mail password view");

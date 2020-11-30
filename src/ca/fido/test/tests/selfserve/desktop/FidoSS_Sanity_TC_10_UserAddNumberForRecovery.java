@@ -44,11 +44,11 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Account overview page");
 		fido_account_overview_page.waitforViewBillToLoad();
 		try {
-			fido_account_overview_page.clkMenuProfileNSetting();
+			fido_account_overview_page.clkSubNavProfileAndSettings();
 			reporter.reportLogWithScreenshot("menu profile and settings selected");
 		}catch (StaleElementReferenceException e) {
 			e.printStackTrace();
-			fido_account_overview_page.clkMenuProfileNSetting();
+			fido_account_overview_page.clkSubNavProfileAndSettings();
 			reporter.reportLogWithScreenshot("menu profile and settings selected");
 		}
 		reporter.reportLogWithScreenshot("Profile and Settings page");
@@ -79,7 +79,7 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 			reporter.reportLogWithScreenshot("Click button continue to my account");
 //			fido_home_page.clkMenuMyAccountAfterLogin();
 //			reporter.reportLogWithScreenshot("Click Menu My Account after login");
-			fido_account_overview_page.clkMenuProfileNSetting();
+			fido_account_overview_page.clkSubNavProfileAndSettings();
 
 			reporter.hardAssert(fido_profile_and_setting_page.verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
 								"recovery number set successfully",

@@ -121,7 +121,7 @@ public class FidoSS_Regression_TC63_ValidateOnBoardWidgetAfterCompletingTasks ex
 					fido_profile_and_setting_page.switchOutofSetRecoveryNumIframe();
 					reporter.reportLogWithScreenshot("Click button continue to my account");
 				
-					fido_account_overview_page.clkMenuProfileNSetting();
+					fido_account_overview_page.clkSubNavProfileAndSettings();
 
 					reporter.softAssert(fido_profile_and_setting_page.verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
 										"recovery number set successfully",

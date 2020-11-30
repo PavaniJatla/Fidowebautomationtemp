@@ -61,7 +61,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("Click performed on profile and settings");
 		fido_profile_and_setting_page.clkChangePassword();				
 		fido_profile_and_setting_page.setNewPassword(altPassword, newPassword);
@@ -75,7 +75,7 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 		fido_login_page.switchOutOfSignInFrame();
 		//rechange to the original one
 		reporter.reportLogWithScreenshot("Login with new password succeed.");
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		fido_profile_and_setting_page.clkChangePassword();				
 		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);
 		reporter.reportLogWithScreenshot("Reset password back to default one.");

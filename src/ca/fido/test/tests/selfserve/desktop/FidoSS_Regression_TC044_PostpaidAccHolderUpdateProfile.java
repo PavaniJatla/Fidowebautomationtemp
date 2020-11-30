@@ -45,7 +45,7 @@ public class FidoSS_Regression_TC044_PostpaidAccHolderUpdateProfile extends Base
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		Hashtable<String, String> existingContactDetailsDict = fido_profile_and_setting_page.getOldContactDetails();
 		reporter.reportLogWithScreenshot("profile and setting page");
 		fido_profile_and_setting_page.clkUpdateContactDetails();	

@@ -49,8 +49,10 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.waitForPayNowToBecomeClickable();
-		fido_account_overview_page.clkPayNow();
+		//fido_account_overview_page.waitForPayNowToBecomeClickable();
+		//.clkPayNow();
+		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
+		fido_account_overview_page.clkPayNowNew(strBAN);
 		reporter.reportLogWithScreenshot("Pay now");
 		fido_make_payment_page.setPaymentAmount(amountEntered);
 		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);

@@ -57,7 +57,8 @@ public class FidoSS_Regression_TC057_ValidationBrightstarLinkInWirelessDashboard
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc4557.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Usage and Services page");				
 		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 		reporter.reportLogWithScreenshot("Dashboard view");

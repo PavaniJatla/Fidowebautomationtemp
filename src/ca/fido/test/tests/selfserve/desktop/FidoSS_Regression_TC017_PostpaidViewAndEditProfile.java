@@ -44,7 +44,7 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 				"Login succeed.", 
 				"Failed to login.");
 		String newAddress;
-		fido_account_overview_page.clkMenuProfileNSetting();
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("profile and settings page");
 
 		String existingAddress=fido_profile_and_setting_page.getOldAddress();

@@ -43,7 +43,7 @@ public class CommonBusinessFlows {
 	 */
 	public void resetPasswordBack(String oldPassword, String newPassword) {
 		baseTestClass.reporter.reportLogWithScreenshot("Account overview page");
-		baseTestClass.fido_account_overview_page.clkMenuProfileNSetting();
+		baseTestClass.fido_account_overview_page.clkSubNavProfileAndSettings();
 		baseTestClass.reporter.reportLogWithScreenshot("Click performed on profile and settings");
 		baseTestClass.fido_profile_and_setting_page.clkChangePassword();				
 		baseTestClass.fido_profile_and_setting_page.setNewPassword(oldPassword, newPassword);

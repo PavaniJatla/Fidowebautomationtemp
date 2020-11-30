@@ -46,7 +46,8 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page.");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc00101056.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		if (fido_wireless_dashboard_prepaid_page.isServiceSuspended()) {
 			reporter.reportLogWithScreenshot("The service seems is suspended, reactivating the same again");

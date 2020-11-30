@@ -103,7 +103,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 					"Login failed, please investigate");
 
 			reporter.reportLogWithScreenshot("Click on CTN badge");
-			fido_account_overview_page.clkCtnBadge();
+			fido_account_overview_page.clkCTNsViewUsageAndManage(ctn);
 			reporter.reportLogWithScreenshot("dashboard page");	
 			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 					"The data add-on reflected in total data.",

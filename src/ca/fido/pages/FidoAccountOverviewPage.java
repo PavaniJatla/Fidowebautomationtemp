@@ -270,6 +270,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//select[@id='selectCtn']")
 	WebElement cmbSelectedCTNonDashboard;
+
+	@FindBy(xpath = "")
+	WebElement lnkViewUsageAndManage;
 	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -666,7 +669,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return true, if the account overview page display the Account Balance, else false
 	 * @author chinnarao.vattam 
 	 */
-	public boolean verifySuccessfulLogin() {
+	public boolean verifySuccessfulLoginOld() {
 		String strBalance ="";
 		try {
 			//adding static buffers to avoid stale ref error
@@ -684,9 +687,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	/**
 	 * Verify the Welcome heading on the account overview page
 	 * @return true, if the account overview page display the Account Balance, else false
-	 * @author chinnarao.vattam 
+	 * @author Mirza.Kamran
 	 */
-	public boolean verifySuccessfulLoginNew() {
+	public boolean verifySuccessfulLogin() {
 		String strBalance ="";
 		try {
 			//adding static buffers to avoid stale ref error
@@ -1467,6 +1470,31 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	public List<WebElement> getListOfCTNNumbers() {		
 		return driver.findElements(By.xpath("//fss-subscription-detail//div[@class='subscription-name text-semi']//following-sibling::div[@class='subscription-number']"));
+	}
+
+	/**
+	 * Clicks on View Usage and Manage string
+	 * @param strCTN string value containing CTN
+	 * @author Mirza.Kamran
+	 */
+	public void clkCTNsViewUsageAndManage(String strCTN) {
+		reusableActions.getWhenReady(By.xpath("//div[@class='fss-subscription-detail']//a[contains(@aria-label,'"+strCTN+"')]")).click();
+	}
+
+	/**
+	 * 
+	 * @param strBAN
+	 */
+	public void clkViewBillNew(String strBAN) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]")).click();
+	}
+
+	/**
+	 * 
+	 * @param strBAN
+	 */
+	public void clkPayNowNew(String strBAN) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]")).click();
 	}
 
 	

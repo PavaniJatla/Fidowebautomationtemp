@@ -42,7 +42,8 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overvew page.");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc00101056.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 
 		reporter.reportLogWithScreenshot("Dashboard View displayed");
 		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyDataDashboardIsDisplayed(),

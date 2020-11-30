@@ -40,7 +40,8 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc25.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("After click on CTN badge");
 		if(fido_wireless_dashboard_postpaid_page.isServiceSuspended()) {
 			reporter.reportLogWithScreenshot("Service suspended view");
@@ -53,7 +54,7 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 					"Reactivate confirmation message is not displayed");
 			fido_account_overview_page.clkMenuOverview();
 			reporter.reportLogWithScreenshot("Menu Overview clicked.");
-			fido_account_overview_page.clkCtnBadge();
+			fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 			reporter.reportLogWithScreenshot("After click on CTN badge");
 		} 
 		fido_wireless_dashboard_postpaid_page.clkLnkReportLostOrStolen();
@@ -68,7 +69,7 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 		
 		//Successfully suspend the device, now need to reactivate the device
 		fido_account_overview_page.clkMenuOverview();
-		fido_account_overview_page.clkCtnBadge();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Navigating back to Overview page and click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkLnkReactivate();		
 		fido_report_lost_or_stolen_page.clkBtnReactivateDevice();

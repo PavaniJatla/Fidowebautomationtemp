@@ -164,7 +164,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 		if(fido_account_overview_page.verifySuccessfulLogin())
 		{
 			reporter.reportLogWithScreenshot("Click on CTN badge");
-			fido_account_overview_page.clkCtnBadge();
+			fido_account_overview_page.clkCTNsViewUsageAndManage(ctn);
 			reporter.reportLogWithScreenshot("dashboard page");			
 			//double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
 		/*	reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),

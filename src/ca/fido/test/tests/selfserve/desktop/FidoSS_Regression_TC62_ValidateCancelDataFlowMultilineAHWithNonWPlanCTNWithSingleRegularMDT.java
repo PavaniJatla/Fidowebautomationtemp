@@ -57,7 +57,8 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge();
+		String strCTN = TestDataHandler.tc6062.getaccountDetails().getCtn();
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
@@ -110,7 +111,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 			if(fido_account_overview_page.verifySuccessfulLogin())
 			{
 				reporter.reportLogWithScreenshot("Click on CTN badge");
-				fido_account_overview_page.clkCtnBadge();
+				fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 				reporter.reportLogWithScreenshot("dashboard page");
 				fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
 				reporter.reportLogWithScreenshot("My Plan Details");
