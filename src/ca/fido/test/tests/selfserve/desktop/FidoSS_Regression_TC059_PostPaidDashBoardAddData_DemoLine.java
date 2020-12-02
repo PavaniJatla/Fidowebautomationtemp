@@ -42,7 +42,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 	
 		String	userName = TestDataHandler.tc5859.getUsername();
 		String	password = TestDataHandler.tc5859.getPassword();
-		String ctn = TestDataHandler.tc5859.getaccountDetails().getCtn();
+		String strCTN = TestDataHandler.tc5859.getaccountDetails().getCtn();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
@@ -56,7 +56,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkCtnBadge(ctn.substring(ctn.length()-4));
+		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 		reporter.reportLogWithScreenshot("Click on CTN badge");
 //		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
 		reporter.reportLogWithScreenshot("dashboard page loaded");
@@ -103,7 +103,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 					"Login failed, please investigate");
 
 			reporter.reportLogWithScreenshot("Click on CTN badge");
-			fido_account_overview_page.clkCTNsViewUsageAndManage(ctn);
+			fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
 			reporter.reportLogWithScreenshot("dashboard page");	
 			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 					"The data add-on reflected in total data.",
