@@ -74,7 +74,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")})
 	List<WebElement> rowsAddMDTData;
 
-	@FindBy (xpath = "//*[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container' or text()='View Details' or text()='Afficher les détails']")
+	@FindBy (xpath = "//div[@class='ss-data-section-data-volume']//*[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container' or text()='View Details' or text()='Afficher les détails']")
 	WebElement lnkViewDetails;
 
 	@FindBy (xpath = "//*[@title='Cancel this add-on' or contains(@title,'Annuler')]")

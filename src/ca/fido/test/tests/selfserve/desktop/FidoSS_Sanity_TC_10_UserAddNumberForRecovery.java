@@ -41,8 +41,10 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		fido_login_page.switchOutOfSignInFrame();
+		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+				"Login succeed.", 
+				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.waitforViewBillToLoad();
 		try {
 			fido_account_overview_page.clkSubNavProfileAndSettings();
 			reporter.reportLogWithScreenshot("menu profile and settings selected");
