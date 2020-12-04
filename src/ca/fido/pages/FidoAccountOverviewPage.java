@@ -1497,6 +1497,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]")).click();
 	}
 
+	public void clkBtnRefillNowNew(String strBAN) {
+		reusableActions.getWhenReady(By.xpath("//a[@aria-label='refill balance for prepaid account "+strBAN+"']")).click();
+	}
+
 	
 	
 }

@@ -33,6 +33,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc0203.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc0203.getPassword());
+		String strBAN = TestDataHandler.tc0203.getaccountDetails().getBan();
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();	
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -43,7 +44,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkBtnRefillNow();
+		fido_account_overview_page.clkBtnRefillNowNew(strBAN);
 		reporter.reportLogWithScreenshot("Refill options page");
 		if(! fido_refill_page.isRecurringAutoRefillAlreadySet())
 		{
@@ -72,7 +73,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 			reporter.reportLogWithScreenshot("refill success");
 			fido_refill_page.clkBacktoMyAccount();
 			reporter.reportLogWithScreenshot("Back to Account overview page");
-			fido_account_overview_page.clkBtnRefillNow();			
+			fido_account_overview_page.clkBtnRefillNowNew(strBAN);		
 			reporter.reportLogWithScreenshot("Click performed on Refill Button");
 		}
 				
@@ -102,7 +103,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 		
 		
 		//Stop the auto pay refill
-		fido_account_overview_page.clkBtnRefillNow();
+		fido_account_overview_page.clkBtnRefillNowNew(strBAN);
 		fido_refill_page.clkLowBalanceAutoRefill();
 		reporter.reportLogWithScreenshot("Low Balance Auto Refill is clicked.");
 		fido_refill_page.clkStopAutoPayment();
