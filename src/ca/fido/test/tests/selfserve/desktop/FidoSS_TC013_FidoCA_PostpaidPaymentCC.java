@@ -73,22 +73,9 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 							"Payment successful message not displayed");
 		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPage();
 		reporter.reportLogWithScreenshot("Payment history page selected");
-		if(!fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard))
-		{
-			// we need to log out and re login
-			common_business_flows.logOutAndResignIn(TestDataHandler.tc121315.getUsername(), TestDataHandler.tc121315.getPassword());
-			reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
-					"Login succeed.", 
-					"Failed to login.");
-			reporter.reportLogWithScreenshot("Account overview page");
-			fido_account_overview_page.clkPaymentHistoryLink();
-			reporter.hardAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),					
-								"Payment history record is verified for credit  card :"+refNo,
-								"Payment history record is not verified for credit card payment ref no :"+refNo);
-		}else
-		{
-			reporter.reportLogFail("Payment history record is not verified for credit card payment ref no :"+refNo);
-		}
+		reporter.hardAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),					
+				"Payment history record is verified for credit  card :"+refNo,
+				"Payment history record is not verified for credit card payment ref no :"+refNo);
 			
 	}
 

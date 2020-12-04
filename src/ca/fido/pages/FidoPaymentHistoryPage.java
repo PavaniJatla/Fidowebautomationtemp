@@ -480,7 +480,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 			transactionType="**** **** ****";
 			break;
 		case Creditcard:
-			transactionType="Payment by credit card Paiement - carte de crédit Carte de crédit";	
+			transactionType="Payment by credit card Paiement - carte de crédit Carte de crédit  Credit Card";	
 			break;
 		case Interac:
 			transactionType="Payment by Interac Paiement - Interac";
