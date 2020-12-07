@@ -49,8 +49,11 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		//fido_account_overview_page.clkChangeMethodOfPayment();
-		fido_account_overview_page.clkPenIconForChangePaymentMethod();
+		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
+		fido_account_overview_page.clkViewBillNew(strBAN);
+		reporter.reportLogWithScreenshot("View bill page is open");
+		fido_bill_details_page.clkChangePaymentMethod();
+		//fido_account_overview_page.clkPenIconForChangePaymentMethod();
 		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
@@ -63,7 +66,8 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 			fido_payment_options_page.waitForRemovalOfAutoPaymentIsSuccessFulMessageToBeAvailable();
 			reporter.reportLogWithScreenshot("Remove auto payment successful");
 			fido_payment_options_page.clkClose();
-			fido_account_overview_page.clkChangeMethodOfPayment();
+			fido_bill_details_page.clkChangePaymentMethod();
+			//fido_account_overview_page.clkChangeMethodOfPayment();
 		}
 		fido_payment_options_page.clkPaymentOption(TestDataHandler.paymentInfo.getPaymentType().getCredit());
 		reporter.reportLogWithScreenshot("Change payment option to Credit card selected");
@@ -96,6 +100,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 							"Button pay balance is displayed",
 							"button pay balanc is not displayed"); */
 		fido_payment_options_page.clkCloseButton();
+		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
 		//fido_account_overview_page.clkChangeMethodOfPayment();
 		fido_account_overview_page.clkPenIconForChangePaymentMethod();

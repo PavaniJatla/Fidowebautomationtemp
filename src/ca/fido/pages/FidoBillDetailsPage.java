@@ -153,6 +153,12 @@ public class FidoBillDetailsPage extends BasePageClass {
 	@FindBy(xpath = "//*[@id='bb-bill-summary-page']//bb-bs-grand-total//span[text()='Total' or text()='']/parent::div/bb-amount")
 	WebElement lblTotalToPayNew;
 
+	@FindBy(xpath = "//ins[@translate='global.cta.change']")
+	WebElement lnlChangePaymentMethod;
+
+	@FindBy(xpath = "//ins[@translate='global.label.overview']")
+	WebElement lnkAccountOverview;
+
 	/**
 	 * Click on refillNow button in overview page for Fido pre-paid account.
 	 * @author Ning.Xue
@@ -564,6 +570,21 @@ public class FidoBillDetailsPage extends BasePageClass {
 	      } 
 	      	      
 	 }
+
+	/**
+	 * 
+	 */
+	public void clkChangePaymentMethod() {
+	reusableActions.getWhenReady(lnlChangePaymentMethod).click();
+	
+	}
+
+	/**
+	 * 
+	 */
+	public void clkAccountOverview() {
+		reusableActions.getWhenReady(lnkAccountOverview).click();
+	}
 	 
 	 
 	  
