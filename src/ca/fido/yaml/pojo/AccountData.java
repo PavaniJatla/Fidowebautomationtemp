@@ -14,7 +14,7 @@ public class AccountData {
 	public String usernameUpgrade;
 	public String usernameUpgradeMobile;
 	public String usernameDowngradeSameSpeed;
-	public String usernameMobile;
+	public String usernameWirelessAcc;
 	private String dealerCode;
 	private String environment;
 	private String sspEnv;
@@ -150,16 +150,16 @@ public class AccountData {
 		this.usernameDowngradeSameSpeed = usernameDowngradeSameSpeed;
 	}
 	/**
-	 * @return the usernameMobile
+	 * @return the usernameWirelessAcc
 	 */
-	public String getUsernameMobile() {
-		return usernameMobile;
+	public String getUsernameWirelessAcc() {
+		return usernameWirelessAcc;
 	}
 	/**
-	 * @param usernameMobile the usernameMobile to set
+	 * @param usernameWirelessAcc the usernameWirelessAcc to set
 	 */
-	public void setUsernameMobile(String usernameMobile) {
-		this.usernameMobile = usernameMobile;
+	public void setUsernameWirelessAcc(String usernameWirelessAcc) {
+		this.usernameWirelessAcc = usernameWirelessAcc;
 	}
 	/**
 	 * @return the dealerCode
