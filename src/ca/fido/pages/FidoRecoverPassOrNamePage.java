@@ -73,6 +73,10 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	
 	@FindBy (xpath = "//img[@alt='Return to sign in' or @alt='Ouvrir une session']")
 	WebElement btnReturnToSignin;
+
+	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
+	WebElement lblYourVerificationCode;
+	
 	
 	public void clkBtnPassword() {
 		reusableActions.getWhenVisible(btnPassword).click();
@@ -280,5 +284,10 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 		intTabIndex=3;
 		ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
 		getDriver().switchTo().window(tabs.get(intTabIndex));
+	}
+
+	public String getVerificationCode() {
+		String strMsg = reusableActions.getWhenReady(lblYourVerificationCode).getText();
+		return strMsg.trim();
 	}
 }

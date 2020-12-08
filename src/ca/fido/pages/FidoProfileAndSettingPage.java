@@ -189,6 +189,19 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy (xpath = "//div[contains(@class,'nav-links')]//a/ins[@translate='global.label.overview']")
 	WebElement btnAccountOverView;
 
+	@FindBy (xpath = "//p[text()='Before you start, we need to first verify your identity.' or text()='Avant de commencer, nous devons vérifier votre identité.']")
+	WebElement lblVerifyYourIdentity;
+		
+	@FindBy(xpath = "//button//span[text()='CONTINUER' or text()='CONTINUE']")
+	WebElement btnContinueVerifyIdentity;
+	
+	@FindBy(xpath = "//iframe[@title='DAM Shield']")
+	WebElement frameVerifyIdentity;
+
+
+	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
+	WebElement inputCode;
+	
 	public void clkProfileNSetting() {
 		reusableActions.getWhenReady(lnkProfileNSetting,60).click();		
 	}
@@ -967,5 +980,31 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	public void clkButtonBillingSettings() {
 		reusableActions.getWhenReady(paneBillingSettingsMobile).click();
 		
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isVerifyYourIdentityOverlayDisplayed() {			
+		return reusableActions.isElementVisible(frameVerifyIdentity,30);
+	}
+	
+	/**
+	 * Click continue button
+	 * @author Mirza.Kamran
+	 */
+	public void clkContinueVerifyIdentity() {
+		reusableActions.getWhenReady(btnContinueVerifyIdentity).click();
+	
+	}
+
+	public void switchToVerifyIdentityIFrame() {
+		getDriver().switchTo().frame(frameVerifyIdentity);		
+	}
+	public void setRecoveryCode(String recoveryCode) {
+		reusableActions.getWhenReady(inputCode).sendKeys(recoveryCode);
+	}
+	public void clkBtnContinue() {
+		reusableActions.getWhenReady(btnContinueVerifyIdentity).click();
 	}
 }

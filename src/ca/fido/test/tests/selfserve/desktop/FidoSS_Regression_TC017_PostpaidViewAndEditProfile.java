@@ -18,7 +18,7 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(System.getProperty("QaUrl"), strBrowser,
-				strLanguage, FidoEnums.GroupName.selfserve,method);			
+				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
 	
 	@AfterMethod(alwaysRun = true)
@@ -58,6 +58,29 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 					  +" "+TestDataHandler.tc1417.getaccountDetails().getAddress().get("line2");
 		}
 		fido_profile_and_setting_page.clkUpdateBillingAddress();
+		if(fido_profile_and_setting_page.isVerifyYourIdentityOverlayDisplayed())
+    	{
+			fido_profile_and_setting_page.switchToVerifyIdentityIFrame();
+			fido_profile_and_setting_page.clkContinueVerifyIdentity();
+    		String strTestingTab = getDriver().getWindowHandle();
+    		String strRecoveredUserName ="";
+    		//Go to ENS to verify email and get reset password page.		
+    		try {
+    			
+    			ensVerifications.getEmailVerifyPage(TestDataHandler.tc1417.getUsername());
+    			String recoveryCode = fido_recover_pass_or_name_page.getVerificationCode();
+    			getDriver().switchTo().window(strTestingTab);			
+    			reporter.reportLogWithScreenshot("Close the Overlay");
+    			fido_profile_and_setting_page.switchToVerifyIdentityIFrame();
+    			fido_profile_and_setting_page.setRecoveryCode(recoveryCode);
+    			fido_profile_and_setting_page.clkBtnContinue();    						
+    						
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
+		
+		
 		reporter.reportLogWithScreenshot("Update Billing address overlay");
 		fido_profile_and_setting_page.setNewAddress(newAddress);
 		reporter.reportLogWithScreenshot("New Address set");
@@ -71,6 +94,11 @@ public class FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTest
 							"Address updated successfully on PnS page",
 							"Address did not update successful on PnS");				
 								
+	}
+
+	private Object getRogersRecoverPassOrNamePage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
