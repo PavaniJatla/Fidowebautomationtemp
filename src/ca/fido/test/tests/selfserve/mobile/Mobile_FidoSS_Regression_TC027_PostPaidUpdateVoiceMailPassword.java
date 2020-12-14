@@ -97,9 +97,9 @@ public class Mobile_FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword exte
 							"Link VoiceMail FAQ not available");
 		fido_reset_voicemail_password_page.clkBackToMyAccountPageButton();	
 		reporter.reportLogWithScreenshot("After click on Back to My Account page button");
-		reporter.softAssert(fido_account_overview_page.isCTNBadgeVisible(),
-							"CTN Badge Visible",
-							"CTN Badge Not Visible");		
+		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
+							"Back to account overview page successful",
+							"Back to account overview page not successful");		
 	}
 	
 	

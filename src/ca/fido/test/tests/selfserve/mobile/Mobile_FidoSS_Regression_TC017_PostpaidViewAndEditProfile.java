@@ -46,6 +46,7 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 				"Failed to login.");
 		String newAddress;
 		fido_account_overview_page.clkMenuProfileNSettingMobile();
+		
 		reporter.reportLogWithScreenshot("profile and settings page");
 		fido_profile_and_setting_page.clkButtonBillingSettings();
 		

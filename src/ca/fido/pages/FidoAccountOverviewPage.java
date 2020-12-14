@@ -139,7 +139,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
 	WebElement menuOverviewMobile;
 
-	@FindBy(xpath = "//*[@class='modal-dialog']//*[@translate='global.label.profileAndSettings']")
+	@FindAll({
+	@FindBy(xpath = "//ds-expander//*[@data-text='Profile & Settings']"),
+	@FindBy(xpath = "//*[@class='modal-dialog']//*[@translate='global.label.profileAndSettings']")})
 	WebElement menuProfileAndSettingsMobile;
 
 	@FindBy(xpath = "//ins[@translate='global.message.myAccountNoPaymentHistory']")
@@ -273,6 +275,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "")
 	WebElement lnkViewUsageAndManage;
+
+	@FindBy(xpath = "//ds-icon[@name='down']")
+	WebElement subNavMobile;
 	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -401,8 +406,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkMenuProfileNSettingMobile() {
-		reusableActions.waitForElementTobeClickable(menuOverviewMobile, 60);
-		reusableActions.getWhenReady(menuOverviewMobile).click();
+		reusableActions.waitForElementTobeClickable(subNavMobile, 60);
+		reusableActions.getWhenReady(subNavMobile).click();
 		reusableActions.waitForElementTobeClickable(menuProfileAndSettingsMobile, 30);
 		reusableActions.getWhenReady(menuProfileAndSettingsMobile).click();	
 	}

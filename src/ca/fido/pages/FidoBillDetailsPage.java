@@ -158,6 +158,12 @@ public class FidoBillDetailsPage extends BasePageClass {
 
 	@FindBy(xpath = "//ins[@translate='global.label.overview']")
 	WebElement lnkAccountOverview;
+	
+	@FindBy(xpath = "//*[@id='skipNavigationAngularMob']//ins[@translate='global.label.overview']")
+	WebElement lnkAccountOverviewMobile;
+	
+	@FindBy(xpath = "//*[@class='modal-dialog']//*[@translate='global.label.overview']")
+	WebElement lnkAccountOverviewOnModal;
 
 	/**
 	 * Click on refillNow button in overview page for Fido pre-paid account.
@@ -586,6 +592,13 @@ public class FidoBillDetailsPage extends BasePageClass {
 		reusableActions.getWhenReady(lnkAccountOverview).click();
 	}
 	 
-	 
+	/**
+	 * 
+	 */
+	public void clkAccountOverviewMobile() {
+		reusableActions.getWhenReady(lnkAccountOverviewMobile).click();
+		reusableActions.waitForElementTobeClickable(lnkAccountOverviewOnModal, 30);
+		reusableActions.getWhenReady(lnkAccountOverviewOnModal).click();
+	}
 	  
 }
