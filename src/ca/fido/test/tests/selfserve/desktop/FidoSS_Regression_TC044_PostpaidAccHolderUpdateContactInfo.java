@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.util.Hashtable;
 
-public class FidoSS_Regression_TC044_PostpaidAccHolderUpdateProfile extends BaseTestClass{	
+public class FidoSS_Regression_TC044_PostpaidAccHolderUpdateContactInfo extends BaseTestClass{	
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -29,7 +29,7 @@ public class FidoSS_Regression_TC044_PostpaidAccHolderUpdateProfile extends Base
 	
 
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
-	public void postPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
+	public void postPaidPaymentViewAndUpdateContactInfo() throws InterruptedException, ParseException {
 		
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
