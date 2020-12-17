@@ -43,7 +43,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//ajs-address")
 	WebElement lblAddress;	
 	
-	@FindBy(xpath = "//label[contains(text(),'Billing address')]/parent::div/parent::div")
+	@FindBy(xpath = "//label[contains(text(),'Billing address') or contains(text(),'Adresse de facturation')]/parent::div/parent::div")
 	WebElement lblBillingAddress;
 	
 	
@@ -201,6 +201,17 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 
 	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
 	WebElement inputCode;
+
+
+	@FindBy(xpath = "//span[text()='Sorry...' or text()='Désolé...']")
+	WebElement lblSorry;
+
+
+	@FindBy(xpath = "//p[text()='Due to recent changes on your account, we are unable to proceed with this transaction.' or text()='En raison de modifications récentes de votre compte, nous ne pouvons pas procéder avec cette transaction.']")
+	WebElement msgUnableToProceed;
+	
+	@FindBy(xpath = "//span[text()=' CLOSE ' or text()=' FERMER ']")
+	WebElement btnClose;
 	
 	public void clkProfileNSetting() {
 		reusableActions.getWhenReady(lnkProfileNSetting,60).click();		
@@ -1006,5 +1017,33 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	}
 	public void clkBtnContinue() {
 		reusableActions.getWhenReady(btnContinueVerifyIdentity).click();
+	}
+	
+	/**
+	 * In-eligible user message displayed 
+	 * @return true if message displayed else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean isInEligibleUser() {		
+		return (reusableActions.isElementVisible(lblSorry)
+				&& reusableActions.isElementVisible(msgUnableToProceed));
+	}
+	
+	/**
+	 * Clicks on close button
+	 * @author Mirza.Kamran
+	 */
+	public void clkClose() {
+		reusableActions.getWhenReady(btnClose).click();
+	}
+	
+	/**
+	 * Is billing address displayed
+	 * @return true if billing address displayed, else false
+	 * @author Mirza.Kamran
+	 */
+	public boolean IsBillingAddressDisplayed() {
+		driver.switchTo().defaultContent();
+		return reusableActions.isElementVisible(lblBillingAddress);
 	}
 }

@@ -1,4 +1,4 @@
-package ca.fido.test.tests.selfserve.mobile;
+package ca.fido.test.tests.selfserve.desktop;
 
 
 import ca.fido.test.base.BaseTestClass;
@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 
-public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends BaseTestClass{
+public class FidoSS_Regression_TC019_PostpaidViewAndUpdateBillingAddressInEligibleUser extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
-	public void beforeTest(@Optional("sauceandroidchrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(System.getProperty("QaUrl"), strBrowser,
-				strLanguage, FidoEnums.GroupName.selfserve,method);			
+				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
 	
 	@AfterMethod(alwaysRun = true)
@@ -27,16 +27,14 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 	}
 	
 
-	@Test(groups = {"MobileSanitySS","SSPnS"})
-	public void mobilePostPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
-		fido_home_page.clkLoginMobile();
+	@Test(groups = {"SanitySS","ProfileAndSettingSS"})
+	public void postPaidPaymentViewAndUpdateBillingAddress() throws InterruptedException, ParseException {		
+		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc1417.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc1417.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.tc19.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.tc19.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();	
+		fido_login_page.clkLoginInFrame();	
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
@@ -45,9 +43,8 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 				"Login succeed.", 
 				"Failed to login.");
 		String newAddress;
-		fido_account_overview_page.clkMenuProfileNSettingMobile();		
+		fido_account_overview_page.clkSubNavProfileAndSettings();
 		reporter.reportLogWithScreenshot("profile and settings page");
-		fido_profile_and_setting_page.clkButtonBillingSettings();
 		String existingAddress=fido_profile_and_setting_page.getOldAddress();
 		if(!existingAddress.contains("4501 Valiant") 
 			&& existingAddress.contains(TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")))
@@ -71,9 +68,12 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
     		reporter.reportLogWithScreenshot("Clicks on close");
     		reporter.hardAssert(fido_profile_and_setting_page.IsBillingAddressDisplayed(),
     				"Profile and Settings page is displayed"
-    				, "Profile and Settings page not displayed");    		
-    	}					
-								
+    				, "Profile and Settings page not displayed");
+    		
+    	}				
+		
+										
 	}
+
 
 }
