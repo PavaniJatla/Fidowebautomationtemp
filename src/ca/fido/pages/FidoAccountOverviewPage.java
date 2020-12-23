@@ -2,10 +2,14 @@ package ca.fido.pages;
 
 
 import ca.fido.pages.base.BasePageClass;
+import groovyjarjarantlr4.v4.parse.ANTLRParser.element_return;
+
 import org.apache.commons.lang3.math.NumberUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
 import utils.FormFiller;
 
 import java.util.HashMap;
@@ -278,6 +282,36 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//ds-icon[@name='down']")
 	WebElement subNavMobile;
+
+	@FindBy(xpath = "//p[text()='Promise to Pay available' or text()='Vous devez reporter votre paiement?']")
+	WebElement divPromiseToPayAvailable;
+
+	@FindBy(xpath = "//span[text()='Set up a Promise to Pay.' or text()='Configurez une promesse de paiement.']")
+	WebElement lnkSetUpPromiseToPay;
+
+	@FindBy(xpath = "//select[@formcontrolname='paymentMethod']")
+	WebElement selectPayType;
+
+	@FindBy(xpath = "//select[@formcontrolname='paymentDate']")
+	WebElement selectDate;
+
+	@FindBy(xpath = "//*[@translate='promise-to-pay.setup-ptp.setup-btn']")
+	WebElement btnSetUpPromise;
+
+	@FindBy(xpath = "//h1[@translate='promise-to-pay.header']")
+	WebElement headerSetUpPromise;
+
+	@FindBy(xpath = "//span[@translate='promise-to-pay.setup-ptp.total-balance']")
+	WebElement lblTotalBalanceToPay;
+
+	@FindBy(xpath = "//select[@formcontrolname='paymentMethod']/parent::div")
+	WebElement selectPayTypeDiv;
+
+	@FindBy(xpath = "//*[@translate='promise-to-pay.success-ptp.header']")
+	WebElement headerSetUpPromiseSuccessFul;
+	
+	@FindBy(xpath = "//*[@translate='promise-to-pay.success-ptp.done-btn']")
+	WebElement btnDoneAfterSetUpPromiseSuccessFul;
 	
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -1506,6 +1540,54 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.getWhenReady(By.xpath("//a[@aria-label='refill balance for prepaid account "+strBAN+"']")).click();
 	}
 
-	
+	public boolean verifyPromiseToPayLink() {		
+		return reusableActions.isElementVisible(divPromiseToPayAvailable);
+	}
+
+	public void clkSetUpAPromiseToPay() {
+		reusableActions.getWhenReady(lnkSetUpPromiseToPay).click();
+	}
+
+	public void selectHowWouldYouLikeToPromiseToPay(String strPaymentType) {	
+		if(strPaymentType.contains("Credit Card"))
+		{
+		reusableActions.selectWhenReady(selectPayType, 0);
+		}else
+		{
+			reusableActions.selectWhenReady(selectPayType, 1);
+		}
+		
+	}
+
+	public String selectWhenYouWillIkeToPayThePromise() {
+		Select dropdown = new Select(selectDate);
+		reusableActions.selectWhenReady(selectDate, dropdown.getOptions().size()-1);
+		reusableActions.staticWait(1000);
+		return reusableActions.getSelectedValue(selectDate);
+	}
+
+	public void clkSetUpPromise() {
+		reusableActions.getWhenReady(btnSetUpPromise).click();
+	}
+
+	public boolean verifySetUpPromiseToPayPageIsLoaded() {	
+		return (reusableActions.isElementVisible(headerSetUpPromise) && 
+				reusableActions.isElementVisible(lblTotalBalanceToPay));
+	}
+
+	public boolean verifyPromiseToSetUpSuccessFul(String strBalanceValue, String strDate) {		
+		return reusableActions.isElementVisible(headerSetUpPromiseSuccessFul,30);
+				//&& reusableActions.getWhenReady(By.xpath("//*[@translate='promise-to-pay.success-ptp.th-1']/parent::div/following-sibling::div")).getText().trim().replace("$", "").replaceAll(",", ".").contains(strBalanceValue.replaceAll(",", "."))
+				//&& reusableActions.getWhenReady(By.xpath("//*[@translate='promise-to-pay.success-ptp.th-2']/parent::div/following-sibling::div")).getText().trim().contains(strDate));
+	}
+
+	public void clkDoneSetUpPromiseAfterSuccess() {
+		reusableActions.getWhenReady(btnDoneAfterSetUpPromiseSuccessFul).click();
+	}
+
+	public String getBalanceValueForPromise() {
+		
+		return reusableActions.getWhenReady(By.xpath("//*[@class='ds-price']")).getAttribute("aria-label").trim().replace("$", "");
+	}
 	
 }

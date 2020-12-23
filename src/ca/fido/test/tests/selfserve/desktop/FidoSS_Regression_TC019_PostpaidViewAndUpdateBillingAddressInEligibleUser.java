@@ -25,7 +25,37 @@ public class FidoSS_Regression_TC019_PostpaidViewAndUpdateBillingAddressInEligib
 	public void afterTest() throws InterruptedException {
 		closeSession();
 	}
+/*
+ * 
+1. Navigate to fido.ca
+2. Click on sign in
+3. Login with valid credentials
+4. Validate account placement.
+5.Validate account container for each BAN.
+
+1. Fido.ca landing page is opened successfully
+2. Sign in popup is displayed
+3. Account overview page displayed
+4. Order of the account should be as below.
+Order of display for mixed account types:
+- When there are multiples of each account type the oldest account shall be shown first (on top).
+Active Mobile (Postpaid)
+Active Home Internet
+Active Prepaid
+Cancelled Mobile (Postpaid)
+Cancelled Home Internet
+Cancelled Prepaid
+
+5. The Account container should be displayed the following basic elements:
+Product Icon
+Account Type
+Account Number
+Last Refill information (prepaid) 
+Current Balance(postpaid/internet)/Available balance(Prepaid)
+Billing Due Date(postpaid/internet)/Balance Expiry Date(Prepaid)
+
 	
+ */
 
 	@Test(groups = {"SanitySS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndUpdateBillingAddress() throws InterruptedException, ParseException {		
@@ -56,6 +86,7 @@ public class FidoSS_Regression_TC019_PostpaidViewAndUpdateBillingAddressInEligib
 					  +" "+TestDataHandler.tc1417.getaccountDetails().getAddress().get("line2");
 		}
 		fido_profile_and_setting_page.clkUpdateBillingAddress();
+		reporter.reportLogWithScreenshot("update billing address link is clicked");
 		if(fido_profile_and_setting_page.isVerifyYourIdentityOverlayDisplayed())
     	{
 			fido_profile_and_setting_page.switchToVerifyIdentityIFrame();
