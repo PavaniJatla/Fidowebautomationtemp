@@ -30,7 +30,6 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIValidateDashboard() {
-
 		reporter.reportLogWithScreenshot("Launched the Home Page");
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
@@ -42,10 +41,8 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Login Successful","Login Failed");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
-		fido_account_overview_page.clkInternetBadge();
+		fido_account_overview_page.clkViewUsageManage();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		reporter.softAssert(fido_internet_dashboard_page.verifyManageSettings(),"Verified the Manage Settings link","Manage Settings link Verification has failed");
     	reporter.softAssert(fido_internet_dashboard_page.verifyIfPlanInformationLoaded(),"Verified the Plan Information Loaded link","Plan Information Loaded link Verification has failed");

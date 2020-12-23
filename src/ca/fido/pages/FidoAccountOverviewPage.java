@@ -49,9 +49,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//div[contains(@class,'visible-xs')]//ins[@translate='global.cta.payNow']")
 	WebElement btnPayNowDefaultMobile;
 
-	@FindBy (xpath="//div[@class='list-item']//a[@href='#/my-account/internet']")
-	WebElement badgeInternet;	
-	//div[@ng-if='subscriberService.internet']/a/div/div[@class='item arrow']
+	@FindBy (xpath="//span[contains(text(),'View Usage & Manage') or contains(text(),'Voir et gérer l’utilisation')]")
+	WebElement lnkViewUsageManage;
+
+	@FindBy (xpath="//span[contains(text(),'Make a payment') or contains(text(),'Faire un paiement')]")
+	WebElement lnkMakepayment;
 
 	@FindBy (xpath="//div[@ng-if='subscriberService.wireless']/a")
 	WebElement badgeWireless;
@@ -59,8 +61,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//h1[@class='welcome-text']")
 	WebElement msgWelcome;
 
-	@FindBy (xpath="//span[@class='account-balance-font-size']")
+	@FindBy (xpath="//div[@class='ds-price__amountDollars ng-star-inserted']")
 	WebElement infoAccountBalance;
+
+	@FindBy (xpath="//span[@class='ute-price']//ins")
+	WebElement infoBalance;
 
 	@FindBy(xpath="//span[@translate='global.cta.changeMethodOfPayment']")
 	WebElement lnkChangeMethodOfPayment;
@@ -251,7 +256,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Account Overview' or @data-text='Aperçu du compte']")
 	WebElement subNavAccountOverview;
-	
 
 	@FindBy(xpath = "//dsa-subnav-desktop//p[text()='Account Overview' or text()='Aperçu du compte']")
 	WebElement headerAccountOverview;
@@ -277,11 +281,14 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//select[@id='selectCtn']")
 	WebElement cmbSelectedCTNonDashboard;
 
-	@FindBy(xpath = "")
-	WebElement lnkViewUsageAndManage;
+	@FindBy(xpath = "//p[contains(text(),'Account Overview') or contains(text(),'Aperçu du compte')]")
+	WebElement txtAccountOverview;
 
 	@FindBy(xpath = "//ds-icon[@name='down']")
 	WebElement subNavMobile;
+
+	@FindBy(xpath = "//a[@href='#/my-account/overview']")
+	WebElement lnkOverview;
 
 	@FindBy(xpath = "//p[text()='Promise to Pay available' or text()='Vous devez reporter votre paiement?']")
 	WebElement divPromiseToPayAvailable;
@@ -458,6 +465,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	}
 
+	public void clkOverview() {
+		reusableActions.getWhenVisible(lnkOverview, 60).click();
+	}
 
 	public void clkSubMenuMobile() {
 		reusableActions.getWhenVisible(subMenuMobile, 60).click();
@@ -597,7 +607,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			buttonPayNow= btnPayNowDefault;
 		}else
 		{
-			buttonPayNow = btnPayNow;
+			buttonPayNow = lnkMakepayment;
 		}
 
 		while (counter<=3 && !displayed) {
@@ -683,9 +693,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * Click on the InternetBadge on the account overview page
 	 * @author adittya.Dhingra 
 	 */
-	public void clkInternetBadge() {
-		reusableActions.waitForElementVisibility(badgeInternet,60);
-		reusableActions.getWhenReady(badgeInternet,30).click();
+	public void clkViewUsageManage() {
+		reusableActions.waitForElementVisibility(lnkViewUsageManage,60);
+		reusableActions.getWhenReady(lnkViewUsageManage,30).click();
 	}
 
 	/**
