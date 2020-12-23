@@ -43,7 +43,7 @@ public class FidoCH_Regression_TC_012_HSIDataPlanDowngradeWithSameSpeedTest exte
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		reporter.reportLogWithScreenshot("Launched the Account Page");
-		fido_account_overview_page.clkInternetBadge();
+		fido_account_overview_page.clkViewUsageManage();
 		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		fido_internet_dashboard_page.clkChangePackage();
 		reporter.reportLogWithScreenshot("Launched the packages Page");
