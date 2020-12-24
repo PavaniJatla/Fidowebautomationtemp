@@ -69,7 +69,7 @@ public class FidoSS_Regression_TC21_ValidateTheSetUpPromiseToPayFlowForDelinquen
 		fido_account_overview_page.clkSetUpPromise();
 		reporter.reportLogWithScreenshot("Set up promise to pay is displayed");
 		
-		reporter.hardAssert(fido_account_overview_page.verifyPromiseToSetUpSuccessFul(strBalanceValue,strDate), 
+		reporter.hardAssert(fido_account_overview_page.verifyPromiseToSetUpSuccessFul(), 
 				"Set up promise to pay is set up successfully , balance value: "+strBalanceValue + "Promise Date: "+strDate, 			
 				"Set up promise to pay is NOT set up successfully");
 		reporter.reportLogWithScreenshot("Set up promise success page");			

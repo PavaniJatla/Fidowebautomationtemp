@@ -64,23 +64,10 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 			fido_bill_details_page.clkChangePaymentMethod();
 			//fido_account_overview_page.clkChangeMethodOfPayment();
 		}
-		changeToCC();
-		fido_payment_options_page.clkConfirm();
-		reporter.reportLogWithScreenshot("Verify the payment method set to credit card");
-		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
-							"Change MOP Success message displayed",
-							"Change MOP Success message not displayed");
-		reporter.reportLogWithScreenshot("Change MOP Success message");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
-							"Label your future bill is displayed",
-							"Label your future bill is not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
-							"Payment method ending in displayed",
-							"Payment method ending in not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
-							"label automatic payment effects displayed",
-							"label automatic payment effects not displayed");
-		fido_payment_options_page.clkCloseButton();
+		
+		//Change from manual to CC
+		
+		changeToCC();		
 		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
 		//fido_account_overview_page.clkChangeMethodOfPayment();
@@ -88,27 +75,14 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
+		
 		//Change CC to manual
 		reporter.reportLogWithScreenshot("Change method of payment from CC to Manual");
 		changeToManual();
+		fido_bill_details_page.clkAccountOverview();
+		fido_account_overview_page.clkViewBillNew(strBAN);
 		fido_bill_details_page.clkChangePaymentMethod();
-		changeToCC();
-		fido_payment_options_page.clkConfirm();
-		reporter.reportLogWithScreenshot("Verify the payment method set to credit card");
-		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
-							"Change MOP Success message displayed",
-							"Change MOP Success message not displayed");
-		reporter.reportLogWithScreenshot("Change MOP Success message");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
-							"Label your future bill is displayed",
-							"Label your future bill is not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
-							"Payment method ending in displayed",
-							"Payment method ending in not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
-							"label automatic payment effects displayed",
-							"label automatic payment effects not displayed");
-		fido_payment_options_page.clkCloseButton();
+		changeToCC();		
 		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
 		//fido_account_overview_page.clkChangeMethodOfPayment();
@@ -117,36 +91,11 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
 		
+		
+	
 		//Change CC to bank
-		
-		
-		//commenting the below check point due to stroy : DC-2754
-		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
-							"Button pay balance is displayed",
-							"button pay balanc is not displayed"); */
-		
 		reporter.reportLogWithScreenshot("Change method of payment from CC to BANK");
-		changeToBank();
-		reporter.reportLogWithScreenshot("Verify the payment method set to bank");
-		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
-							"Change MOP Success message displayed",
-							"Change MOP Success message not displayed");
-		reporter.reportLogWithScreenshot("Change MOP Success message");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
-							"Label your future bill is displayed",
-							"Label your future bill is not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
-							"Payment method ending in displayed",
-							"Payment method ending in not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
-							"label automatic payment effects displayed",
-							"label automatic payment effects not displayed");
-		
-		//commenting the below check point due to stroy : DC-2754
-		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
-							"Button pay balance is displayed",
-							"Button pay balance is not displayed"); */
-		fido_payment_options_page.clkCloseButton();	
+		changeToBank();		
 		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
 		//fido_account_overview_page.clkChangeMethodOfPayment();
@@ -154,34 +103,21 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
+		
+		
 		//Change CC to manual
 		reporter.reportLogWithScreenshot("Change method of payment from Bank to Manual");
 		changeToManual();
+		reporter.reportLogWithScreenshot("Navigation to Account overview page");
+		fido_bill_details_page.clkAccountOverview();
+		fido_account_overview_page.clkViewBillNew(strBAN);
 		fido_bill_details_page.clkChangePaymentMethod();
+		
 		
 		//Change from manual to BANK
 		reporter.reportLogWithScreenshot("Change method of payment from Manual to BANK");
-		changeToBank();
-		reporter.reportLogWithScreenshot("Verify the payment method set to bank");
-		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
-							"Change MOP Success message displayed",
-							"Change MOP Success message not displayed");
-		reporter.reportLogWithScreenshot("Change MOP Success message");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
-							"Label your future bill is displayed",
-							"Label your future bill is not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
-							"Payment method ending in displayed",
-							"Payment method ending in not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
-							"label automatic payment effects displayed",
-							"label automatic payment effects not displayed");
-		
-		//commenting the below check point due to stroy : DC-2754
-		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
-							"Button pay balance is displayed",
-							"Button pay balance is not displayed"); */
-		fido_payment_options_page.clkCloseButton();	
+		changeToBank();		
+		reporter.reportLogWithScreenshot("Navigation to Account overview page");
 		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
 		//fido_account_overview_page.clkChangeMethodOfPayment();
@@ -215,6 +151,22 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),
 							"review credit card is displayed",
 							"review credit card is not displayed");
+		fido_payment_options_page.clkConfirm();
+		reporter.reportLogWithScreenshot("Verify the payment method set to credit card");
+		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
+							"Change MOP Success message displayed",
+							"Change MOP Success message not displayed");
+		reporter.reportLogWithScreenshot("Change MOP Success message");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
+							"Label your future bill is displayed",
+							"Label your future bill is not displayed");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
+							"Payment method ending in displayed",
+							"Payment method ending in not displayed");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
+							"label automatic payment effects displayed",
+							"label automatic payment effects not displayed");
+		fido_payment_options_page.clkCloseButton();
 	}
 	
 	public void changeToBank() {
@@ -230,6 +182,26 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		fido_payment_options_page.clkIAcceptTermsAndCondition();
 		reporter.reportLogWithScreenshot("Bank info entered, T n C accepted");
 		fido_payment_options_page.clkContinue();
+		reporter.reportLogWithScreenshot("Verify the payment method set to bank");
+		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
+							"Change MOP Success message displayed",
+							"Change MOP Success message not displayed");
+		reporter.reportLogWithScreenshot("Change MOP Success message");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
+							"Label your future bill is displayed",
+							"Label your future bill is not displayed");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
+							"Payment method ending in displayed",
+							"Payment method ending in not displayed");
+		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
+							"label automatic payment effects displayed",
+							"label automatic payment effects not displayed");
+		
+		//commenting the below check point due to stroy : DC-2754
+		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
+							"Button pay balance is displayed",
+							"Button pay balance is not displayed"); */
+		fido_payment_options_page.clkCloseButton();	
 	}
 
 }

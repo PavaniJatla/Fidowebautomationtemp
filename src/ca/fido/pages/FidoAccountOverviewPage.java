@@ -1535,7 +1535,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @param strBAN
 	 */
 	public void clkViewBillNew(String strBAN) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]")).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]"),30).click();
 	}
 
 	/**
@@ -1585,7 +1585,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.isElementVisible(lblTotalBalanceToPay));
 	}
 
-	public boolean verifyPromiseToSetUpSuccessFul(String strBalanceValue, String strDate) {		
+	public boolean verifyPromiseToSetUpSuccessFul() {		
 		return reusableActions.isElementVisible(headerSetUpPromiseSuccessFul,30);
 				//&& reusableActions.getWhenReady(By.xpath("//*[@translate='promise-to-pay.success-ptp.th-1']/parent::div/following-sibling::div")).getText().trim().replace("$", "").replaceAll(",", ".").contains(strBalanceValue.replaceAll(",", "."))
 				//&& reusableActions.getWhenReady(By.xpath("//*[@translate='promise-to-pay.success-ptp.th-2']/parent::div/following-sibling::div")).getText().trim().contains(strDate));

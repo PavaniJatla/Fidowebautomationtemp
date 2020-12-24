@@ -581,7 +581,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	 * 
 	 */
 	public void clkChangePaymentMethod() {
-	reusableActions.getWhenReady(lnlChangePaymentMethod).click();
+	reusableActions.getWhenReady(lnlChangePaymentMethod,30).click();
 	
 	}
 
@@ -589,7 +589,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	 * 
 	 */
 	public void clkAccountOverview() {
-		reusableActions.getWhenReady(lnkAccountOverview).click();
+		reusableActions.getWhenReady(lnkAccountOverview,30).click();
 	}
 	 
 	/**
