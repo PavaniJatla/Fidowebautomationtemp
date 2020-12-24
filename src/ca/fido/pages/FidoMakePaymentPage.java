@@ -400,5 +400,35 @@ public class FidoMakePaymentPage extends BasePageClass {
 		return reusableActions.isElementVisible(paymentModal, 10);
 	}
 	
+	/**
+	 * Selects the bank details
+	 * @param strBankName string bank name
+	 * @author Karthic.Hasan
+	 */
+	public void selectBank(String strBankName) {		
+		By lblBankName= By.xpath("//img[@alt='"+strBankName+"']");
+		reusableActions.executeJavaScriptClick(getDriver().findElement(lblBankName));
+		reusableActions.waitForNumberOfWindowsToBe(2, 30);
+		reusableActions.staticWait(3000);
+	}
+	
+	/**
+	 * Switch to the new window 
+	 * @param strParentWindowHandle parent window handle
+	 * @author Karthic.Hasan
+	 */
+	public void switchToCIBCBankPage(String strParentWindowHandle) {
+		reusableActions.switchToNewWindow(strParentWindowHandle);
+	}
+
+	/**
+	 * Verfies if the new bank page is open successfully
+	 * @param strWindowTitle the bank page title
+	 * @return true if title matches else false
+	 * @author Karthic.Hasan
+	 */
+	public boolean verifyBankPageOpenedSuccessfully(String strWindowTitle) {		
+		return getDriver().getTitle().contains(strWindowTitle);
+	}
 }
 
