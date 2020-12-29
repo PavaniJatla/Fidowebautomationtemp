@@ -48,6 +48,9 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
+		String strBAN = TestDataHandler.tc4246.getaccountDetails().getBan();
+		fido_account_overview_page.clkViewBillNew(strBAN);
+		reporter.reportLogWithScreenshot("View bill page is open");
 		fido_account_overview_page.clkMenuBillingAndPayments();
 		reporter.reportLogWithScreenshot("Menu billing and payments selected");
 		fido_account_overview_page.selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);

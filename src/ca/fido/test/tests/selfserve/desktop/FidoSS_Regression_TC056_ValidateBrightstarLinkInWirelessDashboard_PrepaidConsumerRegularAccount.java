@@ -43,6 +43,7 @@ public class FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_P
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
+		String strBAN = TestDataHandler.tc00101056.getaccountDetails().getBan();
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -53,7 +54,7 @@ public class FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_P
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkMenuUsageNServicePrepaid();
+		fido_account_overview_page.clkViewUsageAndServices(strBAN);
 		reporter.reportLogWithScreenshot("Usage and Services page");
 					
 		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyLinkRepairMyDeviceIsDisplayed(),

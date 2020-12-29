@@ -31,6 +31,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		fido_home_page.clkLogin();
 		String userName=TestDataHandler.tc0405.getUsername();
 		String password=TestDataHandler.tc0405.getPassword();
+		String strBAN = TestDataHandler.tc0405.getaccountDetails().getBan();
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(userName);
 		fido_login_page.setPasswordInFrame(password);
@@ -44,8 +45,8 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		reporter.reportLogWithScreenshot("Prepaid account overview page.");
-		fido_account_overview_page.clkBtnRefillNow();
-		reporter.reportLogWithScreenshot("Refill now button is clicked.");
+		fido_account_overview_page.clkBtnRefillNowNew(strBAN);
+		reporter.reportLogWithScreenshot("Refill options page");
 		String balanceBeforeRefill = fido_refill_page.getBalanceAmount();
 		System.out.println("Balance before refill is: " + balanceBeforeRefill);
 		fido_refill_page.clkOneTimeRefill();
@@ -75,7 +76,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		fido_refill_page.clkBacktoMyAccount();
 		
 		//Verify the transaction
-		fido_account_overview_page.clkBtnViewTransaction();
+		fido_account_overview_page.clkBtnViewTransactionsNew(strBAN);
 		reporter.reportLogWithScreenshot("View transaction clicked.");
 		fido_account_overview_page.clkFidoTransactions();
 		fido_account_overview_page.scrollToMiddleOfPage();

@@ -48,6 +48,9 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
+		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
+		fido_account_overview_page.clkViewBillNew(strBAN);
+		reporter.reportLogWithScreenshot("View bill page is open");
 		fido_account_overview_page.clkMenuBillingAndPayments();
 		reporter.reportLogWithScreenshot("Menu Billings and payments selected");
 		fido_account_overview_page.selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);

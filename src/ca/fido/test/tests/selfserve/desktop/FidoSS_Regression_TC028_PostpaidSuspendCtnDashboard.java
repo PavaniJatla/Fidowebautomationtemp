@@ -31,6 +31,7 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 		fido_login_page.switchToSignInFrame();
 		fido_login_page.setUsernameInFrame(TestDataHandler.tc28.getUsername());
 		fido_login_page.setPasswordInFrame(TestDataHandler.tc28.getPassword());
+		String strBan = TestDataHandler.tc28.getaccountDetails().getBan();		
 		reporter.reportLogWithScreenshot("After click on Login");	
 		fido_login_page.clkLoginInFrame();	
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -40,18 +41,12 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.hardAssert(fido_account_overview_page.verifyAccountSuspension(),
-				"Message account suspended is displayed",
-				"Message account suspended not displayed");
-		reporter.reportLogWithScreenshot("Account overview page for account suspension");
-		reporter.hardAssert(fido_account_overview_page.verifyAccountSuspendedWarning(),
-				"Account suspension warning is displayed",
-				"Account suspension warning not displayed");
-		reporter.softAssert(!fido_account_overview_page.verifyTheAbsenceOfService(),
-				"Button service is not displayed for suspended CTN",
-				"Button service is displayed for suspended CTN, please investigate");
-		fido_account_overview_page.scrollToMiddleOfPage();
-		reporter.reportLogWithScreenshot("Account overview middle page.");
-
+		
+		common_business_flows.scrollToMiddleOfWebPage();
+		reporter.reportLogWithScreenshot("Suspended CTN account overview page");
+		reporter.hardAssert(fido_account_overview_page.validateBillingCTAButtonAddLineForSuspendedAccount(strBan),
+				"CTN, View usage and manage and add line is not displayed for suspended account",
+				"Suspended account overview page seems invalid, please investigate");
+		
 	}
 }

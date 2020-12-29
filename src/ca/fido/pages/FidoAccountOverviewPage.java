@@ -239,7 +239,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//fss-preauth-payment//span[@class='ds-link__copy']")
 	WebElement lnkEditAutoPayment;
 
-	@FindBy (xpath = "//fss-account-detail//fss-preauth-payment//span[text()='Account balance will be automatically withdrawn from:' or text()='Le solde du compte sera prélevé automatiquement du :']")
+	@FindBy (xpath = "//fss-account-detail//fss-preauth-payment//span[contains(text(),'Account balance will be automatically') or contains(text(),'Le solde du compte sera prélevé automatiquement du :')]")
 	WebElement divAutoPaymentContainer;
 	
 	@FindBy(xpath = "//fss-account-detail//fss-preauth-payment//a[@aria-label='Change payment method' or @aria-label='Changer le mode de paiement']")
@@ -1099,6 +1099,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 
 	/**
+	 * View prepaid usage and services
+	 * @author Mirza.Kamran
+	 */
+	public void clkViewUsageAndServices(String strBAN) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-details']//span[contains(text(),'View Usage & Manage') or contains(text(),'View Usage & Manage')]")).click();
+
+	}
+	
+	/**
 	 * Scrolls to top of webpage
 	 */
 	public void scrollToTopOfPage() {
@@ -1535,7 +1544,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @param strBAN
 	 */
 	public void clkViewBillNew(String strBAN) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]"),30).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for')]"),30).click();
 	}
 
 	/**
@@ -1550,6 +1559,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.getWhenReady(By.xpath("//a[@aria-label='refill balance for prepaid account "+strBAN+"']")).click();
 	}
 
+	public void clkBtnViewTransactionsNew(String strBAN) {
+		reusableActions.getWhenReady(By.xpath("//a[@aria-label='see most recent transactions for prepaid account "+strBAN+"']")).click();
+	}
+	
 	public boolean verifyPromiseToPayLink() {		
 		return reusableActions.isElementVisible(divPromiseToPayAvailable);
 	}
@@ -1569,6 +1582,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		
 	}
 
+	public void clkPrepaidViewUsageAndManage(String strBAN) {
+		reusableActions.getWhenReady(By.xpath("//a[@aria-label='refill balance for prepaid account "+strBAN+"']")).click();
+	}
+	
 	public String selectWhenYouWillIkeToPayThePromise() {
 		Select dropdown = new Select(selectDate);
 		reusableActions.selectWhenReady(selectDate, dropdown.getOptions().size()-1);
@@ -1598,6 +1615,14 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public String getBalanceValueForPromise() {
 		
 		return reusableActions.getWhenReady(By.xpath("//*[@class='ds-price']")).getAttribute("aria-label").trim().replace("$", "");
+	}
+	
+public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSuspendedBAN) {
+		
+		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]"),1)
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]"),1)
+				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"),1)
+				&& !reusableActions.isElementVisible(By.xpath("//div[@class='fss-subscription-detail']")));
 	}
 	
 }

@@ -109,7 +109,7 @@ public class FidoSS_Regression_TC073_AO_ValidateShowHideFunctionWithMoreThan5CTN
 						"It seems the User didint get directed to the CTN "+strCTNValue+"  Fido Wireless Dashboard as expected, ");
 				reporter.reportLogWithScreenshot("Dashboard for CTN : "+strCTNValue);
 				fido_account_overview_page.NavigateToAccountOverViewFromDashbOard();
-										
+				fido_account_overview_page.clkShowAllLinesLink();						
 			}
 		
 		
