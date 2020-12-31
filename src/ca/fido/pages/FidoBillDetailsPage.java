@@ -164,7 +164,10 @@ public class FidoBillDetailsPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[@class='modal-dialog']//*[@translate='global.label.overview']")
 	WebElement lnkAccountOverviewOnModal;
-
+	
+	@FindBy(xpath = "//p[@class='bill-error-msg1' and (contains(text(),\"Il semble que nous ayons des\") or  contains(text(),\"Looks like we are having system issues\"))]")
+	WebElement lblNoBillErrorMsg;
+	
 	/**
 	 * Click on refillNow button in overview page for Fido pre-paid account.
 	 * @author Ning.Xue
@@ -599,6 +602,15 @@ public class FidoBillDetailsPage extends BasePageClass {
 		reusableActions.getWhenReady(lnkAccountOverviewMobile).click();
 		reusableActions.waitForElementTobeClickable(lnkAccountOverviewOnModal, 30);
 		reusableActions.getWhenReady(lnkAccountOverviewOnModal).click();
+	}
+	
+	   /**
+	    * Checks if the label "no bill Error Msg" is displayed
+	    * @return true if the label is displayed else false
+	    * @author Karthic.Hasan
+	    */
+	public boolean verifyBillErrorMsg() {
+		return reusableActions.isElementVisible(lblNoBillErrorMsg);
 	}
 	  
 }

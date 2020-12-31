@@ -1544,7 +1544,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @param strBAN
 	 */
 	public void clkViewBillNew(String strBAN) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for')]"),30).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for') or contains(@aria-label,'la facture du compte')]"),30).click();
 	}
 
 	/**
