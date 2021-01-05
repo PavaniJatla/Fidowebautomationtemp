@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
+public class FidoSS_TC0XX_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -60,13 +60,27 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.reportLogWithScreenshot("Change Method of payment overlay");
 		if(fido_payment_options_page.isAutopaymentAlreadySet())
 		{
-			common_business_flows.changeToManual();
+		common_business_flows.changeToManual();
 			fido_bill_details_page.clkChangePaymentMethod();
 			//fido_account_overview_page.clkChangeMethodOfPayment();
 		}
 		
-		//Change from manual to CC
+		//Change from manual to BANK
+				reporter.reportLogWithScreenshot("Change method of payment from Manual to BANK");
+				common_business_flows.changeToBank();		
+				reporter.reportLogWithScreenshot("Navigation to Account overview page");
+				fido_bill_details_page.clkAccountOverview();
+				reporter.reportLogWithScreenshot("Account overview page");
+				//fido_account_overview_page.clkChangeMethodOfPayment();
+				fido_account_overview_page.clkPenIconForChangePaymentMethod();
+				reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+						"Change payment method modal displayed.",
+						"Change payment method modal didn't display as expected.");
 		
+		
+	
+		//Change from Bank to CC
+		reporter.reportLogWithScreenshot("Change method of payment from Bank to CC");
 		common_business_flows.changeToCC();		
 		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
@@ -75,10 +89,14 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
-			
-		//Change CC to bank
-		reporter.reportLogWithScreenshot("Change method of payment from CC to BANK");
-		common_business_flows.changeToBank();		
+		
+		//Change CC to manual
+		reporter.reportLogWithScreenshot("Change method of payment from CC to Manual");
+		common_business_flows.changeToManual();
+		fido_bill_details_page.clkAccountOverview();
+		fido_account_overview_page.clkViewBillNew(strBAN);
+		fido_bill_details_page.clkChangePaymentMethod();
+		common_business_flows.changeToCC();		
 		fido_bill_details_page.clkAccountOverview();
 		reporter.reportLogWithScreenshot("Account overview page");
 		//fido_account_overview_page.clkChangeMethodOfPayment();
@@ -86,6 +104,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
+		
 		
 
 	}

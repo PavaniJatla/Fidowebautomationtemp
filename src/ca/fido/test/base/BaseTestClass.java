@@ -46,7 +46,7 @@ public class BaseTestClass {
 	protected FidoLogintoFacebookPage fido_loginto_facebook_page;
 	protected FidoAccountRegistrationPage fido_account_registration_page;
 	public FidoProfileAndSettingPage fido_profile_and_setting_page;
-	protected FidoPaymentOptionsPage fido_payment_options_page;
+	public FidoPaymentOptionsPage fido_payment_options_page;
 	protected FidoMakePaymentPage fido_make_payment_page;
 	protected FidoRecoverPassOrNamePage fido_recover_pass_or_name_page;
 	protected FidoPaymentHistoryPage fido_payment_history_page;
