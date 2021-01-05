@@ -26,26 +26,39 @@ public class FidoSS_Regression_TC072_AO_ValidateAOpageWithMultiBANprofile extend
 	}
 	
 /*
-"1. Navigate to Fido.ca
-2. Sign in with proper credentials.
-3.Verify the account balance in AO page
-4.Validate the  ""Cancelled"" badge and the placement of badge  in AO page
-5.Validate the BAN Number for which the account is cancelled
-6.Validate the Billing CTA buttons and AAL offer for cancelled account
-7.Validate ""View Bill History"" link in AO page and click on it
-8.Validate the same details for the other cancelled accounts as before
-9.Verify the details for other active accounts."	
-"1.Fido.ca is up and running
-2.User is displayed with Account Overview page successfully
-3.Account balance is not displayed for cancelled account
-4.Cancelled Badge is displayed next to the account type label in the account container as per mock
-5.Account number is present beneath the account type label with no services(CTN, Internet) displayed  associated 
-with that account
-6.Billing CTA buttons (View Billing, Make Payment) and AAL offer are not displayed as expected
-7.User is directed to the invoice history page successfully as expected
-8.Details  are verified for other cancelled accounts successfully
-9.Details of other active accounts are displayed as usual"	
+1. Navigate to fido.ca
+2. Click on sign in
+3. Login with valid credentials 
+4. Validate account placement.
+5.Validate account container for each BAN.
+
+
+
+1. Fido.ca landing page is opened successfully
+2. Sign in popup is displayed
+3. Account overview page displayed
+4. Order of the account should be as below.
+		Order of display for mixed account types:
+		- When there are multiples of each account type the oldest account shall be shown first (on top).
+		Active Mobile (Postpaid)
+		Active Home Internet
+		Active Prepaid
+		Cancelled Mobile (Postpaid)
+		Cancelled Home Internet
+		Cancelled Prepaid
+
+5. The Account container should be displayed the following basic elements:
+		Product Icon
+		Account Type
+		Account Number
+		Last Refill information (prepaid) 
+		Current Balance/Available balance(Prepaid)
+		Billing Due Date/Balance Expiry Date(Prepaid)"
  */
+	
+	
+	
+	
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() throws InterruptedException {
 		closeSession();
@@ -97,13 +110,10 @@ with that account
 				"");
 		reporter.hardAssert(fido_account_overview_page.validateViewBillHistoryLink(strCancelledBAN),
 				"View bill history link is prsent for the cancelled account",
-				"View Bill history link is not present for the cancelled account");
-		
-		
+				"View Bill history link is not present for the cancelled account");			
 		reporter.hardAssert(fido_account_overview_page.validateDetailsForActiveAccounts(strActiveBAN),
 				"Details of other active accounts are displayed as usual",
-				"Details of other active accounts seem to be not displayed as usual, please investigate");
-		
+				"Details of other active accounts seem to be not displayed as usual, please investigate");		
 		reporter.reportLogWithScreenshot("Click on View Bill History Link");
 		fido_account_overview_page.clkViewBillHistoryink(strCancelledBAN);
 		//User is directed to the invoice history page successfully as expected
