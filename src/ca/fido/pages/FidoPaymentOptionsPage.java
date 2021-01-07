@@ -21,7 +21,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	  }
 	//--------- New elements after change in Method of payment
 	
-	@FindBy(xpath = "//p[text()='Credit Card' or contains(text(),'Carte de Cr')]/ancestor::a")
+	@FindBy(xpath = "//p[text()='Credit Card' or contains(text(),'credit card') or contains(text(),'Carte de Cr')]/ancestor::a")
 	WebElement btnCreditCard;
 	
 	@FindBy(xpath = "//fds-chip/a//p[text()='Credit Card' or contains(text(),'Carte de Cr') or text()='Switch to credit card']")
