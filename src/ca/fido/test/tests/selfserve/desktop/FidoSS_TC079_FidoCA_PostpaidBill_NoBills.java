@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @author Karthic.Hasan
  *
  */
-public class FidoSS_TC022_FidoCA_PostpaidBill_NoBills extends BaseTestClass {
+public class FidoSS_TC079_FidoCA_PostpaidBill_NoBills extends BaseTestClass {
 
 	@BeforeMethod(alwaysRun = true)
 	@Parameters({ "strBrowser", "strLanguage" })
@@ -34,8 +34,8 @@ public class FidoSS_TC022_FidoCA_PostpaidBill_NoBills extends BaseTestClass {
 	public void postPaidPaymentBank() throws InterruptedException {
 		fido_home_page.clkLogin();
 		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc22.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc22.getPassword());
+		fido_login_page.setUsernameInFrame(TestDataHandler.tc79.getUsername());
+		fido_login_page.setPasswordInFrame(TestDataHandler.tc79.getPassword());
 		reporter.reportLogWithScreenshot("Login Credential is entered.");
 		fido_login_page.clkLoginInFrame();
 		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), "Login proceed without error.",
@@ -43,7 +43,7 @@ public class FidoSS_TC022_FidoCA_PostpaidBill_NoBills extends BaseTestClass {
 		fido_login_page.switchOutOfSignInFrame();
 		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login succeed.", "Failed to login.");
 		reporter.reportLogWithScreenshot("Account overview page");
-		String strBAN = TestDataHandler.tc22.getaccountDetails().getBan();
+		String strBAN = TestDataHandler.tc79.getaccountDetails().getBan();
 		Thread.sleep(5000);
 		fido_account_overview_page.clkViewBillNew(strBAN);
 		reporter.reportLogWithScreenshot("View bill page is open");
