@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  * @author Mirza.Kamran
  *
  */
-public class FidoSS_TC0XX_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestClass{
+public class FidoSS_TC077_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
