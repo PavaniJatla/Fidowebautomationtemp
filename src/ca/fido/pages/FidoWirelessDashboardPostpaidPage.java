@@ -122,13 +122,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	})
 	WebElement divMyPlanText;
 	
-	@FindBy (xpath = "//img[@class='hours-data']")
+	@FindBy (xpath = "//img[contains(@class,'hours-data')]")
 	WebElement imgPlanBenefitsHoursOfData;
 	
-	@FindBy (xpath = "//img[@class='fido-xtra']")
+	@FindBy (xpath = "//img[contains(@class,'fido-xtra')]")
 	WebElement imgPlanBenefitsXtra;
 	
-	@FindBy (xpath = "//img[@class='fido-roam']")
+	@FindBy (xpath = "//img[contains(@class,'fido-roam')]")
 	WebElement imgPlanBenefitsRoam;
 	
 	@FindBy (xpath = "//span[@translate='wireless.dashboard.myPlan.viewFullPlanCTA' or text()='View full plan details' or contains(text(),'Voir les détails du plan')]")
