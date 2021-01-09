@@ -30,67 +30,67 @@ public class Mobile_FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 	
 	@Test(groups = {"MobileSanitySS","MobileBillingAndPaymentsSS"})
 	public void mobilePostPaidPaymentViewBill() throws InterruptedException, ParseException {
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
-		fido_home_page.clkLoginMobile();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc16.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc16.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();		
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navgation card");	
+		getFidohomepage().clkLoginMobile();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrameMobile();		
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 							"Login succeed.", 
 							"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page.");
-		//Integer totalCTN=fido_account_overview_page.getCTNUsers().size();		
-		//fido_account_overview_page.clkViewBill();
+		getReporter().reportLogWithScreenshot("Account overview page.");
+		//Integer totalCTN=getFidoaccountoverviewpage().getCTNUsers().size();		
+		//getFidoaccountoverviewpage().clkViewBill();
 		String strBAN = TestDataHandler.tc16.getaccountDetails().getBan();
-		fido_account_overview_page.clkViewBillNew(strBAN);
-		reporter.reportLogWithScreenshot("View bill page is open");
-		fido_account_overview_page.scrollToMiddleOfPage();
-		reporter.reportLogWithScreenshot("Middle of view bill page");
-		fido_bill_details_page.switchToDefaultContent();
-		reporter.reportLogWithScreenshot("Get the bill amount from View Bill drop dwon");
-		String billAmount = fido_bill_details_page.getBillAmountFromViewBillDropDownMobile();	
-		reporter.reportLogWithScreenshot("Bills selected from drop down");
+		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getReporter().reportLogWithScreenshot("View bill page is open");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getReporter().reportLogWithScreenshot("Middle of view bill page");
+		getFidobilldetailspage().switchToDefaultContent();
+		getReporter().reportLogWithScreenshot("Get the bill amount from View Bill drop dwon");
+		String billAmount = getFidobilldetailspage().getBillAmountFromViewBillDropDownMobile();	
+		getReporter().reportLogWithScreenshot("Bills selected from drop down");
 		if(!billAmount.equals(""))
 		{				
-			fido_bill_details_page.switchToFrameViewBillMobile();		
-			String billValue = fido_bill_details_page.getMyBillValueDetailsMobile();	
+			getFidobilldetailspage().switchToFrameViewBillMobile();		
+			String billValue = getFidobilldetailspage().getMyBillValueDetailsMobile();	
 			
 			//===old code ======================
-			/*Double subTotal = fido_bill_details_page.getBillSubTotal();
-			Double balFwd =fido_bill_details_page.getBillBalanceForward();
-			Double acntChargsCrdts = fido_bill_details_page.getBillAccountChargeCredits();
+			/*Double subTotal = getFidobilldetailspage().getBillSubTotal();
+			Double balFwd =getFidobilldetailspage().getBillBalanceForward();
+			Double acntChargsCrdts = getFidobilldetailspage().getBillAccountChargeCredits();
 			Double sum = subTotal+balFwd+acntChargsCrdts; */
 			
 	//		DecimalFormat format = new DecimalFormat("##.00");
 	//	    //sum = Double.parseDouble(format.format(sum));
-	//		Double totaltoPay = fido_bill_details_page.getTotalToPayValue();
-			fido_bill_details_page.switchToDefaultContent();	
-			reporter.hardAssert(fido_bill_details_page.verifyIfBillValueInMainViewAndBillAmountInDropdownMatch(
+	//		Double totaltoPay = getFidobilldetailspage().getTotalToPayValue();
+			getFidobilldetailspage().switchToDefaultContent();	
+			getReporter().hardAssert(getFidobilldetailspage().verifyIfBillValueInMainViewAndBillAmountInDropdownMatch(
 					billValue.replaceAll("\\$", ""),billAmount.replaceAll(",", ".").replaceAll("\\$", "")),
 					"Bill value in main view matched the bill amount in drop down",
 					"Bill value in main view does not match the bill amount in drop down");
-		  /*reporter.softAssert(fido_bill_details_page.verifyIfAddedSumValueMatchesTheTotalBillValueDisplayed(sum,totaltoPay)
+		  /*getReporter().softAssert(getFidobilldetailspage().verifyIfAddedSumValueMatchesTheTotalBillValueDisplayed(sum,totaltoPay)
 					,"Added sum value matches the total bill value displayed"
 					,"Added sum value mismatch the total bill value displayed"); */
-			//reporter.softAssert(fido_bill_details_page.verifyAllCTNBillsMatchesTheSubTotalValue(subTotal)
+			//getReporter().softAssert(getFidobilldetailspage().verifyAllCTNBillsMatchesTheSubTotalValue(subTotal)
 				// 	,"The total CTN bills match the sub total value"
 				//	,"The total CTN bills mismatc the sub total value");
-			//reporter.hardAssert(fido_bill_details_page.verifyCTNBillCountMatchesTheTotalCTNFromOverviewPageMobile(totalCTN),
+			//getReporter().hardAssert(getFidobilldetailspage().verifyCTNBillCountMatchesTheTotalCTNFromOverviewPageMobile(totalCTN),
 			//		"CTN bill count matched the total number of CTN from overview page",
 			//		"CTN bill count mismatch the total number of CTN from overview page");	
 		
 		}else
 		{
-			fido_bill_details_page.selectOlderBillViewBillDropDownMobile();
-			reporter.reportLogWithScreenshot("Older bills selected");
-			reporter.hardAssert(fido_bill_details_page.isLabelComingSoonDisplayed(),
+			getFidobilldetailspage().selectOlderBillViewBillDropDownMobile();
+			getReporter().reportLogWithScreenshot("Older bills selected");
+			getReporter().hardAssert(getFidobilldetailspage().isLabelComingSoonDisplayed(),
 								"No bills generated yet for this account",
 								"Some issue with bills, please investigate");
 			

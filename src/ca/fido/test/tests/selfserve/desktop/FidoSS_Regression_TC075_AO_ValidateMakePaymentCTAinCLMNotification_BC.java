@@ -37,31 +37,31 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 	@Test(groups = {"AccountOverviewSS"})
 	public void postPaidChangeMOP() {
 //		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc75.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc75.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc75.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc75.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 				
-		reporter.hardAssert(fido_account_overview_page.verifyIfCLMNotificationIsDisplayed(),
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfCLMNotificationIsDisplayed(),
 				"The user has atleast 1 active account which has already automatic payments option",
 				"The user should have atleast 1 active account which has already automatic payments option");
 		
-		reporter.hardAssert(fido_account_overview_page.verifyIfMakePaymentIsDisplayedCLMNotificationIsDisplayed(),
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfMakePaymentIsDisplayedCLMNotificationIsDisplayed(),
 				"The user has atleast 1 active account which has already automatic payments option",
 				"The user should have atleast 1 active account which has already automatic payments option");
 		
-		fido_account_overview_page.clkMakePaymentOnCLMNotification();
-		reporter.hardAssert(fido_make_payment_page.verifyPaymentModalIsDisplayed(),
+		getFidoaccountoverviewpage().clkMakePaymentOnCLMNotification();
+		getReporter().hardAssert(getFidomakepaymentpage().verifyPaymentModalIsDisplayed(),
 				"Make payment modal displayed.",
 				"Make payment modal didn't display as expected.");
 							

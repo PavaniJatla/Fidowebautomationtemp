@@ -27,34 +27,34 @@ public class Fido_BFA_TC07_PPC_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
 	public void ppcFlowTest() {
-		reporter.reportLogWithScreenshot("Fido Home page");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.testCase07.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.testCase07.getPassword());
-		reporter.reportLogWithScreenshot("Login overlay");
-		fido_login_page.clkLoginInFrame();
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login Successful", "Login Error");
-		reporter.reportLogWithScreenshot("Account Overview page");
-		fido_account_overview_page.clkSpecificCTNBadge(TestDataHandler.testCase07.getCtn());
-		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-		reporter.reportLogWithScreenshot("Mobile Dashboard page");
-		fido_wireless_dashboard_postpaid_page.clkChangePlan();
-		reporter.hardAssert(fido_choose_plan_page.verifyChangePlanPageLoad(), "Price Plan Change page loaded", "Price Plan Change page load error");
-		fido_choose_plan_page.clkPlanType(TestDataHandler.testCase07.getNewPlanType());
-		fido_choose_plan_page.selectFirstAvailablePricePlan();
-		reporter.reportLogWithScreenshot("Change Your Plan page");
-		fido_choose_plan_page.clkContinue();
-		fido_choose_addons_page.clkCheckOut();
-		fido_order_review_page.clkTermsNConditionsConsent();
-		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase07.getUsername());
-		reporter.reportLogWithScreenshot("Order Review page");
-		fido_order_review_page.clkCompleteOrder();
-		fido_order_review_page.waitForOrderProcessing();
-		reporter.hardAssert(fido_order_confirmation_page.verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
-		reporter.reportLogWithScreenshot("Order Confirmation page");
+		getReporter().reportLogWithScreenshot("Fido Home page");
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.testCase07.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.testCase07.getPassword());
+		getReporter().reportLogWithScreenshot("Login overlay");
+		getFidologinpage().clkLoginInFrame();
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+		getReporter().reportLogWithScreenshot("Account Overview page");
+		getFidoaccountoverviewpage().clkSpecificCTNBadge(TestDataHandler.testCase07.getCtn());
+		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
+		getReporter().reportLogWithScreenshot("Mobile Dashboard page");
+		getFidowirelessdashboardpostpaidpage().clkChangePlan();
+		getReporter().hardAssert(getFidochooseplanpage().verifyChangePlanPageLoad(), "Price Plan Change page loaded", "Price Plan Change page load error");
+		getFidochooseplanpage().clkPlanType(TestDataHandler.testCase07.getNewPlanType());
+		getFidochooseplanpage().selectFirstAvailablePricePlan();
+		getReporter().reportLogWithScreenshot("Change Your Plan page");
+		getFidochooseplanpage().clkContinue();
+		getFidochooseaddonspage().clkCheckOut();
+		getFidoorderreviewpage().clkTermsNConditionsConsent();
+		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.testCase07.getUsername());
+		getReporter().reportLogWithScreenshot("Order Review page");
+		getFidoorderreviewpage().clkCompleteOrder();
+		getFidoorderreviewpage().waitForOrderProcessing();
+		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
+		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}
 	
 	@Parameters({"strBrowser", "strLanguage"})

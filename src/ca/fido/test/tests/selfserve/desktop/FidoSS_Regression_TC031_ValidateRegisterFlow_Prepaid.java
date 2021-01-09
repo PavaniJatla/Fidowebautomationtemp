@@ -29,37 +29,37 @@ public class FidoSS_Regression_TC031_ValidateRegisterFlow_Prepaid extends BaseTe
 	public void prepaidValidateRegisterFlow() {
 
 		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkRegisterIframe();
-		fido_account_registration_page.clkRegisterNow();
-		reporter.reportLogWithScreenshot("Register now is clicked.");
-		fido_account_registration_page.clkPrepaidCustomer();
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkRegisterIframe();
+		getFidoaccountregistrationpage().clkRegisterNow();
+		getReporter().reportLogWithScreenshot("Register now is clicked.");
+		getFidoaccountregistrationpage().clkPrepaidCustomer();
 		
 		String strEmail = TestDataHandler.tc31.getaccountDetails().getEmail();
 		String strPassword = TestDataHandler.tc31.getaccountDetails().getPassword();
-		fido_account_registration_page.setFidoPrepaidEmail(strEmail);
-		fido_account_registration_page.setConfirmFidoPrepaidEmail(strEmail);
-		fido_account_registration_page.setFidoPrepaidPassword(strPassword);
-		fido_account_registration_page.setConfirmFidoPrepaidPassword(strPassword);
-		fido_account_registration_page.clkBtnContinuePrepaidRegister();
-		reporter.hardAssert(fido_account_registration_page.verifyMsgDisplayedForEmailSentToPrepaidRegisteredEmail(),
+		getFidoaccountregistrationpage().setFidoPrepaidEmail(strEmail);
+		getFidoaccountregistrationpage().setConfirmFidoPrepaidEmail(strEmail);
+		getFidoaccountregistrationpage().setFidoPrepaidPassword(strPassword);
+		getFidoaccountregistrationpage().setConfirmFidoPrepaidPassword(strPassword);
+		getFidoaccountregistrationpage().clkBtnContinuePrepaidRegister();
+		getReporter().hardAssert(getFidoaccountregistrationpage().verifyMsgDisplayedForEmailSentToPrepaidRegisteredEmail(),
 				"Message email sent to registered email displayed.",
 				"Message email sent to registered email didn't display.");
-		fido_account_registration_page.clkBtnOkayPrepaidRegister();
+		getFidoaccountregistrationpage().clkBtnOkayPrepaidRegister();
 		//Login with the registered credential
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		common_business_flows.loginApplication(strEmail, strPassword);
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getCommonbusinessflows().loginApplication(strEmail, strPassword);
 		
-		reporter.hardAssert(fido_prepaid_link_account_page.verifyHeaderConnectMyAccountDisplayed(),
+		getReporter().hardAssert(getFidoprepaidlinkaccountpage().verifyHeaderConnectMyAccountDisplayed(),
 				"Connect my account header displayed.",
 				"Connect my account header didn't display.");
-		fido_prepaid_link_account_page.clkLabelPrepaidService();
+		getFidoprepaidlinkaccountpage().clkLabelPrepaidService();
 		String strPrepaidCtn = TestDataHandler.tc31.getaccountDetails().getPhoneNumber();
-		fido_prepaid_link_account_page.setFidoPrepaidCtn(strPrepaidCtn);
-		reporter.reportLogWithScreenshot("Connect a prepaid account page");
-		fido_prepaid_link_account_page.clkBtnSendMeCode();
+		getFidoprepaidlinkaccountpage().setFidoPrepaidCtn(strPrepaidCtn);
+		getReporter().reportLogWithScreenshot("Connect a prepaid account page");
+		getFidoprepaidlinkaccountpage().clkBtnSendMeCode();
 //Got recaptcha here!!!
 
  

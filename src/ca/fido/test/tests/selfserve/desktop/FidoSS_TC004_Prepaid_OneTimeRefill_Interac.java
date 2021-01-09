@@ -27,58 +27,58 @@ public class FidoSS_TC004_Prepaid_OneTimeRefill_Interac  extends BaseTestClass{
 	
 	@Test(groups = {"RegressionSS","BillingAndPaymentsSS","PrepaidSS"})
 	public void prepaidOneTimeRefill() {
-		fido_home_page.clkLogin();
+		getFidohomepage().clkLogin();
 		String userName=TestDataHandler.tc0405.getUsername();
 		String password=TestDataHandler.tc0405.getPassword();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkBtnRefillNow();
-		reporter.reportLogWithScreenshot("Refill now page.");
-		String balanceBeforeRefill = fido_refill_page.getBalanceAmount();	
+		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidoaccountoverviewpage().clkBtnRefillNow();
+		getReporter().reportLogWithScreenshot("Refill now page.");
+		String balanceBeforeRefill = getFidorefillpage().getBalanceAmount();	
 		System.out.println("Balance before refill is: " + balanceBeforeRefill);
-		fido_refill_page.clkOneTimeRefill();
-		reporter.reportLogWithScreenshot("One time refill is clicked.");
-		fido_refill_page.selectPayByInterac();		
-		fido_refill_page.clkPayByInteracContinue();	
-		String refillAmount = fido_refill_page.getRefillAmount();
-		reporter.reportLogWithScreenshot("refill amount summary page");
+		getFidorefillpage().clkOneTimeRefill();
+		getReporter().reportLogWithScreenshot("One time refill is clicked.");
+		getFidorefillpage().selectPayByInterac();		
+		getFidorefillpage().clkPayByInteracContinue();	
+		String refillAmount = getFidorefillpage().getRefillAmount();
+		getReporter().reportLogWithScreenshot("refill amount summary page");
 		String balanceAfterRefill = Float.toString(Float.parseFloat(balanceBeforeRefill.replaceAll(",", ".").trim()) + Float.parseFloat(refillAmount.replaceAll("\\$", "").replaceAll(",", ".").trim()));
 		System.out.println("Balance after refill is: " + balanceAfterRefill);
-		fido_refill_page.clkSubmit();		
+		getFidorefillpage().clkSubmit();		
 		//Interac page flow starts
-		if(fido_interac_online_page.isMsgFromInteracDisplayed()) {
-			fido_interac_online_page.clkBtnAdvance();
-			fido_interac_online_page.clkLinkProceed();
+		if(getFidointeraconlinepage().isMsgFromInteracDisplayed()) {
+			getFidointeraconlinepage().clkBtnAdvance();
+			getFidointeraconlinepage().clkLinkProceed();
 		}
-		reporter.reportLogWithScreenshot("Interac page");
-		fido_interac_online_page.selectFinancialInstitution();
-		fido_interac_online_page.setInteracID(TestDataHandler.paymentInfo.getInteracDetails().getInteracID());
-		reporter.reportLogWithScreenshot("Set the interac ID");
-		fido_interac_online_page.selectFundAPayment();
-		reporter.reportLogWithScreenshot("Interac completed");		
-		reporter.hardAssert(fido_refill_page.verifyOneTimeRefillSubmittedSuccessFully(),
+		getReporter().reportLogWithScreenshot("Interac page");
+		getFidointeraconlinepage().selectFinancialInstitution();
+		getFidointeraconlinepage().setInteracID(TestDataHandler.paymentInfo.getInteracDetails().getInteracID());
+		getReporter().reportLogWithScreenshot("Set the interac ID");
+		getFidointeraconlinepage().selectFundAPayment();
+		getReporter().reportLogWithScreenshot("Interac completed");		
+		getReporter().hardAssert(getFidorefillpage().verifyOneTimeRefillSubmittedSuccessFully(),
 				"One time refill submitted successfully", 
 				"One time refill not submitted successfully");
-		fido_refill_page.clkBacktoMyAccount();
+		getFidorefillpage().clkBacktoMyAccount();
 		
 		//Verify the transaction
-		fido_account_overview_page.clkBtnViewTransaction();
-		fido_account_overview_page.clkFidoTransactions();	
-		reporter.reportLogWithScreenshot("To verify Fido transaction on this page.");
-		common_business_flows.scrollToMiddleOfWebPage();
-		reporter.reportLogWithScreenshot("Transaction view");
-		reporter.softAssert(fido_payment_history_page.verifyFidoTransactionRecord("Interac Online Interac en ligne",refillAmount), 
+		getFidoaccountoverviewpage().clkBtnViewTransaction();
+		getFidoaccountoverviewpage().clkFidoTransactions();	
+		getReporter().reportLogWithScreenshot("To verify Fido transaction on this page.");
+		getCommonbusinessflows().scrollToMiddleOfWebPage();
+		getReporter().reportLogWithScreenshot("Transaction view");
+		getReporter().softAssert(getFidopaymenthistorypage().verifyFidoTransactionRecord("Interac Online Interac en ligne",refillAmount), 
 				"Transaction record found.",
 				"Couldn't find the transaction record");
 	}

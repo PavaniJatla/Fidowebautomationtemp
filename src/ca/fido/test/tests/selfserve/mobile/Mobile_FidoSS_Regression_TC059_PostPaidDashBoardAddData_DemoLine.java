@@ -37,107 +37,107 @@ public class Mobile_FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine ex
 	
 	@Test(groups = {"MobileSanitySS","MobileRegressionSS","MobileDashboardSS"})
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
-		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");
-		fido_home_page.closeNewChatIfVisibleMobile();
-		fido_home_page.clkLoginMobile();
+		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navgation card");
+		getFidohomepage().closeNewChatIfVisibleMobile();
+		getFidohomepage().clkLoginMobile();
 	
 		String	userName = TestDataHandler.tc5859.getUsername();
 		String	password = TestDataHandler.tc5859.getPassword();
 		
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrameMobile();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc5859.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-//		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("dashboard page loaded");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+//		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
 
-		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
-		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
-		reporter.reportLogWithScreenshot("Click Add data");
-		reporter.reportLogWithScreenshot("Verify add data overlay");
-		reporter.hardAssert(fido_add_data_page.verifyOverlayAddOnDisplayed(),
+		double previousTotalData = getFidowirelessdashboardpostpaidpage().getValueTotalData();
+		double previousRemainingData = getFidowirelessdashboardpostpaidpage().getValueRemainingData();
+		getFidowirelessdashboardpostpaidpage().clkAddDataButton();
+		getReporter().reportLogWithScreenshot("Click Add data");
+		getReporter().reportLogWithScreenshot("Verify add data overlay");
+		getReporter().hardAssert(getFidoadddatapage().verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
 							"data add on overlay is not displayed");			
-		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
+		getReporter().reportLogWithScreenshot("Add monthly data add on overlay");
 		//For more than 3 data top-up options, it will show as drop down
-		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
-//		fido_add_data_page.clkSelectAmountDropDown();
-//		fido_add_data_page.clkTheFirstDataPlanOptionFromDropDown();
-		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+		getFidoadddatapage().clkTheFirstDataPlanBtnOnAddDataOverlay();
+//		getFidoadddatapage().clkSelectAmountDropDown();
+//		getFidoadddatapage().clkTheFirstDataPlanOptionFromDropDown();
+		getFidoadddatapage().clkContinueBtnOnAddDataOverlay();
+		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
-		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");
+		getFidoadddatapage().clkPurchaseBtnOnAddDataOverlay();
 		double dataAdded = 0;
-		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
-			reporter.reportLogWithScreenshot("Add data limit reached.");
+		if(getFidoadddatapage().isLimitReachedMsgDisplayed()) {
+			getReporter().reportLogWithScreenshot("Add data limit reached.");
 		}else {
-			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+			getReporter().hardAssert(getFidoadddatapage().verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
-			dataAdded = fido_add_data_page.getValueAddedData();
-			reporter.reportLogWithScreenshot("Add data success modal.");
+			dataAdded = getFidoadddatapage().getValueAddedData();
+			getReporter().reportLogWithScreenshot("Add data success modal.");
 		}
-		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		getFidoadddatapage().clkCloseBtnOnAddDataOverlay();
 		//log out and login
 		
-		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
-		reporter.reportLogWithScreenshot("Starting sign out scenario");
-		common_business_flows.logOutAndResignInMobile(userName, password);
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getReporter().reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
+		getReporter().reportLogWithScreenshot("Starting sign out scenario");
+		getCommonbusinessflows().logOutAndResignInMobile(userName, password);
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Login failed, please investigate");
 		
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("dashboard page");		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("dashboard page");		
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 				"The data add-on reflected in total data.",
 				"The data add-on didn't reflect in total data.");	
 		
-		fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
+		getFidowirelessdashboardpostpaidpage().clkLinkViewDetailInUsage();
 		//Manage data page
-		reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+		getReporter().hardAssert(getFidodatamanagementpage().verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
 				"Manage data overlay is not displayed");	
-		reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
+		getReporter().softAssert(getFidodatamanagementpage().verifyPlanDataInManageDataOverlayDisplayed(),
 				"Plan data in Manage data overlay is displayed",
 				"Plan data in Manage data overlay is not displayed");	
-		reporter.reportLogWithScreenshot("Manage data overlay.");
-		reporter.softAssert(fido_data_management_page.verifyAddedDataInManageDataOverlayDisplayed(),
+		getReporter().reportLogWithScreenshot("Manage data overlay.");
+		getReporter().softAssert(getFidodatamanagementpage().verifyAddedDataInManageDataOverlayDisplayed(),
 				"Added data in Manage data overlay is displayed",
 				"Added data in Manage data overlay is not displayed");	
-		reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
+		getReporter().softAssert(getFidodatamanagementpage().verifyTotalDataInManageDataOverlayDisplayed(),
 				"Total data in Manage data overlay is displayed",
 				"Total data in Manage data overlay is not displayed");	
-		reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("mdt"),
+		getReporter().hardAssert(getFidodatamanagementpage().verifyDataAccuracyManageDataOverlay("mdt"),
 				"Accuracy of data in Manage data overlay is verified.",
 				"Accuracy of data in Manage data overlay didn't verify successfully.");	
-		double totalDataInManageDataPage = fido_data_management_page.getTotalDataInManageDataOverlay("mdt");
-		fido_data_management_page.clkLinkBackOnManageDataOverlay();
-		reporter.reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
-		double totalDataInUsageSection = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
+		double totalDataInManageDataPage = getFidodatamanagementpage().getTotalDataInManageDataOverlay("mdt");
+		getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
+		getReporter().reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
+		double totalDataInUsageSection = getFidowirelessdashboardpostpaidpage().getValueTotalData();
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataAlignWithManageDataPage(totalDataInUsageSection, totalDataInManageDataPage),
 				"Total data in usage section align with total data in Manage data page.",
 				"Total data in usage section doesn't align with total data in Manage data page.");	
 	

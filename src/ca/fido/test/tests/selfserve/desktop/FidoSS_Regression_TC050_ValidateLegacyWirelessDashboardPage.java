@@ -36,53 +36,53 @@ public class FidoSS_Regression_TC050_ValidateLegacyWirelessDashboardPage extends
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validatePostPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		fido_home_page.clkLogin();
+		getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc5055.getUsername();
 		String password = TestDataHandler.tc5055.getPassword();		
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login page, user name and password are set.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login page, user name and password are set.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc5055.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Clicked on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Clicked on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 		
-		reporter.reportLogWithScreenshot("dashboard page loaded");
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Remaining Is Displayed",
 							"Dashboard section data balance remaining is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardUsageBarIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
 							"Data usage bar is displayed",
 							"Data usage bar is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataInUsageSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
 							"Total Data in usage Section is displayed",
 							"Total Data in usage section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataDelayedIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLabelDataDelayedIsDisplayed(),
 							"Message data delayed is displayed for full plan dashboard",
 							"Message data delayed is not displayed for full plan dashboard, please investigate");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Days remaining in bill cycle is displayed for Non demo line account",
 							"Days remaining in bill cycle is not displayed for non-demoline account");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkNTextUsageModuleIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkNTextUsageModuleIsDisplayed(),
 							"Talk & Text usage module is displayed",
 							"Talk & Text usage module is not displayed, please investigate");
 
-		reporter.reportLogWithScreenshot("Wireless dashboard page usage section is displayed");
+		getReporter().reportLogWithScreenshot("Wireless dashboard page usage section is displayed");
 
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkUsageSectionofFullPlanIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkUsageSectionofFullPlanIsDisplayed(),
 							"Talk usage details section is displayed for full plan dashboard",
 							"Talk usage details section is not displayed for full plan dashboard, please investigate");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextUsageDetailsOfFullPlanIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTextUsageDetailsOfFullPlanIsDisplayed(),
 							"Text usage details section is displayed for full plan dashboard",
 							"Text usage details section is not displayed for full plan dashboard, please investigate");	
 			

@@ -32,30 +32,30 @@ public class FidoCH_Regression_TC_006_HSIServiceabilityLiveChatTest extends Base
 
 	@Test(groups = {"RegressionCH"})
 	public void checkHSIServiceabilityLiveChatFlow() {
-		reporter.reportLogWithScreenshot("Launched the Home Page");
-        fido_home_page.clkShop();
-        fido_home_page.clkHomeInternet();
-        reporter.reportLogWithScreenshot("Home Internet has selected");
-        fido_Shop_internet_page.clkCheckAvailability();
-        reporter.reportLogWithScreenshot("Launched the Internet Page");
+		getReporter().reportLogWithScreenshot("Launched the Home Page");
+        getFidohomepage().clkShop();
+        getFidohomepage().clkHomeInternet();
+        getReporter().reportLogWithScreenshot("Home Internet has selected");
+        getFidoshopinternetpage().clkCheckAvailability();
+        getReporter().reportLogWithScreenshot("Launched the Internet Page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        fido_Shop_internet_page.setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
-        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        fido_Shop_internet_page.clkCheckAvailabilityConfirmation(); 
-        reporter.reportLogWithScreenshot("Good News for the Service availability");
-        fido_Shop_internet_page.clkLiveChat();
-        fido_Shop_internet_page.verifyLiveChat();
-		reporter.softAssert(fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has opened", "Live chat frame hasn't opened");
-        reporter.reportLogWithScreenshot("Launched Live chat frame");
-        fido_Shop_internet_page.clkMinimizeChat();
-        reporter.reportLogWithScreenshot("Live chat frame has minimized");
-        fido_Shop_internet_page.clkMaximizeChat();
-        reporter.reportLogWithScreenshot("Launched Live chat frame");
-        fido_Shop_internet_page.clkCloseChat();
-        fido_Shop_internet_page.clkCloseChatConfirm();
-		//reporter.softAssert(!fido_Shop_internet_page.verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
-        reporter.reportLogWithScreenshot("Service availability confirm Popup");
+        getFidoshopinternetpage().setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        getFidoshopinternetpage().clkCheckAvailabilityConfirmation(); 
+        getReporter().reportLogWithScreenshot("Good News for the Service availability");
+        getFidoshopinternetpage().clkLiveChat();
+        getFidoshopinternetpage().verifyLiveChat();
+		getReporter().softAssert(getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has opened", "Live chat frame hasn't opened");
+        getReporter().reportLogWithScreenshot("Launched Live chat frame");
+        getFidoshopinternetpage().clkMinimizeChat();
+        getReporter().reportLogWithScreenshot("Live chat frame has minimized");
+        getFidoshopinternetpage().clkMaximizeChat();
+        getReporter().reportLogWithScreenshot("Launched Live chat frame");
+        getFidoshopinternetpage().clkCloseChat();
+        getFidoshopinternetpage().clkCloseChatConfirm();
+		//getReporter().softAssert(!getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
+        getReporter().reportLogWithScreenshot("Service availability confirm Popup");
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

@@ -30,47 +30,47 @@ public class FidoCH_Regression_TC_014_CFAHSIExistingCustomerValidateDashboardTes
 
 	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerValidateDashboardTest() {
-		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
-		retailer_champ_page.setUsername(System.getenv("SSPUsername"));
-		reporter.reportLogWithScreenshot("Entered the username");
-		retailer_champ_page.clkNext();
-		reporter.reportLogWithScreenshot("sign in has launched");
-		retailer_champ_page.setPassword(System.getenv("SSPPassword"));
-		reporter.reportLogWithScreenshot("Entered the password");
-		retailer_champ_page.clkSignIn();		
-		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
-		retailer_champ_page.clkAccept();
-		reporter.reportLogWithScreenshot("Dealer code page has Launched");
-		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
-		reporter.reportLogWithScreenshot("Entered the Dealer code");
-		retailer_champ_page.clkSubmit();
-		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
+		getReporter().reportLogWithScreenshot("Rogers outlook login page has launched");
+		getFidoretailerchamppage().setUsername(System.getenv("SSPUsername"));
+		getReporter().reportLogWithScreenshot("Entered the username");
+		getFidoretailerchamppage().clkNext();
+		getReporter().reportLogWithScreenshot("sign in has launched");
+		getFidoretailerchamppage().setPassword(System.getenv("SSPPassword"));
+		getReporter().reportLogWithScreenshot("Entered the password");
+		getFidoretailerchamppage().clkSignIn();		
+		getReporter().reportLogWithScreenshot("Notice Popup has Launched"); 
+		getFidoretailerchamppage().clkAccept();
+		getReporter().reportLogWithScreenshot("Dealer code page has Launched");
+		getFidoretailerchamppage().setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
+		getReporter().reportLogWithScreenshot("Entered the Dealer code");
+		getFidoretailerchamppage().clkSubmit();
+		getReporter().hardAssert(getFidoretailerchamppage().verifyAuthorized(),"Authorized","Authorization failed");
 		
-		reporter.reportLogWithScreenshot("SSP launchpad has launched");
-		retailer_champ_page.selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
-		reporter.reportLogWithScreenshot("Launched the Customer Information Security Popup");
-		fido_ssp_retailer_shop_page.clkSecurityAccept();
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
+		getReporter().reportLogWithScreenshot("SSP launchpad has launched");
+		getFidoretailerchamppage().selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
+		getReporter().reportLogWithScreenshot("Launched the Customer Information Security Popup");
+		getFidoretailershoppage().clkSecurityAccept();
+		getReporter().hardAssert(getFidoretailerhomepage().verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
 		
-		reporter.reportLogWithScreenshot("SSP dashboard has launched");
-		fido_ssp_retailer_home_page.setAccountNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan());
-		fido_ssp_retailer_home_page.setPostalCode(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getPostalCode());
-		reporter.reportLogWithScreenshot("Set the Agent account details");
-		fido_ssp_retailer_home_page.clkSearchButton();	
-		reporter.hardAssert(fido_ssp_retailer_search_results_page.verifysearchResults(), "Customer details are displayed", "Customer Search has failed");
-		reporter.reportLogWithScreenshot("Customer search results");
-		fido_ssp_retailer_search_results_page.clkView();
-		reporter.hardAssert(fido_ssp_retailer_search_results_page.verifyCustomerAuthRemainder(), "Customer Authentication remainder popup has displayed", "Customer Authentication remainder popup hasn't displayed");
-		reporter.reportLogWithScreenshot("Customer Authentication remainder popup");
-		fido_ssp_retailer_search_results_page.clkContinue();		
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
-		reporter.reportLogWithScreenshot("Launched the Account Page");
-		fido_internet_dashboard_page.clkUsageNService();
-		fido_internet_dashboard_page.clkInternetService();
-		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
-     	fido_internet_dashboard_page.clkChangePackageSsp();
-		reporter.reportLogWithScreenshot("Packages page has Launched");
-		reporter.hardAssert(fido_internet_dashboard_page.verifylblInternetPlans(), "The internet packages are displayed ", "Failed to display the Internet packages");	
+		getReporter().reportLogWithScreenshot("SSP dashboard has launched");
+		getFidoretailerhomepage().setAccountNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan());
+		getFidoretailerhomepage().setPostalCode(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getPostalCode());
+		getReporter().reportLogWithScreenshot("Set the Agent account details");
+		getFidoretailerhomepage().clkSearchButton();	
+		getReporter().hardAssert(getFidoretailersearchresultspage().verifysearchResults(), "Customer details are displayed", "Customer Search has failed");
+		getReporter().reportLogWithScreenshot("Customer search results");
+		getFidoretailersearchresultspage().clkView();
+		getReporter().hardAssert(getFidoretailersearchresultspage().verifyCustomerAuthRemainder(), "Customer Authentication remainder popup has displayed", "Customer Authentication remainder popup hasn't displayed");
+		getReporter().reportLogWithScreenshot("Customer Authentication remainder popup");
+		getFidoretailersearchresultspage().clkContinue();		
+		getReporter().hardAssert(getFidoretailerhomepage().verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
+		getReporter().reportLogWithScreenshot("Launched the Account Page");
+		getFidointernetdashboardpage().clkUsageNService();
+		getFidointernetdashboardpage().clkInternetService();
+		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
+     	getFidointernetdashboardpage().clkChangePackageSsp();
+		getReporter().reportLogWithScreenshot("Packages page has Launched");
+		getReporter().hardAssert(getFidointernetdashboardpage().verifylblInternetPlans(), "The internet packages are displayed ", "Failed to display the Internet packages");	
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

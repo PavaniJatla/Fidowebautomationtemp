@@ -59,23 +59,23 @@ Billing Due Date(postpaid/internet)/Balance Expiry Date(Prepaid)
 
 	@Test(groups = {"SanitySS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndUpdateBillingAddress() throws InterruptedException, ParseException {		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc19.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc19.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc19.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc19.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
 		String newAddress;
-		fido_account_overview_page.clkSubNavProfileAndSettings();
-		reporter.reportLogWithScreenshot("profile and settings page");
-		String existingAddress=fido_profile_and_setting_page.getOldAddress();
+		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+		getReporter().reportLogWithScreenshot("profile and settings page");
+		String existingAddress=getFidoprofileandsettingpage().getOldAddress();
 		if(!existingAddress.contains("4501 Valiant") 
 			&& existingAddress.contains(TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")))
 		{
@@ -85,19 +85,19 @@ Billing Due Date(postpaid/internet)/Balance Expiry Date(Prepaid)
 			newAddress=TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")
 					  +" "+TestDataHandler.tc1417.getaccountDetails().getAddress().get("line2");
 		}
-		fido_profile_and_setting_page.clkUpdateBillingAddress();
-		reporter.reportLogWithScreenshot("update billing address link is clicked");
-		if(fido_profile_and_setting_page.isVerifyYourIdentityOverlayDisplayed())
+		getFidoprofileandsettingpage().clkUpdateBillingAddress();
+		getReporter().reportLogWithScreenshot("update billing address link is clicked");
+		if(getFidoprofileandsettingpage().isVerifyYourIdentityOverlayDisplayed())
     	{
-			fido_profile_and_setting_page.switchToVerifyIdentityIFrame();
-			fido_profile_and_setting_page.clkContinueVerifyIdentity(); 			
-    		reporter.hardAssert(fido_profile_and_setting_page.isInEligibleUser(),
+			getFidoprofileandsettingpage().switchToVerifyIdentityIFrame();
+			getFidoprofileandsettingpage().clkContinueVerifyIdentity(); 			
+    		getReporter().hardAssert(getFidoprofileandsettingpage().isInEligibleUser(),
     				"User is taken to eligibility failure modal",
     				"User is NOT taken to eligibility failure modal");
-    		reporter.reportLogWithScreenshot("User is taken to eligibility failure modal");
-    		fido_profile_and_setting_page.clkClose();
-    		reporter.reportLogWithScreenshot("Clicks on close");
-    		reporter.hardAssert(fido_profile_and_setting_page.IsBillingAddressDisplayed(),
+    		getReporter().reportLogWithScreenshot("User is taken to eligibility failure modal");
+    		getFidoprofileandsettingpage().clkClose();
+    		getReporter().reportLogWithScreenshot("Clicks on close");
+    		getReporter().hardAssert(getFidoprofileandsettingpage().IsBillingAddressDisplayed(),
     				"Profile and Settings page is displayed"
     				, "Profile and Settings page not displayed");
     		

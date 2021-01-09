@@ -28,13 +28,13 @@ public class FidoSS_Regression_TC038_ValidateCommunityForumLogin  extends BaseTe
 	
 	@Test
 	public void validateCommunityForumLogin() {
-		fido_home_page.clkContactUs();
-		fido_Community_Page.clkFidoCommunity();
-		Assert.assertTrue(fido_Community_Page.verifyMenuForums()
-					&& fido_Community_Page.verifyMenuLibrary()
-					&& fido_Community_Page.verifyMenuBlog()
-					&& fido_Community_Page.verifyMenuQuickLinks());
-		fido_Community_Page.clkSignIn();
+		getFidohomepage().clkContactUs();
+		getFidocommunitypage().clkFidoCommunity();
+		Assert.assertTrue(getFidocommunitypage().verifyMenuForums()
+					&& getFidocommunitypage().verifyMenuLibrary()
+					&& getFidocommunitypage().verifyMenuBlog()
+					&& getFidocommunitypage().verifyMenuQuickLinks());
+		getFidocommunitypage().clkSignIn();
 		
 	}
 }

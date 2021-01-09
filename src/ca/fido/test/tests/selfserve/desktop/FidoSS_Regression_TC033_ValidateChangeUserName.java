@@ -32,65 +32,65 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		
 		//First attempt
 		//first login attempt with change Username credentials
-		reporter.reportLogWithScreenshot("View and Update UserName");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
+		getReporter().reportLogWithScreenshot("View and Update UserName");
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
 		String oldUserName=TestDataHandler.tc33.getUsername();
 		String password=TestDataHandler.tc33.getPassword();
 		String newUserName=TestDataHandler.tc33.getNewUsername();
-		fido_login_page.setUsernameInFrame(oldUserName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
-		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
+		getFidologinpage().setUsernameInFrame(oldUserName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();		
+		if(getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame())
 		{
-			reporter.reportLogWithScreenshot("Login attempt one not successful, trying attempt two");
+			getReporter().reportLogWithScreenshot("Login attempt one not successful, trying attempt two");
 			//second attempt
 			//switch the login name with the new username and attempt again
 			String tempUser=oldUserName;			
 			oldUserName=newUserName;
 			newUserName=tempUser;
 			
-			fido_login_page.setUsernameInFrame(oldUserName);
-			fido_login_page.setPasswordInFrame(password);
-			reporter.reportLogWithScreenshot("Login Credential is entered.");
-			fido_login_page.clkLoginInFrame();									
-			reporter.reportLogWithScreenshot("Login attempt two submitted.");
-			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+			getFidologinpage().setUsernameInFrame(oldUserName);
+			getFidologinpage().setPasswordInFrame(password);
+			getReporter().reportLogWithScreenshot("Login Credential is entered.");
+			getFidologinpage().clkLoginInFrame();									
+			getReporter().reportLogWithScreenshot("Login attempt two submitted.");
+			getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 					"Login proceed without error.", 
 					"Login failed with error.");
 			
 		}
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page.");
+		getReporter().reportLogWithScreenshot("Account overview page.");
 		//Update userName
-		fido_account_overview_page.clkSubNavProfileAndSettings();
-		reporter.reportLogWithScreenshot("Profile and settings page");
-		fido_profile_and_setting_page.clkChangeUserName();			
-		fido_profile_and_setting_page.setNewUserName(newUserName);
-		reporter.reportLogWithScreenshot("New username is entered.");
-		fido_profile_and_setting_page.clkSaveButton();		
-		reporter.hardAssert(fido_profile_and_setting_page.verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(newUserName),
+		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+		getReporter().reportLogWithScreenshot("Profile and settings page");
+		getFidoprofileandsettingpage().clkChangeUserName();			
+		getFidoprofileandsettingpage().setNewUserName(newUserName);
+		getReporter().reportLogWithScreenshot("New username is entered.");
+		getFidoprofileandsettingpage().clkSaveButton();		
+		getReporter().hardAssert(getFidoprofileandsettingpage().verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(newUserName),
 							"Username updated successfully",
 							"Username did not update successfully");
-		reporter.reportLogWithScreenshot("Username updated successfully");
-		common_business_flows.logOutAndResignIn(newUserName,password);		
+		getReporter().reportLogWithScreenshot("Username updated successfully");
+		getCommonbusinessflows().logOutAndResignIn(newUserName,password);		
 		
 		//reset back		
 		if(!newUserName.equalsIgnoreCase(oldUserName))
 		{
-			fido_account_overview_page.clkSubNavProfileAndSettings();
-			fido_profile_and_setting_page.clkChangeUserName();					
-			fido_profile_and_setting_page.setNewUserName(oldUserName);
-			reporter.reportLogWithScreenshot("Change username back to the old one.");
-			fido_profile_and_setting_page.clkSaveButton();
-			reporter.hardAssert(fido_profile_and_setting_page.verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(oldUserName),
+			getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+			getFidoprofileandsettingpage().clkChangeUserName();					
+			getFidoprofileandsettingpage().setNewUserName(oldUserName);
+			getReporter().reportLogWithScreenshot("Change username back to the old one.");
+			getFidoprofileandsettingpage().clkSaveButton();
+			getReporter().hardAssert(getFidoprofileandsettingpage().verifyUserNameUpdatedSuccessFullyOnProfileAndSettingsPg(oldUserName),
 								"Username is successfully reset back",
 								"User name reset not successful");			
-			reporter.reportLogWithScreenshot("Change user name back is done.");
+			getReporter().reportLogWithScreenshot("Change user name back is done.");
 		}
 				
 	}	

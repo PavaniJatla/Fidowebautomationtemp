@@ -28,34 +28,34 @@
 //	@Test
 //	public void ppcUpgradeTierFlow() {
 //		getDriver().get(TestDataHandler.bfaConfig.getHupURL());
-//		fido_login_page.switchToSignInFrame();
-//		fido_login_page.setUsernameInFrame(TestDataHandler.testCase04.getUsername());
-//		fido_login_page.setPasswordInFrame(TestDataHandler.testCase04.getPassword());
-//		reporter.reportLogWithScreenshot("Login overlay");
-//		fido_login_page.clkLoginInFrame();
-//		fido_login_page.switchOutOfSignInFrame();
-//		fido_choose_phone_page.selectSubscriber(TestDataHandler.testCase04.getCtn());
-//		reporter.hardAssert(fido_choose_phone_page.selectDevice(TestDataHandler.testCase04.getNewDevice()),"Device Found and Selected","Device Not Found");
-//		fido_build_plan_page.keepExistingPlan();
-//		fido_build_plan_page.clkContinueToAddons();
-//		fido_choose_addons_page.clkContinueToShipping();
-//		fido_shipping_page.selectHomeAddress();
-//		fido_shipping_page.clkContinueToOrderReview();
-//		fido_order_review_page.clkTermsNConditionsConsent();
-//		fido_order_review_page.setContractDigitalCopyEmail(TestDataHandler.testCase04.getUsername());
-//		if(fido_order_review_page.isPaymentRequired()) {
-//			fido_order_review_page.clkContinueToPayment();
-//			fido_payment_page.setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),
+//		getFidologinpage().switchToSignInFrame();
+//		getFidologinpage().setUsernameInFrame(TestDataHandler.testCase04.getUsername());
+//		getFidologinpage().setPasswordInFrame(TestDataHandler.testCase04.getPassword());
+//		getReporter().reportLogWithScreenshot("Login overlay");
+//		getFidologinpage().clkLoginInFrame();
+//		getFidologinpage().switchOutOfSignInFrame();
+//		getFidochoosephonepage().selectSubscriber(TestDataHandler.testCase04.getCtn());
+//		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.testCase04.getNewDevice()),"Device Found and Selected","Device Not Found");
+//		getFidobuildplanpage().keepExistingPlan();
+//		getFidobuildplanpage().clkContinueToAddons();
+//		getFidochooseaddonspage().clkContinueToShipping();
+//		getFidoshippingpage().selectHomeAddress();
+//		getFidoshippingpage().clkContinueToOrderReview();
+//		getFidoorderreviewpage().clkTermsNConditionsConsent();
+//		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.testCase04.getUsername());
+//		if(getFidoorderreviewpage().isPaymentRequired()) {
+//			getFidoorderreviewpage().clkContinueToPayment();
+//			getFidopaymentpage().setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),
 //												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth(),
 //												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear(),
 //												   TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCVV());
-//			fido_payment_page.clkContinueOrder();
+//			getFidopaymentpage().clkContinueOrder();
 //		} else {
-//			fido_order_review_page.clkCompleteOrder();
+//			getFidoorderreviewpage().clkCompleteOrder();
 //		}
-//		fido_order_review_page.waitForOrderProcessing();
-//		reporter.hardAssert(fido_order_confirmation_page.verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
-//		reporter.reportLogWithScreenshot("Order Confirmation page");
+//		getFidoorderreviewpage().waitForOrderProcessing();
+//		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
+//		getReporter().reportLogWithScreenshot("Order Confirmation page");
 //	}
 //	
 //	@Parameters({"strBrowser", "strLanguage"})

@@ -38,119 +38,119 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void verifyAddOTTDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
-		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		fido_home_page.clkLogin();
+		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
+		getFidohomepage().clkLogin();
 	
 		String	userName = TestDataHandler.tc61.getUsername();
 		String	password = TestDataHandler.tc61.getPassword();
 		
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc61.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("dashboard page loaded");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
 		
 
-//		double previousTotalData = fido_wireless_dashboard_postpaid_page.getValueTotalData();
-//		double previousRemainingData = fido_wireless_dashboard_postpaid_page.getValueRemainingData();
+//		double previousTotalData = getFidowirelessdashboardpostpaidpage().getValueTotalData();
+//		double previousRemainingData = getFidowirelessdashboardpostpaidpage().getValueRemainingData();
 
 		
-		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
+		getReporter().hardAssert(getFidodatamanagementpage().validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
-		int countOfExistSpeedPass = fido_data_management_page.getAllExistingAddOTTCount();
-		fido_data_management_page.clkLinkBackOnManageDataOverlay();
+		int countOfExistSpeedPass = getFidodatamanagementpage().getAllExistingAddOTTCount();
+		getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
 		
-		int countOfExistingAddOnsInMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddOns();
+		int countOfExistingAddOnsInMyPlan = getFidowirelessdashboardpostpaidpage().getAllExistingAddOns();
 		
 		
-		fido_wireless_dashboard_postpaid_page.clkAddDataButton();
+		getFidowirelessdashboardpostpaidpage().clkAddDataButton();
 		//4. Complete Add OTT flow
 		//4. Verify Only OTT options available (no MDT). OTT is added and reflected in total bucket,
-		reporter.hardAssert(fido_add_data_page.verifyOverlayOTTDataAddOnDisplayed(),
+		getReporter().hardAssert(getFidoadddatapage().verifyOverlayOTTDataAddOnDisplayed(),
 							"Verify Only OTT options available (no MDT)",
 							"It seems Only OTT options not available");			
-		reporter.reportLogWithScreenshot("Add OTT data add on overlay");
+		getReporter().reportLogWithScreenshot("Add OTT data add on overlay");
 				
-		fido_add_data_page.clkTheFirstDataPlanBtnOnAddDataOverlay();
-		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+		getFidoadddatapage().clkTheFirstDataPlanBtnOnAddDataOverlay();
+		getFidoadddatapage().clkContinueBtnOnAddDataOverlay();
+		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
-		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");
+		getFidoadddatapage().clkPurchaseBtnOnAddDataOverlay();
 		double dataAdded = 0;
 		String strValueAdded = null;
-		if(fido_add_data_page.isLimitReachedMsgDisplayed()) {
-			reporter.reportLogWithScreenshot("Add data limit reached for this account");
-			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		if(getFidoadddatapage().isLimitReachedMsgDisplayed()) {
+			getReporter().reportLogWithScreenshot("Add data limit reached for this account");
+			getFidoadddatapage().clkCloseBtnOnAddDataOverlay();
 		}else
 		 {
-			reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+			getReporter().hardAssert(getFidoadddatapage().verifyAddDataSuccessMsgDisplayed(),
 					"Add data success message is displayed",
 					"Add data success message is not displayed");	
-			strValueAdded = fido_add_data_page.getAddedValueWithGBOrMB();
-			dataAdded = fido_add_data_page.getValueAddedData();
-			reporter.reportLogWithScreenshot("Add data success modal.");
-			fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+			strValueAdded = getFidoadddatapage().getAddedValueWithGBOrMB();
+			dataAdded = getFidoadddatapage().getValueAddedData();
+			getReporter().reportLogWithScreenshot("Add data success modal.");
+			getFidoadddatapage().clkCloseBtnOnAddDataOverlay();
 			
 			
-			fido_wireless_dashboard_postpaid_page.clkLinkViewDetailInUsage();
+			getFidowirelessdashboardpostpaidpage().clkLinkViewDetailInUsage();
 			//Manage data page		
 			//5. Click on View details in usage dashboard plan section and manage data page
 			//5. Added Data section lists all add-ons separately and there is NO Cancel link next to OTT"
-			reporter.hardAssert(fido_data_management_page.verifyManageDataOverlayDisplayed(),
+			getReporter().hardAssert(getFidodatamanagementpage().verifyManageDataOverlayDisplayed(),
 					"Manage data overlay is displayed",
 					"Manage data overlay is not displayed");	
-			reporter.softAssert(fido_data_management_page.verifyPlanDataInManageDataOverlayDisplayed(),
+			getReporter().softAssert(getFidodatamanagementpage().verifyPlanDataInManageDataOverlayDisplayed(),
 					"Plan data in Manage data overlay is displayed",
 					"Plan data in Manage data overlay is not displayed");	
-			reporter.reportLogWithScreenshot("Manage data overlay.");
-			reporter.softAssert(fido_data_management_page.verifyAddedDataInManageDataOverlayDisplayed(),
+			getReporter().reportLogWithScreenshot("Manage data overlay.");
+			getReporter().softAssert(getFidodatamanagementpage().verifyAddedDataInManageDataOverlayDisplayed(),
 					"Added data in Manage data overlay is displayed",
 					"Added data in Manage data overlay is not displayed");	
-			reporter.softAssert(fido_data_management_page.verifyTotalDataInManageDataOverlayDisplayed(),
+			getReporter().softAssert(getFidodatamanagementpage().verifyTotalDataInManageDataOverlayDisplayed(),
 					"Total data in Manage data overlay is displayed",
 					"Total data in Manage data overlay is not displayed");	
-			reporter.hardAssert(fido_data_management_page.verifyDataAccuracyManageDataOverlay("ott"),
+			getReporter().hardAssert(getFidodatamanagementpage().verifyDataAccuracyManageDataOverlay("ott"),
 					"Accuracy of data in Manage data overlay is verified.",
 					"Accuracy of data in Manage data overlay didn't verify successfully.");		
 			
-			reporter.softAssert((fido_data_management_page.verifyAddedDataInDataDetails(1, countOfExistSpeedPass)
-					&& fido_data_management_page.verifyNoCancelLinkDisplayedForAddedData()),
+			getReporter().softAssert((getFidodatamanagementpage().verifyAddedDataInDataDetails(1, countOfExistSpeedPass)
+					&& getFidodatamanagementpage().verifyNoCancelLinkDisplayedForAddedData()),
 					"Added Data section lists all add-ons separately and there is NO Cancel link next to OTT",
 					"It seems AddedAdded Data section doesnt lists all add-ons separately or there is Cancel link next to OTT");
 			
-			fido_data_management_page.clkLinkBackOnManageDataOverlay();
-			reporter.reportLogWithScreenshot("Back on dashboard");
-			if (!fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)) {
-				common_business_flows.logOutAndResignIn(userName, password);
+			getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
+			getReporter().reportLogWithScreenshot("Back on dashboard");
+			if (!getFidowirelessdashboardpostpaidpage().verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)) {
+				getCommonbusinessflows().logOutAndResignIn(userName, password);
 				//rechange to the original one
-				if(fido_account_overview_page.verifySuccessfulLogin())
+				if(getFidoaccountoverviewpage().verifySuccessfulLogin())
 				{
-					reporter.reportLogWithScreenshot("Click on CTN badge");
-					fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-					reporter.reportLogWithScreenshot("dashboard page");			
+					getReporter().reportLogWithScreenshot("Click on CTN badge");
+					getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+					getReporter().reportLogWithScreenshot("dashboard page");			
 				}
 			}
 
-			fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
-			reporter.reportLogWithScreenshot("My Plan Details");
+			getFidowirelessdashboardpostpaidpage().scrollToMidOfDasboardPage();
+			getReporter().reportLogWithScreenshot("My Plan Details");
 			//All the added OTT are reflected in total bucket,plan section and manage data page
-			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)
+			getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyAddedDataInMyPlan(1, countOfExistingAddOnsInMyPlan)
 					,"My plans displayes the addons correctly","My Plan doesnt displays add ons correctly");
 		
 			if(strValueAdded.toLowerCase().contains("mo")||strValueAdded.toLowerCase().contains("mb"))
@@ -161,10 +161,10 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		}
 		
 		/*
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");	
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 								"The data add-on reflected in total data.",
 								"The data add-on didn't reflect in total data.");
 		*/					

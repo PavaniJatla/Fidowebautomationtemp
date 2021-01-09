@@ -43,51 +43,51 @@ public class FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostp
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validatewirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		fido_home_page.clkLogin();
+		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
+		getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc65.getUsername();
 		String password = TestDataHandler.tc65.getPassword();		
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc65.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("dashboard page loaded");
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Is Displayed",
 							"Dashboard section data balance not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardUsageBarIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
 							"usage bar is displayed",
 							"usage bar is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataInUsageSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
 							"Data Section is displayed",
 							"Data section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataDelayedIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLabelDataDelayedIsDisplayed(),
 							"Data delay message display.",
 							"Data delay message didnt displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Label N days reming for Bill cycle is displayed",
 							"Label N days remaining for Bill cycle is not displayed");
 	
-		reporter.reportLogWithScreenshot("Demo Line account dashboard page is displayed");
+		getReporter().reportLogWithScreenshot("Demo Line account dashboard page is displayed");
 
 		//Check the data usage running low 
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.isRunningLowUsageBarDisplayed(),
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().isRunningLowUsageBarDisplayed(),
 				"You are running low usage bar is displayed", 
 				"Running low usage bar is not displayed");
-		reporter.reportLogWithScreenshot("Running low usage bar is displayed");		
+		getReporter().reportLogWithScreenshot("Running low usage bar is displayed");		
 			
 	}
 	

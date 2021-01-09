@@ -29,55 +29,55 @@ public class FidoSS_TC014_FidoCA_PostpaidPaymentInterac extends BaseTestClass{
 	
 	@Test
 	public void postPaidPaymentInterac() throws InterruptedException {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc1417.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc1417.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc1417.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc1417.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.waitForPayNowToBecomeClickable();
-		fido_account_overview_page.clkPayNow();
-		fido_make_payment_page.setPaymentAmount("1");
-		reporter.reportLogWithScreenshot("payment amount entered");
-		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Interac);
-		reporter.reportLogWithScreenshot("Payment type interac selected");
-		fido_make_payment_page.clkPayOnInteracSite();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidoaccountoverviewpage().waitForPayNowToBecomeClickable();
+		getFidoaccountoverviewpage().clkPayNow();
+		getFidomakepaymentpage().setPaymentAmount("1");
+		getReporter().reportLogWithScreenshot("payment amount entered");
+		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Interac);
+		getReporter().reportLogWithScreenshot("Payment type interac selected");
+		getFidomakepaymentpage().clkPayOnInteracSite();
 		
-		if(fido_interac_online_page.isMsgFromInteracDisplayed()) {
-			fido_interac_online_page.clkBtnAdvance();
-			fido_interac_online_page.clkLinkProceed();
+		if(getFidointeraconlinepage().isMsgFromInteracDisplayed()) {
+			getFidointeraconlinepage().clkBtnAdvance();
+			getFidointeraconlinepage().clkLinkProceed();
 		}
-		reporter.reportLogWithScreenshot("Interac website");
-		fido_interac_online_page.selectFinancialInstitution();
-		reporter.reportLogWithScreenshot("Interac details entered");
-		fido_interac_online_page.setInteracID(TestDataHandler.paymentInfo.getInteracDetails().getInteracID());
-		fido_interac_online_page.selectFundAPayment();		
-		reporter.reportLogWithScreenshot("reference number page");
-		String refNo=fido_make_payment_page.getRefNumber();
-		reporter.reportLogWithScreenshot("payment reference number is :"+refNo);		
-		reporter.hardAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
+		getReporter().reportLogWithScreenshot("Interac website");
+		getFidointeraconlinepage().selectFinancialInstitution();
+		getReporter().reportLogWithScreenshot("Interac details entered");
+		getFidointeraconlinepage().setInteracID(TestDataHandler.paymentInfo.getInteracDetails().getInteracID());
+		getFidointeraconlinepage().selectFundAPayment();		
+		getReporter().reportLogWithScreenshot("reference number page");
+		String refNo=getFidomakepaymentpage().getRefNumber();
+		getReporter().reportLogWithScreenshot("payment reference number is :"+refNo);		
+		getReporter().hardAssert(getFidomakepaymentpage().verifyPaymentSuccessfulMessageDisplayed(),
 							"Interac payment is successful", 
 							"Interac payment is not successful");	
-		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPage();
-		reporter.hardAssert(fido_payment_history_page.verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Interac),
+		getFidomakepaymentpage().clkPaymentHistoryLinkOnConfirmationPage();
+		getReporter().hardAssert(getFidopaymenthistorypage().verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Interac),
 							"Interac transaction verified in payment history",
 							"seems the interac payment history record is not valid ");							
-		fido_account_overview_page.clkPayNow();
-		reporter.reportLogWithScreenshot("Pay now options overlay");
-		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);
-		reporter.reportLogWithScreenshot("Bank option selected");
-		reporter.hardAssert(fido_make_payment_page.verifyBankSection(),
+		getFidoaccountoverviewpage().clkPayNow();
+		getReporter().reportLogWithScreenshot("Pay now options overlay");
+		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);
+		getReporter().reportLogWithScreenshot("Bank option selected");
+		getReporter().hardAssert(getFidomakepaymentpage().verifyBankSection(),
 							"Bank section verified",
 							"Bank section not verified");
-		fido_make_payment_page.closePayNowModal();					
+		getFidomakepaymentpage().closePayNowModal();					
 											
 	}
 

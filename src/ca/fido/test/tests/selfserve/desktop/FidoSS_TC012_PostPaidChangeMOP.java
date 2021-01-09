@@ -35,55 +35,55 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	
 	@Test(groups = {"SanitySS","BillingAndPaymentsSS"})
 	public void postPaidChangeMOP() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
-		fido_account_overview_page.clkViewBillNew(strBAN);
-		reporter.reportLogWithScreenshot("View bill page is open");
-		fido_bill_details_page.clkChangePaymentMethod();
-		//fido_account_overview_page.clkPenIconForChangePaymentMethod();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getReporter().reportLogWithScreenshot("View bill page is open");
+		getFidobilldetailspage().clkChangePaymentMethod();
+		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
-		reporter.reportLogWithScreenshot("Change Method of payment overlay");
-		if(fido_payment_options_page.isAutopaymentAlreadySet())
+		getReporter().reportLogWithScreenshot("Change Method of payment overlay");
+		if(getFidopaymentoptionspage().isAutopaymentAlreadySet())
 		{
-			common_business_flows.changeToManual();
-			fido_bill_details_page.clkChangePaymentMethod();
-			//fido_account_overview_page.clkChangeMethodOfPayment();
+			getCommonbusinessflows().changeToManual();
+			getFidobilldetailspage().clkChangePaymentMethod();
+			//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
 		}
 		
 		//Change from manual to CC
 		
-		common_business_flows.changeToCC();		
-		fido_bill_details_page.clkAccountOverview();
-		reporter.reportLogWithScreenshot("Account overview page");
-		//fido_account_overview_page.clkChangeMethodOfPayment();
-		fido_account_overview_page.clkPenIconForChangePaymentMethod();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+		getCommonbusinessflows().changeToCC();		
+		getFidobilldetailspage().clkAccountOverview();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
+		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
 			
 		//Change CC to bank
-		reporter.reportLogWithScreenshot("Change method of payment from CC to BANK");
-		common_business_flows.changeToBank();		
-		fido_bill_details_page.clkAccountOverview();
-		reporter.reportLogWithScreenshot("Account overview page");
-		//fido_account_overview_page.clkChangeMethodOfPayment();
-		fido_account_overview_page.clkPenIconForChangePaymentMethod();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+		getReporter().reportLogWithScreenshot("Change method of payment from CC to BANK");
+		getCommonbusinessflows().changeToBank();		
+		getFidobilldetailspage().clkAccountOverview();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
+		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
 		

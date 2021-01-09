@@ -28,94 +28,94 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void prePaidDashBoard() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();		
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 							"Login proceed without error.", 
 							"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overvew page.");
+		getReporter().reportLogWithScreenshot("Account overvew page.");
 		String strCTN = TestDataHandler.tc00101056.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 
-		reporter.reportLogWithScreenshot("Dashboard View displayed");
-		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyDataDashboardIsDisplayed(),
+		getReporter().reportLogWithScreenshot("Dashboard View displayed");
+		getReporter().hardAssert(getFidowirelessdashboardprepaidpage().verifyDataDashboardIsDisplayed(),
 							"Data dashboard Verified",
 							"Data Dashboard has issue, please investigate.");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyTalkDashboardDetails(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyTalkDashboardDetails(),
 							"Talk dashboard ",
 							"Talk dashboard has issue, please investigate.");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyTextDashboardDetails(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyTextDashboardDetails(),
 							"Text dashboard ",
 							"Text dashboard has issue, please investigate.");
 				
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLabelMyBalanceIsdisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLabelMyBalanceIsdisplayed(),
 							"Label My Balance verified",
 							"Label My Balance has issue, please investigate.");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyMyBalanceCurrencyAmountIsdisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyMyBalanceCurrencyAmountIsdisplayed(),
 							"My Balance currency amount verified",
 							"My Balance currency amount has issue, please investigate.");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyMyBalanceApproxIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyMyBalanceApproxIsDisplayed(),
 							"My Balance approx is displayed",
 							" My Balance approx is not displayed");		
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyMyBalanceExpiresOnIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyMyBalanceExpiresOnIsDisplayed(),
 							"My Balance expires on is displayed",
 							"My Balance expires on is not displayed");
 		//TODO
 //--------------- Awaiting manual testers confirmation on below three checkpoints for fido dashboard--------------------		
-		//reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyMyBalanceScheduleAutomaticRefillsIsDisplayed(),"Balance Schedule Automatic Refill is displayed","Balance Schedule Automatic Refill is not displayed");
-		//reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyButtonChangeAutoRefillsIsDisplayed(),"Change Auto refill is displayed","Change auto refill is not displayed");
-		//reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyButtonMybalanceRefillNowIsDisplayed(),"My balance refill now is displayed","My balance refill is not displayed");
+		//getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyMyBalanceScheduleAutomaticRefillsIsDisplayed(),"Balance Schedule Automatic Refill is displayed","Balance Schedule Automatic Refill is not displayed");
+		//getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyButtonChangeAutoRefillsIsDisplayed(),"Change Auto refill is displayed","Change auto refill is not displayed");
+		//getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyButtonMybalanceRefillNowIsDisplayed(),"My balance refill now is displayed","My balance refill is not displayed");
 		
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLabelMyPlanIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLabelMyPlanIsDisplayed(),
 							"My plan is displayed",
 							"My plan is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLabelMyPlanNameIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLabelMyPlanNameIsDisplayed(),
 							"My plan name is displayed",
 							"My plan name is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLabelMyPlanfeaturesIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLabelMyPlanfeaturesIsDisplayed(),
 							"My Plan feature is displayed",
 							"My Plan feature is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLabelMyPlanExtrasIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLabelMyPlanExtrasIsDisplayed(),
 							"My Plan extras displayed",
 							"My Plan extras Not displayed");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLabelMyPlanEstimatedValuesIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLabelMyPlanEstimatedValuesIsDisplayed(),
 							"My Plan estimated value verfied",
 							"My plan estimated value not verified");
 		
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyMyDeviceDetails(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyMyDeviceDetails(),
 							"My Device details dispalyed",
 							"My device details not displayed");						
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkReportLostOrStolenIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLinkReportLostOrStolenIsDisplayed(),
 							"Link report lost or stolen is displayed",
 							"Link report lost or stolen not displayed");	
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkLostAndStolenIsValid(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLinkLostAndStolenIsValid(),
 							"Link lost and stolen valid",
 							"Link lost or stolen not valid");		
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkShopForAccessoriesIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLinkShopForAccessoriesIsDisplayed(),
 							"Shop for accessories is displayed",
 							"shop for accessories not displayed");
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkRetrievePUKCodeIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLinkRetrievePUKCodeIsDisplayed(),
 							"Link retreive PUK code is displayed",
 							"Link retreive PUK code is not displayed");		
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkRetreivePUKCode(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLinkRetreivePUKCode(),
 							"Link PUK code is verfied",
 							"Link PUK code is not verified");
 	
-		reporter.softAssert(fido_wireless_dashboard_prepaid_page.verifyLinkShopForAccessoriesIsValid(),
+		getReporter().softAssert(getFidowirelessdashboardprepaidpage().verifyLinkShopForAccessoriesIsValid(),
 							"Link shop for accessories is valid",
 							"Seems the link shop for accessories is not valid");
-		fido_wireless_dashboard_prepaid_page.scrollToMiddleOfPage();
-		reporter.reportLogWithScreenshot("Prepaid wireless dashboad mid view");
-		fido_wireless_dashboard_prepaid_page.scrolltoBottomOfPage();
-		reporter.reportLogWithScreenshot("Prepaid wireless dashboad Bottom view");
+		getFidowirelessdashboardprepaidpage().scrollToMiddleOfPage();
+		getReporter().reportLogWithScreenshot("Prepaid wireless dashboad mid view");
+		getFidowirelessdashboardprepaidpage().scrolltoBottomOfPage();
+		getReporter().reportLogWithScreenshot("Prepaid wireless dashboad Bottom view");
 		
 	}
 	

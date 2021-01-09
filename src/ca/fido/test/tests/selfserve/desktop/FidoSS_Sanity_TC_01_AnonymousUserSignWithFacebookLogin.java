@@ -35,12 +35,12 @@ public class FidoSS_Sanity_TC_01_AnonymousUserSignWithFacebookLogin extends Base
 	
 	@Test
 	public void userSignWithFacebookLogin() {
-		fido_home_page.clkLogin();
-		fido_login_page.clkLoginWithFb();
-		if (fido_loginto_facebook_page.isContinueBtnPresent()) {
-			fido_loginto_facebook_page.clkBtnContinueToFacebook();	
+		getFidohomepage().clkLogin();
+		getFidologinpage().clkLoginWithFb();
+		if (getFidologintofacebookpage().isContinueBtnPresent()) {
+			getFidologintofacebookpage().clkBtnContinueToFacebook();	
 		}		
-		Assert.assertTrue(fido_loginto_facebook_page.verifyFacebookPage());
+		Assert.assertTrue(getFidologintofacebookpage().verifyFacebookPage());
 	}
 
 }

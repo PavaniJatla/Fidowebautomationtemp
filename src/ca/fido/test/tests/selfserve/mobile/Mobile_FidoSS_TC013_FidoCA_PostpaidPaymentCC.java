@@ -35,45 +35,45 @@ public class Mobile_FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 	@Test(groups = {"MobileSanitySS","MobileBillingAndPaymentsSS"})
 	public void mobilePostPaidPaymentCC() throws InterruptedException {
 		String amountEntered="0.01";
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
-		fido_home_page.clkLoginMobile();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navgation card");	
+		getFidohomepage().clkLoginMobile();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrameMobile();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
-		fido_account_overview_page.clkPayNowNew(strBAN);
-		reporter.reportLogWithScreenshot("Pay now");
-		fido_make_payment_page.setPaymentAmount(amountEntered);
-		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
-		reporter.reportLogWithScreenshot("Credit card option selected");
-		fido_make_payment_page.setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-		fido_make_payment_page.selectExpiryMonthMobile();
-		fido_make_payment_page.selectCreditcardExpiryYearMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_make_payment_page.setCreditcardCVVMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
-		reporter.reportLogWithScreenshot("Credit card details entered");
-		fido_make_payment_page.clkReviewAndContinueButtonMobile();
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_make_payment_page.clkPayNowMobile();
-		reporter.reportLogWithScreenshot("reference Number page");
-		String refNo=fido_make_payment_page.getRefNumber();	
-		reporter.reportLogWithScreenshot("reference number for payment is :"+refNo);
-		reporter.hardAssert(fido_make_payment_page.verifyPaymentSuccessfulMessageDisplayed(),
+		getFidoaccountoverviewpage().clkPayNowNew(strBAN);
+		getReporter().reportLogWithScreenshot("Pay now");
+		getFidomakepaymentpage().setPaymentAmount(amountEntered);
+		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
+		getReporter().reportLogWithScreenshot("Credit card option selected");
+		getFidomakepaymentpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+		getFidomakepaymentpage().selectExpiryMonthMobile();
+		getFidomakepaymentpage().selectCreditcardExpiryYearMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
+		getFidomakepaymentpage().setCreditcardCVVMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		getReporter().reportLogWithScreenshot("Credit card details entered");
+		getFidomakepaymentpage().clkReviewAndContinueButtonMobile();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidomakepaymentpage().clkPayNowMobile();
+		getReporter().reportLogWithScreenshot("reference Number page");
+		String refNo=getFidomakepaymentpage().getRefNumber();	
+		getReporter().reportLogWithScreenshot("reference number for payment is :"+refNo);
+		getReporter().hardAssert(getFidomakepaymentpage().verifyPaymentSuccessfulMessageDisplayed(),
 							"Payment successful message displayed",
 							"Payment successful message not displayed");
-		fido_make_payment_page.clkPaymentHistoryLinkOnConfirmationPageMobile();
-		reporter.reportLogWithScreenshot("Payment history page selected");
-		reporter.hardAssert(fido_payment_history_page.verifyThePaymentHistoryRecordMobile(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),
+		getFidomakepaymentpage().clkPaymentHistoryLinkOnConfirmationPageMobile();
+		getReporter().reportLogWithScreenshot("Payment history page selected");
+		getReporter().hardAssert(getFidopaymenthistorypage().verifyThePaymentHistoryRecordMobile(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),
 							"Payment history record is verified for credit  card :"+refNo,
 							"Payment history record is not verified for credit card payment ref no :"+refNo);
 	}

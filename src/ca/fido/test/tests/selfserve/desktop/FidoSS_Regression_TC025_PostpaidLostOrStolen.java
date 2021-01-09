@@ -26,55 +26,55 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 	
 	@Test(groups = {"RegressionSS","DashboardSS"}) 
 	public void postpaidLostOrStolen() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc25.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc25.getPassword());
-		reporter.reportLogWithScreenshot("After click on Login");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc25.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc25.getPassword());
+		getReporter().reportLogWithScreenshot("After click on Login");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc25.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("After click on CTN badge");
-		if(fido_wireless_dashboard_postpaid_page.isServiceSuspended()) {
-			reporter.reportLogWithScreenshot("Service suspended view");
-			fido_wireless_dashboard_postpaid_page.clkLnkReactivate();
-			reporter.reportLogWithScreenshot("After click on link reactivate");
-			fido_report_lost_or_stolen_page.clkBtnReactivateDevice();
-			reporter.reportLogWithScreenshot("After click on Button reactivate device");
-			reporter.hardAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("After click on CTN badge");
+		if(getFidowirelessdashboardpostpaidpage().isServiceSuspended()) {
+			getReporter().reportLogWithScreenshot("Service suspended view");
+			getFidowirelessdashboardpostpaidpage().clkLnkReactivate();
+			getReporter().reportLogWithScreenshot("After click on link reactivate");
+			getFidoreportlostorstolenpage().clkBtnReactivateDevice();
+			getReporter().reportLogWithScreenshot("After click on Button reactivate device");
+			getReporter().hardAssert(getFidoreportlostorstolenpage().verifyReactivateConfirmMessage(),
 					"Reactivate confirmation Message is displayed",
 					"Reactivate confirmation message is not displayed");
-			fido_account_overview_page.clkMenuOverview();
-			reporter.reportLogWithScreenshot("Menu Overview clicked.");
-			fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-			reporter.reportLogWithScreenshot("After click on CTN badge");
+			getFidoaccountoverviewpage().clkMenuOverview();
+			getReporter().reportLogWithScreenshot("Menu Overview clicked.");
+			getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+			getReporter().reportLogWithScreenshot("After click on CTN badge");
 		} 
-		fido_wireless_dashboard_postpaid_page.clkLnkReportLostOrStolen();
-		reporter.reportLogWithScreenshot("After clcik on link report Lost or Stolen");
-		fido_report_lost_or_stolen_page.clkBtnReportLostContinue();
-		reporter.reportLogWithScreenshot("Report lost suspend");
-		fido_report_lost_or_stolen_page.clkBtnSuspend();
-		reporter.reportLogWithScreenshot("After click on Button Suspend");
-		reporter.hardAssert(fido_report_lost_or_stolen_page.verifySuspendConfirmMessage(),
+		getFidowirelessdashboardpostpaidpage().clkLnkReportLostOrStolen();
+		getReporter().reportLogWithScreenshot("After clcik on link report Lost or Stolen");
+		getFidoreportlostorstolenpage().clkBtnReportLostContinue();
+		getReporter().reportLogWithScreenshot("Report lost suspend");
+		getFidoreportlostorstolenpage().clkBtnSuspend();
+		getReporter().reportLogWithScreenshot("After click on Button Suspend");
+		getReporter().hardAssert(getFidoreportlostorstolenpage().verifySuspendConfirmMessage(),
 							"Suspend Confirmation message is displayed",
 							"Suspend Confirmation message is not displayed");
 		
 		//Successfully suspend the device, now need to reactivate the device
-		fido_account_overview_page.clkMenuOverview();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Navigating back to Overview page and click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkLnkReactivate();		
-		fido_report_lost_or_stolen_page.clkBtnReactivateDevice();
-		reporter.reportLogWithScreenshot("After click on button Reactivate");
-		reporter.hardAssert(fido_report_lost_or_stolen_page.verifyReactivateConfirmMessage(),
+		getFidoaccountoverviewpage().clkMenuOverview();
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Navigating back to Overview page and click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkLnkReactivate();		
+		getFidoreportlostorstolenpage().clkBtnReactivateDevice();
+		getReporter().reportLogWithScreenshot("After click on button Reactivate");
+		getReporter().hardAssert(getFidoreportlostorstolenpage().verifyReactivateConfirmMessage(),
 							"Reactivate confirmation Message is displayed",
 							"Reactivate confirmation message is not displayed");
 	}

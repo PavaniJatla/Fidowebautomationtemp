@@ -35,7 +35,7 @@ public class FidoSS_Regression_TC032_ValidateAutoRegistrationPostpaid extends Ba
 	@Test(groups = {"Autoregister"})
 	public void validateUserChangeContactInformationAndBillingAddress() throws IOException {
 		//String strURI = System.getProperty("test_URIautoRegister");
-		//reporter.reportLog("URI:"+strURI);
+		//getReporter().reportLog("URI:"+strURI);
 		String strEmail = "";
 		String strPassword = "";
 		String strBan ="";
@@ -44,34 +44,34 @@ public class FidoSS_Regression_TC032_ValidateAutoRegistrationPostpaid extends Ba
 		    
 		 
 		//Will open a new tab for ENS, to get verification code from ENS		
-				reporter.reportLogWithScreenshot("ENS");
+				getReporter().reportLogWithScreenshot("ENS");
 				try {
-					ensVerifications.getEmailVerifyPage(strEmail);
-					fido_set_password_page.clkBtnSetPasswordInEmail();
+					getEnsverifications().getEmailVerifyPage(strEmail);
+					getFidosetpasswordpage().clkBtnSetPasswordInEmail();
 					//Another new page opened
-					fido_set_password_page.switchToSetPasswordTab(3);
-					fido_set_password_page.setPassword(strPassword);
-					fido_set_password_page.setConfirmPassword(strPassword);
-					reporter.reportLogWithScreenshot("Set password page.");
-					fido_set_password_page.clkBtnSetPassword();
-					reporter.hardAssert(fido_set_password_page.verifyMsgReigistrationCompleteIsDisplayed(),
+					getFidosetpasswordpage().switchToSetPasswordTab(3);
+					getFidosetpasswordpage().setPassword(strPassword);
+					getFidosetpasswordpage().setConfirmPassword(strPassword);
+					getReporter().reportLogWithScreenshot("Set password page.");
+					getFidosetpasswordpage().clkBtnSetPassword();
+					getReporter().hardAssert(getFidosetpasswordpage().verifyMsgReigistrationCompleteIsDisplayed(),
 							"Registration completed message displayed",
 							"Registration completed message does Not displayed");
-					reporter.reportLogWithScreenshot("Set password completed.");
+					getReporter().reportLogWithScreenshot("Set password completed.");
 					
 				} catch (ClientProtocolException e) {
-					reporter.reportLogWithScreenshot(e.getMessage());
+					getReporter().reportLogWithScreenshot(e.getMessage());
 				} catch (IOException e) {
-					reporter.reportLogWithScreenshot(e.getMessage());
+					getReporter().reportLogWithScreenshot(e.getMessage());
 				}
-				fido_set_password_page.clkBtnGotoOverview();
-				reporter.hardAssert(fido_account_overview_page.verifyEmailInSignInAsLink(strEmail),
+				getFidosetpasswordpage().clkBtnGotoOverview();
+				getReporter().hardAssert(getFidoaccountoverviewpage().verifyEmailInSignInAsLink(strEmail),
 						"Registered email matches the name in Sign In As",
 						"Registered email doesn't match the name in Sign In As");
-				reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),
+				getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 						"Registration success, login success.",
 						"Didn't successfully login.");
-				reporter.reportLogWithScreenshot("Account overview page");
+				getReporter().reportLogWithScreenshot("Account overview page");
 			}
 	
 		public void autoregisterUser(String strURI, String strEmail,String strBan) throws IOException {
@@ -96,8 +96,8 @@ public class FidoSS_Regression_TC032_ValidateAutoRegistrationPostpaid extends Ba
 	            //.log().all()
 	            //.extract().response();
 	           int statusCode = response.getStatusCode();
-				reporter.reportLog("Response:"+statusCode);
-				reporter.reportLog("BODY:"+inputStream.toString());
+				getReporter().reportLog("Response:"+statusCode);
+				getReporter().reportLog("BODY:"+inputStream.toString());
 
 	        XmlPath jsXpath= new XmlPath(response.asString());//Converting string into xml path to assert
 	        String rate=jsXpath.getString("GetConversionRateResult");

@@ -33,41 +33,41 @@ public class FidoSS_TC076_FidoCA_PostpaidPayment_Bank extends BaseTestClass{
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void postPaidPaymentBank() throws InterruptedException {
 		String amountEntered="0.01";
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		//fido_account_overview_page.waitForPayNowToBecomeClickable();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		//getFidoaccountoverviewpage().waitForPayNowToBecomeClickable();
 		//.clkPayNow();
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
-		fido_account_overview_page.clkPayNowNew(strBAN);
-		reporter.reportLogWithScreenshot("Pay now");
-		fido_make_payment_page.setPaymentAmount(amountEntered);
-		fido_make_payment_page.selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);
-		reporter.reportLogWithScreenshot("Bank option selected");
+		getFidoaccountoverviewpage().clkPayNowNew(strBAN);
+		getReporter().reportLogWithScreenshot("Pay now");
+		getFidomakepaymentpage().setPaymentAmount(amountEntered);
+		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);
+		getReporter().reportLogWithScreenshot("Bank option selected");
 		
 		String strMainWindowHandle = getDriver().getWindowHandle();
-		fido_make_payment_page.selectBank("CIBC");
-		reporter.reportLogWithScreenshot("Banking Page");
-		fido_make_payment_page.switchToCIBCBankPage(strMainWindowHandle);
-		reporter.hardAssert(fido_make_payment_page.verifyBankPageOpenedSuccessfully("CIBC"),
+		getFidomakepaymentpage().selectBank("CIBC");
+		getReporter().reportLogWithScreenshot("Banking Page");
+		getFidomakepaymentpage().switchToCIBCBankPage(strMainWindowHandle);
+		getReporter().hardAssert(getFidomakepaymentpage().verifyBankPageOpenedSuccessfully("CIBC"),
 				"The banking page open successfully",
 				"The banking page did not open successfully");		
-		reporter.reportLogWithScreenshot("Banking Page Successfully Redirected");
+		getReporter().reportLogWithScreenshot("Banking Page Successfully Redirected");
 		//close the new bank page
 		getDriver().close();
 		getDriver().switchTo().window(strMainWindowHandle);
-		reporter.reportLogWithScreenshot("Banking page closed");		
+		getReporter().reportLogWithScreenshot("Banking page closed");		
 	}
 
 }

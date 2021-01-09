@@ -28,40 +28,40 @@ public class FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS 
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc06ValidtRecvUsrnameByAccNumUsingSms() {				
-		fido_home_page.clkLogin();
-		reporter.reportLogWithScreenshot("Login Page");
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkForgotPassOrNameIframe();	
-		reporter.reportLogWithScreenshot("Clicked on Forgot Password or username");
-		fido_recover_pass_or_name_page.clkBtnUserName();
-		reporter.reportLogWithScreenshot("Clicked on password button");
+		getFidohomepage().clkLogin();
+		getReporter().reportLogWithScreenshot("Login Page");
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkForgotPassOrNameIframe();	
+		getReporter().reportLogWithScreenshot("Clicked on Forgot Password or username");
+		getFidorecoverpassornamepage().clkBtnUserName();
+		getReporter().reportLogWithScreenshot("Clicked on password button");
 		String strAccountNumber = TestDataHandler.tc04To09.getaccountDetails().getBan();
 		String strPassword = TestDataHandler.tc04To09.getPassword();
-		fido_recover_pass_or_name_page.setAccountNumber(strAccountNumber);
-		reporter.reportLogWithScreenshot("Set email id and click button continue");
-		fido_recover_pass_or_name_page.clkBtnContinue();		
-		reporter.reportLogWithScreenshot("Continue is clicked");
+		getFidorecoverpassornamepage().setAccountNumber(strAccountNumber);
+		getReporter().reportLogWithScreenshot("Set email id and click button continue");
+		getFidorecoverpassornamepage().clkBtnContinue();		
+		getReporter().reportLogWithScreenshot("Continue is clicked");
 		//flow updated in May 20th release, no need to click text option.
-		fido_recover_pass_or_name_page.clkTextToAsRecoveryOption();
+		getFidorecoverpassornamepage().clkTextToAsRecoveryOption();
 		String strTestingTab = getDriver().getWindowHandle();
 		String strRecoveredUserName = null;		
 		
 		String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
-		strRecoveredUserName = ensVerifications.getAccountUserName(strPhoneNum);			
+		strRecoveredUserName = getEnsverifications().getAccountUserName(strPhoneNum);			
 		getDriver().switchTo().window(strTestingTab);
-		reporter.reportLogWithScreenshot("Close the Overlay");
-		fido_recover_pass_or_name_page.switchToSetCodeIframe();
-		fido_recover_pass_or_name_page.clkBtnCloseWeHaveTextedUserNameOverlay();			
+		getReporter().reportLogWithScreenshot("Close the Overlay");
+		getFidorecoverpassornamepage().switchToSetCodeIframe();
+		getFidorecoverpassornamepage().clkBtnCloseWeHaveTextedUserNameOverlay();			
 
 		//Login with username:  
-		fido_home_page.clkLogin();
-		reporter.reportLogWithScreenshot("Login Page");
-		fido_recover_pass_or_name_page.switchToDefaultContent();
-		fido_login_page.switchToSignInFrame();
-		common_business_flows.loginApplication(strRecoveredUserName, strPassword);						
-		reporter.reportLogWithScreenshot("Login successful");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.reportLogWithScreenshot("Account overview page");
+		getFidohomepage().clkLogin();
+		getReporter().reportLogWithScreenshot("Login Page");
+		getFidorecoverpassornamepage().switchToDefaultContent();
+		getFidologinpage().switchToSignInFrame();
+		getCommonbusinessflows().loginApplication(strRecoveredUserName, strPassword);						
+		getReporter().reportLogWithScreenshot("Login successful");
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().reportLogWithScreenshot("Account overview page");
 		
 	}
 	
