@@ -27,62 +27,62 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 	
 	@Test
 	public void recoverUsernameByEmail() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkForgotPassOrNameIframe();
-//		fido_login_page.switchOutOfSignInFrame();
-		reporter.reportLogWithScreenshot("Forgot password or name is clicked.");
-		fido_recover_pass_or_name_page.clkBtnUserName();
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkForgotPassOrNameIframe();
+//		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().reportLogWithScreenshot("Forgot password or name is clicked.");
+		getFidorecoverpassornamepage().clkBtnUserName();
 		String strEmail = TestDataHandler.tc04To09.getaccountDetails().getEmail();
-		fido_recover_pass_or_name_page.setEmailAddress(strEmail);
-		reporter.reportLogWithScreenshot("Set email for recover user name.");
-		fido_recover_pass_or_name_page.clkBtnContinue();
+		getFidorecoverpassornamepage().setEmailAddress(strEmail);
+		getReporter().reportLogWithScreenshot("Set email for recover user name.");
+		getFidorecoverpassornamepage().clkBtnContinue();
 		
-		fido_recover_pass_or_name_page.clkBtnEmailNowIfAvailable();
+		getFidorecoverpassornamepage().clkBtnEmailNowIfAvailable();
 		//Go to ENS to verify email and get reset password page.		
 		try {
-			ensVerifications.getEmailVerifyPage(strEmail);
+			getEnsverifications().getEmailVerifyPage(strEmail);
 		} catch (IOException e) {
-			reporter.reportLogFail("Failed in ENS email verification." + e.toString());
+			getReporter().reportLogFail("Failed in ENS email verification." + e.toString());
 			e.printStackTrace();
 		}
-		String strUsername = fido_recover_pass_or_name_page.getRecoveryUsername();	
+		String strUsername = getFidorecoverpassornamepage().getRecoveryUsername();	
 		String strPassword = TestDataHandler.tc04To09.getaccountDetails().getNewPassword();
-		reporter.reportLogWithScreenshot("Get recovered username page.");
-		fido_recover_pass_or_name_page.clkBtnReturnToSignin();
-		reporter.reportLogWithScreenshot("Checking if easy login is displayed");		
-		 reporter.reportLogWithScreenshot("Switching to Sign in frame");
-		fido_recover_pass_or_name_page.switchToSigninPage(4);
-		reporter.reportLogWithScreenshot("Repointing the URL to QA env");
-		fido_home_page.launchHomePage(System.getProperty("QaUrl"));
-		reporter.reportLogWithScreenshot("URL refreshed");
-		reporter.reportLogWithScreenshot("Checking for Contentful URL");
-		if(fido_home_page.isEasyloginDisplayed())
+		getReporter().reportLogWithScreenshot("Get recovered username page.");
+		getFidorecoverpassornamepage().clkBtnReturnToSignin();
+		getReporter().reportLogWithScreenshot("Checking if easy login is displayed");		
+		 getReporter().reportLogWithScreenshot("Switching to Sign in frame");
+		getFidorecoverpassornamepage().switchToSigninPage(4);
+		getReporter().reportLogWithScreenshot("Repointing the URL to QA env");
+		getFidohomepage().launchHomePage(System.getProperty("QaUrl"));
+		getReporter().reportLogWithScreenshot("URL refreshed");
+		getReporter().reportLogWithScreenshot("Checking for Contentful URL");
+		if(getFidohomepage().isEasyloginDisplayed())
 		{
-		 fido_home_page.clkEasylogin();
-		 reporter.reportLogWithScreenshot("Easy login clicked");
+		 getFidohomepage().clkEasylogin();
+		 getReporter().reportLogWithScreenshot("Easy login clicked");
 		}
-		reporter.reportLogWithScreenshot("Click Login");
-		fido_home_page.clkLogin(); 
-		reporter.reportLogWithScreenshot("Login button clicked");
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(strUsername);
-		fido_login_page.setPasswordInFrame(strPassword);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();		
+		getReporter().reportLogWithScreenshot("Click Login");
+		getFidohomepage().clkLogin(); 
+		getReporter().reportLogWithScreenshot("Login button clicked");
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(strUsername);
+		getFidologinpage().setPasswordInFrame(strPassword);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();		
 		
-		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
+		if(getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame())
 		{
 			strPassword = TestDataHandler.tc04To09.getPassword();
-			fido_login_page.setPasswordInFrame(strPassword);
-			reporter.reportLogWithScreenshot("Login Credential is entered.");
-			fido_login_page.clkLoginInFrame();	
+			getFidologinpage().setPasswordInFrame(strPassword);
+			getReporter().reportLogWithScreenshot("Login Credential is entered.");
+			getFidologinpage().clkLoginInFrame();	
 		}
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().softAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Username recovered successfully.",
 				"Login failed, please check the recovered username.");
-		reporter.reportLogWithScreenshot("Account overview page.");
+		getReporter().reportLogWithScreenshot("Account overview page.");
 
 	}
 

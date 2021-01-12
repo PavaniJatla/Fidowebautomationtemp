@@ -28,29 +28,29 @@ public class FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile extends 
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"})
 	public void validateRegisterWithExistingProfile() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkRegisterIframe();
-		//fido_account_registration_page.clkRegisterNow();
-		reporter.reportLogWithScreenshot("Register now is clicked.");
-		fido_account_registration_page.clkAccountHolder();
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkRegisterIframe();
+		//getFidoaccountregistrationpage().clkRegisterNow();
+		getReporter().reportLogWithScreenshot("Register now is clicked.");
+		getFidoaccountregistrationpage().clkAccountHolder();
 		String strFidoAccountNumber = TestDataHandler.tc0301.getaccountDetails().getBan();
 		String strPostalCode = TestDataHandler.tc0301.getaccountDetails().getPostalCode();
-		fido_account_registration_page.setFidoAccountNumber(strFidoAccountNumber);
-		fido_account_registration_page.setPostalCode(strPostalCode);
-		reporter.reportLogWithScreenshot("Register the BAN.");
-		fido_account_registration_page.clkContinueAccountRegister();
+		getFidoaccountregistrationpage().setFidoAccountNumber(strFidoAccountNumber);
+		getFidoaccountregistrationpage().setPostalCode(strPostalCode);
+		getReporter().reportLogWithScreenshot("Register the BAN.");
+		getFidoaccountregistrationpage().clkContinueAccountRegister();
 		
 		//Need an existing profile email here
 		String strEmail = TestDataHandler.tc16.getUsername();
-		fido_account_registration_page.setFidoEmail(strEmail);
-		fido_account_registration_page.setFidoConfirmEmail(strEmail);
-		fido_account_registration_page.clkContinueAccountRegister();
+		getFidoaccountregistrationpage().setFidoEmail(strEmail);
+		getFidoaccountregistrationpage().setFidoConfirmEmail(strEmail);
+		getFidoaccountregistrationpage().clkContinueAccountRegister();
 		
-		reporter.softAssert(fido_account_registration_page.verifyErrorMsgEmailIsUsedIsDisplayed(),
+		getReporter().softAssert(getFidoaccountregistrationpage().verifyErrorMsgEmailIsUsedIsDisplayed(),
 				"Error message 'This email is being used by another My Account profile' displayed",
 				"Error message does Not displayed");
-		reporter.reportLogWithScreenshot("Error message");
+		getReporter().reportLogWithScreenshot("Error message");
 		
 
 	}

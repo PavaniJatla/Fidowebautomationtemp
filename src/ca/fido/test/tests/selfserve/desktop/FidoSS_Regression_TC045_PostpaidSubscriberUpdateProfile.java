@@ -28,36 +28,36 @@ public class FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile extends Bas
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidSubscriberUpdateProfile() throws InterruptedException, ParseException {
 		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc4557.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc4557.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc4557.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc4557.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Login Account overview page");
-		fido_account_overview_page.clkSubNavProfileAndSettings();	
-		reporter.reportLogWithScreenshot("menu profile and settings selected");
-		fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
-		reporter.reportLogWithScreenshot("Check for links update contact, billing address");
-		reporter.hardAssert(!fido_profile_and_setting_page.isLnkUpdateContactPresent(),
+		getReporter().reportLogWithScreenshot("Login Account overview page");
+		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();	
+		getReporter().reportLogWithScreenshot("menu profile and settings selected");
+		getFidoprofileandsettingpage().scrollToProfileAndSettingsMiddlePage();
+		getReporter().reportLogWithScreenshot("Check for links update contact, billing address");
+		getReporter().hardAssert(!getFidoprofileandsettingpage().isLnkUpdateContactPresent(),
 				"Link update contact is not present",
 				"Link update contact is present");	
-		reporter.softAssert(fido_profile_and_setting_page.verifySubscriberAccountContactPreferenceSection(),
+		getReporter().softAssert(getFidoprofileandsettingpage().verifySubscriberAccountContactPreferenceSection(),
 				"Subscriber account contact preference section is displayed",
 				"Subscriber account cantact preference section is not displayed");		
-		reporter.softAssert(!fido_profile_and_setting_page.isLnkUpdateBillingAddressPresent(),
+		getReporter().softAssert(!getFidoprofileandsettingpage().isLnkUpdateBillingAddressPresent(),
 				"Link update billing address is not present",
 				"Link update billing address is present");	
-		fido_profile_and_setting_page.scrollToProfileAndSettingsMiddlePage();
-		reporter.reportLogWithScreenshot("Subscriber account billing address section");
-		reporter.softAssert(fido_profile_and_setting_page.verifySubscriberAccountBillingAddressSection(),
+		getFidoprofileandsettingpage().scrollToProfileAndSettingsMiddlePage();
+		getReporter().reportLogWithScreenshot("Subscriber account billing address section");
+		getReporter().softAssert(getFidoprofileandsettingpage().verifySubscriberAccountBillingAddressSection(),
 				"Subscriber account billing address section is displayed",
 				"Subscriber account billing address section is not displayed");										
 	}

@@ -27,22 +27,22 @@ public class FidoSS_Regression_TC02_ValidateRegisterFlow_Subscriber extends Base
 	
 	@Test
 	public void subscriberValidateRegisterFlow() {
-		fido_home_page.clkLogin();
-		reporter.reportLogWithScreenshot("Login page.");
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkRegisterIframe();
-		//fido_account_registration_page.clkRegisterNow();
-		reporter.reportLogWithScreenshot("Register now is clicked.");
+		getFidohomepage().clkLogin();
+		getReporter().reportLogWithScreenshot("Login page.");
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkRegisterIframe();
+		//getFidoaccountregistrationpage().clkRegisterNow();
+		getReporter().reportLogWithScreenshot("Register now is clicked.");
 		
-		fido_account_registration_page.clkSubscriber();
+		getFidoaccountregistrationpage().clkSubscriber();
 		String strFidoSubscriberPhoneNumber = TestDataHandler.tc02PreRegister.getaccountDetails().getPhoneNumber();
-		fido_account_registration_page.setPhoneNumber(strFidoSubscriberPhoneNumber);
-		fido_account_registration_page.clkContinueAfterPhoneNumber();
+		getFidoaccountregistrationpage().setPhoneNumber(strFidoSubscriberPhoneNumber);
+		getFidoaccountregistrationpage().clkContinueAfterPhoneNumber();
 		
 		//Sometimes got captcha here!!!
 		String strEmail = TestDataHandler.tc02PreRegister.getaccountDetails().getEmail();
-		fido_account_registration_page.setFidoEmail(strEmail);
-		fido_account_registration_page.setFidoConfirmEmail(strEmail);
+		getFidoaccountregistrationpage().setFidoEmail(strEmail);
+		getFidoaccountregistrationpage().setFidoConfirmEmail(strEmail);
 	}
 
 }

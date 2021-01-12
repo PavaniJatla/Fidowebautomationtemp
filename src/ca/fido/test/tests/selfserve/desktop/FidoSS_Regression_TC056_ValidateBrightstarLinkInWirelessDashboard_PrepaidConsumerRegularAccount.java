@@ -39,38 +39,38 @@ public class FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_P
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateBrightstarLinkInWirelessDashboardForPrepaid() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
 		String strBAN = TestDataHandler.tc00101056.getaccountDetails().getBan();
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();	
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();	
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkViewUsageAndServices(strBAN);
-		reporter.reportLogWithScreenshot("Usage and Services page");
+		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidoaccountoverviewpage().clkViewUsageAndServices(strBAN);
+		getReporter().reportLogWithScreenshot("Usage and Services page");
 					
-		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyLinkRepairMyDeviceIsDisplayed(),
+		getReporter().hardAssert(getFidowirelessdashboardprepaidpage().verifyLinkRepairMyDeviceIsDisplayed(),
 				"Link Start or track a phone repair claim",
 				"Link Start or track a phone repair claim is not displayed");		
-		fido_wireless_dashboard_prepaid_page.clkRepairDeviceLink();
-		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyOverlayForRepairDeviceIsDisplayed(),
+		getFidowirelessdashboardprepaidpage().clkRepairDeviceLink();
+		getReporter().hardAssert(getFidowirelessdashboardprepaidpage().verifyOverlayForRepairDeviceIsDisplayed(),
 				"Overlay get help for you phone is displayed",
 				"Overlay get help for you phone is displayed is not displayed");
-		reporter.reportLogWithScreenshot("Overlay GET HELP FOR YOUR PHONE is displayed");
-		String strParentWindowHandle = fido_wireless_dashboard_prepaid_page.clkButtonContinueOnRepairDeviceOverlay();		
-		reporter.hardAssert(fido_wireless_dashboard_prepaid_page.verifyBrightStarNewTabAndURL(strParentWindowHandle,
+		getReporter().reportLogWithScreenshot("Overlay GET HELP FOR YOUR PHONE is displayed");
+		String strParentWindowHandle = getFidowirelessdashboardprepaidpage().clkButtonContinueOnRepairDeviceOverlay();		
+		getReporter().hardAssert(getFidowirelessdashboardprepaidpage().verifyBrightStarNewTabAndURL(strParentWindowHandle,
 				TestDataHandler.config.getBrightStarURL()),
 				"Bright star tab and url open",
 				"Bright star tab and url did not open");
-		reporter.reportLogWithScreenshot("BrighStar page");								
+		getReporter().reportLogWithScreenshot("BrighStar page");								
 	}
 	
 }

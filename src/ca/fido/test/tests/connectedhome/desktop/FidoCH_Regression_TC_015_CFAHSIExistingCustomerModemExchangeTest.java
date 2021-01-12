@@ -34,60 +34,60 @@ public class FidoCH_Regression_TC_015_CFAHSIExistingCustomerModemExchangeTest ex
 
 	@Test(groups = {"RegressionCH","FidoCableRetailCH"})
 	public void checkSSPhsiExistingCustomerModemExchangeTest() {
-		reporter.reportLogWithScreenshot("Rogers outlook login page has launched");
-		retailer_champ_page.setUsername(System.getenv("SSPUsername"));
-		reporter.reportLogWithScreenshot("Entered the username");
-		retailer_champ_page.clkNext();
-		reporter.reportLogWithScreenshot("sign in has launched");
-		retailer_champ_page.setPassword(System.getenv("SSPPassword"));
-		reporter.reportLogWithScreenshot("Entered the password");
-		retailer_champ_page.clkSignIn();		
-		reporter.reportLogWithScreenshot("Notice Popup has Launched"); 
-		retailer_champ_page.clkAccept();
-		reporter.reportLogWithScreenshot("Dealer code page has Launched");
-		retailer_champ_page.setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
-		reporter.reportLogWithScreenshot("Entered the Dealer code");
-		retailer_champ_page.clkSubmit();
+		getReporter().reportLogWithScreenshot("Rogers outlook login page has launched");
+		getFidoretailerchamppage().setUsername(System.getenv("SSPUsername"));
+		getReporter().reportLogWithScreenshot("Entered the username");
+		getFidoretailerchamppage().clkNext();
+		getReporter().reportLogWithScreenshot("sign in has launched");
+		getFidoretailerchamppage().setPassword(System.getenv("SSPPassword"));
+		getReporter().reportLogWithScreenshot("Entered the password");
+		getFidoretailerchamppage().clkSignIn();		
+		getReporter().reportLogWithScreenshot("Notice Popup has Launched"); 
+		getFidoretailerchamppage().clkAccept();
+		getReporter().reportLogWithScreenshot("Dealer code page has Launched");
+		getFidoretailerchamppage().setDealerCode(TestDataHandler.fidoSspHSIAccount.getDealercode());		
+		getReporter().reportLogWithScreenshot("Entered the Dealer code");
+		getFidoretailerchamppage().clkSubmit();
 		
-		reporter.hardAssert(retailer_champ_page.verifyAuthorized(),"Authorized","Authorization failed");
-		reporter.reportLogWithScreenshot("SSP launchpad has launched");
-		retailer_champ_page.selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
-		reporter.reportLogWithScreenshot("Launched the Customer Information Security Popup");
-		fido_ssp_retailer_shop_page.clkSecurityAccept();
+		getReporter().hardAssert(getFidoretailerchamppage().verifyAuthorized(),"Authorized","Authorization failed");
+		getReporter().reportLogWithScreenshot("SSP launchpad has launched");
+		getFidoretailerchamppage().selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
+		getReporter().reportLogWithScreenshot("Launched the Customer Information Security Popup");
+		getFidoretailershoppage().clkSecurityAccept();
 		
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
-		reporter.reportLogWithScreenshot("SSP dashboard has launched");
-		fido_ssp_retailer_home_page.setAccountNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan());
-		fido_ssp_retailer_home_page.setPostalCode(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getPostalCode());
-		reporter.reportLogWithScreenshot("Set the Agent account details");
-		fido_ssp_retailer_home_page.clkSearchButton();
-		reporter.hardAssert(fido_ssp_retailer_search_results_page.verifysearchResults(),
+		getReporter().hardAssert(getFidoretailerhomepage().verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
+		getReporter().reportLogWithScreenshot("SSP dashboard has launched");
+		getFidoretailerhomepage().setAccountNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan());
+		getFidoretailerhomepage().setPostalCode(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getPostalCode());
+		getReporter().reportLogWithScreenshot("Set the Agent account details");
+		getFidoretailerhomepage().clkSearchButton();
+		getReporter().hardAssert(getFidoretailersearchresultspage().verifysearchResults(),
 				"Customer details are displayed", "Customer Search has failed");
-		reporter.reportLogWithScreenshot("Customer search results");
-		fido_ssp_retailer_search_results_page.clkView();
-		reporter.hardAssert(fido_ssp_retailer_search_results_page.verifyCustomerAuthRemainder(),
+		getReporter().reportLogWithScreenshot("Customer search results");
+		getFidoretailersearchresultspage().clkView();
+		getReporter().hardAssert(getFidoretailersearchresultspage().verifyCustomerAuthRemainder(),
 				"Customer Authentication remainder popup has displayed",
 				"Customer Authentication remainder popup hasn't displayed");
-		reporter.reportLogWithScreenshot("Customer Authentication remainder popup");
-		fido_ssp_retailer_search_results_page.clkContinue();
-		reporter.hardAssert(fido_ssp_retailer_home_page.verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
-		reporter.reportLogWithScreenshot("Launched the Account Page");
-		fido_internet_dashboard_page.clkUsageNService();
-		fido_internet_dashboard_page.clkInternetService();
-		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
-		fido_internet_dashboard_page.clkManageSettings();
-		fido_internet_package_page.clkExchangeHardware();
-		reporter.reportLogWithScreenshot("Launched modem exchange Page");
-		fido_internet_package_page.setEquipmentSerialNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getModem());
-		fido_internet_package_page.setNewSerial(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getNewModem());
-		reporter.reportLogWithScreenshot("Exchange modem popup with old and new Modems");
-		fido_internet_package_page.clkConfirmTheExchange();
-		reporter.reportLogWithScreenshot("Exchange modem Success popup");
-		fido_internet_package_page.clkPrintReceipt();
-		reporter.reportLogWithScreenshot("Launched the modem receipt page");
-		reporter.hardAssert(fido_internet_package_page.verifyPrintReceiptLink(),"The print receipt link is preset on the receipt to print the receipt","Self serve receipt is doesn't have the print receipt link");
-		reporter.reportLogWithScreenshot("updated modem changes receipt");
-		reporter.hardAssert(fido_internet_package_page.verifyAcountNumberOnReceipt(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan()),"Verified the receipt","Self serve receipt is doesn't have the right account number");
+		getReporter().reportLogWithScreenshot("Customer Authentication remainder popup");
+		getFidoretailersearchresultspage().clkContinue();
+		getReporter().hardAssert(getFidoretailerhomepage().verifyFidoHomeInternet(), "Redirected to Fido.ca", "Redirection from retailer to Fido.ca has failed");
+		getReporter().reportLogWithScreenshot("Launched the Account Page");
+		getFidointernetdashboardpage().clkUsageNService();
+		getFidointernetdashboardpage().clkInternetService();
+		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
+		getFidointernetdashboardpage().clkManageSettings();
+		getFidointernetpackagepage().clkExchangeHardware();
+		getReporter().reportLogWithScreenshot("Launched modem exchange Page");
+		getFidointernetpackagepage().setEquipmentSerialNumber(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getModem());
+		getFidointernetpackagepage().setNewSerial(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getNewModem());
+		getReporter().reportLogWithScreenshot("Exchange modem popup with old and new Modems");
+		getFidointernetpackagepage().clkConfirmTheExchange();
+		getReporter().reportLogWithScreenshot("Exchange modem Success popup");
+		getFidointernetpackagepage().clkPrintReceipt();
+		getReporter().reportLogWithScreenshot("Launched the modem receipt page");
+		getReporter().hardAssert(getFidointernetpackagepage().verifyPrintReceiptLink(),"The print receipt link is preset on the receipt to print the receipt","Self serve receipt is doesn't have the print receipt link");
+		getReporter().reportLogWithScreenshot("updated modem changes receipt");
+		getReporter().hardAssert(getFidointernetpackagepage().verifyAcountNumberOnReceipt(TestDataHandler.fidoSspHSIAccount.getaccountDetails().getBan()),"Verified the receipt","Self serve receipt is doesn't have the right account number");
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

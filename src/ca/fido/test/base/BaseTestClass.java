@@ -33,65 +33,63 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTestClass {
 
-	private WebDriver driver;
-	private AppiumDriver<MobileElement> adriver;
+	protected BrowserDrivers browserdriver;
 	public Reporter reporter;	
 	protected HashMap<String,String> xmlTestParameters;
-	public EnsHomePage ensHomePage;
-	public EnsNotificationViewPage ensNoteViewPage;
-	protected VerifyInEns ensVerifications;
-	public FidoHomePage fido_home_page;
-	public FidoLoginPage fido_login_page;
-	public FidoAccountOverviewPage fido_account_overview_page;
-	protected FidoLogintoFacebookPage fido_loginto_facebook_page;
-	protected FidoAccountRegistrationPage fido_account_registration_page;
-	public FidoProfileAndSettingPage fido_profile_and_setting_page;
-	public FidoPaymentOptionsPage fido_payment_options_page;
-	protected FidoMakePaymentPage fido_make_payment_page;
-	protected FidoRecoverPassOrNamePage fido_recover_pass_or_name_page;
-	protected FidoPaymentHistoryPage fido_payment_history_page;
-	protected FidoPrepaidLinkAccountPage fido_prepaid_link_account_page;
-	protected FidoInternetDashboardPage fido_Internet_dashboard_page;
-	protected FidoInteracOnlinePage fido_interac_online_page;
-	protected FidoCommunityPage fido_Community_Page;
-	protected FidoRefillPage fido_refill_page;
-	protected FidoWirelessDashboardPostpaidPage fido_wireless_dashboard_postpaid_page;
-	protected FidoWirelessDashboardPrepaidPage fido_wireless_dashboard_prepaid_page;
-	protected FidoAddDataPage fido_add_data_page;
-	protected FidoChangeCTNPage fido_change_CTN_page;
-	protected FidoReportLostOrStolenPage fido_report_lost_or_stolen_page;
-	protected FidoBillDetailsPage fido_bill_details_page;
-	protected FidoResetVoiceMailPasswordPage fido_reset_voicemail_password_page;
-	protected FidoDeviceReservationSystemPage fido_device_reservation_system_page;
-	protected FidoDataManagementPage fido_data_management_page;
-	protected FidoSetPasswordPage fido_set_password_page;
+	protected static final ThreadLocal<EnsHomePage> ensHomePageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<EnsNotificationViewPage> ensNoteViewPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<VerifyInEns> ensVerificationsThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoHomePage> FidoHomePageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoLoginPage> FidoLoginPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoAccountOverviewPage> FidoAccountOverviewPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoLogintoFacebookPage> FidoLogintoFacebookPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoAccountRegistrationPage> FidoAccountRegistrationPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoProfileAndSettingPage> FidoProfileAndSettingPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoPaymentOptionsPage> FidoPaymentOptionsPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoMakePaymentPage> FidoMakePaymentPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoRecoverPassOrNamePage> FidoRecoverPassOrNamePageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoPaymentHistoryPage> FidoPaymentHistoryPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoPrepaidLinkAccountPage> FidoPrepaidLinkAccountPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoInteracOnlinePage> FidoInteracOnlinePageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoCommunityPage> FidoCommunityPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoRefillPage> FidoRefillPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoWirelessDashboardPostpaidPage> FidoWirelessDashboardPostpaidPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoWirelessDashboardPrepaidPage> FidoWirelessDashboardPrepaidPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoAddDataPage> FidoAddDataPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoChangeCTNPage> FidoChangeCTNPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoReportLostOrStolenPage> FidoReportLostOrStolenPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoBillDetailsPage> FidoBillDetailsPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoResetVoiceMailPasswordPage> FidoResetVoiceMailPasswordPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoDeviceReservationSystemPage> FidoDeviceReservationSystemPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoDataManagementPage> FidoDataManagementPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoSetPasswordPage> FidoSetPasswordPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<CommonBusinessFlows> CommonBusinessFlowsThreadLocal = new ThreadLocal<>(); 
+	protected static final  ThreadLocal<FidoPaymentPage> FidoPaymentPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoInternetDashboardPage> FidoInternetDashboardPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoInternetPackageChangeReviewOrderPage> FidoInternetPackageChangeReviewOrderPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoShopInternetPage> FidoShopInternetPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoCartSummaryPage> FidoCartSummaryPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoCreateUserPage> FidoCreateUserPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoCreditCheckPage> FidoCreditCheckPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoTechnicalInstallationPage> FidoTechnicalInstallationPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoOrderConfirmationPage> FidoOrderConfirmationPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<SSPFidoRetailerShopPage> FidoRetailerShopPageThreadLocal = new ThreadLocal<>();	
+	protected static final  ThreadLocal<SSPFidoRetailerHomePage> FidoRetailerHomePageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<SSPFidoRetailerSearchResultsPage> FidoRetailerSearchResultsPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoInternetPackagePage> FidoInternetPackagePageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoChoosePhonePage> FidoChoosePhonePageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoChoosePlanPage> FidoChoosePlanPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoBuildPlanPage> FidoBuildPlanPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoChooseAddonsPage> FidoChooseAddonsPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoChooseNumberPage> FidoChooseNumberPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoOrderReviewPage> FidoOrderReviewPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoChooseSimPage> FidoChooseSimPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoShippingPage> FidoShippingPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();	
+	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
-	protected CommonBusinessFlows common_business_flows; 
-	protected FidoPaymentPage fido_payment_page;
-	protected FidoInternetDashboardPage fido_internet_dashboard_page;
-	protected FidoInternetPackageChangeReviewOrderPage fido_internet_package_change_review_order_page;
-	protected FidoShopInternetPage fido_Shop_internet_page;
-	protected FidoCartSummaryPage fido_cart_summary_page;
-	protected FidoCreateUserPage fido_create_user_page;
-	protected FidoCreditCheckPage fido_credit_check_page;
-	protected FidoTechnicalInstallationPage fido_technical_installation_page;
-	protected FidoOrderConfirmationPage fido_order_confirmation_page;
-	protected SSPFidoRetailerShopPage fido_ssp_retailer_shop_page;	
-	protected SSPFidoRetailerHomePage fido_ssp_retailer_home_page;
-	protected SSPFidoRetailerSearchResultsPage fido_ssp_retailer_search_results_page;
-	protected FidoInternetPackagePage fido_internet_package_page;
-	protected FidoChoosePhonePage fido_choose_phone_page;
-	protected FidoChoosePlanPage fido_choose_plan_page;
-	protected FidoBuildPlanPage fido_build_plan_page;
-	protected FidoChooseAddonsPage fido_choose_addons_page;
-	protected FidoChooseNumberPage fido_choose_number_page;
-	protected FidoOrderReviewPage fido_order_review_page;
-	protected FidoChooseSimPage fido_chosse_sim_page;
-	protected FidoShippingPage fido_shipping_page;
-	protected BrowserDrivers browserdriver;
-	protected SSPFidoRetailerChampPage retailer_champ_page;	
 	private CaptchaBypassHandlers captcha_bypass_handlers;
-	protected FidoDeviceConfigPage fido_device_config_Page;
 	private Map<String,String> sauceParameters;
 	private Map<String,String> RunParameters;
 
@@ -99,7 +97,255 @@ public class BaseTestClass {
 		 browserdriver =  new BrowserDrivers();
 		 
 	}
-	
+
+	public Reporter getReporter() {
+		return reporter;
+	}
+
+	public void setReporter(Reporter reporter) {
+		this.reporter = reporter;
+	}
+
+	public HashMap<String, String> getXmlTestParameters() {
+		return xmlTestParameters;
+	}
+
+	public void setXmlTestParameters(HashMap<String, String> xmlTestParameters) {
+		this.xmlTestParameters = xmlTestParameters;
+	}
+
+	public CaptchaBypassHandlers getCaptcha_bypass_handlers() {
+		return captcha_bypass_handlers;
+	}
+
+	public void setCaptcha_bypass_handlers(CaptchaBypassHandlers captcha_bypass_handlers) {
+		this.captcha_bypass_handlers = captcha_bypass_handlers;
+	}
+
+	public Map<String, String> getSauceParameters() {
+		return sauceParameters;
+	}
+
+	public void setSauceParameters(Map<String, String> sauceParameters) {
+		this.sauceParameters = sauceParameters;
+	}
+
+	public Map<String, String> getRunParameters() {
+		return RunParameters;
+	}
+
+	public void setRunParameters(Map<String, String> runParameters) {
+		RunParameters = runParameters;
+	}
+
+	public static EnsHomePage getEnshomepage() {
+		return ensHomePageThreadLocal.get();
+	}
+
+	public static EnsNotificationViewPage getEnsnoteviewpage() {
+		return ensNoteViewPageThreadLocal.get();
+	}
+
+	public static VerifyInEns getEnsverifications() {
+		return ensVerificationsThreadLocal.get();
+	}
+
+	public static FidoHomePage getFidohomepage() {
+		return FidoHomePageThreadLocal.get();
+	}
+
+	public static FidoLoginPage getFidologinpage() {
+		return FidoLoginPageThreadLocal.get();
+	}
+
+	public static FidoAccountOverviewPage getFidoaccountoverviewpage() {
+		return FidoAccountOverviewPageThreadLocal.get();
+	}
+
+	public static FidoLogintoFacebookPage getFidologintofacebookpage() {
+		return FidoLogintoFacebookPageThreadLocal.get();
+	}
+
+	public static FidoAccountRegistrationPage getFidoaccountregistrationpage() {
+		return FidoAccountRegistrationPageThreadLocal.get();
+	}
+
+	public static FidoProfileAndSettingPage getFidoprofileandsettingpage() {
+		return FidoProfileAndSettingPageThreadLocal.get();
+	}
+
+	public static FidoPaymentOptionsPage getFidopaymentoptionspage() {
+		return FidoPaymentOptionsPageThreadLocal.get();
+	}
+
+	public static FidoMakePaymentPage getFidomakepaymentpage() {
+		return FidoMakePaymentPageThreadLocal.get();
+	}
+
+	public static FidoRecoverPassOrNamePage getFidorecoverpassornamepage() {
+		return FidoRecoverPassOrNamePageThreadLocal.get();
+	}
+
+	public static FidoPaymentHistoryPage getFidopaymenthistorypage() {
+		return FidoPaymentHistoryPageThreadLocal.get();
+	}
+
+	public static FidoPrepaidLinkAccountPage getFidoprepaidlinkaccountpage() {
+		return FidoPrepaidLinkAccountPageThreadLocal.get();
+	}
+
+	public static FidoInteracOnlinePage getFidointeraconlinepage() {
+		return FidoInteracOnlinePageThreadLocal.get();
+	}
+
+	public static FidoCommunityPage getFidocommunitypage() {
+		return FidoCommunityPageThreadLocal.get();
+	}
+
+	public static FidoRefillPage getFidorefillpage() {
+		return FidoRefillPageThreadLocal.get();
+	}
+
+	public static FidoWirelessDashboardPostpaidPage getFidowirelessdashboardpostpaidpage() {
+		return FidoWirelessDashboardPostpaidPageThreadLocal.get();
+	}
+
+	public static FidoWirelessDashboardPrepaidPage getFidowirelessdashboardprepaidpage() {
+		return FidoWirelessDashboardPrepaidPageThreadLocal.get();
+	}
+
+	public static FidoAddDataPage getFidoadddatapage() {
+		return FidoAddDataPageThreadLocal.get();
+	}
+
+	public static FidoChangeCTNPage getFidochangectnpage() {
+		return FidoChangeCTNPageThreadLocal.get();
+	}
+
+	public static FidoReportLostOrStolenPage getFidoreportlostorstolenpage() {
+		return FidoReportLostOrStolenPageThreadLocal.get();
+	}
+
+	public static FidoBillDetailsPage getFidobilldetailspage() {
+		return FidoBillDetailsPageThreadLocal.get();
+	}
+
+	public static FidoResetVoiceMailPasswordPage getFidoresetvoicemailpasswordpage() {
+		return FidoResetVoiceMailPasswordPageThreadLocal.get();
+	}
+
+	public static FidoDeviceReservationSystemPage getFidodevicereservationsystempage() {
+		return FidoDeviceReservationSystemPageThreadLocal.get();
+	}
+
+	public static FidoDataManagementPage getFidodatamanagementpage() {
+		return FidoDataManagementPageThreadLocal.get();
+	}
+
+	public static FidoSetPasswordPage getFidosetpasswordpage() {
+		return FidoSetPasswordPageThreadLocal.get();
+	}
+
+	public static CommonBusinessFlows getCommonbusinessflows() {
+		return CommonBusinessFlowsThreadLocal.get();
+	}
+
+	public static FidoPaymentPage getFidopaymentpage() {
+		return FidoPaymentPageThreadLocal.get();
+	}
+
+	public static FidoInternetDashboardPage getFidointernetdashboardpage() {
+		return FidoInternetDashboardPageThreadLocal.get();
+	}
+
+	public static FidoInternetPackageChangeReviewOrderPage getFidointernetpackagechangerevieworderpage() {
+		return FidoInternetPackageChangeReviewOrderPageThreadLocal.get();
+	}
+
+	public static FidoShopInternetPage getFidoshopinternetpage() {
+		return FidoShopInternetPageThreadLocal.get();
+	}
+
+	public static FidoCartSummaryPage getFidocartsummarypage() {
+		return FidoCartSummaryPageThreadLocal.get();
+	}
+
+	public static FidoCreateUserPage getFidocreateuserpage() {
+		return FidoCreateUserPageThreadLocal.get();
+	}
+
+	public static FidoCreditCheckPage getFidocreditcheckpage() {
+		return FidoCreditCheckPageThreadLocal.get();
+	}
+
+	public static FidoTechnicalInstallationPage getFidotechnicalinstallationpage() {
+		return FidoTechnicalInstallationPageThreadLocal.get();
+	}
+
+	public static FidoOrderConfirmationPage getFidoorderconfirmationpage() {
+		return FidoOrderConfirmationPageThreadLocal.get();
+	}
+
+	public static SSPFidoRetailerShopPage getFidoretailershoppage() {
+		return FidoRetailerShopPageThreadLocal.get();
+	}
+
+	public static SSPFidoRetailerHomePage getFidoretailerhomepage() {
+		return FidoRetailerHomePageThreadLocal.get();
+	}
+
+	public static SSPFidoRetailerSearchResultsPage getFidoretailersearchresultspage() {
+		return FidoRetailerSearchResultsPageThreadLocal.get();
+	}
+
+	public static FidoInternetPackagePage getFidointernetpackagepage() {
+		return FidoInternetPackagePageThreadLocal.get();
+	}
+
+	public static FidoChoosePhonePage getFidochoosephonepage() {
+		return FidoChoosePhonePageThreadLocal.get();
+	}
+
+	public static FidoChoosePlanPage getFidochooseplanpage() {
+		return FidoChoosePlanPageThreadLocal.get();
+	}
+
+	public static FidoBuildPlanPage getFidobuildplanpage() {
+		return FidoBuildPlanPageThreadLocal.get();
+	}
+
+	public static FidoChooseAddonsPage getFidochooseaddonspage() {
+		return FidoChooseAddonsPageThreadLocal.get();
+	}
+
+	public static FidoChooseNumberPage getFidochoosenumberpage() {
+		return FidoChooseNumberPageThreadLocal.get();
+	}
+
+	public static FidoOrderReviewPage getFidoorderreviewpage() {
+		return FidoOrderReviewPageThreadLocal.get();
+	}
+
+	public static FidoChooseSimPage getFidochoosesimpage() {
+		return FidoChooseSimPageThreadLocal.get();
+	}
+
+	public static FidoShippingPage getFidoshippingpage() {
+		return FidoShippingPageThreadLocal.get();
+	}
+
+	public static WebDriver getWebdriver() {
+		return webDriverThreadLocal.get();
+	}
+
+	public static SSPFidoRetailerChampPage getFidoretailerchamppage() {
+		return FidoRetailerChampPageThreadLocal.get();
+	}
+
+	public static FidoDeviceConfigPage getFidodeviceconfigpage() {
+		return FidoDeviceConfigPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -157,27 +403,27 @@ public class BaseTestClass {
 		{
 			sauceParameters = initializeSauceParamsMap(browser);
 		}
-		this.driver = browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString());
+	    webDriverThreadLocal.set(browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString()));
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
-				driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);break;
+				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);break;
 
 				case "connectedhome_login":
-					driver.get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
+					getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 
 			case "selfserve":
 			case "selfserve_login":
-				driver.get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
+				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 			case "connectedhome_ssp":
-			case "buyflows": driver.get(strUrl);
+			case "buyflows": getDriver().get(strUrl);
 				break;
 
 			default :
@@ -194,107 +440,107 @@ public class BaseTestClass {
 	 * @param strGroupName string of group name.
 	 */
 	private void init(String strGroupName) {
-		reporter = new ExtentTestManager(getDriver());	
-		common_business_flows = new CommonBusinessFlows(this);
+		setReporter(new ExtentTestManager(getDriver()));	
+		CommonBusinessFlowsThreadLocal.set(new CommonBusinessFlows(this));
 		switch(strGroupName) {
 		
 		case "selfserve":
 		case "selfserve_login":
 			
-			fido_home_page = new FidoHomePage(driver);
-			fido_login_page = new FidoLoginPage(driver);
-			fido_account_overview_page = new FidoAccountOverviewPage(driver);
-			fido_loginto_facebook_page = new FidoLogintoFacebookPage(driver);
-			fido_account_registration_page = new FidoAccountRegistrationPage(driver);
-			fido_profile_and_setting_page = new FidoProfileAndSettingPage(driver);
-			fido_payment_options_page = new FidoPaymentOptionsPage(driver);
-			fido_make_payment_page =new FidoMakePaymentPage(driver);
-			fido_recover_pass_or_name_page = new FidoRecoverPassOrNamePage(driver);
-			fido_payment_history_page = new FidoPaymentHistoryPage(driver);
-			fido_prepaid_link_account_page = new FidoPrepaidLinkAccountPage(driver);
-			fido_interac_online_page = new FidoInteracOnlinePage(driver);
-			fido_Internet_dashboard_page = new FidoInternetDashboardPage(driver);
-			fido_Community_Page = new FidoCommunityPage(driver);
-			fido_refill_page = new FidoRefillPage(driver);
-			fido_wireless_dashboard_postpaid_page = new FidoWirelessDashboardPostpaidPage(driver);
-			fido_wireless_dashboard_prepaid_page = new FidoWirelessDashboardPrepaidPage(driver);
-			fido_add_data_page = new FidoAddDataPage(driver);
-			fido_report_lost_or_stolen_page = new FidoReportLostOrStolenPage(driver);
-			fido_change_CTN_page = new FidoChangeCTNPage(driver);
-			fido_bill_details_page = new FidoBillDetailsPage(driver);
-			fido_reset_voicemail_password_page = new FidoResetVoiceMailPasswordPage(driver);
-			fido_device_reservation_system_page =  new FidoDeviceReservationSystemPage(driver);	
-			fido_data_management_page = new FidoDataManagementPage(driver);
-			fido_set_password_page = new FidoSetPasswordPage(driver);
-			ensHomePage = new EnsHomePage(driver);
-			ensNoteViewPage = new EnsNotificationViewPage(driver);
-			ensVerifications = new VerifyInEns(this);
+			FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+			FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+			FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+			FidoLogintoFacebookPageThreadLocal.set(new FidoLogintoFacebookPage(getDriver()));
+			FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
+			FidoProfileAndSettingPageThreadLocal.set(new FidoProfileAndSettingPage(getDriver()));
+			FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+			FidoMakePaymentPageThreadLocal.set(new FidoMakePaymentPage(getDriver()));
+			FidoRecoverPassOrNamePageThreadLocal.set(new FidoRecoverPassOrNamePage(getDriver()));
+			FidoPaymentHistoryPageThreadLocal.set(new FidoPaymentHistoryPage(getDriver()));
+			FidoPrepaidLinkAccountPageThreadLocal.set(new FidoPrepaidLinkAccountPage(getDriver()));
+			FidoInteracOnlinePageThreadLocal.set(new FidoInteracOnlinePage(getDriver()));
+			FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
+			FidoCommunityPageThreadLocal.set(new FidoCommunityPage(getDriver()));
+			FidoRefillPageThreadLocal.set(new FidoRefillPage(getDriver()));
+			FidoWirelessDashboardPostpaidPageThreadLocal.set(new FidoWirelessDashboardPostpaidPage(getDriver()));
+			FidoWirelessDashboardPrepaidPageThreadLocal.set(new FidoWirelessDashboardPrepaidPage(getDriver()));
+			FidoAddDataPageThreadLocal.set(new FidoAddDataPage(getDriver()));
+			FidoReportLostOrStolenPageThreadLocal.set(new FidoReportLostOrStolenPage(getDriver()));
+			FidoChangeCTNPageThreadLocal.set(new FidoChangeCTNPage(getDriver()));
+			FidoBillDetailsPageThreadLocal.set(new FidoBillDetailsPage(getDriver()));
+			FidoResetVoiceMailPasswordPageThreadLocal.set(new FidoResetVoiceMailPasswordPage(getDriver()));
+			FidoDeviceReservationSystemPageThreadLocal.set(new FidoDeviceReservationSystemPage(getDriver()));	
+			FidoDataManagementPageThreadLocal.set(new FidoDataManagementPage(getDriver()));
+			FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
+			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
+			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
+			ensVerificationsThreadLocal.set(new VerifyInEns(this));
 			break;
 			
 		case "connectedhome_login":
-			fido_home_page = new FidoHomePage(driver);
-			fido_login_page = new FidoLoginPage(driver);
-			fido_account_overview_page = new FidoAccountOverviewPage(driver);
-			fido_payment_page = new FidoPaymentPage(driver);
-			fido_internet_dashboard_page = new FidoInternetDashboardPage(driver);
-			fido_account_registration_page= new FidoAccountRegistrationPage(driver);
-			fido_internet_package_change_review_order_page= new FidoInternetPackageChangeReviewOrderPage(driver);
-			fido_Shop_internet_page= new FidoShopInternetPage(driver);
-			fido_cart_summary_page= new FidoCartSummaryPage(driver);
-			fido_create_user_page= new FidoCreateUserPage(driver); 
-			fido_credit_check_page= new FidoCreditCheckPage(driver);
-			fido_technical_installation_page= new FidoTechnicalInstallationPage(driver);
-			fido_payment_options_page= new FidoPaymentOptionsPage(driver);
-			fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
-			fido_internet_package_page=new FidoInternetPackagePage(driver);
-			fido_set_password_page = new FidoSetPasswordPage(driver);
-			ensHomePage = new EnsHomePage(driver);
-			ensNoteViewPage = new EnsNotificationViewPage(driver);
-			ensVerifications = new VerifyInEns(this);
+			FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+			FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+			FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+			FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+			FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
+			FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
+			FidoInternetPackageChangeReviewOrderPageThreadLocal.set(new FidoInternetPackageChangeReviewOrderPage(getDriver()));
+			FidoShopInternetPageThreadLocal.set(new FidoShopInternetPage(getDriver()));
+			FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
+			FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver())); 
+			FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
+			FidoTechnicalInstallationPageThreadLocal.set(new FidoTechnicalInstallationPage(getDriver()));
+			FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+			FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
+			FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
+			FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
+			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
+			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
+			ensVerificationsThreadLocal.set(new VerifyInEns(this));
 			break;
 
 			case "connectedhome_anonymous":
 			case "connectedhome_ssp":
-				fido_home_page = new FidoHomePage(driver);
-				fido_payment_page = new FidoPaymentPage(driver);
-				fido_internet_dashboard_page = new FidoInternetDashboardPage(driver);
-				fido_account_registration_page= new FidoAccountRegistrationPage(driver);
-				fido_internet_package_change_review_order_page= new FidoInternetPackageChangeReviewOrderPage(driver);
-				fido_Shop_internet_page= new FidoShopInternetPage(driver);
-				fido_cart_summary_page= new FidoCartSummaryPage(driver);
-				fido_create_user_page= new FidoCreateUserPage(driver);
-				fido_credit_check_page= new FidoCreditCheckPage(driver);
-				fido_payment_page = new FidoPaymentPage(driver);
-				fido_technical_installation_page= new FidoTechnicalInstallationPage(driver);
-				fido_payment_options_page= new FidoPaymentOptionsPage(driver);
-				fido_order_confirmation_page= new FidoOrderConfirmationPage(driver);
-				fido_ssp_retailer_shop_page= new SSPFidoRetailerShopPage(driver);
-				fido_ssp_retailer_home_page= new SSPFidoRetailerHomePage(driver);
-				fido_ssp_retailer_search_results_page= new SSPFidoRetailerSearchResultsPage(driver);
-				fido_internet_package_page=new FidoInternetPackagePage(driver);
-				retailer_champ_page= new SSPFidoRetailerChampPage(driver);
+				FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+				FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
+				FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
+				FidoInternetPackageChangeReviewOrderPageThreadLocal.set(new FidoInternetPackageChangeReviewOrderPage(getDriver()));
+				FidoShopInternetPageThreadLocal.set(new FidoShopInternetPage(getDriver()));
+				FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
+				FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
+				FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
+				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+				FidoTechnicalInstallationPageThreadLocal.set(new FidoTechnicalInstallationPage(getDriver()));
+				FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+				FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
+				FidoRetailerShopPageThreadLocal.set(new SSPFidoRetailerShopPage(getDriver()));
+				FidoRetailerHomePageThreadLocal.set(new SSPFidoRetailerHomePage(getDriver()));
+				FidoRetailerSearchResultsPageThreadLocal.set(new SSPFidoRetailerSearchResultsPage(getDriver()));
+				FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
+				FidoRetailerChampPageThreadLocal.set(new SSPFidoRetailerChampPage(getDriver()));
 				break;
 
 		case "buyflows":
-			fido_home_page = new FidoHomePage(getDriver());
-			fido_login_page = new FidoLoginPage(getDriver());
-			fido_account_overview_page = new FidoAccountOverviewPage(getDriver());
-			fido_wireless_dashboard_postpaid_page = new FidoWirelessDashboardPostpaidPage(getDriver());
-			fido_choose_phone_page = new FidoChoosePhonePage(getDriver());
-			fido_choose_plan_page = new FidoChoosePlanPage(getDriver());
-			fido_build_plan_page = new FidoBuildPlanPage(getDriver());
-			fido_choose_addons_page = new FidoChooseAddonsPage(getDriver());
-			fido_cart_summary_page = new FidoCartSummaryPage(getDriver());
-			fido_create_user_page = new FidoCreateUserPage(getDriver());
-			fido_credit_check_page = new FidoCreditCheckPage(getDriver());
-			fido_choose_number_page = new FidoChooseNumberPage(getDriver());
-			fido_payment_options_page = new FidoPaymentOptionsPage(getDriver());
-			fido_order_review_page = new FidoOrderReviewPage(getDriver());
-			fido_order_confirmation_page = new FidoOrderConfirmationPage(getDriver());
-			fido_chosse_sim_page = new FidoChooseSimPage(getDriver());
-			fido_shipping_page = new FidoShippingPage(getDriver());
-			fido_payment_page = new FidoPaymentPage(getDriver());
-			fido_device_config_Page = new FidoDeviceConfigPage(getDriver());
+			FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+			FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+			FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+			FidoWirelessDashboardPostpaidPageThreadLocal.set(new FidoWirelessDashboardPostpaidPage(getDriver()));
+			FidoChoosePhonePageThreadLocal.set(new FidoChoosePhonePage(getDriver()));
+			FidoChoosePlanPageThreadLocal.set(new FidoChoosePlanPage(getDriver()));
+			FidoBuildPlanPageThreadLocal.set(new FidoBuildPlanPage(getDriver()));
+			FidoChooseAddonsPageThreadLocal.set(new FidoChooseAddonsPage(getDriver()));
+			FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
+			FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
+			FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
+			FidoChooseNumberPageThreadLocal.set(new FidoChooseNumberPage(getDriver()));
+			FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+			FidoOrderReviewPageThreadLocal.set(new FidoOrderReviewPage(getDriver()));
+			FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
+			FidoChooseSimPageThreadLocal.set(new FidoChooseSimPage(getDriver()));
+			FidoShippingPageThreadLocal.set(new FidoShippingPage(getDriver()));
+			FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+			FidoDeviceConfigPageThreadLocal.set(new FidoDeviceConfigPage(getDriver()));
 			
 		default:
 			
@@ -326,7 +572,7 @@ public class BaseTestClass {
 	 * @return driver, WebDriver which is using
 	 */
 	public WebDriver getDriver() {
-		return this.driver;
+		return webDriverThreadLocal.get();
 	}
 	
 	

@@ -35,108 +35,108 @@ public class Mobile_FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	
 	@Test(groups = {"MobileSanitySS","MobileBillingAndPaymentsSS"})
 	public void mobilePostPaidChangeMOP() {
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
-		fido_home_page.clkLoginMobile();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navgation card");	
+		getFidohomepage().clkLoginMobile();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrameMobile();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
-		fido_account_overview_page.clkViewBillNew(strBAN);
-		reporter.reportLogWithScreenshot("View bill page is open");
-		fido_bill_details_page.clkChangePaymentMethod();
-		//fido_account_overview_page.clkPenIconForChangePaymentMethod();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getReporter().reportLogWithScreenshot("View bill page is open");
+		getFidobilldetailspage().clkChangePaymentMethod();
+		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
-		reporter.reportLogWithScreenshot("Change Method of payment overlay");
-		if(fido_payment_options_page.isAutopaymentAlreadySet())
+		getReporter().reportLogWithScreenshot("Change Method of payment overlay");
+		if(getFidopaymentoptionspage().isAutopaymentAlreadySet())
 		{
-			reporter.reportLogWithScreenshot("Auto payement already set, remove it before changing MOP");
-			fido_payment_options_page.clkRemoveAutomaticPayment();
-			fido_payment_options_page.clkYesCancelButtonIfAskedForAreYouSureOption();
-			fido_payment_options_page.waitForRemovalOfAutoPaymentIsSuccessFulMessageToBeAvailable();
-			reporter.reportLogWithScreenshot("Auto payment successful");
-			fido_payment_options_page.clkClose();
-			fido_bill_details_page.clkChangePaymentMethod();
+			getReporter().reportLogWithScreenshot("Auto payement already set, remove it before changing MOP");
+			getFidopaymentoptionspage().clkRemoveAutomaticPayment();
+			getFidopaymentoptionspage().clkYesCancelButtonIfAskedForAreYouSureOption();
+			getFidopaymentoptionspage().waitForRemovalOfAutoPaymentIsSuccessFulMessageToBeAvailable();
+			getReporter().reportLogWithScreenshot("Auto payment successful");
+			getFidopaymentoptionspage().clkClose();
+			getFidobilldetailspage().clkChangePaymentMethod();
 		}
-		fido_payment_options_page.clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getCredit());
-		reporter.reportLogWithScreenshot("Change payment option to Credit card selected");
-		fido_payment_options_page.setCreditCardNumberOnChangeMOP(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-		fido_payment_options_page.setExpiryDate(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-		fido_payment_options_page.setCreditcardCVCMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
-		reporter.reportLogWithScreenshot("Credit card details entered");
-		fido_payment_options_page.clkContinue();
-		reporter.softAssert(fido_payment_options_page.verifyIfTheReviewCreditCardIsDisplayed(),
+		getFidopaymentoptionspage().clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getCredit());
+		getReporter().reportLogWithScreenshot("Change payment option to Credit card selected");
+		getFidopaymentoptionspage().setCreditCardNumberOnChangeMOP(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+		getFidopaymentoptionspage().setExpiryDate(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
+		getFidopaymentoptionspage().setCreditcardCVCMobile(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		getReporter().reportLogWithScreenshot("Credit card details entered");
+		getFidopaymentoptionspage().clkContinue();
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheReviewCreditCardIsDisplayed(),
 							"review credit card is displayed",
 							"review credit card is not displayed");
-		fido_payment_options_page.clkConfirm();
-		reporter.reportLogWithScreenshot("Verify the payment me		thod set to credit card");
-		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
+		getFidopaymentoptionspage().clkConfirm();
+		getReporter().reportLogWithScreenshot("Verify the payment me		thod set to credit card");
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Change MOP Success message displayed",
 							"Change MOP Success message not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheLabelYourFutureBillsIsDisplayed(),
 							"Label your future bill is displayed",
 							"Label your future bill is not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
 							"Payment method ending in displayed",
 							"Payment method ending in not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
 							"label automatic payment effects displayed",
 							"label automatic payment effects not displayed");
 		
 		//commenting the below check point due to story : DC-2754
-		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
+		/* getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheButtonPayBalanceIsDisplayed(),
 							"Button pay balance is displayed",
 							"button pay balanc is not displayed"); */
-		fido_payment_options_page.clkCloseButton();		
-		fido_bill_details_page.clkAccountOverviewMobile();
-		reporter.reportLogWithScreenshot("Account overview page");
-		//fido_account_overview_page.clkChangeMethodOfPayment();
-		fido_account_overview_page.clkPenIconForChangePaymentMethod();
-		reporter.reportLogWithScreenshot("Change method of payment");
-		common_business_flows.scrollToMiddleOfWebPage();
-		fido_payment_options_page.clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getBank());
-		reporter.reportLogWithScreenshot("Change method of payment to bank selected");
-		fido_payment_options_page.setBankTransitNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
-		fido_payment_options_page.setInstitutionNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
-		fido_payment_options_page.setAccountNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getAccountNumber());
-		fido_payment_options_page.clkContinue();
-		reporter.hardAssert(fido_payment_options_page.verifyTnCPageIsOpenMobile(),
+		getFidopaymentoptionspage().clkCloseButton();		
+		getFidobilldetailspage().clkAccountOverviewMobile();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
+		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().reportLogWithScreenshot("Change method of payment");
+		getCommonbusinessflows().scrollToMiddleOfWebPage();
+		getFidopaymentoptionspage().clkPaymentOptionMobile(TestDataHandler.paymentInfo.getPaymentType().getBank());
+		getReporter().reportLogWithScreenshot("Change method of payment to bank selected");
+		getFidopaymentoptionspage().setBankTransitNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
+		getFidopaymentoptionspage().setInstitutionNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
+		getFidopaymentoptionspage().setAccountNumberMobile(TestDataHandler.paymentInfo.getBankDetails().getAccountNumber());
+		getFidopaymentoptionspage().clkContinue();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyTnCPageIsOpenMobile(),
 							"T n C is displayed",
 							"T n C is not displayed");
-		fido_payment_options_page.clkIAcceptTermsAndCondition();
-		reporter.reportLogWithScreenshot("Bank info entered, T n C accepted");
-		fido_payment_options_page.clkContinue();
-		reporter.reportLogWithScreenshot("Verify the payment method set to bank");
-		reporter.hardAssert(fido_payment_options_page.verifyIfTheLabelSuccessMessageIsDisplayed(),
+		getFidopaymentoptionspage().clkIAcceptTermsAndCondition();
+		getReporter().reportLogWithScreenshot("Bank info entered, T n C accepted");
+		getFidopaymentoptionspage().clkContinue();
+		getReporter().reportLogWithScreenshot("Verify the payment method set to bank");
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyIfTheLabelSuccessMessageIsDisplayed(),
 							"Change MOP Success message displayed",
 							"Change MOP Success message not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelYourFutureBillsIsDisplayed(),
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheLabelYourFutureBillsIsDisplayed(),
 							"Label your future bill is displayed",
 							"Label your future bill is not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheLabelPaymentMethodEndingInIsDisplayed(),
 							"Payment method ending in displayed",
 							"Payment method ending in not displayed");
-		reporter.softAssert(fido_payment_options_page.verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
+		getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheLabelAutomaticPaymentEffectIsDisplayed(),
 							"label automatic payment effects displayed",
 							"label automatic payment effects not displayed");
 		
 		//commenting the below check point due to stroy : DC-2754
-		/* reporter.softAssert(fido_payment_options_page.verifyIfTheButtonPayBalanceIsDisplayed(),
+		/* getReporter().softAssert(getFidopaymentoptionspage().verifyIfTheButtonPayBalanceIsDisplayed(),
 							"Button pay balance is displayed",
 							"Button pay balance is not displayed"); */
-		fido_payment_options_page.clkCloseButton();		
+		getFidopaymentoptionspage().clkCloseButton();		
 				
 		
 	}

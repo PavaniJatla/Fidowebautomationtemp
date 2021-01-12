@@ -40,60 +40,60 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 	
 	@Test(groups = {"MobileSanitySS"})
 	public void mobilePrePaidPaymentViewAndEditProfile() throws InterruptedException, ParseException, IOException {
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
-		fido_home_page.clkLoginMobile();
-		fido_login_page.switchToSignInFrame();
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navgation card");	
+		getFidohomepage().clkLoginMobile();
+		getFidologinpage().switchToSignInFrame();
 		String altUserName=TestDataHandler.tc006009.getUsername();
 		String altPassword=TestDataHandler.tc006009.getPassword();
 		String newPassword=TestDataHandler.tc006009.getaccountDetails().getNewPassword();						
-		fido_login_page.setUsernameInFrame(altUserName);
-		fido_login_page.setPasswordInFrame(altPassword);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();
-		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
-		{	reporter.reportLogWithScreenshot("Login not successful with user name :"+altUserName+"and password :"+altPassword);		
+		getFidologinpage().setUsernameInFrame(altUserName);
+		getFidologinpage().setPasswordInFrame(altPassword);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrameMobile();
+		if(getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame())
+		{	getReporter().reportLogWithScreenshot("Login not successful with user name :"+altUserName+"and password :"+altPassword);		
 			String tempPwd=altPassword;
 			altPassword=newPassword;
 			newPassword=tempPwd;	
-			fido_login_page.setUsernameInFrame(altUserName);
-			fido_login_page.setPasswordInFrame(altPassword);
-			fido_login_page.clkLoginInFrameMobile();
-			reporter.reportLogWithScreenshot("Login attempt with alternate password :"+newPassword);
-			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(),
+			getFidologinpage().setUsernameInFrame(altUserName);
+			getFidologinpage().setPasswordInFrame(altPassword);
+			getFidologinpage().clkLoginInFrameMobile();
+			getReporter().reportLogWithScreenshot("Login attempt with alternate password :"+newPassword);
+			getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(),
 								"Login successful",
 								"Login failed with both password.");
 		}
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page.");
-		fido_account_overview_page.clkMenuProfileNSettingMobile();
-		reporter.reportLogWithScreenshot("menu profile and setting selected");
-		fido_profile_and_setting_page.clkButtonLogInDetails();
-		reporter.softAssert(!fido_profile_and_setting_page.isChangeUserNameLinkPresent(),
+		getReporter().reportLogWithScreenshot("Account overview page.");
+		getFidoaccountoverviewpage().clkMenuProfileNSettingMobile();
+		getReporter().reportLogWithScreenshot("menu profile and setting selected");
+		getFidoprofileandsettingpage().clkButtonLogInDetails();
+		getReporter().softAssert(!getFidoprofileandsettingpage().isChangeUserNameLinkPresent(),
 							"The change username link is not displayed for pre-paid accounts",
 							"The change username is present for prepaid account");
-		fido_profile_and_setting_page.clkChangePasswordMobile();				
-		fido_profile_and_setting_page.setNewPassword(altPassword, newPassword);		
-		reporter.reportLogWithScreenshot("New password set");
-		fido_profile_and_setting_page.clkSaveButtonMobile();	
-		reporter.reportLogWithScreenshot("New password changes saved");
+		getFidoprofileandsettingpage().clkChangePasswordMobile();				
+		getFidoprofileandsettingpage().setNewPassword(altPassword, newPassword);		
+		getReporter().reportLogWithScreenshot("New password set");
+		getFidoprofileandsettingpage().clkSaveButtonMobile();	
+		getReporter().reportLogWithScreenshot("New password changes saved");
 		
-		common_business_flows.logOutAndResignInMobile(altUserName, newPassword);
+		getCommonbusinessflows().logOutAndResignInMobile(altUserName, newPassword);
 		
-		reporter.softAssert(fido_account_overview_page.verifySuccessfulLogin(),
+		getReporter().softAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 							"Login successful with new password.",
 							"Login with new password is Not successful");
 		
 		//rechange to the original one		
-		fido_account_overview_page.clkMenuProfileNSettingMobile();
-		fido_profile_and_setting_page.clkButtonLogInDetails();
-		fido_profile_and_setting_page.clkChangePasswordMobile();				
-		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);		
-		fido_profile_and_setting_page.clkSaveButtonMobile();
-		reporter.reportLogWithScreenshot("password set back to initial one");
+		getFidoaccountoverviewpage().clkMenuProfileNSettingMobile();
+		getFidoprofileandsettingpage().clkButtonLogInDetails();
+		getFidoprofileandsettingpage().clkChangePasswordMobile();				
+		getFidoprofileandsettingpage().setNewPassword(newPassword,altPassword);		
+		getFidoprofileandsettingpage().clkSaveButtonMobile();
+		getReporter().reportLogWithScreenshot("password set back to initial one");
 	}
 
 }

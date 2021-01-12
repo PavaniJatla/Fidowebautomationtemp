@@ -94,13 +94,13 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div")
 	WebElement inputLastNameDiv;
 	
-	@FindBy(xpath = "//button[@id='caller-id-continue-button']")
+	@FindBy(xpath = "//button[@data-test='build-plan-checkout-flow-button']")
 	WebElement buttonContinueUserName;
 	
-	@FindBy(xpath = "//select[@id='ds-form-input-id-2']")
+	@FindBy(xpath = "//select[contains(@id,'ds-form-input-id')]")
 	WebElement selectCity;
 	
-	@FindBy(xpath = "//button[@id='choose-number-continue-button']")
+	@FindBy(xpath = "//button[@data-test='choose-number-continue']")
 	WebElement buttonChooseNumberContinue;
 	
 	@FindBy(xpath = "//img[@alt='Close']")

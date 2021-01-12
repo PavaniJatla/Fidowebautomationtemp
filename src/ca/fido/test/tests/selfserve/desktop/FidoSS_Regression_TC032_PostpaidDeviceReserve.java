@@ -28,104 +28,104 @@ public class FidoSS_Regression_TC032_PostpaidDeviceReserve extends BaseTestClass
 	
 	@Test
 	public void postpaidReserveNewPhone() {
-		reporter.reportLogWithScreenshot("Home Page");
-        reporter.reportLog("Home Page Launched");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc2732.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc2732.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getReporter().reportLogWithScreenshot("Home Page");
+        getReporter().reportLog("Home Page Launched");
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc2732.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc2732.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page.");
-		String strCTNDetails = fido_account_overview_page.getCTNUsers().get("CTN1");
+		getReporter().reportLogWithScreenshot("Account overview page.");
+		String strCTNDetails = getFidoaccountoverviewpage().getCTNUsers().get("CTN1");
 		String strCTNContact=strCTNDetails.replaceAll("[^0-9]", "");
 		String strCTN = TestDataHandler.tc2732.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Wireless DashBoard Page");
-		fido_wireless_dashboard_postpaid_page.clkBtnReserveNewPhone();
-		fido_wireless_dashboard_postpaid_page.clkBtnReserve();
-		fido_device_reservation_system_page.switchToIFrame();
-		reporter.reportLogWithScreenshot("Reserve device frame page");
-		fido_device_reservation_system_page.cancelAllDeviceReservationBeforeReservingANewOneIFrame();		
-		String strSelectedFidoNumber = fido_device_reservation_system_page.getSelectedFidoNumberIFrame();
-		reporter.reportLogWithScreenshot("Number selected");
-		reporter.hardAssert(strCTNContact.equals(strSelectedFidoNumber),
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Wireless DashBoard Page");
+		getFidowirelessdashboardpostpaidpage().clkBtnReserveNewPhone();
+		getFidowirelessdashboardpostpaidpage().clkBtnReserve();
+		getFidodevicereservationsystempage().switchToIFrame();
+		getReporter().reportLogWithScreenshot("Reserve device frame page");
+		getFidodevicereservationsystempage().cancelAllDeviceReservationBeforeReservingANewOneIFrame();		
+		String strSelectedFidoNumber = getFidodevicereservationsystempage().getSelectedFidoNumberIFrame();
+		getReporter().reportLogWithScreenshot("Number selected");
+		getReporter().hardAssert(strCTNContact.equals(strSelectedFidoNumber),
 							"The CTN numbers matched",
 							"The CTN numbers mismatched");
-		if(fido_device_reservation_system_page.isReserveAPhoneButtonDisplayedIFrame()) {
-			fido_device_reservation_system_page.clkReserveAPhoneButtonIFrame();				
+		if(getFidodevicereservationsystempage().isReserveAPhoneButtonDisplayedIFrame()) {
+			getFidodevicereservationsystempage().clkReserveAPhoneButtonIFrame();				
 		}
-		reporter.hardAssert(fido_device_reservation_system_page.verifyThePhoneImageIsLoadedIFrame(),
+		getReporter().hardAssert(getFidodevicereservationsystempage().verifyThePhoneImageIsLoadedIFrame(),
 							"The phone image is displayed",
 							"The phone image is not loaded");
-		fido_device_reservation_system_page.setReservationContactEmailIFrame(FormFiller.generateEmail());
-		reporter.reportLogWithScreenshot("reservation contact email set");
-		fido_device_reservation_system_page.clkNextIFrame();
-		reporter.reportLogWithScreenshot("Pick Up address page");
+		getFidodevicereservationsystempage().setReservationContactEmailIFrame(FormFiller.generateEmail());
+		getReporter().reportLogWithScreenshot("reservation contact email set");
+		getFidodevicereservationsystempage().clkNextIFrame();
+		getReporter().reportLogWithScreenshot("Pick Up address page");
 		String strPostalCode="M8V2L4";
 		String strWithinRange="10 KM";
-		fido_device_reservation_system_page.selectPickUpLocationPostalCodeAndWithInRangeIFrame(strPostalCode, strWithinRange);
-		fido_device_reservation_system_page.clkGoFindAStoreByPickUpLocationIFrame();
-		reporter.reportLogWithScreenshot("Pick up location is set");
+		getFidodevicereservationsystempage().selectPickUpLocationPostalCodeAndWithInRangeIFrame(strPostalCode, strWithinRange);
+		getFidodevicereservationsystempage().clkGoFindAStoreByPickUpLocationIFrame();
+		getReporter().reportLogWithScreenshot("Pick up location is set");
 		
-		reporter.hardAssert(fido_device_reservation_system_page.verifyMapSectionIsDisplayedIFrame(),
+		getReporter().hardAssert(getFidodevicereservationsystempage().verifyMapSectionIsDisplayedIFrame(),
 							"The Map is displayed on Pick up address page",
 							"Map is not displayed"); 		
-		reporter.softAssert(fido_device_reservation_system_page.clkSelectAStoreFirstOptionIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().clkSelectAStoreFirstOptionIFrame(),
 							"Store address selected",
 							"Store addres not selected, please investigate");
-		reporter.reportLogWithScreenshot("Pick Up address selected");
-		reporter.softAssert(fido_device_reservation_system_page.verifyStoreDetailsIsDisplayedBelowTheMapAfterAddressIsSelectedIFrame(),
+		getReporter().reportLogWithScreenshot("Pick Up address selected");
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyStoreDetailsIsDisplayedBelowTheMapAfterAddressIsSelectedIFrame(),
 							"Store details is displayed after selection",
 							"Store details is not displayed below map after selection");
-		reporter.softAssert(fido_device_reservation_system_page.verifyWarningNoteIsDisplayedAfterAddressIsSelectedIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyWarningNoteIsDisplayedAfterAddressIsSelectedIFrame(),
 							"Note is displayed after address is selected",
 							"Warning note is not displayed");
-		fido_device_reservation_system_page.clkNextOnPickUpSectionIFrame();
+		getFidodevicereservationsystempage().clkNextOnPickUpSectionIFrame();
 		//review section
-		reporter.reportLogWithScreenshot("Review page");
-		reporter.hardAssert(fido_device_reservation_system_page.verifyIfPhoneImageIsDisplayedOnReviewPageIFrame(),
+		getReporter().reportLogWithScreenshot("Review page");
+		getReporter().hardAssert(getFidodevicereservationsystempage().verifyIfPhoneImageIsDisplayedOnReviewPageIFrame(),
 							"Phone image is displayed",
 							"The phone image is not loaded on review page it seems, please investigate");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfPhoneModelDetailsIsDisplayedOnReviewPageIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyIfPhoneModelDetailsIsDisplayedOnReviewPageIFrame(),
 							"The Phone model details displayed",
 							"The Phone model details not displayed");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfContactInfoSectionIsDisplayedOnReviewPageIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyIfContactInfoSectionIsDisplayedOnReviewPageIFrame(),
 							"Contact Info section displayed on review page",
 							"Contact info section not displayed on review page");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfLabelAccountDetailsIsDisplayedOnReviewPageIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyIfLabelAccountDetailsIsDisplayedOnReviewPageIFrame(),
 							"Account details displayed on review page",
 							"Account details not displayed");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfSectionPickUpLocationIsDisplayedOnReviewPageIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyIfSectionPickUpLocationIsDisplayedOnReviewPageIFrame(),
 							"Pick up location is displayed",
 							"Pick up location not displayed");
-		reporter.hardAssert(fido_device_reservation_system_page.verifyIfTermsAndConditionsSectionIsDisplayedOnReviewPageIFrame(),
+		getReporter().hardAssert(getFidodevicereservationsystempage().verifyIfTermsAndConditionsSectionIsDisplayedOnReviewPageIFrame(),
 							"T & C displayed",
 							"T & C not displayed");
-		fido_device_reservation_system_page.clkIAgreeToTnCCheckBoxIFrame();		
-		fido_device_reservation_system_page.clkReserveButtonIFrame();
+		getFidodevicereservationsystempage().clkIAgreeToTnCCheckBoxIFrame();		
+		getFidodevicereservationsystempage().clkReserveButtonIFrame();
 		
 		//reservation confirm section
-		reporter.reportLogWithScreenshot("Reservation confirmation page");
-		reporter.hardAssert(fido_device_reservation_system_page.verifyIfPhoneImageIsDisplayedOnRservationConfirmedPageIFrame(),
+		getReporter().reportLogWithScreenshot("Reservation confirmation page");
+		getReporter().hardAssert(getFidodevicereservationsystempage().verifyIfPhoneImageIsDisplayedOnRservationConfirmedPageIFrame(),
 							"Phone image is displayed on Reservation confirmation page",
 							"Phone image not displayed");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfTableAccountDetailsIsDisplayedOnReservationConfirmationPageIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyIfTableAccountDetailsIsDisplayedOnReservationConfirmationPageIFrame(),
 							"Account details is displayed",
 							"Account details is not displayed");
-		reporter.softAssert(fido_device_reservation_system_page.verifyIfTablePickUpLocationIsDisplayedOnReservationConfirmationPageIFrame(),
+		getReporter().softAssert(getFidodevicereservationsystempage().verifyIfTablePickUpLocationIsDisplayedOnReservationConfirmationPageIFrame(),
 							"Pick up location is displayed",
 							"Pick up location not displayed");		
-		fido_device_reservation_system_page.clkBackToMyaccountButtonIFrame();
-		reporter.reportLogWithScreenshot("After click on back to my account button");
-		fido_device_reservation_system_page.clkYesButtonOnAreYouSureOverLayIFrame();
-		reporter.reportLogWithScreenshot("Reserve device flow complete.");
+		getFidodevicereservationsystempage().clkBackToMyaccountButtonIFrame();
+		getReporter().reportLogWithScreenshot("After click on back to my account button");
+		getFidodevicereservationsystempage().clkYesButtonOnAreYouSureOverLayIFrame();
+		getReporter().reportLogWithScreenshot("Reserve device flow complete.");
 	}
 }

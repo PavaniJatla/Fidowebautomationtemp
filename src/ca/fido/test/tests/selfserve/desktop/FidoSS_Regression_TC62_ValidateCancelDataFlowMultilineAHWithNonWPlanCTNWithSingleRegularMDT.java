@@ -38,40 +38,40 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void verifyCancelDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
-		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		fido_home_page.clkLogin();
+		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
+		getFidohomepage().clkLogin();
 	
 		String	userName = TestDataHandler.tc6062.getUsername();
 		String	password = TestDataHandler.tc6062.getPassword();
 		
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc6062.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("dashboard page loaded");
-		Map<String, Integer> countOfActiveAndCancelledAddDataOnMyPlan = fido_wireless_dashboard_postpaid_page.getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection();			
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
+		Map<String, Integer> countOfActiveAndCancelledAddDataOnMyPlan = getFidowirelessdashboardpostpaidpage().getAllExistingAddDataCountCancelledAndActiveOnMyPlanSection();			
 		
 		//4. Click on View details in usage dashboard
-		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
+		getReporter().hardAssert(getFidodatamanagementpage().validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
-		Map<String, Integer> countOfActiveAndCancelledAddData = fido_data_management_page.getAllExistingAddDataCountCancelledAndActive();
-		reporter.reportLogWithScreenshot("Manage Data page");
+		Map<String, Integer> countOfActiveAndCancelledAddData = getFidodatamanagementpage().getAllExistingAddDataCountCancelledAndActive();
+		getReporter().reportLogWithScreenshot("Manage Data page");
 		//Comparisions Before Cancel:
-		reporter.hardAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled").intValue()==countOfActiveAndCancelledAddData.get("cancelled").intValue()
+		getReporter().hardAssert((countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled").intValue()==countOfActiveAndCancelledAddData.get("cancelled").intValue()
 							&& countOfActiveAndCancelledAddDataOnMyPlan.get("active").intValue()==countOfActiveAndCancelledAddData.get("active").intValue()
 							&& countOfActiveAndCancelledAddDataOnMyPlan.get("nonMDT").intValue()==countOfActiveAndCancelledAddData.get("nonMDT").intValue())
 				, "The number of cancelled and active add on macth on my plans and manage data page", 
@@ -79,44 +79,44 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 		
 		if((countOfActiveAndCancelledAddData.get("active")>=1))
 		{
-//			fido_data_management_page.scrollToMiddle();
-			reporter.reportLogWithScreenshot("Click on cancel MDT Link");
-			fido_data_management_page.clkCancelMDTLink();			
+//			getFidodatamanagementpage().scrollToMiddle();
+			getReporter().reportLogWithScreenshot("Click on cancel MDT Link");
+			getFidodatamanagementpage().clkCancelMDTLink();			
 
-			reporter.reportLogWithScreenshot("Click on Yes Remove Top Up");
-			fido_data_management_page.clkYesRemoveTopUpButton();
-			reporter.hardAssert(fido_data_management_page.isCancelSuccessdisplayed(),
+			getReporter().reportLogWithScreenshot("Click on Yes Remove Top Up");
+			getFidodatamanagementpage().clkYesRemoveTopUpButton();
+			getReporter().hardAssert(getFidodatamanagementpage().isCancelSuccessdisplayed(),
 					"Cancel MDT success",
 					"MDT cancel not successful");
-			reporter.reportLogWithScreenshot("Cancel successful");
-			fido_data_management_page.clkCloseButtonOnCancelSuccessOverlay();
-			reporter.reportLogWithScreenshot("Close overlay");
+			getReporter().reportLogWithScreenshot("Cancel successful");
+			getFidodatamanagementpage().clkCloseButtonOnCancelSuccessOverlay();
+			getReporter().reportLogWithScreenshot("Close overlay");
 			
-			fido_data_management_page.scrollToTop();
-			fido_data_management_page.clkLinkBackOnManageDataOverlay();
-			reporter.reportLogWithScreenshot("Back on dashboard");
-			reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
+			getFidodatamanagementpage().scrollToTop();
+			getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
+			getReporter().reportLogWithScreenshot("Back on dashboard");
+			getReporter().hardAssert(getFidodatamanagementpage().validateViewDetailsLink(),
 					"'Data details' page is displayed after click on view details link",
 					"'Data details' page is NOT displayed after click on view details link");
 			//7. Verify that MDT is cancelled
 			//7. Expires MMM DD - is displayed next to the cancelled MDT in manage data page and plan section
-			reporter.softAssert(fido_data_management_page.verifyCancelledMDTInManageData(1,countOfActiveAndCancelledAddData.get("cancelled")),
+			getReporter().softAssert(getFidodatamanagementpage().verifyCancelledMDTInManageData(1,countOfActiveAndCancelledAddData.get("cancelled")),
 					"Expires MMM DD - is displayed next to the cancelled MDT in manage data page",
 					"Expires MMM DD - is NOT displayed next to the cancelled MDT in manage data page, plase investigate");	
 											
-			fido_data_management_page.clkLinkBackOnManageDataOverlay();
-			reporter.reportLogWithScreenshot("Back on dashboard");
-			common_business_flows.logOutAndResignIn(userName,password);
+			getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
+			getReporter().reportLogWithScreenshot("Back on dashboard");
+			getCommonbusinessflows().logOutAndResignIn(userName,password);
 			//rechange to the original one
-			if(fido_account_overview_page.verifySuccessfulLogin())
+			if(getFidoaccountoverviewpage().verifySuccessfulLogin())
 			{
-				reporter.reportLogWithScreenshot("Click on CTN badge");
-				fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-				reporter.reportLogWithScreenshot("dashboard page");
-				fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
-				reporter.reportLogWithScreenshot("My Plan Details");
+				getReporter().reportLogWithScreenshot("Click on CTN badge");
+				getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+				getReporter().reportLogWithScreenshot("dashboard page");
+				getFidowirelessdashboardpostpaidpage().scrollToMidOfDasboardPage();
+				getReporter().reportLogWithScreenshot("My Plan Details");
 				//All the added OTT are reflected in total bucket,plan section and manage data page
-				reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyCancelledAddedDataInMyPlan(1, countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled"))
+				getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyCancelledAddedDataInMyPlan(1, countOfActiveAndCancelledAddDataOnMyPlan.get("cancelled"))
 						,"Expires MMM DD - is displayed next to the cancelled MDT in plan section",
 						"Expires MMM DD - is NOT displayed next to the cancelled MDT in plan section");
 				
@@ -124,7 +124,7 @@ public class FidoSS_Regression_TC62_ValidateCancelDataFlowMultilineAHWithNonWPla
 				
 		}else
 		{
-			reporter.reportLogFail("No MDT to cancel, please add mdt and rerun the script");
+			getReporter().reportLogFail("No MDT to cancel, please add mdt and rerun the script");
 		}
 							
 

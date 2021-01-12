@@ -33,54 +33,54 @@ public class FidoSS_Regression_TC048_ValidateUsageOfUnlimitedTalkNTextOnlyInWire
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateUnlimitedTalkNTextUsageinWirelessDashboard(){
-		reporter.reportLogWithScreenshot("DashBoard Talk and Text Usage verification started");
-		fido_home_page.clkLogin();
+		getReporter().reportLogWithScreenshot("DashBoard Talk and Text Usage verification started");
+		getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc48.getUsername();
 		String password = TestDataHandler.tc48.getPassword();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login page, user name and password are set.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login page, user name and password are set.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc48.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTalkNTextUsageModuleIsDisplayed(),
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTalkNTextUsageModuleIsDisplayed(),
 							"Talk usage module is displayed",
 							"Talk usage module is not displayed");
-		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyTalkAnytimeUsageDetailsIsDisplayed(),
+		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTalkAnytimeUsageDetailsIsDisplayed(),
 							"Talk anytime usage details section is displayed",
 							"Talk anytime usage details section is not displayed");
-		reporter.reportLogWithScreenshot("Wireless dashboard page");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextUsageDetailsOfTalkNTextOnlyIsDisplayed(),
+		getReporter().reportLogWithScreenshot("Wireless dashboard page");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTextUsageDetailsOfTalkNTextOnlyIsDisplayed(),
 							"Text usage details section is displayed",
 							"Text usage details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPictureMsgDetailsIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyPictureMsgDetailsIsDisplayed(),
 							"Text usage details picture message part is displayed",
 							"Text usage details picture message part is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyBundlesMsgDetailsIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyBundlesMsgDetailsIsDisplayed(),
 							"Text usage details bundles message part is displayed",
 							"Text usage details bundles message part is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyInternationalMsgDetailsIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyInternationalMsgDetailsIsDisplayed(),
 							"Text usage details international message part is displayed",
 							"Text usage details international message part is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Days remaining in bill cycle for Talk&Text plan is displayed",
 							"Days remaining in bill cycle for Talk&Text plan is not displayed");
 
-		fido_wireless_dashboard_postpaid_page.scrollToBottomOfPage();
-		reporter.reportLogWithScreenshot("Wireless Dashboad bottom view");
+		getFidowirelessdashboardpostpaidpage().scrollToBottomOfPage();
+		getReporter().reportLogWithScreenshot("Wireless Dashboad bottom view");
 			
 	}
 	

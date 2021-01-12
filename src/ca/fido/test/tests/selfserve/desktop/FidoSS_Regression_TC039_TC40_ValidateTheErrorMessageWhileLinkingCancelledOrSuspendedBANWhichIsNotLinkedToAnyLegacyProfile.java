@@ -31,21 +31,21 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 	
 	@Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"}) 
 	public void acctHolderValidateRegisterFlowWithCancelledOrSuspended(String strUserDetails) {
-		reporter.reportLogWithScreenshot("Home Page");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkRegisterIframe();
-		reporter.reportLogWithScreenshot("Registration Page opened");
-		//fido_account_registration_page.clkRegisterNow();
-		fido_account_registration_page.pageRefresh();		
-		reporter.reportLogWithScreenshot("Account Holder option to select");
-		fido_account_registration_page.clkAccountHolder();		
-		fido_account_registration_page.setFidoAccountNumber(strUserDetails.split("#")[0].trim());
-		fido_account_registration_page.setPostalCode(strUserDetails.split("#")[1].trim());
-		reporter.reportLogWithScreenshot("Account number and post code entered");
-		fido_account_registration_page.clkContinueAccountRegister();			
-		reporter.reportLogWithScreenshot("Error Page");
-		reporter.hardAssert(fido_account_registration_page.verifyErrorMsgDisplayedForCancelledAndSuspendedAccount()
+		getReporter().reportLogWithScreenshot("Home Page");
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkRegisterIframe();
+		getReporter().reportLogWithScreenshot("Registration Page opened");
+		//getFidoaccountregistrationpage().clkRegisterNow();
+		getFidoaccountregistrationpage().pageRefresh();		
+		getReporter().reportLogWithScreenshot("Account Holder option to select");
+		getFidoaccountregistrationpage().clkAccountHolder();		
+		getFidoaccountregistrationpage().setFidoAccountNumber(strUserDetails.split("#")[0].trim());
+		getFidoaccountregistrationpage().setPostalCode(strUserDetails.split("#")[1].trim());
+		getReporter().reportLogWithScreenshot("Account number and post code entered");
+		getFidoaccountregistrationpage().clkContinueAccountRegister();			
+		getReporter().reportLogWithScreenshot("Error Page");
+		getReporter().hardAssert(getFidoaccountregistrationpage().verifyErrorMsgDisplayedForCancelledAndSuspendedAccount()
 				,"Error message displayed"
 				,"Error message displayed");		
 	}

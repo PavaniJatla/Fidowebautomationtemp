@@ -31,56 +31,56 @@ public class FidoSS_Regression_TC034_ValidateChangePassword extends BaseTestClas
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndEditProfileUpdatePassword() throws InterruptedException, ParseException, IOException {
 
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
 
 		String altUserName=TestDataHandler.tc34.getUsername();
 		String altPassword=TestDataHandler.tc34.getPassword();
 		String newPassword=TestDataHandler.tc34.getaccountDetails().getNewPassword();
-		fido_login_page.setUsernameInFrame(altUserName);
-		fido_login_page.setPasswordInFrame(altPassword);
-		reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
-		fido_login_page.clkLoginInFrame();		
-		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
+		getFidologinpage().setUsernameInFrame(altUserName);
+		getFidologinpage().setPasswordInFrame(altPassword);
+		getReporter().reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
+		getFidologinpage().clkLoginInFrame();		
+		if(getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame())
 		{			
-			reporter.reportLogWithScreenshot("Login attempt one not successful, trying with alternate password:"+newPassword);
+			getReporter().reportLogWithScreenshot("Login attempt one not successful, trying with alternate password:"+newPassword);
 			String tempPwd=altPassword;			
 			altPassword=newPassword;			
 			newPassword=tempPwd;				
-			fido_login_page.setUsernameInFrame(altUserName);
-			fido_login_page.setPasswordInFrame(altPassword);
-			reporter.reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
-			fido_login_page.clkLoginInFrame();
-			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+			getFidologinpage().setUsernameInFrame(altUserName);
+			getFidologinpage().setPasswordInFrame(altPassword);
+			getReporter().reportLogWithScreenshot("Login with UserName: "+altUserName+" and Password: "+altPassword);
+			getFidologinpage().clkLoginInFrame();
+			getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 					"Login proceed without error.", 
 					"Login failed with error.");
 
 		}
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkSubNavProfileAndSettings();
-		reporter.reportLogWithScreenshot("Click performed on profile and settings");
-		fido_profile_and_setting_page.clkChangePassword();				
-		fido_profile_and_setting_page.setNewPassword(altPassword, newPassword);
-		reporter.reportLogWithScreenshot("Password enetered , Old passowrd: "+altPassword+" and New Password: "+newPassword);
-		fido_profile_and_setting_page.clkSaveButton();		
-		common_business_flows.logOutAndResignIn(altUserName,newPassword);
+		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+		getReporter().reportLogWithScreenshot("Click performed on profile and settings");
+		getFidoprofileandsettingpage().clkChangePassword();				
+		getFidoprofileandsettingpage().setNewPassword(altPassword, newPassword);
+		getReporter().reportLogWithScreenshot("Password enetered , Old passowrd: "+altPassword+" and New Password: "+newPassword);
+		getFidoprofileandsettingpage().clkSaveButton();		
+		getCommonbusinessflows().logOutAndResignIn(altUserName,newPassword);
 		
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with new password." + newPassword);
-		fido_login_page.switchOutOfSignInFrame();
+		getFidologinpage().switchOutOfSignInFrame();
 		//rechange to the original one
-		reporter.reportLogWithScreenshot("Login with new password succeed.");
-		fido_account_overview_page.clkSubNavProfileAndSettings();
-		fido_profile_and_setting_page.clkChangePassword();				
-		fido_profile_and_setting_page.setNewPassword(newPassword,altPassword);
-		reporter.reportLogWithScreenshot("Reset password back to default one.");
-		fido_profile_and_setting_page.clkSaveButton();
-		reporter.reportLogWithScreenshot("password reset back");
+		getReporter().reportLogWithScreenshot("Login with new password succeed.");
+		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+		getFidoprofileandsettingpage().clkChangePassword();				
+		getFidoprofileandsettingpage().setNewPassword(newPassword,altPassword);
+		getReporter().reportLogWithScreenshot("Reset password back to default one.");
+		getFidoprofileandsettingpage().clkSaveButton();
+		getReporter().reportLogWithScreenshot("password reset back");
 
 	}
 

@@ -63,68 +63,68 @@ public class FidoSS_Regression_TC073_AO_ValidateShowHideFunctionWithMoreThan5CTN
 	@Test(groups = {"AccountOverviewSS"})
 	public void validateShowHideFunctionWithMoreThan5CTNs() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc73.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc73.getPassword());
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc73.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc73.getPassword());
 		String strBANIWithMoreThan5CTNS = TestDataHandler.tc73.getaccountDetails().getBan();
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 
 		
-		reporter.hardAssert(fido_account_overview_page.verifyIfShowAllLinesLinkIsDisplayd(strBANIWithMoreThan5CTNS), 
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfShowAllLinesLinkIsDisplayd(strBANIWithMoreThan5CTNS), 
 				"View all lines CTA link is displayed to show the CTNs in expanded view",
 				"View all lines CTA link is NOT displayed it seems");
-		reporter.reportLogWithScreenshot("Show all lines link displayed");
-		fido_account_overview_page.clkShowAllLinesLink();
-		reporter.reportLogWithScreenshot("Clicked on Show all lines link");
-		reporter.hardAssert(fido_account_overview_page.validateIfMoreThan5CTNSDisplayedInTheViewAllCTNList(strBANIWithMoreThan5CTNS), 
+		getReporter().reportLogWithScreenshot("Show all lines link displayed");
+		getFidoaccountoverviewpage().clkShowAllLinesLink();
+		getReporter().reportLogWithScreenshot("Clicked on Show all lines link");
+		getReporter().hardAssert(getFidoaccountoverviewpage().validateIfMoreThan5CTNSDisplayedInTheViewAllCTNList(strBANIWithMoreThan5CTNS), 
 				"More than 5 CTN's are listed correctly",
 				"It seems the count of CTN is not more than 5");
 	
-		reporter.hardAssert(fido_account_overview_page.verifyAllCTNsPresentinTheBANwithCorrectNameNumberAndAddManageLink(strBANIWithMoreThan5CTNS),
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyAllCTNsPresentinTheBANwithCorrectNameNumberAndAddManageLink(strBANIWithMoreThan5CTNS),
 				"User name , 10 digits CTN format xxx xxx-xxxx and Manage usage link is present for each CTN",
 				"User name , 10 digits CTN format xxx xxx-xxxxand Manage usage link seems the format is incorrect for either of them");
 		
 		
-		List<WebElement> lstCTNNumbers =  fido_account_overview_page.getListOfCTNNumbers();
-		String []arrayCTNS = fido_account_overview_page.getAllCTNS(lstCTNNumbers);
+		List<WebElement> lstCTNNumbers =  getFidoaccountoverviewpage().getListOfCTNNumbers();
+		String []arrayCTNS = getFidoaccountoverviewpage().getAllCTNS(lstCTNNumbers);
 
 		for (String strCTNValue : arrayCTNS) {
 				
 
 				//Click on the respective CTN				
-				fido_account_overview_page.clickCTNsViewUsageAndManageLink(strCTNValue.trim().replaceAll(" ", "").replaceAll("-", ""));
+				getFidoaccountoverviewpage().clickCTNsViewUsageAndManageLink(strCTNValue.trim().replaceAll(" ", "").replaceAll("-", ""));
 				
-				reporter.hardAssert(fido_account_overview_page.IsCorrectDashboardOpen(strCTNValue),
+				getReporter().hardAssert(getFidoaccountoverviewpage().IsCorrectDashboardOpen(strCTNValue),
 						"User is directed to the corresponding CTN : "+strCTNValue+" Fido Wireless Dashboard as expected",
 						"It seems the User didint get directed to the CTN "+strCTNValue+"  Fido Wireless Dashboard as expected, ");
-				reporter.reportLogWithScreenshot("Dashboard for CTN : "+strCTNValue);
-				fido_account_overview_page.NavigateToAccountOverViewFromDashbOard();
-				fido_account_overview_page.clkShowAllLinesLink();						
+				getReporter().reportLogWithScreenshot("Dashboard for CTN : "+strCTNValue);
+				getFidoaccountoverviewpage().NavigateToAccountOverViewFromDashbOard();
+				getFidoaccountoverviewpage().clkShowAllLinesLink();						
 			}
 		
 		
-		reporter.hardAssert(fido_account_overview_page.verifyIfUserReDirectsToCorrectCTNDashboard(strBANIWithMoreThan5CTNS),
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfUserReDirectsToCorrectCTNDashboard(strBANIWithMoreThan5CTNS),
 				"User is directed to the corresponding CTN's Fido Wireless Dashboard as expected",
 				"It seems the User didint get directed to the corresponding CTN's Fido Wireless Dashboard as expected, ");		
-		fido_account_overview_page.clkShowAllLinesLink();
-		reporter.hardAssert(fido_account_overview_page.verifyIfAddLineLinkIsDisplayed(strBANIWithMoreThan5CTNS),
+		getFidoaccountoverviewpage().clkShowAllLinesLink();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfAddLineLinkIsDisplayed(strBANIWithMoreThan5CTNS),
 				"Add a line link is displayed",
 				"Add a line link is NOT displayed");
-		fido_account_overview_page.clkHideAllLinesLink();
-		reporter.hardAssert(fido_account_overview_page.verifyIfShowAllLinesLinkIsDisplayd(strBANIWithMoreThan5CTNS), 
+		getFidoaccountoverviewpage().clkHideAllLinesLink();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfShowAllLinesLinkIsDisplayd(strBANIWithMoreThan5CTNS), 
 				"View all lines CTA link is displayed to show the CTNs in expanded view",
 				"View all lines CTA link is NOT displayed it seems");
-		reporter.reportLogWithScreenshot("Show all lines link displayed");
+		getReporter().reportLogWithScreenshot("Show all lines link displayed");
 							
 	}
 	

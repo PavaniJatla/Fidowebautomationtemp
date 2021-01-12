@@ -33,49 +33,49 @@ public class FidoSS_Regression_TC20_ValidateTheSetUpPromiseToPayFlowForDelinquen
 	
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void validateTheSetUpPromiseToPayFlowForDelinquentCxWhenCreditCardSelectedAsPaymentMethod() throws InterruptedException {		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc20.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc20.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc20.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc20.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");		
+		getReporter().reportLogWithScreenshot("Account overview page");		
 				
-		reporter.hardAssert(fido_account_overview_page.verifyPromiseToPayLink(), 
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyPromiseToPayLink(), 
 				"Set up promise to pay is displayed", 
 				"Set up promise to pay is NOT displayed");
-		reporter.reportLogWithScreenshot("Set up promise to pay");
+		getReporter().reportLogWithScreenshot("Set up promise to pay");
 			
-		fido_account_overview_page.clkSetUpAPromiseToPay();
-		reporter.reportLogWithScreenshot("Clicked on link Set up promise to pay");
+		getFidoaccountoverviewpage().clkSetUpAPromiseToPay();
+		getReporter().reportLogWithScreenshot("Clicked on link Set up promise to pay");
 		
-		reporter.hardAssert(fido_account_overview_page.verifySetUpPromiseToPayPageIsLoaded(), 
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySetUpPromiseToPayPageIsLoaded(), 
 				"Set up promise to pay page is displayed", 
 				"Set up promise to pay is page NOT displayed");
-		String strBalanceValue = fido_account_overview_page.getBalanceValueForPromise();
-		fido_account_overview_page.selectHowWouldYouLikeToPromiseToPay("Credit Card");
-		reporter.reportLogWithScreenshot("Payment type selected as credit card");
-		String strDate = fido_account_overview_page.selectWhenYouWillIkeToPayThePromise();
+		String strBalanceValue = getFidoaccountoverviewpage().getBalanceValueForPromise();
+		getFidoaccountoverviewpage().selectHowWouldYouLikeToPromiseToPay("Credit Card");
+		getReporter().reportLogWithScreenshot("Payment type selected as credit card");
+		String strDate = getFidoaccountoverviewpage().selectWhenYouWillIkeToPayThePromise();
 
-		reporter.reportLogWithScreenshot("Promise date selected");
+		getReporter().reportLogWithScreenshot("Promise date selected");
 
-		fido_account_overview_page.clkSetUpPromise();
-		reporter.reportLogWithScreenshot("Set up promise to pay is displayed");
+		getFidoaccountoverviewpage().clkSetUpPromise();
+		getReporter().reportLogWithScreenshot("Set up promise to pay is displayed");
 		
-		reporter.hardAssert(fido_account_overview_page.verifyPromiseToSetUpSuccessFul(), 
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyPromiseToSetUpSuccessFul(), 
 				"Set up promise to pay is set up successfully , balance value: "+strBalanceValue + "Promise Date: "+strDate, 			
 				"Set up promise to pay is NOT set up successfully");
-		reporter.reportLogWithScreenshot("Set up promise success page");
+		getReporter().reportLogWithScreenshot("Set up promise success page");
 		
-		fido_account_overview_page.clkDoneSetUpPromiseAfterSuccess();		
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidoaccountoverviewpage().clkDoneSetUpPromiseAfterSuccess();		
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Account overview page loaded", 
 				"Account overview page didnt load");			
 	}

@@ -27,24 +27,24 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 	
 	@Test (groups = {"RegressionSS","DashboardSS"})
 	public void postpaidSuspendedCTN() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc28.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc28.getPassword());
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc28.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc28.getPassword());
 		String strBan = TestDataHandler.tc28.getaccountDetails().getBan();		
-		reporter.reportLogWithScreenshot("After click on Login");	
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getReporter().reportLogWithScreenshot("After click on Login");	
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
 		
-		common_business_flows.scrollToMiddleOfWebPage();
-		reporter.reportLogWithScreenshot("Suspended CTN account overview page");
-		reporter.hardAssert(fido_account_overview_page.validateBillingCTAButtonAddLineForSuspendedAccount(strBan),
+		getCommonbusinessflows().scrollToMiddleOfWebPage();
+		getReporter().reportLogWithScreenshot("Suspended CTN account overview page");
+		getReporter().hardAssert(getFidoaccountoverviewpage().validateBillingCTAButtonAddLineForSuspendedAccount(strBan),
 				"CTN, View usage and manage and add line is not displayed for suspended account",
 				"Suspended account overview page seems invalid, please investigate");
 		
