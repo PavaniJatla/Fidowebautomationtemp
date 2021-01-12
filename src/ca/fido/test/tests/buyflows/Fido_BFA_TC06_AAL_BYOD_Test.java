@@ -12,68 +12,56 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC07 - Fido - Validate user able to perform AAL BYOD using existing finance account
- * 
- * Login to Fido.ca using valid credentials
- * Click on AAL button 
- * select a plan and Click continue
- * select a calling option and Click continue
- * Select any addon's and click continue
- * Enter the caller ID and click Continue
- * Select a number and click continue
- * Click Submit and Order confirmation page should be displayed
- * 
+ *TC06 - FAAL BYOD - Regression - Fido AAL BYOD -AWS - e2e
  * @author Saurav.Goyal
  */
 public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","AALBFA"})
 	public void aalBYODFlowTest() {
-		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
-		getReporter().reportLogWithScreenshot("Fido Home Page");
-		//getFidohomepage().clkLogin();
+		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
+		reporter.reportLogWithScreenshot("Fido Home Page");
+		//fido_home_page.clkLogin();
 		getFidologinpage().switchToSignInFrame();
-		getFidologinpage().setUsernameInFrame(TestDataHandler.testCase06.getUsername());
-		getFidologinpage().setPasswordInFrame(TestDataHandler.testCase06.getPassword());
-		getReporter().reportLogWithScreenshot("Login overlay");
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc06AalByod.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc06AalByod.getPassword());
+		reporter.reportLogWithScreenshot("Login overlay");
 		getFidologinpage().clkLoginInFrame();
 		getFidologinpage().switchOutOfSignInFrame();
-		//getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-		getReporter().reportLogWithScreenshot("Account Overview page");
-		//getFidoaccountoverviewpage().clkLnkAddALine();
-		getReporter().reportLogWithScreenshot("Clicked on add a line");
+		//reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login Successful", "Login Error");
+		reporter.reportLogWithScreenshot("Account Overview page");
+		//fido_account_overview_page.clkLnkAddALine();
+		reporter.reportLogWithScreenshot("Clicked on add a line");
 		getFidoaccountoverviewpage().clkButtonAddALine();
-		getReporter().reportLogWithScreenshot("Modal dialogue appeared");
+		reporter.reportLogWithScreenshot("Modal dialogue appeared");
 		Assert.assertTrue(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed");
-		getReporter().reportLogPass("Fido plan config page");
+		reporter.reportLogPass("Fido plan config page");
 		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
-		getReporter().reportLogPass("First tier selected in choose your data");
+		reporter.reportLogPass("First tier selected in choose your data");
 		getFidobuildplanpage().clkContinueYourDataAAL();
-		getReporter().reportLogPass("Continue button on choose your data clicked");
+		reporter.reportLogPass("Continue button on choose your data clicked");
 		getFidobuildplanpage().clkContinueAddOnsAAL();
-		getReporter().reportLogPass("Continue button on choose your add-ons clicked");
+		reporter.reportLogPass("Continue button on choose your add-ons clicked");
 		getFidobuildplanpage().enterFirstName();
 		getFidobuildplanpage().enterSecondName();
 		getFidobuildplanpage().clkContinueEnterUserNameAAL();
-		getReporter().reportLogPass("Continue button on enter user's name clicked");
+		reporter.reportLogPass("Continue button on enter user's name clicked");
 		getFidobuildplanpage().selectCityForChooseYourTelephoneNum("TOR");
 		getFidobuildplanpage().clkChooseNumberContinueButton();
-		getReporter().reportLogPass("Continue button on choose your telephone number clicked");
+		reporter.reportLogPass("Continue button on choose your telephone number clicked");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
-		getReporter().reportLogPass("Review Page");
-		//getFidoorderreviewpage().verifyCheckBoxTermsAndCondition();
+		reporter.reportLogPass("Review Page");
+		//fido_order_review_page.verifyCheckBoxTermsAndCondition();
 		getFidoorderreviewpage().clkTermsNConditionsConsentAAL();
-		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.testCase06.getUsername());
+		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.tc06AalByod.getUsername());
 		getFidoorderreviewpage().clkSubmitMyOrder();
-		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
-		getReporter().reportLogWithScreenshot("Order Confirmation page");
-		
+		reporter.hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
+		reporter.reportLogWithScreenshot("Order Confirmation page");
 	}
 	
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
     }
 

@@ -49,13 +49,16 @@ public class TestDataHandler {
 	public static AccountData fidoHSIAnotherProvinceAddress;
 	public static AccountData fidoHSIUnavailableAddress;
 	public static AccountData fidoHSIRegisterAccount;
-	public static NACData testCase01;
-	public static NACData testCase02;
-	public static HUPData testCase03;
-	public static HUPData testCase04;
-	public static AALData testCase05;
-	public static AALData testCase06;
-	public static PPCData testCase07;
+	public static NACData tc01ByodStandardShipping;
+	public static NACData tc02ByodExpressShipping;
+	public static NACData tc03TermBopis;
+	public static NACData tc04NoTermStandardShipping;
+	public static NACData tc05TermStandardShipping;
+	public static AALData tc06AalByod;
+	public static AALData tc07AalTerm;
+	public static HUPData tc08Hup;
+	public static PPCData tc09Ppc;
+	public static HUPData tc10HupExistingSubsidy;
 	public static AccountData tc6062;
 	public static AccountData tc002003;
 	public static AccountData tc61;
@@ -158,17 +161,19 @@ public class TestDataHandler {
 	}
 	
 	private static void buyFlowsDataInit() {
-		//sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/buyflows/SauceSettings.yml");
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaConfig = YamlHandler.getBFAConfig();
 		bfaPaymentInfo = YamlHandler.getBFAPaymentDetails();
-    	testCase01 = YamlHandler.getNACData("tc01NAC");
-    	testCase02 = YamlHandler.getNACData("tc02NAC");
-    	testCase03 = YamlHandler.getHUPData("tc03HUP");
-    	testCase04 = YamlHandler.getHUPData("tc04HUP");
-    	testCase05 = YamlHandler.getAALData("tc05AALTerm");
-    	testCase06 = YamlHandler.getAALData("tc06AALBYOD");
-    	testCase07 = YamlHandler.getPPCData("tc07PPC");
+		tc01ByodStandardShipping = YamlHandler.getNACData("tc01ByodStandardShipping");
+		tc02ByodExpressShipping = YamlHandler.getNACData("tc02ByodExpressShipping");
+		tc03TermBopis = YamlHandler.getNACData("tc03TermBopis");
+		tc04NoTermStandardShipping = YamlHandler.getNACData("tc04NoTermStandardShipping");
+		tc05TermStandardShipping = YamlHandler.getNACData("tc05TermStandardShipping");
+		tc06AalByod = YamlHandler.getAALData("tc06AalByod");
+    	tc07AalTerm = YamlHandler.getAALData("tc07AalTerm");
+		tc08Hup = YamlHandler.getHUPData("tc08Hup");
+		tc09Ppc = YamlHandler.getPPCData("tc09Ppc");
+		tc10HupExistingSubsidy = YamlHandler.getHUPData("tc10HupExistingSubsidy");
 	}
 
 }

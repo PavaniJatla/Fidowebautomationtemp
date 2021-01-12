@@ -1,34 +1,29 @@
 package ca.fido.test.tests.buyflows;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
-import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
+import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 /**
- * TC11- E2E FNAC-Validate order is submitted for Financing plan_EN_Chrome_ON
+ * TC03 - Regression - [FNAC TERM] - Perform Fido Net New Activation - TERM with Express Pickup Shipping(Finance Plan) - BOPIS_E2E
  * @author Saurav.Goyal
- *
  */
-public class Fido_BFA_TC02_NAC_FinPlan_Test extends BaseTestClass{
+public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","NACBFA"})
-	public void fidoNACFinPlanFlow() {
-		getReporter().reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
+	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA"})
+	public void fidoNACFlow() {
+		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Home Page");
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
-		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.testCase02.getDeviceName()),"Device Found and Selected","Device Not Found");
+		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.tc03TermBopis.getDeviceName()),"Device Found and Selected","Device Not Found");
 		getReporter().reportLogWithScreenshot("Required device is selected on the choose phone page");
 		Assert.assertTrue(getFidodeviceconfigpage().isModalDisplayed(),"Modal element is not present on the screen");
 		getReporter().reportLogPass("Modal window displayed");
@@ -39,6 +34,8 @@ public class Fido_BFA_TC02_NAC_FinPlan_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Continue button clicked on the device config page");
 		Assert.assertTrue(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed");
 		getReporter().reportLogPass("Fido plan config page");
+		getFidobuildplanpage().clkNoTermTierInDeviceCost();
+		getReporter().reportLogPass("No Term Tier selected in the Device cost");
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
 		getFidobuildplanpage().clkContinueDataOption();
@@ -49,12 +46,13 @@ public class Fido_BFA_TC02_NAC_FinPlan_Test extends BaseTestClass{
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogPass("Continue button on AddOns clicked");
+		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getFidocreateuserpage().setCommunicationDetails();
 		getFidocreateuserpage().setFirstName();
 		getFidocreateuserpage().setLastName();
 		getFidocreateuserpage().setPhone();
-		getFidocreateuserpage().setHomeAddress(TestDataHandler.testCase02.getBillingAddress());
+		getFidocreateuserpage().setHomeAddress(TestDataHandler.tc03TermBopis.getBillingAddress());
 		getReporter().reportLogWithScreenshot("Create User page");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
@@ -62,17 +60,17 @@ public class Fido_BFA_TC02_NAC_FinPlan_Test extends BaseTestClass{
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
-		getFidocreditcheckpage().selectIdType(TestDataHandler.testCase01.getIdentificationType());
-		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.testCase02.getDlProvinceCode());
-		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.testCase02.getDlProvinceCode());
+		getFidocreditcheckpage().selectIdType(TestDataHandler.tc03TermBopis.getIdentificationType());
+		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc03TermBopis.getDlProvinceCode());
+		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc03TermBopis.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseExpiry();
 		getFidocreditcheckpage().clkCreditCheckConsent();
 		getReporter().reportLogWithScreenshot("Credit Evaluation page");
 		getFidocreditcheckpage().clkContinue();
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
-		getFidocreditcheckpage().clkBtnSecurityDepositConsentAccept();
-		getFidochoosenumberpage().clkSelectNewNumber();
-		getFidochoosenumberpage().selectCity(TestDataHandler.testCase02.getCtnCity());
+		//getFidocreditcheckpage().clkBtnSecurityDepositConsentAccept();
+		//getFidochoosenumberpage().clkSelectNewNumber();
+		getFidochoosenumberpage().selectCity(TestDataHandler.tc03TermBopis.getCtnCity());
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Choose Phone Number page");
 		getFidochoosenumberpage().clkContinue();
@@ -97,9 +95,8 @@ public class Fido_BFA_TC02_NAC_FinPlan_Test extends BaseTestClass{
 
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterMethod(alwaysRun = true)

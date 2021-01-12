@@ -16,7 +16,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	
 	//@FindBy(xpath="//div[contains(@class,'agreement-checkbox')")
 	//@FindBy(xpath="//div[contains(@class,'terms-checkbox')]")
-	@FindBy(xpath="//label[@for='terms1']")
+	@FindBy(xpath="//label[@for='dsa-terms-conditions-0-consent-0']")
 	WebElement lblTermsNConditionsConsent;
 	
 	@FindBy(xpath="//div[@class='ds-terms-conditions__consent']//div[@class='ds-checkbox__box my-12']")

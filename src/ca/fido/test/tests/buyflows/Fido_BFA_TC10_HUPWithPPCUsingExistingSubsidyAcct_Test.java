@@ -11,41 +11,32 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC03-Fido-Validate user able to perform HUP
- * 
- * Login to Fido.ca using valid credentials
- * Click on HUP eligible CTN 
- * Click on Upgrade my device
- * select a device 
- * Select a plan from higher tier and continue to Addon's page
- * Select any ADDON's(optional) and click continue
- * Select the shipping address as Billing address and continue
- * Review your order and continue to order confirmation page
- * 
+ * TC10 - Regression - Fido HUP using existing subsidy account - e2e
  * @author rajesh.varalli1
  */
-public class Fido_BFA_TC04_HUP_Test extends BaseTestClass{
+public class Fido_BFA_TC10_HUPWithPPCUsingExistingSubsidyAcct_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","HUPBFA"})
-	public void hupFlowTest() {
-		getReporter().reportLogWithScreenshot("Fido Home page");
+	@Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
+	public void hupWithPPCUsingExistingSubsidyAcctFlowTest() {
+		reporter.reportLogWithScreenshot("Fido Home page");
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
-		getFidologinpage().setUsernameInFrame(TestDataHandler.testCase04.getUsername());
-		getFidologinpage().setPasswordInFrame(TestDataHandler.testCase04.getPassword());
-		getReporter().reportLogWithScreenshot("Login overlay");
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc10HupExistingSubsidy.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc10HupExistingSubsidy.getPassword());
+		reporter.reportLogWithScreenshot("Login overlay");
 		getFidologinpage().clkLoginInFrame();
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-		getReporter().reportLogWithScreenshot("Account Overview page");
-		getFidoaccountoverviewpage().clkSpecificCTNBadge(TestDataHandler.testCase04.getCtn());
+		reporter.hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+		reporter.reportLogWithScreenshot("Account Overview page");
+		getFidoaccountoverviewpage().clkViewUsageAndManageLink();
+		//fido_account_overview_page.clkSpecificCTNBadge(TestDataHandler.tc10HupExistingSubsidy.getCtn());
 		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-		getReporter().reportLogWithScreenshot("Mobile Dashboard page");
+		reporter.hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
+		reporter.reportLogWithScreenshot("Mobile Dashboard page");
 		getFidowirelessdashboardpostpaidpage().clickUpgradeDevice();
-		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.testCase04.getNewDevice()),"Device Found and Selected","Device Not Found");
+		reporter.hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.tc10HupExistingSubsidy.getNewDevice()),"Device Found and Selected","Device Not Found");
 		getFidobuildplanpage().selectPlanCategory("Data, Talk & Text");
-		getReporter().hardAssert(getFidobuildplanpage().selectFirstAvailablePricePlan(),"Selected first price plan","Error in Price Plan Selection");
+		reporter.hardAssert(getFidobuildplanpage().selectFirstAvailablePricePlan(),"Selected first price plan","Error in Price Plan Selection");
 		getFidobuildplanpage().clkCloseDialogWindow();
 		getFidobuildplanpage().clkContinueToAddons();
 		getFidochooseaddonspage().selectAnyAddon();
@@ -53,7 +44,7 @@ public class Fido_BFA_TC04_HUP_Test extends BaseTestClass{
 		getFidoshippingpage().selectHomeAddress();
 		getFidoshippingpage().clkContinueToOrderReview();
 		getFidoorderreviewpage().clkTermsNConditionsConsent();
-		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.testCase04.getUsername());
+		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.tc10HupExistingSubsidy.getUsername());
 		if(getFidoorderreviewpage().isPaymentRequired()) {
 			getFidoorderreviewpage().clkContinueToPayment();
 			getFidopaymentpage().setCreditCardDetails(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber(),
@@ -73,9 +64,7 @@ public class Fido_BFA_TC04_HUP_Test extends BaseTestClass{
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		//System.setProperty("Browser" , "saucechrome");
-		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-		startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
 	@AfterMethod(alwaysRun = true)
