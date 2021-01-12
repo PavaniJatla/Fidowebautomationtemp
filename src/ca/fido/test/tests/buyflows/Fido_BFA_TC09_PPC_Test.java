@@ -18,35 +18,35 @@ public class Fido_BFA_TC09_PPC_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
 	public void ppcFlowTest() {
-		reporter.reportLogWithScreenshot("Fido Home page");
+		getReporter().reportLogWithScreenshot("Fido Home page");
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc09Ppc.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc09Ppc.getPassword());
-		reporter.reportLogWithScreenshot("Login overlay");
+		getReporter().reportLogWithScreenshot("Login overlay");
 		getFidologinpage().clkLoginInFrame();
 		getFidologinpage().switchOutOfSignInFrame();
-		reporter.hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-		reporter.reportLogWithScreenshot("Account Overview page");
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+		getReporter().reportLogWithScreenshot("Account Overview page");
 		getFidoaccountoverviewpage().clkViewUsageAndManageLink();
 		//fido_account_overview_page.clkSpecificCTNBadge(TestDataHandler.tc09Ppc.getCtn());
 		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-		reporter.hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-		reporter.reportLogWithScreenshot("Mobile Dashboard page");
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
+		getReporter().reportLogWithScreenshot("Mobile Dashboard page");
 		getFidowirelessdashboardpostpaidpage().clkChangePlan();
-		reporter.hardAssert(getFidochooseplanpage().verifyChangePlanPageLoad(), "Price Plan Change page loaded", "Price Plan Change page load error");
+		getReporter().hardAssert(getFidochooseplanpage().verifyChangePlanPageLoad(), "Price Plan Change page loaded", "Price Plan Change page load error");
 		getFidochooseplanpage().clkPlanType(TestDataHandler.tc09Ppc.getNewPlanType());
 		getFidochooseplanpage().selectFirstAvailablePricePlan();
-		reporter.reportLogWithScreenshot("Change Your Plan page");
+		getReporter().reportLogWithScreenshot("Change Your Plan page");
 		getFidochooseplanpage().clkContinue();
 		getFidochooseaddonspage().clkCheckOut();
 		getFidoorderreviewpage().clkTermsNConditionsConsent();
 		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.tc09Ppc.getUsername());
-		reporter.reportLogWithScreenshot("Order Review page");
+		getReporter().reportLogWithScreenshot("Order Review page");
 		getFidoorderreviewpage().clkCompleteOrder();
 		getFidoorderreviewpage().waitForOrderProcessing();
-		reporter.hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
-		reporter.reportLogWithScreenshot("Order Confirmation page");
+		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
+		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}
 	
 	@Parameters({"strBrowser", "strLanguage"})

@@ -19,50 +19,51 @@ public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","AALBFA"})
 	public void aalBYODFlowTest() {
-		reporter.reportLog("URL:" + System.getProperty("AWSUrl"));
-		reporter.reportLogWithScreenshot("Fido Home Page");
-		//fido_home_page.clkLogin();
+		getReporter().reportLog("URL:" + System.getProperty("QaUrl"));
+		getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
+		getReporter().reportLogWithScreenshot("Fido Home Page");
+		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc06AalByod.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc06AalByod.getPassword());
-		reporter.reportLogWithScreenshot("Login overlay");
+		getReporter().reportLogWithScreenshot("Login overlay");
 		getFidologinpage().clkLoginInFrame();
 		getFidologinpage().switchOutOfSignInFrame();
 		//reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login Successful", "Login Error");
-		reporter.reportLogWithScreenshot("Account Overview page");
+		getReporter().reportLogWithScreenshot("Account Overview page");
 		//fido_account_overview_page.clkLnkAddALine();
-		reporter.reportLogWithScreenshot("Clicked on add a line");
+		getReporter().reportLogWithScreenshot("Clicked on add a line");
 		getFidoaccountoverviewpage().clkButtonAddALine();
-		reporter.reportLogWithScreenshot("Modal dialogue appeared");
+		getReporter().reportLogWithScreenshot("Modal dialogue appeared");
 		Assert.assertTrue(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed");
-		reporter.reportLogPass("Fido plan config page");
+		getReporter().reportLogPass("Fido plan config page");
 		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
-		reporter.reportLogPass("First tier selected in choose your data");
+		getReporter().reportLogPass("First tier selected in choose your data");
 		getFidobuildplanpage().clkContinueYourDataAAL();
-		reporter.reportLogPass("Continue button on choose your data clicked");
+		getReporter().reportLogPass("Continue button on choose your data clicked");
 		getFidobuildplanpage().clkContinueAddOnsAAL();
-		reporter.reportLogPass("Continue button on choose your add-ons clicked");
+		getReporter().reportLogPass("Continue button on choose your add-ons clicked");
 		getFidobuildplanpage().enterFirstName();
 		getFidobuildplanpage().enterSecondName();
 		getFidobuildplanpage().clkContinueEnterUserNameAAL();
-		reporter.reportLogPass("Continue button on enter user's name clicked");
+		getReporter().reportLogPass("Continue button on enter user's name clicked");
 		getFidobuildplanpage().selectCityForChooseYourTelephoneNum("TOR");
 		getFidobuildplanpage().clkChooseNumberContinueButton();
-		reporter.reportLogPass("Continue button on choose your telephone number clicked");
+		getReporter().reportLogPass("Continue button on choose your telephone number clicked");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
-		reporter.reportLogPass("Review Page");
+		getReporter().reportLogPass("Review Page");
 		//fido_order_review_page.verifyCheckBoxTermsAndCondition();
 		getFidoorderreviewpage().clkTermsNConditionsConsentAAL();
 		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.tc06AalByod.getUsername());
 		getFidoorderreviewpage().clkSubmitMyOrder();
-		reporter.hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
-		reporter.reportLogWithScreenshot("Order Confirmation page");
+		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
+		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}
 	
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
+		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows,  method);
     }
 
 	@AfterMethod(alwaysRun = true)
