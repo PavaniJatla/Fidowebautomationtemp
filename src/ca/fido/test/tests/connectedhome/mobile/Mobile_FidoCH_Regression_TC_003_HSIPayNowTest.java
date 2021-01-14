@@ -71,8 +71,9 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
 		reporter.reportLogWithScreenshot("payment processing with payment gateway");		
 		reporter.hardAssert(fido_payment_page.verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		reporter.reportLogWithScreenshot("payment success widget");	
-		fido_payment_page.clkPaymentConfirmationMobile();		
-		fido_account_overview_page.verifyAccountPage(accountBalanceBeforePayment, strLanguage);
+		fido_payment_page.clkPaymentConfirmationMobile();
+		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
+		fido_account_overview_page.clkOverviewMobile();
 		reporter.reportLogWithScreenshot("Launched the Account Page with updated account balance");
 		String accountBalanceAfterPayment=fido_account_overview_page.getAccountBalanceAfterpayment();
 		reporter.hardAssert(fido_account_overview_page.verifyPayment(accountBalanceBeforePayment,accountBalanceAfterPayment,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
