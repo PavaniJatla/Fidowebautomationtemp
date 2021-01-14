@@ -22,7 +22,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  */
 public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA", "SanityBFA"})
 	public void fidoNACFinPlanFlow() {
 		getReporter().reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
 		getReporter().reportLogWithScreenshot("Home Page");

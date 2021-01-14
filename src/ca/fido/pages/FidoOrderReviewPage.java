@@ -27,6 +27,13 @@ public class FidoOrderReviewPage extends BasePageClass {
 	
 	@FindBy(xpath="//label[@for='physical-copy']")
 	WebElement lblContractPhysicalCopy;
+
+	@FindAll({
+			@FindBy(xpath="//h1[@id='bfa-page-title']"),
+			@FindBy(xpath="//span[@translate='hup_page_title_for.review']"),
+			@FindBy(xpath="//span[@checkout-res='checkout_review_order']")
+	})
+	WebElement lblReviewPage;
 	
 	//@FindBy(xpath="//label[@for='digital-copy']")
 	//@FindBy(xpath = "//label[@for='digital-copy' or @for='ds-radio-input-id-2']")
@@ -57,15 +64,22 @@ public class FidoOrderReviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//button[contains(@class,'-primary -large')]")
 	WebElement btnSubmitMyOrder;
-	
-	
+
+	@FindAll({
+			@FindBy(xpath = "//label[@for='terms1']"),
+			@FindBy(xpath = "//input[@id='dsa-terms-conditions-0-consent-1']//following-sibling::div[@class='ds-checkbox__box my-12']")
+	})
+	WebElement chkBoxAgreementConsent;
+
+	@FindBy(xpath = "//input[@id='dsa-terms-conditions-0-consent-0']//following-sibling::div[@class='ds-checkbox__box my-12']")
+	WebElement chkBoxFinancingConsent;
+
 	/**
 	 * Clicks on the 'Submit my order' button
 	 * @author Saurav.Goyal
 	 */
 	public void clkSubmitMyOrder() {
-		reusableActions.clickWhenReady(btnSubmitMyOrder);
-		//reusableActions.waitForElementVisibility(btnSubmitMyOrder, 60);
+		reusableActions.clickWhenReady(btnSubmitMyOrder , 30);
 	}
 	
 	/**
@@ -73,11 +87,8 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @return boolean true if the element is present else false
 	 * @author Saurav.Goyal
 	 */
-	public boolean verifyCheckBoxTermsAndCondition() {
-		if(reusableActions.isElementVisible(chkBoxTermsNConditionsConsentAAL, 60))
-			return true;
-		else
-			return false;
+	public boolean verifyReviewPageLabel() {
+		 return reusableActions.isElementVisible(lblReviewPage, 60);
 	}
 	
 	/**
@@ -87,7 +98,22 @@ public class FidoOrderReviewPage extends BasePageClass {
 	public void clkTermsNConditionsConsentAAL() {
 		reusableActions.clickWhenVisible(chkBoxTermsNConditionsConsentAAL, 60);
 	}
-	
+
+	/**
+	 * Clicks on the Terms and Conditions checkbox financing concent
+	 * @author Saurav.Goyal
+	 */
+	public void clkTermsNConditionsFinancingConsent() {
+		reusableActions.clickWhenVisible(chkBoxFinancingConsent, 60);
+	}
+
+	/**
+	 * Clicks on the Terms and Conditions checkbox agreement consent
+	 * @author Saurav.Goyal
+	 */
+	public void clkTermsNConditionsAgreementConsent() {
+		reusableActions.clickWhenVisible(chkBoxAgreementConsent , 60);
+	}
 	/**
 	 * Clicks on the Terms and Conditions checkbox
 	 * @author rajesh.varalli1

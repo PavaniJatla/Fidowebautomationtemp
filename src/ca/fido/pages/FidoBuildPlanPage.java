@@ -41,6 +41,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='step-3-continue-button' or @data-test='stepper-3-edit-step-continue-button']")
 	WebElement btnContinueTalkOptions;
 
+	@FindBy(xpath = "//button[@id='ds-tabs-0-tab-1']")
+	WebElement btnDataAndTextPlan;
+
 	@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]")
 	WebElement btnNoBPOOffer;
 	
@@ -94,7 +97,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div")
 	WebElement inputLastNameDiv;
 	
-	@FindBy(xpath = "//button[@data-test='build-plan-checkout-flow-button']")
+	@FindBy(xpath = "//button[@id='step-5-continue-button' or @data-test='stepper-5-edit-step-continue-button']")
 	WebElement buttonContinueUserName;
 	
 	@FindBy(xpath = "//select[contains(@id,'ds-form-input-id')]")
@@ -120,7 +123,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkCloseDialogWindow() {
-		reusableActions.clickIfAvailable(closeDialogWindow, 40);
+		reusableActions.clickIfAvailable(closeDialogWindow, 30);
 	}
 	
 	/**
@@ -226,6 +229,14 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueTalkOptions() {
 		reusableActions.clickIfAvailable(btnContinueTalkOptions, 30);
+	}
+
+	/**
+	 * Clicks on data and text plan
+	 * @author Saurav.Goyal
+	 */
+	public void clkDataAndTextPlan() {
+		reusableActions.clickIfAvailable(btnDataAndTextPlan, 30);
 	}
 	
 	/**
@@ -387,7 +398,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean handleTodayOfferOverlay() {
-		if(reusableActions.isElementVisible(btnGetThisOffer, 60)) {
+		if(reusableActions.isElementVisible(btnGetThisOffer, 40)) {
 			reusableActions.clickWhenReady(btnGetThisOffer);
 			reusableActions.clickWhenVisible(By.xpath("//button[@translate='continue_to_addons']"), 30);
 			return false;

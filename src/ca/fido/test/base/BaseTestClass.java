@@ -88,6 +88,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();	
 	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<FidoCheckOutPage> FidoCheckOutPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	private Map<String,String> sauceParameters;
@@ -312,6 +313,10 @@ public class BaseTestClass {
 
 	public static FidoBuildPlanPage getFidobuildplanpage() {
 		return FidoBuildPlanPageThreadLocal.get();
+	}
+
+	public static FidoCheckOutPage getFidoCheckOutPage() {
+		return FidoCheckOutPageThreadLocal.get();
 	}
 
 	public static FidoChooseAddonsPage getFidochooseaddonspage() {
@@ -541,6 +546,7 @@ public class BaseTestClass {
 			FidoShippingPageThreadLocal.set(new FidoShippingPage(getDriver()));
 			FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
 			FidoDeviceConfigPageThreadLocal.set(new FidoDeviceConfigPage(getDriver()));
+			FidoCheckOutPageThreadLocal.set(new FidoCheckOutPage(getDriver()));
 			
 		default:
 			

@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -16,7 +17,10 @@ public class FidoChoosePhonePage extends BasePageClass {
 	}
 
 	//@FindBy(xpath = "//div/h1[@id='phonesDevices phonesDevicesFont']")
-	@FindBy(xpath = "//div/h1[contains(@id,'bfa-page-title')]")
+	@FindAll({
+		@FindBy(xpath = "//div/h1[contains(@id,'bfa-page-title')]"),
+		@FindBy(xpath = "//h2[@class='header-2 ng-scope']")
+	})
 	WebElement lblPhonesAndDevices;
 	
 	@FindBy(xpath = "//span[@price='0']/ancestor::div[@modelid]//button[@res='details_devicemodel' or @res='upgrade']")

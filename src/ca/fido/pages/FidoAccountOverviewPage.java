@@ -203,7 +203,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlowDevice']/parent::button/preceding-sibling::div//span")
 	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlow']/parent::button")
-	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
+	//@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
+	@FindBy (xpath = "(//div[contains(@class,'modalWindow')]//a)[1]")
 	WebElement buttonAALCurrentPhone;
 
 	@FindBy (xpath = "(//div[contains(@class,'modalWindow')]//a)[2]")
@@ -319,13 +320,25 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[@translate='promise-to-pay.success-ptp.done-btn']")
 	WebElement btnDoneAfterSetUpPromiseSuccessFul;
-	
+
+	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
+	WebElement winModalAAL;
+
+	/**
+	 * Verify Modal Window AAL
+	 * @return true if the modal window appears else false
+	 * @author Saurav.Goyal
+	 */
+	public Boolean verifyModalWindowAAL() {
+		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
+	}
+
 	/**
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
 	 */
 	public void clkButtonAALNewPhone() {
-		reusableActions.waitForElementTobeClickable(buttonAALNewPhone, 100);
+		reusableActions.waitForElementTobeClickable(buttonAALNewPhone, 60);
 		reusableActions.getWhenReady(buttonAALNewPhone,30).click();
 	}
 
@@ -333,7 +346,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
 	 */
-	public void clkButtonAddALine() {
+	public void clkButtonAddALineAlreadyHaveAPhone() {
 		reusableActions.waitForElementTobeClickable(buttonAALCurrentPhone, 100);
 		reusableActions.getWhenReady(buttonAALCurrentPhone,30).click();
 	}
