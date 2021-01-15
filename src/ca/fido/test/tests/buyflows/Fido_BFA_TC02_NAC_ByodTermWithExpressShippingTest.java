@@ -29,11 +29,10 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-		getReporter().reportLogPass("skipped BPO option");
+		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		//getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
-		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		getReporter().reportLogPass("Continue button on AddOns clicked");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -76,7 +75,8 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
-		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
+		getFidoorderreviewpage().setOrderCommunicationConsent();
+		getReporter().reportLogPass("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
 		getReporter().reportLogPass("Submit button selected");
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");

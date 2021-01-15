@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.FormFiller;
 
 import java.util.Arrays;
@@ -82,7 +84,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[@class='dsa-cartSummary__copy text-title-3 mb-0']")
 	WebElement textYourCartSummary;
 	
-	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100'])[1]")
+	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]")
 	WebElement selectFirstTierChooseYourData;
 	
 	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div//input")
@@ -180,10 +182,11 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkFirstTierChooseYourDataAAL() {
-		reusableActions.waitForElementVisibility(selectFirstTierChooseYourData, 60);
-		reusableActions.clickIfAvailable(selectFirstTierChooseYourData, 60);
+		reusableActions.scrollToElement(selectFirstTierChooseYourData);
+		reusableActions.staticWait(5000);
+		reusableActions.executeJavaScriptClick(selectFirstTierChooseYourData);
 	}
-	
+
 	/**
 	 * Verify the 'Continue' button for select you device cost
 	 * @return boolean true is the element is present else false
@@ -225,7 +228,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueTalkOptions() {
-		reusableActions.clickIfAvailable(btnContinueTalkOptions, 30);
+		reusableActions.clickIfAvailable(btnContinueTalkOptions, 20);
 	}
 
 	/**
@@ -233,7 +236,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkDataAndTextPlan() {
-		reusableActions.clickIfAvailable(btnDataAndTextPlan, 30);
+		reusableActions.executeJavaScriptClick(btnDataAndTextPlan);
 	}
 	
 	/**
@@ -241,7 +244,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkNoBPOOfferButtonTalkOptions() {
-		reusableActions.clickIfAvailable(btnNoBPOOffer, 30);
+		reusableActions.clickIfAvailable(btnNoBPOOffer, 20);
 	}
 	
 	/**
@@ -258,7 +261,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueAddOns() {
 		//reusableActions.waitForElementVisibility(btnContinueAddOns, 60);
-		reusableActions.clickIfAvailable(btnContinueAddOns, 30);
+		reusableActions.clickIfAvailable(btnContinueAddOns, 20);
 	}
 	
 	/**
@@ -266,7 +269,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueBelowCartSummary() {
-		reusableActions.waitForElementVisibility(btnContinueBelowCartSummary, 40);
+		reusableActions.waitForElementVisibility(btnContinueBelowCartSummary, 30);
 		reusableActions.staticWait(5000);
 		reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
 	}

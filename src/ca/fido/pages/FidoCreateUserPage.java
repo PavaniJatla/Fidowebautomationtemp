@@ -75,7 +75,7 @@ public class FidoCreateUserPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public boolean verifyCreateUserProfilePage(){
-		return reusableActions.isElementVisible(txtEmail, 10);
+		return reusableActions.isElementVisible(txtEmail, 60);
 
 	}
 
@@ -177,9 +177,7 @@ public void clkContinue() {
  */
 public void setHomeAddress(String homeAddress) {
 	reusableActions.getWhenReady(txtHomeAddress, 10).click();
-	reusableActions.getWhenReady(lblTxtHomeAddress, 10).sendKeys(homeAddress);	
-	//reusableActions.getWhenReady(lblTxtHomeAddress, 3).sendKeys("a");
-	//reusableActions.getWhenReady(lblTxtHomeAddress, 3).sendKeys(Keys.BACK_SPACE);
+	reusableActions.getWhenReady(lblTxtHomeAddress, 10).sendKeys(homeAddress);
 	reusableActions.staticWait(3000);
 	reusableActions.executeJavaScriptClick(lblAddressResult);
 	reusableActions.staticWait(3000);
