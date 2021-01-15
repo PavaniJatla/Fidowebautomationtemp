@@ -32,85 +32,85 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void prePaidDashBoardChangeCTN() {
 		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc006009.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc006009.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc006009.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc006009.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page.");
+		getReporter().reportLogWithScreenshot("Account overview page.");
 		String strCTN = TestDataHandler.tc006009.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("click wireless badge");
-		String oldCTN=fido_wireless_dashboard_prepaid_page.getTheExistingCTN();
-		fido_wireless_dashboard_prepaid_page.clickChangeCTN();
-		reporter.reportLogWithScreenshot("Clicked on change CTN");
-		reporter.hardAssert(fido_change_CTN_page.waitForChangeMyNumberPageToLoad(),
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("click wireless badge");
+		String oldCTN=getFidowirelessdashboardprepaidpage().getTheExistingCTN();
+		getFidowirelessdashboardprepaidpage().clickChangeCTN();
+		getReporter().reportLogWithScreenshot("Clicked on change CTN");
+		getReporter().hardAssert(getFidochangectnpage().waitForChangeMyNumberPageToLoad(),
 							"Change my number page loaded",
 							"Change my number page not loaded");
-		reporter.softAssert(fido_change_CTN_page.verifylblChangeMyNumberHeaderIsVisible(),
+		getReporter().softAssert(getFidochangectnpage().verifylblChangeMyNumberHeaderIsVisible(),
 							"Change my number header is displayed",
 							"Change my number header is not displayed");
-		reporter.softAssert(fido_change_CTN_page.verifyLabelKeepInMinddetailsIsVisible(),
+		getReporter().softAssert(getFidochangectnpage().verifyLabelKeepInMinddetailsIsVisible(),
 							"Label keep in mind details is displayed",
 							"Label keep in mind details is not displayed");
-		reporter.softAssert(fido_change_CTN_page.verifylblChangeCTNBannerDetailsIsVisible(),
+		getReporter().softAssert(getFidochangectnpage().verifylblChangeCTNBannerDetailsIsVisible(),
 							"Label change CTN banner is visibile",
 							"Label change CTN banner is  not visibile");
-		reporter.hardAssert(fido_change_CTN_page.verifySelectBoxProvinceAndCityIsVisible(),
+		getReporter().hardAssert(getFidochangectnpage().verifySelectBoxProvinceAndCityIsVisible(),
 							"Province selecbox is visible",
 							"Province selecbox is  not visible");
-		Map<String, String> callingAreaDetails = fido_change_CTN_page.selectCallingProvinceAndCity();
-		reporter.reportLogWithScreenshot("Calling Province and city selected");
-		fido_change_CTN_page.clickFindAvailableNumbers();
-		reporter.reportLogWithScreenshot("Click find available numbers");
-		reporter.hardAssert(fido_change_CTN_page.verifyPickANewNumberPageLoaded(),
+		Map<String, String> callingAreaDetails = getFidochangectnpage().selectCallingProvinceAndCity();
+		getReporter().reportLogWithScreenshot("Calling Province and city selected");
+		getFidochangectnpage().clickFindAvailableNumbers();
+		getReporter().reportLogWithScreenshot("Click find available numbers");
+		getReporter().hardAssert(getFidochangectnpage().verifyPickANewNumberPageLoaded(),
 							"Pick a new number page loaded",
 							"Pick a new number page  not loaded");
-		String newCTN=fido_change_CTN_page.selectNewNumber(0);
-		reporter.reportLogWithScreenshot("New number selected");
-		fido_change_CTN_page.clickSelectNumber();		
-		fido_change_CTN_page.verifyReviewYourNewNumberPageLoaded();
-		reporter.reportLogWithScreenshot("Review New number page");
-		reporter.hardAssert(fido_change_CTN_page.verifyNewNumberDetails(oldCTN, newCTN),
+		String newCTN=getFidochangectnpage().selectNewNumber(0);
+		getReporter().reportLogWithScreenshot("New number selected");
+		getFidochangectnpage().clickSelectNumber();		
+		getFidochangectnpage().verifyReviewYourNewNumberPageLoaded();
+		getReporter().reportLogWithScreenshot("Review New number page");
+		getReporter().hardAssert(getFidochangectnpage().verifyNewNumberDetails(oldCTN, newCTN),
 							"New Number Details page",
 							"New Number Details page  not displayed");
-		reporter.hardAssert(fido_change_CTN_page.verifyProvinceAndCityOnConfirmationPage(
+		getReporter().hardAssert(getFidochangectnpage().verifyProvinceAndCityOnConfirmationPage(
 									callingAreaDetails.get("province"),callingAreaDetails.get("city")),
 							"Confirmation page loaded",
 							"Confirmation page loaded  not displayed");
-		//reporter.softAssert(fido_change_CTN_page.verifyEmailSentLabelOnConfirmationPage(),"Label email sent on confirmation page","label email sent on confirmation page is not displayed");
-		fido_change_CTN_page.clickButtonConfirm();
-		reporter.reportLogWithScreenshot("CTN change success page");
-		reporter.hardAssert(fido_change_CTN_page.verifyTheCTNChangeSuccessPage(newCTN),
+		//getReporter().softAssert(getFidochangectnpage().verifyEmailSentLabelOnConfirmationPage(),"Label email sent on confirmation page","label email sent on confirmation page is not displayed");
+		getFidochangectnpage().clickButtonConfirm();
+		getReporter().reportLogWithScreenshot("CTN change success page");
+		getReporter().hardAssert(getFidochangectnpage().verifyTheCTNChangeSuccessPage(newCTN),
 							"CTN change success page",
 							"CTN change success page not displayed");		
-		reporter.softAssert(fido_change_CTN_page.verifyLabelThatsAllIsDisplayed(),
+		getReporter().softAssert(getFidochangectnpage().verifyLabelThatsAllIsDisplayed(),
 							"Thats all label is displayed",
 							"Thats all label is  not displayed");
-		reporter.softAssert(fido_change_CTN_page.verifyLabelYourChangeWillbeDoneInfewMinsIsDisplayed(),
+		getReporter().softAssert(getFidochangectnpage().verifyLabelYourChangeWillbeDoneInfewMinsIsDisplayed(),
 							"Change will be done in few mins label",
 							"Change will be done in few mins label  not displayed");
-		reporter.softAssert(fido_change_CTN_page.verifyNewLabelConfirmationSpanIsDisplayed(),
+		getReporter().softAssert(getFidochangectnpage().verifyNewLabelConfirmationSpanIsDisplayed(),
 							"Confirmation span is displayed",
 							"Confirmation span is  not displayed");
-		reporter.softAssert(fido_change_CTN_page.verifyLabelLocalToDetailsIsDisplayed(),
+		getReporter().softAssert(getFidochangectnpage().verifyLabelLocalToDetailsIsDisplayed(),
 							"Label local to details is displayed",
 							"Label local to details is  not displayed");
-		//reporter.softAssert(fido_change_CTN_page.verifyLabelEmailConfirmationOnFinalPageIsDisplayed(),"Email confirmation on final page is displayed","Email confirmation on final page is  not displayed");
-		reporter.softAssert(fido_change_CTN_page.verifyLabelChangingWillAffectYourBillIsDisplayed(),
+		//getReporter().softAssert(getFidochangectnpage().verifyLabelEmailConfirmationOnFinalPageIsDisplayed(),"Email confirmation on final page is displayed","Email confirmation on final page is  not displayed");
+		getReporter().softAssert(getFidochangectnpage().verifyLabelChangingWillAffectYourBillIsDisplayed(),
 							"Changing will affect your bill is displayed",
 							"Changing will affect your bill is not displayed");			
-		fido_change_CTN_page.clkBackToMyAccount();
-		reporter.reportLogWithScreenshot("click back to my account page");
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);		
+		getFidochangectnpage().clkBackToMyAccount();
+		getReporter().reportLogWithScreenshot("click back to my account page");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);		
 						
 	}
 	

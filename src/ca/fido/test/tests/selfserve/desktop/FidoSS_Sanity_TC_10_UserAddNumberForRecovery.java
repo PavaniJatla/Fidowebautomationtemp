@@ -29,67 +29,67 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void userAddNumberForRecovery() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
 		String userName = TestDataHandler.tc104447.getUsername();
 		String password = TestDataHandler.tc104447.getPassword();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		try {
-			fido_account_overview_page.clkSubNavProfileAndSettings();
-			reporter.reportLogWithScreenshot("menu profile and settings selected");
+			getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+			getReporter().reportLogWithScreenshot("menu profile and settings selected");
 		}catch (StaleElementReferenceException e) {
 			e.printStackTrace();
-			fido_account_overview_page.clkSubNavProfileAndSettings();
-			reporter.reportLogWithScreenshot("menu profile and settings selected");
+			getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
+			getReporter().reportLogWithScreenshot("menu profile and settings selected");
 		}
-		reporter.reportLogWithScreenshot("Profile and Settings page");
-		fido_profile_and_setting_page.clkSetRcvryNumber();
-		reporter.reportLogWithScreenshot("Set recovery number");
+		getReporter().reportLogWithScreenshot("Profile and Settings page");
+		getFidoprofileandsettingpage().clkSetRcvryNumber();
+		getReporter().reportLogWithScreenshot("Set recovery number");
 		String strTestingTab = getDriver().getWindowHandle();
 		String strRecoveryNumber =  TestDataHandler.tc104447.getaccountDetails().getRecoveryNumber();
-		fido_profile_and_setting_page.switchToSetRecoveryNumIFrame();
-		fido_profile_and_setting_page.setPhoneNumberIframe(strRecoveryNumber);
-		reporter.reportLogWithScreenshot("Recovery Number");
-		fido_profile_and_setting_page.clkBtnContinueIframe();
-		reporter.reportLogWithScreenshot("click button continue");
+		getFidoprofileandsettingpage().switchToSetRecoveryNumIFrame();
+		getFidoprofileandsettingpage().setPhoneNumberIframe(strRecoveryNumber);
+		getReporter().reportLogWithScreenshot("Recovery Number");
+		getFidoprofileandsettingpage().clkBtnContinueIframe();
+		getReporter().reportLogWithScreenshot("click button continue");
 		//Will open a new tab for ENS, to get verification code from ENS		
 		try {
-			reporter.reportLogWithScreenshot("ENS verification process start");
-			String strVerifyCode = ensVerifications.getVerifyCode(strRecoveryNumber);
+			getReporter().reportLogWithScreenshot("ENS verification process start");
+			String strVerifyCode = getEnsverifications().getVerifyCode(strRecoveryNumber);
 			getDriver().switchTo().window(strTestingTab);
-			fido_profile_and_setting_page.switchToSetRecoveryNumIFrame();
-			fido_profile_and_setting_page.setVerifyCodeIframe(strVerifyCode);
-			reporter.reportLogWithScreenshot("Set verify code");
-			fido_profile_and_setting_page.clkBtnVerifyMeIframe();
-			reporter.reportLogWithScreenshot("Button verify me clicked");
-			reporter.hardAssert(fido_profile_and_setting_page.verifySuccessConfirmationMsg(), 
+			getFidoprofileandsettingpage().switchToSetRecoveryNumIFrame();
+			getFidoprofileandsettingpage().setVerifyCodeIframe(strVerifyCode);
+			getReporter().reportLogWithScreenshot("Set verify code");
+			getFidoprofileandsettingpage().clkBtnVerifyMeIframe();
+			getReporter().reportLogWithScreenshot("Button verify me clicked");
+			getReporter().hardAssert(getFidoprofileandsettingpage().verifySuccessConfirmationMsg(), 
 								"Recovery phone number set successfully",
 								"Got error when setting recovery phone number");
-			fido_profile_and_setting_page.clkBtnContinueToMyAccountIframe();
-			fido_profile_and_setting_page.switchOutofSetRecoveryNumIframe();
-			reporter.reportLogWithScreenshot("Click button continue to my account");
-//			fido_home_page.clkMenuMyAccountAfterLogin();
-//			reporter.reportLogWithScreenshot("Click Menu My Account after login");
-			fido_account_overview_page.clkSubNavProfileAndSettings();
+			getFidoprofileandsettingpage().clkBtnContinueToMyAccountIframe();
+			getFidoprofileandsettingpage().switchOutofSetRecoveryNumIframe();
+			getReporter().reportLogWithScreenshot("Click button continue to my account");
+//			getFidohomepage().clkMenuMyAccountAfterLogin();
+//			getReporter().reportLogWithScreenshot("Click Menu My Account after login");
+			getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
 
-			reporter.hardAssert(fido_profile_and_setting_page.verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
+			getReporter().hardAssert(getFidoprofileandsettingpage().verifyRecoveryNumberSetSuccessfully(strRecoveryNumber.substring(strRecoveryNumber.length()-4)),
 								"recovery number set successfully",
 								"Recovery number did not set successfully");
-			reporter.reportLogWithScreenshot("Verify recovery number set in profile and settings page.");
+			getReporter().reportLogWithScreenshot("Verify recovery number set in profile and settings page.");
 			
 		} catch (IOException e) {
-			reporter.reportLogFail(e.getMessage());
+			getReporter().reportLogFail(e.getMessage());
 			
 			
 		}

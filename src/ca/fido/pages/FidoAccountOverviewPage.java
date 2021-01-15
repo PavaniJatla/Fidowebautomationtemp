@@ -198,15 +198,16 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//li[@class='o-navLinkList__item clicktale-mask loginStates stateCookied stateActive']")
 	WebElement lnkSignInAs;
 
-	@FindBy (xpath = "//span[@class='new-line-name']")
+	@FindBy (xpath = "//span[@class='ds-icon d-inline-flex fds-icon-add-circle']")
 	WebElement lnkAddALine;
 
 	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlowDevice']/parent::button/preceding-sibling::div//span")
 	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlow']/parent::button")
-	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
+	//@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
+	@FindBy (xpath = "(//div[contains(@class,'modalWindow')]//a)[1]")
 	WebElement buttonAALCurrentPhone;
 
-	@FindBy (xpath = "//div[@class='modal-body']//div[@class='btn-padding hidden-xs']//following-sibling::button")
+	@FindBy (xpath = "(//div[contains(@class,'modalWindow')]//a)[2]")
 	WebElement buttonAALNewPhone;
 
 	@FindBy (xpath = "//div[@class='onboarding-progress-bar']")
@@ -322,13 +323,25 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[@translate='promise-to-pay.success-ptp.done-btn']")
 	WebElement btnDoneAfterSetUpPromiseSuccessFul;
-	
+
+	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
+	WebElement winModalAAL;
+
+	/**
+	 * Verify Modal Window AAL
+	 * @return true if the modal window appears else false
+	 * @author Saurav.Goyal
+	 */
+	public Boolean verifyModalWindowAAL() {
+		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
+	}
+
 	/**
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
 	 */
 	public void clkButtonAALNewPhone() {
-		reusableActions.waitForElementTobeClickable(buttonAALNewPhone, 100);
+		reusableActions.waitForElementTobeClickable(buttonAALNewPhone, 60);
 		reusableActions.getWhenReady(buttonAALNewPhone,30).click();
 	}
 
@@ -336,7 +349,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
 	 */
-	public void clkButtonAddALine() {
+	public void clkButtonAddALineAlreadyHaveAPhone() {
 		reusableActions.waitForElementTobeClickable(buttonAALCurrentPhone, 100);
 		reusableActions.getWhenReady(buttonAALCurrentPhone,30).click();
 	}
@@ -1066,7 +1079,13 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		strCTN = strCTN.substring(0, 3) + "-" + strCTN.substring(3, 6) + "-" + strCTN.subSequence(6, 10);
 		reusableActions.clickWhenVisible(By.xpath("//span[text()='"+ strCTN +"']/ancestor::a[@class='btn']"),30);
 	}
-
+	/**
+	 * Clicks on the view usage and manage link
+	 * @author Saurav.Goyal
+	 */
+	public void clkViewUsageAndManageLink() {
+		reusableActions.clickWhenVisible(By.xpath("//div[@class='fss-subscription-detail']//a"),30);
+	}
 	/**
 	 * Waits until the Loading indicator disappears from the page
 	 * @author rajesh.varalli1

@@ -34,23 +34,23 @@ public class FidoCH_Regression_TC_001_HSIServiceabilityModalforServiceUnavailabl
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void serviceabilityModalforServiceUnavailableAddressTest() {
-		reporter.reportLogWithScreenshot("Launched the Home Page");
-        fido_home_page.clkShop();
-        fido_home_page.clkHomeInternet();
-        reporter.reportLogWithScreenshot("Launched the packages Page");
-        fido_Shop_internet_page.selectInternetPlan(TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getUpgradePlanCost());
-        reporter.reportLogWithScreenshot("Launched the serviceability check page");
+		getReporter().reportLogWithScreenshot("Launched the Home Page");
+        getFidohomepage().clkShop();
+        getFidohomepage().clkHomeInternet();
+        getReporter().reportLogWithScreenshot("Launched the packages Page");
+        getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getUpgradePlanCost());
+        getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIUnavailableAddress.getaccountDetails().getAddress().get("line2");
-        fido_Shop_internet_page.setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
-        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        fido_Shop_internet_page.clkServiceAvailabilityCheck();        
-        reporter.reportLogWithScreenshot("Service is unavailability");
-        reporter.hardAssert(fido_Shop_internet_page.verifyIconUnavailable(),"Service is unavailability","Service is availability");
-        fido_Shop_internet_page.verifyIconCustomercare();
-        fido_Shop_internet_page.clkCheckAnotherAddress();
-        reporter.reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        reporter.hardAssert(fido_Shop_internet_page.verifyAvailabilityCheck(),"Displayed to check the Service availability","Check Another Address is not working");
+        getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        getFidoshopinternetpage().clkServiceAvailabilityCheck();        
+        getReporter().reportLogWithScreenshot("Service is unavailability");
+        getReporter().hardAssert(getFidoshopinternetpage().verifyIconUnavailable(),"Service is unavailability","Service is availability");
+        getFidoshopinternetpage().verifyIconCustomercare();
+        getFidoshopinternetpage().clkCheckAnotherAddress();
+        getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+        getReporter().hardAssert(getFidoshopinternetpage().verifyAvailabilityCheck(),"Displayed to check the Service availability","Check Another Address is not working");
    	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

@@ -27,26 +27,17 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 * @return boolean if the Continue button is visible then return true else false
 	 * @author saurav.goyal
 	 */
-	public boolean verifyContinueButton() {	
-		if(reusableActions.isElementVisible(continueButton)) 
-			return true; 
-		else 
-			return false;
-
+	public boolean verifyContinueButton() {
+		reusableActions.staticWait(5000);
+		return reusableActions.isElementVisible(continueButton , 30);
 	}
 		
 	/***
-	 * This method will verify the presence of continue button if it is available then it will click on the continue button and will return true else false
-	 * @return boolean if the Continue button is visible then return true else false
+	 * Click on the continue button
 	 * @author saurav.goyal
 	 */
-	public boolean clickContinueButton() {	
-		if(reusableActions.isElementVisible(continueButton , 60)) {
-			reusableActions.clickWhenReady(continueButton, 10);
-			return true; 
-		}else {
-			return false;
-		}
+	public void clickContinueButton() {
+		reusableActions.clickWhenReady(continueButton, 10);
 	}
 	
 	/**
@@ -55,10 +46,7 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 * @author saurav.goyal
 	 */
 	public boolean isModalDisplayed() {	
-		if(reusableActions.isElementVisible(modalContainer))
-			return true;
-		else
-			return false;
+		return reusableActions.isElementVisible(modalContainer , 30);
 	}
 	
 	/**

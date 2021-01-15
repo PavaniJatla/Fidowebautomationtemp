@@ -41,7 +41,7 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean verifyThankYou() {
-		return reusableActions.isElementVisible(lblThankYou, 100);
+		return reusableActions.isElementVisible(lblThankYou, 60);
 	}
 
 }

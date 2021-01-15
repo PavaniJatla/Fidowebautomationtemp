@@ -28,36 +28,36 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postpaidUpdateSIMCard() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc18.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc18.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc18.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc18.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc18.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("After click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkLnkUpdateSimCard();
-		reporter.reportLogWithScreenshot("Click on Link : Update Sim card");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("After click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkLnkUpdateSimCard();
+		getReporter().reportLogWithScreenshot("Click on Link : Update Sim card");
 		String strOldSimNum = TestDataHandler.tc18.getaccountDetails().getSimCardNumber();
-		fido_wireless_dashboard_postpaid_page.setOldSimNum(strOldSimNum);
+		getFidowirelessdashboardpostpaidpage().setOldSimNum(strOldSimNum);
 		String strNewSimNum = FormFiller.generateSIMNumber();		
-		fido_wireless_dashboard_postpaid_page.setNewSimNum(strNewSimNum);
-		reporter.reportLogWithScreenshot("Fill old and new sim card details");
-		fido_wireless_dashboard_postpaid_page.clkBtnUpdateSimNext();
-		reporter.reportLogWithScreenshot("Click Button update SIM card Next button");
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyUpdateSimReview(strOldSimNum, strNewSimNum),
+		getFidowirelessdashboardpostpaidpage().setNewSimNum(strNewSimNum);
+		getReporter().reportLogWithScreenshot("Fill old and new sim card details");
+		getFidowirelessdashboardpostpaidpage().clkBtnUpdateSimNext();
+		getReporter().reportLogWithScreenshot("Click Button update SIM card Next button");
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyUpdateSimReview(strOldSimNum, strNewSimNum),
 				"SIM review successful",
 				"SIM review is not successful, please investigate");	
-		reporter.reportLogWithScreenshot("Update SIM card review page.");
+		getReporter().reportLogWithScreenshot("Update SIM card review page.");
 	}
 
 }

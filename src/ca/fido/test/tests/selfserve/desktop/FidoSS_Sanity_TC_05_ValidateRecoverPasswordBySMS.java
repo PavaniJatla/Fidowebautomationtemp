@@ -28,70 +28,70 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc05ValidateRecoverPassUsingSms() {
-		fido_home_page.clkLogin();
-		reporter.reportLogWithScreenshot("Login Page");
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.clkForgotPassOrNameIframe();	
-		reporter.reportLogWithScreenshot("Clicked on Forgot Password or username");
-		fido_recover_pass_or_name_page.clkBtnPassword();
-		reporter.reportLogWithScreenshot("Clicked on password button");
+		getFidohomepage().clkLogin();
+		getReporter().reportLogWithScreenshot("Login Page");
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().clkForgotPassOrNameIframe();	
+		getReporter().reportLogWithScreenshot("Clicked on Forgot Password or username");
+		getFidorecoverpassornamepage().clkBtnPassword();
+		getReporter().reportLogWithScreenshot("Clicked on password button");
 		String strUsername = TestDataHandler.tc04To09.getUsername();
 		String strPassword = TestDataHandler.tc04To09.getPassword();
-		fido_recover_pass_or_name_page.setEmailAddress(strUsername);
-		reporter.reportLogWithScreenshot("Set email id and click button continue");
-		fido_recover_pass_or_name_page.clkBtnContinue();		
-		reporter.reportLogWithScreenshot("Continue is clicked");
+		getFidorecoverpassornamepage().setEmailAddress(strUsername);
+		getReporter().reportLogWithScreenshot("Set email id and click button continue");
+		getFidorecoverpassornamepage().clkBtnContinue();		
+		getReporter().reportLogWithScreenshot("Continue is clicked");
 		//flow updated in May 20th release, no need to click text option.
-		fido_recover_pass_or_name_page.clkTextToAsRecoveryOption();
+		getFidorecoverpassornamepage().clkTextToAsRecoveryOption();
 
 		String strTestingTab = getDriver().getWindowHandle();
 				
 		try {
 			String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
-			String strCode = ensVerifications.getVerifyCode(strPhoneNum);
+			String strCode = getEnsverifications().getVerifyCode(strPhoneNum);
 			
 			//switch to working test tab.
 			getDriver().switchTo().window(strTestingTab);
-			reporter.reportLogWithScreenshot("Set code");
-			fido_recover_pass_or_name_page.switchToSetCodeIframe();
-			fido_recover_pass_or_name_page.setCode(strCode);
-			fido_recover_pass_or_name_page.clickVerifyMe();
+			getReporter().reportLogWithScreenshot("Set code");
+			getFidorecoverpassornamepage().switchToSetCodeIframe();
+			getFidorecoverpassornamepage().setCode(strCode);
+			getFidorecoverpassornamepage().clickVerifyMe();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		reporter.reportLogWithScreenshot("Create New Password");
+		getReporter().reportLogWithScreenshot("Create New Password");
 		String strNewPass = TestDataHandler.tc04To09.getaccountDetails().getNewPassword();
-		fido_recover_pass_or_name_page.setNewPassword(strNewPass);
-		fido_recover_pass_or_name_page.setConfirmPassword(strNewPass);
-		reporter.reportLogWithScreenshot("New passwords set");
-		fido_recover_pass_or_name_page.clkBtnSetPassword();
-		reporter.hardAssert(fido_recover_pass_or_name_page.isPasswordRestSuccessIsDisplayed()
+		getFidorecoverpassornamepage().setNewPassword(strNewPass);
+		getFidorecoverpassornamepage().setConfirmPassword(strNewPass);
+		getReporter().reportLogWithScreenshot("New passwords set");
+		getFidorecoverpassornamepage().clkBtnSetPassword();
+		getReporter().hardAssert(getFidorecoverpassornamepage().isPasswordRestSuccessIsDisplayed()
 				, "Password reset success message is displayed"
 				, "Password reset success message not displayed");
-		fido_recover_pass_or_name_page.clkLogInToMyAccount();
+		getFidorecoverpassornamepage().clkLogInToMyAccount();
 		//Login with old password:
-		fido_recover_pass_or_name_page.switchToDefaultContent();
-		fido_login_page.switchToSignInFrame();
-		common_business_flows.loginApplication(strUsername, strPassword);		
-		if(fido_login_page.verifyIfErrorMsgIsDisplayedInFrame())
+		getFidorecoverpassornamepage().switchToDefaultContent();
+		getFidologinpage().switchToSignInFrame();
+		getCommonbusinessflows().loginApplication(strUsername, strPassword);		
+		if(getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame())
 		{			
-			reporter.reportLogWithScreenshot("Login attempt one not successful with old password, trying with new password:"+strNewPass);							
-			fido_login_page.setUsernameInFrame(strUsername);
-			fido_login_page.setPasswordInFrame(strNewPass);
-			reporter.reportLogWithScreenshot("Login with UserName: "+strUsername+" and Password: "+strNewPass);
-			fido_login_page.clkLoginInFrame();
-			reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+			getReporter().reportLogWithScreenshot("Login attempt one not successful with old password, trying with new password:"+strNewPass);							
+			getFidologinpage().setUsernameInFrame(strUsername);
+			getFidologinpage().setPasswordInFrame(strNewPass);
+			getReporter().reportLogWithScreenshot("Login with UserName: "+strUsername+" and Password: "+strNewPass);
+			getFidologinpage().clkLoginInFrame();
+			getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 					"Login proceed without error.", 
 					"Login failed with error.");
-			fido_login_page.switchOutOfSignInFrame();
-			reporter.reportLogWithScreenshot("Account overview page");
-			common_business_flows.resetPasswordBack(strNewPass, strPassword);
+			getFidologinpage().switchOutOfSignInFrame();
+			getReporter().reportLogWithScreenshot("Account overview page");
+			getCommonbusinessflows().resetPasswordBack(strNewPass, strPassword);
 		}else
 		{
-			reporter.reportLogWithScreenshot("Login successful");
-			fido_login_page.switchOutOfSignInFrame();
-			reporter.reportLogWithScreenshot("Account overview page");
-			common_business_flows.resetPasswordBack(strNewPass, strPassword);
+			getReporter().reportLogWithScreenshot("Login successful");
+			getFidologinpage().switchOutOfSignInFrame();
+			getReporter().reportLogWithScreenshot("Account overview page");
+			getCommonbusinessflows().resetPasswordBack(strNewPass, strPassword);
 		}
 		
 		

@@ -32,29 +32,29 @@ public class FidoSS_TC079_FidoCA_PostpaidBill_NoBills extends BaseTestClass {
 
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void postPaidPaymentBank() throws InterruptedException {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc79.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc79.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), "Login proceed without error.",
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc79.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc79.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), "Login proceed without error.",
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), "Login succeed.", "Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login succeed.", "Failed to login.");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc79.getaccountDetails().getBan();
 		Thread.sleep(5000);
-		fido_account_overview_page.clkViewBillNew(strBAN);
-		reporter.reportLogWithScreenshot("View bill page is open");
-		fido_bill_details_page.switchToDefaultContent();
-		String billAmount = fido_bill_details_page.getBillAmountFromViewBillDropDown();
-		reporter.hardAssert(billAmount.equals(""), "No bills Present in the dropdown", "Bills Present in the dropdown");
-		reporter.hardAssert(
-				fido_bill_details_page.verifyBillErrorMsg(),
+		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getReporter().reportLogWithScreenshot("View bill page is open");
+		getFidobilldetailspage().switchToDefaultContent();
+		String billAmount = getFidobilldetailspage().getBillAmountFromViewBillDropDown();
+		getReporter().hardAssert(billAmount.equals(""), "No bills Present in the dropdown", "Bills Present in the dropdown");
+		getReporter().hardAssert(
+				getFidobilldetailspage().verifyBillErrorMsg(),
 				"No Bills Error Message Validated Successfully", "No Bills Error Message Not Present");
-		fido_account_overview_page.scrollToMiddleOfPage();
-		reporter.reportLogWithScreenshot("No Bills Error Message Displayed");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getReporter().reportLogWithScreenshot("No Bills Error Message Displayed");
 	}
 
 }

@@ -13,34 +13,34 @@ public class FidoCreateUserPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath="//input[@id='email' or @formcontrolname='email']/parent::div")
+	@FindBy(xpath="//input[@id='email' or @formcontrolname='email' or @id='ds-form-input-id-2']/parent::div")
 	WebElement txtEmail;
 
-	@FindBy(xpath="//input[@id='email' or @formcontrolname='email']")
+	@FindBy(xpath="//input[@id='email' or @formcontrolname='email' or @id='ds-form-input-id-2']")
 	WebElement lblTxtEmail;
 
-	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @formcontrolname='confirmEmail']/parent::div")
+	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @id='ds-form-input-id-7' or contains(@formcontrolname,'confirm')]/parent::div")
 	WebElement txtConfirmEmail;
 	
-	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @formcontrolname='confirmEmail']")
+	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @id='ds-form-input-id-7' or contains(@formcontrolname,'confirm')]")
 	WebElement lbltxtConfirmEmail;
 
-	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']")
+	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']/parent::div")
 	WebElement txtFirstName;
 
 	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']")
 	WebElement lblTxtFirstName;
 
-	@FindBy(xpath="//input[@id='lastName' or @id='lname' or @formcontrolname='lastName']")
+	@FindBy(xpath="//input[@id='lastName' or @id='lname' or @formcontrolname='lastName']/parent::div")
 	WebElement txtLastName;
 	
 	@FindBy(xpath="//input[@id='lastName' or @id='lname' or @formcontrolname='lastName']")
 	WebElement lblTxtLastName;
 
-	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or @formcontrolname='contact']")
+	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or contains(@formcontrolname,'contact')]/parent::div")
 	WebElement txtPhone;
 	
-	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or @formcontrolname='contact']")
+	@FindBy(xpath="//input[@name='phone' or @name='phoneno' or contains(@formcontrolname,'contact')]")
 	WebElement lblTxtPhone;
 
 	@FindBy(xpath="//input[@class='ute-btn-primary ute-sm pull-right']")
@@ -69,6 +69,15 @@ public class FidoCreateUserPage extends BasePageClass {
 	@FindBy(xpath="//div[@class='auto-suggest-list ng-star-inserted']//li[1]")
 	})
 	WebElement lblAddressResult;
+
+	/**
+	 * Verify if the create user profile page loaded or not
+	 * @author Saurav.Goyal
+	 */
+	public boolean verifyCreateUserProfilePage(){
+		return reusableActions.isElementVisible(txtEmail, 10);
+
+	}
 
 	/**
 	 * Set the dynamic Email address at both the Email and Confirm Email text boxes on user creation page
@@ -126,6 +135,15 @@ public void setPhone() {
 	reusableActions.getWhenReady(lblTxtPhone,3).sendKeys("1000000067");
 }
 
+	/**
+	 * Set a specific phone number on user creation page
+	 * @author Saurav.Goyal
+	 */
+	public void setSpecificPhoneNumber(String contactNumber) {
+		reusableActions.getWhenReady(txtPhone, 3).click();
+		reusableActions.getWhenReady(lblTxtPhone,3).sendKeys(contactNumber);
+	}
+
 /**
  * Clicks on the 'Next' button on user creation page
  * @author chinnarao.vattam 
@@ -148,6 +166,7 @@ public void clkUserProfileNextForExistingCustomer() {
  * @author rajesh.varalli1
  */
 public void clkContinue() {
+	reusableActions.scrollToElement(btnContinue);
 	reusableActions.executeJavaScriptClick(btnContinue);
 }
 

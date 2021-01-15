@@ -224,8 +224,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//*[contains(text(),'days remaining') or contains(text(),'votre cycle')]")
 	WebElement daysRemainingofBillCycle;
-	
-	@FindBy(xpath = "//button[@translate='wirelessDashboard.deviceSection.upgradeBtnText']")
+
+	@FindAll({
+			@FindBy(xpath = "//button[@translate='wirelessDashboard.deviceSection.upgradeBtnText']"),
+			@FindBy(xpath = "//div[contains(@class,'device-content-box')]//a[contains(@class,'-primary -large')]")
+	})
 	WebElement btnUpgradeDevice;
 	
 	@FindAll({		

@@ -29,26 +29,26 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 
 	@Test(groups = {"MobileSanitySS","SSPnS"})
 	public void mobilePostPaidPaymentViewAndEditProfile() throws InterruptedException, ParseException {
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navgation card");	
-		fido_home_page.clkLoginMobile();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc1417.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc1417.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrameMobile();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navgation card");	
+		getFidohomepage().clkLoginMobile();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc1417.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc1417.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrameMobile();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
 		String newAddress;
-		fido_account_overview_page.clkMenuProfileNSettingMobile();		
-		reporter.reportLogWithScreenshot("profile and settings page");
-		fido_profile_and_setting_page.clkButtonBillingSettings();
-		String existingAddress=fido_profile_and_setting_page.getOldAddress();
+		getFidoaccountoverviewpage().clkMenuProfileNSettingMobile();		
+		getReporter().reportLogWithScreenshot("profile and settings page");
+		getFidoprofileandsettingpage().clkButtonBillingSettings();
+		String existingAddress=getFidoprofileandsettingpage().getOldAddress();
 		if(!existingAddress.contains("4501 Valiant") 
 			&& existingAddress.contains(TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")))
 		{
@@ -58,18 +58,18 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 			newAddress=TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")
 					  +" "+TestDataHandler.tc1417.getaccountDetails().getAddress().get("line2");
 		}
-		fido_profile_and_setting_page.clkUpdateBillingAddress();
-		if(fido_profile_and_setting_page.isVerifyYourIdentityOverlayDisplayed())
+		getFidoprofileandsettingpage().clkUpdateBillingAddress();
+		if(getFidoprofileandsettingpage().isVerifyYourIdentityOverlayDisplayed())
     	{
-			fido_profile_and_setting_page.switchToVerifyIdentityIFrame();
-			fido_profile_and_setting_page.clkContinueVerifyIdentity(); 			
-    		reporter.hardAssert(fido_profile_and_setting_page.isInEligibleUser(),
+			getFidoprofileandsettingpage().switchToVerifyIdentityIFrame();
+			getFidoprofileandsettingpage().clkContinueVerifyIdentity(); 			
+    		getReporter().hardAssert(getFidoprofileandsettingpage().isInEligibleUser(),
     				"User is taken to eligibility failure modal",
     				"User is NOT taken to eligibility failure modal");
-    		reporter.reportLogWithScreenshot("User is taken to eligibility failure modal");
-    		fido_profile_and_setting_page.clkClose();
-    		reporter.reportLogWithScreenshot("Clicks on close");
-    		reporter.hardAssert(fido_profile_and_setting_page.IsBillingAddressDisplayed(),
+    		getReporter().reportLogWithScreenshot("User is taken to eligibility failure modal");
+    		getFidoprofileandsettingpage().clkClose();
+    		getReporter().reportLogWithScreenshot("Clicks on close");
+    		getReporter().hardAssert(getFidoprofileandsettingpage().IsBillingAddressDisplayed(),
     				"Profile and Settings page is displayed"
     				, "Profile and Settings page not displayed");    		
     	}					

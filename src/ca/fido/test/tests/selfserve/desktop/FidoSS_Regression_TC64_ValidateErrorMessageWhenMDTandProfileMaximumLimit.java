@@ -36,41 +36,41 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
-		reporter.reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		fido_home_page.clkLogin();
+		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
+		getFidohomepage().clkLogin();
 	
 		String	userName = TestDataHandler.tc6062.getUsername();
 		String	password = TestDataHandler.tc6062.getPassword();
 		
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc6062.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("dashboard page loaded");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
 		
-		reporter.hardAssert(fido_data_management_page.validateViewDetailsLink(),
+		getReporter().hardAssert(getFidodatamanagementpage().validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
-		reporter.reportLogWithScreenshot("View details page opened");
-		common_business_flows.scrollToMiddleOfWebPage();
-		reporter.reportLogWithScreenshot("Manage data page middle view");
-		int countOfExistSpeedPass = fido_data_management_page.getAllExistingAddDataCount();
-		common_business_flows.scrollToTopOfWebPage();		
-		Map<String, Integer> countOfAlreadyAddedData = fido_data_management_page.getCountOfAllExistingAddedDataValues();
-		fido_data_management_page.clkLinkBackOnManageDataOverlay();
+		getReporter().reportLogWithScreenshot("View details page opened");
+		getCommonbusinessflows().scrollToMiddleOfWebPage();
+		getReporter().reportLogWithScreenshot("Manage data page middle view");
+		int countOfExistSpeedPass = getFidodatamanagementpage().getAllExistingAddDataCount();
+		getCommonbusinessflows().scrollToTopOfWebPage();		
+		Map<String, Integer> countOfAlreadyAddedData = getFidodatamanagementpage().getCountOfAllExistingAddedDataValues();
+		getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
 		Map.Entry<String,Integer> entry = countOfAlreadyAddedData.entrySet().iterator().next();
 		 String strAddOnValue = entry.getKey();
 		 Integer intValue = entry.getValue();
@@ -79,11 +79,11 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 			for(int itr=1;itr<=(3-intValue);itr++)
 			{
 				completeAddDataFlow(strAddOnValue);
-				reporter.hardAssert(fido_add_data_page.verifyAddDataSuccessMsgDisplayed(),
+				getReporter().hardAssert(getFidoadddatapage().verifyAddDataSuccessMsgDisplayed(),
 						"Add data success message is displayed",
 						"Add data success message is not displayed");					
-				reporter.reportLogWithScreenshot("Add data success modal.");			
-				fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+				getReporter().reportLogWithScreenshot("Add data success modal.");			
+				getFidoadddatapage().clkCloseBtnOnAddDataOverlay();
 			}
 			
 		}
@@ -91,28 +91,28 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 	
 	   //Add extra time
 		completeAddDataFlow(strAddOnValue);
-		reporter.hardAssert(fido_add_data_page.isLimitReachedMsgDisplayed(),
+		getReporter().hardAssert(getFidoadddatapage().isLimitReachedMsgDisplayed(),
 				"Limit reached message is displayed for Add MDT/ OTT more than 3 times and more than 10 times",
 				"Limit reached message is NOT displayed for Add MDT/ OTT more than 3 times and more than 10 times");
-		reporter.reportLogWithScreenshot("Limit Reached Overlay displayed");		
-		fido_add_data_page.clkCloseBtnOnAddDataOverlay();
+		getReporter().reportLogWithScreenshot("Limit Reached Overlay displayed");		
+		getFidoadddatapage().clkCloseBtnOnAddDataOverlay();
 					
 	}
 	
 	public void completeAddDataFlow(String strDataValue) {
-		fido_wireless_dashboard_postpaid_page.clkAddDataButton();						
-		reporter.hardAssert(fido_add_data_page.verifyOverlayMonthlyDataAddOnDisplayed(),
+		getFidowirelessdashboardpostpaidpage().clkAddDataButton();						
+		getReporter().hardAssert(getFidoadddatapage().verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
 							"Monthly data add on overlay is not displayed");			
-		reporter.reportLogWithScreenshot("Add monthly data add on overlay");
+		getReporter().reportLogWithScreenshot("Add monthly data add on overlay");
 		
-		fido_add_data_page.clkTheDataAddOnValue(strDataValue);
-		fido_add_data_page.clkContinueBtnOnAddDataOverlay();
-		reporter.hardAssert(fido_add_data_page.verifyConfirmPurchasingMsgDisplayed(),
+		getFidoadddatapage().clkTheDataAddOnValue(strDataValue);
+		getFidoadddatapage().clkContinueBtnOnAddDataOverlay();
+		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
-		reporter.reportLogWithScreenshot("Confirm purchasing on add data overlay");
-		fido_add_data_page.clkPurchaseBtnOnAddDataOverlay();
+		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");
+		getFidoadddatapage().clkPurchaseBtnOnAddDataOverlay();
 	}
 	
 }

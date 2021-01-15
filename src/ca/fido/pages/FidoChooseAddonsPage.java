@@ -3,6 +3,7 @@ package ca.fido.pages;
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -20,8 +21,11 @@ public class FidoChooseAddonsPage extends BasePageClass {
 	
 	@FindBy(xpath="//button[@translate='btn_continue_to_shipping']")
 	WebElement btnContinueToShipping;
-	
-	@FindBy(xpath="//div[contains(@class,'new-addons-title ng-scope')]")
+
+	@FindAll({
+			@FindBy(xpath="//div[contains(@class,'new-addons-title ng-scope')]"),
+			@FindBy(xpath="//span[@translate='ppc_manage_addon']")
+	})
 	WebElement lblChooseAddonsTitle;
 	
 	@FindBy(xpath="//button[@translate='_get_it']")
@@ -52,7 +56,7 @@ public class FidoChooseAddonsPage extends BasePageClass {
 	 */
 	public void clkContinueToShipping() {
 		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnContinueToShipping,30));
-		reusableActions.waitForElementVisibility(btnContinueToShipping,120);
+		reusableActions.waitForElementVisibility(btnContinueToShipping,60);
 	}
 	
 	/**
@@ -61,6 +65,14 @@ public class FidoChooseAddonsPage extends BasePageClass {
 	 */
 	public void selectAnyAddon() {
 		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnGetIt, 60));
+	}
+
+	/**
+	 * To verify addons page
+	 * @author Saurav.Goyal
+	 */
+	public boolean verifyAddonsPage() {
+		return reusableActions.isElementVisible(lblChooseAddonsTitle, 60);
 	}
 	
 }

@@ -35,8 +35,8 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 	
 	@Test(groups = {"SanitySS","DashboardSS"})
 	public void postPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
-		reporter.reportLogWithScreenshot("DashBoard verification started");
-		fido_home_page.clkLogin();
+		getReporter().reportLogWithScreenshot("DashBoard verification started");
+		getFidohomepage().clkLogin();
 
 		String userName = "";
 		String password = "";
@@ -45,98 +45,98 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		userName = TestDataHandler.tc1122.getUsername();
 		password = TestDataHandler.tc1122.getPassword();
 		String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		//fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Click on CTN badge");
-		fido_wireless_dashboard_postpaid_page.clkShowMyUsageIfVisible();
-		reporter.reportLogWithScreenshot("dashboard page loaded");
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
+		getReporter().reportLogWithScreenshot("Account overview page");
+		//getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Is Displayed",
 							"Dashboard section data balance not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDataDashBoardUsageBarIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
 							"usage bar is displayed",
 							"usage bar is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTotalDataInUsageSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
 							"Data Section is displayed",
 							"Data section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyDaysRemainingInBillCycleIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Label N days reming for Bill cycle is displayed",
 							"Label N days remaining for Bill cycle is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkPlanDetailsSectionIsDisplayed(),
 							"Talk plan is displayed",
 							"Talk plan is not displayed");
 	
-			reporter.reportLogWithScreenshot("Non-demo line account dashboard page is displayed");
-			reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLabelDataDelayedIsDisplayed(),
+			getReporter().reportLogWithScreenshot("Non-demo line account dashboard page is displayed");
+			getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLabelDataDelayedIsDisplayed(),
 								"label data delayed is displayed for Non demo line account",
 								"label data delayed is  not displayed for non-demoline account");		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTalkPlanDetailsSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkPlanDetailsSectionIsDisplayed(),
 							"Talk plan details section is displayed",
 							"Talk plan details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyTextPlanDetailsSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTextPlanDetailsSectionIsDisplayed(),
 							"Text plan details section is displayed",
 							"Text plan details section is not displayed");
 		/*
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited(),
 				"View details displayed below talk and text unlimited", 
 				"View details is NOT displayed below talk and text unlimited");
 				*/		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyMobilePlanDashBoardSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMyMobilePlanDashBoardSectionIsDisplayed(),
 							"My Mobile plan dashboard section is displayed",
 							"My mobile plan details section is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkViewFullPlanDetailsOnMyMobilePlanDashBoardSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkViewFullPlanDetailsOnMyMobilePlanDashBoardSectionIsDisplayed(),
 							"Link View Flull plan details is displayed on My mobile plan section",
 							"Link View Flull plan details is NOT displayed on My mobile plan section");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyButtonChangePlanMyMobilePlanDashBoardSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyButtonChangePlanMyMobilePlanDashBoardSectionIsDisplayed(),
 							"Button Change Plan MyMobilePlan DashBoard Section IsDisplayed",
 							"Button Change Plan MyMobilePlan DashBoard Section Is NOT Displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyPlanBenefitsInMyMobilePlanDashBoardSectionIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyPlanBenefitsInMyMobilePlanDashBoardSectionIsDisplayed(),
 							"PlanBenefits In My MobilePlan DashBoard Section Is Displayed",
 							"PlanBenefits In MyMobilePlan DashBoard Section Is NOT Displayed");
 				
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyMyDeviceDetails(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMyDeviceDetails(),
 							"My device details is displayed",
 							"My device details is not displayed");				
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyViewFullPlanDetails(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyViewFullPlanDetails(),
 							"Full Plan details is displayed",
 							"Full plan details is not displayed");		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkChangeCalldisplayNameIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkChangeCalldisplayNameIsDisplayed(),
 							"Link change display name is displayed",
 							"Link change displaye name is not displayed");		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkChangeMyNumberIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkChangeMyNumberIsDisplayed(),
 							"Link change my number is displayed",
 							"Link change my numebr is not displayed");	
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkReportLostOrStolenIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkReportLostOrStolenIsDisplayed(),
 							"Link report lost or stolen is displayed",
 							"Link report lost or stolen is not displayed");		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkRetrievePUKCodeIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkRetrievePUKCodeIsDisplayed(),
 							"Link Retrevive PUK code is dsiplayed",
 							"Link Retreive PUK code is not displayed");
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkUpdateSIMCardIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkUpdateSIMCardIsDisplayed(),
 							"Link Update SIM card is displayed",
 							"Link update SIM card is not displayed");
 		
-		reporter.softAssert(fido_wireless_dashboard_postpaid_page.verifyLinkRepairMyDeviceIsDisplayed(),
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLinkRepairMyDeviceIsDisplayed(),
 				"Link Repair or trade in device is displayed",
 				"Link Repair or trade in device is not displayed");
 				
-		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
-		reporter.reportLogWithScreenshot("Dashboad mid veiw");
-		fido_wireless_dashboard_postpaid_page.scrollToBottomOfPage();
-		reporter.reportLogWithScreenshot("Dashboad bottom veiw");
+		getFidowirelessdashboardpostpaidpage().scrollToMidOfDasboardPage();
+		getReporter().reportLogWithScreenshot("Dashboad mid veiw");
+		getFidowirelessdashboardpostpaidpage().scrollToBottomOfPage();
+		getReporter().reportLogWithScreenshot("Dashboad bottom veiw");
 	}
 	
 }

@@ -37,27 +37,27 @@ public class FidoSS_Regression_TC074_AO_ValidateUserCanEditAutomaticPaymentMetho
 	@Test(groups = {"AccountOverviewSS"})
 	public void postPaidChangeMOP() {
 		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
-		//fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc121315.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc121315.getPassword());
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		//getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 				
-		reporter.hardAssert(fido_account_overview_page.verifyIfAtleastOneUserHasAutoPaymentSet(),
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifyIfAtleastOneUserHasAutoPaymentSet(),
 				"The user has atleast 1 active account which has already automatic payments option",
 				"The user should have atleast 1 active account which has already automatic payments option");
 		
-		fido_account_overview_page.clkPenIconForChangePaymentMethod();
-		reporter.hardAssert(fido_payment_options_page.verifyPaymentMethodModalDisplayed(),
+		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
 							

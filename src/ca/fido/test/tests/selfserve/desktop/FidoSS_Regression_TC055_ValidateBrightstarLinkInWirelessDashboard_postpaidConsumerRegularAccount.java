@@ -39,45 +39,45 @@ public class FidoSS_Regression_TC055_ValidateBrightstarLinkInWirelessDashboard_p
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateBrightstarLinkInWirelessDashboardForPostpaid() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		fido_home_page.clkLogin();		
+		getFidohomepage().clkLogin();		
 		String userName = "";
 		String password = "";	
 		userName = TestDataHandler.tc5055.getUsername();
 		password = TestDataHandler.tc5055.getPassword();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(userName);
-		fido_login_page.setPasswordInFrame(password);
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(userName);
+		getFidologinpage().setPasswordInFrame(password);
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc5055.getaccountDetails().getCtn();
-		fido_account_overview_page.clkCTNsViewUsageAndManage(strCTN);
-		reporter.reportLogWithScreenshot("Usage and Services page");				
-		fido_wireless_dashboard_postpaid_page.scrollToMidOfDasboardPage();
-		reporter.reportLogWithScreenshot("Dashboad veiw");
-		fido_wireless_dashboard_postpaid_page.closeOverlayPopup();
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyLinkRepairMyDeviceIsDisplayed(),
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Usage and Services page");				
+		getFidowirelessdashboardpostpaidpage().scrollToMidOfDasboardPage();
+		getReporter().reportLogWithScreenshot("Dashboad veiw");
+		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyLinkRepairMyDeviceIsDisplayed(),
 				"Link Start or track a phone repair claim",
 				"Link Start or track a phone repair claim is not displayed");		
-		fido_wireless_dashboard_postpaid_page.clkRepairDeviceLink();
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyOverlayForRepairDeviceIsDisplayed(),
+		getFidowirelessdashboardpostpaidpage().clkRepairDeviceLink();
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyOverlayForRepairDeviceIsDisplayed(),
 				"Overlay get help for you phone is displayed",
 				"Overlay get help for you phone is displayed is not displayed");
-		reporter.reportLogWithScreenshot("Overlay GET HELP FOR YOUR PHONE is displayed");
-		String strParentWindowHandle = fido_wireless_dashboard_postpaid_page.clkButtonContinueOnRepairDeviceOverlay();		
-		reporter.hardAssert(fido_wireless_dashboard_postpaid_page.verifyBrightStarNewTabAndURL(strParentWindowHandle,
+		getReporter().reportLogWithScreenshot("Overlay GET HELP FOR YOUR PHONE is displayed");
+		String strParentWindowHandle = getFidowirelessdashboardpostpaidpage().clkButtonContinueOnRepairDeviceOverlay();		
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyBrightStarNewTabAndURL(strParentWindowHandle,
 				TestDataHandler.config.getBrightStarURL()),
 				"Bright star tab and url open",
 				"Bright star tab and url did not open");
-		reporter.reportLogWithScreenshot("BrighStar page expected url : "+TestDataHandler.config.getBrightStarURL());
-		reporter.reportLogWithScreenshot("BrighStar page actual url : "+getDriver().getCurrentUrl().trim());
+		getReporter().reportLogWithScreenshot("BrighStar page expected url : "+TestDataHandler.config.getBrightStarURL());
+		getReporter().reportLogWithScreenshot("BrighStar page actual url : "+getDriver().getCurrentUrl().trim());
 	}
 	
 }

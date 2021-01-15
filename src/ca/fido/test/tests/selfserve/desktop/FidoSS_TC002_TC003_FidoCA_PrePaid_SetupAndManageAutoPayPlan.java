@@ -29,98 +29,98 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 	  	
 	@Test(groups = {"RegressionSS","BillingAndPaymentsSS","PrepaidSS"})
 	public void prepaidSetUpAutoPayRefill() {
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc0203.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc0203.getPassword());
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc0203.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc0203.getPassword());
 		String strBAN = TestDataHandler.tc0203.getaccountDetails().getBan();
-		reporter.reportLogWithScreenshot("Login Credential is entered.");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getReporter().reportLogWithScreenshot("Login Credential is entered.");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		reporter.reportLogWithScreenshot("Account overview page");
-		fido_account_overview_page.clkBtnRefillNowNew(strBAN);
-		reporter.reportLogWithScreenshot("Refill options page");
-		if(! fido_refill_page.isRecurringAutoRefillAlreadySet())
+		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidoaccountoverviewpage().clkBtnRefillNowNew(strBAN);
+		getReporter().reportLogWithScreenshot("Refill options page");
+		if(! getFidorefillpage().isRecurringAutoRefillAlreadySet())
 		{
-			reporter.reportLogWithScreenshot("Set up recurring auto refill");
-			fido_refill_page.clkRecurringAutoRefill();
+			getReporter().reportLogWithScreenshot("Set up recurring auto refill");
+			getFidorefillpage().clkRecurringAutoRefill();
 			//Credit card payment 
-			if(!fido_refill_page.isCardAlreadyRegistered()) {
+			if(!getFidorefillpage().isCardAlreadyRegistered()) {
 
-				fido_refill_page.setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-				fido_refill_page.selectExpiryMonth(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth());
-				fido_refill_page.selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-				reporter.reportLogWithScreenshot("Credit card details entered");
-				fido_refill_page.setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
-				fido_refill_page.clkTnC();
-				reporter.reportLogWithScreenshot("Credit card T n C selected");
+				getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+				getFidorefillpage().selectExpiryMonth(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth());
+				getFidorefillpage().selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
+				getReporter().reportLogWithScreenshot("Credit card details entered");
+				getFidorefillpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+				getFidorefillpage().clkTnC();
+				getReporter().reportLogWithScreenshot("Credit card T n C selected");
 			}
 			
-			//fido_refill_page.clkRecurringAutoPayContinue();	
-			fido_refill_page.clkContinue();			
-			reporter.reportLogWithScreenshot("Click on continue button");
-			fido_refill_page.clkSubmit();
-			reporter.reportLogWithScreenshot("After click on submit button");
-			reporter.hardAssert(fido_refill_page.verifyAutoRefillSubmittedSuccessFully(),
+			//getFidorefillpage().clkRecurringAutoPayContinue();	
+			getFidorefillpage().clkContinue();			
+			getReporter().reportLogWithScreenshot("Click on continue button");
+			getFidorefillpage().clkSubmit();
+			getReporter().reportLogWithScreenshot("After click on submit button");
+			getReporter().hardAssert(getFidorefillpage().verifyAutoRefillSubmittedSuccessFully(),
 								"Auto refill submitted successfully", 
 								"Auto refill not submitted successfully");
-			reporter.reportLogWithScreenshot("refill success");
-			fido_refill_page.clkBacktoMyAccount();
-			reporter.reportLogWithScreenshot("Back to Account overview page");
-			fido_account_overview_page.clkBtnRefillNowNew(strBAN);		
-			reporter.reportLogWithScreenshot("Click performed on Refill Button");
+			getReporter().reportLogWithScreenshot("refill success");
+			getFidorefillpage().clkBacktoMyAccount();
+			getReporter().reportLogWithScreenshot("Back to Account overview page");
+			getFidoaccountoverviewpage().clkBtnRefillNowNew(strBAN);		
+			getReporter().reportLogWithScreenshot("Click performed on Refill Button");
 		}
 				
 		
-		fido_refill_page.clkLowBalanceAutoRefill();
-		reporter.reportLogWithScreenshot("Click on low balance auto refill perfromed");	
+		getFidorefillpage().clkLowBalanceAutoRefill();
+		getReporter().reportLogWithScreenshot("Click on low balance auto refill perfromed");	
 		
-		//Assert.assertTrue(fido_refill_page.verifyRefillPage());
-		fido_refill_page.selectAutoRefillDetails();
+		//Assert.assertTrue(getFidorefillpage().verifyRefillPage());
+		getFidorefillpage().selectAutoRefillDetails();
 		
 		//Credit card payment 
-		if(!fido_refill_page.isCardAlreadyRegistered()) {
-			fido_refill_page.setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-			fido_refill_page.selectExpiryMonth("06");
-			fido_refill_page.selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-			fido_refill_page.setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
-			reporter.reportLogWithScreenshot("Credit card details entered");
+		if(!getFidorefillpage().isCardAlreadyRegistered()) {
+			getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+			getFidorefillpage().selectExpiryMonth("06");
+			getFidorefillpage().selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
+			getFidorefillpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+			getReporter().reportLogWithScreenshot("Credit card details entered");
 		}
-		fido_refill_page.clkContinue();		
-		//reporter.softAssert(fido_refill_page.verifyPlanSummarySumValuesMatch(),"Plan summary sum values","Plan summary sum values didnt match");
-		fido_refill_page.clkSubmit();
-		reporter.hardAssert(fido_refill_page.verifyAutoRefillSubmittedSuccessFully(),
+		getFidorefillpage().clkContinue();		
+		//getReporter().softAssert(getFidorefillpage().verifyPlanSummarySumValuesMatch(),"Plan summary sum values","Plan summary sum values didnt match");
+		getFidorefillpage().clkSubmit();
+		getReporter().hardAssert(getFidorefillpage().verifyAutoRefillSubmittedSuccessFully(),
 							"Auto refill submitted successfully", 
 							"Auto refill didn't submit successfully");
-		reporter.reportLogWithScreenshot("Page after submit auto refill.");
-		fido_refill_page.clkBacktoMyAccount();
+		getReporter().reportLogWithScreenshot("Page after submit auto refill.");
+		getFidorefillpage().clkBacktoMyAccount();
 		
 		
 		//Stop the auto pay refill
-		fido_account_overview_page.clkBtnRefillNowNew(strBAN);
-		fido_refill_page.clkLowBalanceAutoRefill();
-		reporter.reportLogWithScreenshot("Low Balance Auto Refill is clicked.");
-		fido_refill_page.clkStopAutoPayment();
-		fido_refill_page.clkYesOnStopAutoPaymentOverlay();
-		reporter.reportLogWithScreenshot("Click yes on stop auto payment overlay");
-		reporter.hardAssert(fido_refill_page.verifyAutoRefillStoppedSuccessfully(),
+		getFidoaccountoverviewpage().clkBtnRefillNowNew(strBAN);
+		getFidorefillpage().clkLowBalanceAutoRefill();
+		getReporter().reportLogWithScreenshot("Low Balance Auto Refill is clicked.");
+		getFidorefillpage().clkStopAutoPayment();
+		getFidorefillpage().clkYesOnStopAutoPaymentOverlay();
+		getReporter().reportLogWithScreenshot("Click yes on stop auto payment overlay");
+		getReporter().hardAssert(getFidorefillpage().verifyAutoRefillStoppedSuccessfully(),
 							"Auto refill stopped",
 							"Auto refill stop didnt happen successfully");
 
-		reporter.reportLogWithScreenshot("Refill options page");
-		if(fido_refill_page.isRecurringAutoRefillAlreadySet())
+		getReporter().reportLogWithScreenshot("Refill options page");
+		if(getFidorefillpage().isRecurringAutoRefillAlreadySet())
 		{
-			reporter.reportLogWithScreenshot("Set up recurring auto refill");
-			fido_refill_page.clkRecurringAutoRefill();
-			fido_refill_page.clkStopAutoPayment();
-			fido_refill_page.clkYesOnStopAutoPaymentOverlay();
-			reporter.hardAssert(fido_refill_page.verifyAutoRefillStoppedSuccessfully(),"Auto refill stopped","Auto refill stop didnt happen successfully");
+			getReporter().reportLogWithScreenshot("Set up recurring auto refill");
+			getFidorefillpage().clkRecurringAutoRefill();
+			getFidorefillpage().clkStopAutoPayment();
+			getFidorefillpage().clkYesOnStopAutoPaymentOverlay();
+			getReporter().hardAssert(getFidorefillpage().verifyAutoRefillStoppedSuccessfully(),"Auto refill stopped","Auto refill stop didnt happen successfully");
 		}
 		
 	}

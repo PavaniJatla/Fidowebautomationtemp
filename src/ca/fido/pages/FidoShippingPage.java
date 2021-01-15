@@ -39,4 +39,13 @@ public class FidoShippingPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(btnContinueToOrderReview,40);
 		reusableActions.clickWhenReady(btnContinueToOrderReview,60);
 	}
+
+	/**
+	 * This method is to verify the shipping page is loaded or not
+	 * @return true is element is visible else false
+	 * @author Saurav.Goyal
+	 */
+	public boolean verifyShippingPage() {
+		return reusableActions.isElementVisible(btnContinueToOrderReview,60);
+	}
 }

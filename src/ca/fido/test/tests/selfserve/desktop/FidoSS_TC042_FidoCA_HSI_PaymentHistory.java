@@ -35,59 +35,59 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 	@Test(groups = {"RegressionSS","BillingAndPaymentsSS"})
 	public void postPaidPaymentHistoryHSI() throws InterruptedException {
 		
-		fido_home_page.clkLogin();
-		fido_login_page.switchToSignInFrame();
-		fido_login_page.setUsernameInFrame(TestDataHandler.tc4246.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.tc4246.getPassword());
-		reporter.reportLogWithScreenshot("HSI account credential has been set: ");
-		fido_login_page.clkLoginInFrame();	
-		reporter.hardAssert(!fido_login_page.verifyIfErrorMsgIsDisplayedInFrame(), 
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc4246.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc4246.getPassword());
+		getReporter().reportLogWithScreenshot("HSI account credential has been set: ");
+		getFidologinpage().clkLoginInFrame();	
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(), 
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
 		String strBAN = TestDataHandler.tc4246.getaccountDetails().getBan();
-		fido_account_overview_page.clkViewBillNew(strBAN);
-		reporter.reportLogWithScreenshot("View bill page is open");
-		fido_account_overview_page.clkMenuBillingAndPayments();
-		reporter.reportLogWithScreenshot("Menu billing and payments selected");
-		fido_account_overview_page.selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
-		if(fido_account_overview_page.verifyIfAnyPaymentMade())
+		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getReporter().reportLogWithScreenshot("View bill page is open");
+		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
+		getReporter().reportLogWithScreenshot("Menu billing and payments selected");
+		getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
+		if(getFidoaccountoverviewpage().verifyIfAnyPaymentMade())
 		{
-			reporter.reportLogWithScreenshot("Transaction record table view page");
-			reporter.hardAssert(fido_payment_history_page.getTotalRowCount() != 0,
+			getReporter().reportLogWithScreenshot("Transaction record table view page");
+			getReporter().hardAssert(getFidopaymenthistorypage().getTotalRowCount() != 0,
 								"There have some transaction record",
 								"No transaction record is found, The row count is blank it seems.");		
-			if(fido_payment_history_page.isPaymenyHistoryTablePresent()) 
+			if(getFidopaymenthistorypage().isPaymenyHistoryTablePresent()) 
 			{
-				int pageCount=fido_payment_history_page.getTotalPage();
+				int pageCount=getFidopaymenthistorypage().getTotalPage();
 				if(pageCount!=0)
 				{
 					for(int page=1;page<=pageCount;page++)
 					{
-						fido_payment_history_page.clkPageNumber(page);
-						reporter.hardAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
+						getFidopaymenthistorypage().clkPageNumber(page);
+						getReporter().hardAssert(getFidopaymenthistorypage().verifyIfThePaymentHistoryDataIsConsistent(),
 											"The payment history data is consistent for page number "+page,
 											"The payment history data is not consistent at page number"+page);
-						reporter.reportLogWithScreenshot("Page Number "+page+" is clicked");
+						getReporter().reportLogWithScreenshot("Page Number "+page+" is clicked");
 					}
 			
 				}else
 				{
-					reporter.hardAssert(fido_payment_history_page.verifyIfThePaymentHistoryDataIsConsistent(),
+					getReporter().hardAssert(getFidopaymenthistorypage().verifyIfThePaymentHistoryDataIsConsistent(),
 										"The payment history data is consistent",
 										"The payment history data is not consistent");
 				}
 			}else {
 			
-				reporter.reportLogWithScreenshot("It seems no payment history available for this account to validate");
+				getReporter().reportLogWithScreenshot("It seems no payment history available for this account to validate");
 			}
 		
 		}else
 		{
-			reporter.reportLogWithScreenshot("No payments exists for this user so the payment history table not displayed");
+			getReporter().reportLogWithScreenshot("No payments exists for this user so the payment history table not displayed");
 		}
 	}
 

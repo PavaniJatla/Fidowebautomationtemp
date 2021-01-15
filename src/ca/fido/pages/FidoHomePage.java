@@ -97,8 +97,17 @@ public class FidoHomePage extends BasePageClass {
 
 	@FindBy(xpath = "//a[@id='bc-close-dialog']")
 	WebElement btnCloseChat;
-	
-	
+
+	/**
+	 * Verify home page loaded or not
+	 * @author Saurav.Goyal
+	 * @return true or false based on availability of the element
+	 */
+	public boolean verifyHomePageLoaded() {
+		return reusableActions.isElementVisible(lnkLogIn,10);
+	}
+
+
 	/**
 	 * To launch Fido home page, this method will be used to replace production page in recover user name flow.
 	 * @param url, String, the url of Fido home page
