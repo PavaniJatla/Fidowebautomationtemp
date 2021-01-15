@@ -35,38 +35,37 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkFidoHSIPlanUpgradeMobile() {
-		reporter.reportLogWithScreenshot("Launched the Home Page");
-		fido_home_page.clkNavMobile();
-		reporter.reportLogWithScreenshot("Launched the Navigation card");
-		fido_home_page.clkLoginMobile();
-		fido_login_page.switchToSignInFrame();
-		reporter.reportLogWithScreenshot("Launched the SignIn page");
-		fido_login_page.setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
-		fido_login_page.setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
-		reporter.reportLogWithScreenshot("Entered the account credentials");
-		fido_login_page.clkLoginInFrameMobile();
-		
-		reporter.hardAssert(!fido_account_overview_page.verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		fido_login_page.switchOutOfSignInFrame();
-		reporter.hardAssert(fido_account_overview_page.verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
-		reporter.reportLogWithScreenshot("Launched the Account Page");
-		fido_account_overview_page.clkViewUsageManageMobile();
-		reporter.reportLogWithScreenshot("Launched the Internet Dashboard Page");
-		fido_internet_dashboard_page.clkChangePackage();
-		reporter.reportLogWithScreenshot("Launched the packages Page");
-		fido_internet_dashboard_page.selectHSIPackageByBandwidthMobile(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan());
-		reporter.reportLogWithScreenshot("Selected the package");
-		fido_internet_dashboard_page.clkConfirmPackageChange();
-		reporter.reportLogWithScreenshot("Order review page has launched");
-		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verified the Plan Information","Plan Information Verification has failed");
-		reporter.reportLogWithScreenshot("Order review page has launched");
-		reporter.hardAssert(fido_internet_package_change_review_order_page.verifyFidoTermsAndConditionsMobile(),"Verified the Terms And Conditions","Terms And Conditions Verification has failed");
-		fido_internet_package_change_review_order_page.chkConsentCheckbox();
-		reporter.reportLogWithScreenshot("Consent Check has Done");
-		reporter.hardAssert(fido_internet_package_change_review_order_page.verifySubmitButtonEnabled(),"button enabled","button disabled");
-		fido_internet_package_change_review_order_page.clkReviewSubmitButton();
-		reporter.reportLogWithScreenshot("Order Success and order confirmation details");
-		reporter.hardAssert(fido_order_confirmation_page.verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
+		getReporter().reportLogWithScreenshot("Launched the Home Page");
+		getFidohomepage().clkNavMobile();
+		getReporter().reportLogWithScreenshot("Launched the Navigation card");
+		getFidohomepage().clkLoginMobile();
+		getFidologinpage().switchToSignInFrame();
+		getReporter().reportLogWithScreenshot("Launched the SignIn page");
+		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
+		getReporter().reportLogWithScreenshot("Entered the account credentials");
+		getFidologinpage().clkLoginInFrameMobile();
+		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
+		getFidologinpage().switchOutOfSignInFrame();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
+		getReporter().reportLogWithScreenshot("Launched the Account Page");
+		getFidoaccountoverviewpage().clkViewUsageManage();
+		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
+		getFidointernetdashboardpage().clkChangePackage();
+		getReporter().reportLogWithScreenshot("Launched the packages Page");
+		getFidointernetdashboardpage().selectHSIPackageByBandwidthMobile(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan());
+		getReporter().reportLogWithScreenshot("Selected the package");
+		getFidointernetdashboardpage().clkConfirmPackageChange();
+		getReporter().reportLogWithScreenshot("Order review page has launched");
+		getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verified the Plan Information","Plan Information Verification has failed");
+		getReporter().reportLogWithScreenshot("Order review page has launched");
+		getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifyFidoTermsAndConditionsMobile(),"Verified the Terms And Conditions","Terms And Conditions Verification has failed");
+		getFidointernetpackagechangerevieworderpage().chkConsentCheckbox();
+		getReporter().reportLogWithScreenshot("Consent Check has Done");
+		getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifySubmitButtonEnabled(),"button enabled","button disabled");
+		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
+		getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
+		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
 	   }
 	
 
