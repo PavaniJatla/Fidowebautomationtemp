@@ -114,9 +114,9 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath="//button[@title='Yes']")
 	WebElement btnYes;
 	
-	@FindBy(xpath="//div[@id='undefined']//h2[@class='-left text-title-2 ds-color-black']")
+	@FindBy(xpath="//div[@id='undefined']//h2[@class='-left text-title-2']")
 	WebElement txtPackagesPage;
-	
+	//div[@id='undefined']//h2[@class='-left text-title-2 ds-color-black']
 	
 	/**
 	 * Click on Check availability button on Shop Internet page

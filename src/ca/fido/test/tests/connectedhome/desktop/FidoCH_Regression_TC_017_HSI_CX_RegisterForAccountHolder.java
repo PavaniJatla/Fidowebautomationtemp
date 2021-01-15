@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends BaseTestClass{
 	
 
-    @Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
+    @Test(groups = {"RegressionCH",""})
 	public void acctHolderValidateRegisterFlow() {
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
