@@ -2,14 +2,11 @@ package ca.fido.pages;
 
 
 import ca.fido.pages.base.BasePageClass;
-import groovyjarjarantlr4.v4.parse.ANTLRParser.element_return;
-
 import org.apache.commons.lang3.math.NumberUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import utils.FormFiller;
 
 import java.util.HashMap;
@@ -51,6 +48,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy (xpath="//span[contains(text(),'View Usage & Manage') or contains(text(),'Voir et gérer l’utilisation')]")
 	WebElement lnkViewUsageManage;
+
+	@FindBy (xpath="//a[contains(@aria-label,'usage and manage account') or contains(@aria-label,'internet et gérer le compte')]")
+	WebElement lnkViewUsageManageMobile;
 
 	@FindBy (xpath="//span[contains(text(),'Make a payment') or contains(text(),'Faire un paiement')]")
 	WebElement lnkMakepayment;
@@ -290,6 +290,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//a[@href='#/my-account/overview']")
 	WebElement lnkOverview;
 
+	@FindBy (xpath="//ins[@translate='global.label.backToAccOverview']")
+	WebElement lnkOverviewMobile;
+
 	@FindBy(xpath = "//p[text()='Promise to Pay available' or text()='Vous devez reporter votre paiement?']")
 	WebElement divPromiseToPayAvailable;
 
@@ -467,6 +470,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	public void clkOverview() {
 		reusableActions.getWhenVisible(lnkOverview, 60).click();
+	}
+
+	public void clkOverviewMobile() {
+		reusableActions.getWhenVisible(lnkOverviewMobile, 60).click();
 	}
 
 	public void clkSubMenuMobile() {
@@ -699,6 +706,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 
 	/**
+	 * Click on the InternetBadge on the account overview page
+	 * @author adittya.Dhingra
+	 */
+	public void clkViewUsageManageMobile() {
+		reusableActions.waitForElementVisibility(lnkViewUsageManageMobile,120);
+		reusableActions.getWhenReady(lnkViewUsageManageMobile,30).click();
+	}
+
+	/**
 	 * Click on the WirelessBadge on the account overview page
 	 * @author chinnarao.vattam 
 	 */
@@ -805,7 +821,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public String getAccountBalanceAfterpayment() {    	
-		String strBalanceAfterpayment= reusableActions.getWhenVisible(infoAccountBalance,3).getText();
+		String strBalanceAfterpayment= reusableActions.getWhenVisible(infoAccountBalance,60).getText();
 		return strBalanceAfterpayment;
 	}
 
