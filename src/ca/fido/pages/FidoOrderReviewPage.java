@@ -44,7 +44,10 @@ public class FidoOrderReviewPage extends BasePageClass {
 		@FindBy(xpath = "//ds-radio-button[@class='ds-radioButton']//label[@for='ds-radio-input-id-19']//div[@class='ds-radioButton__innerCircle']")
 	})
 	WebElement lblContractDigitalCopy;
-	
+
+	@FindBy(xpath = "//input[contains(@id,'ds-checkbox-id')]//following-sibling::div[contains(@class,'ds-checkbox__box')]")
+	WebElement chkBoxOrderCommunicationConsent;
+
 	@FindBy(xpath="//span[@translate='btn_continue_to_payment']//parent::button")
 	WebElement btnContinueToPayment;
 	
@@ -67,11 +70,11 @@ public class FidoOrderReviewPage extends BasePageClass {
 
 	@FindAll({
 			@FindBy(xpath = "//label[@for='terms1']"),
-			@FindBy(xpath = "//input[@id='dsa-terms-conditions-0-consent-1']//following-sibling::div[@class='ds-checkbox__box my-12']")
+			@FindBy(xpath = "//input[@name='agreementConsent']//following-sibling::div[contains(@class,'ds-checkbox__box my')]")
 	})
 	WebElement chkBoxAgreementConsent;
 
-	@FindBy(xpath = "//input[@id='dsa-terms-conditions-0-consent-0']//following-sibling::div[@class='ds-checkbox__box my-12']")
+	@FindBy(xpath = "//input[@name='financingConsent']//following-sibling::div[contains(@class,'ds-checkbox__box my')]")
 	WebElement chkBoxFinancingConsent;
 
 	/**
@@ -160,6 +163,14 @@ public class FidoOrderReviewPage extends BasePageClass {
 		if(reusableActions.isElementVisible(txtEmailAddress,10)) {
 			txtEmailAddress.sendKeys(strEmail);
 		}
+	}
+
+	/**
+	 * Clicks on the checkbox order communication consent
+	 * @author Saurav.Goyal
+	 */
+	public void setOrderCommunicationConsent() {
+		reusableActions.clickWhenReady(chkBoxOrderCommunicationConsent , 30);
 	}
 	
 	/**

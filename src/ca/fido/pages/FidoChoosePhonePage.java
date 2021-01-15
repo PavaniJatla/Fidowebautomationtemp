@@ -64,7 +64,8 @@ public class FidoChoosePhonePage extends BasePageClass {
 	 */
 	public boolean selectDevice(String strDeviceName) {
 			String strXpathViewDetails = "//span[text()='"+ strDeviceName +"']/ancestor::div[contains(@class,'col-xs-12')]//following-sibling::div[@class='col-xs-12']//button[@class='ute-btn-primary ute-lg']";
-			String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='px-24 dsa-nacTile__deviceInfo']//following-sibling::div[@class='pt-16 pb-24 px-24']//span[contains(@class,'ds-button__copy')]";
+			//String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='px-24 dsa-nacTile__deviceInfo']//following-sibling::div[@class='pt-16 pb-24 px-24']//span[contains(@class,'ds-button__copy')]";
+			String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='dsa-nacTile__top']//following-sibling::div//a[contains(@class,'-primary -large')]";
 			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetails),60)) {
 				reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathViewDetails)));
 				return true;

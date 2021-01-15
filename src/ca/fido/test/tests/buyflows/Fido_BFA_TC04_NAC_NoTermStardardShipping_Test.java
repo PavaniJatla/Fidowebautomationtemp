@@ -30,7 +30,8 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		Assert.assertTrue(getFidodeviceconfigpage().verifyGetStartedButtonOnModal(),"Get started button on the modal is not present");
 		getFidodeviceconfigpage().clickGetStartedButtonOnModal();
 		getReporter().reportLogPass("Clicked Get Started Button on the modal window");
-		getReporter().hardAssert(getFidodeviceconfigpage().clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
+		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
+		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogWithScreenshot("Continue button clicked on the device config page");
 		Assert.assertTrue(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed");
 		getReporter().reportLogPass("Fido plan config page");

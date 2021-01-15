@@ -40,7 +40,8 @@ public class Fido_BFA_TC07_AAL_Term_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
 		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.tc07AalTerm.getNewDevice()),"Device Found and Selected","Device Not Found");
 		getReporter().reportLogWithScreenshot("Required device selected on the choose phone page");
-		getReporter().hardAssert(getFidodeviceconfigpage().clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
+		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
+		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogWithScreenshot("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");

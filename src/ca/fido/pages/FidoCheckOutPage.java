@@ -103,7 +103,9 @@ public class FidoCheckOutPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkSubmitButton() {
-		reusableActions.clickWhenReady(btnSubmit,30);
+		reusableActions.waitForElementVisibility(btnSubmit , 30);
+		reusableActions.scrollToElementAndClick(btnSubmit);
+		//reusableActions.clickWhenReady(btnSubmit,30);
 	}
 
 	/**

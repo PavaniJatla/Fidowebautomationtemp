@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTestClass {
 
 	protected BrowserDrivers browserdriver;
-	public Reporter reporter;	
+	private Reporter reporter;
 	protected HashMap<String,String> xmlTestParameters;
 	protected static final ThreadLocal<EnsHomePage> ensHomePageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<EnsNotificationViewPage> ensNoteViewPageThreadLocal = new ThreadLocal<>();

@@ -28,7 +28,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	@FindBy(xpath = "//select[(@ng-model='driverLicense.dlProvince' or @ng-model='obj.drivingLicenseProvince') and (@name='dlProvince' or @name='province') or @formcontrolname='province']")
 	WebElement ddlDlProvince;
 	
-	@FindBy(xpath = "//select[@formcontrolname='thirdId']")
+	@FindBy(xpath = "//select[contains(@formcontrolname,'thirdId')]")
 	WebElement idType;
 
 	@FindBy(xpath="//select[@name='dlExpiryYear' or @name='dlYear']")
@@ -123,8 +123,10 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public void selectDOBYear() {
+		reusableActions.staticWait(5000);
 		reusableActions.waitForElementVisibility(ddlDOBYear, 60);
 		String strDOBYear = FormFiller.generateDOBYear();
+		reusableActions.scrollToElement(ddlDOBYear);
 		reusableActions.selectWhenReady(ddlDOBYear, strDOBYear);
 	}
 
@@ -184,7 +186,6 @@ public class FidoCreditCheckPage extends BasePageClass {
 
 	/**
 	 * Set expiry date for the driving license
-	 * @param	dlExpiryDate : expiry date of the Driving license
 	 * @author Saurav.Goyal
 	 */
 	public void setDrivingLicenseExpiry() {

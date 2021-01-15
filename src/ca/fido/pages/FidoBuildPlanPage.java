@@ -190,10 +190,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public boolean verifyContinueDeviceCostButton() {
-		if(reusableActions.isElementVisible(btnContinueDeviceCost, 60))
-			return true;
-		else
-			return false;
+		return reusableActions.isElementVisible(btnContinueDeviceCost, 60);
 	}
 	
 	/**

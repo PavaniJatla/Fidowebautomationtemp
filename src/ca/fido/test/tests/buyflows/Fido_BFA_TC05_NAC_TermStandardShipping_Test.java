@@ -7,10 +7,7 @@ import java.util.HashMap;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
@@ -23,22 +20,22 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA", "SanityBFA"})
-	public void fidoNACFinPlanFlow() {
-		getReporter().reportLog("URL:" + TestDataHandler.bfaConfig.getFidoAWSUrl());
-		getReporter().reportLogWithScreenshot("Home Page");
+	public void fidoNACTermStandardShippingFlow() {
+		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
 		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.tc05TermStandardShipping.getDeviceName()),"Device Found and Selected","Device Not Found");
-		getReporter().reportLogWithScreenshot("Required device is selected on the choose phone page");
-		Assert.assertTrue(getFidodeviceconfigpage().isModalDisplayed(),"Modal element is not present on the screen");
-		getReporter().reportLogPass("Modal window displayed");
-		Assert.assertTrue(getFidodeviceconfigpage().verifyGetStartedButtonOnModal(),"Get started button on the modal is not present");
+		getReporter().reportLogWithScreenshot("Required device is selected on the choose phone page " +TestDataHandler.tc05TermStandardShipping.getDeviceName());
+		getReporter().hardAssert(getFidodeviceconfigpage().isModalDisplayed(),"Modal element is present on the screen" , "Modal element is not present on the screen");
+		getReporter().reportLogWithScreenshot("Modal window displayed");
 		getFidodeviceconfigpage().clickGetStartedButtonOnModal();
 		getReporter().reportLogPass("Clicked Get Started Button on the modal window");
-		getReporter().hardAssert(getFidodeviceconfigpage().clickContinueButton(),"Continue button is visible and clicked","Continue button is not visible ");
-		getReporter().reportLogWithScreenshot("Continue button clicked on the device config page");
-		Assert.assertTrue(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed");
-		getReporter().reportLogPass("Fido plan config page");
+		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
+		getReporter().reportLogWithScreenshot("Device config page");
+		getFidodeviceconfigpage().clickContinueButton();
+		getReporter().reportLogPass("Continue button clicked on the device config page");
+		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
+		getReporter().reportLogWithScreenshot("Fido plan config page");
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
 		getFidobuildplanpage().clkContinueDataOption();
@@ -48,15 +45,21 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
-		getReporter().reportLogPass("Continue button on AddOns clicked");
+		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
+		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
+		getReporter().reportLogPass("Proceed to checkout button clicked");
+		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
+		getReporter().reportLogPass("User profile page");
 		getFidocreateuserpage().setCommunicationDetails();
 		getFidocreateuserpage().setFirstName();
 		getFidocreateuserpage().setLastName();
-		getFidocreateuserpage().setPhone();
+		getReporter().reportLogWithScreenshot("Entered email,  first name and last name");
+		getFidocreateuserpage().setSpecificPhoneNumber(TestDataHandler.tc05TermStandardShipping.getContactNumber());
 		getFidocreateuserpage().setHomeAddress(TestDataHandler.tc05TermStandardShipping.getBillingAddress());
-		getReporter().reportLogWithScreenshot("Create User page");
+		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
+		//issue in DOBYear
 		getFidocreditcheckpage().selectDOBYear();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
@@ -70,35 +73,36 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Credit Evaluation page");
 		getFidocreditcheckpage().clkContinue();
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
-		getFidocreditcheckpage().clkBtnSecurityDepositConsentAccept();
-		getFidochoosenumberpage().clkSelectNewNumber();
 		getFidochoosenumberpage().selectCity(TestDataHandler.tc05TermStandardShipping.getCtnCity());
 		getFidochoosenumberpage().selectFirstAvailableNumber();
-		getReporter().reportLogWithScreenshot("Choose Phone Number page");
+		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
 		getFidopaymentoptionspage().setManualPaymentMethod();
+		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
-		getFidopaymentoptionspage().clkSubmit();
-		getFidoorderreviewpage().clkAllTermsAgreementCheckboxsNAC();
-		getFidoorderreviewpage().setContractDigitalCopyEmail();
+		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
+		getFidoCheckOutPage().clkShippingType("STANDARD");
+		getReporter().reportLogWithScreenshot("Shipping selected");
+		getFidoCheckOutPage().clkShippingContinueButton();
+		getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
+		getFidoCheckOutPage().clkSubmitButton();
+		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
+		getReporter().reportLogWithScreenshot("Order Review page");
+		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
+		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
+		getFidoorderreviewpage().setOrderCommunicationConsent();
+		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
-		getFidopaymentpage().clkRadioPayWithAnotherCreditCard();
-		getReporter().reportLogWithScreenshot("OneTime payment page displayed");
-		getFidopaymentpage().setCreditCardName();
-		getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
-		getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());
-		getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
-		getReporter().reportLogWithScreenshot("OneTime payment page displayed before submittion");
-		getFidopaymentpage().clkSubmitMyOrder();
-		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank You message verified", "Thank You message error");
+		getReporter().reportLogPass("Submit button selected");
+		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
 		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}
 
 	@Parameters({"strBrowser", "strLanguage"})
 	@BeforeMethod
-	public void beforeTest(String strBrowser, String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		startSession(TestDataHandler.bfaConfig.getFidoAWSUrl(), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		startSession(System.getProperty("AWSUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterMethod(alwaysRun = true)
