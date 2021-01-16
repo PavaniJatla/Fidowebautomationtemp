@@ -12,10 +12,10 @@ import java.lang.reflect.Method;
 
 
 /**
- * This class contains the test method to test the HSI buy flow for existing mobile customer   
- * 
+ * This class contains the test method to test the HSI buy flow for existing mobile customer
+ *
  * @author chinnarao.vattam
- * 
+ *
  * Test steps:
  *
  *1. Launch fido.ca url
@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
  *13. Click on Confirm
  *14. Select the Service address
  *15.  Click on Confirm
- *16. Select Invoice option from dropdown list 
+ *16. Select Invoice option from dropdown list
  *17. Click on Confirm button
  *18. Scroll down all the way down in Agreement field and select "I have read understood….." checkbox
  *19. Click on Submit
@@ -42,7 +42,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends BaseTestClass {
 
-	
+
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlowForExistingCustomer() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
@@ -56,18 +56,68 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 		getFidologinpage().switchOutOfSignInFrame();
 		//getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
-        getFidohomepage().clkShop();
-        //getFidohomepage().clkHomeInternet();
-        getReporter().reportLogWithScreenshot("Launched the packages Page");
-        getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
-        getReporter().reportLogWithScreenshot("Launched the serviceability check page");
-		}
-	
-	
+		getFidohomepage().clkShop();
+		//getFidohomepage().clkHomeInternet();
+		getReporter().reportLogWithScreenshot("Launched the packages Page");
+		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
+		String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
+		String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+		getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+		getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
+		getFidoshopinternetpage().clkServiceAvailabilityCheck();
+		getReporter().reportLogWithScreenshot("Good News for the Service availability");
+		getFidoshopinternetpage().clkBuyNowReskin();
+		getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
+		getFidocartsummarypage().clkInternetCheckout();
+		getReporter().reportLogWithScreenshot("Create user page has launched to give the user information");
+		getFidocreateuserpage().clkUserProfileNextForExistingCustomer();
+		getReporter().reportLogWithScreenshot("Credit evaluation page has launched");
+		getFidocreditcheckpage().selectDOBYear();
+		getFidocreditcheckpage().selectDOBMonthSingleDigit();
+		getFidocreditcheckpage().selectDOBDay();
+		getReporter().reportLogWithScreenshot("Entered the user DOB information");
+		getFidocreditcheckpage().selectFirstIdOption("2");
+		getFidocreditcheckpage().selectDrivingLicenseProvince("ON");
+		getFidocreditcheckpage().selectDrivingLicenseExpiryYear();
+		getFidocreditcheckpage().selectDrivingLicenseExpiryMonthSingleDigit();
+		getFidocreditcheckpage().selectDrivingLicenseExpiryDay();
+		getFidocreditcheckpage().setDrivingLicenseNumber("ONTARIO");
+		getReporter().reportLogWithScreenshot("Entered the Driver's License information");
+		getFidocreditcheckpage().selectSecondIdOption("4");
+		getFidocreditcheckpage().setPassportNumber();
+		getFidocreditcheckpage().selectPassportExpiryYear();
+		getFidocreditcheckpage().selectPasspoartExpiryMonth();
+		getFidocreditcheckpage().selectPasspoartExpiryDay();
+		getReporter().reportLogWithScreenshot("Entered the passport information");
+		getFidocreditcheckpage().clkCreditCheckConsent();
+		getReporter().reportLogWithScreenshot("Credit consent Check Done");
+		getFidocreditcheckpage().clkCreditCheckSubmit();
+		getReporter().reportLogWithScreenshot("Tech-Install page has launched");
+		getReporter().reportLogWithScreenshot(" selected the slot for Tech-Install");
+		getFidotechnicalinstallationpage().clkTechInstalConfirm();
+		getReporter().reportLogWithScreenshot("Payment page has launched");
+		getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
+		getFidopaymentoptionspage().selectExpiryMonth();
+		getFidopaymentoptionspage().selectExpiryYear();
+		getFidopaymentoptionspage().setCVV();
+		getReporter().reportLogWithScreenshot("Payment details has set");
+		getFidopaymentoptionspage().clkPaymentConfirm();
+		getReporter().reportLogWithScreenshot("Order review page has launched");
+		getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifyFidoTermsAndConditions(), "Terms And Conditions are verified", "Terms And Conditions verification has failed");
+		getFidointernetpackagechangerevieworderpage().clkscrollToElement();
+		getFidointernetpackagechangerevieworderpage().chkAgreementConsentCheckbox();
+		getReporter().reportLogWithScreenshot("Consent Check has Done");
+		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
+		getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
+		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order has created", "Order hasn't created");
+	}
+
+
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage,  ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login, method);
-	// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login, method);
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 
 
@@ -77,4 +127,3 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 	}
 
 }
-

@@ -14,10 +14,10 @@ import java.lang.reflect.Method;
 
 
 /**
- * This class contains the test method to test the HSI upgrade flow for Fido.ca   
- * 
+ * This class contains the test method to test the HSI upgrade flow for Fido.ca
+ *
  * @author aditya.dhingra
- * 
+ *
  * Test steps:
  *
  *1. Launch fido.ca url
@@ -66,13 +66,13 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
 		getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
-	   }
-	
+	}
+
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-	startSession(System.getProperty("QaUrl"),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,  method);
-	// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		startSession(System.getProperty("QaUrl"),strBrowser,strLanguage, FidoEnums.GroupName.connectedhome_login,  method);
+		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
 	}
 
 
@@ -82,3 +82,4 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 	}
 
 }
+
