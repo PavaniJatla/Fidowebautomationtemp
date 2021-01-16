@@ -63,12 +63,11 @@ public class Fido_BFA_TC09_PPC_Test extends BaseTestClass{
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
 		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}
-	
-	@Parameters({"strBrowser", "strLanguage"})
-	@BeforeMethod
-    public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		startSession(System.getProperty("QaUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
-    }
+
+	@BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
+	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
+		startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+	}
 
 	@AfterMethod(alwaysRun = true)
     public void afterTest() {
