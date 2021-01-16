@@ -25,7 +25,16 @@ public class FidoHomePage extends BasePageClass {
 	
 	@FindBy(xpath="//a[@href='/pages/#/internet' and @class='m-navLink -dropdown']")
 	WebElement lnkHomeInternet;
-			
+
+	@FindBy(xpath="//a[@role='button']//span[@class='m-navLink__chevron fds-icon-down']")
+	WebElement lnkProvince;
+
+	@FindBy(xpath="//a[@role='button']//span[contains(text(),'ON')]")
+	WebElement lnkOptedON;
+
+	@FindBy(xpath="//a[@class='m-navLink -dropdownNavbar' and  @name='ON']")
+	WebElement lnkProvinceON;
+
 	@FindBy(xpath="//a[contains(text(),'Skip >')]")
 	WebElement lnkSkipAd;
 	
@@ -172,7 +181,11 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public void clkShop() {
-		reusableActions.waitForElementTobeClickable(lnkShop,120);
+		if(!reusableActions.isElementVisible(lnkOptedON,90)){
+			reusableActions.getWhenReady(lnkProvince,10).click();
+			reusableActions.getWhenReady(lnkProvinceON,10).click();
+	       }
+		reusableActions.waitForElementTobeClickable(lnkShop,60);
 		reusableActions.getWhenReady(lnkShop,10).click();
 	}
 	
@@ -180,8 +193,8 @@ public class FidoHomePage extends BasePageClass {
 	 * Click the Digital TV option from shop dropdown list
 	 * @author aditya.Dhingra 
 	 */
-	public void clkHomeInternet() {	
-		reusableActions.waitForElementVisibility(lnkHomeInternet,120);
+	public void clkHomeInternet() {
+		reusableActions.waitForElementVisibility(lnkHomeInternet,20);
 		reusableActions.executeJavaScriptClick(lnkHomeInternet);
 	}
 	
