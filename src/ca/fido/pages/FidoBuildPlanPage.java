@@ -182,9 +182,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkFirstTierChooseYourDataAAL() {
-		reusableActions.scrollToElement(selectFirstTierChooseYourData);
+		String xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]";
 		reusableActions.staticWait(5000);
-		reusableActions.executeJavaScriptClick(selectFirstTierChooseYourData);
+		reusableActions.scrollToElement(driver.findElement(By.xpath(xpath)));
+		reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(xpath)));
 	}
 
 	/**

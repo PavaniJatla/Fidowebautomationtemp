@@ -22,7 +22,8 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	@FindAll({
 		@FindBy(xpath="//div[contains(@class,'thanksForOrder')]//span[contains(@checkout-res,'checkout_thank_you')]"),
 		@FindBy(xpath="//h1[text()='THANKS FOR YOUR ORDER!' or text()='MERCI POUR VOTRE COMMANDE!']"),
-		@FindBy(xpath="//p[text()='Thank you for your order!' or text()='Merci pour votre commande!']")
+		@FindBy(xpath="//p[text()='Thank you for your order!' or text()='Merci pour votre commande!']"),
+		@FindBy(xpath="//*[contains(text(),'Order Confirmation') or contains(text(),'Confirmation de commande')]")
 	})
 	WebElement lblThankYou;
 
@@ -43,5 +44,4 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	public boolean verifyThankYou() {
 		return reusableActions.isElementVisible(lblThankYou, 60);
 	}
-
 }

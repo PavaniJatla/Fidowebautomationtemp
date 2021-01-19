@@ -829,7 +829,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void setManualPaymentMethod() {
-		reusableActions.waitForElementVisibility(ddlPaymentMethod , 40);
+		reusableActions.waitForElementTobeClickable(ddlPaymentMethod , 40);
 		reusableActions.selectWhenReady(ddlPaymentMethod, "INVOICE");
 	}
 	

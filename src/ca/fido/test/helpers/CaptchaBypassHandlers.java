@@ -25,7 +25,6 @@ public class CaptchaBypassHandlers {
 	 * To Bypass Captcha for login Flows
 	 * @param strUrl                     string of test url
 	 * @param strLanguage                string of language to use
-	 * @param strGroupName 				 string Group Name 	
 	 * @throws IOException               throws IO Exceptions
 	 */
 	public void captchaBypassURLLoginFlows(String strUrl, String strLanguage) throws IOException {						
@@ -53,5 +52,4 @@ public class CaptchaBypassHandlers {
 		System.out.print(driver.getCurrentUrl());
 		driver.manage().addCookie(captchBypass);
   }
-	
 }

@@ -89,7 +89,6 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogWithScreenshot("Order Review page");
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
-		getFidoorderreviewpage().setOrderCommunicationConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
 		getReporter().reportLogPass("Submit button selected on review page");
