@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA" , "NACBFABYOD"})
 	public void fidoNACByodTermStandardShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSBYODUrl"));
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
@@ -83,10 +83,9 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}
 
-	@Parameters({"strBrowser", "strLanguage"})
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		startSession(System.getProperty("AWSBYODUrl"), strBrowser,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+		startSession(System.getProperty("AWSBYODUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterMethod(alwaysRun = true)

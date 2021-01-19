@@ -13,16 +13,16 @@ public class FidoCreateUserPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath="//input[@id='email' or @formcontrolname='email' or @id='ds-form-input-id-2']/parent::div")
+	@FindBy(xpath="//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]/parent::div")
 	WebElement txtEmail;
 
-	@FindBy(xpath="//input[@id='email' or @formcontrolname='email' or @id='ds-form-input-id-2']")
+	@FindBy(xpath="//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]")
 	WebElement lblTxtEmail;
 
-	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @id='ds-form-input-id-7' or contains(@formcontrolname,'confirm')]/parent::div")
+	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or contains(@formcontrolname,'Confirm')]/parent::div")
 	WebElement txtConfirmEmail;
 	
-	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or @id='ds-form-input-id-7' or contains(@formcontrolname,'confirm')]")
+	@FindBy(xpath="//input[@id='confirmEmail' or @id='cemail' or contains(@formcontrolname,'Confirm')]")
 	WebElement lbltxtConfirmEmail;
 
 	@FindBy(xpath="//input[@id='firstName' or @id='fname' or @formcontrolname='firstName']/parent::div")
@@ -167,6 +167,7 @@ public void clkUserProfileNextForExistingCustomer() {
  */
 public void clkContinue() {
 	reusableActions.scrollToElement(btnContinue);
+	reusableActions.waitForElementTobeClickable(btnContinue , 30);
 	reusableActions.executeJavaScriptClick(btnContinue);
 }
 
