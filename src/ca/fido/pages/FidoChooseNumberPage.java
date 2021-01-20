@@ -65,7 +65,8 @@ public class FidoChooseNumberPage extends BasePageClass {
 	public void selectCity(String city) {
 		reusableActions.waitForElementVisibility(btnContinueChooseANumberSection , 30);
 		reusableActions.scrollToElement(ddlCity);
-		reusableActions.selectWhenReady(ddlCity, city.toUpperCase(),30);
+		reusableActions.selectWhenReady(ddlCity, 72 ,30);
+		//city.toUpperCase()
 	}
 	
 	/**
