@@ -92,7 +92,7 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
 		getReporter().reportLogPass("Submit button selected on review page");
-		getFidopaymentpage().clkRadioPayWithAnotherCreditCard();
+		//getFidopaymentpage().clkRadioPayWithAnotherCreditCard();
 		getReporter().reportLogWithScreenshot("OneTime payment page displayed");
 		getFidopaymentpage().setCreditCardName();
 		getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
