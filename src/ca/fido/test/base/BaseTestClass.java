@@ -430,13 +430,13 @@ public class BaseTestClass {
 			case "connectedhome_ssp":
 			case "buyflows":
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
-					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language);
+					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else if(currentTestMethodName.getName().contains("NAC")){
-					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language);
+					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else{
-					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language);
+					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}
 				break;
