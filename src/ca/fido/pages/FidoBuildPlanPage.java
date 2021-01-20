@@ -29,6 +29,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	//@FindBy(xpath = "//button[@id='main-continue-button']")
 	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @data-test='build-plan-checkout-flow-button']")
 	WebElement btnContinueBelowCartSummary;
+
+	@FindBy(xpath="//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]/parent::div")
+	WebElement txtEmail;
 	
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
@@ -182,9 +185,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkFirstTierChooseYourDataAAL() {
-		reusableActions.scrollToElement(selectFirstTierChooseYourData);
+		String xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]";
 		reusableActions.staticWait(5000);
-		reusableActions.executeJavaScriptClick(selectFirstTierChooseYourData);
+		reusableActions.scrollToElement(driver.findElement(By.xpath(xpath)));
+		reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(xpath)));
 	}
 
 	/**
@@ -271,7 +275,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public void clkContinueBelowCartSummary() {
 		reusableActions.waitForElementVisibility(btnContinueBelowCartSummary, 30);
 		reusableActions.staticWait(5000);
-		reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
+		//reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
+		reusableActions.clickWhenReady(btnContinueBelowCartSummary);
+		reusableActions.waitForElementVisibility(txtEmail , 30);
 	}
 	
 	/**

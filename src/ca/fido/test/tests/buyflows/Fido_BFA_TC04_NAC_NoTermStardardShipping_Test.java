@@ -22,8 +22,8 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
-		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.tc05TermStandardShipping.getDeviceName()),"Device Found and Selected","Device Not Found");
-		getReporter().reportLogWithScreenshot("Required device is selected on the choose phone page " +TestDataHandler.tc05TermStandardShipping.getDeviceName());
+		getReporter().hardAssert(getFidochoosephonepage().selectDevice(TestDataHandler.tc04NoTermStandardShipping.getDeviceName()),"Device Found and Selected","Device Not Found");
+		getReporter().reportLogWithScreenshot("Required device is selected on the choose phone page " +TestDataHandler.tc04NoTermStandardShipping.getDeviceName());
 		getReporter().hardAssert(getFidodeviceconfigpage().isModalDisplayed(),"Modal element is present on the screen" , "Modal element is not present on the screen");
 		getReporter().reportLogWithScreenshot("Modal window displayed");
 		getFidodeviceconfigpage().clickGetStartedButtonOnModal();
@@ -54,8 +54,8 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getFidocreateuserpage().setFirstName();
 		getFidocreateuserpage().setLastName();
 		getReporter().reportLogWithScreenshot("Entered email,  first name and last name");
-		getFidocreateuserpage().setSpecificPhoneNumber(TestDataHandler.tc05TermStandardShipping.getContactNumber());
-		getFidocreateuserpage().setHomeAddress(TestDataHandler.tc05TermStandardShipping.getBillingAddress());
+		getFidocreateuserpage().setSpecificPhoneNumber(TestDataHandler.tc04NoTermStandardShipping.getContactNumber());
+		getFidocreateuserpage().setHomeAddress(TestDataHandler.tc04NoTermStandardShipping.getBillingAddress());
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		//issue in DOBYear
@@ -64,15 +64,15 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
-		getFidocreditcheckpage().selectIdType(TestDataHandler.tc05TermStandardShipping.getIdentificationType());
-		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc05TermStandardShipping.getDlProvinceCode());
-		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc05TermStandardShipping.getDlProvinceCode());
+		getFidocreditcheckpage().selectIdType(TestDataHandler.tc04NoTermStandardShipping.getIdentificationType());
+		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc04NoTermStandardShipping.getDlProvinceCode());
+		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc04NoTermStandardShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseExpiry();
 		getFidocreditcheckpage().clkCreditCheckConsent();
 		getReporter().reportLogWithScreenshot("Credit Evaluation page");
 		getFidocreditcheckpage().clkContinue();
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
-		getFidochoosenumberpage().selectCity(TestDataHandler.tc05TermStandardShipping.getCtnCity());
+		getFidochoosenumberpage().selectCity(TestDataHandler.tc04NoTermStandardShipping.getCtnCity());
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
@@ -89,11 +89,10 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogWithScreenshot("Order Review page");
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
-		getFidoorderreviewpage().setOrderCommunicationConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
 		getReporter().reportLogPass("Submit button selected on review page");
-		getFidopaymentpage().clkRadioPayWithAnotherCreditCard();
+		//getFidopaymentpage().clkRadioPayWithAnotherCreditCard();
 		getReporter().reportLogWithScreenshot("OneTime payment page displayed");
 		getFidopaymentpage().setCreditCardName();
 		getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());

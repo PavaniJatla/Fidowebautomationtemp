@@ -90,7 +90,6 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Order Review page");
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
-		getFidoorderreviewpage().setOrderCommunicationConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
 		getReporter().reportLogPass("Submit button selected");
