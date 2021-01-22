@@ -33,8 +33,8 @@ public class Mobile_FidoSS_Regression_TC017_PostpaidViewAndEditProfile extends B
 		getReporter().reportLogWithScreenshot("Launched the Navgation card");	
 		getFidohomepage().clkLoginMobile();
 		getFidologinpage().switchToSignInFrame();
-		getFidologinpage().setUsernameInFrame(TestDataHandler.tc1417.getUsername());
-		getFidologinpage().setPasswordInFrame(TestDataHandler.tc1417.getPassword());
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc19.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc19.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrameMobile();	
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
