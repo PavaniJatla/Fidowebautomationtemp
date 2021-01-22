@@ -26,6 +26,10 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath="//a[@href='/pages/#/internet' and @class='m-navLink -dropdown']")
 	WebElement lnkHomeInternet;
 
+	@FindBy(xpath="//a[@title='Home Internet' and @data-caption='Home Internet']")
+	WebElement lnkHomeInternetForWireless;
+
+
 	@FindBy(xpath="//a[@role='button']//span[@class='m-navLink__chevron fds-icon-down']")
 	WebElement lnkProvince;
 
@@ -197,7 +201,15 @@ public class FidoHomePage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lnkHomeInternet,20);
 		reusableActions.executeJavaScriptClick(lnkHomeInternet);
 	}
-	
+
+	/**
+	 * Click the Digital TV option from shop dropdown list
+	 * @author aditya.Dhingra
+	 */
+	public void clkHomeInternetForWireless() {
+		reusableActions.waitForElementVisibility(lnkHomeInternetForWireless,20);
+		reusableActions.executeJavaScriptClick(lnkHomeInternetForWireless);
+	}
 	/**
 	 * Click on skip recovery overlay
 	 * @author Mirza.Kamran

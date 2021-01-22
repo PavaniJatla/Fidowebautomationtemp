@@ -49,17 +49,20 @@ public class FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile extends Bas
 		getReporter().hardAssert(!getFidoprofileandsettingpage().isLnkUpdateContactPresent(),
 				"Link update contact is not present",
 				"Link update contact is present");	
-		getReporter().softAssert(getFidoprofileandsettingpage().verifySubscriberAccountContactPreferenceSection(),
-				"Subscriber account contact preference section is displayed",
-				"Subscriber account cantact preference section is not displayed");		
+		
+		//change DC-8049
+		getReporter().softAssert(!getFidoprofileandsettingpage().verifySubscriberAccountContactPreferenceSection(),
+				"Subscriber account contact preference section is not displayed",
+				"Subscriber account cantact preference section is  displayed");		
 		getReporter().softAssert(!getFidoprofileandsettingpage().isLnkUpdateBillingAddressPresent(),
 				"Link update billing address is not present",
 				"Link update billing address is present");	
 		getFidoprofileandsettingpage().scrollToProfileAndSettingsMiddlePage();
 		getReporter().reportLogWithScreenshot("Subscriber account billing address section");
-		getReporter().softAssert(getFidoprofileandsettingpage().verifySubscriberAccountBillingAddressSection(),
-				"Subscriber account billing address section is displayed",
-				"Subscriber account billing address section is not displayed");										
+		//change DC-8049
+		getReporter().softAssert(!getFidoprofileandsettingpage().verifySubscriberAccountBillingAddressSection(),
+				"Subscriber account billing address section is not  displayed",
+				"Subscriber account billing address section is displayed");										
 	}
 
 }
