@@ -42,9 +42,7 @@ public class FidoChoosePhonePage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean verifyChoosePhonesPageLoad() {
-		//reusableActions.clickWhenReady(lblPhonesAndDevices);
-		reusableActions.waitForElementVisibility(lblPhonesAndDevices,60);
-		return reusableActions.isElementVisible(lblPhonesAndDevices, 120);
+		return reusableActions.isElementVisible(lblPhonesAndDevices, 60);
 	}
 	
 	/**

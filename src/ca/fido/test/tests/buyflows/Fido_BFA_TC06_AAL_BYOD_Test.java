@@ -72,6 +72,7 @@ public class Fido_BFA_TC06_AAL_BYOD_Test extends BaseTestClass{
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
+		getFidoorderreviewpage().waitForOrderProcessing();
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
 		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}

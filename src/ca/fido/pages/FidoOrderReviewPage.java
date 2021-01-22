@@ -187,7 +187,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void waitForOrderProcessing() {
-		if(reusableActions.isElementVisible(lblOrderProcessing)) {
+		if(reusableActions.isElementVisible(lblOrderProcessing , 60)) {
 			reusableActions.waitForElementVisibility(lblOrderProcessing, 60);
 		}
 	}

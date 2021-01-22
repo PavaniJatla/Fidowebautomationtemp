@@ -42,8 +42,8 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
-		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-		//getReporter().reportLogPass("skipped BPO option");
+		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
 		getFidobuildplanpage().clkContinueBelowCartSummary();

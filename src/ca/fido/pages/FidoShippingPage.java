@@ -36,8 +36,9 @@ public class FidoShippingPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkContinueToOrderReview() {
-		reusableActions.waitForElementVisibility(btnContinueToOrderReview,40);
-		reusableActions.clickWhenReady(btnContinueToOrderReview,60);
+		reusableActions.waitForElementTobeClickable(btnContinueToOrderReview,60);
+		reusableActions.scrollToElementAndClick(btnContinueToOrderReview);
+
 	}
 
 	/**

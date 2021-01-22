@@ -47,9 +47,9 @@ public class Fido_BFA_TC07_AAL_Term_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogWithScreenshot("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkDataAndTextPlan();
+		/*getFidobuildplanpage().clkDataAndTextPlan();
 		getReporter().reportLogPass("Data and Text Plan selected");
-		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
+		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();*/
 		getFidobuildplanpage().clkContinueDataOption();
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
@@ -79,9 +79,10 @@ public class Fido_BFA_TC07_AAL_Term_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Order Review page");
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
-		getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.tc07AalTerm.getUsername());
+		//getFidoorderreviewpage().setContractDigitalCopyEmail(TestDataHandler.tc07AalTerm.getUsername());
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
+		getFidoorderreviewpage().waitForOrderProcessing();
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Order Confirmed", "Order Confirmation Error");
 		getReporter().reportLogWithScreenshot("Order Confirmation page");
 	}

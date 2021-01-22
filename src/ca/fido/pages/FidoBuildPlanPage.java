@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,7 +20,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 		super(driver);		
 	}
 
-	@FindBy(xpath = "//div[@class='features-section' or @class='features-section dataSectionEmpty']/button")
+	@FindBy(xpath = "(//div[@class='features-section' or @class='features-section dataSectionEmpty']/button)[3]")
 	WebElement btnAdd;
 	
 	@FindBy(xpath = "//button[@translate='_continue']")
@@ -49,7 +50,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='ds-tabs-0-tab-1']")
 	WebElement btnDataAndTextPlan;
 
-	@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]")
+	@FindAll({
+		@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]"),
+		@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']")
+	})
 	WebElement btnNoBPOOffer;
 	
 	@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']")
@@ -277,7 +281,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.staticWait(5000);
 		//reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
 		reusableActions.clickWhenReady(btnContinueBelowCartSummary);
-		reusableActions.waitForElementVisibility(txtEmail , 30);
+		//reusableActions.waitForElementVisibility(txtEmail , 60);
 	}
 	
 	/**
@@ -404,7 +408,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean handleTodayOfferOverlay() {
-		if(reusableActions.isElementVisible(btnGetThisOffer, 40)) {
+		if(reusableActions.isElementVisible(btnGetThisOffer, 60)) {
 			reusableActions.clickWhenReady(btnGetThisOffer);
 			reusableActions.clickWhenVisible(By.xpath("//button[@translate='continue_to_addons']"), 30);
 			return false;
