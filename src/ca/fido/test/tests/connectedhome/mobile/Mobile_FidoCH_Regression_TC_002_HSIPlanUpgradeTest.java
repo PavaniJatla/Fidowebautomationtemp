@@ -49,7 +49,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
-		getFidoaccountoverviewpage().clkViewUsageManage();
+		getFidoaccountoverviewpage().clkViewUsageManageMobile();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		getFidointernetdashboardpage().clkChangePackage();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");

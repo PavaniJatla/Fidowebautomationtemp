@@ -61,6 +61,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//h1[@class='welcome-text']")
 	WebElement msgWelcome;
 
+	@FindBy (xpath="//h2[@translate='global.label.accountBillBalance']")
+	WebElement msgPaymentpage;
+
+
 	@FindBy (xpath="//div[@class='ds-price__amountDollars ng-star-inserted']")
 	WebElement infoAccountBalance;
 
@@ -288,7 +292,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//ds-icon[@name='down']")
 	WebElement subNavMobile;
 
-	@FindBy(xpath = "//a[@href='#/my-account/overview']")
+	@FindBy(xpath = "//a[@href='#/my-account/overview']/ins[@translate='global.label.backToAccOverview']")
 	WebElement lnkOverview;
 
 	@FindBy (xpath="//ins[@translate='global.label.backToAccOverview']")
@@ -790,7 +794,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public boolean verifyAccountPage(String strIntialBalance,String strLanguage ) {	
-		reusableActions.getWhenReady(msgWelcome,90);
+		reusableActions.getWhenReady(msgPaymentpage,90);
 		if (strLanguage.equalsIgnoreCase("en"))
 		{	
 			String[] strBalanceValue= strIntialBalance.split("\\.");
@@ -807,7 +811,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			String strExpectedBalance=Integer.toString(intExpectedBalance);
 			reusableActions.waitForElementVisibility((WebElement) By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
 		}	
-		return reusableActions.isElementVisible(msgWelcome,30);	
+		return reusableActions.isElementVisible(msgPaymentpage,30);
 	}
 
 	/**
