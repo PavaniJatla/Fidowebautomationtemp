@@ -1591,7 +1591,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @param strBAN
 	 */
 	public void clkPayNowNew(String strBAN) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]")).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for') or contains(@aria-label,'Faire un paiement')]")).click();
 	}
 
 	public void clkBtnRefillNowNew(String strBAN) {
