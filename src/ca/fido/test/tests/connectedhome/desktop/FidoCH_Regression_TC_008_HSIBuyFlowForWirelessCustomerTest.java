@@ -57,7 +57,7 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 		//getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidohomepage().clkShop();
-		//getFidohomepage().clkHomeInternet();
+		getFidohomepage().clkHomeInternetForWireless();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
 		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
