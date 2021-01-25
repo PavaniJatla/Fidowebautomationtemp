@@ -32,8 +32,9 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -large ng-star-inserted']")
 	WebElement btnBuyNow;
 	
-	@FindBy(xpath = "//a[@title='Buy Fido Home Internet now']")
+	@FindBy(xpath = "//button[@title='Buy Fido Home Internet now']")
 	WebElement btnBuyNowReskin;
+	//a[@title='Buy Fido Home Internet now']"
 	//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100']
 	
 	@FindBy(xpath = "//div[@class='modal-chat bcStatic']")
