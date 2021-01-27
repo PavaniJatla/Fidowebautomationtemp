@@ -1591,7 +1591,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @param strBAN
 	 */
 	public void clkPayNowNew(String strBAN) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]")).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for') or contains(@aria-label,'Faire un paiement')]")).click();
 	}
 
 	public void clkBtnRefillNowNew(String strBAN) {
@@ -1658,9 +1658,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSuspendedBAN) {
 		
-		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]"),1)
-				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]"),1)
-				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"),1)
+		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')  or contains(@aria-label,'Voir et gérer la facture')]"),1)
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for') or contains(@aria-label,'Faire un paiement au')]"),1)
+				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account') or contains(@title,'Ajouter une ligne au compte mobile')]"),1)
 				&& !reusableActions.isElementVisible(By.xpath("//div[@class='fss-subscription-detail']")));
 	}
 	
