@@ -1437,7 +1437,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return
 	 */
 	public boolean IsAnyCancelledAccountDisplayed(String strCancelledBAN) {
-		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled')]"));
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled') or contains(text(),'Fermè')]"));
 	}
 
 	public void clkPaymentHistoryLink() {
