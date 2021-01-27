@@ -14,8 +14,6 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.test.helpers.FidoEnums.SauceCapabilities;
 import ca.fido.testdatamanagement.TestDataHandler;
 import extentreport.ExtentTestManager;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
 import utils.BrowserDrivers;
@@ -428,6 +426,9 @@ public class BaseTestClass {
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 			case "connectedhome_ssp":
+				getDriver().get(strUrl);
+				break;
+
 			case "buyflows":
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");

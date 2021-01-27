@@ -33,7 +33,7 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public boolean verifyOrderConfirm() {
-		  return reusableActions.isElementVisible(infoOrderConfirm, 40);
+		  return reusableActions.isElementVisible(infoOrderConfirm, 60);
 	}
 	
 	/**

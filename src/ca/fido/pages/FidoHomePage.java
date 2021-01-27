@@ -189,7 +189,7 @@ public class FidoHomePage extends BasePageClass {
 			reusableActions.getWhenReady(lnkProvince,10).click();
 			reusableActions.getWhenReady(lnkProvinceON,10).click();
 	       }
-		reusableActions.waitForElementTobeClickable(lnkShop,60);
+		reusableActions.waitForElementTobeClickable(lnkShop,90);
 		reusableActions.getWhenReady(lnkShop,10).click();
 	}
 	

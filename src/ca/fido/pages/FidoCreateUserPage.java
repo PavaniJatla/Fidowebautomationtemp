@@ -132,7 +132,7 @@ public void setLastName(){
 public void setPhone() {
 	String strPhoneNumber = FormFiller.generatePhoneNumber();
 	reusableActions.getWhenReady(txtPhone, 3).click();
-	reusableActions.getWhenReady(lblTxtPhone,3).sendKeys("1000000067");
+	reusableActions.getWhenReady(lblTxtPhone,3).sendKeys("1001000067");
 }
 
 	/**

@@ -516,7 +516,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * Clicks pack selected and continue button
 	 */
 	public void clkpackselectedNContinue() {
-		reusableActions.getWhenReady(btnpackselectedNContinue, 30).click();						
+		reusableActions.waitForElementVisibility(btnpackselectedNContinue, 90);
+		reusableActions.getWhenReady(btnpackselectedNContinue, 20).click();
     }
 
 	public void clickContinue() {
