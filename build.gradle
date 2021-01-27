@@ -112,6 +112,7 @@ dependencies {
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'
 	api 'org.json:json:20180813'
+    api 'org.yaml:snakeyaml:1.24'
 }
 
 group = 'ca.fido'
