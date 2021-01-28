@@ -43,7 +43,7 @@ public class FidoSS_TC085_SuspendedAccountBillDisplayErrorMessageOnViewBillPage 
 		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login succeed.", "Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
-		String strBAN = TestDataHandler.tc79.getaccountDetails().getBan();
+		String strBAN = TestDataHandler.tc28.getaccountDetails().getBan();
 		Thread.sleep(5000);
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
