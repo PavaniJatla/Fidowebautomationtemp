@@ -327,6 +327,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[@translate='promise-to-pay.success-ptp.done-btn']")
 	WebElement btnDoneAfterSetUpPromiseSuccessFul;
+<<<<<<< HEAD
 
 	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
 	WebElement winModalAAL;
@@ -340,6 +341,23 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
 	}
 
+=======
+	
+	@FindBy(xpath = "//*[contains(@class,'billing-payment-section')]/a[1]")
+	WebElement lblViewManageBill;
+	
+	@FindBy(xpath = "//*[contains(@class,'list-inline')]/li[2]")
+	WebElement lblSavePDF;
+	
+	@FindBy(xpath = "//*[contains(@translate,'global.label.saveBillPDF')]")
+	WebElement lblSaveYourBill;
+	
+	@FindBy(xpath = "//*[contains(@translate,'global.label.confirmAndSaveBills')]")
+	WebElement btnDownloadBill;
+	
+	
+	
+>>>>>>> origin/Veda
 	/**
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
@@ -1662,6 +1680,48 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for') or contains(@aria-label,'Faire un paiement au')]"),1)
 				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account') or contains(@title,'Ajouter une ligne au compte mobile')]"),1)
 				&& !reusableActions.isElementVisible(By.xpath("//div[@class='fss-subscription-detail']")));
+	}
+	
+	/**
+	 * Clicks on View and Manage Bill lable
+	 * @author Vedachalam.Vasudevan 
+	 */
+	public void clkViewManageBill() {
+		reusableActions.clickWhenVisible(lblViewManageBill, 30);
+	}
+	
+	/**
+	 * Clicks on Save PDF link
+	 * @author Vedachalam.Vasudevan
+	 */
+	public void clkSavePDF() {
+		reusableActions.getWhenReady(lblSavePDF, 30).click();
+	}
+	
+	/**
+	 * Clicks on Save your bill link
+	 * @author Vedachalam.Vasudevan
+	 */
+	public void clkSaveYourBill() {
+		reusableActions.getWhenReady(lblSaveYourBill, 30).click();
+	}
+	
+	
+	/**
+	 * Clicks on Download Bill link
+	 * @author Vedachalam.Vasudevan
+	 */
+	public void clkDownloadBill() {
+		reusableActions.getWhenReady(btnDownloadBill, 30).click();
+	}
+	
+	/**
+	 * verify that Bill download successfully
+	 * @return true bill download successfully else false
+	 * @author Vedachalam.Vasudevan
+	 */
+	public boolean verifyDownloadBill()	{
+		return reusableActions.isElementVisible(By.xpath("//ins[@translate='global.message.pdfDownloadSuccess']"), 20);
 	}
 	
 }
