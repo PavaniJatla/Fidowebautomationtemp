@@ -327,7 +327,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[@translate='promise-to-pay.success-ptp.done-btn']")
 	WebElement btnDoneAfterSetUpPromiseSuccessFul;
-<<<<<<< HEAD
+
 
 	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
 	WebElement winModalAAL;
@@ -341,7 +341,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
 	}
 
-=======
+
 	
 	@FindBy(xpath = "//*[contains(@class,'billing-payment-section')]/a[1]")
 	WebElement lblViewManageBill;
@@ -354,10 +354,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[contains(@translate,'global.label.confirmAndSaveBills')]")
 	WebElement btnDownloadBill;
+
+	@FindBy(xpath = "//*[contains(@translate,'global.label.printPDF')]")
+	WebElement lblPrintPDF;
+	
+	@FindBy(xpath = "//*[contains(@translate,'global.label.printBillPDF')]")
+	WebElement lblPrintYourBill;
 	
 	
-	
->>>>>>> origin/Veda
+
 	/**
 	 * Click button "Add a line" on modal dialogue window.
 	 * @author Saurav.Goyal
@@ -1699,11 +1704,28 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 	}
 	
 	/**
+	 * Clicks on Save PDF link
+	 * @author Vedachalam.Vasudevan
+	 */
+	public void clkPrintPDF() {
+		reusableActions.getWhenReady(lblPrintPDF, 30).click();
+	}
+	
+	/**
 	 * Clicks on Save your bill link
 	 * @author Vedachalam.Vasudevan
 	 */
 	public void clkSaveYourBill() {
 		reusableActions.getWhenReady(lblSaveYourBill, 30).click();
+	}
+	
+	
+	/**
+	 * Clicks on Save your bill link
+	 * @author Vedachalam.Vasudevan
+	 */
+	public void clkPrintYourBill() {
+		reusableActions.getWhenReady(lblPrintYourBill, 30).click();
 	}
 	
 	

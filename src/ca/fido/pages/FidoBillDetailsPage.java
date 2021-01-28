@@ -167,6 +167,9 @@ public class FidoBillDetailsPage extends BasePageClass {
 	
 	@FindBy(xpath = "//p[@class='bill-error-msg1' and (contains(text(),\"Il semble que nous ayons des\") or  contains(text(),\"Looks like we are having system issues\"))]")
 	WebElement lblNoBillErrorMsg;
+
+	@FindBy(xpath = "//h1[text()='Print']")
+	WebElement titlePrintBillWindow;
 	
 	/**
 	 * Click on refillNow button in overview page for Fido pre-paid account.
@@ -611,6 +614,15 @@ public class FidoBillDetailsPage extends BasePageClass {
 	    */
 	public boolean verifyBillErrorMsg() {
 		return reusableActions.isElementVisible(lblNoBillErrorMsg);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isPrintBillPDFpresent() {
+		// TODO Auto-generated method stub
+		return reusableActions.isElementVisible(titlePrintBillWindow);
 	}
 	  
 }

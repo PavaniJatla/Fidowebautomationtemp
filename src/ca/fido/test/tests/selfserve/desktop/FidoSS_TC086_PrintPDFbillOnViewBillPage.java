@@ -16,7 +16,7 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
-public class FidoSS_Regression_TC013_ValidateTheSavePDFLinkInViewBillPage  extends BaseTestClass{
+public class FidoSS_TC086_PrintPDFbillOnViewBillPage  extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -30,28 +30,33 @@ public class FidoSS_Regression_TC013_ValidateTheSavePDFLinkInViewBillPage  exten
 		
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
-		getReporter().reportLogWithScreenshot("Login Frame Page");
-		getFidologinpage().setUsernameInFrame(TestDataHandler.tc13.getUsername());
-		getFidologinpage().setPasswordInFrame(TestDataHandler.tc13.getPassword());
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
-		getFidologinpage().clkLoginInFrame();
-		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(),
-				"Login proceed without error.",
+		getFidologinpage().clkLoginInFrame();		
+		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
+				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
-				"Login succeed.",
-				"Failed to login.");
-		getReporter().reportLogWithScreenshot("Account overvew page.");
-		getFidoaccountoverviewpage().clkViewManageBill();
-		getReporter().reportLogWithScreenshot("Save PDF Page");
-		getFidoaccountoverviewpage().clkSavePDF();
-		getReporter().reportLogWithScreenshot("Save Bill Page ");
-		getFidoaccountoverviewpage().clkSaveYourBill();
-		getReporter().reportLogWithScreenshot("Download Bill Page");
-		getFidoaccountoverviewpage().clkDownloadBill();		
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifyDownloadBill(),"Bill Downloaded successfully","Bill Not Downloaded");
-		getReporter().reportLogWithScreenshot("Bill downloaded Page");	
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+							"Login succeed.", 
+							"Failed to login.");
+		getReporter().reportLogWithScreenshot("Account overview page.");
+		//Integer totalCTN=getFidoaccountoverviewpage().getCTNUsers().size();		
+		//getFidoaccountoverviewpage().clkViewBill();
+		String strBAN = TestDataHandler.tc16.getaccountDetails().getBan();
+		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getReporter().reportLogWithScreenshot("View bill page is open");
+		//getFidoaccountoverviewpage().clkViewManageBill();
+		getReporter().reportLogWithScreenshot("Click on Print Page");
+		getFidoaccountoverviewpage().clkPrintPDF();
+		getReporter().reportLogWithScreenshot("Print or Save Bill Page ");
+		getFidoaccountoverviewpage().clkPrintYourBill();
+		getReporter().reportLogWithScreenshot("Print your Bill Page");
+		//getFidoaccountoverviewpage().clkDownloadBill();		
+		getReporter().hardAssert(getFidobilldetailspage().isPrintBillPDFpresent(),"Print bill window displayed",
+				"Print bill window not displayed");
+		getReporter().reportLogWithScreenshot("Print bill window displayed");	
 	}
 	
 	@AfterMethod(alwaysRun = true)
