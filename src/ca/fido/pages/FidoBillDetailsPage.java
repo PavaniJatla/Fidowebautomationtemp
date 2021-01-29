@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -616,13 +617,18 @@ public class FidoBillDetailsPage extends BasePageClass {
 		return reusableActions.isElementVisible(lblNoBillErrorMsg);
 	}
 
+	
+	public void switchToPrintWindow(String strParentWindowHandle) {
+		reusableActions.switchToNewWindow(strParentWindowHandle);
+	}
+	
 	/**
 	 * 
 	 * @return
 	 */
-	public boolean isPrintBillPDFpresent() {
-		// TODO Auto-generated method stub
-		return reusableActions.isElementVisible(titlePrintBillWindow);
+	public boolean isPrintBillPDFpresent() {	
+		reusableActions.waitForNumberOfWindowsToBe(2, 60);
+		return getDriver().getWindowHandles().toArray().length>1;
 	}
 	  
 }

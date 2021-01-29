@@ -66,15 +66,15 @@ public class FidoSS_TC082_ValidateTheSetUpAutomaticPaymentFlowUsingCreditCard ex
 		}
 		
 		//Change CC to bank
-				getReporter().reportLogWithScreenshot("Change method of payment from Manual to BANK");
-				getCommonbusinessflows().changeToBank();		
-				getFidobilldetailspage().clkAccountOverview();
-				getReporter().reportLogWithScreenshot("Account overview page");
-				//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
-				getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
-				getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
-						"Change payment method modal displayed.",
-						"Change payment method modal didn't display as expected.");
+		getReporter().reportLogWithScreenshot("Change method of payment from Bank to CC");
+		getCommonbusinessflows().changeToCC();		
+		getFidobilldetailspage().clkAccountOverview();
+		getReporter().reportLogWithScreenshot("Account overview page");
+		//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
+		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().hardAssert(getFidoaccountoverviewpage().IsAutoPaymentSetUp(),
+				"CC Auto payment method set up successful",
+				"CC Auto payment method set up NOT successful");
 		
 		
 	

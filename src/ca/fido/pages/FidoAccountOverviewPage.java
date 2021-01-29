@@ -1745,5 +1745,10 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 	public boolean verifyDownloadBill()	{
 		return reusableActions.isElementVisible(By.xpath("//ins[@translate='global.message.pdfDownloadSuccess']"), 20);
 	}
+
+	public boolean IsAutoPaymentSetUp() {
+		return reusableActions.isElementVisible(divAutoPaymentContainer,20) 
+						 && reusableActions.isElementVisible(btnPenIconForChangeAutoPaymentMethod);
+	}
 	
 }

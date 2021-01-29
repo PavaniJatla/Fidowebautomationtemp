@@ -48,14 +48,17 @@ public class FidoSS_TC086_PrintPDFbillOnViewBillPage  extends BaseTestClass{
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
 		//getFidoaccountoverviewpage().clkViewManageBill();
+		String strParentWindowHandle = getDriver().getWindowHandle();
 		getReporter().reportLogWithScreenshot("Click on Print Page");
 		getFidoaccountoverviewpage().clkPrintPDF();
 		getReporter().reportLogWithScreenshot("Print or Save Bill Page ");
 		getFidoaccountoverviewpage().clkPrintYourBill();
 		getReporter().reportLogWithScreenshot("Print your Bill Page");
-		//getFidoaccountoverviewpage().clkDownloadBill();		
+		//getFidoaccountoverviewpage().clkDownloadBill();	
+		
 		getReporter().hardAssert(getFidobilldetailspage().isPrintBillPDFpresent(),"Print bill window displayed",
 				"Print bill window not displayed");
+		getFidobilldetailspage().switchToPrintWindow(strParentWindowHandle);
 		getReporter().reportLogWithScreenshot("Print bill window displayed");	
 	}
 	
