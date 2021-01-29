@@ -88,7 +88,7 @@ public class CommonBusinessFlows {
 		BaseTestClass.getFidologinpage().clkResignInAs();
 		baseTestClass.getReporter().reportLogWithScreenshot("Re Sign In");		
 		BaseTestClass.getFidologinpage().switchToSignInFrame();
-//		BaseTestClass.getFidohomepage().clkNotUser();
+		BaseTestClass.getFidohomepage().clkNotUser();
 		BaseTestClass.getFidologinpage().setUsernameInFrameAfterReSignIn(strUserName);
 		BaseTestClass.getFidologinpage().setPasswordInFrame(strPassword);
 		baseTestClass.getReporter().reportLogWithScreenshot("Login credentials entered");

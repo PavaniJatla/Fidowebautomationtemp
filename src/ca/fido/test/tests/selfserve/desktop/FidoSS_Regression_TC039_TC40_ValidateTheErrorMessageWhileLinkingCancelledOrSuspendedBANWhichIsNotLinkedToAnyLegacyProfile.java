@@ -35,9 +35,13 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkRegisterIframe();
+		try {
 		getReporter().reportLogWithScreenshot("Registration Page opened");
 		//getFidoaccountregistrationpage().clkRegisterNow();
-		getFidoaccountregistrationpage().pageRefresh();		
+		getFidoaccountregistrationpage().pageRefresh();
+		}catch (Exception e) {
+			getReporter().reportLog(e.getMessage());
+		}
 		getReporter().reportLogWithScreenshot("Account Holder option to select");
 		getFidoaccountregistrationpage().clkAccountHolder();		
 		getFidoaccountregistrationpage().setFidoAccountNumber(strUserDetails.split("#")[0].trim());

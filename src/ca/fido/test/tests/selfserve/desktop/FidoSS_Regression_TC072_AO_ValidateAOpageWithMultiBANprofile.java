@@ -74,7 +74,7 @@ public class FidoSS_Regression_TC072_AO_ValidateAOpageWithMultiBANprofile extend
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc70.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc70.getPassword());
 		String strActiveBAN = TestDataHandler.tc70.getaccountDetails().getBan();
-		String strCancelledBAN ="227664265"; 
+		String strCancelledBAN ="940687734"; 
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();	
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 

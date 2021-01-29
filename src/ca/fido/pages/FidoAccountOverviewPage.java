@@ -1165,7 +1165,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkViewUsageAndServices(String strBAN) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-details']//span[contains(text(),'View Usage & Manage') or contains(text(),'View Usage & Manage')]")).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-details']//span[contains(text(),'View Usage & Manage') or contains(text(),'Voir l’utilisation et gérer')]")).click();
 
 	}
 	
