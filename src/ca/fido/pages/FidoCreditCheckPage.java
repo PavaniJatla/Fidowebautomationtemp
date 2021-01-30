@@ -51,7 +51,10 @@ public class FidoCreditCheckPage extends BasePageClass {
 
 	@FindBy(xpath = "//input[@id='ppNumber' and @ng-model='passport.ppNumber']")
 	WebElement txtPpNumber;
-	
+
+	@FindBy(xpath = "//input[@name='birthCertificateNumber']")
+	WebElement txtBirthCertificate;
+
 	@FindBy(xpath="//ds-form-field[@data-test='license-number-expiry']//input[@formcontrolname='expiryDate']/parent::div")
 	WebElement txtdLExpiryDate;
 	
@@ -203,6 +206,14 @@ public class FidoCreditCheckPage extends BasePageClass {
 	}
 
 	/**
+	 * Set dynamic expire year for the license on Credit check page
+	 * @author Chinnarao.Vattam
+	 */
+	public void selectDrivingLicenseExpiryYear(String strYYYY) {
+		reusableActions.selectWhenReady(ddlDlExpiryYear, strYYYY);
+	}
+
+	/**
 	 * Set dynamic expire month for the license on Credit check page
 	 * @author Chinnarao.Vattam
 	 */
@@ -216,12 +227,24 @@ public class FidoCreditCheckPage extends BasePageClass {
 		String strDOBMonth = FormFiller.generateMonth();
 		reusableActions.selectWhenReady(ddlDlExpiryMonth, strDOBMonth);
 	}
+
+	public void selectDrivingLicenseExpiryMonthSingleDigit(String strDOBMonth) {
+		reusableActions.selectWhenReady(ddlDlExpiryMonth, strDOBMonth);
+	}
 	/**
 	 * Set dynamic expire day for the license on Credit check page
 	 * @author Chinnarao.Vattam
 	 */
 	public void selectDrivingLicenseExpiryDay() {
 		String expiryDay = FormFiller.generateCalendarDay();
+		reusableActions.selectWhenReady(ddlDlExpiryDay, expiryDay, 20);
+	}
+
+	/**
+	 * Set dynamic expire day for the license on Credit check page
+	 * @author Chinnarao.Vattam
+	 */
+	public void selectDrivingLicenseExpiryDay(String expiryDay) {
 		reusableActions.selectWhenReady(ddlDlExpiryDay, expiryDay, 20);
 	}
 
@@ -254,6 +277,16 @@ public class FidoCreditCheckPage extends BasePageClass {
 		reusableActions.getWhenReady(txtPpNumber, 10).clear();
 		reusableActions.getWhenReady(txtPpNumber, 30).sendKeys(strPassportNumber);
 	}
+	/**
+	 * Set dynamic BirthCertificate number on Credit check page
+	 * @author Chinnarao.Vattam
+	 */
+	public void setBirthCertificate(String strBirthCertificateNumber) {
+		reusableActions.waitForElementVisibility(txtBirthCertificate, 20);
+		reusableActions.getWhenReady(txtBirthCertificate, 10).clear();
+		reusableActions.getWhenReady(txtBirthCertificate, 30).sendKeys(strBirthCertificateNumber);
+	}
+
 
 	/**
 	 * Set dynamic expire year for the passport on Credit check page
