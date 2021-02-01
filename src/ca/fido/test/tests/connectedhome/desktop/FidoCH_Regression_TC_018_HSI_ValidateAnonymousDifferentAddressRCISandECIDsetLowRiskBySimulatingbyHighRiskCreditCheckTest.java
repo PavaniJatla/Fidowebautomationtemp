@@ -38,7 +38,7 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_TC_018_HSI_ValidateAnonymousDifferentAddressRCISandECIDsetLowRiskBySimulatingbyHighRiskCreditCheckTest extends BaseTestClass {
+public class FidoCH_Regression_TC_018_HSI_ValidateAnonymousDifferentAddressRCISandECIDsetLowRiskBySimulatingbyHighRiskCreditCheckTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
     public void checkCRMaddressMismatchWithSGI_ServiceabilityTest() {
@@ -46,7 +46,7 @@ public class FidoCH_TC_018_HSI_ValidateAnonymousDifferentAddressRCISandECIDsetLo
 		getFidohomepage().clkShop();
 		getFidohomepage().clkHomeInternet();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
-		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getUpgradePlanCost());
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
 		String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
 		String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
@@ -58,11 +58,11 @@ public class FidoCH_TC_018_HSI_ValidateAnonymousDifferentAddressRCISandECIDsetLo
 		getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
 		getFidocartsummarypage().clkInternetCheckout();
 		getReporter().reportLogWithScreenshot("Create user page has launched to give the user information");
-		getFidocreateuserpage().setCommunicationDetails();
-		getFidocreateuserpage().setFirstName();
-		getFidocreateuserpage().setLastName();
+		getFidocreateuserpage().setCommunicationDetails(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getUsername());
+		getFidocreateuserpage().setFirstName(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getFirstName());
+		getFidocreateuserpage().setLastName(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getLastName());
 		getReporter().reportLogWithScreenshot("Entered the user personal information");
-		getFidocreateuserpage().setPhone();
+		getFidocreateuserpage().setPhone(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getPhoneNumber());
 		getReporter().reportLogWithScreenshot("Entered the user communication information");
 		getFidocreateuserpage().clkUserProfileNext();
 		getReporter().reportLogWithScreenshot("Credit evaluation page has launched");
@@ -72,22 +72,23 @@ public class FidoCH_TC_018_HSI_ValidateAnonymousDifferentAddressRCISandECIDsetLo
 		getReporter().reportLogWithScreenshot("Entered the user DOB information");
 		getFidocreditcheckpage().selectFirstIdOption("2");
 		getFidocreditcheckpage().selectDrivingLicenseProvince("ON");
-		getFidocreditcheckpage().selectDrivingLicenseExpiryYear();
-		getFidocreditcheckpage().selectDrivingLicenseExpiryMonthSingleDigit();
-		getFidocreditcheckpage().selectDrivingLicenseExpiryDay();
+		getFidocreditcheckpage().selectDrivingLicenseExpiryYear(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getYear());
+		getFidocreditcheckpage().selectDrivingLicenseExpiryMonthSingleDigit(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getMonth());
+		getFidocreditcheckpage().selectDrivingLicenseExpiryDay(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getDate());
 		getFidocreditcheckpage().setDrivingLicenseNumber("ONTARIO");
 		getReporter().reportLogWithScreenshot("Entered the Driver's License information");
-		getFidocreditcheckpage().selectSecondIdOption("4");
-		getFidocreditcheckpage().setPassportNumber();
-		getFidocreditcheckpage().selectPassportExpiryYear();
-		getFidocreditcheckpage().selectPasspoartExpiryMonth();
-		getFidocreditcheckpage().selectPasspoartExpiryDay();
+
+		getFidocreditcheckpage().selectSecondIdOption("5");
+		getFidocreditcheckpage().setBirthCertificate(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getBirthCertNumber());
 		getReporter().reportLogWithScreenshot("Entered the passport information");
 		getFidocreditcheckpage().clkCreditCheckConsent();
 		getReporter().reportLogWithScreenshot("Credit consent Check Done");
 		getFidocreditcheckpage().clkCreditCheckSubmit();
+
+
+
+
 		getReporter().reportLogWithScreenshot("Tech-Install page has launched");
-		getReporter().reportLogWithScreenshot(" selected the slot for Tech-Install");
 		getFidotechnicalinstallationpage().clkTechInstalConfirm();
 		getReporter().reportLogWithScreenshot("Payment page has launched");
 		getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());

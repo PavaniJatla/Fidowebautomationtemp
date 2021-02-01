@@ -91,6 +91,17 @@ public class FidoCreateUserPage extends BasePageClass {
 		reusableActions.getWhenReady(lbltxtConfirmEmail,3).sendKeys(strEmail);
 }
 
+	/**
+	 * Set the dynamic Email address at both the Email and Confirm Email text boxes on user creation page
+	 * @author chinnarao.vattam
+	 */
+	public void setCommunicationDetails(String strEmail){
+		reusableActions.getWhenReady(txtEmail, 10).click();
+		reusableActions.getWhenReady(lblTxtEmail,3).sendKeys(strEmail);
+		reusableActions.getWhenReady(txtConfirmEmail, 3).click();
+		reusableActions.getWhenReady(lbltxtConfirmEmail,3).sendKeys(strEmail);
+	}
+
 /**
  * Set the dynamic Email address at the Email on user creation page for SSP flow
  * @author chinnarao.vattam 
@@ -111,19 +122,36 @@ public void setFirstName(){
 	reusableActions.getWhenReady(lblTxtFirstName,3).sendKeys(strFname);
 }
 
+	/**
+	 * Set the dynamic first name on user creation page
+	 * @author chinnarao.vattam
+	 */
+	public void setFirstName(String strName){
+		String strFname="Fido"+ strName;
+		reusableActions.getWhenReady(txtFirstName, 60).click();
+		reusableActions.getWhenReady(lblTxtFirstName,3).sendKeys(strFname);
+	}
+
 /**
  * Set the dynamic last name on user creation page
  * @author chinnarao.vattam 
  */
 public void setLastName(){
-	//Random randomGenerator = new Random();  
-	//int randomInt = randomGenerator.nextInt(1000);
 	String strName = FormFiller.generateRandomName();
 	String strLname="Automation"+ strName;
-	//String strLname="Automation"+ strName+ randomInt;
 	reusableActions.getWhenReady(txtLastName, 3).click();
 	reusableActions.getWhenReady(lblTxtLastName,3).sendKeys(strLname);
 }
+
+	/**
+	 * Set the dynamic last name on user creation page
+	 * @author chinnarao.vattam
+	 */
+	public void setLastName(String strName){
+		String strLname="Automation"+ strName;
+		reusableActions.getWhenReady(txtLastName, 3).click();
+		reusableActions.getWhenReady(lblTxtLastName,3).sendKeys(strLname);
+	}
 
 /**
  * Set the dynamic phone number on user creation page
@@ -134,6 +162,15 @@ public void setPhone() {
 	reusableActions.getWhenReady(txtPhone, 3).click();
 	reusableActions.getWhenReady(lblTxtPhone,3).sendKeys("1001000067");
 }
+
+	/**
+	 * Set the dynamic phone number on user creation page
+	 * @author chinnarao.vattam
+	 */
+	public void setPhone(String strPhoneNumber) {
+		reusableActions.getWhenReady(txtPhone, 3).click();
+		reusableActions.getWhenReady(lblTxtPhone,3).sendKeys(strPhoneNumber);
+	}
 
 	/**
 	 * Set a specific phone number on user creation page

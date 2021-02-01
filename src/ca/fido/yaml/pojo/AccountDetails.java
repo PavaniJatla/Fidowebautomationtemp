@@ -35,7 +35,14 @@ public class AccountDetails {
 	private String downgradeDataPlan;
 	private String modem;
 	private String newModem;
-	
+	private String firstName;
+	private String lastName;
+	private String drivingLicence;
+	private String birthCertNumber;
+	private String year;
+	private String month;
+	private String date;
+
 	public AccountDetails() {
 		
 	}
@@ -384,6 +391,101 @@ public class AccountDetails {
 	 */
 	public String getDowngradeDataPlan() {
 		return downgradeDataPlan;
+	}
+
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @return the drivingLicence
+	 */
+	public String getDrivingLicence() {
+		return payment;
+	}
+	/**
+	 * @param drivingLicence the drivingLicence to set
+	 */
+	public void setDrivingLicence(String drivingLicence) {
+		this.drivingLicence = drivingLicence;
+	}
+
+
+	/**
+	 * @return the birthCertNumber
+	 */
+	public String getBirthCertNumber() {
+		return birthCertNumber;
+	}
+	/**
+	 * @param birthCertNumber the birthCertNumber to set
+	 */
+	public void setBirthCertNumber(String birthCertNumber) {
+		this.birthCertNumber = birthCertNumber;
+	}
+
+
+	/**
+	 * @return the year
+	 */
+	public String getYear() {
+		return year;
+	}
+	/**
+	 * @param year the year to set
+	 */
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	/**
+	 * @return the month
+	 */
+	public String getMonth() {
+		return month;
+	}
+	/**
+	 * @param month the month to set
+	 */
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	/**
+	 * @return the payment
+	 */
+	public String getDate() {
+		return date;
+	}
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 }

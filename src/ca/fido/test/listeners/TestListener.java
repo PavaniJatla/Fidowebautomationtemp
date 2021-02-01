@@ -17,7 +17,6 @@ import utils.SauceLabsUtils;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.HashMap;
 
 
 
@@ -118,7 +117,8 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		finally {				//Added finally block So that it will update the extent report without any issues irrespective of the whether the try block will execute with any exception or not
+		finally {
+			//Added finally block So that it will update the extent report without any issues irrespective of the whether the try block will execute with any exception or not
 			if(!base64Screenshot.isEmpty()) {
 				//Extentreports log and screenshot operations for failed tests.
 				if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {

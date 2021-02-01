@@ -45,6 +45,7 @@ public class TestDataHandler {
 	public static AccountData tc02PreRegister;
 	public static AccountData fidoHSIAccount;
 	public static AccountData fidoHSIAccountwithUnwiredAddress;
+	public static AccountData validateRCISandECIDLowRiskHighRiskCC;
 	public static AccountData fidoSspHSIAccount;
 	public static AccountData fidoHSIAnotherProvinceAddress;
 	public static AccountData fidoHSIUnavailableAddress;
@@ -110,6 +111,7 @@ public class TestDataHandler {
         fidoSspHSIAccount = YamlHandler.getHSIAccountData("HSISspAccount");
         fidoHSIAnotherProvinceAddress=YamlHandler.getHSIAccountData("HSIAnotherProvinceAddress");
         fidoHSIUnavailableAddress=YamlHandler.getHSIAccountData("HSIUnavailableAddress");
+		validateRCISandECIDLowRiskHighRiskCC=YamlHandler.getHSIAccountData("ValidateRCISandECIDLowRiskHighRiskCC");
         chPaymentInfo = YamlHandler.getHSIPaymentDetails();
 		config =  YamlHandler.getConfig();
 	}

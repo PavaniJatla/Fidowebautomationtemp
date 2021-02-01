@@ -47,9 +47,10 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 		try {
 			getEnsverifications().getEmailVerifyPage(TestDataHandler.fidoHSIRegisterAccount.getaccountDetails().getEmail());
 			//Another new page opened
-			getFidosetpasswordpage().switchToSetPasswordTab(3);
+			getFidosetpasswordpage().switchToSetPasswordTab(2);
 			getFidosetpasswordpage().clkBtnSetPasswordInEmail();
 			String strPassword = "DigiAuto@123";
+			//getFidosetpasswordpage().switchToSetPasswordTab(3);
 			getFidosetpasswordpage().setPassword(strPassword);
 			getFidosetpasswordpage().setConfirmPassword(strPassword);
 			getReporter().reportLogWithScreenshot("Set password page.");
@@ -73,7 +74,6 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 				"Didn't successfully login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
 
-		
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
@@ -84,6 +84,6 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() throws InterruptedException {
-		closeSession();
+		//closeSession();
 	}
 }
