@@ -114,11 +114,15 @@ public class FidoShopInternetPage extends BasePageClass {
 	
 	@FindBy(xpath="//button[@title='Yes']")
 	WebElement btnYes;
-	
+
+	@FindBy(xpath="//ds-icon[@name='location']")
+	WebElement iconLocation;
+
+
 	@FindBy(xpath="//div[@id='undefined']//h2[@class='-left text-title-2']")
 	WebElement txtPackagesPage;
 	//div[@id='undefined']//h2[@class='-left text-title-2 ds-color-black']
-	
+
 	/**
 	 * Click on Check availability button on Shop Internet page
 	 * @author chinnarao.vattam
@@ -307,7 +311,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	public void selectPlan() {
 		reusableActions.getWhenReady(By.xpath("//button[@id='add-button-0']"), 60).click();		
 	}
-	
+
+
 	/**
 	 * Select the plan the plan on shop Internet page
 	 * @param strDowngradeDataPlan of the plan to be selected
@@ -315,7 +320,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectInternetPlan(String strDowngradeDataPlan, String strUpgradePlanCost) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 120).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
 	}
 
 	/**
@@ -324,10 +329,8 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @param strUpgradePlanCost cost of the plan to be selected
 	 * @author chinnarao.vattam
 	 */
-	public void selectInternetPlanMobile(String strDowngradeDataPlan, String strUpgradePlanCost) {
-		reusableActions.javascriptScrollToMiddleOfPage();
-		By packageName = By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']");
-		reusableActions.getWhenVisible(packageName,120).sendKeys(Keys.ENTER);
+	public void selectInternetPlanRetry(String strDowngradeDataPlan, String strUpgradePlanCost) {
+		reusableActions.getWhenReady(iconLocation, 30).click();
 	}
 
 	public void selectPlanforEdit() {
@@ -441,7 +444,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */	
 	public boolean  verifyPackagesPage() {
-		return reusableActions.isElementVisible(txtPackagesPage, 20);
+		return reusableActions.isElementVisible(txtPackagesPage, 90);
 	}
 	
 	/**

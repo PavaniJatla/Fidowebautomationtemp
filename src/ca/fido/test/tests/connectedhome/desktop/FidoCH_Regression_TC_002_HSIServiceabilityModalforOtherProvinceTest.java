@@ -37,6 +37,7 @@ public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
         getFidohomepage().clkShop();
         getFidohomepage().clkHomeInternet();
+        getReporter().hardAssert(getFidoshopinternetpage().verifyPackagesPage(),"Launched the packages Page", "Packages Page did not Launched");
         getReporter().reportLogWithScreenshot("Launched the packages Page");
         getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
@@ -52,7 +53,7 @@ public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest
         getFidoshopinternetpage().clkCancel();
         getReporter().reportLogWithScreenshot("Launched the packages Page");
         getReporter().hardAssert(getFidoshopinternetpage().verifyPackagesPage() ,"Packages Page has launched","Packages Page hasn't launched");
-        getFidoshopinternetpage().selectInternetPlanMobile(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
+        getFidoshopinternetpage().selectInternetPlanRetry(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
