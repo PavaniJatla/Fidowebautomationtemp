@@ -114,29 +114,27 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 			}
 			//Take base64Screenshot screenshot.
 			base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)webDriver).getScreenshotAs(OutputType.BASE64);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
+		}
 		finally {
 			//Added finally block So that it will update the extent report without any issues irrespective of the whether the try block will execute with any exception or not
 			if(!base64Screenshot.isEmpty()) {
 				//Extentreports log and screenshot operations for failed tests.
-				if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {
+				if(iTestResult.getThrowable().toString().startsWith("Custom Exception")) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
 							ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-							+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+"\"");
+							+ iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;")+"\"");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
 							ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-							+ "Exception occured: " + iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
+							+ "Exception occured: " + iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
 				}	
 			}else {
-				if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {
+				if(iTestResult.getThrowable().toString().startsWith("Custom Exception")) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
-							iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+"\"");
+							iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;")+"\"");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed : " + iTestResult.getName(),
-							"Exception occured: " + iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
+							"Exception occured: " + iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
 				}	
 			}
 		}
@@ -161,28 +159,26 @@ public class TestListener extends BaseTestClass implements ITestListener , ISuit
 			}
 			// Take base64Screenshot screenshot.
 			base64Screenshot = "data:image/png;base64,"+ ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64); 
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		finally {				//Added finally block So that it will update the extent report without any issues irrespective of the whether the try block will execute with any exception or not
 			if(!base64Screenshot.isEmpty()) {
 				// Extentreports log operation for skipped tests.
-				if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {
+				if(iTestResult.getThrowable().toString().startsWith("Custom Exception")) {
 					ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
 							ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-							+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+"\"");
+							+ iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;")+"\"");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
 							ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)
-							+ "Exception occured: " + iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
+							+ "Exception occured: " + iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
 				}
 			}else {
-				if(iTestResult.getThrowable().getMessage().startsWith("Custom Exception")) {
+				if(iTestResult.getThrowable().toString().startsWith("Custom Exception")) {
 					ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
-							iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+"\"");
+							iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;")+"\"");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Case " + "\""+  iTestResult.getName()+"\"" + " has Skipped for re-execution" ,
-							"Exception occured: " + iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
+							"Exception occured: " + iTestResult.getThrowable().toString().split("Build")[0].replace("<", "&lt;").replace("\"", ""));
 				}
 			}
 
