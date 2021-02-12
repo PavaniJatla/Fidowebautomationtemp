@@ -346,6 +346,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")
 	WebElement lnkRepairOrTradeInMyDevice;
+
+	@FindBy(xpath = "//span[text()='Thanks for bringing your device' or text()='Merci d’avoir apporté votre appareil']")
+	WebElement msgMyDeviceThanks;
+
+	@FindBy(xpath = "//span[text()='get a new device' or text()='obtenir un nouvel appareil']/ancestor::a")
+	WebElement  lnkGetANewDevice;
+
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -1417,6 +1424,29 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyViewDetailsIsDisplayedBelowTalkAndTextUnlimited() {
 		return reusableActions.isElementVisible(lnkViewDetailsTalkAndText);
+	}
+
+
+	/**
+	 * checks if the thanks message is displayed in My Device Dashboard
+	 * @return true if the element is displayed else false
+	 * @author Rajat.Sharma
+	 */
+	public boolean verifyMyDeviceThanksMessageIsDisplayed() {
+
+		return reusableActions.isElementVisible(msgMyDeviceThanks, 60);
+
+	}
+
+	/**
+	 * checks if the Get A New Device link is displayed in My Device Dashboard
+	 * @return true if the element is displayed else false
+	 * @author Rajat.Sharma
+	 */
+	public boolean verifyMyDeviceGetANewDeviceLnkIsDisplayed() {
+
+		return reusableActions.isElementVisible(lnkGetANewDevice, 60);
+
 	}
 
 	
