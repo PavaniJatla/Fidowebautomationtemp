@@ -139,7 +139,34 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil' or text()='Fido Payment Program']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
 	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
-		
+
+	@FindBy(xpath = "//h2[@class='ss-device-header mb-0 ng-star-inserted']")
+	WebElement headerFidoPaymentProgram;
+
+	@FindBy(xpath = "//div[contains(@aria-label,'Device financing payment') or contains(@aria-label,'Paiement de financement de l’appareil')]")
+	WebElement txtDeviceFinancingRemainingBalance;
+
+	@FindBy(xpath = "//span[contains(text(),'Remaining Fido Payment Program balance') or contains(text(),'Solde restant du Programme de paiement Fido')]")
+	WebElement txtPaymentProgramBalance;
+
+	@FindBy(xpath = "//span[contains(text(),'Fido Payment Program agreement start date') or contains(text(),'Date de début de l’entente du Programme de paiement Fido')]")
+	WebElement txtPaymentAgreementStartDate;
+
+	@FindBy(xpath = "//span[contains(text(),'Fido Payment Program agreement end date') or contains(text(),'Date de fin de l’entente du Programme de paiement Fido')]")
+	WebElement txtPaymentAgreementEndDate;
+
+	@FindBy(xpath = "//div[contains(text(),'Find out your exclusive deals') or contains(text(),'Découvrez vos offres exclusives')]")
+	WebElement txtFindOutYourExclusiveDeals;
+
+	@FindBy(xpath = "//span[contains(text(),'get a new device') or contains(text(),'obtenir un nouvel appareil')]")
+	WebElement lnkGetANewDevice;
+
+	@FindBy(xpath = "//span[contains(text(),'A price plan change may be required') or contains(text(),'Un changement de forfait pourrait être requis')]")
+	WebElement txtAPricePlanChangeMayBeRequired;
+
+	@FindBy(xpath = "//span[contains(text(),'View Fido Payment Program details') or contains(text(),'Voir les détails sur le Programme de paiement Fido')]")
+	WebElement lnkViewFidoPaymentProgramDetails;
+
 	
 	@FindAll({		
 		@FindBy(xpath = "//span[text()='Report lost or stolen device' or text()='Signaler la perte ou le vol d’un appareil']"),
@@ -1419,5 +1446,92 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		return reusableActions.isElementVisible(lnkViewDetailsTalkAndText);
 	}
 
-	
+	/**
+	 * Check if the Remaining Fido Payment Program balance exists
+	 * @return true if the balance is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isPaymentProgramBalanceVisible() {
+		return reusableActions.isElementVisible(txtPaymentProgramBalance, 60);
+	}
+
+	/**
+	 * Check if the Fido Payment Program agreement start date exists
+	 * @return true if the start date is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isPaymentAgreementStartDateVisible() {
+		return reusableActions.isElementVisible(txtPaymentAgreementStartDate, 60);
+	}
+
+	/**
+	 * Check if the Fido Payment Program agreement end date exists
+	 * @return true if the end date is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isPaymentAgreementEndDateVisible() {
+		return reusableActions.isElementVisible(txtPaymentAgreementEndDate, 60);
+	}
+
+
+	/**
+	 * Return the remaining balance for the device financing payment
+	 * @return String of the remaining balance in the format: $xx.xx
+	 * @author Rohit.Kumar
+	 */
+	public String getDeviceFinancingRemainingBalance() {
+		String balance = "$" + txtDeviceFinancingRemainingBalance.getAttribute("aria-label").replaceAll("[^0-9\\.]", "");
+		System.out.println("The Balance is: " + balance);
+		return balance;
+	}
+
+
+	/**
+	 * Check if the Fido Payment Program header exists
+	 * @return true if the header is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isFidoPaymentProgramVisible() {
+		System.out.println("Header: " + headerFidoPaymentProgram.getText());
+		return reusableActions.isElementVisible(headerFidoPaymentProgram, 60);
+	}
+
+	/**
+	 * Check if the "Find out your exclusive deals" text exists
+	 * @return true if the text is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isFindOutYourExclusiveDealsTextVisible() {
+		System.out.println(txtFindOutYourExclusiveDeals.getText());
+		return reusableActions.isElementVisible(txtFindOutYourExclusiveDeals, 60);
+	}
+
+	/**
+	 * Check if the "get a new device link" exists
+	 * @return true if the link is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isGetANewDeviceLinkVisible() {
+		return reusableActions.isElementVisible(lnkGetANewDevice, 60);
+	}
+
+	/**
+	 * Check if the "a price plan change may be required" text exists
+	 * @return true if the text is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isPricePlanChangeMayBeRequiredTextVisible() {
+		return reusableActions.isElementVisible(txtAPricePlanChangeMayBeRequired, 60);
+	}
+
+	/**
+	 * Check if the "view fido payment program details" link exists
+	 * @return true if the link is visible else false
+	 * @author Rohit.Kumar
+	 */
+	public Boolean isViewFidoPaymentProgramDetailsLinkVisible() {
+		return reusableActions.isElementVisible(lnkViewFidoPaymentProgramDetails, 60);
+	}
+
+
 }
