@@ -377,9 +377,6 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Thanks for bringing your device' or text()='Merci d’avoir apporté votre appareil']")
 	WebElement msgMyDeviceThanks;
 
-	@FindBy(xpath = "//span[text()='get a new device' or text()='obtenir un nouvel appareil']/ancestor::a")
-	WebElement  lnkGetANewDevice;
-
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only

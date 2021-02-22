@@ -66,7 +66,7 @@ public class FidoSS_Regression_TC004 extends BaseTestClass{
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
                 "Fido Payment Program Header is visible",
                 "Fido Payment Program Header is not visible");
-        
+
        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().getDeviceFinancingRemainingBalance().contains("$0.00"),
                 "The balance remaining is $0.00",
                 "The balance remaining is not $0.00");
