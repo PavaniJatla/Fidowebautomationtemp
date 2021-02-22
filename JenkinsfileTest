@@ -42,7 +42,7 @@ pipeline {
     }
 
     triggers {
-        parameterizedCron(env.BRANCH_NAME == 'master' ? '''
+        parameterizedCron(env.BRANCH_NAME == 'March10thRegression' ? '''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
                     00 06 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=2;TestProfile=ConnectedHome
