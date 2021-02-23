@@ -155,16 +155,16 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Fido Payment Program agreement end date') or contains(text(),'Date de fin de l’entente du Programme de paiement Fido')]")
 	WebElement txtPaymentAgreementEndDate;
 
-	@FindBy(xpath = "//div[contains(text(),'Find out your exclusive deals') or contains(text(),'Découvrez vos offres exclusives')]")
+	@FindBy(xpath = "//*[contains(text(),'Find out your exclusive deals') or contains(text(),'Découvrez vos offres exclusives')]")
 	WebElement txtFindOutYourExclusiveDeals;
 
-	@FindBy(xpath = "//span[contains(text(),'get a new device') or contains(text(),'obtenir un nouvel appareil')]")
+	@FindBy(xpath = "//*[contains(text(),'get a new device') or contains(text(),'obtenir un nouvel appareil')]")
 	WebElement lnkGetANewDevice;
 
-	@FindBy(xpath = "//span[contains(text(),'A price plan change may be required') or contains(text(),'Un changement de forfait pourrait être requis')]")
+	@FindBy(xpath = "//*[contains(text(),'A price plan change may be required') or contains(text(),'Un changement de forfait pourrait être requis')]")
 	WebElement txtAPricePlanChangeMayBeRequired;
 
-	@FindBy(xpath = "//span[contains(text(),'View Fido Payment Program details') or contains(text(),'Voir les détails sur le Programme de paiement Fido')]")
+	@FindBy(xpath = "//*[contains(text(),'View Fido Payment Program details') or contains(text(),'Voir les détails sur le Programme de paiement Fido')]")
 	WebElement lnkViewFidoPaymentProgramDetails;
 
 	
