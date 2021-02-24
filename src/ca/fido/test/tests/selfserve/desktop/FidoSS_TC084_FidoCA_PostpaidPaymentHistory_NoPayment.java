@@ -37,7 +37,7 @@ public class FidoSS_TC084_FidoCA_PostpaidPaymentHistory_NoPayment extends BaseTe
 		
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
-		getFidologinpage().setUsernameInFrame("Auto121SingleJan27Set3@yahoo.com");
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc84.getUsername());
 		getFidologinpage().setPasswordInFrame("DigiAuto@123");
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();	
