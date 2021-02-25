@@ -1483,13 +1483,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @return String of the remaining balance in the format: $xx.xx
 	 * @author Rohit.Kumar
 	 */
-	public String getDeviceFinancingRemainingBalance() {
-
-
-		System.out.println("Remaining Balance: " + txtDeviceFinancingRemainingBalance.getAttribute("aria-label").replaceAll("[^0-9\\.]", ""));
+	public boolean getDeviceFinancingRemainingBalance() {
 		return txtDeviceFinancingRemainingBalance.getAttribute("aria-label").replaceAll("[^0-9\\.," +
-				"]", "");
+				"]", "").replace(",", ".").contains("0.00");
 	}
+
 
 
 	/**
