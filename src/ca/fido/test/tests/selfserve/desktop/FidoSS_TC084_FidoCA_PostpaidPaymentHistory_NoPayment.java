@@ -38,7 +38,7 @@ public class FidoSS_TC084_FidoCA_PostpaidPaymentHistory_NoPayment extends BaseTe
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc84.getUsername());
-		getFidologinpage().setPasswordInFrame("DigiAuto@123");
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc84.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();	
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -48,7 +48,7 @@ public class FidoSS_TC084_FidoCA_PostpaidPaymentHistory_NoPayment extends BaseTe
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
-		String strBAN = "940642549";//TestDataHandler.tc121315.getaccountDetails().getBan();
+		String strBAN = TestDataHandler.tc84.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
 		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
