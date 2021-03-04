@@ -806,7 +806,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			reusableActions.staticWait(5000);
 			strBalance = reusableActions.getWhenReady(By.xpath("//div[contains(@class,'ds-price__amountDollars')]"),90).getText();
 		}
-     return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
+     return NumberUtils.isCreatable(strBalance.replaceAll(",", ".").trim());	
 	}
 	
 	/**
