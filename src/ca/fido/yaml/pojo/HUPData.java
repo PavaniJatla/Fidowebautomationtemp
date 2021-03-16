@@ -6,6 +6,9 @@ public class HUPData {
 	private String username;
 	private String password;
 	private String ctn;
+	private String deviceCostIndex;
+	private String dataOptionIndex;
+
 	/**
 	 * @return the newDevice
 	 */
@@ -53,6 +56,30 @@ public class HUPData {
 	 */
 	public void setCtn(String ctn) {
 		this.ctn = ctn;
+	}
+	/**
+	 * @return the DeviceCostIndex
+	 */
+	public String getDeviceCostIndex() {
+		return deviceCostIndex;
+	}
+	/**
+	 * @param deviceCostIndex the DeviceCostIndex to set
+	 */
+	public void setDeviceCostIndex(String deviceCostIndex) {
+		this.deviceCostIndex = deviceCostIndex;
+	}
+	/**
+	 * @return the DataOptionIndex
+	 */
+	public String getDataOptionIndex() {
+		return dataOptionIndex;
+	}
+	/**
+	 * @param dataOptionIndex the DataOptionIndex to set
+	 */
+	public void setDataOptionIndex(String dataOptionIndex) {
+		this.dataOptionIndex = dataOptionIndex;
 	}
 
 }

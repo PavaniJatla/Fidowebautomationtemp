@@ -16,6 +16,9 @@ import java.util.List;
 
 public class FidoBuildPlanPage extends BasePageClass {
 
+	public String xpath;
+	public int stepper;
+
 	public FidoBuildPlanPage(WebDriver driver) {
 		super(driver);		
 	}
@@ -36,10 +39,19 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
+
+	@FindBy(xpath = "//div[contains(text(),'Keep my current plan')]//preceding-sibling::div")
+	WebElement keepMyCurrentPlanButton;
 	
 	//@FindBy(xpath = "//button[@id='step-1-continue-button']")
 	@FindBy(xpath = "//p[contains(text(),'1.')]/ancestor::div[contains(@class,'ds-step__content')]//button[contains(@class,'-primary -large')]")
 	WebElement btnContinueDeviceCost;
+
+	@FindBy(xpath = "//button[contains(@title,'Continue to')]")
+	WebElement deviceBalancePopUp;
+
+	@FindBy(xpath = "//span[contains(text(),'View All Plans')]")
+	WebElement viewAllPlansButton;
 	
 	@FindBy(xpath = "//button[@id='step-2-continue-button' or @data-test='stepper-2-edit-step-continue-button']")
 	WebElement btnContinueDataOption;
@@ -117,6 +129,51 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	@FindBy(xpath = "//img[@alt='Close']")
 	WebElement closeDialogWindow;
+
+	/**
+	 * Creates xpath to select multiple options among device cost, data options, talk options
+	 * @param option is a String value given as input, which helps change xpath value for different options
+	 * @author sidhartha.vadrevu
+	 */
+	public String createXpath(int stepper,String option) {
+		if (stepper == 1 && stepper != 0) {
+			String xpath = "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
+			return xpath;
+		} else if(stepper == 2 && stepper != 0) {
+			String xpath = "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+			return xpath;
+		}
+		return xpath;
+	}
+
+	/**
+	 * Clicks on the 'Keep My Current Plan' button for Device Cost Stepper
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void checkKeepMyCurrentPlanButton() {
+		reusableActions.clickIfAvailable(keepMyCurrentPlanButton, 30);
+	}
+
+	/**
+	 * Selects the xpath according to options provided. Clicks on the 'Continue' button for select your device cost.
+	 * @param deviceCostIndex is a String value given as input, used to fetch required xpath
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkDeviceCost(String deviceCostIndex) {
+		stepper = 1;
+		if (deviceCostIndex != null && !deviceCostIndex.isEmpty()) {
+			String xpathDeviceCost = createXpath(stepper,deviceCostIndex);
+			By deviceCostXpath = By.xpath(xpathDeviceCost);
+			reusableActions.staticWait(5000);
+			reusableActions.clickWhenReady(deviceCostXpath,10);
+			reusableActions.clickWhenReady(btnContinueDeviceCost, 30);
+		} else {
+			String xpathDeviceCost = "//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-0')]/label";
+			reusableActions.staticWait(5000);
+			reusableActions.clickWhenReady(By.xpath(xpathDeviceCost),10);
+			reusableActions.clickWhenReady(btnContinueDeviceCost, 30);
+		}
+	}
 	
 	/**
 	 * Clicks on the 'Continue' button for select your device cost
@@ -125,6 +182,36 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public void clkNoTermTierInDeviceCost() {
 		reusableActions.waitForElementVisibility(lblNoTermTierDeviceCost, 60);
 		reusableActions.clickIfAvailable(lblNoTermTierDeviceCost, 10);
+	}
+
+	/**
+	 * Clicks on the 'Continue' button for Device Balance pop-up
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkDeviceBalancePopUp() {
+		reusableActions.clickIfAvailable(deviceBalancePopUp, 10);
+	}
+
+	/**
+	 * Selects the xpath according to options provided. Clicks on the 'Continue' button for selected data option.
+	 * @param dataOptionIndex is a String value given as input, used to fetch required xpath
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkDataOption(String dataOptionIndex) {
+		reusableActions.clickIfAvailable(viewAllPlansButton, 30);
+		stepper = 2;
+		if (dataOptionIndex != null && !dataOptionIndex.isEmpty()) {
+			String xpathDataOption = createXpath(stepper,dataOptionIndex);
+			By dataOptionXpath = By.xpath(xpathDataOption);
+			reusableActions.staticWait(5000);
+			reusableActions.clickIfAvailable(dataOptionXpath,10);
+			reusableActions.clickWhenReady(btnContinueDataOption, 30);
+		} else {
+			String xpathDataOption = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-0')]/label";
+			reusableActions.staticWait(5000);
+			reusableActions.clickWhenReady(By.xpath(xpathDataOption),10);
+			reusableActions.clickWhenReady(btnContinueDataOption, 30);
+		}
 	}
 	
 	/**
@@ -268,8 +355,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueAddOns() {
-		//reusableActions.waitForElementVisibility(btnContinueAddOns, 60);
-		reusableActions.clickIfAvailable(btnContinueAddOns, 20);
+		reusableActions.waitForElementVisibility(btnContinueAddOns, 20);
+		reusableActions.executeJavaScriptClick(btnContinueAddOns);
 	}
 	
 	/**

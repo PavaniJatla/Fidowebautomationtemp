@@ -795,11 +795,13 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifySuccessfulLogin() {
+		reusableActions.executeJavaScriptClick(driver.findElement(By.xpath("//span[contains(text(),'Account Overview')]")));
 		String strBalance ="";
 		try {
 			//adding static buffers to avoid stale ref error
 			reusableActions.staticWait(5000);			
 //			 reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);
+			//reusableActions.javascriptScrollByVisibleElement(driver.findElement(By.xpath("//div[contains(@class,'ds-price__amountDollars')]")));
 			 strBalance = reusableActions.getWhenReady(By.xpath("//div[contains(@class,'ds-price__amountDollars')]"),90).getText();
 		}catch (StaleElementReferenceException e) {
 //			reusableActions.waitForElementVisibility(getDriver().findElement(By.xpath("//span[@class='account-balance-font-size']")),90);

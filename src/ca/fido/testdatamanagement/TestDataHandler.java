@@ -60,6 +60,9 @@ public class TestDataHandler {
 	public static HUPData tc08Hup;
 	public static PPCData tc09Ppc;
 	public static HUPData tc10HupExistingSubsidy;
+	public static HUPData tc10HupExistingSubsidy1;
+	public static HUPData tc10HupExistingSubsidy2;
+	public static HUPData tc10HupExistingSubsidy3;
 	public static AccountData tc6062;
 	public static AccountData tc002003;
 	public static AccountData tc61;
@@ -178,6 +181,9 @@ public class TestDataHandler {
 		tc08Hup = YamlHandler.getHUPData("tc08Hup");
 		tc09Ppc = YamlHandler.getPPCData("tc09Ppc");
 		tc10HupExistingSubsidy = YamlHandler.getHUPData("tc10HupExistingSubsidy");
+		tc10HupExistingSubsidy1 = YamlHandler.getHUPData("tc10HupExistingSubsidy1");
+		tc10HupExistingSubsidy2 = YamlHandler.getHUPData("tc10HupExistingSubsidy2");
+		tc10HupExistingSubsidy3 = YamlHandler.getHUPData("tc10HupExistingSubsidy3");
 	}
 
 }

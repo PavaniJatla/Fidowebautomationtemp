@@ -16,6 +16,14 @@ public class FidoChoosePhonePage extends BasePageClass {
 		super(driver);		
 	}
 
+	public String strXpathViewDetails;
+
+	@FindBy(xpath = "//span[contains(text(),'UPGRADE')]")
+	WebElement upgradeMyDeviceButton;
+
+	@FindBy(xpath = "//span[contains(text(),'ADD')]")
+	WebElement AddALineButton;
+
 	//@FindBy(xpath = "//div/h1[@id='phonesDevices phonesDevicesFont']")
 	@FindAll({
 		@FindBy(xpath = "//div/h1[contains(@id,'bfa-page-title')]"),
@@ -53,27 +61,60 @@ public class FidoChoosePhonePage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lblDeviceManufacturer,60);
 		reusableActions.executeJavaScriptClick(btnZeroUpfrontDeviceDetails.get(0));
 	}
+
+	/**
+	 * Method is used to create xpath for a particular device using device name
+	 * @param deviceName Name of the Device needed
+	 * @return xpath value of the device as a String
+	 * @author sidhartha.vadrevu
+	 */
+	public String createXpathWithDeviceName(String deviceName) {
+		strXpathViewDetails = "//a[contains(@title,'"+ deviceName +"')]";
+		return strXpathViewDetails;
+	}
+
 	
 	/**
-	 * Selects by clicking on 'Details' button against the device needed
-	 * @param strDeviceName Name of the Device needed
+	 * Selects by clicking on 'View Details' button against the device needed
+	 * @param deviceName Name of the Device needed
 	 * @return true if device found; else false
 	 * @author rajesh.varalli1
 	 */
-	public boolean selectDevice(String strDeviceName) {
-			String strXpathViewDetails = "//span[text()='"+ strDeviceName +"']/ancestor::div[contains(@class,'col-xs-12')]//following-sibling::div[@class='col-xs-12']//button[@class='ute-btn-primary ute-lg']";
+	public boolean selectDevice(String deviceName) {
+			strXpathViewDetails = createXpathWithDeviceName(deviceName);
+			/*String strXpathViewDetails = "//span[text()='"+ strDeviceName +"']/ancestor::div[contains(@class,'col-xs-12')]//following-sibling::div[@class='col-xs-12']//button[@class='ute-btn-primary ute-lg']";
 			//String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='px-24 dsa-nacTile__deviceInfo']//following-sibling::div[@class='pt-16 pb-24 px-24']//span[contains(@class,'ds-button__copy')]";
-			String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='dsa-nacTile__top']//following-sibling::div//a[contains(@class,'-primary -large')]";
+			String strXpathViewDetailsAws = "//p[text()='"+ strDeviceName +"']/ancestor::div[@class='dsa-nacTile__top']//following-sibling::div//a[contains(@class,'-primary -large')]";*/
 			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetails),60)) {
 				reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathViewDetails)));
 				return true;
 			}
-			if(reusableActions.isElementVisible(By.xpath(strXpathViewDetailsAws),60)) {
+			/*if(reusableActions.isElementVisible(By.xpath(strXpathViewDetailsAws),60)) {
 				reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathViewDetailsAws)));
 				return true;
-			}
+			}*/
+		/*return false;*/
 		return false;
 	}
+
+	/**
+	 * Method is used to select Upgrade My Device button
+	 * @author sidhartha.vadrevu
+	 */
+	public void selectUpgradeMyDeviceButton() {
+		reusableActions.waitForElementVisibility(upgradeMyDeviceButton);
+		reusableActions.clickIfAvailable(upgradeMyDeviceButton,10);
+	}
+
+	/**
+	 * Method is used to select Add a Line Button
+	 * @author sidhartha.vadrevu
+	 */
+	public void selectAddALineButton() {
+		reusableActions.waitForElementVisibility(AddALineButton);
+		reusableActions.clickIfAvailable(AddALineButton,10);
+	}
+
 	
 	/**
 	 * Selects the Subscriber on the Choose a line overlay and clicks Continue

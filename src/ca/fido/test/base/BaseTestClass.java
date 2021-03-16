@@ -436,6 +436,9 @@ public class BaseTestClass {
 				}else if(currentTestMethodName.getName().contains("NAC")){
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				}else if(currentTestMethodName.getName().contains("_Alternate")){
+					getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
+					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else{
 					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
