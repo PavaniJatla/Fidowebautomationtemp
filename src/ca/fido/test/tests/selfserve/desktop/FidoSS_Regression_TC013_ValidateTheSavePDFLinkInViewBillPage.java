@@ -31,8 +31,8 @@ public class FidoSS_Regression_TC013_ValidateTheSavePDFLinkInViewBillPage  exten
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Login Frame Page");
-		getFidologinpage().setUsernameInFrame(TestDataHandler.tc13.getUsername());
-		getFidologinpage().setPasswordInFrame(TestDataHandler.tc13.getPassword());
+		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(),

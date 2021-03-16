@@ -48,7 +48,7 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page.");
-		String oldCTN=getFidoaccountoverviewpage().getCTNUsers().get("CTN1").split("\n")[1];
+		String oldCTN=getFidoaccountoverviewpage().getCTNUsers().get("CTN1").replaceAll(" ", "").replaceAll("-", "");
 		String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
 		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);	
 		getReporter().reportLogWithScreenshot("Clicked on Wireless badge");

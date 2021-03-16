@@ -50,7 +50,9 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 			getFidosetpasswordpage().switchToSetPasswordTab(2);
 			getFidosetpasswordpage().clkBtnSetPasswordInEmail();
 			String strPassword = "DigiAuto@123";
-			//getFidosetpasswordpage().switchToSetPasswordTab(3);
+			getFidosetpasswordpage().switchToSetPasswordTab(3);
+			getFidosetpasswordpage().clkSetPassword();
+			getFidosetpasswordpage().switchToSetPasswordTab(4);
 			getFidosetpasswordpage().setPassword(strPassword);
 			getFidosetpasswordpage().setConfirmPassword(strPassword);
 			getReporter().reportLogWithScreenshot("Set password page.");
@@ -66,14 +68,18 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 			getReporter().reportLogWithScreenshot(e.getMessage());
 		}
 		getFidosetpasswordpage().clkBtnGotoOverview();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifyEmailInSignInAsLink(TestDataHandler.fidoHSIRegisterAccount.getaccountDetails().getEmail()),
-				"Registered email matches the name in Sign In As",
-				"Registered email doesn't match the name in Sign In As");
+		getFidologinpage().switchToSignInFrame();
+		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
+		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
+		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
+		getReporter().reportLogWithScreenshot("Entered the account credentials");
+		getFidologinpage().clkLoginInFrame();
+		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
+		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Registration success, login success.",
 				"Didn't successfully login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
-
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
@@ -84,6 +90,6 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() throws InterruptedException {
-		//closeSession();
+		closeSession();
 	}
 }
