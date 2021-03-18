@@ -22,8 +22,8 @@ public class Fido_BFA_TC14_HUPWithPPCUsingFinancePlanStandardShipping_Test exten
         getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();
         getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc10HupExistingSubsidy3.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc10HupExistingSubsidy3.getPassword());
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
@@ -35,7 +35,7 @@ public class Fido_BFA_TC14_HUPWithPPCUsingFinancePlanStandardShipping_Test exten
         getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
         getDriver().get(System.getProperty("AWSUrl"));
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc10HupExistingSubsidy3.getNewDevice();
+        String deviceName = TestDataHandler.tc14HupPpcFinancingStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
         getFidochoosephonepage().selectUpgradeMyDeviceButton();
@@ -44,12 +44,12 @@ public class Fido_BFA_TC14_HUPWithPPCUsingFinancePlanStandardShipping_Test exten
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        String deviceCostIndex = TestDataHandler.tc10HupExistingSubsidy3.getDeviceCostIndex();
+        String deviceCostIndex = TestDataHandler.tc14HupPpcFinancingStandardShipping.getDeviceCostIndex();
         getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        String dataOptionIndex = TestDataHandler.tc10HupExistingSubsidy3.getDataOptionIndex();
+        String dataOptionIndex = TestDataHandler.tc14HupPpcFinancingStandardShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
@@ -58,9 +58,8 @@ public class Fido_BFA_TC14_HUPWithPPCUsingFinancePlanStandardShipping_Test exten
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        getFidoCheckOutPage().clkShippingType("EXPRESS");
+        getFidoCheckOutPage().clkShippingType("STANDARD");
         getReporter().reportLogWithScreenshot("Shipping selected");
-        getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();

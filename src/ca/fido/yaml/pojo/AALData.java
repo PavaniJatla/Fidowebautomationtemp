@@ -9,6 +9,8 @@ public class AALData {
 	private String ctnCity;
 	private String ctn;
 	private String newPlanType;
+	private String deviceCostIndex;
+	private String dataOptionIndex;
 	
 	
 	/**
@@ -82,6 +84,30 @@ public class AALData {
 	}
 	public void setNewPlanType(String newPlanType) {
 		this.newPlanType = newPlanType;
+	}
+	/**
+	 * @return the DeviceCostIndex
+	 */
+	public String getDeviceCostIndex() {
+		return deviceCostIndex;
+	}
+	/**
+	 * @param deviceCostIndex the DeviceCostIndex to set
+	 */
+	public void setDeviceCostIndex(String deviceCostIndex) {
+		this.deviceCostIndex = deviceCostIndex;
+	}
+	/**
+	 * @return the DataOptionIndex
+	 */
+	public String getDataOptionIndex() {
+		return dataOptionIndex;
+	}
+	/**
+	 * @param dataOptionIndex the DataOptionIndex to set
+	 */
+	public void setDataOptionIndex(String dataOptionIndex) {
+		this.dataOptionIndex = dataOptionIndex;
 	}
 	
 }

@@ -22,7 +22,7 @@ public class FidoChoosePhonePage extends BasePageClass {
 	WebElement upgradeMyDeviceButton;
 
 	@FindBy(xpath = "//span[contains(text(),'ADD')]")
-	WebElement AddALineButton;
+	WebElement addALineButton;
 
 	//@FindBy(xpath = "//div/h1[@id='phonesDevices phonesDevicesFont']")
 	@FindAll({
@@ -111,8 +111,8 @@ public class FidoChoosePhonePage extends BasePageClass {
 	 * @author sidhartha.vadrevu
 	 */
 	public void selectAddALineButton() {
-		reusableActions.waitForElementVisibility(AddALineButton);
-		reusableActions.clickIfAvailable(AddALineButton,10);
+		reusableActions.waitForElementVisibility(addALineButton);
+		reusableActions.clickIfAvailable(addALineButton,10);
 	}
 
 	

@@ -52,8 +52,11 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement btnLogIn;
 
 	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]")
+	WebElement iconClose;
+
+	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]")
 	WebElement btnSkip;
-	
+
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
 	WebElement btnLoginWithFb;
 	
@@ -90,7 +93,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setUsernameInFrame(String strUsername) {
-		reusableActions.getWhenReady(txtUsername,90).clear();
+		//reusableActions.getWhenReady(txtUsername,90).clear();
+		reusableActions.executeJavaScriptClick(txtUsername);
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
@@ -182,15 +186,22 @@ public class FidoLoginPage extends BasePageClass {
 	public boolean verifyIfErrorMsgIsDisplayedInFrame() {
 		return reusableActions.isElementVisible(lblErrorMsg);
 	}
-	
+
+	/**
+	 * Clicks on close icon on Login modal
+	 * @author sidhartha.vadrevu
+	 */
+	public void clickCloseIcon() {
+		reusableActions.clickIfAvailable(iconClose, 50);
+	}
+
 	/**
 	 * Switch out of SignIn iframe
 	 * @author ning.xue
 	 */
-	public void switchOutOfSignInFrame() {	
+	public void switchOutOfSignInFrame() {
 		reusableActions.clickIfAvailable(btnSkip, 30);
-		driver.switchTo().defaultContent();	
-
+		driver.switchTo().defaultContent();
 	}
 	
 	/**

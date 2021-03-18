@@ -18,9 +18,9 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void hupWithPPC_AlternateLoginUsingNoTermPlanStandardShippingFlowTest() {
+    public void hupWithPPC_AlternatLoginUsingNoTermPlanStandardShippingFlowTest() {
         // **************************Regular Login Flow**************************************
-/*        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded(), "Home page loaded successfully", "Home page not loaded successfully");
+        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded(), "Home page loaded successfully", "Home page not loaded successfully");
         getFidohomepage().clkLogin();
         getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc10HupExistingSubsidy.getUsername());
@@ -30,51 +30,44 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-*//*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*//*
-        getDriver().get(System.getProperty("AWSUrl"));*/
+        getDriver().get(System.getProperty("AWSUrl"));
         // **************************Alternate Login*****************************************
-        getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc10HupExistingSubsidy.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc10HupExistingSubsidy.getPassword());
+/*        getFidologinpage().switchToSignInFrame();
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();
-/*        getDriver().get("https://qa1.fido.ca/self-serve/overview");
-        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-        getReporter().reportLogWithScreenshot("Overview Page");
-        getDriver().get("https://qa1.fido.ca/phones");*/
+        getFidologinpage().switchOutOfSignInFrame();*/
         // **********************************************************************************
         getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose phone page loaded successfully", "Choose phone page not loaded successfully");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc10HupExistingSubsidy1.getNewDevice();
+        String deviceName = TestDataHandler.tc12HupPpcNoTermStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
         // **************************Regular Login Flow**************************************
-       /* getFidochoosephonepage().selectUpgradeMyDeviceButton();
-        getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");*/
+        getFidochoosephonepage().selectUpgradeMyDeviceButton();
+        getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
         // **********************************************************************************
         getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(), "Page loading fine", "Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
         getFidobuildplanpage().checkKeepMyCurrentPlanButton();
-        String deviceCostIndex = TestDataHandler.tc10HupExistingSubsidy1.getDeviceCostIndex();
+        String deviceCostIndex = TestDataHandler.tc12HupPpcNoTermStandardShipping.getDeviceCostIndex();
         getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        String dataOptionIndex = TestDataHandler.tc10HupExistingSubsidy1.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
+        /*String dataOptionIndex = TestDataHandler.tc12HupPpcNoTermStandardShipping.getDataOptionIndex();
+        getFidobuildplanpage().clkDataOption(dataOptionIndex);*/
+/*        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");*/
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
-        getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage(), "Shipping label displayed", "Shipping label not displayed");
+        getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
+        getFidoCheckOutPage().clkShippingType("STANDARD");
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
@@ -84,7 +77,14 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
-        getReporter().reportLogPass("Submit button selected");
+        getReporter().reportLogPass("Submit button selected on review page");
+        getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+        getFidopaymentpage().setCreditCardName();
+        getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
+        getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());
+        getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
+        getReporter().reportLogWithScreenshot("OneTime payment page displayed before submitting");
+        getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
         getReporter().reportLogWithScreenshot("Order Confirmation page");

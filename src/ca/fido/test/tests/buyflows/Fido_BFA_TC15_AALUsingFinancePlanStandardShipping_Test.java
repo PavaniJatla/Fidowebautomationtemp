@@ -13,20 +13,19 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping_Test extends BaseTestClass {
-
+public class Fido_BFA_TC15_AALUsingFinancePlanStandardShipping_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void hupWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
-        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded(), "Home page loaded successfully", "Home page not loaded successfully");
+    @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
+    public void aALUsingFinancePlanStandardShippingFlowTest() {
+        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();
         getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getPassword());
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc07AalTerm.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc07AalTerm.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
@@ -38,33 +37,29 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
         getDriver().get(System.getProperty("AWSUrl"));
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getNewDevice();
+        String deviceName = TestDataHandler.tc07AalTerm.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        getFidochoosephonepage().selectUpgradeMyDeviceButton();
-        getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
-        String ctn = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getCtn();
-        getFidodeviceconfigpage().selectSubscriber(ctn);
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(), "Page loading fine", "Page is not loading");
+        getFidochoosephonepage().selectAddALineButton();
+        getReporter().reportLogPassWithScreenshot("Add a Line Button Selected");
+        getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
+        getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        getFidobuildplanpage().checkKeepMyCurrentPlanButton();
-        getReporter().reportLogWithScreenshot("Keep My Current Plan checkbox is checked");
-        String deviceCostIndex = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getDeviceCostIndex();
+        String deviceCostIndex = TestDataHandler.tc07AalTerm.getDeviceCostIndex();
         getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        /*String dataOptionIndex = TestDataHandler.tc10HupExistingSubsidy1.getDataOptionIndex();
+        String dataOptionIndex = TestDataHandler.tc07AalTerm.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");*/
+        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
-        getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage(), "Shipping label displayed", "Shipping label not displayed");
+        getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         getFidoCheckOutPage().clkShippingType("EXPRESS");
         getReporter().reportLogWithScreenshot("Shipping selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
