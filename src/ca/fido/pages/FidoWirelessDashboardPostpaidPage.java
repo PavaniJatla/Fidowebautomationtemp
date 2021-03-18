@@ -377,6 +377,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Thanks for bringing your device' or text()='Merci d’avoir apporté votre appareil']")
 	WebElement msgMyDeviceThanks;
 
+	@FindBy(xpath = "//span[@class='device-balance d-flex flex-column']//div[@class='ds-price']")
+	WebElement txtDeviceRemainingBalance;
+
+	@FindBy(xpath = "//span[@class='ss-device-name pr-sm-8 ng-star-inserted']")
+	WebElement txtDeviceName;
+
+	@FindBy(xpath = "//strong[@class='ng-star-inserted']")
+	WebElement txtSubsidyEndDate;
+
 	
 	/**
 	 * Clicks on the add data button for demoline accounts only
@@ -1558,4 +1567,46 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		return reusableActions.isElementVisible(lnkGetANewDevice, 60);
 
 	}
+
+	/**
+	 * checks if the Device remaining balance exits
+	 * @return true if the amount is displayed else false
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyDeviceRemainingExists() {
+
+		String deviceBalance = txtDeviceRemainingBalance.getAttribute("aria-label").replaceAll("[^0-9\\.," +
+				"]", "").replace(",", ".");
+
+		return deviceBalance.contains("$");
+	}
+
+    /**
+     * Verify the 'UPGRADE DEVICE' button Exists
+     * @author Rohit.Kumar
+     */
+    public boolean verifyUpgradeDeviceButtonExists() {
+
+        return reusableActions.isElementVisible(btnUpgradeDevice, 60);
+    }
+
+	/**
+	 * Verify the device name Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyDeviceNameExists() {
+
+		return reusableActions.isElementVisible(txtDeviceName, 60);
+	}
+
+	/**
+	 * Verify the Subsidy End Date Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifySubsidyEndDateExists() {
+
+		return reusableActions.isElementVisible(txtSubsidyEndDate, 60);
+	}
+
+
 }
