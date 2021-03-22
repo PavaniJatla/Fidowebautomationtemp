@@ -216,9 +216,9 @@ public void clkContinue() {
 public void setHomeAddress(String homeAddress) {
 	reusableActions.getWhenReady(txtHomeAddress, 10).click();
 	reusableActions.getWhenReady(lblTxtHomeAddress, 10).sendKeys(homeAddress);
-	reusableActions.staticWait(3000);
+	//reusableActions.staticWait(3000);
 	reusableActions.executeJavaScriptClick(lblAddressResult);
-	reusableActions.staticWait(3000);
+	//reusableActions.staticWait(3000);
 }
 
 }

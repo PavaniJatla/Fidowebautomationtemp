@@ -70,6 +70,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']")
 	WebElement btnContinueAddOns;
+
+	@FindBy(xpath = "//span[contains(text(),'CONTINUE')]")
+	WebElement callerIDContinue;
 	
 	@FindBy(xpath = "//span[@translate='createAccount']/parent::button")
 	WebElement btnCreateAnAccount;
@@ -350,6 +353,17 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.clickIfAvailable(btnContinueTalkOptions, 30);
 	}
 	
+	/**
+	 * Clicks on the 'Continue' button after giving first name and last name details
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkContinueCallerID() {
+        enterFirstName();
+        enterSecondName();
+		reusableActions.waitForElementVisibility(callerIDContinue, 20);
+		reusableActions.executeJavaScriptClick(callerIDContinue);
+	}
+
 	/**
 	 * Clicks on the 'Continue' button for select addons for new Page
 	 * @author Saurav.Goyal

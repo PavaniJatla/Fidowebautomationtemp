@@ -13,6 +13,9 @@ public class FidoOrderReviewPage extends BasePageClass {
 	public FidoOrderReviewPage(WebDriver driver) {
 		super(driver);		
 	}
+
+	@FindBy(xpath="(//ds-price[contains(@class,'d-inline-flex text-left ng-star-inserted')])[3]/div")
+	WebElement oneTimePaymentPrice;
 	
 	//@FindBy(xpath="//div[contains(@class,'agreement-checkbox')")
 	//@FindBy(xpath="//div[contains(@class,'terms-checkbox')]")

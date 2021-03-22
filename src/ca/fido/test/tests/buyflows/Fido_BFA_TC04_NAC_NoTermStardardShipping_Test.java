@@ -34,11 +34,15 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
-		getFidobuildplanpage().clkNoTermTierInDeviceCost();
+		//getFidobuildplanpage().clkNoTermTierInDeviceCost();
+		String deviceCostIndex = TestDataHandler.tc04NoTermStandardShipping.getDeviceCostIndex();
+		getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
 		getReporter().reportLogPass("No Term Tier selected in the Device cost");
-		getFidobuildplanpage().clkContinueDeviceCost();
+		//getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkContinueDataOption();
+		//getFidobuildplanpage().clkContinueDataOption();
+		String dataOptionIndex = TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex();
+		getFidobuildplanpage().clkDataOption(dataOptionIndex);
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
@@ -110,9 +114,9 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		startSession(System.getProperty("AWSUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
-	@AfterMethod(alwaysRun = true)
+/*	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
 		closeSession();
-	}
+	}*/
 
 }

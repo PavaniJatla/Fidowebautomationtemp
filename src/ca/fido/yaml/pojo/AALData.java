@@ -11,6 +11,7 @@ public class AALData {
 	private String newPlanType;
 	private String deviceCostIndex;
 	private String dataOptionIndex;
+	private String cityName;
 	
 	
 	/**
@@ -109,5 +110,17 @@ public class AALData {
 	public void setDataOptionIndex(String dataOptionIndex) {
 		this.dataOptionIndex = dataOptionIndex;
 	}
-	
+	/**
+	 * @return the CityName
+	 */
+	public String getCityName() {
+		return cityName;
+	}
+	/**
+	 * @param cityName the CityName to set
+	 */
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
 }

@@ -35,7 +35,7 @@ public class Fido_BFA_TC15_AALUsingFinancePlanStandardShipping_Test extends Base
         getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
         getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
         getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        getDriver().get(System.getProperty("AWSUrl"));
+        getDriver().get(System.getProperty("AWSUrl") + "/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc07AalTerm.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
@@ -57,12 +57,16 @@ public class Fido_BFA_TC15_AALUsingFinancePlanStandardShipping_Test extends Base
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
+        getFidobuildplanpage().clkContinueCallerID();
+        getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        String cityName = TestDataHandler.tc07AalTerm.getCityName();
+        getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
+        getReporter().reportLogWithScreenshot("City Name and available phone number selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        getFidoCheckOutPage().clkShippingType("EXPRESS");
+        getFidoCheckOutPage().clkShippingType("STANDARD");
         getReporter().reportLogWithScreenshot("Shipping selected");
-        getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
