@@ -386,7 +386,40 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//strong[@class='ng-star-inserted']")
 	WebElement txtSubsidyEndDate;
 
-	
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']/div/span[2]")
+	WebElement txtActivationDate;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[2]//span[2]")
+	WebElement txtFidoPaymentProgramBalance;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[3]/div//div[1]")
+	WebElement txtFidoProgramBalanceTotal;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[3]/div[2]//div")
+	WebElement txtFidoProgramBalanceBase;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[3]/div[3]//div")
+	WebElement txtFidoProgramBalanceTax;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[4]/div//div[1]")
+	WebElement txtTotalMonthlyFidoProgramPayment;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[4]/div[2]//div")
+	WebElement txtMonthlyFidoProgramPayment;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[4]/div[3]//div")
+	WebElement txtMonthlyFinancedTaxes;
+
+	@FindBy(xpath = "//div[@class='ss-device-detail-modal']//div[4]/div[4]/span[2]")
+	WebElement txtMonthsRemaining;
+
+	@FindBy(xpath = "//button[@id='ds-accordion-panel-0-heading-0']")
+	WebElement FidoPaymentProgramDetailsHeader;
+
+	@FindBy(xpath = "//div[@id='ds-accordion-panel-0-body-0']//p")
+	WebElement FidoPaymentProgramDetailsHeaderParagraph;
+
+
 	/**
 	 * Clicks on the add data button for demoline accounts only
 	 * @author Mirza.Kamran
@@ -1607,6 +1640,125 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 
 		return reusableActions.isElementVisible(txtSubsidyEndDate, 60);
 	}
+
+//////
+
+	/**
+	 * click Fido Payment Program Details Link
+	 * @author Rohit.Kumar
+	 */
+	public void ClickFidoPaymentProgramDetailsLink() {
+
+		reusableActions.waitForElementTobeClickable(lnkViewFidoPaymentProgramDetails, 240);
+		reusableActions.clickWhenReady(lnkViewFidoPaymentProgramDetails);
+	}
+
+
+	/**
+	 * Verify the Activation Date Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyActivationDateExists() {
+
+		return reusableActions.isElementVisible(txtActivationDate, 60);
+	}
+
+
+	/**
+	 * Verify Fido Payment Program Balance Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyFidoPaymentProgramBalanceExists() {
+
+		return reusableActions.isElementVisible(txtFidoPaymentProgramBalance, 60);
+	}
+
+
+	/**
+	 * Verify Fido Payment Program Balance Total Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyFidoPaymentProgramBalanceTotalExists() {
+
+		return reusableActions.isElementVisible(txtFidoProgramBalanceTotal, 60);
+	}
+
+	/**
+	 * Verify Fido Payment Program Balance Base Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyFidoPaymentProgramBalanceBaseExists() {
+
+		return reusableActions.isElementVisible(txtFidoProgramBalanceBase, 60);
+	}
+
+	/**
+	 * Verify Fido Payment Program Balance Tax Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyFidoPaymentProgramBalanceTaxExists() {
+
+		return reusableActions.isElementVisible(txtFidoProgramBalanceTax, 60);
+	}
+
+
+	/**
+	 * Verify Fido Total Monthly Payment Program Payment Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyTotalMonthlyFidoPaymentProgramPaymentExists() {
+
+		return reusableActions.isElementVisible(txtTotalMonthlyFidoProgramPayment, 60);
+	}
+
+	/**
+	 * Verify Fido Monthly Payment Program Payment Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyMonthlyFidoPaymentProgramPaymentExists() {
+
+		return reusableActions.isElementVisible(txtMonthlyFidoProgramPayment, 60);
+	}
+
+
+	/**
+	 * Verify Fido Monthly Financed Tax Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyMonthlyFinancedTaxesExists() {
+
+		return reusableActions.isElementVisible(txtMonthlyFinancedTaxes, 60);
+	}
+
+	/**
+	 * Verify Fido Months Remaining Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyMonthRemainingExists() {
+
+		return reusableActions.isElementVisible(txtMonthsRemaining, 60);
+	}
+
+	/**
+	 * click Fido Payment Program Details Header
+	 * @author Rohit.Kumar
+	 */
+	public void ClickFidoPaymentProgramDetails() {
+
+		reusableActions.waitForElementTobeClickable(FidoPaymentProgramDetailsHeader, 240);
+		reusableActions.clickWhenReady(FidoPaymentProgramDetailsHeader);
+	}
+
+
+	/**
+	 * Verify Legal Copy for Financing Program Exists
+	 * @author Rohit.Kumar
+	 */
+	public boolean verifyLegalCopyForFinancialProgramExists() {
+
+		return reusableActions.isElementVisible(FidoPaymentProgramDetailsHeaderParagraph, 60);
+	}
+
 
 
 }

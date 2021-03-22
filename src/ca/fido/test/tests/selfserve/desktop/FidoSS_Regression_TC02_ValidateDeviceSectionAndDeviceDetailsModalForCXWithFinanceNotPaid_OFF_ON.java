@@ -67,23 +67,78 @@ public class FidoSS_Regression_TC02_ValidateDeviceSectionAndDeviceDetailsModalFo
                 "My Device section is visible",
                 "My Device section is not visible");
 
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isPaymentProgramBalanceVisible(),
+                "The Remaining Fido Payment Program balance is visible",
+                "The Remaining Fido Payment Program balance is Not visible");
+
+
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDeviceRemainingExists(),
-                "The balance remaining exists",
-                "The balance remaining does not exist");
-
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyUpgradeDeviceButtonExists(),
-                "Upgrade My Device Button Exists",
-                "Upgrade My Device Button Does Not Exist");
-
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().verifyDeviceNameExists(),
-                "The Device Name Exists",
-                "The Device Name Does Not Exist");
-
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().verifySubsidyEndDateExists(),
-                "The Subsidy End date Exists",
-                "The Subsidy End date Does Not Exist");
+                "The Monthly balance remaining exists",
+                "The Monthly balance remaining Does Not exist");
 
 
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isPaymentAgreementStartDateVisible(),
+                "Fido Payment Program agreement start date is Visible",
+                "Fido Payment Program agreement start date is Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isPaymentAgreementEndDateVisible(),
+                "Fido Payment Program agreement end date is visible",
+                "Fido Payment Program agreement end date not visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isViewFidoPaymentProgramDetailsLinkVisible(),
+                "View Fido Payment Program Details Link is Visible",
+                "View Fido Payment Program Details Link is Not Visible");
+
+
+        getFidowirelessdashboardpostpaidpage().ClickFidoPaymentProgramDetailsLink();
+
+        getReporter().reportLogWithScreenshot("Fido Payment Program Details Loaded");
+
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyActivationDateExists(),
+                "Activation Date is Visible",
+                "Activation Date is Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyFidoPaymentProgramBalanceExists(),
+                "Payment Program Balance is Visible",
+                "Payment Program Balance is  Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyFidoPaymentProgramBalanceTotalExists(),
+                "Fido Payment Program Balance is Visible",
+                "Fido Payment Program Balance is  Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyFidoPaymentProgramBalanceBaseExists(),
+                "Fido Payment Program Balance Base is Visible",
+                "Fido Payment Program Balance Base is  Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyFidoPaymentProgramBalanceTaxExists(),
+                "Fido Payment Program Balance Tax is Visible",
+                "Fido Payment Program Balance Tax is  Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalMonthlyFidoPaymentProgramPaymentExists(),
+                "Fido Total Monthly Payment Program Payment is Visible",
+                "Fido Total Monthly Payment Program Payment Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMonthlyFidoPaymentProgramPaymentExists(),
+                "Fido Monthly Payment Program Payment is Visible",
+                "Fido Monthly Payment Program Payment Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMonthlyFinancedTaxesExists(),
+                "Fido Monthly Financed Taxes is Visible",
+                "Fido Monthly Financed Taxes is Not Visible");
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMonthRemainingExists(),
+                "Fido Monthly Remaining is Visible",
+                "Fido Monthly Remaining is Not Visible");
+
+
+        getFidowirelessdashboardpostpaidpage().ClickFidoPaymentProgramDetails();
+
+        getReporter().reportLogWithScreenshot("Fido Payment Program Details Legal Copy");
+        
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyLegalCopyForFinancialProgramExists(),
+                "Legal Copy for Financial is Visible",
+                "Legal Copy for Financial  is Not Visible");
     }
 
 
