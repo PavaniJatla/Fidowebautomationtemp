@@ -22,6 +22,7 @@ void toolSh(String command) {
     }
 }
 def REPORT_URL= "https://qa1.rogers.com/Digital-QE/"
+def readProp;
 pipeline {
     agent {
         kubernetes {
@@ -38,7 +39,12 @@ pipeline {
         string(name: 'Groups', defaultValue: "", description: 'Groups names separated by comma')
         string(name: 'TestProfile', defaultValue: "DefaultProfile", description: 'Only used for reporting - has no impact on test runs')
         string(name: 'IndividualTests', defaultValue: "", description: "Individual tests to be passed as Test1 Test2 Test3 Test4 and so on ")
-
+        string(name: 'PageLoadStrategy', defaultValue: "NORMAL", description: "Give the strategy as NORMAL , EAGER or NONE")
+        string(name: 'QaUrl', defaultValue: "", description: "Test QA URL Link")
+        string(name: 'SSPUrl', defaultValue: "", description: "SSP URL")
+        string(name: 'AWSUrl', defaultValue: "", description: "BFA AWS URL")
+        string(name: 'AWSBYODUrl', defaultValue: "", description: "BFA AWS BYOD URL")
+        string(name: 'EnsUrl', defaultValue: "", description: "ENS URL Link")
     }
 
     triggers {
@@ -88,12 +94,42 @@ pipeline {
                 stage('Regression Tests') {
                       steps {
                         script {
-
+                            readProp = readProperties file: 'gradle.properties';
+                            String urlLink="";
+                            //${params.QaUrl}  -- parameter is from Jenkins
+                            //${readProp.test_qaURL}  -- parameter is from gradle.properties
+                            if(!params.QaUrl.isEmpty()){
+                                if (params.QaUrl.toUpperCase().contains("FIDO")) {
+                                     if (!params.QaUrl.contains("qa1.")  && !params.QaUrl.contains("qa5.")  && !params.QaUrl.contains("qa6.")  && !params.QaUrl.contains("qa7.") && !params.QaUrl.contains("qa2.") && !params.QaUrl.contains("qa3.") && !params.QaUrl.contains("qa4.") ) {
+                                            error "Invalid cookie domain url provided. We only accept QAURL from QA 1 to QA7. Please correct it."
+                                     }
+                                }
+                                urlLink = urlLink + "-Ptest_qaURL=${params.QaUrl}";
+                            }
+                            if(!params.SSPUrl.isEmpty()){
+                                urlLink = urlLink + "-Ptest_sspURL=${params.SSPUrl}";
+                            }
+                            if(!params.AWSUrl.isEmpty()){
+                                urlLink = urlLink + "-Ptest_awsURL=${params.AWSUrl}";
+                            }
+                            if(!params.AWSBYODUrl.isEmpty()){
+                                urlLink = urlLink + "-Ptest_awsBYODURL=${params.AWSBYODUrl}";
+                            }
+                            if(!params.EnsUrl.isEmpty()){
+                                urlLink = urlLink + "-Ptest_ensURL=${params.EnsUrl}";
+                            }
                             if(params.IndividualTests.isEmpty())
-                                toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
+                                if(urlLink.isEmpty()){
+                                    toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
+                                 }else{
+                                    toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} -Ptest_groupName='${params.Groups}' -Ptest_threadCount=${params.ThreadCount} ${urlLink} -i --stacktrace"
+                                 }
                             else
-                                toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} ${generateTestString(params.IndividualTests)} -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
-
+                                if(urlLink.isEmpty()){
+                                    toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} ${generateTestString(params.IndividualTests)} -Ptest_threadCount=${params.ThreadCount} -i --stacktrace"
+                                }else{
+                                    toolSh "gradle sauceTest -Ptest_browser=${params.Browser} -Ptest_language=${params.Language} ${generateTestString(params.IndividualTests)} -Ptest_threadCount=${params.ThreadCount} ${urlLink} -i --stacktrace"
+                                }
                         }
                     }
                     post {
