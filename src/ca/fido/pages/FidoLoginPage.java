@@ -59,8 +59,11 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
 	WebElement btnLoginWithFb;
-	
-	@FindBy(xpath = "//img[@src='assets/images/icon-register.png']//parent::i")
+
+	@FindAll(
+			{
+	@FindBy(xpath = "//span[text()='Register' or contains(text(),'inscrire')]"),
+	@FindBy(xpath = "//img[@src='assets/images/icon-register.png']//parent::i")})
 	WebElement lnkregister;
 	
 	@FindBy (xpath = "//a[@class='recovery-btn-back']")

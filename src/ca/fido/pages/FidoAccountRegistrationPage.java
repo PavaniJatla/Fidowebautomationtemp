@@ -3,6 +3,7 @@ package ca.fido.pages;
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class FidoAccountRegistrationPage extends BasePageClass {
@@ -105,6 +106,115 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	
 	@FindBy (xpath = "//ins[contains(text(),'Okay')]")
 	WebElement btnPrepaidOkay;
+
+
+	// new registration and recovery flows
+
+	@FindBy (xpath = "//input[@formcontrolname='email']")
+	WebElement txtEmailAddress;
+
+	@FindBy (xpath = "//input[@formcontrolname='email']/parent::div")
+	WebElement lblEmailAddress;
+
+
+	@FindAll({
+			@FindBy(xpath = "//span[contains(text(),'Continue') or contains(text(),'Continuer')]/ancestor::button"),
+			@FindBy (xpath = "//button[contains(text(),'Continue') or contains(text(),'Continuer')]"),
+			@FindBy (xpath = "//button[@class='primary-button state-btn']")
+	})
+	WebElement btnContinue;
+
+	@FindBy (xpath = "//div[@class='email-recovery-method']/button")
+	WebElement btnEmailNow;
+
+	@FindBy (xpath = "//div[@class='sms-recovery-method']/button")
+	WebElement btnTextNow;
+
+	@FindBy (xpath = "//input[@formcontrolname='smsCode']")
+	WebElement txtCode;
+
+	@FindBy (xpath = "//button[@class='primary-button state-btn']")
+	WebElement btnVerifyMe;
+
+	@FindBy (xpath = "//input[@formcontrolname='newPassword']")
+	WebElement txtNewPass;
+
+
+	@FindBy (xpath = "//input[@formcontrolname='newPassword']/parent::div")
+	WebElement lblNewPass;
+
+
+	@FindBy (xpath = "//input[@formcontrolname='confirmPassword']")
+	WebElement txtConfirmNewPass;
+
+	@FindBy (xpath = "//input[@formcontrolname='confirmPassword']/parent::div")
+	WebElement lblConfirmNewPass;
+
+	@FindBy (xpath = "//button[contains(text(),'Set password') or contains(text(),'de passe')]")
+	WebElement btnSetPassword;
+
+	@FindBy(xpath = "//button[contains(text(),'Text to') or contains(text(),'texte')]")
+	WebElement btnTextToRecovery;
+
+	@FindBy(xpath = "//*[@id='signin-interceptor-modal']//iframe")
+	WebElement iframe;
+
+	@FindBy(xpath = "//button[text()='Sign in to MyRogers' or text()='Accéder à MonRogers']")
+	WebElement btnLogInToMyAccount;
+
+	@FindBy(xpath = "//span[text()='Your password has been reset!' or text()='Votre mot de passe a été réinitialisé.']")
+	WebElement txtYourPasswordHasBeenReset;
+
+	@FindBy(xpath = "//i[@class='rogers-icon-circle-x']")
+	WebElement btnCloseWeHaveTextedUserNameOverlay;
+
+	@FindBy(xpath = "//input[@formcontrolname='accountNumber']")
+	WebElement txtAcountNumber;
+
+	@FindAll({
+			@FindBy (xpath = "//*[contains(text(),'username is') or contains(text(),'Votre nom d’utilisateur est')]/parent::tr/following-sibling::tr/td"),
+			@FindBy (xpath = "/html/body/table[1]//b[contains(text(),'Your username is') or contains(text(),'Votre nom d’utilisateur est')]/parent::td")})
+	WebElement lblYourUsername;
+
+	@FindBy (xpath = "/html/body/table[1]//img[@alt='Return to sign in' or @alt='Ouvrir une session']")
+	WebElement btnReturnToSignin;
+
+	@FindBy(xpath = "//a[text()='Use your account information instead.'or contains(text(),'t les renseignements de votre compte')]")
+	WebElement lnkUseYourAccountInfoInstead;
+
+	@FindBy(xpath = "//input[@formcontrolname='accountNumber']/parent::div")
+	WebElement lblAccountNumber;
+
+	@FindBy(xpath = "//input[@formcontrolname='postalCode']/parent::div")
+	WebElement lblPostCode;
+
+	@FindBy(xpath = "//input[@formcontrolname='postalCode']")
+	WebElement txtPostCode;
+
+	@FindBy(xpath = "//input[@formcontrolname='dob']/parent::div")
+	WebElement lblDOB;
+
+	@FindBy(xpath = "//input[@formcontrolname='dob']")
+	WebElement txtDOB;
+
+	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
+	WebElement inputCode;
+
+	@FindBy(xpath = "//span[text()='Create a new MyRogers password for ' or contains(text(),'ez un nouveau mot de passe MonRogers pour')]/following-sibling::span")
+	WebElement lblSetPasswordForUserName;
+
+	@FindBy(xpath = "//h1//span[text()='Success!' or contains(text(),'ussi!')]")
+	WebElement lblYourPasswordHasBeenReset;
+
+	@FindBy(xpath = "//button//*[text()='Go to MyRogers' or contains(text(),'MonRogers')]")
+	WebElement btnGoToMyRogers;
+
+	@FindBy(xpath = "//input[@formcontrolname='username']")
+	WebElement txtUsername;
+
+	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
+	WebElement lblYourVerificationCode;
+
 	
 	/**
 	 * Click on the My Account link
@@ -366,5 +476,9 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 		reusableActions.staticWait(5000);
 		driver.navigate().refresh();
 	}
-	
+
+
+
+
+
 }
