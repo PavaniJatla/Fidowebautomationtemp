@@ -75,6 +75,8 @@ public class TestDataHandler {
 	public static AccountData tc79;
 	public static AccountData tc13;
 	public static AccountData tc04_PostPaidFinancePaidOff;
+	public static AccountData tc84;
+	public static AccountData tc21;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {	   
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -164,6 +166,8 @@ public class TestDataHandler {
     	tc79 = YamlHandler.getAccountData("TC79AccountWithNoBills");
     	tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
 		tc04_PostPaidFinancePaidOff = YamlHandler.getAccountData("tc04_PostPaidFinancePaidOff");
+    	tc84 = YamlHandler.getAccountData("TC84NoPayments");
+    	tc21 = YamlHandler.getAccountData("tc21DeliquientCustomer");
 	}
 	
 	private static void buyFlowsDataInit() {

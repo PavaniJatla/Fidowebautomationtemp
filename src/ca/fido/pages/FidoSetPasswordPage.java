@@ -21,10 +21,13 @@ public class FidoSetPasswordPage extends BasePageClass {
 	public FidoSetPasswordPage(WebDriver driver) {
 		super(driver);
 	}
-	
-	
+
 	@FindBy (xpath = "//ins[@translate='global.cta.continue']")
 	WebElement btnContinue;
+
+	@FindBy (xpath = "//a[contains(@href,'fido.ca')]/img")
+	WebElement btnPasswordSet;
+
 	
 	@FindBy (xpath = "//input[@name='password']")
 	WebElement inputPassword;
@@ -78,7 +81,11 @@ public class FidoSetPasswordPage extends BasePageClass {
 	public void clkBtnContinueForSetPassword() {
 		reusableActions.clickWhenReady(btnContinue, 30);
 	}
-	
+
+	public void clkSetPassword() {
+		reusableActions.clickWhenReady(btnPasswordSet, 30);
+	}
+
 	/**
 	 * To set password in set password page
 	 * @param strPassword, string of the password

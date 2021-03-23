@@ -35,7 +35,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","DashboardSS"})
+	@Test(groups = {"RegressionSS","DashboardSS","AddDataSpeedPass"})
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		getFidohomepage().clkLogin();

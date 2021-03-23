@@ -3,6 +3,7 @@ package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class FidoShopInternetPage extends BasePageClass {
@@ -31,10 +32,10 @@ public class FidoShopInternetPage extends BasePageClass {
 	
 	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -large ng-star-inserted']")
 	WebElement btnBuyNow;
-	
-	@FindBy(xpath = "//button[@title='Buy Fido Home Internet now']")
+
+	@FindAll({@FindBy(xpath = "//button[@title='Buy Fido Home Internet now']"),
+			@FindBy(xpath = "//a[@title='Buy Fido Home Internet now']")})
 	WebElement btnBuyNowReskin;
-	//a[@title='Buy Fido Home Internet now']"
 	//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100']
 	
 	@FindBy(xpath = "//div[@class='modal-chat bcStatic']")
