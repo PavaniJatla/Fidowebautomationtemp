@@ -1608,7 +1608,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyDeviceRemainingExists() {
 
-		String deviceBalance = txtDeviceRemainingBalance.getAttribute("aria-label").replaceAll("[^0-9\\.," +
+		String deviceBalance = txtDeviceRemainingBalance.getAttribute("aria-label").replaceAll("[^0-9\\$.," +
 				"]", "").replace(",", ".");
 
 		return deviceBalance.contains("$");
