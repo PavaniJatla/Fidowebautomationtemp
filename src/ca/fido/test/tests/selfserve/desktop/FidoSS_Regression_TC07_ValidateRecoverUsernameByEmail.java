@@ -32,12 +32,16 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		getFidologinpage().clkForgotPassOrNameIframe();
 //		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().reportLogWithScreenshot("Forgot password or name is clicked.");
-		getFidorecoverpassornamepage().clkBtnUserName();
+
+
+		//getFidorecoverpassornamepage().clkBtnUserName();
 		String strEmail = TestDataHandler.tc04To09.getaccountDetails().getEmail();
 		getFidorecoverpassornamepage().setEmailAddress(strEmail);
 		getReporter().reportLogWithScreenshot("Set email for recover user name.");
 		getFidorecoverpassornamepage().clkBtnContinue();
-		
+
+
+
 		getFidorecoverpassornamepage().clkBtnEmailNowIfAvailable();
 		//Go to ENS to verify email and get reset password page.		
 		try {
