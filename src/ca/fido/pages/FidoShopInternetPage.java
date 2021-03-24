@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 
 import ca.fido.pages.base.BasePageClass;
+import ca.fido.test.tests.connectedhome.desktop.FidoCH_Regression_TC_006_HSIServiceabilityLiveChatTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -331,7 +332,9 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectInternetPlanRetry(String strDowngradeDataPlan, String strUpgradePlanCost) {
-		reusableActions.getWhenReady(iconLocation, 30).click();
+		reusableActions.getWhenReady(iconLocation, 30);
+		reusableActions.executeJavaScriptClick(iconLocation);
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
 	}
 
 	public void selectPlanforEdit() {
