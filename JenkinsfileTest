@@ -101,7 +101,7 @@ pipeline {
                             if(!params.QaUrl.isEmpty()){
                                 if (params.QaUrl.toUpperCase().contains("FIDO")) {
                                      if (!params.QaUrl.contains("qa1.")  && !params.QaUrl.contains("qa5.")  && !params.QaUrl.contains("qa6.")  && !params.QaUrl.contains("qa7.") && !params.QaUrl.contains("qa2.") && !params.QaUrl.contains("qa3.") && !params.QaUrl.contains("qa4.") ) {
-                                            error "Invalid cookie domain url provided. We only accept QAURL from QA 1 to QA7. Please correct it."
+                                            error "Invalid QA url provided. We only accept QAURL from QA 1 to QA7. Please correct it."
                                      }
                                 }
                                 urlLink = urlLink + "-Ptest_qaURL=${params.QaUrl}";
