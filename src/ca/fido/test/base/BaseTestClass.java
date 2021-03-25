@@ -433,11 +433,17 @@ public class BaseTestClass {
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("_AALBYOD")) {
+					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=aal" + "?setLanguage=" + language + "&?province=" + "ON");
+					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else if(currentTestMethodName.getName().contains("NAC")){
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				}else if(currentTestMethodName.getName().contains("_Alternate")){
+				}else if(currentTestMethodName.getName().contains("hUP")){
 					getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
+					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				}else if(currentTestMethodName.getName().contains("aaL")){
+					getDriver().get(strUrl + "/phones"+ "?flowType=aal" + "&?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else{
 					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");

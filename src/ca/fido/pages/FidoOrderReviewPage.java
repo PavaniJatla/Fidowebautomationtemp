@@ -48,7 +48,11 @@ public class FidoOrderReviewPage extends BasePageClass {
 	})
 	WebElement lblContractDigitalCopy;
 
-	@FindBy(xpath = "//input[contains(@id,'ds-checkbox-id')]//following-sibling::div[contains(@class,'ds-checkbox__box')]")
+	@FindAll({
+			@FindBy(xpath = "//input[contains(@id,'ds-checkbox-id')]//following-sibling::div[contains(@class,'ds-checkbox__box')]"),
+			@FindBy(xpath = "//input[contains(@id,'ds-radio-input-id-19')]//following-sibling::div[contains(@class,'ds-radioButton__outer')]"),
+			@FindBy(xpath = "//input[contains(@id,'ds-radio-input-id-6')]//following-sibling::div[contains(@class,'ds-radioButton__outer')]")
+	})
 	WebElement chkBoxOrderCommunicationConsent;
 
 	@FindBy(xpath="//span[@translate='btn_continue_to_payment']//parent::button")

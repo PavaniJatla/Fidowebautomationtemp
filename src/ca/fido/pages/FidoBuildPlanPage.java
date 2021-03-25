@@ -1,7 +1,9 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import ca.fido.testdatamanagement.TestDataHandler;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -18,6 +20,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	public String xpath;
 	public int stepper;
+	String planType = TestDataHandler.tc17AALTabletsStandardShipping.getNewPlanType();
 
 	public FidoBuildPlanPage(WebDriver driver) {
 		super(driver);		
@@ -64,7 +67,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindAll({
 		@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]"),
-		@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']")
+		@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']"),
+			@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
 	})
 	WebElement btnNoBPOOffer;
 	
@@ -140,11 +144,24 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public String createXpath(int stepper,String option) {
 		if (stepper == 1 && stepper != 0) {
-			String xpath = "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
-			return xpath;
+			return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
 		} else if(stepper == 2 && stepper != 0) {
-			String xpath = "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
-			return xpath;
+			reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
+				try {
+					if(planType.equals("Data, Talk and Text plans") && planType != null && !planType.isEmpty()) {
+						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+					} else if (planType.equals("Data and Text only plans - No calls included") && planType != null && !planType.isEmpty() && reusableActions.isElementVisible(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"))) {
+						reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"));
+						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-individual-"+option+"')]/label";
+					} else if (planType.equals("Talk and Text plans") && planType != null && !planType.isEmpty() && reusableActions.isElementVisible(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"))) {
+						reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"));
+						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-talkAndText-"+option+"')]/label";
+					} else {
+						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+					}
+				} catch (NullPointerException ex) {
+					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+				}
 		}
 		return xpath;
 	}
@@ -206,12 +223,21 @@ public class FidoBuildPlanPage extends BasePageClass {
 		if (dataOptionIndex != null && !dataOptionIndex.isEmpty()) {
 			String xpathDataOption = createXpath(stepper,dataOptionIndex);
 			By dataOptionXpath = By.xpath(xpathDataOption);
-			reusableActions.staticWait(5000);
+			//reusableActions.staticWait(5000);
 			reusableActions.clickIfAvailable(dataOptionXpath,10);
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
 		} else {
-			String xpathDataOption = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-0')]/label";
-			reusableActions.staticWait(5000);
+			String xpathDataOption;
+			if (planType.equals("Data, Talk and Text plans")) {
+				xpathDataOption = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-infinite-0')]/label";
+			} else if (planType.equals("Data and Text only plans - No calls included")) {
+				reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"));
+				xpathDataOption = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-individual-0')]/label";
+			} else {
+				reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"));
+				xpathDataOption = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-talkAndText-0')]/label";
+			}
+			//reusableActions.staticWait(5000);
 			reusableActions.clickWhenReady(By.xpath(xpathDataOption),10);
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
 		}
@@ -358,10 +384,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void clkContinueCallerID() {
-        enterFirstName();
-        enterSecondName();
-		reusableActions.waitForElementVisibility(callerIDContinue, 20);
-		reusableActions.executeJavaScriptClick(callerIDContinue);
+		try {
+			enterFirstName();
+			enterSecondName();
+			reusableActions.waitForElementVisibility(callerIDContinue, 20);
+			reusableActions.executeJavaScriptClick(callerIDContinue);
+		}catch (ElementClickInterceptedException except){
+			reusableActions.waitForElementVisibility(callerIDContinue, 20);
+			reusableActions.executeJavaScriptClick(callerIDContinue);
+		}
 	}
 
 	/**

@@ -12,6 +12,7 @@ public class AALData {
 	private String deviceCostIndex;
 	private String dataOptionIndex;
 	private String cityName;
+	private String shippingType;
 	
 	
 	/**
@@ -121,6 +122,18 @@ public class AALData {
 	 */
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+	/**
+	 * @return the ShippingType
+	 */
+	public String getShippingType() {
+		return shippingType;
+	}
+	/**
+	 * @param shippingType the ShippingType to set
+	 */
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
 	}
 
 }
