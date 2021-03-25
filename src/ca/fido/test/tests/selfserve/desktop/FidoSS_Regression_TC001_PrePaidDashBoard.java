@@ -26,7 +26,7 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","DashboardSS"})
+	@Test(groups = {"RegressionSS","DashboardSS","Prepaid"})
 	public void prePaidDashBoard() {
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();

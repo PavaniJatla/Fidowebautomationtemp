@@ -20,6 +20,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//input[@formcontrolname='password']")
 	WebElement txtPassword;
 
+	@FindBy(xpath = "//input[@formcontrolname='password']/parent::div")
+	WebElement lblPassword;
+
 	@FindBy(xpath = "//iframe[contains(@src,'/pages/easylogin-fido/signin/')]")
 	WebElement fraSignIn;
 
@@ -48,15 +51,12 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement lnlResignInAsMobile;
 	
 	
-	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn') or contains(@title,'Sign')]")
+	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn') or @title='Sign in' or @title='Ouvrir une session']")
 	WebElement btnLogIn;
 
 	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]")
-	WebElement iconClose;
-
-	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]")
 	WebElement btnSkip;
-
+	
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
 	WebElement btnLoginWithFb;
 	
@@ -93,8 +93,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setUsernameInFrame(String strUsername) {
-		//reusableActions.getWhenReady(txtUsername,90).clear();
-		reusableActions.executeJavaScriptClick(txtUsername);
+		reusableActions.getWhenReady(txtUsername,90).clear();
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
@@ -151,9 +150,9 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		//reusableActions.getWhenReady(txtPassword,30).clear();
-		//reusableActions.getWhenVisible(txtPassword,40).click();
-		reusableActions.executeJavaScriptClick(txtPassword);
+		reusableActions.clickIfAvailable(lblPassword);
+		reusableActions.getWhenReady(txtPassword,10).clear();
+		reusableActions.getWhenVisible(txtPassword,30).click();
 		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
 	}
 
@@ -162,8 +161,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * Click on the login button
 	 * @author Chinnarao.Vattam
 	 */
-	public void clkLoginInFrame() {
-		reusableActions.clickWhenReady(btnLogIn,60);
+	public void clkLoginInFrame() {		
+		reusableActions.getWhenReady(btnLogIn,60).click();	  
 	}
 	
 
@@ -186,22 +185,15 @@ public class FidoLoginPage extends BasePageClass {
 	public boolean verifyIfErrorMsgIsDisplayedInFrame() {
 		return reusableActions.isElementVisible(lblErrorMsg);
 	}
-
-	/**
-	 * Clicks on close icon on Login modal
-	 * @author sidhartha.vadrevu
-	 */
-	public void clickCloseIcon() {
-		reusableActions.clickIfAvailable(iconClose, 50);
-	}
-
+	
 	/**
 	 * Switch out of SignIn iframe
 	 * @author ning.xue
 	 */
-	public void switchOutOfSignInFrame() {
+	public void switchOutOfSignInFrame() {	
 		reusableActions.clickIfAvailable(btnSkip, 30);
-		driver.switchTo().defaultContent();
+		driver.switchTo().defaultContent();	
+
 	}
 	
 	/**
