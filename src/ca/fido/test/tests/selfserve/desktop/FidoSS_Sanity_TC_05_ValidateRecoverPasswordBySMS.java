@@ -31,7 +31,69 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 		getFidohomepage().clkLogin();
 		getReporter().reportLogWithScreenshot("Login Page");
 		getFidologinpage().switchToSignInFrame();
-		getFidologinpage().clkForgotPassOrNameIframe();	
+		getFidologinpage().clkForgotPasswordIframe();
+
+		//================  new code ====================
+		getReporter().reportLogWithScreenshot("Forgot password link is clicked.");
+		//getRogersRecoverPassOrNamePage().clkBtnPassword();
+		String strUsername = TestDataHandler.tc04To09.getUsername();
+		String strPassword = TestDataHandler.tc04To09.getPassword();
+		String strAccount = TestDataHandler.tc04To09.getaccountDetails().getBan();
+		getFidorecoverpassornamepage().setUsernameIFrame(strUsername);
+		getReporter().reportLogWithScreenshot("Set user name for password recovery");
+		getFidorecoverpassornamepage().clkBtnContinue();
+		//reporter.reportLogWithScreenshot("Click on Text as recovery option");
+		//getRogersRecoverPassOrNamePage().clkTextToAsRecoveryOption();
+		String strTestingTab = getDriver().getWindowHandle();
+		//--------------------
+		try {
+			getReporter().reportLogWithScreenshot("ENS");
+			String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
+			String strCode = getEnsverifications().getVerifyCode(strPhoneNum);
+			//switch to working test tab.
+			getDriver().switchTo().window(strTestingTab);
+			getReporter().reportLogWithScreenshot("Set code");
+			getFidorecoverpassornamepage().switchToSetCodeIframe();
+			getFidorecoverpassornamepage().setVerificationCode(strCode);
+			getFidorecoverpassornamepage().clkBtnContinue();
+			getFidorecoverpassornamepage().setNewPassword(strPassword);
+			getFidorecoverpassornamepage().setConfirmPassword(strPassword);
+			getFidorecoverpassornamepage().clkBtnContinue();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//Login with recovered user name to verify
+		getReporter().hardAssert(getFidorecoverpassornamepage().isPasswordSuccessfullySet(),
+				"passowrd reset successful for recover password flow",
+				"passowrd reset NOT successful for recover password flow");
+		getReporter().reportLogWithScreenshot("Password success page");
+		getFidorecoverpassornamepage().clkGoToMyFido();
+		getReporter().reportLogWithScreenshot("Go to my rogers clicked");
+		getFidorecoverpassornamepage().switchToDefaultContent();
+		getReporter().reportLogWithScreenshot("Switch to default content");
+		getReporter().reportLogWithScreenshot("waiting for account overview....");
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
+				"Login succeed.",
+				"Failed to login.");
+		getReporter().reportLogWithScreenshot("Account overview");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//===================  old code ===================================
+		/*
 		getReporter().reportLogWithScreenshot("Clicked on Forgot Password or username");
 		getFidorecoverpassornamepage().clkBtnPassword();
 		getReporter().reportLogWithScreenshot("Clicked on password button");
@@ -94,7 +156,7 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 			getCommonbusinessflows().resetPasswordBack(strNewPass, strPassword);
 		}
 		
-		
+		*/
 	
 	}
 			

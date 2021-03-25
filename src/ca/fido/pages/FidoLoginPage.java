@@ -90,6 +90,15 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy (xpath = "//div[@class='recovery-error']")
 	WebElement lblErrorMsg;
 
+	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
+	WebElement lnkForgotUserName;
+
+	@FindBy(xpath = "//input[@id='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	WebElement lblUserName;
+
+	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
+	WebElement lnkForgotPassword;
+
 	/**
 	 * Set the user name on login page
 	 * @param strUsername user name to be login
@@ -227,7 +236,17 @@ public class FidoLoginPage extends BasePageClass {
 
 		reusableActions.getWhenVisible(lnkForgotNameOrPass).click();
 	}
-	
+
+	/**
+	 * Clicks on Forgot Password iframe
+	 * @author Mirza.Kamran
+	 */
+	public void clkForgotPasswordIframe() {
+
+		reusableActions.getWhenReady(lnkForgotPassword).click();
+
+	}
+
 	/**
 	 * Click on SignOut in header Navigation bar after login
 	 * @author ning.xue
