@@ -26,9 +26,59 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 	}
 	
 	@Test
-	public void recoverUsernameByEmail() {
+	public void recoverUsernameByEmail() throws IOException {
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
+		//=============== new code ===================
+
+		getFidologinpage().clkForgotUsernameIframe();
+		getReporter().reportLogWithScreenshot("Forgot username link is clicked.");
+		String strUserName = TestDataHandler.tc04To09.getUsername();
+		String strPassword = TestDataHandler.tc04To09.getPassword();
+		//getRogersRecoverPassOrNamePage().clkBtnUserName();
+		getFidorecoverpassornamepage().setEmailAddress(strUserName);
+		getReporter().reportLogWithScreenshot("Set email for recover user name.");
+		getFidorecoverpassornamepage().clkBtnContinue();
+		String strTestingTab = getDriver().getWindowHandle();
+		String strRecoveredUserName ="";
+		//Go to ENS to verify email and get reset password page.
+
+		getEnsverifications().getEmailVerifyPage(strUserName);
+		getReporter().reportLogWithScreenshot("Get recovery code");
+		String recoveryCode = getFidorecoverpassornamepage().getVerificationCode();
+		getDriver().switchTo().window(strTestingTab);
+		getFidorecoverpassornamepage().switchToSetCodeIframe();
+		getFidorecoverpassornamepage().setVerificationCode(recoveryCode);
+		getReporter().reportLogWithScreenshot("Set recovery code");
+		getFidorecoverpassornamepage().clkBtnContinue();
+		strRecoveredUserName= getFidorecoverpassornamepage().getRecoveryUsernameNew();
+		getReporter().reportLogWithScreenshot("Recovered username is : "+strRecoveredUserName.trim());
+
+		getReporter().hardAssert(strRecoveredUserName.trim().toLowerCase().contains(strUserName.trim().toLowerCase()),
+				"The recovered username is correct",
+				"The recovered username is incorrect");
+		getFidorecoverpassornamepage().setNewPassword(strPassword);
+		getFidorecoverpassornamepage().setConfirmPassword(strPassword);
+		getReporter().reportLogWithScreenshot("Reset Password page");
+		getFidorecoverpassornamepage().clkBtnContinue();
+		//Login with recovered user name to verify
+		getReporter().hardAssert(getFidorecoverpassornamepage().isPasswordSuccessfullySet(),
+				"passowrd reset successful for recover username",
+				"passowrd reset NOT successful for recover username");
+		getReporter().reportLogWithScreenshot("Password success page");
+		getFidorecoverpassornamepage().clkGoToMyFido();
+		getReporter().reportLogWithScreenshot("Go to my rogers clicked");
+		getFidorecoverpassornamepage().switchToDefaultContent();
+		setImplicitWait(getDriver(), 5);
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
+				"Login succeed.",
+				"Failed to login.");
+		getReporter().reportLogWithScreenshot("Account overview");
+
+
+
+		//================  old code ================
+		/*
 		getFidologinpage().clkForgotPassOrNameIframe();
 //		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().reportLogWithScreenshot("Forgot password or name is clicked.");
@@ -87,7 +137,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 				"Username recovered successfully.",
 				"Login failed, please check the recovered username.");
 		getReporter().reportLogWithScreenshot("Account overview page.");
-
+	*/
 	}
 
 }
