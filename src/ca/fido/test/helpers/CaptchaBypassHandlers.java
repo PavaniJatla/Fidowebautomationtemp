@@ -95,7 +95,7 @@ public class CaptchaBypassHandlers {
 		} else if (strUrl.contains("qa4.")) {
 			cookieEnv = "https://qa02";
 		} else {
-			cookieEnv = System.getProperty("test_CookieFetcherMapping");
+			cookieEnv = System.getProperty("CookieFetcherMapping");
 		}
 
 		strCookieRegistrationURL = cookieEnv + "-mservices.fido.ca/v1/user/recaptchaBypass/register";

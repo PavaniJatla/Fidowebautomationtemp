@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
@@ -23,10 +24,13 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy (xpath = "//img[@src='assets/images/both-icon.png']")
 	WebElement btnBoth;
 	
-	@FindBy (xpath = "//input[@formcontrolname='emailAddress']")
+	@FindBy (xpath = "//input[@formcontrolname='emailAddress' or @formcontrolname='email']")
 	WebElement txtEmailAddress;
-	
-	@FindBy (xpath = "//button[contains(@class,'primary-button state-btn')]")
+
+	@FindAll({
+			@FindBy(xpath = "//span[contains(text(),'Continue') or contains(text(),'Continuer')]/ancestor::button"),
+			@FindBy (xpath = "//button[contains(@class,'primary-button state-btn')]")
+	})
 	WebElement btnContinue;
 	
 	@FindBy (xpath = "//div[@class='email-recovery-method']/button")
@@ -290,4 +294,6 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 		String strMsg = reusableActions.getWhenReady(lblYourVerificationCode).getText();
 		return strMsg.trim();
 	}
+
+
 }
