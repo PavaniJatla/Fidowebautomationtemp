@@ -31,8 +31,6 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 		getFidohomepage().clkLogin();
 		getReporter().reportLogWithScreenshot("Login Page");
 		getFidologinpage().switchToSignInFrame();
-		getFidologinpage().clkForgotPasswordIframe();
-
 		//================  new code ====================
 		getReporter().reportLogWithScreenshot("Forgot password link is clicked.");
 		//getRogersRecoverPassOrNamePage().clkBtnPassword();
@@ -77,20 +75,6 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 				"Login succeed.",
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		//===================  old code ===================================
 		/*

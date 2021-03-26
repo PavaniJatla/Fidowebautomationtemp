@@ -98,6 +98,28 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//h1//span[text()='Success!' or contains(text(),'ussi!')]")
 	WebElement lblYourPasswordHasBeenReset;
 
+	@FindBy(xpath = "//span[text()='Create a new MyRogers password for ' or contains(text(),'ez un nouveau mot de passe MonRogers pour')]/following-sibling::span")
+	WebElement lblSetPasswordForUserName;
+
+
+	@FindBy(xpath = "")
+	WebElement btnGoToMyFido;
+
+	@FindBy(xpath = "//a[text()='Use your account information instead.'or contains(text(),'t les renseignements de votre compte')]")
+	WebElement lnkUseYourAccountInfoInstead;
+
+	@FindBy(xpath = "//input[@formcontrolname='postalCode']/parent::div")
+	WebElement lblPostCode;
+
+	@FindBy(xpath = "//input[@formcontrolname='postalCode']")
+	WebElement txtPostCode;
+
+	@FindBy(xpath = "//input[@formcontrolname='dob']/parent::div")
+	WebElement lblDOB;
+
+	@FindBy(xpath = "//input[@formcontrolname='dob']")
+	WebElement txtDOB;
+
 	public void clkBtnPassword() {
 		reusableActions.getWhenVisible(btnPassword).click();
 	}
@@ -342,6 +364,47 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	}
 
 	public void clkGoToMyFido() {
-		getReusableActionsInstance().getWhenReady(btnGoToMyRogers,60).click();
+		reusableActions.getWhenReady(btnGoToMyFido,60).click();
+	}
+
+	/**
+	 * gets the username
+	 * @author Mirza.Kamran
+	 * @return string value username
+	 */
+	public String getRecoveryUsernameNew() {
+		return reusableActions.getWhenReady(lblSetPasswordForUserName).getText().trim();
+
+	}
+
+	/**
+	 * Clicks on the account link
+	 * @author Mirza.Kamran
+	 */
+	public void clkUseYourAccountInfoInsteadLink() {
+		reusableActions.getWhenReady(lnkUseYourAccountInfoInstead).click();
+	}
+
+	/**
+	 * Sets the Postcode number for recovery
+	 * @param strPostcode, String, postcode
+	 * @author Mirza.Kamran
+	 */
+	public void setPostCode(String strPostcode) {
+		reusableActions.getWhenReady(lblPostCode).click();
+		//getReusableActionsInstance().getWhenReady(txtPostCode).clear();
+		reusableActions.getWhenReady(txtPostCode).sendKeys(strPostcode);
+
+	}
+
+	/**
+	 * Sets the DOB  for recovery
+	 * @param strDOB, String, DOB
+	 * @author Mirza.Kamran
+	 */
+	public void setDOB(String strDOB) {
+		reusableActions.getWhenReady(lblDOB).click();
+		//getReusableActionsInstance().getWhenReady(txtDOB).clear();
+		reusableActions.getWhenReady(txtDOB).sendKeys(strDOB);
 	}
 }

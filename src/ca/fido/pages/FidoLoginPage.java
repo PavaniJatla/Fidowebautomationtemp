@@ -320,4 +320,12 @@ public class FidoLoginPage extends BasePageClass {
 	public boolean isUserNameDisplayed() {	
 		return reusableActions.isElementVisible(txtUsername);
 	}
+
+	/**
+	 * Clicks on Forgot Username iframe
+	 */
+	public void clkForgotUsernameIframe() {
+		reusableActions.getWhenReady(lnkForgotUserName).click();
+
+	}
 }
