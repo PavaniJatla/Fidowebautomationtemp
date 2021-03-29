@@ -41,6 +41,8 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'AWSBYODUrl', test_awsBYODURL
+    systemProperty 'PageLoadStrategy', test_PageLoadStrategy
+    systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -74,6 +76,8 @@ task "localTest"(type: Test) {
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'AWSBYODUrl', test_awsBYODURL
+    systemProperty 'PageLoadStrategy', test_PageLoadStrategy
+    systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -92,7 +96,7 @@ task "localTest"(type: Test) {
 }
 
 repositories {
-
+    mavenLocal()
     maven {
         url = "${artifactory_url}/${artifactory_repoKey}"
         credentials {
@@ -100,7 +104,6 @@ repositories {
             password "${artifactory_password}"
         }
     }
-
     mavenCentral()
 }
 

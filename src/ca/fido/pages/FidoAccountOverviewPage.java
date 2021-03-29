@@ -128,7 +128,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='wireless.label.usageSummary']")
 	WebElement lblUsageHeaderPrePaidDashboardPage;
 
-	@FindAll({@FindBy(xpath = "//div[@class='row page-dashboard-service-section']//a[@class='btn']")})
+	@FindAll({@FindBy(xpath = "//*[@class='subscription-number']")})
 	List<WebElement> lnkCTNBadges;
 
 	@FindBy (xpath = "//ins[@translate='global.label.accountSuspended']")
@@ -806,7 +806,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			reusableActions.staticWait(5000);
 			strBalance = reusableActions.getWhenReady(By.xpath("//div[contains(@class,'ds-price__amountDollars')]"),90).getText();
 		}
-     return NumberUtils.isCreatable(strBalance.replaceAll(",", "."));	
+     return NumberUtils.isCreatable(strBalance.replaceAll(",", ".").trim());	
 	}
 	
 	/**

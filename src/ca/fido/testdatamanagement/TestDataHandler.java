@@ -74,6 +74,7 @@ public class TestDataHandler {
 	public static AccountData tc20;
 	public static AccountData tc79;
 	public static AccountData tc13;
+	public static AccountData tc13;
 	public static AccountData tc04_PostPaidFinancePaidOff;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {	   
@@ -162,6 +163,10 @@ public class TestDataHandler {
     	tc19 = YamlHandler.getAccountData("tc19PostPaidInEligibleUser");
     	tc20 = YamlHandler.getAccountData("tc20DeliquientCustomer");
     	tc79 = YamlHandler.getAccountData("TC79AccountWithNoBills");
+    	tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
+    	//tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
+    	tc84 = YamlHandler.getAccountData("TC84NoPayments");
+    	tc21 = YamlHandler.getAccountData("tc21DeliquientCustomer");
     	tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
 		tc04_PostPaidFinancePaidOff = YamlHandler.getAccountData("tc04_PostPaidFinancePaidOff");
 	}
