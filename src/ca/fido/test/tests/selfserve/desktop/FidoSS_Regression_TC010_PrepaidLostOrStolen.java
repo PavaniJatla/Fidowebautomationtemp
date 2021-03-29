@@ -30,6 +30,7 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 	public void afterTest() throws InterruptedException {
 		closeSession();
 	}
+
 	@Test(groups = {"RegressionSS","DashboardSS","PrepaidSS"})
 	public void prepaidReportLostOrStolen() {
 		getFidohomepage().clkLogin();
