@@ -40,7 +40,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_020_HSI_AnonymousCxwithSameasRCISwithECIDmediumRisk_BuyflowCallJanrainDirectlyDuringECIDdupCheckTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
+	@Test(groups = {"RegressionCH","newFidoCableBuyCH"})
     public void checkCRMaddressMismatchWithSGI_ServiceabilityTest() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkShop();
