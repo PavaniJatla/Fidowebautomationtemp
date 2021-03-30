@@ -71,6 +71,12 @@ public class FidoOrderReviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@checkout-res='checkout_step_pay']")
 	WebElement lblPaymentStep;
+
+	/*@FindBy(xpath = "(//div[contains(@class,'ds-price__amountDollars')])[3]//ancestor::div[2]")
+	WebElement oneTimePayment;*/
+
+	@FindBy(xpath = "//h1[@id]")
+	WebElement oneTimePaymentText;
 	
 	@FindBy(xpath = "//button[contains(@class,'-primary -large')]")
 	WebElement btnSubmitMyOrder;
@@ -213,6 +219,24 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean isPaymentRequired() {
-		return reusableActions.isElementVisible(lblPaymentStep, 1);
+		//return reusableActions.isElementVisible(lblPaymentStep, 1);
+		return reusableActions.isElementVisible(oneTimePaymentText,10);
 	}
+
+	/**
+	 * Determines if payment is required or not
+	 * @return true if 'Payment' appears in the Steps above; else false
+	 * @author rajesh.varalli1
+	 *//*
+	public boolean isOneTimePaymentRequired() {
+		String oneTimeValue = oneTimePayment.getAttribute("aria-label");
+		Long payment = Long.parseLong(oneTimeValue);
+		if (payment > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}*/
+
 }

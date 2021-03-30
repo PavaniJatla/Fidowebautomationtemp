@@ -8,6 +8,7 @@ public class HUPData {
 	private String ctn;
 	private String deviceCostIndex;
 	private String dataOptionIndex;
+	private String shippingType;
 
 	/**
 	 * @return the newDevice
@@ -80,6 +81,18 @@ public class HUPData {
 	 */
 	public void setDataOptionIndex(String dataOptionIndex) {
 		this.dataOptionIndex = dataOptionIndex;
+	}
+	/**
+	 * @return the ShippingType
+	 */
+	public String getShippingType() {
+		return shippingType;
+	}
+	/**
+	 * @param shippingType the ShippingType to set
+	 */
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
 	}
 
 }

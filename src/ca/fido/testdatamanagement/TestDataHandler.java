@@ -60,6 +60,7 @@ public class TestDataHandler {
 	public static AALData tc15AALFinancingPlanExpressShipping;
 	public static AALData tc16AALNoTermPlanStandardShipping;
 	public static AALData tc17AALTabletsStandardShipping;
+	public static AALData tc18AALBYODExpressShipping;
 	public static HUPData tc08Hup;
 	public static PPCData tc09Ppc;
 	public static HUPData tc10HupExistingSubsidy;
@@ -189,6 +190,7 @@ public class TestDataHandler {
 		tc15AALFinancingPlanExpressShipping = YamlHandler.getAALData("tc15AALFinancingPlanExpressShipping");
 		tc16AALNoTermPlanStandardShipping = YamlHandler.getAALData("tc16AALNoTermPlanStandardShipping");
 		tc17AALTabletsStandardShipping = YamlHandler.getAALData("tc17AALTabletsStandardShipping");
+		tc18AALBYODExpressShipping = YamlHandler.getAALData("tc18AALBYODExpressShipping");
 		tc08Hup = YamlHandler.getHUPData("tc08Hup");
 		tc09Ppc = YamlHandler.getPPCData("tc09Ppc");
 		tc10HupExistingSubsidy = YamlHandler.getHUPData("tc10HupExistingSubsidy");
