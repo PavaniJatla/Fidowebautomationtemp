@@ -29,7 +29,7 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","DashboardSS"})
+	@Test(groups = {"RegressionSS","DashboardSS","Prepaid"})
 	public void prePaidDashBoardChangeCTN() {
 		
 		getFidohomepage().clkLogin();

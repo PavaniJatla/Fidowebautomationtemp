@@ -25,7 +25,7 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 	public void afterTest() throws InterruptedException {
 		closeSession();
 	}
-	
+
 	@Test(groups = {"RegressionSS","DashboardSS","PrepaidSS"})
 	public void prePaidDashBoard() {
 		getFidohomepage().clkLogin();
