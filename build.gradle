@@ -111,8 +111,7 @@ dependencies {
     api 'com.relevantcodes:extentreports:2.41.2'
     api 'org.seleniumhq.selenium:selenium-java:3.141.59'
     api 'org.testng:testng:6.14.3'
-    api 'automation-utils:common-utils:1.41-SNAPSHOT'
-
+    api 'automation-utils:common-utils:latest.release'
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'
 	api 'org.json:json:20180813'

@@ -37,7 +37,7 @@ public class FidoSS_Regression_TC056_ValidateBrightstarLinkInWirelessDashboard_P
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","DashboardSS","Prepaid"})
+	@Test(groups = {"RegressionSS","DashboardSS","PrepaidSS"})
 	public void validateBrightstarLinkInWirelessDashboardForPrepaid() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
