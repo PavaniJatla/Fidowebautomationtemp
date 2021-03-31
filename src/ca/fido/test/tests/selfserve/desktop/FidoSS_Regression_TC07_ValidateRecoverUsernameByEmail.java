@@ -16,6 +16,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		System.setProperty("PageLoadStrategy", "NONE");
 		startSession(System.getProperty("QaUrl"), strBrowser,
 				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
@@ -33,17 +34,17 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 
 		getFidologinpage().clkForgotUsernameIframe();
 		getReporter().reportLogWithScreenshot("Forgot username link is clicked.");
-		String strUserName = TestDataHandler.tc04To09.getUsername();
-		String strPassword = TestDataHandler.tc04To09.getPassword();
-		//getRogersRecoverPassOrNamePage().clkBtnUserName();
-		getFidorecoverpassornamepage().setEmailAddress(strUserName);
+		String strUsername = TestDataHandler.tc1122.getUsername();
+		String strPassword = TestDataHandler.tc1122.getPassword();
+		String strAccount = TestDataHandler.tc1122.getaccountDetails().getBan();
+		getFidorecoverpassornamepage().setUsernameIFrame(strUsername);
 		getReporter().reportLogWithScreenshot("Set email for recover user name.");
 		getFidorecoverpassornamepage().clkBtnContinue();
 		String strTestingTab = getDriver().getWindowHandle();
 		String strRecoveredUserName ="";
 		//Go to ENS to verify email and get reset password page.
 
-		getEnsverifications().getEmailVerifyPage(strUserName);
+		getEnsverifications().getEmailVerifyPage(strUsername);
 		getReporter().reportLogWithScreenshot("Get recovery code");
 		String recoveryCode = getFidorecoverpassornamepage().getVerificationCode();
 		getDriver().switchTo().window(strTestingTab);
@@ -54,7 +55,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		strRecoveredUserName= getFidorecoverpassornamepage().getRecoveryUsernameNew();
 		getReporter().reportLogWithScreenshot("Recovered username is : "+strRecoveredUserName.trim());
 
-		getReporter().hardAssert(strRecoveredUserName.trim().toLowerCase().contains(strUserName.trim().toLowerCase()),
+		getReporter().hardAssert(strRecoveredUserName.trim().toLowerCase().contains(strUsername.trim().toLowerCase()),
 				"The recovered username is correct",
 				"The recovered username is incorrect");
 		getFidorecoverpassornamepage().setNewPassword(strPassword);

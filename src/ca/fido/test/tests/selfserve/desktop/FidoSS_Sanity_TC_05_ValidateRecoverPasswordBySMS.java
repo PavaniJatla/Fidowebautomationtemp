@@ -32,6 +32,7 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 		getReporter().reportLogWithScreenshot("Login Page");
 		getFidologinpage().switchToSignInFrame();
 		//================  new code ====================
+		getFidologinpage().clkForgotPasswordIframe();
 		getReporter().reportLogWithScreenshot("Forgot password link is clicked.");
 		//getRogersRecoverPassOrNamePage().clkBtnPassword();
 		String strUsername = TestDataHandler.tc04To09.getUsername();
@@ -45,6 +46,8 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 		String strTestingTab = getDriver().getWindowHandle();
 		//--------------------
 		try {
+
+
 			getReporter().reportLogWithScreenshot("ENS");
 			String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
 			String strCode = getEnsverifications().getVerifyCode(strPhoneNum);
