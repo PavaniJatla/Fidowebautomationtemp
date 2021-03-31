@@ -59,8 +59,11 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
 	WebElement btnLoginWithFb;
-	
-	@FindBy(xpath = "//img[@src='assets/images/icon-register.png']//parent::i")
+
+	@FindAll(
+			{
+	@FindBy(xpath = "//span[text()='Register' or contains(text(),'inscrire')]"),
+	@FindBy(xpath = "//img[@src='assets/images/icon-register.png']//parent::i")})
 	WebElement lnkregister;
 	
 	@FindBy (xpath = "//a[@class='recovery-btn-back']")
@@ -86,6 +89,15 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy (xpath = "//div[@class='recovery-error']")
 	WebElement lblErrorMsg;
+
+	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
+	WebElement lnkForgotUserName;
+
+	@FindBy(xpath = "//input[@id='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	WebElement lblUserName;
+
+	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
+	WebElement lnkForgotPassword;
 
 	/**
 	 * Set the user name on login page
@@ -224,7 +236,17 @@ public class FidoLoginPage extends BasePageClass {
 
 		reusableActions.getWhenVisible(lnkForgotNameOrPass).click();
 	}
-	
+
+	/**
+	 * Clicks on Forgot Password iframe
+	 * @author Mirza.Kamran
+	 */
+	public void clkForgotPasswordIframe() {
+
+		reusableActions.getWhenReady(lnkForgotPassword).click();
+
+	}
+
 	/**
 	 * Click on SignOut in header Navigation bar after login
 	 * @author ning.xue
@@ -297,5 +319,13 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public boolean isUserNameDisplayed() {	
 		return reusableActions.isElementVisible(txtUsername);
+	}
+
+	/**
+	 * Clicks on Forgot Username iframe
+	 */
+	public void clkForgotUsernameIframe() {
+		reusableActions.getWhenReady(lnkForgotUserName).click();
+
 	}
 }
