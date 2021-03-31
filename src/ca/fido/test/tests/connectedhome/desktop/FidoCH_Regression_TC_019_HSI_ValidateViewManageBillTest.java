@@ -30,7 +30,7 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends BaseTestClass {
 	final String strLanguage=System.getProperty("Language");
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
+	@Test(groups = {"RegressionCH","newFidoHSIDashboardCH"})
 	public void checkFidoHSIPayNowFunctionality() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();
