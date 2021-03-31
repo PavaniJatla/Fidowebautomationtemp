@@ -28,7 +28,7 @@ public class FidoSS_Regression_TC017_PostpaidViewAndUpdateBillingAddress extends
 	}
 	
 
-	@Test(groups = {"SanitySS","ProfileAndSettingSS"})
+	@Test(groups = {"ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndUpdateBillingAddress() throws InterruptedException, ParseException {
 		
 		getFidohomepage().clkLogin();
