@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class FidoSS_Regression_TC004 extends BaseTestClass{
+public class FidoSS_Regression_TC90_ValidateFidoUserWithDeviceSubsidyAcctHolderProfile_ON extends BaseTestClass{
 
     @BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -63,42 +63,25 @@ public class FidoSS_Regression_TC004 extends BaseTestClass{
         getReporter().reportLogWithScreenshot("Validate device details Section");
 
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
-                "Fido Payment Program Header is visible",
-                "Fido Payment Program Header is not visible");
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMyDeviceDetails(),
+                "My Device section is visible",
+                "My Device section is not visible");
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().getDeviceFinancingRemainingBalance(),
-                "The balance remaining is $0.00",
-                "The balance remaining is not $0.00");
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDeviceRemainingExists(),
+                "The balance remaining exists",
+                "The balance remaining does not exist");
 
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isPaymentProgramBalanceVisible(),
-                "Remaining Fido Payment Program balance is not visible",
-                "Remaining Fido Payment Program balance is visible");
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyUpgradeDeviceButtonExists(),
+                "Upgrade My Device Button Exists",
+                "Upgrade My Device Button Does Not Exist");
 
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isPaymentAgreementStartDateVisible(),
-                "Fido Payment Program agreement start date is not visible",
-                "Fido Payment Program agreement start date is visible");
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDeviceNameExists(),
+                "The Device Name Exists",
+                "The Device Name Does Not Exist");
 
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isPaymentAgreementEndDateVisible(),
-                "Fido Payment Program agreement end date is not visible",
-                "Fido Payment Program agreement end date is visible");
-
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFindOutYourExclusiveDealsTextVisible(),
-                "Find out your exclusive deals text is visible",
-                "Find out your exclusive deals is not visible");
-
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isGetANewDeviceLinkVisible(),
-                "Get a new device link is visible",
-                "Get a new device link is not visible");
-
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isPricePlanChangeMayBeRequiredTextVisible(),
-                "A price plan change may be required text is visible",
-                "A price plan change may be required text is not visible");
-
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isViewFidoPaymentProgramDetailsLinkVisible(),
-                "link to device details modal is not visible",
-                " link to device details modal is visible");
-
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifySubsidyEndDateExists(),
+                "The Subsidy End date Exists",
+                "The Subsidy End date Does Not Exist");
 
 
     }
