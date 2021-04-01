@@ -37,7 +37,7 @@ public class FidoSS_TC087_ValidateFidoUserWithBYOD_DeviceSubscriberProfile exten
         closeSession();
     }
 
-    @Test(groups = {"SanitySS", "DashboardSS"})
+    @Test(groups = {"DashboardSS"})
     public void postPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
         getFidohomepage().clkLogin();

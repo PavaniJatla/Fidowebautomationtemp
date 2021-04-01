@@ -170,14 +170,35 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		reusableActions.clickIfAvailable(lblPassword);
-		reusableActions.getWhenReady(txtPassword,10).clear();
-		reusableActions.clickIfAvailable(lblPassword);
-		reusableActions.getWhenVisible(txtPassword,30).click();
-		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		try {
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword, 10).clear();
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenVisible(txtPassword, 30).click();
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}catch (Exception ex){
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}
 	}
 
-
+	/**
+	 * Set the user password on login page
+	 * @param strPassword user password to be login
+	 * @author Mirza.Kamran
+	 */
+	public void setPasswordInFrameMobile(String strPassword) {
+		try {
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword, 10).clear();
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenVisible(txtPassword, 30).click();
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}catch (Exception ex){
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}
+	}
 	/**
 	 * Click on the login button
 	 * @author Chinnarao.Vattam
