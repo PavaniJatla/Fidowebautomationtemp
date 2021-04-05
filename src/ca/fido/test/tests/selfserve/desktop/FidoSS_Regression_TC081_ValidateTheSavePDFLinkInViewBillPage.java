@@ -16,7 +16,7 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 
-public class FidoSS_Regression_TC013_ValidateTheSavePDFLinkInViewBillPage  extends BaseTestClass{
+public class FidoSS_Regression_TC081_ValidateTheSavePDFLinkInViewBillPage extends BaseTestClass{
 
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
