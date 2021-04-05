@@ -250,6 +250,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//fss-account-detail//fss-preauth-payment//a[@aria-label='Change payment method' or @aria-label='Changer le mode de paiement']")
 	WebElement btnPenIconForChangeAutoPaymentMethod;
 
+	@FindBy(xpath = "//span[@translate='global.cta.changePaymentMethod_header_menu']")
+	WebElement  inkPaymentMethod;
+
+	@FindBy(xpath = "//h4//ins[@translate='payment-method.select-payment-method.setAutomaticPayment']")
+	WebElement txtAutomaticPay;
+
+	@FindBy(xpath = "//i[@class='fds-icon-close rds-icon-close']")
+	WebElement btnAutomaticPayModelClose;
+
 	@FindBy(xpath = "//fss-app-alert//p")
 	WebElement divCLMNotification;
 
@@ -332,17 +341,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
 	WebElement winModalAAL;
 
-	/**
-	 * Verify Modal Window AAL
-	 * @return true if the modal window appears else false
-	 * @author Saurav.Goyal
-	 */
-	public Boolean verifyModalWindowAAL() {
-		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
-	}
-
-
-	
 	@FindBy(xpath = "//*[contains(@class,'billing-payment-section')]/a[1]")
 	WebElement lblViewManageBill;
 	
@@ -360,8 +358,16 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[contains(@translate,'global.label.printBillPDF')]")
 	WebElement lblPrintYourBill;
-	
-	
+
+	/**
+	 * Verify Modal Window AAL
+	 * @return true if the modal window appears else false
+	 * @author Saurav.Goyal
+	 */
+	public Boolean verifyModalWindowAAL() {
+		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
+	}
+
 
 	/**
 	 * Click button "Add a line" on modal dialogue window.
@@ -621,6 +627,25 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public boolean isCTNBadgeVisible() {
 		return reusableActions.isElementVisible(divCtnBadge,10);
 	}
+
+
+	/**
+	 * checks if Automatic Pay Text Display is visible in overview page.
+	 * @return true if the text is available else false
+	 * @author chinnarao.vattam
+	 */
+	public boolean isAutomaticPayTextDisplay() {
+		return reusableActions.isElementVisible(txtAutomaticPay,60);
+	}
+
+	/**
+	 * Click on Automatic Pay Model close button
+	 * @author chinnarao.vattam
+	 */
+	public void clkAutomaticPayModelClose() {
+		reusableActions.getWhenReady(btnAutomaticPayModelClose, 60).click();
+	}
+
 
 	/**
 	 * Returns the dictionary collection of all the CTN users
@@ -1290,7 +1315,13 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkPenIconForChangePaymentMethod() {
 		reusableActions.getWhenReady(btnPenIconForChangeAutoPaymentMethod).click();
 	}
-	
+
+	/**
+	 * @author chinnarao.vattam
+	 */
+	public void clkChangePaymentMethod() {
+		reusableActions.getWhenReady(inkPaymentMethod).click();
+	}
 	/**
 	 * 
 	 * @return true if element visisble

@@ -40,16 +40,16 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_020_HSI_AnonymousCxwithSameasRCISwithECIDmediumRisk_BuyflowCallJanrainDirectlyDuringECIDdupCheckTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","newFidoCableBuyCH"})
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
     public void checkCRMaddressMismatchWithSGI_ServiceabilityTest() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkShop();
 		getFidohomepage().clkHomeInternet();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
-		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getUpgradePlanCost());
+		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getUpgradePlanCost());
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
-		String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-		String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
+		String  strAddressLine1=TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getAddress().get("line1");
+		String  strAddressLine2=TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getAddress().get("line2");
 		getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
 		getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
 		getFidoshopinternetpage().clkServiceAvailabilityCheck();
@@ -58,11 +58,11 @@ public class FidoCH_Regression_TC_020_HSI_AnonymousCxwithSameasRCISwithECIDmediu
 		getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
 		getFidocartsummarypage().clkInternetCheckout();
 		getReporter().reportLogWithScreenshot("Create user page has launched to give the user information");
-		getFidocreateuserpage().setCommunicationDetails(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getUsername());
-		getFidocreateuserpage().setFirstName(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getFirstName());
-		getFidocreateuserpage().setLastName(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getLastName());
+		getFidocreateuserpage().setCommunicationDetails(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getUsername());
+		getFidocreateuserpage().setFirstName(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getFirstName());
+		getFidocreateuserpage().setLastName(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getLastName());
 		getReporter().reportLogWithScreenshot("Entered the user personal information");
-		getFidocreateuserpage().setPhone(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getPhoneNumber());
+		getFidocreateuserpage().setPhone(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getPhoneNumber());
 		getReporter().reportLogWithScreenshot("Entered the user communication information");
 		getFidocreateuserpage().clkUserProfileNext();
 		getReporter().reportLogWithScreenshot("Credit evaluation page has launched");
@@ -72,14 +72,14 @@ public class FidoCH_Regression_TC_020_HSI_AnonymousCxwithSameasRCISwithECIDmediu
 		getReporter().reportLogWithScreenshot("Entered the user DOB information");
 		getFidocreditcheckpage().selectFirstIdOption("2");
 		getFidocreditcheckpage().selectDrivingLicenseProvince("ON");
-		getFidocreditcheckpage().selectDrivingLicenseExpiryYear(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getYear());
-		getFidocreditcheckpage().selectDrivingLicenseExpiryMonthSingleDigit(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getMonth());
-		getFidocreditcheckpage().selectDrivingLicenseExpiryDay(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getDate());
+		getFidocreditcheckpage().selectDrivingLicenseExpiryYear(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getYear());
+		getFidocreditcheckpage().selectDrivingLicenseExpiryMonthSingleDigit(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getMonth());
+		getFidocreditcheckpage().selectDrivingLicenseExpiryDay(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getDate());
 		getFidocreditcheckpage().setDrivingLicenseNumber("ONTARIO");
 		getReporter().reportLogWithScreenshot("Entered the Driver's License information");
 
 		getFidocreditcheckpage().selectSecondIdOption("5");
-		getFidocreditcheckpage().setBirthCertificate(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getBirthCertNumber());
+		getFidocreditcheckpage().setBirthCertificate(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getBirthCertNumber());
 		getReporter().reportLogWithScreenshot("Entered the passport information");
 		getFidocreditcheckpage().clkCreditCheckConsent();
 		getReporter().reportLogWithScreenshot("Credit consent Check Done");

@@ -41,7 +41,7 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 		getFidohomepage().clkLoginMobile();
 		getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
-		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
+		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgradeMobile());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrameMobile();

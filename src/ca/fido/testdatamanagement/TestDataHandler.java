@@ -49,6 +49,7 @@ public class TestDataHandler {
 	public static AccountData fidoSspHSIAccount;
 	public static AccountData fidoHSIAnotherProvinceAddress;
 	public static AccountData fidoHSIUnavailableAddress;
+	public static AccountData janrainDirectlyDuringECIDdupCheck;
 	public static AccountData fidoHSIRegisterAccount;
 	public static NACData tc01ByodStandardShipping;
 	public static NACData tc02ByodExpressShipping;
@@ -114,7 +115,9 @@ public class TestDataHandler {
         fidoHSIAnotherProvinceAddress=YamlHandler.getHSIAccountData("HSIAnotherProvinceAddress");
         fidoHSIUnavailableAddress=YamlHandler.getHSIAccountData("HSIUnavailableAddress");
 		validateRCISandECIDLowRiskHighRiskCC=YamlHandler.getHSIAccountData("ValidateRCISandECIDLowRiskHighRiskCC");
-        chPaymentInfo = YamlHandler.getHSIPaymentDetails();
+		janrainDirectlyDuringECIDdupCheck=YamlHandler.getHSIAccountData("JanrainDirectlyDuringECIDdupCheck");
+
+		chPaymentInfo = YamlHandler.getHSIPaymentDetails();
 		config =  YamlHandler.getConfig();
 	}
 	
