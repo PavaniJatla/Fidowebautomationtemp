@@ -80,7 +80,10 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='a-input semafone-cc-parent']//descendant::iframe")
 	WebElement frameCreditCardNumberText;
-	
+
+	@FindBy(xpath = "//ss-semafone-credit-card[@class='semafone-cc']//descendant::iframe")
+	WebElement iframeCreditCardNumberText;
+
 	@FindBy(xpath = "//ins[@translate='payment-method.payment-method-success.successAutomaticPayments']")
 	WebElement lblSuccessYouAreSignedUpForAutomaticPayments;
 	
@@ -515,7 +518,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setCreditCardNumberOnChangeMOP(String strAccountNumber) {	
-		driver.switchTo().frame(reusableActions.getWhenVisible(frameCreditCardNumberText));		
+		//driver.switchTo().frame(reusableActions.getWhenVisible(frameCreditCardNumberText));
+		driver.switchTo().frame(reusableActions.getWhenVisible(iframeCreditCardNumberText));
 		reusableActions.clickWhenVisible(txtCardNumber);
 		reusableActions.getWhenReady(txtCardNumber).sendKeys(strAccountNumber);
 		driver.switchTo().defaultContent();

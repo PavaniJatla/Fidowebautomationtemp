@@ -187,7 +187,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//h4[@class='talk-text-limited-heading']/span")
 	WebElement spanRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")
+
+	@FindAll({
+			@FindBy(xpath = "//ss-talk-text/div//span"),
+			@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")})
 	WebElement talkRemainingMinutes;
 	
 	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Text')]")

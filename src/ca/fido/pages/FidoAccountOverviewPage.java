@@ -274,10 +274,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='global.label.paymentHistory']")
 	WebElement lnkPaymentHistory;
 
-	@FindBy(xpath = "//fss-subscription-details/div/a[contains(text(),'Show all lines')]")
+	@FindBy(xpath = "//fss-subscription-details/div/a[contains(text(),'Show all lines') or contains(text(),' Afficher toutes les lignes ')]")
 	WebElement lnkShowAllLines;
 	
-	@FindBy(xpath = "//fss-subscription-details/div/a[contains(text(),'Hide all lines')]")
+	@FindBy(xpath = "//fss-subscription-details/div/a[contains(text(),'Hide all lines') or contains(text(),' Masquer toutes les lignes ')]")
 	WebElement lnkHideAllLines;
 
 	@FindBy(xpath = "//div[@class='fss-subscription-detail']")
@@ -1395,7 +1395,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return
 	 */
 	public boolean validateCancelledBadgeAndThePlacementOfBadgeInAOpage(String strCancelledBAN) {	
-		WebElement cancelledBadge = getDriver().findElement(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled')]"));
+		WebElement cancelledBadge = getDriver().findElement(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled') or contains(text(),' Fermé ')]"));
 		WebElement accountType = getDriver().findElement(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//h2"));
 		int xDiff = cancelledBadge.getLocation().x-accountType.getLocation().x;
 		int yDiff = Math.abs(accountType.getLocation().y-cancelledBadge.getLocation().y);
@@ -1460,7 +1460,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @return
 	 */
 	public boolean IsAnyCancelledAccountDisplayed(String strCancelledBAN) {
-		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled') or contains(text(),'Fermè')]"));
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//span[contains(text(),'Cancelled') or contains(text(),' Fermé ')]"));
 	}
 
 	public void clkPaymentHistoryLink() {
@@ -1554,7 +1554,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 	
 	public void NavigateToAccountOverViewFromDashbOard() {
-		reusableActions.getWhenReady(By.xpath("//a[@title='Account Overview']")).click();
+		reusableActions.getWhenReady(By.xpath("//a[@title='Account Overview' or @title='Aperçu du compte']")).click();
 		
 	}
 
