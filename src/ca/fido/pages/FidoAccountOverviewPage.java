@@ -1686,6 +1686,17 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account') or contains(@title,'Ajouter une ligne au compte mobile')]"),1)
 				&& !reusableActions.isElementVisible(By.xpath("//div[@class='fss-subscription-detail']")));
 	}
+
+	/**
+	 * validates suspended account and checks if View Bill Button And Make A Payment Button Exist
+	 * @author Rohit.Kumar
+	 */
+	public boolean validateAccountSuspendedWithViewBillButtonAndMakeAPaymentButtonExists(String strSuspendedBAN) {
+
+		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')  or contains(@aria-label,'Voir et gérer la facture')]"),1)
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strSuspendedBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for') or contains(@aria-label,'Faire un paiement au')]"),1)
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(@title,'"+strSuspendedBAN+"')]/span"),1));
+	}
 	
 	/**
 	 * Clicks on View and Manage Bill lable
