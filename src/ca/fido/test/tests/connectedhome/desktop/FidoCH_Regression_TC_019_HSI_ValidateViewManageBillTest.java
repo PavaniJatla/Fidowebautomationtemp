@@ -72,8 +72,10 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getFidointernetdashboardpage().clkDailyUsage();
 		//getReporter().softAssert(getFidoInternetUsagePage().verifyIntrnetDailyUsage(),"Daily Usage has Displayed","Daily Usage hasn't Displayed");
 		//getReporter().softAssert(getFidoInternetUsagePage().verifyDailyInternetUsageChart(),"Daily Usage Chart has Displayed","Daily Usage Chart hasn't Displayed");
+		getReporter().reportLogWithScreenshot("Daily Usage Chart");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyDailyBreakdown(),"Daily Usage breakdown has Displayed","Daily Usage breakdown  hasn't Displayed");
 		//getReporter().softAssert(getFidoInternetUsagePage().verifyDailyBreakdownChart(),"Daily Usage table has Displayed","Daily Usage table hasn't Displayed");
+		getReporter().reportLogWithScreenshot("Daily Usage table");
 		getFidointernetdashboardpage().clkUsageNService();
 		getFidointernetdashboardpage().clkInternetService();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
@@ -81,10 +83,13 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getFidointernetdashboardpage().clkMonthlyUsage();
 		getReporter().softAssert(getFidoInternetUsagePage().verifyMonthlyInternetUsage(),"Monthly Usage has Displayed","Monthly Usage hasn't Displayed");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyMonthlyUsageChart(),"Monthly Usage Chart has Displayed","Monthly Usage Chart hasn't Displayed");
+		getReporter().reportLogWithScreenshot("Monthly Usage Chart");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyMonthlyBreakdown(),"Monthly Usage breakdown has Displayed","Monthly Usage breakdown hasn't Displayed");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyMonthlyBreakdownChart(),"Monthly Usage table has Displayed","Monthly Usage table hasn't Displayed");
+		getReporter().reportLogWithScreenshot("Monthly Usage table");
 		getFidoInternetUsagePage().clkUsageHistory();
-		getReporter().softAssert(getFidoInternetUsagePage().verifyUsageHistory(),"Monthly Usage history has Displayed","Monthly Usage history hasn't Displayed");
+		getReporter().softAssert(getFidoInternetUsagePage().verifyUsageHistory(),"Internet Usage history has Displayed","Monthly Usage history hasn't Displayed");
+		getReporter().reportLogWithScreenshot("Internet Usage history");
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

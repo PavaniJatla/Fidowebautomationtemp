@@ -96,6 +96,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyDailyBreakdownChart() {
+		reusableActions.javascriptScrollToMiddleOfPage();
 		return reusableActions.isElementVisible(tblDailyBreakdownChart,90);
 	}
 
@@ -133,6 +134,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyMonthlyBreakdownChart() {
+		reusableActions.javascriptScrollToMiddleOfPage();
 		return reusableActions.isElementVisible(tblMonthlyBreakdownChart,30);
 	}
 
@@ -142,6 +144,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyUsageHistory() {
+		reusableActions.javascriptScrollToMiddleOfPage();
 		return reusableActions.isElementVisible(tblUsageHistory,30);
 	}
 }
