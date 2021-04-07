@@ -136,7 +136,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	//My device Section
 	@FindAll({
-	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='mon appareil' or text()='Fido Payment Program']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
+	@FindBy(xpath = "//*[@translate='wirelessDashboard.deviceSection.deviceTitle' or text()='my device' or text()='Programme de paiement Fido' or text()='Fido Payment Program']/parent::div//following-sibling::div[contains(@class,'device-wrapper')]"),
 	@FindBy (xpath = "//div[@translate='wirelessDashboard.deviceSection.deviceTitle']/parent::div/following-sibling::div[contains(@class,'device-wrapper')]")})
 	WebElement divMyDevice;
 
@@ -187,7 +187,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//h4[@class='talk-text-limited-heading']/span")
 	WebElement spanRemainingMinutes;
 	
-	@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")
+
+	@FindAll({
+			@FindBy(xpath = "//ss-talk-text/div//span"),
+			@FindBy (xpath = "//ss-talk-text/div//span[contains(text(),'minutes')]")})
 	WebElement talkRemainingMinutes;
 	
 	@FindBy (xpath = "//ss-talk-text/div/p[contains(text(),'Text')]")
