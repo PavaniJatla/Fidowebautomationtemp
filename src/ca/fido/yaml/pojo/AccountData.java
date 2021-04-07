@@ -10,6 +10,7 @@ public class AccountData {
 	private String newPassword;
 	private String email;
 	public String usernamePay;
+	public String usernameUsage;
 	public String usernameDowngrade;
 	public String usernameUpgrade;
 	public String usernameUpgradeMobile;
@@ -211,5 +212,17 @@ public class AccountData {
 	 */
 	public void setUsernameUpgradeMobile(String usernameUpgradeMobile) {
 		this.usernameUpgradeMobile = usernameUpgradeMobile;
+	}
+	/**
+	 * @return the usernameUsage
+	 */
+	public String getUsernameUsage() {
+		return usernameUsage;
+	}
+	/**
+	 * @param usernameUsage the usernameUsage to set
+	 */
+	public void setUsernameUsage(String usernameUsage) {
+		this.usernameUsage = usernameUsage;
 	}
 }

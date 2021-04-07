@@ -215,7 +215,13 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='ss-data-section-bill-cycle']")
 	WebElement divBillCycle;
-	
+
+	@FindBy(xpath = "//a[@href='#/my-account/internet/usage/daily']")
+	WebElement linkDailyUsage;
+
+	@FindBy(xpath = "//a[@href='#/my-account/internet/usage/monthly']")
+	WebElement linkMonthlyUsage;
+
 	@FindBy (xpath = "//ins[@translate='global.label.services']")
 	WebElement navUsageNService;
 	
@@ -268,6 +274,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	public void selectHSIPackageByBandwidthMobile(String strBandwidth) {
 		By packageNameLocator = By.xpath("(//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update'])[1]");
 		reusableActions.javascriptScrollToMiddleOfPage();
+		reusableActions.staticWait(5000);
 		WebElement pkg = driver.findElement(packageNameLocator);
 		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(packageNameLocator, 120);
@@ -298,7 +305,23 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	public void clkConfirmPackageChange() {		
 		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();		
 	}
-	
+
+	/**
+	 * Click the confirm button on the change confirm popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkMonthlyUsage() {
+		reusableActions.getWhenVisible(lnkMonthlyUsage,60).click();
+	}
+
+	/**
+	 * Click the confirm button on the change confirm popup
+	 * @author chinnarao.vattam
+	 */
+	public void clkDailyUsage() {
+		reusableActions.getWhenVisible(lnkDailyUsage,60).click();
+	}
+
 	/**
 	 * Verify the  downgrade popup after the Internet dashboard page
 	 * @return true, if the Downgrade popup displayed, else false
@@ -363,7 +386,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyIfMonthlyUsageLinkVisible() {
-		return reusableActions.isElementVisible(lnkDailyUsage);
+		return reusableActions.isElementVisible(lnkMonthlyUsage);
 	}
 	
 	/**

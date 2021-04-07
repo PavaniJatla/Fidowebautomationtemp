@@ -49,6 +49,7 @@ public class TestDataHandler {
 	public static AccountData fidoSspHSIAccount;
 	public static AccountData fidoHSIAnotherProvinceAddress;
 	public static AccountData fidoHSIUnavailableAddress;
+	public static AccountData janrainDirectlyDuringECIDdupCheck;
 	public static AccountData fidoHSIRegisterAccount;
 	public static NACData tc01ByodStandardShipping;
 	public static NACData tc02ByodExpressShipping;
@@ -81,7 +82,8 @@ public class TestDataHandler {
 	public static AccountData tc19;
 	public static AccountData tc20;
 	public static AccountData tc79;
-	//public static AccountData tc13;
+	public static AccountData tc13;
+	public static AccountData tc04_PostPaidFinancePaidOff;
 	public static AccountData tc84;
 	public static AccountData tc21;
 
@@ -122,7 +124,9 @@ public class TestDataHandler {
         fidoHSIAnotherProvinceAddress=YamlHandler.getHSIAccountData("HSIAnotherProvinceAddress");
         fidoHSIUnavailableAddress=YamlHandler.getHSIAccountData("HSIUnavailableAddress");
 		validateRCISandECIDLowRiskHighRiskCC=YamlHandler.getHSIAccountData("ValidateRCISandECIDLowRiskHighRiskCC");
-        chPaymentInfo = YamlHandler.getHSIPaymentDetails();
+		janrainDirectlyDuringECIDdupCheck=YamlHandler.getHSIAccountData("JanrainDirectlyDuringECIDdupCheck");
+
+		chPaymentInfo = YamlHandler.getHSIPaymentDetails();
 		config =  YamlHandler.getConfig();
 	}
 	
@@ -171,7 +175,8 @@ public class TestDataHandler {
     	tc19 = YamlHandler.getAccountData("tc19PostPaidInEligibleUser");
     	tc20 = YamlHandler.getAccountData("tc20DeliquientCustomer");
     	tc79 = YamlHandler.getAccountData("TC79AccountWithNoBills");
-    	//tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
+    	tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
+		tc04_PostPaidFinancePaidOff = YamlHandler.getAccountData("tc04_PostPaidFinancePaidOff");
     	tc84 = YamlHandler.getAccountData("TC84NoPayments");
     	tc21 = YamlHandler.getAccountData("tc21DeliquientCustomer");
 	}

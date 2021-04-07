@@ -59,8 +59,11 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
 	WebElement btnLoginWithFb;
-	
-	@FindBy(xpath = "//img[@src='assets/images/icon-register.png']//parent::i")
+
+	@FindAll(
+			{
+	@FindBy(xpath = "//span[text()='Register' or contains(text(),'inscrire')]"),
+	@FindBy(xpath = "//img[@src='assets/images/icon-register.png']//parent::i")})
 	WebElement lnkregister;
 	
 	@FindBy (xpath = "//a[@class='recovery-btn-back']")
@@ -83,9 +86,23 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy(xpath = "//ins[@translate='global.message.accountPageInitializing']")
 	WebElement lblPageLoading;
-	
-	@FindBy (xpath = "//div[@class='recovery-error']")
+
+
+	@FindAll({
+			@FindBy (xpath = "//a[text()='Forgot username' or text()='Mot de passe oublié']"),
+			@FindBy (xpath = "//div[@class='recovery-error']")})
 	WebElement lblErrorMsg;
+
+
+
+	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
+	WebElement lnkForgotUserName;
+
+	@FindBy(xpath = "//input[@id='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	WebElement lblUserName;
+
+	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
+	WebElement lnkForgotPassword;
 
 	/**
 	 * Set the user name on login page
@@ -93,7 +110,9 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setUsernameInFrame(String strUsername) {
+		reusableActions.clickIfAvailable(lblUserName);
 		reusableActions.getWhenReady(txtUsername,90).clear();
+		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
@@ -107,6 +126,7 @@ public class FidoLoginPage extends BasePageClass {
 	public void setUsernameInFrameAfterReSignIn(String strUsername) {
 		if(reusableActions.isElementVisible(txtUsername)) {
 			reusableActions.getWhenReady(txtUsername,90).clear();
+			reusableActions.clickIfAvailable(lblUserName);
 			//reusableActions.getWhenReady(txtUsername,10).click();
 			reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 		  }
@@ -150,13 +170,35 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		reusableActions.clickIfAvailable(lblPassword);
-		reusableActions.getWhenReady(txtPassword,10).clear();
-		reusableActions.getWhenVisible(txtPassword,30).click();
-		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		try {
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword, 10).clear();
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenVisible(txtPassword, 30).click();
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}catch (Exception ex){
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}
 	}
 
-
+	/**
+	 * Set the user password on login page
+	 * @param strPassword user password to be login
+	 * @author Mirza.Kamran
+	 */
+	public void setPasswordInFrameMobile(String strPassword) {
+		try {
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword, 10).clear();
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenVisible(txtPassword, 30).click();
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}catch (Exception ex){
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}
+	}
 	/**
 	 * Click on the login button
 	 * @author Chinnarao.Vattam
@@ -224,7 +266,17 @@ public class FidoLoginPage extends BasePageClass {
 
 		reusableActions.getWhenVisible(lnkForgotNameOrPass).click();
 	}
-	
+
+	/**
+	 * Clicks on Forgot Password iframe
+	 * @author Mirza.Kamran
+	 */
+	public void clkForgotPasswordIframe() {
+
+		reusableActions.getWhenReady(lnkForgotPassword).click();
+
+	}
+
 	/**
 	 * Click on SignOut in header Navigation bar after login
 	 * @author ning.xue
@@ -297,5 +349,13 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public boolean isUserNameDisplayed() {	
 		return reusableActions.isElementVisible(txtUsername);
+	}
+
+	/**
+	 * Clicks on Forgot Username iframe
+	 */
+	public void clkForgotUsernameIframe() {
+		reusableActions.getWhenReady(lnkForgotUserName).click();
+
 	}
 }
