@@ -44,6 +44,8 @@ public class AccountDetails {
 	private String date;
 	private String postalcode;
 	private String dob;
+	private String cancelledBan;
+
 	public AccountDetails() {
 		
 	}
@@ -512,4 +514,16 @@ public class AccountDetails {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
+
+    public String getCancelledBan() {
+		return cancelledBan;
+    }
+
+	/**
+	 * @param CancelledBan the dob to set
+	 */
+	public void setCancelledBan(String cancelledBan) {
+		this.cancelledBan = cancelledBan;
+	}
+
 }

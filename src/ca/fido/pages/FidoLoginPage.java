@@ -86,9 +86,14 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy(xpath = "//ins[@translate='global.message.accountPageInitializing']")
 	WebElement lblPageLoading;
-	
-	@FindBy (xpath = "//div[@class='recovery-error']")
+
+
+	@FindAll({
+			@FindBy (xpath = "//a[text()='Forgot username' or text()='Mot de passe oublié']"),
+			@FindBy (xpath = "//div[@class='recovery-error']")})
 	WebElement lblErrorMsg;
+
+
 
 	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
 	WebElement lnkForgotUserName;
@@ -105,7 +110,9 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setUsernameInFrame(String strUsername) {
+		reusableActions.clickIfAvailable(lblUserName);
 		reusableActions.getWhenReady(txtUsername,90).clear();
+		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 	}
@@ -119,6 +126,7 @@ public class FidoLoginPage extends BasePageClass {
 	public void setUsernameInFrameAfterReSignIn(String strUsername) {
 		if(reusableActions.isElementVisible(txtUsername)) {
 			reusableActions.getWhenReady(txtUsername,90).clear();
+			reusableActions.clickIfAvailable(lblUserName);
 			//reusableActions.getWhenReady(txtUsername,10).click();
 			reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
 		  }
@@ -162,13 +170,35 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		reusableActions.clickIfAvailable(lblPassword);
-		reusableActions.getWhenReady(txtPassword,10).clear();
-		reusableActions.getWhenVisible(txtPassword,30).click();
-		reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		try {
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword, 10).clear();
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenVisible(txtPassword, 30).click();
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}catch (Exception ex){
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}
 	}
 
-
+	/**
+	 * Set the user password on login page
+	 * @param strPassword user password to be login
+	 * @author Mirza.Kamran
+	 */
+	public void setPasswordInFrameMobile(String strPassword) {
+		try {
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword, 10).clear();
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenVisible(txtPassword, 30).click();
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}catch (Exception ex){
+			reusableActions.clickIfAvailable(lblPassword);
+			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
+		}
+	}
 	/**
 	 * Click on the login button
 	 * @author Chinnarao.Vattam

@@ -36,7 +36,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 	}
 
 	
-	@Test(groups = {"RegressionSS","DashboardSS"})
+	@Test(groups = {"RegressionSS","DashboardSS","AddDataSpeedPass"})
 	public void verifyAddOTTDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
 		getFidohomepage().clkLogin();
