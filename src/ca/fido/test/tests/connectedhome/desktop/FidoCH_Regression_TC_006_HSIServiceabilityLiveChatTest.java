@@ -30,31 +30,21 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_006_HSIServiceabilityLiveChatTest extends BaseTestClass {
 
-	@Test
+	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIServiceabilityLiveChatFlow() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
         getFidohomepage().clkShop();
         getFidohomepage().clkHomeInternet();
         getReporter().reportLogWithScreenshot("Home Internet has selected");
-        getFidoshopinternetpage().clkCheckAvailability();
-        getReporter().reportLogWithScreenshot("Launched the Internet Page");
-        String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
-        String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        getFidoshopinternetpage().setAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
-        getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        getFidoshopinternetpage().clkCheckAvailabilityConfirmation(); 
-        getReporter().reportLogWithScreenshot("Good News for the Service availability");
+
         getFidoshopinternetpage().clkLiveChat();
-        getFidoshopinternetpage().verifyLiveChat();
-		getReporter().softAssert(getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has opened", "Live chat frame hasn't opened");
-        getReporter().reportLogWithScreenshot("Launched Live chat frame");
-        getFidoshopinternetpage().clkMinimizeChat();
-        getReporter().reportLogWithScreenshot("Live chat frame has minimized");
-        getFidoshopinternetpage().clkMaximizeChat();
-        getReporter().reportLogWithScreenshot("Launched Live chat frame");
+		getReporter().hardAssert(getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has opened", "Live chat frame hasn't opened");
+        getReporter().reportLogWithScreenshot("Launched Live chat model");
         getFidoshopinternetpage().clkCloseChat();
+		getReporter().hardAssert(getFidoshopinternetpage().verifyBcHeadMenu(),"Live close Menu", "Live close Menu is Failed");
+		getReporter().reportLogWithScreenshot("Launched Live close Menu");
         getFidoshopinternetpage().clkCloseChatConfirm();
-		//getReporter().softAssert(!getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
+		getReporter().softAssert(!getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has closed", "Live chat frame hasn't closed");
         getReporter().reportLogWithScreenshot("Service availability confirm Popup");
 	}
 
@@ -67,7 +57,7 @@ public class FidoCH_Regression_TC_006_HSIServiceabilityLiveChatTest extends Base
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
-		closeSession();
+		//closeSession();
 	}
 
 }
