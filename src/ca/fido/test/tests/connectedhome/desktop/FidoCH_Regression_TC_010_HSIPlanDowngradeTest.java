@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass {
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoUpgradePlanCH"})
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();
