@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class FidoSS_Regression_TC004 extends BaseTestClass{
+public class FidoSS_Regression_TC088_ValidateDeviceSectionAndDeviceDetailsModalForCXWithFinancePaidOFF_ON extends BaseTestClass{
 
     @BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -66,8 +66,8 @@ public class FidoSS_Regression_TC004 extends BaseTestClass{
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
                 "Fido Payment Program Header is visible",
                 "Fido Payment Program Header is not visible");
-        
-       getReporter().softAssert(getFidowirelessdashboardpostpaidpage().getDeviceFinancingRemainingBalance().contains("$0.00"),
+
+        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().getDeviceFinancingRemainingBalance(),
                 "The balance remaining is $0.00",
                 "The balance remaining is not $0.00");
 

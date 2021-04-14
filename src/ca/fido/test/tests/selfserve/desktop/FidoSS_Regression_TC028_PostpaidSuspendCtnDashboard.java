@@ -31,7 +31,8 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc28.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc28.getPassword());
-		String strBan = TestDataHandler.tc28.getaccountDetails().getBan();		
+		String strBan = TestDataHandler.tc28.getaccountDetails().getBan();
+		String ctn = TestDataHandler.tc28.getaccountDetails().getCtn();
 		getReporter().reportLogWithScreenshot("After click on Login");	
 		getFidologinpage().clkLoginInFrame();	
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -44,9 +45,29 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 		
 		getCommonbusinessflows().scrollToMiddleOfWebPage();
 		getReporter().reportLogWithScreenshot("Suspended CTN account overview page");
-		getReporter().hardAssert(getFidoaccountoverviewpage().validateBillingCTAButtonAddLineForSuspendedAccount(strBan),
-				"CTN, View usage and manage and add line is not displayed for suspended account",
+		getReporter().hardAssert(getFidoaccountoverviewpage().validateAccountSuspendedWithViewBillButtonAndMakeAPaymentButtonExists(strBan),
+				"Account is suspended with view & manage bill and Make a Payment buttons visible",
 				"Suspended account overview page seems invalid, please investigate");
+
+		getFidoaccountoverviewpage().clickCTNsViewUsageAndManageLink(ctn);
+		getReporter().reportLogWithScreenshot("Suspended CTN account Dashboard page");
+
+
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyMyMobilePlanDashBoardSectionIsDisplayed(),
+				"My Mobile Plan Dash Board Section Is visible",
+				"My Mobile Plan Dash Board Section Is not visible");
+
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyMyDeviceDetails(),
+				"My Device Details Section Is visible",
+				"My Device Details Section Is not visible");
+
+		getReporter().hardAssert(!getFidowirelessdashboardpostpaidpage().verifyIfUsageInfoDisplayed(),
+				"Usage Info Is Not visible",
+				"Usage Info Is Visible - please investigate");
+
+
+
+
 		
 	}
 }

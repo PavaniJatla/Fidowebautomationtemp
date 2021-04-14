@@ -48,7 +48,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 		String altPassword=TestDataHandler.tc006009.getPassword();
 		String newPassword=TestDataHandler.tc006009.getaccountDetails().getNewPassword();						
 		getFidologinpage().setUsernameInFrame(altUserName);
-		getFidologinpage().setPasswordInFrame(altPassword);
+		getFidologinpage().setPasswordInFrameMobile(altPassword);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrameMobile();
 		if(getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame())
@@ -57,7 +57,7 @@ public class Mobile_FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTes
 			altPassword=newPassword;
 			newPassword=tempPwd;	
 			getFidologinpage().setUsernameInFrame(altUserName);
-			getFidologinpage().setPasswordInFrame(altPassword);
+			getFidologinpage().setPasswordInFrameMobile(altPassword);
 			getFidologinpage().clkLoginInFrameMobile();
 			getReporter().reportLogWithScreenshot("Login attempt with alternate password :"+newPassword);
 			getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(),

@@ -18,6 +18,12 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//label[@for='Creditcard']/ins")
 	WebElement rdoCreditCardOption;
 
+	@FindBy(xpath = "//label[@for='Bank']/ins")
+	WebElement rdoBankOption;
+
+	@FindBy(xpath = "//div[@class='modal-header hidden-xs']//button[@class='close square-close-icon']")
+	WebElement btnClosePayment;
+
 	@FindBy(xpath = "//div[@class='cc-payment-section']//descendant::iframe")
 	WebElement fraSemaphone;
 
@@ -156,7 +162,23 @@ public class FidoPaymentPage extends BasePageClass {
 	public void selectCreditCardOption() {
 		reusableActions.getWhenReady(rdoCreditCardOption,20).click();
 	}
-	
+
+	/**
+	 * Selects the Credit card option radio button on the payment page
+	 * @author Aditya.Dhingra
+	 */
+	public void selectBankOption() {
+		reusableActions.getWhenReady(rdoBankOption,20).click();
+	}
+
+	/**
+	 * Selects the Credit card option radio button on the payment page
+	 * @author Aditya.Dhingra
+	 */
+	public void clkClosePayments() {
+		reusableActions.getWhenReady(btnClosePayment,20).click();
+	}
+
 	/**
 	 * Set the payment amount on the payment page
 	 * @param strPaymentAmount amount to be paid to buy the offer

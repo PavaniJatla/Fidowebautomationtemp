@@ -87,6 +87,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();	
 	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoCheckOutPage> FidoCheckOutPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoInternetUsagePage> FidoInternetUsagePageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	private Map<String,String> sauceParameters;
@@ -171,6 +172,10 @@ public class BaseTestClass {
 
 	public static FidoProfileAndSettingPage getFidoprofileandsettingpage() {
 		return FidoProfileAndSettingPageThreadLocal.get();
+	}
+
+	public static FidoInternetUsagePage getFidoInternetUsagePage() {
+		return FidoInternetUsagePageThreadLocal.get();
 	}
 
 	public static FidoPaymentOptionsPage getFidopaymentoptionspage() {
@@ -510,6 +515,7 @@ public class BaseTestClass {
 			FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
 			FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
 			FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
+			FidoInternetUsagePageThreadLocal.set(new FidoInternetUsagePage(getDriver()));
 			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
 			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
 			ensVerificationsThreadLocal.set(new VerifyInEns(this));

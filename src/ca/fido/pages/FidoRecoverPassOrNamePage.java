@@ -89,7 +89,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
 	WebElement lblYourVerificationCode;
 
-	@FindBy(xpath = "//input[@formcontrolname='username']")
+	@FindBy(xpath = "//input[@formcontrolname='username' or @title=\"Enter your email to receive a verification code\"]")
 	WebElement txtUsername;
 
 	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
@@ -98,11 +98,11 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//h1//span[text()='Success!' or contains(text(),'ussi!')]")
 	WebElement lblYourPasswordHasBeenReset;
 
-	@FindBy(xpath = "//span[text()='Create a new MyRogers password for ' or contains(text(),'ez un nouveau mot de passe MonRogers pour')]/following-sibling::span")
+	@FindBy(xpath = "//span[text()='Create a new My Account password for: ' or contains(text(),'ez un nouveau mot de passe MonRogers pour')]/following-sibling::span")
 	WebElement lblSetPasswordForUserName;
 
 
-	@FindBy(xpath = "")
+	@FindBy(xpath = "//button[@title='Go to your Fido My Account']")
 	WebElement btnGoToMyFido;
 
 	@FindBy(xpath = "//a[text()='Use your account information instead.'or contains(text(),'t les renseignements de votre compte')]")
@@ -119,6 +119,9 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 
 	@FindBy(xpath = "//input[@formcontrolname='dob']")
 	WebElement txtDOB;
+
+	@FindBy(xpath = "//input[@formcontrolname='accountNumber']/parent::div")
+	WebElement lblAccountNumber;
 
 	public void clkBtnPassword() {
 		reusableActions.getWhenVisible(btnPassword).click();
@@ -297,10 +300,12 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setAccountNumber(String strAccountNumber) {
-		reusableActions.getWhenReady(txtAcountNumber).clear();
+		reusableActions.waitForElementTobeClickable(lblAccountNumber, 30);
+		reusableActions.getWhenReady(lblAccountNumber).click();
+		//reusableActions.getWhenReady(txtAcountNumber).clear();
 		reusableActions.getWhenReady(txtAcountNumber).sendKeys(strAccountNumber);
 	}
-	
+
 	/**
 	 * To get the recovery user name
 	 * @return String, the recovered user name
