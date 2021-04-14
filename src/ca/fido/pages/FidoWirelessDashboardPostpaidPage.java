@@ -158,8 +158,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//*[contains(text(),'Find out your exclusive deals') or contains(text(),'Découvrez vos offres exclusives')]")
 	WebElement txtFindOutYourExclusiveDeals;
 
-	@FindBy(xpath = "//*[contains(text(),'get a new device') or contains(text(),'obtenir un nouvel appareil')]")
+	@FindAll({
+			@FindBy(xpath = "//*[contains(text(),'get a new device') or contains(text(),'obtenir un nouvel appareil')]"),
+			@FindBy (xpath = "//span[text()='get a new device' or text()='obtenir un nouvel appareil']/ancestor::a")})
 	WebElement lnkGetANewDevice;
+
 
 	@FindBy(xpath = "//*[contains(text(),'A price plan change may be required') or contains(text(),'Un changement de forfait pourrait être requis')]")
 	WebElement txtAPricePlanChangeMayBeRequired;
@@ -380,8 +383,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Thanks for bringing your device' or text()='Merci d’avoir apporté votre appareil']")
 	WebElement msgMyDeviceThanks;
 
-	@FindBy(xpath = "//span[text()='get a new device' or text()='obtenir un nouvel appareil']/ancestor::a")
-	WebElement  lnkGetANewDevice;
+
+
 	@FindBy(xpath = "//span[@class='device-balance d-flex flex-column']//div[@class='ds-price']")
 	WebElement txtDeviceRemainingBalance;
 
