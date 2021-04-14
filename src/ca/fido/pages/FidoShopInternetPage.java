@@ -39,7 +39,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	WebElement btnBuyNowReskin;
 	//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100']
 	
-	@FindBy(xpath = "//div[@class='modal-chat bcStatic']")
+	@FindBy(xpath = "//a[@title='Live Chat with an agent' or @titile='']")
 	WebElement btnliveChat;
 		
 	@FindBy(xpath = "//button[@class='ute-btn-primary ute-md']/ins[@translate='global.cta.updateCart']")
@@ -59,10 +59,21 @@ public class FidoShopInternetPage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='bc-headbtn bc-headbtn-menulist']")
 	WebElement btnCloseChat;
-	
-	@FindBy(xpath = "//div[@class='bc-headbtn-icon bc-headbtn-close-icon']")
+
+	@FindBy(xpath = "//input[@name='vn']")
+	WebElement txtVaName;
+
+	@FindBy(xpath = "//textarea[@name='iq']")
+	WebElement txtInitialQuestion;
+
+	@FindBy(xpath = "//div[@class='bc-headmenu-item bc-headbtn-close']")
 	WebElement btnCloseChatConfirm;
-	
+	//div[@class='bc-headbtn-icon bc-headbtn-close-icon']
+	//div[@class='bc-headbtn-label bc-headbtn-close-label']
+
+	@FindBy(xpath = "//div[@class='bc-headmenu']")
+	WebElement mnBcHeadMenu;
+
 	@FindBy(xpath = "//button[@class='ute-icon-search']")
 	WebElement btnAvailabilitySearch;
 	
@@ -373,6 +384,11 @@ public class FidoShopInternetPage extends BasePageClass {
 		return reusableActions.isElementVisible(By.xpath("//div[@class='subtotal-holder']//span[@price='" + strPlanCost+"']"), 30);
 	}
 
+	public boolean  verifyBcHeadMenu() {
+		reusableActions.staticWait(6000);
+		return reusableActions.isElementVisible(mnBcHeadMenu, 30);
+	}
+
 	/**
 	 * Click on update cart button on the buy options popup
 	 * @return true, if the checkout page shows the download speed of the selected package , else false
@@ -471,23 +487,25 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.getWhenReady(btnYes,30).click();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * Click on update cart button on the live chat popup
 	 * @return true, if the checkout page shows the live chat popup , else false
 	 * @author chinnarao.vattam
 	 */
 		public boolean  verifyLiveChat() {
+			reusableActions.staticWait(4000);
 		return reusableActions.isElementVisible(popupLiveChat, 30);
 	}
-	
+
+	public boolean  verifyVaName() {
+		return reusableActions.isElementVisible(txtVaName, 30);
+	}
+
+	public boolean  verifyInitialQuestion() {
+		return reusableActions.isElementVisible(txtInitialQuestion, 30);
+	}
+
 		/**
 		 * Click on minimize button on the chat popup
 		 * @author chinnarao.vattam
@@ -508,18 +526,20 @@ public class FidoShopInternetPage extends BasePageClass {
 		 * Click on close button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkCloseChat()  {			
-			reusableActions.getWhenReady(popupChat,30);
-			reusableActions.getWhenReady(btnCloseChat,30).click();
+		public void clkCloseChat()  {
+			reusableActions.staticWait(5000);
+			reusableActions.isElementVisible(popupChat,30);
+			reusableActions.waitForElementVisibility(btnCloseChat,30);
+			reusableActions.executeJavaScriptClick(btnCloseChat);
 		}
-		
+
 		/**
 		 * Click on close button on the chat popup
 		 * @author chinnarao.vattam
 		 */
-		public void clkCloseChatConfirm()  {	
-			
-			reusableActions.getWhenVisible(btnCloseChatConfirm,30).click();
+		public void clkCloseChatConfirm()  {
+			reusableActions.waitForElementVisibility(btnCloseChatConfirm,60);
+			reusableActions.getWhenVisible(btnCloseChatConfirm,10).click();
 		}
 
 	/**

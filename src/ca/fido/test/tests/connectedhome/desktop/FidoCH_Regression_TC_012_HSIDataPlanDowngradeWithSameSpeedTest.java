@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_012_HSIDataPlanDowngradeWithSameSpeedTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoUpgradePlanCH"})
+	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();

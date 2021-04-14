@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_013_HSIPlanUpgradeTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoUpgradePlanCH"})
+	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPlanUpgrade() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();
