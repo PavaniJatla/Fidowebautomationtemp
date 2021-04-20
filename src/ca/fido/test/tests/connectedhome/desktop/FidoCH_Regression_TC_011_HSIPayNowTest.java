@@ -34,7 +34,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 	public void checkFidoHSIPayNowFunctionality() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrameMobile();
+		//getFidologinpage().switchToSignInFrameMobile();
 		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

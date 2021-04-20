@@ -32,7 +32,7 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 	public void checkFidoHSIValidateDashboard() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
