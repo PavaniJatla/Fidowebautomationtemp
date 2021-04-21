@@ -37,7 +37,7 @@ public class FidoCH_Regression_TC_013_HSIPlanUpgradeTest extends BaseTestClass {
 	public void checkFidoHSIPlanUpgrade() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgrade());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

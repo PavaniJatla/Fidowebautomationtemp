@@ -319,6 +319,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkDailyUsage() {
+		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.getWhenVisible(lnkDailyUsage,60).click();
 	}
 
@@ -405,7 +406,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public void clkUsageNService() {
-		reusableActions.waitForElementVisibility(navUsageNService, 240);
+		reusableActions.waitForElementVisibility(navUsageNService, 120);
 		reusableActions.getWhenReady(navUsageNService, 20).click();
 	}
 	

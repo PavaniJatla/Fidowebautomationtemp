@@ -40,7 +40,7 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
 		getFidoshopinternetpage().clkLoginAtServicebilityModel();*/
 		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUsage());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

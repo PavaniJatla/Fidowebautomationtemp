@@ -72,7 +72,7 @@ public class SSPFidoRetailerShopPage extends BasePageClass {
 	 * Click on the accept button on the Security Popup
 	 */
 	public void clkSecurityAccept() {		
-		reusableActions.getWhenReady(btnSecurityPopup,60).click();
+		reusableActions.clickIfAvailable(btnSecurityPopup,60);
 								
     }
 	
