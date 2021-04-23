@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_0021_HSIValidateRestartModemTest extends BaseTestClass {
+public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTestClass {
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIValidateDashboard() {
