@@ -259,8 +259,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	}
 	
 	public void clkChangePackageSsp() {
-		reusableActions.waitForElementVisibility(lnkChangePackage,90);
-		reusableActions.getWhenReady(lnkChangePackage,120).click();
+		reusableActions.waitForElementVisibility(lnkChangePackage,120);
+		reusableActions.getWhenReady(lnkChangePackage,90).click();
 	}
 
 	/**
@@ -416,7 +416,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public void clkUsageNService() {
-		reusableActions.waitForElementVisibility(navUsageNService, 120);
+		//SSP to HSI handshake requires soem time
+		reusableActions.staticWait(3000);
 		reusableActions.getWhenReady(navUsageNService, 20).click();
 	}
 	

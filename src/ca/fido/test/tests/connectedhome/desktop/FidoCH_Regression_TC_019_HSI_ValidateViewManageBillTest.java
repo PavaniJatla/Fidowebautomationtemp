@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
-	public void checkFidoHSIPayNowFunctionality() {
+	public void checkFidoHsiUsageFunctionality() {
 		/*getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkShop();
 		getFidohomepage().clkHomeInternet();
