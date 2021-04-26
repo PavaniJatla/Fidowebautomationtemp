@@ -22,12 +22,12 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
     public void hupWithPPCUsingFinancePlanExpressShippingFlowTest() {
         getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();
-        getFidologinpage().switchToSignInFrame();
+        //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc11HupPpcFinancingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc11HupPpcFinancingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();
+        //getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
 /*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();

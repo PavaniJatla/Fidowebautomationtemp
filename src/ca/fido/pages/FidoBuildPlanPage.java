@@ -380,7 +380,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	}
 	
 	/**
-	 * Clicks on the 'Continue' button after giving first name and last name details
+	 * Clicks on the 'Continue' button after giving first name and last name details. Tablet has default values which is covered with try/catch block.
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void clkContinueCallerID() {
