@@ -50,7 +50,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//p[contains(text(),'1.')]/ancestor::div[contains(@class,'ds-step__content')]//button[contains(@class,'-primary -large')]")
 	WebElement btnContinueDeviceCost;
 
-	@FindBy(xpath = "//button[contains(@title,'Continue to')]")
+	@FindAll({
+		@FindBy(xpath = "//button[contains(@title,'Continue to')]"),
+		@FindBy(xpath = "//ds-modal[contains(@data-test,'upfront-edge-return-modal')]//button[contains(@title,'Continue')]")
+	})
 	WebElement deviceBalancePopUp;
 
 	@FindBy(xpath = "//span[contains(text(),'View All Plans')]")

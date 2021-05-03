@@ -35,7 +35,7 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
         getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
         getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        getDriver().get(System.getProperty("AWSUrl") + "/phones");
+        getDriver().get(System.getProperty("AWSUrl"));
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc15AALFinancingPlanExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);

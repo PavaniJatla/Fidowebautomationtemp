@@ -183,7 +183,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void setOrderCommunicationConsent() {
-		reusableActions.clickWhenReady(chkBoxOrderCommunicationConsent , 30);
+		reusableActions.clickIfAvailable(chkBoxOrderCommunicationConsent , 30);
 	}
 	
 	/**
