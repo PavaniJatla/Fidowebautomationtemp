@@ -16,7 +16,7 @@ public class FidoCH_Regression_TC_017_HSI_CX_RegisterForAccountHolder extends Ba
 
     @Test(groups = {"RegressionCH",""})
 	public void acctHolderValidateRegisterFlow() {
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkRegisterIframe();
 		//getFidoaccountregistrationpage().clkRegisterNow();

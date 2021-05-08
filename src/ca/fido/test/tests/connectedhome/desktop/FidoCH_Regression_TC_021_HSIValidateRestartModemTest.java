@@ -28,11 +28,10 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTestClass {
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
-	public void checkFidoHSIValidateDashboard() {
-		getReporter().reportLogWithScreenshot("Launched the Home Page");
-		getFidohomepage().clkLogin();
-		//getFidologinpage().switchToSignInFrame();
-		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
+	public void checkFidoHSIValidateRestartModem() {
+		getReporter().reportLogWithScreenshot("Launched the sign in Page");
+		//getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");

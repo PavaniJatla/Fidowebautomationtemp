@@ -42,9 +42,9 @@ public class FidoCH_Regression_TC_018_HSI_ValidateAnonymousDifferentAddressRCISa
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
     public void checkCRMaddressMismatchWithSGI_ServiceabilityTest() {
-		getReporter().reportLogWithScreenshot("Launched the Home Page");
+/*		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkShop();
-		getFidohomepage().clkHomeInternet();
+		getFidohomepage().clkHomeInternet();*/
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
 		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getUpgradePlanCost());
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
