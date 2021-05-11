@@ -16,7 +16,7 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='ute-primary-button']")
 	WebElement btnRegisterNow;
 	
-	@FindBy(xpath="//button[@translate='ute.easy.login.registration.accountHolder']")
+	@FindBy(xpath="//*[@translate='ute.easy.login.registration.accountHolder' or @title='Select to register Account Holder account']")
 	WebElement btnAccountHolder;
 	
 	@FindBy (xpath = "//button[@translate='ute.easy.login.registration.subscriber']")
@@ -215,7 +215,10 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
 	WebElement lblYourVerificationCode;
 
-	
+	@FindAll({
+			@FindBy(xpath = "//dam-already-registered/h1[contains(text(),'Already registered') or contains(text(),' Adresse courriel déjà inscrite')]"),
+			@FindBy(xpath = "//span[contains(text(),'This account is registered to:') or contains(text(),'compte est inscrit à l’adresse suivante') or contains(text(),'a déjà été utilisée pour s’inscrire à MonRogers')]")})
+	WebElement lblProfileAlready;
 	/**
 	 * Click on the My Account link
 	 * @author Mirza.Kamran
@@ -478,7 +481,18 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	}
 
 
+	/**
+	 * Input user name (email address) to the text area.
+	 * @param strUsername, String, use email address as user name.
+	 * @author Mirza.Kamran
+	 */
+	public void setEmailAddress(String strUsername) {
+		reusableActions.getWhenReady(txtEmailAddress).clear();
+		reusableActions.getWhenReady(txtEmailAddress).sendKeys(strUsername);
+	}
 
 
-
+	public boolean isProfileAlreadyStarted() {
+		return reusableActions.isElementVisible(lblProfileAlready,30);
+	}
 }

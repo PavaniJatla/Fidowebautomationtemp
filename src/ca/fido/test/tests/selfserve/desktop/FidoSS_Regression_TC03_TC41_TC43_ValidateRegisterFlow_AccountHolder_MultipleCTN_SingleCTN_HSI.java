@@ -31,26 +31,95 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
         	{
             	TestDataHandler.tc0301.getaccountDetails().getBan()+"#"
                     	  +TestDataHandler.tc0301.getaccountDetails().getPostalCode()+"#"
-                    	  +TestDataHandler.tc0301.getaccountDetails().getEmail()},
-        	{
+                    	  +TestDataHandler.tc0301.getaccountDetails().getEmail()+"#"
+						+TestDataHandler.tc0301.getaccountDetails().getDob()},
+        	/*{
         		
                           	TestDataHandler.tc41.getaccountDetails().getBan()+"#"
                                   	  +TestDataHandler.tc41.getaccountDetails().getPostalCode()+"#"
-                                 	  +TestDataHandler.tc41.getaccountDetails().getEmail()},
+                                 	  +TestDataHandler.tc41.getaccountDetails().getEmail()+"#"
+									+TestDataHandler.tc41.getaccountDetails().getDob()},
         	{
             	TestDataHandler.tc43.getaccountDetails().getBan()+"#"
                     	  +TestDataHandler.tc43.getaccountDetails().getPostalCode()+"#"
-                    	  +TestDataHandler.tc43.getaccountDetails().getEmail()}};
+                    	  +TestDataHandler.tc43.getaccountDetails().getEmail()+"#"
+						+TestDataHandler.tc43.getaccountDetails().getDob()} */
+        };
     }
  
     @Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"})
-	public void acctHolderValidateRegisterFlow(String strBanPostcodeEmail) {
+	public void acctHolderValidateRegisterFlow(String strBanPostcodeEmail) throws IOException {
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkRegisterIframe();
 		//getFidoaccountregistrationpage().clkRegisterNow();
 		getReporter().reportLogWithScreenshot("Register now is clicked.");
 		getFidoaccountregistrationpage().clkAccountHolder();
+
+			// New code ........
+		//New changes from Nov 11 Onwards
+		String strFidoAccountNumber = strBanPostcodeEmail.split("#")[0] ;
+		String strPostalCode = strBanPostcodeEmail.split("#")[1];
+		String strEmail = strBanPostcodeEmail.split("#")[2];
+		String strDOB = strBanPostcodeEmail.split("#")[3];
+		String strPassword = "DigiAuto@123";
+
+		getFidorecoverpassornamepage().setUsernameIFrame(strEmail);
+		getReporter().reportLogWithScreenshot("Set email/username for user registartion");
+		getFidorecoverpassornamepage().clkBtnContinue();
+		getFidorecoverpassornamepage().setAccountNumber(strFidoAccountNumber);
+		getFidorecoverpassornamepage().setPostCode(strPostalCode);
+		getFidorecoverpassornamepage().setDOB(strDOB);
+		getReporter().reportLogWithScreenshot("Set Account, post code and DOB number for registration");
+		getFidorecoverpassornamepage().clkBtnContinue();
+		getReporter().reportLogWithScreenshot("Set account number and Postal code");
+		//rogers_register_page.setAccountNumber(strBan);
+		//rogers_register_page.setPostalCode(strPostalCode);
+		//reporter.reportLogWithScreenshot("Account number and postal code ");
+		//.clickContinue();
+		if(!getFidoaccountregistrationpage().isProfileAlreadyStarted())
+		{
+			String strTestingTab = getDriver().getWindowHandle();
+			//Go to ENS to verify email and get reset password page.
+			getEnsverifications().getEmailVerifyPage(strEmail);
+			getReporter().reportLogWithScreenshot("Get recovery code");
+			String verificationCode = getFidorecoverpassornamepage().getVerificationCode();
+			getDriver().switchTo().window(strTestingTab);
+			getFidorecoverpassornamepage().switchToSetCodeIframe();
+			getFidorecoverpassornamepage().setVerificationCode(verificationCode);
+			getReporter().reportLogWithScreenshot("Set verification code");
+			getFidorecoverpassornamepage().clkBtnContinue();
+			getReporter().reportLogWithScreenshot("Click on continue button");
+			getFidorecoverpassornamepage().setNewPassword(strPassword);
+			getFidorecoverpassornamepage().setConfirmPassword(strPassword);
+			getReporter().reportLogWithScreenshot("Set new Password page");
+			getFidorecoverpassornamepage().clkBtnContinue();
+			//Login with recovered user name to verify
+			getReporter().hardAssert(getFidorecoverpassornamepage().isPasswordSuccessfullySet(),
+					"passoword successfully set",
+					"passoword not set successfully");
+			getReporter().reportLogWithScreenshot("Password success page");
+			getFidorecoverpassornamepage().clkGoToMyFido();
+			getReporter().reportLogWithScreenshot("Go to my rogers clicked");
+			getFidorecoverpassornamepage().switchToDefaultContent();
+			setImplicitWait(getDriver(), 5);
+			getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
+					"Login succeed.",
+					"Failed to login.");
+			getReporter().reportLogWithScreenshot("Account overview");
+		}else
+		{
+			getReporter().reportLogFailWithScreenshot(" This profile is already registered");
+		}
+
+
+
+
+
+
+/*
+
+
 		String strFidoAccountNumber = strBanPostcodeEmail.split("#")[0] ;
 		String strPostalCode = strBanPostcodeEmail.split("#")[1];
 		getFidoaccountregistrationpage().setFidoAccountNumber(strFidoAccountNumber);
@@ -115,7 +184,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame(); */
-		
+
 	}
 
 }

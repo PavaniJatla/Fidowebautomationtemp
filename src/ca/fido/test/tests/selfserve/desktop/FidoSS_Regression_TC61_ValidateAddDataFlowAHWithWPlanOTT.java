@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import javax.net.ssl.SSLHandshakeException;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 /**
  * The test will verify demo-line wireless account add data flow and manage data page OTT, 
@@ -43,7 +44,9 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 	
 		String	userName = TestDataHandler.tc61.getUsername();
 		String	password = TestDataHandler.tc61.getPassword();
-		
+		HashMap<String, String> speedPassPrice = new HashMap<String, String>();
+		speedPassPrice.put("1", "20.00");
+		speedPassPrice.put("3", "40.00");
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
@@ -84,10 +87,16 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 							"Verify Only OTT options available (no MDT)",
 							"It seems Only OTT options not available");			
 		getReporter().reportLogWithScreenshot("Add OTT data add on overlay");
-				
+		getReporter().hardAssert(getFidoadddatapage().verifyIfTopUpPriceIsCorrect(speedPassPrice),
+				"Top ups price verified successfully",
+				"Top ups price NOT verified successfully");
+
 		getFidoadddatapage().clkTheFirstDataPlanBtnOnAddDataOverlay();
 		getFidoadddatapage().clkContinueBtnOnAddDataOverlay();
-		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(),
+
+
+		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(System.getProperty("Language"),
+				speedPassPrice),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");
