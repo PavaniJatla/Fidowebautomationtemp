@@ -31,17 +31,10 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
-	public void checkFidoHSIPayNowFunctionality() {
-		/*getReporter().reportLogWithScreenshot("Launched the Home Page");
-		getFidohomepage().clkShop();
-		getFidohomepage().clkHomeInternet();
-		getReporter().reportLogWithScreenshot("Launched the packages Page");
-		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
-		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
-		getFidoshopinternetpage().clkLoginAtServicebilityModel();*/
-		getFidohomepage().clkLogin();
+	public void checkFidoHsiUsageFunctionality() {
+		//getFidohomepage().clkLogin();
+		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().switchToSignInFrame();
-		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUsage());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");

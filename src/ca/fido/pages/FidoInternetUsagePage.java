@@ -32,7 +32,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.label.dailyBreakdown']")
 	WebElement txtDailyBreakdown;
 
-	@FindBy(xpath="//table[@class='table ute-table table-centred ng-table']//div[@class='ct-chart ute-chart']")
+	@FindBy(xpath="//table[@class='table ute-table table-centred ng-table']")
 	WebElement tblDailyBreakdownChart;
 
 	@FindBy(xpath="//ins[@translate='global.label.monthlyUsage']")
@@ -44,7 +44,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.label.monthlyBreakdown']")
 	WebElement txtMonthlyBreakdown;
 
-	@FindBy(xpath="//table[@class='table ute-table table-centred ng-table']//div[@class='ct-chart ute-chart']")
+	@FindBy(xpath="//table[@class='table ute-table table-centred ng-table']")
 	WebElement tblMonthlyBreakdownChart;
 
 	@FindBy(xpath="//ins[@translate='global.label.internetUsageNotificationSubheading']")
@@ -59,7 +59,9 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public void clkUsageHistory() {
-		reusableActions.getWhenReady(btnUsageHistory,60).click();
+		reusableActions.javascriptScrollToTopOfPage();
+		reusableActions.getWhenReady(btnUsageHistory,60);
+		reusableActions.executeJavaScriptClick(btnUsageHistory);
 	}
 
 	/**
@@ -77,6 +79,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyDailyInternetUsageChart() {
+		reusableActions.waitForElementVisibility(txtDailyUsageChart,60);
 		return reusableActions.isElementVisible(txtDailyUsageChart,30);
 	}
 
@@ -96,8 +99,9 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyDailyBreakdownChart() {
+		reusableActions.staticWait(2000);
 		reusableActions.javascriptScrollToMiddleOfPage();
-		return reusableActions.isElementVisible(tblDailyBreakdownChart,90);
+		return reusableActions.isElementVisible(tblDailyBreakdownChart,60);
 	}
 
 	/**
@@ -125,6 +129,7 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyMonthlyBreakdown() {
+		reusableActions.waitForElementVisibility(txtMonthlyBreakdown,60);
 		return reusableActions.isElementVisible(txtMonthlyBreakdown,30);
 	}
 
@@ -134,8 +139,9 @@ public class FidoInternetUsagePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyMonthlyBreakdownChart() {
+		reusableActions.staticWait(2000);
 		reusableActions.javascriptScrollToMiddleOfPage();
-		return reusableActions.isElementVisible(tblMonthlyBreakdownChart,30);
+		return reusableActions.isElementVisible(tblMonthlyBreakdownChart,90);
 	}
 
 	/**

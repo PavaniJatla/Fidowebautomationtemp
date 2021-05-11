@@ -44,12 +44,12 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkInternetBuyFlowMobile() {
 
-		getReporter().reportLogWithScreenshot("Launched the Home Page");
+/*		getReporter().reportLogWithScreenshot("Launched the Home Page");
 		getFidohomepage().clkNavMobile();
 		getReporter().reportLogWithScreenshot("Launched the Navigation card");
 		getFidohomepage().clkShopMobile();
 		getReporter().reportLogWithScreenshot("Launched the Navigation shop links");
-		getFidohomepage().clkHomeInternetMobile();
+		getFidohomepage().clkHomeInternetMobile();*/
 		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");

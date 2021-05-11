@@ -230,12 +230,22 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	
 	@FindBy (xpath = "//ins[@translate='global.cta.manageSettings']")
 	WebElement btnManageSettings;
-	
+
+	@FindBy (xpath = "//ins[@translate='global.cta.restartModem']")
+	WebElement btnRestartModem;
+
 	@FindBy (xpath = "//ins[@translate='global.label.internetPlans']")
 	WebElement lblInternetPlans;
-	
-	
-	
+
+	@FindBy (xpath = "//div[@class='modal-margin-top']")
+	WebElement mdlModemRestart;
+
+	@FindBy (xpath = "//ins[@translate='global.cta.yesRestartModem']")
+	WebElement btnYesRestartModem;
+
+	@FindBy (xpath = "//ins[@translate='global.label.success']")
+	WebElement mdlSuccess;
+
 
 	/**
 	 * Click the view/ChangePackage link from the top tile bar on Home page
@@ -249,8 +259,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	}
 	
 	public void clkChangePackageSsp() {
-		reusableActions.waitForElementVisibility(lnkChangePackage,90);
-		reusableActions.getWhenReady(lnkChangePackage,120).click();
+		reusableActions.waitForElementVisibility(lnkChangePackage,120);
+		reusableActions.getWhenReady(lnkChangePackage,90).click();
 	}
 
 	/**
@@ -319,6 +329,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkDailyUsage() {
+		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.getWhenVisible(lnkDailyUsage,60).click();
 	}
 
@@ -405,7 +416,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public void clkUsageNService() {
-		reusableActions.waitForElementVisibility(navUsageNService, 240);
+		//SSP to HSI handshake requires soem time
+		reusableActions.staticWait(3000);
 		reusableActions.getWhenReady(navUsageNService, 20).click();
 	}
 	
@@ -429,6 +441,23 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	}
 
 	/**
+	 * Click on the Restart Modem link
+	 * @author chinnarao. vattam
+	 */
+	public void clkRestartModem() {
+		reusableActions.getWhenVisible(btnRestartModem, 60).click();
+	}
+
+	/**
+	 * Click on the Yes,Restart Modem button
+	 * @author chinnarao. vattam
+	 */
+	public void clkYesRestartModem() {
+		reusableActions.getWhenVisible(btnYesRestartModem, 60).click();
+	}
+
+
+	/**
 	 * Verifies if the Manage Settings is visible
 	 * @return true if the Manage Settings is visible
 	 * @author chinnarao. vattam
@@ -436,7 +465,25 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	public boolean verifyManageSettings() {
 		return reusableActions.isElementVisible(btnManageSettings);
 	}
-	
+
+	/**
+	 * Verifies if the Modem Restart model is visible
+	 * @return true if the Modem Restart model is visible
+	 * @author chinnarao. vattam
+	 */
+	public boolean verifyModemRestartModel() {
+		return reusableActions.isElementVisible(mdlModemRestart);
+	}
+
+	/**
+	 * Verifies if the Success model is visible
+	 * @return true if the Success model is visible
+	 * @author chinnarao. vattam
+	 */
+	public boolean verifySuccessModel() {
+		return reusableActions.isElementVisible(mdlSuccess);
+	}
+
 	/**
 	 * Checks if the Label Internet  plans is visible
 	 * @return true if the label is visible else false

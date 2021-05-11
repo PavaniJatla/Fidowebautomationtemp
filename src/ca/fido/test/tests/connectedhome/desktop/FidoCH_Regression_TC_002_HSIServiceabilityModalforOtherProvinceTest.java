@@ -34,9 +34,9 @@ public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest
 	
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void serviceabilityModalforOtherProvinceTest() {
-		getReporter().reportLogWithScreenshot("Launched the Home Page");
+/*		getReporter().reportLogWithScreenshot("Launched the Home Page");
         getFidohomepage().clkShop();
-        getFidohomepage().clkHomeInternet();
+        getFidohomepage().clkHomeInternet();*/
         getReporter().hardAssert(getFidoshopinternetpage().verifyPackagesPage(),"Launched the packages Page", "Packages Page did not Launched");
         getReporter().reportLogWithScreenshot("Launched the packages Page");
         getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
