@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-
 /**
  * This class contains the test method to test the pay now functionality for Fido.ca   
  * 
@@ -26,11 +25,11 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestClass {
+public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTestClass {
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
-	public void checkFidoHSIValidateDashboard() {
-		getReporter().reportLogWithScreenshot("Launched the SignIn page");
+	public void checkFidoHSIValidateRestartModem() {
+		getReporter().reportLogWithScreenshot("Launched the sign in Page");
 		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
@@ -50,6 +49,12 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 		getReporter().softAssert(getFidointernetdashboardpage().verifyIfMonthlyUsageLinkVisible(),"Verified Monthly Usage link","Monthly Usage link Verification has failed");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyIfChangePackageLinkVisible(),"Verified Change Package link","Change Package link Verification has failed");
 		getReporter().reportLogWithScreenshot("Internet Dashboard Page");
+		getFidointernetdashboardpage().clkManageSettings();
+		getReporter().reportLogWithScreenshot("Manage setting option have displayed");
+		getFidointernetdashboardpage().clkRestartModem();
+		getReporter().softAssert(getFidointernetdashboardpage().verifyModemRestartModel(),"Modem Restart model is visible","Modem Restart model is not visible");
+		getFidointernetdashboardpage().clkYesRestartModem();
+		getReporter().softAssert(getFidointernetdashboardpage().verifySuccessModel(),"Modem Restart Success","Modem Restart not Success");
 	}
 
 	@BeforeMethod (alwaysRun = true)

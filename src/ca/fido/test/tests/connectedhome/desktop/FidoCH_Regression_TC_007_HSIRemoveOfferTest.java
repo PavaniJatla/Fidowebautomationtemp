@@ -34,9 +34,9 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 	
 	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH"})
 	public void checkRemoveOffer() {
-		getReporter().reportLogWithScreenshot("Launched the Home Page");
+/*		getReporter().reportLogWithScreenshot("Launched the Home Page");
         getFidohomepage().clkShop();
-        getFidohomepage().clkHomeInternet();
+        getFidohomepage().clkHomeInternet();*/
         getReporter().reportLogWithScreenshot("Launched the packages Page");
         getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");

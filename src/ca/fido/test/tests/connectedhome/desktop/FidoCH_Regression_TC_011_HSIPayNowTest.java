@@ -32,10 +32,9 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPayNowFunctionality() {
-		getReporter().reportLogWithScreenshot("Launched the Home Page");
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrameMobile();
-		getReporter().reportLogWithScreenshot("Launched the SignIn popup");
+		getReporter().reportLogWithScreenshot("Launched the SignIn page");
+		//getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");

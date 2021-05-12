@@ -417,11 +417,11 @@ public class BaseTestClass {
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
 				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);break;
+				getDriver().get(strUrl+"/internet/packages"+"?setLanguage="+ language);break;
 
 				case "connectedhome_login":
 					getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language);
+				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				break;
 

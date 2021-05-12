@@ -49,7 +49,7 @@ public class FidoCH_Regression_TC_014_CFAHSIExistingCustomerValidateDashboardTes
 		getReporter().reportLogWithScreenshot("SSP launchpad has launched");
 		getFidoretailerchamppage().selSSPEnvironment(TestDataHandler.fidoSspHSIAccount.getSspEnv());
 		getReporter().reportLogWithScreenshot("Launched the Customer Information Security Popup");
-		getFidoretailershoppage().clkSecurityAccept();
+		//getFidoretailershoppage().clkSecurityAccept();
 		getReporter().hardAssert(getFidoretailerhomepage().verifyLoginBanner(),"Launched the Login Banner","Login Banner hasn't Launched");
 		
 		getReporter().reportLogWithScreenshot("SSP dashboard has launched");
