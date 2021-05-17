@@ -34,11 +34,9 @@ public class FidoSS_Regression_TC93_ValidateTheDetailedTaxAmountForEachAccessory
 
         String userName = "";
         String password = "";
-
-
-        userName = TestDataHandler.tc04_PostPaidFinancePaidOff.getUsername();
-        password = TestDataHandler.tc04_PostPaidFinancePaidOff.getPassword();
-        String strCTN = TestDataHandler.tc04_PostPaidFinancePaidOff.getaccountDetails().getCtn();
+        userName = TestDataHandler.tc93.getUsername();
+        password = TestDataHandler.tc93.getPassword();
+        String strCTN = TestDataHandler.tc93.getaccountDetails().getCtn();
         getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(userName);
         getFidologinpage().setPasswordInFrame(password);
@@ -52,66 +50,125 @@ public class FidoSS_Regression_TC93_ValidateTheDetailedTaxAmountForEachAccessory
                 "Login succeed.",
                 "Failed to login.");
         getReporter().reportLogWithScreenshot("Account overview page");
-        //getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-        getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-        getReporter().reportLogWithScreenshot("Click on CTN badge");
-        getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
-        getReporter().reportLogWithScreenshot("dashboard page loaded");
+        //4. The accessories entry point widget should be displayed for the eligible CTN on AO page as per copy.
+        getCommonbusinessflows().scrollToMiddleOfWebPage();
+        getReporter().reportLogWithScreenshot("CTN and accessories view");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifyFinancedAccessoriesIsDisplayed(),
+                "Financed Accessories Is visible",
+                "Financed Accessories is not visible");
+        getCommonbusinessflows().scrollToTopOfWebPage();
+        getFidoaccountoverviewpage().clkFinancedAccessories();
 
-        getFidowirelessdashboardpostpaidpage().scrollToMidOfDasboardPage();
+        //5. The user will be presented with the Non-Sim Accessory Dashboard
+        // (Accessories Images and description as expected) with the tax breakdown of the prices
+        // and CTA button to see more details.
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().isAccessoryPageOpen(),
+                "the Non-Sim Accessory Dashboard is diaplayed",
+                "the Non-Sim Accessory Dashboard is not visible");
 
-        getReporter().reportLogWithScreenshot("Validate device details Section");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateTotalMonthlyFinancingPayment(),
+                "Total Monthly Finance Payment validated",
+                "Total Monthly Finance Payment is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateMonthlyFinancingPayment(),
+                "Monthly Finance Payment validated",
+                "Monthly Finance Payment is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateMonthlyFinancedTaxes(),
+                "Monthly Finance Taxes Payment validated",
+                "Monthly Finance Taxes Payment is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateTotalRemainingFinancingBalance(),
+                "Total Monthly Finance Balance validated",
+                "Total Monthly Finance Balance is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateRemainingFinancingBalance(),
+                "Remaining Financing Balance validated",
+                "Remaining Financing Balance is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateRemainingFinancedTaxes(),
+                "Remaining Financed Taxes validated",
+                "Remaining Financed Taxes is NOT validated");
+
+        //Accessories:
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateFinancingEnding(),
+                "Financing Ending date is validated",
+                "Financing Ending date  is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateStarted(),
+                "Started date is validated",
+                "Started date is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateAgreementID(),
+                "Agreement ID is  validated",
+                "Agreement ID is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateFinancingTerm(),
+                "Financing Term period validated",
+                "Financing Term period is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateMonthlyFinancingPaymentOfAnAgreement(),
+                "Monthly Financing Payment Of An Agreement is validated",
+                "Monthly Financing Payment Of An Agreement is NOT validated");
+
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateBalanceRemaining(),
+                "Balance remaining is validated",
+                "Balance remaining is NOT validated");
+
+        getFidoFinanceAccessoriesPagePage().clkBtnSeeMoreDetails();
+
+        getReporter().reportLogWithScreenshot("Accessories details modal view");
 
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMyDeviceDetails(),
-                "My Device section is visible",
-                "My Device section is not visible");
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateYourFinancingBalanceWillBeZeroOn(),
+                "You fincance balance will be zero on is validated on details modal",
+                "You fincance balance will be zero on is NOT validated on details modal");
 
-        //validate user has subsidy paid in full
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateAccessoryPurchaseDate(),
+                "Accessory purchase date is validated",
+                "Accessory purchase date is NOT validated");
 
-        //user will see you're eligible for a new device
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateAgreementIDOndetailsModal(),
+                "AgreementID On details Modal is validated",
+                "AgreementID On details Modal is NOT validated");
 
-        //user will see the cta to hup
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateFinancingTermOndetailsModal(),
+                "Financing Term On details Modal is validated",
+                "Financing Term On details Modal is NOT validated");
 
-        //user will not see the start and end dates
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateTotalMonthlyFinancingPaymentOndetailsModal(),
+                "Total Monthly Financing Payment On details Modal is validated",
+                "Total Monthly Financing Payment On details Modal is NOT validated");
 
-        //user will not have a link to device detail modal
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateMonthlyFinancingPaymentOndetailsModal(),
+                "Monthly Financing Payment On details Modal is validated",
+                "Monthly Financing Payment On details Modal is NOT validated");
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
-                "Fido Payment Program Header is visible",
-                "Fido Payment Program Header is not visible");
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateMonthlyFinancedTaxesOndetailsModal(),
+                "Monthly Financed Taxes On details Modal is validated",
+                "Monthly Financed Taxes On details Modal is NOT validated");
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().getDeviceFinancingRemainingBalance(),
-                "The balance remaining is $0.00",
-                "The balance remaining is not $0.00");
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateTotalRemainingFinancingBalanceOndetailsModal(),
+                "Total Remaining Financing Balance On details Modal is validated",
+                "Total Remaining Financing Balance On details Modal is NOT validated");
 
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isPaymentProgramBalanceVisible(),
-                "Remaining Fido Payment Program balance is not visible",
-                "Remaining Fido Payment Program balance is visible");
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateRemainingFinancingBalanceOndetailsModal(),
+                "Remaining Financing Balance On details Modal is validated",
+                "Remaining Financing Balance On details Modal is NOT validated");
 
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isPaymentAgreementStartDateVisible(),
-                "Fido Payment Program agreement start date is not visible",
-                "Fido Payment Program agreement start date is visible");
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateRemainingFinancedTaxesOndetailsModal(),
+                "Remaining Financed Taxes On details Modal is validated",
+                "Remaining Financed Taxes On details Modal is NOT validated");
 
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isPaymentAgreementEndDateVisible(),
-                "Fido Payment Program agreement end date is not visible",
-                "Fido Payment Program agreement end date is visible");
+        getFidoFinanceAccessoriesPagePage().clickCLoseModal();
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFindOutYourExclusiveDealsTextVisible(),
-                "Find out your exclusive deals text is visible",
-                "Find out your exclusive deals is not visible");
+        getCommonbusinessflows().scrollToMiddleOfWebPage();
+        getReporter().reportLogWithScreenshot("Accessories details view");
+        getReporter().softAssert(getFidoFinanceAccessoriesPagePage().validateAccessoryContentAndImageDisplayedCorrectly(),
+                "Accessory Content And Image Displayed Correctly",
+                "Accessory Content And Image needs investigation");
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isGetANewDeviceLinkVisible(),
-                "Get a new device link is visible",
-                "Get a new device link is not visible");
-
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isPricePlanChangeMayBeRequiredTextVisible(),
-                "A price plan change may be required text is visible",
-                "A price plan change may be required text is not visible");
-
-        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isViewFidoPaymentProgramDetailsLinkVisible(),
-                "link to device details modal is not visible",
-                " link to device details modal is visible");
 
 
 

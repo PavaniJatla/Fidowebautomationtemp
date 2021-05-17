@@ -88,6 +88,10 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoCheckOutPage> FidoCheckOutPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoInternetUsagePage> FidoInternetUsagePageThreadLocal = new ThreadLocal<>();
+
+
+
+	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	private Map<String,String> sauceParameters;
@@ -354,6 +358,10 @@ public class BaseTestClass {
 		return FidoDeviceConfigPageThreadLocal.get();
 	}
 
+	public static FidoFinanceAccessoriesPage getFidoFinanceAccessoriesPagePage() {
+		return FidoFinanceAccessoriesPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -496,6 +504,7 @@ public class BaseTestClass {
 			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
 			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
 			ensVerificationsThreadLocal.set(new VerifyInEns(this));
+			FidoFinanceAccessoriesPageThreadLocal.set(new FidoFinanceAccessoriesPage(getDriver()));
 			break;
 			
 		case "connectedhome_login":
