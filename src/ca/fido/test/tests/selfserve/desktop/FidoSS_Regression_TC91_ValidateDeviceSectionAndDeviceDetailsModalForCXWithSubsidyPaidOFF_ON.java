@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class FidoSS_Regression_TC18_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_SubscriberProfile_ON extends BaseTestClass{
+public class FidoSS_Regression_TC91_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_ON extends BaseTestClass{
 
     @BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -74,8 +74,6 @@ public class FidoSS_Regression_TC18_ValidateDeviceSectionAndDeviceDetailsModalFo
         //user will see the cta to hup
 
         //user will not see the start and end dates
-
-        //user will not have a link to device detail modal
 
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
                 "Fido Payment Program Header is visible",

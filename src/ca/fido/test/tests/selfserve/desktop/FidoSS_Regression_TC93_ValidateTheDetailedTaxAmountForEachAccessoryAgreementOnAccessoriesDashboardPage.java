@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class FidoSS_Regression_TC12_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_ON extends BaseTestClass{
+public class FidoSS_Regression_TC93_ValidateTheDetailedTaxAmountForEachAccessoryAgreementOnAccessoriesDashboardPage extends BaseTestClass{
 
     @BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -28,7 +28,7 @@ public class FidoSS_Regression_TC12_ValidateDeviceSectionAndDeviceDetailsModalFo
     }
 
     @Test(groups = {"DashboardSS"})
-    public void postPaidDashBoardValidateFullyFinancedDevice() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
+    public void validateTheDetailedTaxAmountForEachAccessoryAgreementOnAccessoriesDashboardPage() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
         getFidohomepage().clkLogin();
 
@@ -74,6 +74,8 @@ public class FidoSS_Regression_TC12_ValidateDeviceSectionAndDeviceDetailsModalFo
         //user will see the cta to hup
 
         //user will not see the start and end dates
+
+        //user will not have a link to device detail modal
 
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
                 "Fido Payment Program Header is visible",
