@@ -33,7 +33,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		SetAutomaticPayments,
 		PaymentHistory
 	}
-	@FindBy(xpath = "//span[contains(text(),' Financed accessories ') or contains(text(),' Accessoires financés ')]")
+	@FindBy(xpath = "//fss-financed-accessories-badge")
+	WebElement badgeAccessories;
+
+	@FindBy(xpath = "//fss-financed-accessories-badge//a[@title='View Accessories']")
 	WebElement btnFinancedAccessories;
 
 	@FindBy (xpath="//span[@class='accountDivider']")
@@ -1799,10 +1802,12 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 	}
 	public boolean verifyFinancedAccessoriesIsDisplayed() {
 		return reusableActions.isElementVisible(btnFinancedAccessories);
+
 	}
 
 	public void clkFinancedAccessories() {
 		reusableActions.getWhenReady(btnFinancedAccessories).click();
+
 	}
 	
 }

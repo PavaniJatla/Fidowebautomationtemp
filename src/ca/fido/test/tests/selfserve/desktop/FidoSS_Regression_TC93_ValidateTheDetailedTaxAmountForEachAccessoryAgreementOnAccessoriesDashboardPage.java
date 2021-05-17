@@ -53,6 +53,7 @@ public class FidoSS_Regression_TC93_ValidateTheDetailedTaxAmountForEachAccessory
         //4. The accessories entry point widget should be displayed for the eligible CTN on AO page as per copy.
         getCommonbusinessflows().scrollToMiddleOfWebPage();
         getReporter().reportLogWithScreenshot("CTN and accessories view");
+
         getReporter().hardAssert(getFidoaccountoverviewpage().verifyFinancedAccessoriesIsDisplayed(),
                 "Financed Accessories Is visible",
                 "Financed Accessories is not visible");
