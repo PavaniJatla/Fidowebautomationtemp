@@ -36,7 +36,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//fss-financed-accessories-badge")
 	WebElement badgeAccessories;
 
-	@FindBy(xpath = "//fss-financed-accessories-badge//a[@title='View Accessories']")
+	@FindBy(xpath = "//fss-financed-accessories-badge//a[@title='View Accessories' or @title='Voir les accessoires']")
 	WebElement btnFinancedAccessories;
 
 	@FindBy (xpath="//span[@class='accountDivider']")

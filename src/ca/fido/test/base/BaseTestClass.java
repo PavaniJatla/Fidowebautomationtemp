@@ -435,8 +435,9 @@ public class BaseTestClass {
 
 			case "selfserve":
 			case "selfserve_login":
-				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
+				getDriver().get(strUrl);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				getDriver().get(strUrl+"/profile/signin/"+ language );
 				break;
 			case "connectedhome_ssp":
 				getDriver().get(strUrl);

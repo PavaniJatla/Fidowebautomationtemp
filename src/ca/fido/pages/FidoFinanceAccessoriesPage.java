@@ -28,40 +28,40 @@ public class FidoFinanceAccessoriesPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Total monthly payment: ' or text()='Paiement mensuel total : ']/parent::div//ds-price")
 	WebElement lblTotalMonthlyFinPayment;
 
-	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Monthly financing payment:') or contains(text(),'Paiement mensuel pour le financement :')]/parent::div//ds-price")
+	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Monthly financing payment:') or contains(text(),' Paiement mensuel pour le financement:')]/parent::div//ds-price")
 	WebElement lblMonthlyFinPayment;
 
 	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Monthly financed taxes:') or contains(text(),'Taxes mensuelles sur le financement')]/parent::div//ds-price")
 	WebElement lblMonthlyFinTaxes;
 
-	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Total remaining financing balance:') or contains(text(),'Solde total du financement :')]/parent::div//ds-price")
+	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Total remaining balance: ') or contains(text(),'Solde restant total : ')]/parent::div//ds-price")
 	WebElement lblTotalRemainingFinBalance;
 
-	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Remaining financing balance:') or contains(text(),'Solde restant du financement :')]/parent::div//ds-price")
+	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),' Remaining balance: ') or contains(text(),'Solde restant :')]/parent::div//ds-price")
 	WebElement lblRemainingFinBalance;
 
 	@FindBy(xpath = "//ss-accessories-balance//span[contains(text(),'Remaining financed taxes:') or contains(text(),'Taxes restantes du financement :')]/parent::div//ds-price")
 	WebElement lblRemainingFinTaxes;
 
-	@FindBy(xpath = "//span[contains(text(),'Financing ending:') or contains(text(),'Fin du financement :')]")
+	@FindBy(xpath = "//ss-accessories-details//span[contains(text(),' Your balance will be $0') or contains(text(),' Votre solde sera de 0 $ le : ')]")
 	WebElement lblFinEnding;
 
-	@FindBy(xpath = "//span[contains(text(),'Started:') or contains(text(),'Début :')]")
+	@FindBy(xpath = "//span[contains(text(),'Accessory purchase date:') or contains(text(),'Date d’achat de l’accessoire :')]")
 	WebElement lblStarted;
 
-	@FindBy(xpath = "//span[contains(text(),'Agreement ID:') or contains(text(),'ID de l’entente :')]")
+	@FindBy(xpath = "//span[contains(text(),'Financing term:') or contains(text(),' Identifiant de l’entente : ')]")
 	WebElement lblAgreementID;
 
 	@FindBy(xpath = "//span[contains(text(),'Financing term:') or contains(text(),'Durée du financement :')]")
 	WebElement lblFinTerm;
 
-	@FindBy(xpath = "//ss-accessories-details//span[contains(text(),' Monthly financing payment: ') or contains(text(),' Paiement mensuel pour le financement : ')]/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details//span[contains(text(),' Monthly financing payment: ') or contains(text(),'Paiement mensuel pour le financement:')]/following-sibling::ds-price")
 	WebElement lblMnthlyFinPayments;
 
 	@FindBy(xpath = "//span[contains(text(),'Balance remaining:') or contains(text(),'Solde restant :')]/following-sibling::span")
 	WebElement lblBalanceRemaining;
 
-	@FindBy(xpath = "//button[@title='See more details about your accessory financing agreement' or @title='Voir plus de détails sur votre entente de financement d’accessoires']")
+	@FindBy(xpath = "//button[@title='See more details about your accessory agreement' or @title='Voir plus de détails sur votre entente pour accessoires']")
 	WebElement btnSeeMoreDetails;
 
 
@@ -87,22 +87,22 @@ public class FidoFinanceAccessoriesPage extends BasePageClass {
 	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Financing term:' or text()='Durée du financement :']/following-sibling::span")
 	WebElement modalFinTerm;
 
-	@FindBy(xpath = "//ss-accessories-details-modal//rss-accessories-details-modal//span[text()='Total monthly financing payment: ' or text()='Total mensuel du paiement pour le financement : ']/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Total monthly payment: ' or text()='Paiement mensuel total : ']/following-sibling::ds-price")
 	WebElement modalTotalMonthlyFin;
 
-	@FindBy(xpath = "//ss-accessories-details-modal//ss-accessories-details-modal//span[text()='Monthly financing payment: ' or text()='Paiement mensuel pour le financement : ']/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Monthly financing payment: ' or text()='Paiement mensuel pour le financement: ']/following-sibling::ds-price")
 	WebElement modalMonthlyFinPayment;
 
-	@FindBy(xpath = "//ss-accessories-details-modal//ss-accessories-details-modal//span[text()='Monthly financed taxes: ' or text()='Taxes mensuelles sur le financement : ']/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Monthly financed taxes: ' or text()='Taxes mensuelles sur le financement : ']/following-sibling::ds-price")
 	WebElement modalFinTaxes;
 
-	@FindBy(xpath = "//ss-accessories-details-modal//ss-accessories-details-modal//span[text()='Total remaining financing balance: ' or text()='Solde total du financement : ']/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Total remaining balance: ' or text()='Solde restant total : ']/following-sibling::ds-price")
 	WebElement modalTotalRemFinBal;
 
-	@FindBy(xpath = "//ss-accessories-details-modal//ss-accessories-details-modal//span[text()='Remaining financing balance: ' or text()='Solde restant du financement : ']/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Remaining balance: ' or text()='Solde restant : ']/following-sibling::ds-price")
 	WebElement modalRemFinBal;
 
-	@FindBy(xpath = "//ss-accessories-details-modal//ss-accessories-details-modal//span[text()='Remaining financed taxes: ' or text()='Taxes restantes du financement : ']/following-sibling::ds-price")
+	@FindBy(xpath = "//ss-accessories-details-modal//span[text()='Remaining financed taxes: ' or text()='Taxes restantes du financement : ']/following-sibling::ds-price")
 	WebElement modalRemFinTax;
 
 	@FindBy(xpath = "//ss-accessories-details-modal//button[@title='Close' or @title='Fermer']")
@@ -156,7 +156,7 @@ public class FidoFinanceAccessoriesPage extends BasePageClass {
 
 	public boolean validateFinancingEnding(){
 		String strValue =reusableActions.getWhenReady(lblFinEnding).getText().trim();
-		strValue = CurrencyHelpers.removeLineBreaksFromString(strValue).split(":")[1].trim();
+		strValue = CurrencyHelpers.removeLineBreaksFromString(strValue).trim().split(":")[1].trim();
 		return DateHelpersFunctions.isValidDAte(strValue);
 	}
 	public boolean validateStarted(){
@@ -166,7 +166,7 @@ public class FidoFinanceAccessoriesPage extends BasePageClass {
 	}
 	public boolean validateAgreementID(){
 		String strValue =reusableActions.getWhenReady(lblAgreementID).getText().trim();
-		strValue = CurrencyHelpers.removeLineBreaksFromString(strValue).split(":")[1].trim();
+		strValue = CurrencyHelpers.removeLineBreaksFromString(strValue).trim().split(":")[1].trim().split(" ")[0].trim();
 		return NumberUtils.isDigits(strValue);
 	}
 	public boolean validateFinancingTerm(){
@@ -209,7 +209,7 @@ public class FidoFinanceAccessoriesPage extends BasePageClass {
 		return NumberUtils.isDigits(strValue);
 	}
 	public boolean validateFinancingTermOndetailsModal(){
-		return reusableActions.isElementVisible(lblFinTerm);
+		return reusableActions.isElementVisible(modalFinTerm);
 	}
 	public boolean validateTotalMonthlyFinancingPaymentOndetailsModal(){
 		String strValue =reusableActions.getWhenReady(modalTotalMonthlyFin).getText().trim();
