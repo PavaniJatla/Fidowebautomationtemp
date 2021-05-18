@@ -169,7 +169,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author aditya.Dhingra
 	 */	
 	public void clkLogin() {						
-		reusableActions.getWhenVisible(lnkLogIn,90).click();
+		//reusableActions.getWhenVisible(lnkLogIn,90).click();
 	}
 	
 	/**
