@@ -19,7 +19,7 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
+    @Test(groups = {"RegressionBFA","AALBFA"})
     public void aaLTabletsStandardShippingFlowTest() {
         //getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();

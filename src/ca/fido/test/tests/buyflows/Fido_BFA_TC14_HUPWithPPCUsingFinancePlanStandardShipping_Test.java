@@ -17,7 +17,7 @@ public class Fido_BFA_TC14_HUPWithPPCUsingFinancePlanStandardShipping_Test exten
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
+    @Test(groups = {"RegressionBFA","HUPBFA"})
     public void hupWithPPCUsingFinancePlanExpressShippingFlowTest() {
         getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();

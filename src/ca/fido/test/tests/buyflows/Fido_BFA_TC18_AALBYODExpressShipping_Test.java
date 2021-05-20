@@ -19,7 +19,7 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
+    @Test(groups = {"RegressionBFA","AALBFA"})
     public void aALBYODStandardShippingFlowTest() {
         //getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();
