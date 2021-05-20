@@ -5,10 +5,7 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -21,8 +18,8 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
 
     @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
     public void aALUsingNoTermPlanStandardShippingFlowTest() {
-        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
+/*        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
+        getFidohomepage().clkLogin();*/
         //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc16AALNoTermPlanStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc16AALNoTermPlanStandardShipping.getPassword());
@@ -35,7 +32,7 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
         getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
         getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        getDriver().get(System.getProperty("AWSUrl"));
+        getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc16AALNoTermPlanStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
@@ -96,9 +93,9 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
 
-    /*	@AfterMethod(alwaysRun = true)
-	public void afterTest() {
-		closeSession();
-	}*/
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
+	}
 
 }

@@ -454,14 +454,17 @@ public class BaseTestClass {
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else if(currentTestMethodName.getName().contains("hUP")){
+					getDriver().get(strUrl);
+					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else if(currentTestMethodName.getName().contains("aaL")){
+					getDriver().get(strUrl);
+					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl + "/phones"+ "?flowType=aal" + "&?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				}else{
-					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
+					getDriver().get(strUrl);
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 				}
 				break;
 

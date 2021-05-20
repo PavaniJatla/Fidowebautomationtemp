@@ -22,13 +22,13 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
     @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
     public void aaLTabletsStandardShippingFlowTest() {
         //getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        getFidologinpage().switchToSignInFrame();
+        //getFidohomepage().clkLogin();
+        //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc17AALTabletsStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc17AALTabletsStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();
+        //getFidologinpage().switchOutOfSignInFrame();
         /*getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");*/
 /*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
