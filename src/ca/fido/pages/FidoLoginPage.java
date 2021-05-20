@@ -150,9 +150,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchToSignInFrame() {
-		//reusableActions.waitForElementVisibility(fraSignIn,10);
-		reusableActions.getWhenReady(fraSignIn,10);
-		getDriver().switchTo().frame(fraSignIn);
+		//reusableActions.getWhenReady(fraSignIn,10);
+		//().switchTo().frame(fraSignIn);
 //		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
 	}
 	
@@ -313,13 +312,13 @@ public class FidoLoginPage extends BasePageClass {
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {
-			if(!reusableActions.isElementVisible(fraSignIn))
+			if(!reusableActions.isElementVisible(txtUsername))
 			{
 				reusableActions.waitForElementTobeClickable(lnkReSignInAs, 120);
 				reusableActions.javascriptScrollByVisibleElement(lnkReSignInAs);
 				reusableActions.executeJavaScriptClick(lnkReSignInAs);
 				reusableActions.staticWait(3000);
-				if(reusableActions.isElementVisible(fraSignIn))
+				if(reusableActions.isElementVisible(txtUsername))
 				{
 					clickSuccess=true;
 					break;

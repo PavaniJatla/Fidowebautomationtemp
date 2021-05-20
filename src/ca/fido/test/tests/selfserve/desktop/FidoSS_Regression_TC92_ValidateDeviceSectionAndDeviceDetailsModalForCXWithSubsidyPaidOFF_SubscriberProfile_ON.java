@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class FidoSS_Regression_TC18_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_SubscriberProfile_ON extends BaseTestClass{
+public class FidoSS_Regression_TC92_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_SubscriberProfile_ON extends BaseTestClass{
 
     @BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {

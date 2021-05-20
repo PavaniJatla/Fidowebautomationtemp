@@ -31,7 +31,6 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		//=============== new code ===================
-
 		getFidologinpage().clkForgotUsernameIframe();
 		getReporter().reportLogWithScreenshot("Forgot username link is clicked.");
 		String strUsername = TestDataHandler.tc1122.getUsername();

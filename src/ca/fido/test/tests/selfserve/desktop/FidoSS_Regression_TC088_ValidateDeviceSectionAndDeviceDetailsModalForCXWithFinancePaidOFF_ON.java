@@ -32,8 +32,8 @@ public class FidoSS_Regression_TC088_ValidateDeviceSectionAndDeviceDetailsModalF
         getReporter().reportLogWithScreenshot("DashBoard verification started");
         getFidohomepage().clkLogin();
 
-        String userName = "";
-        String password = "";
+        String userName = "Autodatar421BFA41@yahoo.com";
+        String password = "DigiAuto@123";
 
 
         userName = TestDataHandler.tc04_PostPaidFinancePaidOff.getUsername();

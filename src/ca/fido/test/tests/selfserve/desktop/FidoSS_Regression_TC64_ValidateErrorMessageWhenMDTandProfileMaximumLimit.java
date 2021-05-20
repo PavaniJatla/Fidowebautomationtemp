@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import javax.net.ssl.SSLHandshakeException;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -100,6 +101,9 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 	}
 	
 	public void completeAddDataFlow(String strDataValue) {
+		HashMap<String, String> speedPassPrice = new HashMap<String, String>();
+		speedPassPrice.put("1", "20.00");
+		speedPassPrice.put("3", "40.00");
 		getFidowirelessdashboardpostpaidpage().clkAddDataButton();						
 		getReporter().hardAssert(getFidoadddatapage().verifyOverlayMonthlyDataAddOnDisplayed(),
 							"Monthly data add on overlay is displayed",
@@ -108,7 +112,8 @@ public class FidoSS_Regression_TC64_ValidateErrorMessageWhenMDTandProfileMaximum
 		
 		getFidoadddatapage().clkTheDataAddOnValue(strDataValue);
 		getFidoadddatapage().clkContinueBtnOnAddDataOverlay();
-		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(),
+		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(System.getProperty("Language"),
+				speedPassPrice),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");

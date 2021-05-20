@@ -82,6 +82,7 @@ public class TestDataHandler {
 	public static AccountData tc19;
 	public static AccountData tc20;
 	public static AccountData tc79;
+	public static AccountData tc93;
 
 	public static AccountData tc13;
 	public static AccountData tc04_PostPaidFinancePaidOff;
@@ -181,10 +182,9 @@ public class TestDataHandler {
     	tc79 = YamlHandler.getAccountData("TC79AccountWithNoBills");
     	tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
 		tc04_PostPaidFinancePaidOff = YamlHandler.getAccountData("tc04_PostPaidFinancePaidOff");
-
-    	
     	tc84 = YamlHandler.getAccountData("TC84NoPayments");
     	tc21 = YamlHandler.getAccountData("tc21DeliquientCustomer");
+    	tc93 = YamlHandler.getAccountData("tc93NonSIMAccessories");
 
 	}
 	
