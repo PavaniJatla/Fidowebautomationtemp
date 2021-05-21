@@ -36,9 +36,9 @@ public class FidoSS_Regression_TC91_ValidateDeviceSectionAndDeviceDetailsModalFo
         String password = "";
 
 
-        userName = TestDataHandler.tc04_PostPaidFinancePaidOff.getUsername();
-        password = TestDataHandler.tc04_PostPaidFinancePaidOff.getPassword();
-        String strCTN = TestDataHandler.tc04_PostPaidFinancePaidOff.getaccountDetails().getCtn();
+        userName = TestDataHandler.tc91.getUsername();
+        password = TestDataHandler.tc91.getPassword();
+        String strCTN = TestDataHandler.tc91.getaccountDetails().getCtn();
         getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(userName);
         getFidologinpage().setPasswordInFrame(password);
