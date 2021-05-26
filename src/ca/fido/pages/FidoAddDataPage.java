@@ -179,7 +179,7 @@ public class FidoAddDataPage extends BasePageClass {
 				SpeedPassPriceValue = textPricePlan.split("$")[1];
 			}else if(textPricePlan.contains("MB")) {
 				SpeedPassDataValue = textPricePlan.split("MB")[0];
-				SpeedPassPriceValue = textPricePlan.split("$")[1];
+				SpeedPassPriceValue = textPricePlan.split("for")[1].replaceAll(",", ".").replaceAll("$", "");
 			}
 		}else if (strLanguage.equals("fr"))
 		{
