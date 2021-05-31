@@ -18,21 +18,13 @@ public class Fido_BFA_TC14_HUPWithPPCUsingFinancePlanStandardShipping_Test exten
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void hupWithPPCUsingFinancePlanExpressShippingFlowTest() {
-        /*getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();*/
-        //getFidologinpage().switchToSignInFrame();
+    public void fidoHUPWithPPCUsingFinancePlanExpressShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        //getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-/*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
         getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc14HupPpcFinancingStandardShipping.getNewDevice();

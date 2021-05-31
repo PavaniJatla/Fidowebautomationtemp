@@ -18,36 +18,22 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void huPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
+    public void fidoHUPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
         // **************************Regular Login Flow**************************************
-        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded(), "Home page loaded successfully", "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        //getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-        getDriver().get(System.getProperty("AWSUrl"));
-        // **************************Alternate Login*****************************************
-/*        getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getPassword());
-        getReporter().reportLogWithScreenshot("Login overlay");
-        getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();*/
-        // **********************************************************************************
+        getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
         getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose phone page loaded successfully", "Choose phone page not loaded successfully");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc12HupPpcNoTermStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        // **************************Regular Login Flow**************************************
-        getFidochoosephonepage().selectUpgradeMyDeviceButton();
-        getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
-        // **********************************************************************************
+        //getFidochoosephonepage().selectUpgradeMyDeviceButton();
+        //getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(), "Page loading fine", "Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
@@ -87,16 +73,20 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         if (getFidoorderreviewpage().isPaymentRequired()) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
-            getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
-            getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());
-            getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
+            getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
+            getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
+            getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv1());
             getReporter().reportLogWithScreenshot("OneTime payment page displayed before submitting");
             getFidoorderreviewpage().clkSubmitMyOrder();
             getReporter().reportLogPass("Submit button selected");
+            getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
+            getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
+            getReporter().reportLogWithScreenshot("Order Confirmation page");
+        } else {
+            getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
+            getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
+            getReporter().reportLogWithScreenshot("Order Confirmation page");
         }
-        getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
-        getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
-        getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
 
     @AfterMethod(alwaysRun = true)

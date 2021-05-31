@@ -5,38 +5,33 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping_Test extends BaseTestClass {
 
-    @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
+    @BeforeMethod(alwaysRun = true)
+    @Parameters({"strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-        startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+        startSession(System.getProperty("QaUrl"), strBrowser, strLanguage, FidoEnums.GroupName.buyflows, method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void hupWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
-        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded(), "Home page loaded successfully", "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        //getFidologinpage().switchToSignInFrame();
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
+    }
+
+    @Test(groups = {"RegressionBFA", "SanityBFA", "HUPBFA"})
+    public void fidoHUPWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        //getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-/*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        getDriver().get(System.getProperty("AWSUrl"));
+        getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
@@ -69,7 +64,7 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");
-            getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
+            getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage(), "Bopis Map displayed", "Bopis Map not displayed");
         } else {
             getReporter().reportLogWithScreenshot("Shipping selected");
         }

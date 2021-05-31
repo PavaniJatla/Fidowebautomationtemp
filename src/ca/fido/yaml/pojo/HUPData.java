@@ -1,7 +1,7 @@
 package ca.fido.yaml.pojo;
 
 public class HUPData {
-	
+
 	private String newDevice;
 	private String username;
 	private String password;

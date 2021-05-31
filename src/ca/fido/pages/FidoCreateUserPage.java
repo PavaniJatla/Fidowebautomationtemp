@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -216,9 +217,7 @@ public void clkContinue() {
 public void setHomeAddress(String homeAddress) {
 	reusableActions.getWhenReady(txtHomeAddress, 10).click();
 	reusableActions.getWhenReady(lblTxtHomeAddress, 10).sendKeys(homeAddress);
-	//reusableActions.staticWait(3000);
-	reusableActions.executeJavaScriptClick(lblAddressResult);
-	//reusableActions.staticWait(3000);
+	reusableActions.getWhenReady(lblTxtHomeAddress,10).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
 }
 
 }

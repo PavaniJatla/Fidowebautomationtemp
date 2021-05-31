@@ -74,8 +74,11 @@ public class FidoBuildPlanPage extends BasePageClass {
 			@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
 	})
 	WebElement btnNoBPOOffer;
-	
-	@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']")
+
+	@FindAll({
+		@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']"),
+		@FindBy(xpath = "//button[contains(@id,'dummyContinueCta')]/span/span")
+	})
 	WebElement btnContinueAddOns;
 
 	@FindBy(xpath = "//span[contains(text(),'CONTINUE')]")
@@ -403,7 +406,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueAddOns() {
-		reusableActions.waitForElementVisibility(btnContinueAddOns, 20);
+		//reusableActions.waitForElementVisibility(btnContinueAddOns, 20);
 		reusableActions.executeJavaScriptClick(btnContinueAddOns);
 	}
 	

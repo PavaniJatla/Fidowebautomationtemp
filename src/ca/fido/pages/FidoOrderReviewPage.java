@@ -95,7 +95,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkSubmitMyOrder() {
-		reusableActions.clickWhenReady(btnSubmitMyOrder , 30);
+		reusableActions.clickWhenReady(btnSubmitMyOrder , 60);
 	}
 	
 	/**

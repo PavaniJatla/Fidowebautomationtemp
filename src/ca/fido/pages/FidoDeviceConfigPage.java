@@ -49,7 +49,7 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 * @author sidhartha.vadrevu
 	 */
 	public boolean verifyDevicesInHeader() {
-		reusableActions.waitForElementVisibility(devicesInHearder);
+		reusableActions.waitForElementVisibility(devicesInHearder,10);
 		return reusableActions.isElementVisible(devicesInHearder , 30);
 	}
 

@@ -117,7 +117,7 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(txtUsername,90).clear();
 		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
-		reusableActions.getWhenReady(txtUsername1,30).sendKeys(strUsername);
+		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
 	}
 	
 	
