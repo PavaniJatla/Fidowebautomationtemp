@@ -528,6 +528,7 @@ public class BaseTestClass {
 
 			case "connectedhome_anonymous":
 			case "connectedhome_ssp":
+				FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
 				FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
 				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
 				FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
