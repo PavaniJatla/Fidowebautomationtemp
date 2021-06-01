@@ -95,7 +95,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
 	WebElement inputCode;
 
-	@FindBy(xpath = "//h1//span[text()='Success!' or contains(text(),'ussi!')]")
+	@FindBy(xpath = "//h1//span[text()='Success!' or contains(text(),'ussi!') or contains(text(),'You’re all set!')]")
 	WebElement lblYourPasswordHasBeenReset;
 
 	@FindBy(xpath = "//span[text()='Create a new My Account password for: ' or contains(text(),'ez un nouveau mot de passe MonRogers pour')]/following-sibling::span")
@@ -209,7 +209,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	 * @author Ning.Xue
 	 */
 	public void setNewPassword(String strNewPass) {
-		reusableActions.getWhenReady(lblNewPass).click();
+		reusableActions.clickIfAvailable(lblNewPass);
 		//getReusableActionsInstance().getWhenReady(txtNewPass).clear();
 		reusableActions.getWhenReady(txtNewPass).sendKeys(strNewPass);
 	}
