@@ -43,7 +43,7 @@ Validate:
 
 	@Test(groups = {"AccountOverviewSS"})
 	public void postPaidChangeMOP() {
-		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
+		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());

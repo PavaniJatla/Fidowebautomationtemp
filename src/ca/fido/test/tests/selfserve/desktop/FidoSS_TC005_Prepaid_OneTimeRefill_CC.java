@@ -26,7 +26,7 @@ public class FidoSS_TC005_Prepaid_OneTimeRefill_CC  extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","BillingAndPaymentsSS","Prepaid"})
+	@Test(groups = {"RegressionSS","BillingAndPaymentsSS","PrepaidSS"})
 	public void prepaidOneTimeRefill() {
 		getFidohomepage().clkLogin();
 		String userName=TestDataHandler.tc0405.getUsername();

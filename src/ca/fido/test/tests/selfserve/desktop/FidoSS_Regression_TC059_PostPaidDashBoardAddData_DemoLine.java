@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import javax.net.ssl.SSLHandshakeException;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 /**
  * The test will verify demo-line account add data flow and manage data page, 
@@ -38,8 +39,11 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 	@Test(groups = {"RegressionSS","DashboardSS","AddDataSpeedPass"})
 	public void verifyAddDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		getFidohomepage().clkLogin();
-	
+		//getFidohomepage().clkLogin();
+		HashMap<String, String> speedPassPrice = new HashMap<String, String>();
+		speedPassPrice.put("300", "15.00");
+		speedPassPrice.put("1.5", "25.00");
+		speedPassPrice.put("3", "35.00");
 		String	userName = TestDataHandler.tc5859.getUsername();
 		String	password = TestDataHandler.tc5859.getPassword();
 		String strCTN = TestDataHandler.tc5859.getaccountDetails().getCtn();
@@ -75,7 +79,8 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 //		getFidoadddatapage().clkSelectAmountDropDown();
 //		getFidoadddatapage().clkTheFirstDataPlanOptionFromDropDown();
 		getFidoadddatapage().clkContinueBtnOnAddDataOverlay();
-		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(),
+		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(System.getProperty("Language"),
+				speedPassPrice),
 							"Confirm purchasing on overlay is displayed",
 							"Confirm purchasing on overlay is not displayed");	
 		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");

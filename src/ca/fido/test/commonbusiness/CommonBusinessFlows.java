@@ -85,7 +85,7 @@ public class CommonBusinessFlows {
 			baseTestClass.getReporter().reportLogWithScreenshot("Easy login clicked");
 		}
 		baseTestClass.getReporter().reportLogWithScreenshot("Click on resign in");
-		BaseTestClass.getFidologinpage().clkResignInAs();
+		//BaseTestClass.getFidologinpage().clkResignInAs();
 		baseTestClass.getReporter().reportLogWithScreenshot("Re Sign In");		
 		BaseTestClass.getFidologinpage().switchToSignInFrame();
 		BaseTestClass.getFidohomepage().clkNotUser();

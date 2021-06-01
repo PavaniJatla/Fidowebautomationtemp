@@ -31,17 +31,9 @@ public class FidoSS_Regression_TC089_ValidateDeviceSectionAndDeviceDetailsModalF
     public void postPaidDashBoardValidateFullyFinancedDevice() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
         getFidohomepage().clkLogin();
-
-        String userName = "";
-        String password = "";
-
-
-        userName = TestDataHandler.tc04_PostPaidFinancePaidOff.getUsername();
-        password = TestDataHandler.tc04_PostPaidFinancePaidOff.getPassword();
-        String strCTN = TestDataHandler.tc04_PostPaidFinancePaidOff.getaccountDetails().getCtn();
         getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(userName);
-        getFidologinpage().setPasswordInFrame(password);
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc89.username);
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc89.password);
         getReporter().reportLogWithScreenshot("Login Credential is entered.");
         getFidologinpage().clkLoginInFrame();
         getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(),
@@ -53,7 +45,7 @@ public class FidoSS_Regression_TC089_ValidateDeviceSectionAndDeviceDetailsModalF
                 "Failed to login.");
         getReporter().reportLogWithScreenshot("Account overview page");
         //getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-        getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+        getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(TestDataHandler.tc89.getaccountDetails().getCtn());
         getReporter().reportLogWithScreenshot("Click on CTN badge");
         getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
         getReporter().reportLogWithScreenshot("dashboard page loaded");

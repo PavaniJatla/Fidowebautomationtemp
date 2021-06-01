@@ -65,9 +65,10 @@ public class FidoSS_Regression_TC006_PrepaidUpdateProfile extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Account overview page.");
 		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
 		getReporter().reportLogWithScreenshot("menu profile and setting selected");
-		getReporter().softAssert(!getFidoprofileandsettingpage().isChangeUserNameLinkPresent(),
-							"The change username link is not displayed for pre-paid accounts",
-							"The change username is present for prepaid account");
+		//commenting change username validation based on email from syed maharishi
+		//getReporter().softAssert(!getFidoprofileandsettingpage().isChangeUserNameLinkPresent(),
+		//					"The change username link is not displayed for pre-paid accounts",
+		//					"The change username is present for prepaid account");
 		getFidoprofileandsettingpage().clkChangePassword();				
 		getFidoprofileandsettingpage().setNewPassword(altPassword, newPassword);		
 		getReporter().reportLogWithScreenshot("New password set");

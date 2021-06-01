@@ -7,11 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class FidoAddDataPage extends BasePageClass {
+
 
 	public FidoAddDataPage(WebDriver driver) {
 		super(driver);		
@@ -72,6 +76,9 @@ public class FidoAddDataPage extends BasePageClass {
 	
 	@FindBy (xpath = "//ss-data-topup-dropdown//li")
 	List<WebElement> listInDropdown;
+
+	@FindBy(xpath = "//span[@class='data-plan-details']")
+	WebElement lblPricePlanOnConfirmPage;
 	
 	/**
 	 * Verify Overlay Monthly Data Add On Displayed
@@ -113,7 +120,7 @@ public class FidoAddDataPage extends BasePageClass {
 	public void clkTheFirstDataPlanBtnOnAddDataOverlay() {	
 		if(reusableActions.isElementVisible(dropdown))
 		{
-			reusableActions.getWhenReady(selectAmountInDropdown).click();
+			//reusableActions.getWhenReady(selectAmountInDropdown).click();
 			reusableActions.getWhenReady(listInDropdown.get(0)).click();
 		}else
 		{
@@ -162,10 +169,44 @@ public class FidoAddDataPage extends BasePageClass {
 	 * @return true if the message displayed, otherwise false
 	 * @author ning.xue
 	 */
+	public boolean verifyConfirmPurchasingMsgDisplayed(String strLanguage,HashMap<String, String> speedPassPrice) {
+		String textPricePlan = reusableActions.getWhenReady(lblPricePlanOnConfirmPage).getText().trim();
+		String SpeedPassDataValue = "";
+		String SpeedPassPriceValue = "";
+		if(strLanguage.equals("en")) {
+			if(textPricePlan.contains("GB")) {
+				SpeedPassDataValue = textPricePlan.split("GB")[0];
+				SpeedPassPriceValue = textPricePlan.split("$")[1];
+			}else if(textPricePlan.contains("MB")) {
+				SpeedPassDataValue = textPricePlan.split("MB")[0];
+				SpeedPassPriceValue = textPricePlan.split("for")[1].replaceAll(",", ".").replaceAll("$", "");
+			}
+		}else if (strLanguage.equals("fr"))
+		{
+			if(textPricePlan.contains("Go")) {
+				SpeedPassDataValue = textPricePlan.split("Go")[0];
+				SpeedPassPriceValue = textPricePlan.split("pour ")[1].replaceAll(",", ".").replaceAll("$", "");
+			}if(textPricePlan.contains("Mo")) {
+			SpeedPassDataValue = textPricePlan.split("Mo")[0];
+			SpeedPassPriceValue = textPricePlan.split("pour ")[1].replaceAll(",", ".").replaceAll("$", "");
+		}
+		}
+
+
+		return (reusableActions.isElementVisible(msgConfirmPurchasing, 30)
+				&& speedPassPrice.get(SpeedPassDataValue.trim()).equals(getNumbersFromString(SpeedPassPriceValue)));
+	}
+
+	/**
+	 * Verify confirm purchasing message Displayed
+	 * @return true if the message displayed, otherwise false
+	 * @author ning.xue
+	 */
 	public boolean verifyConfirmPurchasingMsgDisplayed() {
+
 		return reusableActions.isElementVisible(msgConfirmPurchasing, 30);
-	}  
-	
+	}
+
 	/**
 	 * Perform click on purchase button on add data overlay
 	 * @author ning.xue
@@ -285,4 +326,48 @@ public class FidoAddDataPage extends BasePageClass {
 		return found;
 		
 	}
+
+	/**
+	 *
+	 * @return
+	 * @param speedPassPrice
+	 */
+    public boolean verifyIfTopUpPriceIsCorrect(HashMap<String, String> speedPassPrice) {
+		List<WebElement> AddOnsList = null;
+		if (reusableActions.isElementVisible(dropdown)) {
+			reusableActions.getWhenReady(selectAmountInDropdown).click();
+			AddOnsList = listInDropdown;
+		} else {
+			AddOnsList =  btnsSelectDataOnAddDataOverLay;
+		}
+
+
+		for (int opt = 0; opt <= AddOnsList.size() - 1; opt++) {
+			String SpeedPassDataValue = AddOnsList.get(opt).getText().split("\n")[0];
+			String SpeedPassPriceValue = AddOnsList.get(opt).getText().split("\n")[2];
+			SpeedPassDataValue = getNumbersFromString(SpeedPassDataValue);
+			SpeedPassPriceValue = getNumbersFromString(SpeedPassPriceValue);
+			if (!speedPassPrice.get(SpeedPassDataValue).equals(SpeedPassPriceValue)) {
+				return false;
+			}
+		}
+
+		return true;
+
+
+	}
+
+	/**
+	 * This will extract the numbers from string
+	 * @param strMatch complete string to be matched
+	 * @return String number
+	 */
+	public String getNumbersFromString(String strMatch) {
+		Pattern pattern = Pattern.compile("[0-9]+([,.][0-9]{1,2})?");
+		Matcher match = pattern.matcher(strMatch.replaceAll(",", "."));
+		match.find();
+		return match.group();
+	}
+
+
 }
