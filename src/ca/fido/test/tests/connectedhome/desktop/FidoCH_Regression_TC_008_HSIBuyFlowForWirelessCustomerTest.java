@@ -46,7 +46,6 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlowForExistingCustomer() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
-		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameWirelessAcc());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

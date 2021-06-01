@@ -35,10 +35,6 @@ public class Mobile_FidoCH_Regression_TC_002_HSIPlanUpgradeTest extends BaseTest
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkFidoHSIPlanUpgradeMobile() {
-/*		getReporter().reportLogWithScreenshot("Launched the Home Page");
-		getFidohomepage().clkNavMobile();
-		getReporter().reportLogWithScreenshot("Launched the Navigation card");
-		getFidohomepage().clkLoginMobile();*/
 		getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgradeMobile());
