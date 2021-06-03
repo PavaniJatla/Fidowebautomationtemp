@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.FormFiller;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -150,6 +151,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public String createXpath(int stepper,String option) {
 		if (stepper == 1 && stepper != 0) {
+			//ds-radio-button[contains(@data-test,'device-payment-type-financing')]//div/div
 			return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
 		} else if(stepper == 2 && stepper != 0) {
 			reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
@@ -168,6 +170,38 @@ public class FidoBuildPlanPage extends BasePageClass {
 				} catch (NullPointerException ex) {
 					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
 				}
+		}
+		return xpath;
+	}
+
+	public String createXpath1(int stepper,String option, String devicePaymentType) {
+		Method currentTestMethodName = null;
+		if (stepper == 1 && stepper != 0) {
+			if (currentTestMethodName.getName().contains("AAL")) {
+				if(devicePaymentType.equalsIgnoreCase("Finance")) {
+					reusableActions.clickWhenReady(By.xpath("//ds-radio-button[contains(@data-test,'device-payment-type-financing')]//div/div"));
+				} else if (devicePaymentType.equalsIgnoreCase("Full Price")) {
+					reusableActions.clickWhenReady(By.xpath("//ds-radio-button[contains(@data-test,'device-payment-type-fullPrice')]//div/div"));
+				}
+			}
+			return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
+		} else if(stepper == 2 && stepper != 0) {
+			reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
+			try {
+				if(planType.equals("Data, Talk and Text plans") && planType != null && !planType.isEmpty()) {
+					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+				} else if (planType.equals("Data and Text only plans - No calls included") && planType != null && !planType.isEmpty() && reusableActions.isElementVisible(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"))) {
+					reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"));
+					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-individual-"+option+"')]/label";
+				} else if (planType.equals("Talk and Text plans") && planType != null && !planType.isEmpty() && reusableActions.isElementVisible(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"))) {
+					reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"));
+					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-talkAndText-"+option+"')]/label";
+				} else {
+					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+				}
+			} catch (NullPointerException ex) {
+				return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+			}
 		}
 		return xpath;
 	}
@@ -200,7 +234,25 @@ public class FidoBuildPlanPage extends BasePageClass {
 			reusableActions.clickWhenReady(btnContinueDeviceCost, 30);
 		}
 	}
-	
+
+
+	public void clkDeviceCost1(String deviceCostIndex, String devicePaymentType) {
+		stepper = 1;
+		if (deviceCostIndex != null && !deviceCostIndex.isEmpty()) {
+			String xpathDeviceCost = createXpath1(stepper, deviceCostIndex, devicePaymentType);
+			By deviceCostXpath = By.xpath(xpathDeviceCost);
+			reusableActions.staticWait(5000);
+			reusableActions.clickWhenReady(deviceCostXpath,10);
+			reusableActions.clickWhenReady(btnContinueDeviceCost, 30);
+		} else {
+			String xpathDeviceCost = "//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-0')]/label";
+			reusableActions.staticWait(5000);
+			reusableActions.clickWhenReady(By.xpath(xpathDeviceCost),10);
+			reusableActions.clickWhenReady(btnContinueDeviceCost, 30);
+		}
+	}
+
+
 	/**
 	 * Clicks on the 'Continue' button for select your device cost
 	 * @author Saurav.Goyal
