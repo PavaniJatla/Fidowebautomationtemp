@@ -46,6 +46,12 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "//div[contains(text(),'Keep my current plan')]//preceding-sibling::div")
 	WebElement keepMyCurrentPlanButton;
+
+	@FindBy(xpath="//ds-checkbox[contains(@data-test,'vdp-checkbox')]")
+	WebElement downPaymentChkBox;
+
+	@FindBy(xpath = "(//div[contains(@id,'ds-radio-input-id')])[2]/../..")
+	WebElement noTermRadioBtn;
 	
 	//@FindBy(xpath = "//button[@id='step-1-continue-button']")
 	@FindBy(xpath = "//p[contains(text(),'1.')]/ancestor::div[contains(@class,'ds-step__content')]//button[contains(@class,'-primary -large')]")
@@ -207,6 +213,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	}
 
 	/**
+	 * This method clicks on downpaymment checkbox in device cost stepper
+	 * @author praveen.kumar7
+	 */
+	public void clkDownPaymentChkBox() {
+		reusableActions.scrollToElement(downPaymentChkBox);
+		reusableActions.clickWhenReady(downPaymentChkBox,30);
+	}
+
+	/**
 	 * Clicks on the 'Keep My Current Plan' button for Device Cost Stepper
 	 * @author Sidhartha.Vadrevu
 	 */
@@ -268,6 +283,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkDeviceBalancePopUp() {
 		reusableActions.clickIfAvailable(deviceBalancePopUp, 10);
+	}
+
+	/**
+	 * Clicks on NO TERM radio button in device cost stepper
+	 * @author praveen.kumar7
+	 */
+	public void clkRadioButtonNoTerm() {
+		reusableActions.scrollToElement(noTermRadioBtn);
+		reusableActions.clickWhenReady(noTermRadioBtn,30);
 	}
 
 	/**
@@ -393,7 +417,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueDeviceCost() {
 		//reusableActions.waitForElementVisibility(btnContinueDeviceCost, 30);
-		reusableActions.clickIfAvailable(btnContinueDeviceCost, 60);
+		reusableActions.clickWhenReady(btnContinueDeviceCost, 60);
 	}
 	
 	/**
