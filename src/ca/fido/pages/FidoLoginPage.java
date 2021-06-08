@@ -17,6 +17,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id='username']")
 	WebElement txtUsername;
 
+	@FindBy(xpath = "//label[@for='username']//parent::span[contains(@class,'ds-form')]")
+	WebElement txtUsername1;
+
 	@FindBy(xpath = "//input[@formcontrolname='password']")
 	WebElement txtPassword;
 
@@ -114,7 +117,7 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(txtUsername,90).clear();
 		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
-		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
+		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
 	}
 	
 	
@@ -150,9 +153,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchToSignInFrame() {
-		//reusableActions.waitForElementVisibility(fraSignIn,10);
-		reusableActions.getWhenReady(fraSignIn,10);
-		getDriver().switchTo().frame(fraSignIn);
+		//reusableActions.getWhenReady(fraSignIn,10);
+		//().switchTo().frame(fraSignIn);
 //		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
 	}
 	
@@ -313,13 +315,13 @@ public class FidoLoginPage extends BasePageClass {
 		boolean clickSuccess=false;
 		int count=0;
 		while (count<=3 && !clickSuccess) {
-			if(!reusableActions.isElementVisible(fraSignIn))
+			if(!reusableActions.isElementVisible(txtUsername))
 			{
 				reusableActions.waitForElementTobeClickable(lnkReSignInAs, 120);
 				reusableActions.javascriptScrollByVisibleElement(lnkReSignInAs);
 				reusableActions.executeJavaScriptClick(lnkReSignInAs);
 				reusableActions.staticWait(3000);
-				if(reusableActions.isElementVisible(fraSignIn))
+				if(reusableActions.isElementVisible(txtUsername))
 				{
 					clickSuccess=true;
 					break;

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 
-public class FidoSS_Regression_TC12_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_ON extends BaseTestClass{
+public class FidoSS_Regression_TC92_ValidateDeviceSectionAndDeviceDetailsModalForCXWithSubsidyPaidOFF_SubscriberProfile_ON extends BaseTestClass{
 
     @BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
@@ -36,9 +36,9 @@ public class FidoSS_Regression_TC12_ValidateDeviceSectionAndDeviceDetailsModalFo
         String password = "";
 
 
-        userName = TestDataHandler.tc04_PostPaidFinancePaidOff.getUsername();
-        password = TestDataHandler.tc04_PostPaidFinancePaidOff.getPassword();
-        String strCTN = TestDataHandler.tc04_PostPaidFinancePaidOff.getaccountDetails().getCtn();
+        userName = TestDataHandler.tc92.getUsername();
+        password = TestDataHandler.tc92.getPassword();
+        String strCTN = TestDataHandler.tc92.getaccountDetails().getCtn();
         getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(userName);
         getFidologinpage().setPasswordInFrame(password);
@@ -74,6 +74,8 @@ public class FidoSS_Regression_TC12_ValidateDeviceSectionAndDeviceDetailsModalFo
         //user will see the cta to hup
 
         //user will not see the start and end dates
+
+        //user will not have a link to device detail modal
 
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFidoPaymentProgramVisible(),
                 "Fido Payment Program Header is visible",

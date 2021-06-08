@@ -29,7 +29,7 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 		closeSession();
 	}
 	
-	@Test(groups = {"RegressionSS","DashboardSS","Prepaid"})
+	@Test(groups = {"RegressionSS"})
 	public void prePaidDashBoardChangeCTN() {
 		
 		getFidohomepage().clkLogin();
@@ -110,7 +110,7 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 							"Changing will affect your bill is not displayed");			
 		getFidochangectnpage().clkBackToMyAccount();
 		getReporter().reportLogWithScreenshot("click back to my account page");
-		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);		
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(newCTN);
 						
 	}
 	

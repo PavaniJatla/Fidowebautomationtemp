@@ -24,12 +24,20 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	}
 
+
+
+
 	public enum BillingAndPaymentsSubMenuOptions {
 		ViewBill,
 		MakePayment,
 		SetAutomaticPayments,
 		PaymentHistory
-	}	
+	}
+	@FindBy(xpath = "//fss-financed-accessories-badge")
+	WebElement badgeAccessories;
+
+	@FindBy(xpath = "//fss-financed-accessories-badge//a[@title='View Accessories' or @title='Voir les accessoires']")
+	WebElement btnFinancedAccessories;
 
 	@FindBy (xpath="//span[@class='accountDivider']")
 	WebElement ddlAccountSelection;
@@ -1802,6 +1810,15 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 	public boolean IsAutoPaymentSetUp() {
 		return reusableActions.isElementVisible(divAutoPaymentContainer,20) 
 						 && reusableActions.isElementVisible(btnPenIconForChangeAutoPaymentMethod);
+	}
+	public boolean verifyFinancedAccessoriesIsDisplayed() {
+		return reusableActions.isElementVisible(btnFinancedAccessories);
+
+	}
+
+	public void clkFinancedAccessories() {
+		reusableActions.getWhenReady(btnFinancedAccessories).click();
+
 	}
 	
 }

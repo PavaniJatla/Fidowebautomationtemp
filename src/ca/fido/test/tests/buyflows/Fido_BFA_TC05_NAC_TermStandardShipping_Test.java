@@ -103,9 +103,9 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		startSession(System.getProperty("AWSUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
-	@AfterMethod(alwaysRun = true)
+/*	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
 		closeSession();
-	}
+	}*/
 
 }

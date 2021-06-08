@@ -88,6 +88,10 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoCheckOutPage> FidoCheckOutPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoInternetUsagePage> FidoInternetUsagePageThreadLocal = new ThreadLocal<>();
+
+
+
+	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	private Map<String,String> sauceParameters;
@@ -354,6 +358,10 @@ public class BaseTestClass {
 		return FidoDeviceConfigPageThreadLocal.get();
 	}
 
+	public static FidoFinanceAccessoriesPage getFidoFinanceAccessoriesPagePage() {
+		return FidoFinanceAccessoriesPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -419,16 +427,17 @@ public class BaseTestClass {
 				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				getDriver().get(strUrl+"/internet/packages"+"?setLanguage="+ language);break;
 
-				case "connectedhome_login":
-					getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
+			case "connectedhome_login":
+				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				break;
 
 			case "selfserve":
 			case "selfserve_login":
-				getDriver().get(strUrl+"/consumer/easyloginriverpage"+"?setLanguage="+ language );
+				getDriver().get(strUrl);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				getDriver().get(strUrl+"/profile/signin/"+ language );
 				break;
 			case "connectedhome_ssp":
 				getDriver().get(strUrl);
@@ -438,21 +447,16 @@ public class BaseTestClass {
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("_AALBYOD")) {
-					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=aal" + "?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				}else if(currentTestMethodName.getName().contains("NAC")){
+				} else if(currentTestMethodName.getName().contains("NAC")) { //HUP
+					//getDriver().get(strUrl);
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				}else if(currentTestMethodName.getName().contains("hUP")){
-					getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				}else if(currentTestMethodName.getName().contains("aaL")){
-					getDriver().get(strUrl + "/phones"+ "?flowType=aal" + "&?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
 				}else{
-					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
+					getDriver().get(strUrl);
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					getDriver().get(strUrl+"/profile/signin");
+					//getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 				}
 				break;
 
@@ -505,6 +509,7 @@ public class BaseTestClass {
 			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
 			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
 			ensVerificationsThreadLocal.set(new VerifyInEns(this));
+			FidoFinanceAccessoriesPageThreadLocal.set(new FidoFinanceAccessoriesPage(getDriver()));
 			break;
 			
 		case "connectedhome_login":
@@ -532,6 +537,7 @@ public class BaseTestClass {
 
 			case "connectedhome_anonymous":
 			case "connectedhome_ssp":
+				FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
 				FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
 				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
 				FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));

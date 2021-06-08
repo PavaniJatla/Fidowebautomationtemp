@@ -32,7 +32,6 @@ public class FidoCH_Regression_TC_012_HSIDataPlanDowngradeWithSameSpeedTest exte
 	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
-		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameDowngradeSameSpeed());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

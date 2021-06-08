@@ -82,6 +82,7 @@ public class TestDataHandler {
 	public static AccountData tc19;
 	public static AccountData tc20;
 	public static AccountData tc79;
+	public static AccountData tc93;
 
 	public static AccountData tc13;
 	public static AccountData tc04_PostPaidFinancePaidOff;
@@ -89,9 +90,15 @@ public class TestDataHandler {
 	
 	public static AccountData tc84;
 	public static AccountData tc21;
+    public static AccountData tc87;
+    public static AccountData tc88;
+    public static AccountData tc89;
+	public static AccountData tc90;
+	public static AccountData tc91;
+	public static AccountData tc92;
 
 
-	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {	   
+	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
 
 			String strTestMethodName = lstTestMethodName.toString();
@@ -181,11 +188,15 @@ public class TestDataHandler {
     	tc79 = YamlHandler.getAccountData("TC79AccountWithNoBills");
     	tc13 = YamlHandler.getAccountData("tc13_SavePDFLink");
 		tc04_PostPaidFinancePaidOff = YamlHandler.getAccountData("tc04_PostPaidFinancePaidOff");
-
-    	
     	tc84 = YamlHandler.getAccountData("TC84NoPayments");
     	tc21 = YamlHandler.getAccountData("tc21DeliquientCustomer");
-
+    	tc93 = YamlHandler.getAccountData("tc93NonSIMAccessories");
+		tc87 = YamlHandler.getAccountData("tc87BYOD_DeviceSubscriberProfile");
+		tc88 = YamlHandler.getAccountData("tc088FinancePaidOFF");
+		tc89 = YamlHandler.getAccountData("tc089FinanceNotPaidOFF");
+		tc90 = YamlHandler.getAccountData("tc90FinanceNotPaidWithSubsidyOn");
+		tc91 = YamlHandler.getAccountData("tc91SubsidyPaidOFF");
+		tc92 =YamlHandler.getAccountData("tc92CXWithSubsidyPaidOFFSubscriberProfile");
 	}
 	
 	private static void buyFlowsDataInit() {

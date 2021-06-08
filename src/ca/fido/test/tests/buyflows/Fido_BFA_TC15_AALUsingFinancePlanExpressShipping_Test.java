@@ -5,10 +5,7 @@ import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -20,22 +17,14 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
-    public void aALUsingFinancePlanExpressShippingFlowTest() {
-        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        //getFidologinpage().switchToSignInFrame();
+    public void fidoAALUsingFinancePlanExpressShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc15AALFinancingPlanExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc15AALFinancingPlanExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-/*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        getDriver().get(System.getProperty("AWSUrl"));
+        getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc15AALFinancingPlanExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
@@ -46,8 +35,10 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        String deviceCostIndex = TestDataHandler.tc15AALFinancingPlanExpressShipping.getDeviceCostIndex();
-        getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
+        getFidobuildplanpage().clkDownPaymentChkBox();
+        getFidobuildplanpage().clkContinueDeviceCost();
+        //String deviceCostIndex = TestDataHandler.tc15AALFinancingPlanExpressShipping.getDeviceCostIndex();
+        //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
@@ -98,4 +89,8 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
 
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
+    }
 }

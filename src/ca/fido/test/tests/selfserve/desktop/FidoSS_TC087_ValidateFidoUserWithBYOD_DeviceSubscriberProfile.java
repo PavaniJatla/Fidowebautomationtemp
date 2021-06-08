@@ -46,9 +46,9 @@ public class FidoSS_TC087_ValidateFidoUserWithBYOD_DeviceSubscriberProfile exten
         String password = "";
 
 
-        userName = TestDataHandler.tc1122.getUsername();
-        password = TestDataHandler.tc1122.getPassword();
-        String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
+        userName = TestDataHandler.tc87.getUsername();
+        password = TestDataHandler.tc87.getPassword();
+        String strCTN = TestDataHandler.tc87.getaccountDetails().getCtn();
         getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(userName);
         getFidologinpage().setPasswordInFrame(password);

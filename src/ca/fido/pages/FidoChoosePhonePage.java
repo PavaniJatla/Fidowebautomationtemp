@@ -18,8 +18,12 @@ public class FidoChoosePhonePage extends BasePageClass {
 
 	public String strXpathViewDetails;
 
-	@FindBy(xpath = "//span[contains(text(),'UPGRADE')]")
+	@FindAll({
+	@FindBy(xpath = "//span[contains(text(),'UPGRADE')]"),
+	@FindBy(xpath = "//button[contains(@title,'Select')]")
+	})
 	WebElement upgradeMyDeviceButton;
+
 
 	@FindBy(xpath = "//span[contains(text(),'ADD')]")
 	WebElement addALineButton;
