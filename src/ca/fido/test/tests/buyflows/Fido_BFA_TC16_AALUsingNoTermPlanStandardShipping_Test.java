@@ -16,7 +16,7 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
+    @Test(groups = {"RegressionBFA","AALBFA"})
     public void fidoAALUsingNoTermPlanStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc16AALNoTermPlanStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc16AALNoTermPlanStandardShipping.getPassword());

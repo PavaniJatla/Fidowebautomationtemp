@@ -23,7 +23,7 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         closeSession();
     }
 
-    @Test(groups = {"RegressionBFA", "SanityBFA", "HUPBFA"})
+    @Test(groups = {"RegressionBFA","HUPBFA"})
     public void fidoHUPWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getPassword());

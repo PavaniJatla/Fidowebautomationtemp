@@ -21,7 +21,7 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         closeSession();
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
+    @Test(groups = {"RegressionBFA","AALBFA"})
     public void fidoAALBYODStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc18AALBYODExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc18AALBYODExpressShipping.getPassword());
