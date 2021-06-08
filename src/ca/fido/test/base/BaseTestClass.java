@@ -427,10 +427,10 @@ public class BaseTestClass {
 				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				getDriver().get(strUrl+"/internet/packages"+"?setLanguage="+ language);break;
 
-				case "connectedhome_login":
-					getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
+			case "connectedhome_login":
+				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				break;
 
 			case "selfserve":
@@ -537,6 +537,7 @@ public class BaseTestClass {
 
 			case "connectedhome_anonymous":
 			case "connectedhome_ssp":
+				FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
 				FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
 				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
 				FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));

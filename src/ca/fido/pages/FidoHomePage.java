@@ -177,7 +177,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */	
 	public void clkLoginMobile() {
-		reusableActions.getWhenReady(lnkLogInMobile,120).click();
+		//reusableActions.getWhenReady(lnkLogInMobile,120).click();
 	}
 	
 	/**
@@ -265,7 +265,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */	
 	public void clkNavMobile() {
-		reusableActions.getWhenReady(lnkNavMobile,60).click();	
+		//reusableActions.getWhenReady(lnkNavMobile,60).click();
 	}
 	
 	/**

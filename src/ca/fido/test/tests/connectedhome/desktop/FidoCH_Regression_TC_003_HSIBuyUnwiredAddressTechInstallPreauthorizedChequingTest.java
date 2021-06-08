@@ -40,9 +40,6 @@ public class FidoCH_Regression_TC_003_HSIBuyUnwiredAddressTechInstallPreauthoriz
 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkBuyUnwiredAddressTechInstallPreauthorizedChequingTest() {
-/*		getReporter().reportLogWithScreenshot("Launched the Home Page");
-        getFidohomepage().clkShop();
-        getFidohomepage().clkHomeInternet();*/
         getReporter().reportLogWithScreenshot("Launched the packages Page");
         getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");

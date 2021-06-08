@@ -30,7 +30,6 @@ public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTe
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIValidateRestartModem() {
 		getReporter().reportLogWithScreenshot("Launched the sign in Page");
-		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());

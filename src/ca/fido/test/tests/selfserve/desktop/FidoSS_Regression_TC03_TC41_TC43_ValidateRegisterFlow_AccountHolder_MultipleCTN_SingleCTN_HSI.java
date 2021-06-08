@@ -16,6 +16,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 	@BeforeMethod(alwaysRun = true)   @Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext,Method method) throws ClientProtocolException, IOException {
 		// xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
+		System.setProperty("PageLoadStrategy", "NONE");
 		startSession(System.getProperty("QaUrl"), strBrowser,
 				strLanguage, FidoEnums.GroupName.selfserve_login,method);			
 	}
@@ -33,8 +34,8 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
                     	  +TestDataHandler.tc0301.getaccountDetails().getPostalCode()+"#"
                     	  +TestDataHandler.tc0301.getaccountDetails().getEmail()+"#"
 						+TestDataHandler.tc0301.getaccountDetails().getDob()},
-        	/*{
-        		
+        	{
+
                           	TestDataHandler.tc41.getaccountDetails().getBan()+"#"
                                   	  +TestDataHandler.tc41.getaccountDetails().getPostalCode()+"#"
                                  	  +TestDataHandler.tc41.getaccountDetails().getEmail()+"#"
@@ -43,7 +44,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
             	TestDataHandler.tc43.getaccountDetails().getBan()+"#"
                     	  +TestDataHandler.tc43.getaccountDetails().getPostalCode()+"#"
                     	  +TestDataHandler.tc43.getaccountDetails().getEmail()+"#"
-						+TestDataHandler.tc43.getaccountDetails().getDob()} */
+						+TestDataHandler.tc43.getaccountDetails().getDob()}
         };
     }
  
@@ -85,7 +86,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 			getReporter().reportLogWithScreenshot("Get recovery code");
 			String verificationCode = getFidorecoverpassornamepage().getVerificationCode();
 			getDriver().switchTo().window(strTestingTab);
-			getFidorecoverpassornamepage().switchToSetCodeIframe();
+			//getFidorecoverpassornamepage().switchToSetCodeIframe();
 			getFidorecoverpassornamepage().setVerificationCode(verificationCode);
 			getReporter().reportLogWithScreenshot("Set verification code");
 			getFidorecoverpassornamepage().clkBtnContinue();

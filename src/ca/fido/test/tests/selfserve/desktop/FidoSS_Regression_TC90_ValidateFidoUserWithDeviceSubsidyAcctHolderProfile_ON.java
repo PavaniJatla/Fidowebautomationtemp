@@ -31,17 +31,9 @@ public class FidoSS_Regression_TC90_ValidateFidoUserWithDeviceSubsidyAcctHolderP
     public void postPaidDashBoardValidateFullyFinancedDevice() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
         getFidohomepage().clkLogin();
-
-        String userName = "Autodatar421BFA06@yahoo.com";
-        String password = "DigiAuto@123";
-
-
-        //userName = TestDataHandler.tc04_PostPaidFinancePaidOff.getUsername();
-       // password = TestDataHandler.tc04_PostPaidFinancePaidOff.getPassword();
-        String strCTN = "4168200316";//TestDataHandler.tc04_PostPaidFinancePaidOff.getaccountDetails().getCtn();
         getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(userName);
-        getFidologinpage().setPasswordInFrame(password);
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc90.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc90.getPassword());
         getReporter().reportLogWithScreenshot("Login Credential is entered.");
         getFidologinpage().clkLoginInFrame();
         getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(),
@@ -53,7 +45,7 @@ public class FidoSS_Regression_TC90_ValidateFidoUserWithDeviceSubsidyAcctHolderP
                 "Failed to login.");
         getReporter().reportLogWithScreenshot("Account overview page");
         //getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-        getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+        getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(TestDataHandler.tc90.getaccountDetails().getCtn());
         getReporter().reportLogWithScreenshot("Click on CTN badge");
         getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
         getReporter().reportLogWithScreenshot("dashboard page loaded");
