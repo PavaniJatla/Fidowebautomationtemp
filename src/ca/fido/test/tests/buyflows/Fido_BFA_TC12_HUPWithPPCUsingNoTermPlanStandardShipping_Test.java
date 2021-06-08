@@ -17,7 +17,7 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
+    @Test(groups = {"RegressionBFA","HUPBFA"})
     public void fidoHUPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
         // **************************Regular Login Flow**************************************
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getUsername());
