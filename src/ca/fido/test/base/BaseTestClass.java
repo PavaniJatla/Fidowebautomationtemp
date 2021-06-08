@@ -429,13 +429,8 @@ public class BaseTestClass {
 
 			case "connectedhome_login":
 				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-					try {
-						Thread.sleep(20000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				break;
 
 			case "selfserve":
