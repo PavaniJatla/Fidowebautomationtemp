@@ -97,5 +97,8 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
         getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
-
+        @AfterMethod(alwaysRun = true)
+	    public void afterTest() {
+		closeSession();
+	    }
 }
