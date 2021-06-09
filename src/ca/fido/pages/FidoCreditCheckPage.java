@@ -191,7 +191,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void setDrivingLicenseExpiry() {
-		String dlExpiryDate = "23/12/2036";
+		String dlExpiryDate = "12/23/2023";
 		reusableActions.getWhenReady(txtdLExpiryDate, 10).click();
 		reusableActions.getWhenReady(lblTxtdLExpiryDate, 10).sendKeys(dlExpiryDate);
 	}

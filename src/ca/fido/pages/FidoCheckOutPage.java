@@ -119,7 +119,9 @@ public class FidoCheckOutPage extends BasePageClass {
      */
     public void selectCityForChooseYourTelephoneNum(String cityName) {
     	reusableActions.getWhenReady(selectCity, 30).click();
-    	reusableActions.selectWhenReady(selectCity,cityName);
+    	reusableActions.selectWhenReadyByVisibleText(selectCity,cityName);
+    	reusableActions.waitForElementVisibility(buttonChooseNumberContinue,10);
+    	reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
 
     }
 }

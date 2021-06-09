@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA"})
 	public void fidoNACNoTermStandardShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
@@ -34,11 +34,16 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
-		getFidobuildplanpage().clkNoTermTierInDeviceCost();
+		//getFidobuildplanpage().clkNoTermTierInDeviceCost();
+		//String deviceCostIndex = TestDataHandler.tc04NoTermStandardShipping.getDeviceCostIndex();
+		//getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
+		getFidobuildplanpage().clkRadioButtonNoTerm();
 		getReporter().reportLogPass("No Term Tier selected in the Device cost");
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkContinueDataOption();
+		//getFidobuildplanpage().clkContinueDataOption();
+		String dataOptionIndex = TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex();
+		getFidobuildplanpage().clkDataOption(dataOptionIndex);
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");

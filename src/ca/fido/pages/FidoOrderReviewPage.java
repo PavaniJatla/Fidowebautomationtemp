@@ -13,6 +13,9 @@ public class FidoOrderReviewPage extends BasePageClass {
 	public FidoOrderReviewPage(WebDriver driver) {
 		super(driver);		
 	}
+
+	@FindBy(xpath="(//ds-price[contains(@class,'d-inline-flex text-left ng-star-inserted')])[3]/div")
+	WebElement oneTimePaymentPrice;
 	
 	//@FindBy(xpath="//div[contains(@class,'agreement-checkbox')")
 	//@FindBy(xpath="//div[contains(@class,'terms-checkbox')]")
@@ -45,7 +48,11 @@ public class FidoOrderReviewPage extends BasePageClass {
 	})
 	WebElement lblContractDigitalCopy;
 
-	@FindBy(xpath = "//input[contains(@id,'ds-checkbox-id')]//following-sibling::div[contains(@class,'ds-checkbox__box')]")
+	@FindAll({
+			@FindBy(xpath = "//input[contains(@id,'ds-checkbox-id')]//following-sibling::div[contains(@class,'ds-checkbox__box')]"),
+			@FindBy(xpath = "//input[contains(@id,'ds-radio-input-id-19')]//following-sibling::div[contains(@class,'ds-radioButton__outer')]"),
+			@FindBy(xpath = "//input[contains(@id,'ds-radio-input-id-6')]//following-sibling::div[contains(@class,'ds-radioButton__outer')]")
+	})
 	WebElement chkBoxOrderCommunicationConsent;
 
 	@FindBy(xpath="//span[@translate='btn_continue_to_payment']//parent::button")
@@ -64,6 +71,12 @@ public class FidoOrderReviewPage extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@checkout-res='checkout_step_pay']")
 	WebElement lblPaymentStep;
+
+	/*@FindBy(xpath = "(//div[contains(@class,'ds-price__amountDollars')])[3]//ancestor::div[2]")
+	WebElement oneTimePayment;*/
+
+	@FindBy(xpath = "//h1[@id]")
+	WebElement oneTimePaymentText;
 	
 	@FindBy(xpath = "//button[contains(@class,'-primary -large')]")
 	WebElement btnSubmitMyOrder;
@@ -82,7 +95,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkSubmitMyOrder() {
-		reusableActions.clickWhenReady(btnSubmitMyOrder , 30);
+		reusableActions.clickWhenReady(btnSubmitMyOrder , 60);
 	}
 	
 	/**
@@ -170,7 +183,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void setOrderCommunicationConsent() {
-		reusableActions.clickWhenReady(chkBoxOrderCommunicationConsent , 30);
+		reusableActions.clickIfAvailable(chkBoxOrderCommunicationConsent , 30);
 	}
 	
 	/**
@@ -206,6 +219,24 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public boolean isPaymentRequired() {
-		return reusableActions.isElementVisible(lblPaymentStep, 1);
+		//return reusableActions.isElementVisible(lblPaymentStep, 1);
+		return reusableActions.isElementVisible(oneTimePaymentText,10);
 	}
+
+	/**
+	 * Determines if payment is required or not
+	 * @return true if 'Payment' appears in the Steps above; else false
+	 * @author rajesh.varalli1
+	 *//*
+	public boolean isOneTimePaymentRequired() {
+		String oneTimeValue = oneTimePayment.getAttribute("aria-label");
+		Long payment = Long.parseLong(oneTimeValue);
+		if (payment > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}*/
+
 }
