@@ -96,9 +96,9 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
 
-    /*	@AfterMethod(alwaysRun = true)
+  	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
 		closeSession();
-	}*/
+	}
 
 }
