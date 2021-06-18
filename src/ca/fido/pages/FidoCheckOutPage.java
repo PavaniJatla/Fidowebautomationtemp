@@ -98,15 +98,17 @@ public class FidoCheckOutPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkSubmitButton() {
-		reusableActions.waitForElementTobeClickable(btnSubmit , 60);
-		reusableActions.scrollToElementAndClick(btnSubmit);
+		//reusableActions.waitForElementTobeClickable(btnSubmit , 60);
+		reusableActions.javascriptScrollToTopOfPage();
+		//reusableActions.javascriptScrollByCoordinates(0,-50);
+		reusableActions.clickWhenReady(btnSubmit,30);
 		//reusableActions.clickWhenReady(btnSubmit,30);
 	}
 
 	/**
 	 * Clicks on the 'Continue' button for enter user's name
 	 * @author Saurav.Goyal
-	 */
+	 *///input[@id='pan']
 	public void clkChooseNumberContinueButton() {
 		reusableActions.waitForElementVisibility(buttonChooseNumberContinue, 120);
 		reusableActions.clickIfAvailable(buttonChooseNumberContinue, 120);

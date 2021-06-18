@@ -18,14 +18,14 @@ public class Fido_BFA_TC09_PPC_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
 	public void ppcFlowTest() {
-		getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
+		/*getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
 		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().switchToSignInFrame();*/
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc09Ppc.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc09Ppc.getPassword());
 		getReporter().reportLogWithScreenshot("Login overlay");
 		getFidologinpage().clkLoginInFrame();
-		getFidologinpage().switchOutOfSignInFrame();
+		//getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
 		getReporter().reportLogWithScreenshot("Account Overview page");
 		getFidoaccountoverviewpage().clkViewUsageAndManageLink();
