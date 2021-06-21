@@ -66,10 +66,11 @@ public class FidoCreateUserPage extends BasePageClass {
 	WebElement lblTxtHomeAddress;
 	
 	@FindAll({
-	@FindBy(xpath="//div[@class='pca pcalist']/div[contains(@class,'pcalastitem')]/span[@class='pcadescription']/.."),
-	@FindBy(xpath="//div[@class='auto-suggest-list ng-star-inserted']//li[1]")
+		@FindBy(xpath="//div[@class='pca pcalist']/div[contains(@class,'pcalastitem')]/span[@class='pcadescription']/.."),
+		@FindBy(xpath="//div[@class='auto-suggest-list ng-star-inserted']//li[1]"),
 	})
 	WebElement lblAddressResult;
+
 
 	/**
 	 * Verify if the create user profile page loaded or not
@@ -218,6 +219,7 @@ public void setHomeAddress(String homeAddress) {
 	reusableActions.getWhenReady(txtHomeAddress, 10).click();
 	reusableActions.getWhenReady(lblTxtHomeAddress, 10).sendKeys(homeAddress);
 	reusableActions.getWhenReady(lblTxtHomeAddress,10).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+	//reusableActions.executeJavaScriptClick(lblAddressResult);
 }
 
 }
