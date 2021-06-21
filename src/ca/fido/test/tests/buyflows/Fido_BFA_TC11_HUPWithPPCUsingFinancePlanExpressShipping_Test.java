@@ -50,6 +50,7 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         String dataOptionIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
