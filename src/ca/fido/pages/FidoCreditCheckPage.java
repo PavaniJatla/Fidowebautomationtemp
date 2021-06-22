@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -349,8 +350,9 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 */
 	public void setCreditCardNumber(String ccNumber) {
 		//reusableActions.javascriptScrollByVisibleElement(ddlDOBYear);
+		reusableActions.javascriptScrollByVisibleElement(reusableActions.getWhenReady(By.xpath("//p[contains(.,'Credit Card') or contains(.,'Carte de crédit')]"),10));
 		reusableActions.staticWait(5000);
-		driver.switchTo().frame(frmCreditCard);
+		driver.switchTo().frame(reusableActions.getWhenReady(frmCreditCard,20));
 		reusableActions.staticWait(5000);
 		txtCreditCardNumber.click();
 		txtCreditCardNumber.sendKeys(ccNumber);
