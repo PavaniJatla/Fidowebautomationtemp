@@ -46,10 +46,10 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidocreateuserpage().setHomeAddress(TestDataHandler.tc01ByodStandardShipping.getBillingAddress());
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
+		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().selectDOBYear();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
-		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
 		getFidocreditcheckpage().selectIdType(TestDataHandler.tc01ByodStandardShipping.getIdentificationType());
 		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc01ByodStandardShipping.getDlProvinceCode());

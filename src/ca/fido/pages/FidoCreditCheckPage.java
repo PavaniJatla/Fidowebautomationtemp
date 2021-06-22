@@ -348,9 +348,9 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void setCreditCardNumber(String ccNumber) {
-		reusableActions.javascriptScrollByVisibleElement(ddlDOBYear);
+		//reusableActions.javascriptScrollByVisibleElement(ddlDOBYear);
 		driver.switchTo().frame(frmCreditCard);
-		reusableActions.staticWait(10000);
+		reusableActions.staticWait(5000);
 		txtCreditCardNumber.click();
 		txtCreditCardNumber.sendKeys(ccNumber);
 		driver.switchTo().defaultContent();//checkout-res="checkout_credit_card_number"
