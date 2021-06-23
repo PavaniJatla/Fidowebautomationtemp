@@ -57,7 +57,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn') or @title='Sign in' or @title='Ouvrir une session']")
 	WebElement btnLogIn;
 
-	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]")
+	@FindAll({
+	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]"),
+	@FindBy(xpath = "//button[@title='Skip']/span")})
 	WebElement btnSkip;
 	
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
