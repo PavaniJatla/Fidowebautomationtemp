@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA"})
 	public void fidoNACTermExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
@@ -34,6 +34,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
+		getFidobuildplanpage().clkDownPaymentChkBox();
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
 		getFidobuildplanpage().clkContinueDataOption();

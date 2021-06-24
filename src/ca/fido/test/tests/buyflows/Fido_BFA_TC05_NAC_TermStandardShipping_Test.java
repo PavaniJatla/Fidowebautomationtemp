@@ -19,7 +19,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  */
 public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","NACBFA", "SanityBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA"})
 	public void fidoNACTermStandardShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
@@ -102,10 +102,8 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
 		startSession(System.getProperty("AWSUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
-
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
 		closeSession();
 	}
-
 }

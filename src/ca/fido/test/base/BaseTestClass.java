@@ -429,13 +429,8 @@ public class BaseTestClass {
 
 			case "connectedhome_login":
 				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-					try {
-						Thread.sleep(20000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				break;
 
 			case "selfserve":
@@ -452,12 +447,16 @@ public class BaseTestClass {
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				}else if(currentTestMethodName.getName().contains("NAC")){
+				} else if(currentTestMethodName.getName().contains("NAC")) { //HUP
+					//getDriver().get(strUrl);
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
 				}else{
-					getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
+					getDriver().get(strUrl);
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					getDriver().get(strUrl+"/profile/signin");
+					//getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 				}
 				break;
 
@@ -538,6 +537,7 @@ public class BaseTestClass {
 
 			case "connectedhome_anonymous":
 			case "connectedhome_ssp":
+				FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
 				FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
 				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
 				FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));

@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC07_AAL_Term_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","SanityBFA","AALBFA"})
+	@Test(groups = {"RegressionBFA","AALBFA"})
 	public void aalTermFlowTest() {
 		getReporter().reportLog("URL:" + System.getProperty("QaUrl"));
 		getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");

@@ -9,6 +9,10 @@ public class AALData {
 	private String ctnCity;
 	private String ctn;
 	private String newPlanType;
+	private String deviceCostIndex;
+	private String dataOptionIndex;
+	private String cityName;
+	private String shippingType;
 	
 	
 	/**
@@ -83,5 +87,53 @@ public class AALData {
 	public void setNewPlanType(String newPlanType) {
 		this.newPlanType = newPlanType;
 	}
-	
+	/**
+	 * @return the DeviceCostIndex
+	 */
+	public String getDeviceCostIndex() {
+		return deviceCostIndex;
+	}
+	/**
+	 * @param deviceCostIndex the DeviceCostIndex to set
+	 */
+	public void setDeviceCostIndex(String deviceCostIndex) {
+		this.deviceCostIndex = deviceCostIndex;
+	}
+	/**
+	 * @return the DataOptionIndex
+	 */
+	public String getDataOptionIndex() {
+		return dataOptionIndex;
+	}
+	/**
+	 * @param dataOptionIndex the DataOptionIndex to set
+	 */
+	public void setDataOptionIndex(String dataOptionIndex) {
+		this.dataOptionIndex = dataOptionIndex;
+	}
+	/**
+	 * @return the CityName
+	 */
+	public String getCityName() {
+		return cityName;
+	}
+	/**
+	 * @param cityName the CityName to set
+	 */
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	/**
+	 * @return the ShippingType
+	 */
+	public String getShippingType() {
+		return shippingType;
+	}
+	/**
+	 * @param shippingType the ShippingType to set
+	 */
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
+	}
+
 }

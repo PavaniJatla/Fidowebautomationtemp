@@ -17,6 +17,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id='username']")
 	WebElement txtUsername;
 
+	@FindBy(xpath = "//label[@for='username']//parent::span[contains(@class,'ds-form')]")
+	WebElement txtUsername1;
+
 	@FindBy(xpath = "//input[@formcontrolname='password']")
 	WebElement txtPassword;
 
@@ -54,7 +57,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn') or @title='Sign in' or @title='Ouvrir une session']")
 	WebElement btnLogIn;
 
-	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]")
+	@FindAll({
+	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]"),
+	@FindBy(xpath = "//button[@title='Skip']/span")})
 	WebElement btnSkip;
 	
 	@FindBy(xpath = "//a[@class = 'btn-logIn-facebook']")
@@ -114,7 +119,7 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(txtUsername,90).clear();
 		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
-		reusableActions.getWhenReady(txtUsername,10).sendKeys(strUsername);
+		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
 	}
 	
 	

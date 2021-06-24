@@ -9,6 +9,8 @@ public class NACData {
 	private String identificationType;
 	private String contactNumber;
 	private String username;
+	private String deviceCostIndex;
+	private String dataOptionIndex;
 
 	public String getUsername() {
 		return username;
@@ -89,5 +91,31 @@ public class NACData {
 	public void setIdentificationType(String identificationType) {
 		this.identificationType = identificationType;
 	}
-	
+
+	/**
+	 * @return the DeviceCostIndex
+	 */
+	public String getDeviceCostIndex() {
+		return deviceCostIndex;
+	}
+	/**
+	 * @param deviceCostIndex the DeviceCostIndex to set
+	 */
+	public void setDeviceCostIndex(String deviceCostIndex) {
+		this.deviceCostIndex = deviceCostIndex;
+	}
+	/**
+	 * @return the DataOptionIndex
+	 */
+	public String getDataOptionIndex() {
+		return dataOptionIndex;
+	}
+	/**
+	 * @param dataOptionIndex the DataOptionIndex to set
+	 */
+	public void setDataOptionIndex(String dataOptionIndex) {
+		this.dataOptionIndex = dataOptionIndex;
+	}
+
+
 }

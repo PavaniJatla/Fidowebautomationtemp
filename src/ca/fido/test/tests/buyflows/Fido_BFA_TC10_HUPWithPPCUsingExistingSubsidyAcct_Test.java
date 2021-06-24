@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC10_HUPWithPPCUsingExistingSubsidyAcct_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
+	@Test(groups = {"RegressionBFA","HUPBFA"})
 	public void hupWithPPCUsingExistingSubsidyAcctFlowTest() {
 		getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
 		getFidohomepage().clkLogin();
