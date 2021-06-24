@@ -22,6 +22,7 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc15AALFinancingPlanExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
+        getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl")+"/phones");
@@ -31,11 +32,11 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
         getFidochoosephonepage().selectAddALineButton();
         getReporter().reportLogPassWithScreenshot("Add a Line Button Selected");
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
+        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        getFidobuildplanpage().clkDownPaymentChkBox();
+        //getFidobuildplanpage().clkDownPaymentChkBox();
         getFidobuildplanpage().clkContinueDeviceCost();
         //String deviceCostIndex = TestDataHandler.tc15AALFinancingPlanExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
@@ -69,13 +70,14 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
+        boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().reportLogPass("Submit button selected on review page");
-        if (getFidoorderreviewpage().isPaymentRequired()) {
+        if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());

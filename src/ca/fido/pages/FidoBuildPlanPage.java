@@ -76,9 +76,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	WebElement btnDataAndTextPlan;
 
 	@FindAll({
-		@FindBy(xpath = "//button[@id='skip-bpo-offer-button']//span[contains(@class,'ds-button__copy')]"),
 		@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']"),
-			@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
+		@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
 	})
 	WebElement btnNoBPOOffer;
 
@@ -434,7 +433,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueTalkOptions() {
-		reusableActions.clickIfAvailable(btnContinueTalkOptions, 20);
+		reusableActions.clickIfAvailable(btnContinueTalkOptions, 10);
 	}
 
 	/**
@@ -450,7 +449,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkNoBPOOfferButtonTalkOptions() {
-		reusableActions.clickIfAvailable(btnNoBPOOffer, 20);
+		reusableActions.clickIfAvailable(btnNoBPOOffer, 10);
 	}
 	
 	/**

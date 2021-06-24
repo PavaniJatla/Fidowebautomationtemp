@@ -16,23 +16,21 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
+    }
+
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void aALBYODStandardShippingFlowTest() {
-        //getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        getFidologinpage().switchToSignInFrame();
+    public void fidoAALBYODStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc18AALBYODExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc18AALBYODExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        /*getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-        getReporter().reportLogWithScreenshot("Account Overview page");*/
-/*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        //getDriver().get(System.getProperty("AWSUrl") + "/phones");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        getReporter().reportLogWithScreenshot("Account Overview page");
+        getDriver().get(System.getProperty("AWSUrl") + "/phones/bring-your-own-device?flowType=aal");
         getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
         getReporter().reportLogWithScreenshot("Fido plan config page");
         //getFidochoosephonepage().selectAddALineButton();
@@ -41,6 +39,7 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
         String dataOptionIndex = TestDataHandler.tc18AALBYODExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex);
+        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
@@ -64,13 +63,14 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
+        boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().reportLogPass("Submit button selected");
-        if (getFidoorderreviewpage().isPaymentRequired()) {
+        if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
@@ -82,11 +82,6 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
         getReporter().reportLogWithScreenshot("Order Confirmation page");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void afterTest() {
-        closeSession();
     }
 
 }

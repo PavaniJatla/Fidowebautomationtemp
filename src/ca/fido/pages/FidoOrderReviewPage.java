@@ -2,6 +2,8 @@ package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
 import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -32,11 +34,14 @@ public class FidoOrderReviewPage extends BasePageClass {
 	WebElement lblContractPhysicalCopy;
 
 	@FindAll({
-			@FindBy(xpath="//h1[@id='bfa-page-title']"),
+			@FindBy(xpath="//h1[@id='bfa-page-title'][contains(.,'Review') or contains(.,'Vérifiez')]"),
 			@FindBy(xpath="//span[@translate='hup_page_title_for.review']"),
 			@FindBy(xpath="//span[@checkout-res='checkout_review_order']")
 	})
 	WebElement lblReviewPage;
+
+	@FindBy(xpath = "(//div[contains(@class,'dsa-orderTable__totalRow')])[2]//div[contains(@class,'ds-price__amountDollars')]")
+	WebElement oneTimeFeeAmt;
 	
 	//@FindBy(xpath="//label[@for='digital-copy']")
 	//@FindBy(xpath = "//label[@for='digital-copy' or @for='ds-radio-input-id-2']")
@@ -82,12 +87,12 @@ public class FidoOrderReviewPage extends BasePageClass {
 	WebElement btnSubmitMyOrder;
 
 	@FindAll({
-			@FindBy(xpath = "//label[@for='terms1']"),
-			@FindBy(xpath = "//input[@name='agreementConsent']//following-sibling::div[contains(@class,'ds-checkbox__box my')]")
+			@FindBy(xpath = "//input[@name='agreementConsent']/../.."),
+			@FindBy(xpath = "//label[@for='terms1']")
 	})
 	WebElement chkBoxAgreementConsent;
 
-	@FindBy(xpath = "//input[@name='financingConsent']//following-sibling::div[contains(@class,'ds-checkbox__box my')]")
+	@FindBy(xpath = "//input[@name='financingConsent']/../..")
 	WebElement chkBoxFinancingConsent;
 
 	/**
@@ -96,6 +101,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public void clkSubmitMyOrder() {
 		reusableActions.clickWhenReady(btnSubmitMyOrder , 60);
+		reusableActions.staticWait(8000);
 	}
 	
 	/**
@@ -105,6 +111,20 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public boolean verifyReviewPageLabel() {
 		 return reusableActions.isElementVisible(lblReviewPage, 60);
+	}
+
+
+	/**
+	 * This method checks if one time payment is required or not
+	 * @return true if One time fees is not equal to 0, else false
+	 * @author Praveen.Kumar7
+	 */
+	public boolean verifyPaymentRequired() {
+		String oneTimeFee = oneTimeFeeAmt.getText();
+		if(!oneTimeFee.equals("0")) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**
