@@ -25,7 +25,7 @@ public class Fido_BFA_TC09_PPC_Test extends BaseTestClass{
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc09Ppc.getPassword());
 		getReporter().reportLogWithScreenshot("Login overlay");
 		getFidologinpage().clkLoginInFrame();
-		//getFidologinpage().switchOutOfSignInFrame();
+		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
 		getReporter().reportLogWithScreenshot("Account Overview page");
 		getFidoaccountoverviewpage().clkViewUsageAndManageLink();
