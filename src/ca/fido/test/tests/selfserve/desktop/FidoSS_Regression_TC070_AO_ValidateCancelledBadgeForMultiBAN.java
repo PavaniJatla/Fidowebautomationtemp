@@ -57,7 +57,7 @@ with that account
 	public void postPaidChangeMOP() {
 		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		getFidologinpage().switchToSignInFrameOld();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc70.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc70.getPassword());
 		String strActiveBAN = TestDataHandler.tc70.getaccountDetails().getBan();
