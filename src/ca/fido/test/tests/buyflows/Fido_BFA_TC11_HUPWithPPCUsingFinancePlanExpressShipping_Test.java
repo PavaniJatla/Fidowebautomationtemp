@@ -27,7 +27,7 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc11HupPpcFinancingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        //getFidologinpage().switchOutOfSignInFrame();
+        getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
@@ -37,7 +37,7 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
         //getFidochoosephonepage().selectUpgradeMyDeviceButton();
         //getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
+        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
@@ -50,6 +50,7 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         String dataOptionIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
@@ -67,13 +68,14 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
+        boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().reportLogPass("Submit button selected on review page");
-        if (getFidoorderreviewpage().isPaymentRequired()) {
+        if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
@@ -81,15 +83,11 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
             getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
             getReporter().reportLogWithScreenshot("OneTime payment page displayed before submitting");
             getFidoorderreviewpage().clkSubmitMyOrder();
-            getReporter().reportLogPass("Submit button selected");
-            getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
-            getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
-            getReporter().reportLogWithScreenshot("Order Confirmation page");
-        } else {
-            getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
-            getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
-            getReporter().reportLogWithScreenshot("Order Confirmation page");
         }
+        getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
+        getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
+        getReporter().reportLogWithScreenshot("Order Confirmation page");
+
     }
 
     @AfterMethod(alwaysRun = true)

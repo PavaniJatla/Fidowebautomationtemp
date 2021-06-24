@@ -12,28 +12,27 @@ import java.lang.reflect.Method;
 
 public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping_Test extends BaseTestClass {
 
-    @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
+    @BeforeMethod(alwaysRun = true)
+    @Parameters({"strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-        startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+        startSession(System.getProperty("QaUrl"), strBrowser, strLanguage, FidoEnums.GroupName.buyflows, method);
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA"})
-    public void hupWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
-        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded(), "Home page loaded successfully", "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        //getFidologinpage().switchToSignInFrame();
+    public void fidoHUPWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        //getFidologinpage().switchOutOfSignInFrame();
+        getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-/*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        getDriver().get(System.getProperty("AWSUrl"));
+        getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
@@ -48,8 +47,10 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getFidodeviceconfigpage().clickContinueButton();
         getFidobuildplanpage().checkKeepMyCurrentPlanButton();
         getReporter().reportLogWithScreenshot("Keep My Current Plan checkbox is checked");
-        String deviceCostIndex = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getDeviceCostIndex();
-        getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
+        getFidobuildplanpage().clkDownPaymentChkBox();
+        getFidobuildplanpage().clkContinueDeviceCost();
+        //String deviceCostIndex = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getDeviceCostIndex();
+        //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
@@ -66,20 +67,21 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");
-            getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
+            getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage(), "Bopis Map displayed", "Bopis Map not displayed");
         } else {
             getReporter().reportLogWithScreenshot("Shipping selected");
         }
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
+        boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().reportLogPass("Submit button selected");
-        if (getFidoorderreviewpage().isPaymentRequired()) {
+        if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
@@ -87,16 +89,10 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
             getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
             getReporter().reportLogWithScreenshot("OneTime payment page displayed before submitting");
             getFidoorderreviewpage().clkSubmitMyOrder();
-            getReporter().reportLogPass("Submit button selected");
         }
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
         getReporter().reportLogWithScreenshot("Order Confirmation page");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void afterTest() {
-        closeSession();
     }
 
 }

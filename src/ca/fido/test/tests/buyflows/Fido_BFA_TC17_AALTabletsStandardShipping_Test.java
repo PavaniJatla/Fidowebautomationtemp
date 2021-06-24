@@ -16,23 +16,21 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
+    }
+
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void aaLTabletsStandardShippingFlowTest() {
-        //getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();
-        getFidologinpage().switchToSignInFrame();
+    public void fidoAALTabletsStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc17AALTabletsStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc17AALTabletsStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        /*getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-        getReporter().reportLogWithScreenshot("Account Overview page");*/
-/*        getFidoaccountoverviewpage().clkViewUsageAndManageLink();
-        getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
-        getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessDashboardPageLoad(), "Mobile Dashboard page loaded", "Mobile Dashboard page load error");
-        getReporter().reportLogWithScreenshot("Mobile Dashboard page");*/
-        //getDriver().get(System.getProperty("AWSUrl") + "/phones");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        getReporter().reportLogWithScreenshot("Account Overview page");
+        getDriver().get(System.getProperty("AWSUrl") + "/phones/?flowType=aal");
         getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose phone page loaded successfully", "Choose phone page not loaded successfully");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         getFidochoosephonepage().selectTabletsCheckbox();
@@ -45,8 +43,9 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        String deviceCostIndex = TestDataHandler.tc17AALTabletsStandardShipping.getDeviceCostIndex();
-        getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
+        getFidobuildplanpage().clkContinueDeviceCost();
+        //String deviceCostIndex = TestDataHandler.tc17AALTabletsStandardShipping.getDeviceCostIndex();
+        //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         //getFidobuildplanpage().clkDeviceBalancePopUp();
         //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
@@ -75,13 +74,14 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
+        boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().reportLogPass("Submit button selected");
-        if (getFidoorderreviewpage().isPaymentRequired()) {
+        if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
@@ -93,11 +93,6 @@ public class Fido_BFA_TC17_AALTabletsStandardShipping_Test extends BaseTestClass
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
         getReporter().reportLogWithScreenshot("Order Confirmation page");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void afterTest() {
-        closeSession();
     }
 
 }

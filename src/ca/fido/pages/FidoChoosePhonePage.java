@@ -31,7 +31,6 @@ public class FidoChoosePhonePage extends BasePageClass {
 	@FindBy(xpath = "//input[contains(@name,'Tablets')]//following-sibling::div")
 	WebElement tabletsCheckbox;
 
-	//@FindBy(xpath = "//div/h1[@id='phonesDevices phonesDevicesFont']")
 	@FindAll({
 		@FindBy(xpath = "//div/h1[contains(@id,'bfa-page-title')]"),
 		@FindBy(xpath = "//h2[@class='header-2 ng-scope']")
@@ -73,11 +72,17 @@ public class FidoChoosePhonePage extends BasePageClass {
 	 * Method is used to create xpath for a particular device using device name
 	 * @param deviceName Name of the Device needed
 	 * @return xpath value of the device as a String
-	 * @author sidhartha.vadrevu
+	 * @author praveen.kumar7
 	 */
 	public String createXpathWithDeviceName(String deviceName) {
-		strXpathViewDetails = "//a[contains(@title,'"+ deviceName +"')]";
-		return strXpathViewDetails;
+		String verifyCPODevice = reusableActions.getWhenReady(By.xpath("(//a[contains(@title,'"+ deviceName +"')])[1]/../preceding-sibling::div[1]"),40).getText().toLowerCase();
+		if(verifyCPODevice.contains("certified")) {
+			strXpathViewDetails =  "(//a[contains(@title,'"+ deviceName +"')])[2]";
+			return strXpathViewDetails;
+		}
+		else {
+			return "(//a[contains(@title,'"+ deviceName +"')])[1]";
+		}
 	}
 
 	/**
