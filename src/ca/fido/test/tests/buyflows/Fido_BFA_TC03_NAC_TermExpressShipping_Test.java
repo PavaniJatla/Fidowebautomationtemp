@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA"})
 	public void fidoNACTermExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
@@ -34,9 +34,11 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
+		getFidobuildplanpage().clkDownPaymentChkBox();
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
 		getFidobuildplanpage().clkContinueDataOption();
+		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
@@ -85,12 +87,22 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
+		boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
 		getFidoorderreviewpage().setOrderCommunicationConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();
-		getReporter().reportLogPass("Submit button selected");
+		getReporter().reportLogPass("Submit button selected on review page");
+		if(isPaymentRequired) {
+			getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+			getFidopaymentpage().setCreditCardName();
+			getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
+			getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());
+			getFidopaymentpage().setCreditCardCvv(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
+			getReporter().reportLogWithScreenshot("OneTime payment page displayed before submitting");
+			getFidoorderreviewpage().clkSubmitMyOrder();
+		}
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
 		getReporter().reportLogWithScreenshot("Order Confirmation page");

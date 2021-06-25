@@ -58,9 +58,17 @@ public class TestDataHandler {
 	public static NACData tc05TermStandardShipping;
 	public static AALData tc06AalByod;
 	public static AALData tc07AalTerm;
+	public static AALData tc15AALFinancingPlanExpressShipping;
+	public static AALData tc16AALNoTermPlanStandardShipping;
+	public static AALData tc17AALTabletsStandardShipping;
+	public static AALData tc18AALBYODExpressShipping;
 	public static HUPData tc08Hup;
 	public static PPCData tc09Ppc;
 	public static HUPData tc10HupExistingSubsidy;
+	public static HUPData tc11HupPpcFinancingExpressShipping;
+	public static HUPData tc12HupPpcNoTermStandardShipping;
+	public static HUPData tc13HupPpcKeepExistingExpressShipping;
+	public static HUPData tc14HupPpcFinancingStandardShipping;
 	public static AccountData tc6062;
 	public static AccountData tc002003;
 	public static AccountData tc61;
@@ -202,9 +210,17 @@ public class TestDataHandler {
 		tc05TermStandardShipping = YamlHandler.getNACData("tc05TermStandardShipping");
 		tc06AalByod = YamlHandler.getAALData("tc06AalByod");
     	tc07AalTerm = YamlHandler.getAALData("tc07AalTerm");
+		tc15AALFinancingPlanExpressShipping = YamlHandler.getAALData("tc15AALFinancingPlanExpressShipping");
+		tc16AALNoTermPlanStandardShipping = YamlHandler.getAALData("tc16AALNoTermPlanStandardShipping");
+		tc17AALTabletsStandardShipping = YamlHandler.getAALData("tc17AALTabletsStandardShipping");
+		tc18AALBYODExpressShipping = YamlHandler.getAALData("tc18AALBYODExpressShipping");
 		tc08Hup = YamlHandler.getHUPData("tc08Hup");
 		tc09Ppc = YamlHandler.getPPCData("tc09Ppc");
 		tc10HupExistingSubsidy = YamlHandler.getHUPData("tc10HupExistingSubsidy");
+		tc11HupPpcFinancingExpressShipping = YamlHandler.getHUPData("tc11HupPpcFinancingExpressShipping");
+		tc12HupPpcNoTermStandardShipping = YamlHandler.getHUPData("tc12HupPpcNoTermStandardShipping");
+		tc13HupPpcKeepExistingExpressShipping = YamlHandler.getHUPData("tc13HupPpcKeepExistingExpressShipping");
+		tc14HupPpcFinancingStandardShipping = YamlHandler.getHUPData("tc14HupPpcFinancingStandardShipping");
 	}
 
 }
