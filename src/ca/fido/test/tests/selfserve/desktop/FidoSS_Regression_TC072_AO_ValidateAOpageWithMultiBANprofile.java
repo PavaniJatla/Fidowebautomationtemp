@@ -65,8 +65,8 @@ public class FidoSS_Regression_TC072_AO_ValidateAOpageWithMultiBANprofile extend
 	}
 	
 	
-
-	@Test(groups = {"AccountOverviewSS"})
+	@Ignore
+	@Test(groups = {""})
 	public void postPaidChangeMOP() {
 		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
