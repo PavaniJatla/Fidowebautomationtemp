@@ -19,6 +19,7 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 
 	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA" , "NACBFABYOD"})
 	public void fidoNACByodTermStandardShippingFlow() {
+		getFidobuildplanpage().setProvince("Ontario");
 		getReporter().reportLog("URL:" + System.getProperty("AWSBYODUrl"));
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
