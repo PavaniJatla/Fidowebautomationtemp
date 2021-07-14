@@ -72,7 +72,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='step-3-continue-button' or @data-test='stepper-3-edit-step-continue-button']")
 	WebElement btnContinueTalkOptions;
 
-	@FindBy(xpath = "//button[@id='ds-tabs-0-tab-1']")
+	@FindBy(xpath = "//p[contains(.,'Data, Talk and Text') or contains(.,'Données, Appels Et Textos')]/ancestor::button")
 	WebElement btnDataAndTextPlan;
 
 	@FindAll({
