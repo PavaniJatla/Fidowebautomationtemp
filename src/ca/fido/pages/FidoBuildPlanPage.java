@@ -72,7 +72,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='step-3-continue-button' or @data-test='stepper-3-edit-step-continue-button']")
 	WebElement btnContinueTalkOptions;
 
-	@FindBy(xpath = "//button[@id='ds-tabs-0-tab-1']")
+	@FindBy(xpath = "//p[contains(.,'Data, Talk and Text') or contains(.,'Données, Appels Et Textos')]/ancestor::button")
 	WebElement btnDataAndTextPlan;
 
 	@FindAll({
@@ -148,6 +148,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	
 	@FindBy(xpath = "//img[@alt='Close']")
 	WebElement closeDialogWindow;
+
+	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']")
+	WebElement provinceDropDown;
 
 	/**
 	 * Creates xpath to select multiple options among device cost, data options, talk options
@@ -633,5 +636,16 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public void selectDataPlanCategory() {
 		reusableActions.getWhenReady(planSlider, 60);
 		reusableActions.dragAndDrop(planSlider, reusableActions.getWhenReady(By.xpath("//div[@res='category-FID_FIN2']")));
+	}
+
+	/**
+	 * This method will select the province based on the input
+	 * @param province
+	 * @author praveen.kumar7
+	 */
+	public void setProvince(String province) {
+		reusableActions.clickWhenReady(provinceDropDown, 10);
+		reusableActions.staticWait(2000);
+		reusableActions.clickWhenReady(By.xpath("//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']/following-sibling::ul//a[@title='"+province+"']"),10);
 	}
 }
