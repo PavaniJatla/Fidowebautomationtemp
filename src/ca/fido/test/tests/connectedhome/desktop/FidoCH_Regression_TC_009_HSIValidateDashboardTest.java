@@ -59,7 +59,7 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
-		closeSession();
+		//closeSession();
 	}
 
 }
