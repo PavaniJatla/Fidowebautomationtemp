@@ -63,19 +63,8 @@ public class CaptchaBypassHandlers {
 	 */
 	public String generateCookieFetchURL(String strUrl) {
 		String strCookieFetchURL=null;
-		String cookieEnv=null;
-		if (strUrl.contains("qa1.") || strUrl.contains("qa5.") || strUrl.contains("qa6.") || strUrl.contains("qa7.")) {
-			cookieEnv = "https://qa0" + strUrl.split("qa")[1].charAt(0);
-		} else if (strUrl.contains("qa2.")) {
-			cookieEnv = "https://qa03";
-		} else if (strUrl.contains("qa3.")) {
-			cookieEnv = "https://qa04";
-		} else if (strUrl.contains("qa4.")) {
-			cookieEnv = "https://qa02";
-		} else {
-			cookieEnv = System.getProperty("CookieFetcherMapping");
-		}
-		strCookieFetchURL = cookieEnv + "-mservices.fido.ca/v1/user/recaptchaBypass/login";
+		String cookieEnv = envMapping(strUrl);
+		strCookieFetchURL = cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
 		return strCookieFetchURL;
 	}
 
@@ -85,20 +74,29 @@ public class CaptchaBypassHandlers {
 	 */
 	public String generateCookieRegistrationURL(String strUrl) {
 		String strCookieRegistrationURL=null;
+		String cookieEnv = envMapping(strUrl);
+		strCookieRegistrationURL = cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
+		return strCookieRegistrationURL;
+	}
+
+	/**
+	 * To give the QA env mapping
+	 * @param strUrl String of test url
+	 * @return String of url starter after mapping
+	 */
+	public String envMapping(String strUrl) {
 		String cookieEnv=null;
 		if (strUrl.contains("qa1.") || strUrl.contains("qa5.") || strUrl.contains("qa6.") || strUrl.contains("qa7.")) {
-			cookieEnv = "https://qa0" + strUrl.split("qa")[1].charAt(0);
+			cookieEnv = "https://ute" + strUrl.split("qa")[1].charAt(0);
 		} else if (strUrl.contains("qa2.")) {
-			cookieEnv = "https://qa03";
+			cookieEnv = "https://ute3";
 		} else if (strUrl.contains("qa3.")) {
-			cookieEnv = "https://qa04";
+			cookieEnv = "https://ute4";
 		} else if (strUrl.contains("qa4.")) {
-			cookieEnv = "https://qa02";
+			cookieEnv = "https://ute2";
 		} else {
 			cookieEnv = System.getProperty("CookieFetcherMapping");
 		}
-
-		strCookieRegistrationURL = cookieEnv + "-mservices.fido.ca/v1/user/recaptchaBypass/register";
-		return strCookieRegistrationURL;
+		return cookieEnv;
 	}
 }
