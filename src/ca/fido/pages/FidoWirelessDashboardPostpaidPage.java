@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -85,6 +86,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		
 	@FindBy (xpath = "//ins[@translate='global.cta.cancel']")
 	WebElement btnCancelLostOrStolen;
+
+	@FindBy (xpath = "//select[@id='selectCtn']")
+	WebElement drpSelectAnotherLine;
 	
 	//My Plan section
 	@FindBy (xpath = "//div[contains(@class,'ss-plan-container-box ng-star-inserted') ]")
@@ -1767,6 +1771,12 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		return reusableActions.isElementVisible(FidoPaymentProgramDetailsHeaderParagraph, 60);
 	}
 
-
+	/**
+	 * Select values from dropdown 'Select Another Line'
+	 * @author sidhartha.vadrevu
+	 */
+	public void setDrpSelectAnotherLine(String changedCTNValue) {
+		new Select(drpSelectAnotherLine).selectByValue(changedCTNValue);
+	}
 
 }
