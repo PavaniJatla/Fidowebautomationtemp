@@ -73,7 +73,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	WebElement msgPaymentpage;
 
 
-	@FindBy (xpath="//div[@class='ds-price__amountDollars ng-star-inserted']")
+	@FindBy (xpath="//div[contains(@class,'ds-price__amountDollars')]")
 	WebElement infoAccountBalance;
 
 	@FindBy (xpath="//span[@class='ute-price']//ins")
