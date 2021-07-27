@@ -48,10 +48,7 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
 
 		// +++++++++++++++ old flow code, will be remove once the issue fixed  ++++++++++++++++ //
-		getReporter().reportLogWithScreenshot("//****  " +
-				"   There is a production issue on the login cookie if we directly land on login page through contentfulpage,\n" +
-				"\t\t  hence time being landing on home page, and then logging in to the account" +
-				"    ****//");
+		getReporter().reportLogWithScreenshot("//****  There is a production issue on the login cookie if we directly land on the login page through contentful page, hence time being landing on the home page and then logging in to the account.   ****//");
 		getDriver().get(System.getProperty("QaUrl"));
 		getFidohomepage().clkContentfulInternet();
 		getFidohomepage().clkLogin();
