@@ -36,7 +36,8 @@ public class Fido_BFA_TC09_PPC_Test extends BaseTestClass{
 		getReporter().hardAssert(getFidochooseplanpage().verifyChangePlanPageLoad(), "Price Plan Change page loaded", "Price Plan Change page load error");
 		getReporter().reportLogWithScreenshot("Choose plan page displayed");
 		getFidochooseplanpage().clkPlanType(TestDataHandler.tc09Ppc.getNewPlanType());
-		getFidochooseplanpage().selectFirstAvailablePricePlan();
+		getFidochooseplanpage().selectDataOption(TestDataHandler.tc09Ppc.getDataOptionIndex());
+		getFidochooseplanpage().clkDowngradeFeeContinue();
 		getReporter().reportLogWithScreenshot("Plan selected page");
 		getFidochooseplanpage().clkContinue();
 		getReporter().hardAssert(getFidochooseaddonspage().verifyAddonsPage(),"Addons page loaded","Addons page not loaded");
