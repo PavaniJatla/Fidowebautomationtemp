@@ -31,7 +31,6 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIValidateDashboard() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
-		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
@@ -59,7 +58,7 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
-		//closeSession();
+		closeSession();
 	}
 
 }
