@@ -10,42 +10,36 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseTestClass {
+/**
+ * TC19 - Validate Fido AAL BYOD flow by selecting BASIC PLAN for Quebec account
+ * @author praveen.Kumar7
+ */
+
+public class Fido_BFA_TC19_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
+    @AfterMethod(alwaysRun = true)
+    public void afterTest() {
+        closeSession();
+    }
+
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALUsingNoTermPlanStandardShippingFlowTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc16AALNoTermPlanStandardShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc16AALNoTermPlanStandardShipping.getPassword());
+    public void fidoAALBYODBasicPlanStdShippingFlowTest() {
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-        getDriver().get(System.getProperty("AWSUrl")+"/phones");
-        getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc16AALNoTermPlanStandardShipping.getNewDevice();
-        getFidochoosephonepage().selectDevice(deviceName);
-        getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        getFidochoosephonepage().selectAddALineButton();
-        getReporter().reportLogPassWithScreenshot("Add a Line Button Selected");
-        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
-        getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
-        getFidodeviceconfigpage().clickContinueButton();
-        getFidobuildplanpage().clkRadioButtonNoTerm();
-        getFidobuildplanpage().clkContinueDeviceCost();
-        //String deviceCostIndex = TestDataHandler.tc16AALNoTermPlanStandardShipping.getDeviceCostIndex();
-        //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
-        //getFidobuildplanpage().clkDeviceCost1(deviceCostIndex, "Finance");
-        getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
-        getFidobuildplanpage().clkDeviceBalancePopUp();
-        getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
+        getDriver().get(System.getProperty("AWSUrl") + "/phones/bring-your-own-device?flowType=aal&province=qc");
+        getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
+        getReporter().reportLogWithScreenshot("Fido plan config page");
         getFidobuildplanpage().clkBasicTab();
-        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex());
+        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getDataOptionIndex());
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
@@ -55,11 +49,11 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
-        String cityName = TestDataHandler.tc16AALNoTermPlanStandardShipping.getCityName();
+        String cityName = TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        String deliveryMethod = TestDataHandler.tc16AALNoTermPlanStandardShipping.getShippingType();
+        String deliveryMethod = TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
@@ -71,6 +65,7 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
+        getReporter().reportLogPass("Submit button selected");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getFidopaymentpage().setCreditCardName();
@@ -84,10 +79,5 @@ public class Fido_BFA_TC16_AALUsingNoTermPlanStandardShipping_Test extends BaseT
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
         getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
-
-    @AfterMethod(alwaysRun = true)
-    public void afterTest() {
-        closeSession();
-	}
 
 }
