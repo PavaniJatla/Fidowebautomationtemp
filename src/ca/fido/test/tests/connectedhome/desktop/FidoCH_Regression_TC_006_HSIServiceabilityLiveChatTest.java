@@ -33,7 +33,6 @@ public class FidoCH_Regression_TC_006_HSIServiceabilityLiveChatTest extends Base
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkHSIServiceabilityLiveChatFlow() {
         getReporter().reportLogWithScreenshot("Home Internet has selected");
-
         getFidoshopinternetpage().clkLiveChat();
 		getReporter().hardAssert(getFidoshopinternetpage().verifyLiveChat(), "Live chat frame has opened", "Live chat frame hasn't opened");
         getReporter().reportLogWithScreenshot("Launched Live chat model");

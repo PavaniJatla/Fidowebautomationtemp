@@ -6,6 +6,8 @@ public class PPCData {
 	private String password;
 	private String ctn;
 	private String newPlanType;
+	private String dataOptionIndex;
+
 	/**
 	 * @return the username
 	 */
@@ -53,5 +55,17 @@ public class PPCData {
 	 */
 	public void setNewPlanType(String newPlanType) {
 		this.newPlanType = newPlanType;
-	}	
+	}
+	/**
+	 * @return the dataOptionIndex
+	 */
+	public String getDataOptionIndex() {
+		return dataOptionIndex;
+	}
+	/**
+	 * @param dataOptionIndex the newPlanType to set
+	 */
+	public void setDataOptionIndex(String dataOptionIndex) {
+		this.dataOptionIndex = dataOptionIndex;
+	}
 }

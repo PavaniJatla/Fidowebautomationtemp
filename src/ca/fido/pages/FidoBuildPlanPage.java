@@ -47,10 +47,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//div[contains(text(),'Keep my current plan')]//preceding-sibling::div")
 	WebElement keepMyCurrentPlanButton;
 
-	@FindBy(xpath="//ds-checkbox[contains(@data-test,'vdp-checkbox')]")
-	WebElement downPaymentChkBox;
+	@FindBy(xpath="//ds-checkbox[@data-test='vdp-checkbox']")
+	WebElement vdpCheckBox;
 
-	@FindBy(xpath = "(//div[contains(@id,'ds-radio-input-id')])[2]/../..")
+	@FindBy(xpath = "//div[contains(@class,'ds-radioLabel') and contains(.,'full')]/parent::label")
 	WebElement noTermRadioBtn;
 	
 	//@FindBy(xpath = "//button[@id='step-1-continue-button']")
@@ -149,6 +149,12 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//img[@alt='Close']")
 	WebElement closeDialogWindow;
 
+	@FindBy(xpath = "//p[contains(.,'Basic plans') or contains(.,'Forfait de base')]/ancestor::button")
+	WebElement btnBasicPlan;
+
+	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']")
+	WebElement provinceDropDown;
+
 	/**
 	 * Creates xpath to select multiple options among device cost, data options, talk options
 	 * @param option is a String value given as input, which helps change xpath value for different options
@@ -216,8 +222,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkDownPaymentChkBox() {
-		reusableActions.scrollToElement(downPaymentChkBox);
-		reusableActions.clickWhenReady(downPaymentChkBox,30);
+		reusableActions.scrollToElement(vdpCheckBox);
+		reusableActions.clickWhenReady(vdpCheckBox,30);
 	}
 
 	/**
@@ -289,7 +295,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkRadioButtonNoTerm() {
-		reusableActions.scrollToElement(noTermRadioBtn);
+		reusableActions.scrollToElement(reusableActions.getWhenReady(By.xpath("//p[contains(.,'Financing options')]")));
 		reusableActions.clickWhenReady(noTermRadioBtn,30);
 	}
 
@@ -305,6 +311,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 			String xpathDataOption = createXpath(stepper,dataOptionIndex);
 			By dataOptionXpath = By.xpath(xpathDataOption);
 			//reusableActions.staticWait(5000);
+			reusableActions.javascriptScrollToTopOfPage();
 			reusableActions.clickIfAvailable(dataOptionXpath,10);
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
 		} else {
@@ -493,6 +500,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(btnContinueBelowCartSummary, 30);
 		reusableActions.staticWait(5000);
 		//reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
+		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.clickWhenReady(btnContinueBelowCartSummary);
 		//reusableActions.waitForElementVisibility(txtEmail , 60);
 	}
@@ -634,4 +642,33 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.getWhenReady(planSlider, 60);
 		reusableActions.dragAndDrop(planSlider, reusableActions.getWhenReady(By.xpath("//div[@res='category-FID_FIN2']")));
 	}
+
+	/**
+	 * This method clicks on basic plan tab in plan config page
+	 * @author praveen.kumar7
+	 */
+	public void clkBasicTab() {
+		reusableActions.clickWhenReady(btnBasicPlan,20);
+	}
+
+	/**
+	 * This menthod selects basic plan based on the index value
+	 * @param dataOptionIndex : String value of data option to be selected
+	 * @author praveen.kumar7
+	 */
+	public void selectBasicPlanAndClkContinueBtn(String dataOptionIndex) {
+		reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-basic-"+dataOptionIndex+"')]//label[1]"),20);
+		reusableActions.clickWhenVisible(btnContinueDataOption,20);
+	}
+
+	/* This method will select the province based on the input
+	* @param province
+	* @author praveen.kumar7
+	*/
+	public void setProvince(String province) {
+		reusableActions.staticWait(5000);
+		reusableActions.clickWhenReady(provinceDropDown, 10);
+		reusableActions.clickWhenReady(By.xpath("//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']/following-sibling::ul//a[@title='"+province+"']"),10);
+	}
+
 }

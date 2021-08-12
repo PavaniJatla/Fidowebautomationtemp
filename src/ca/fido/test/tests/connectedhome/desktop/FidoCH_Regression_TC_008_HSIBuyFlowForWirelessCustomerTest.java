@@ -46,14 +46,22 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlowForExistingCustomer() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
-		getFidologinpage().switchToSignInFrame();
+
+		// +++++++++++++++ old flow code, will be remove once the issue fixed  ++++++++++++++++ //
+		getReporter().reportLogWithScreenshot("//****  There is a production issue on the login cookie if we directly land on the login page through contentful page, hence time being landing on the home page and then logging in to the account.   ****//");
+		getDriver().get(System.getProperty("QaUrl"));
+		getFidohomepage().clkContentfulInternet();
+		getFidohomepage().clkLogin();
+		getFidologinpage().switchToSignInFrameOld();
+		// +++++++++++++++ old flow code, will be remove once the issue fixed ++++++++++++++++ //
+
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameWirelessAcc());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the credentials");
 		getFidologinpage().clkLoginInFrame();
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getFidologinpage().switchOutOfSignInFrame();
-		//getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidohomepage().clkShop();
 		getFidohomepage().clkHomeInternetForWireless();

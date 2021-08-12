@@ -156,8 +156,7 @@ public class FidoLoginPage extends BasePageClass {
 	 */
 	public void switchToSignInFrame() {
 		//reusableActions.getWhenReady(fraSignIn,10);
-		//().switchTo().frame(fraSignIn);
-//		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);		
+		//getDriver().switchTo().frame(fraSignIn);
 	}
 
 	/**
@@ -165,9 +164,9 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchToSignInFrameOld() {
-		//reusableActions.getWhenReady(fraSignIn,10);
-		//getDriver().switchTo().frame(fraSignIn);
-		reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);
+		reusableActions.getWhenReady(fraSignIn,10);
+		getDriver().switchTo().frame(fraSignIn);
+		//reusableActions.waitForFrameToBeAvailableAndSwitchToIt(fraSignIn, 120);
 	}
 
 	/**

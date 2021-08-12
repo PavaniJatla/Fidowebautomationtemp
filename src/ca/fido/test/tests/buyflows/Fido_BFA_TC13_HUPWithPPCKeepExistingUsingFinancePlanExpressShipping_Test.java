@@ -41,7 +41,7 @@ public class Fido_BFA_TC13_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
         String ctn = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getCtn();
         getFidodeviceconfigpage().selectSubscriber(ctn);
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(), "Page loading fine", "Page is not loading");
+        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(), "Page loading fine", "Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();

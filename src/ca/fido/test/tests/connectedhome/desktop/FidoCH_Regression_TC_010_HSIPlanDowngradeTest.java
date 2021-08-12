@@ -31,7 +31,6 @@ public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
-		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameDowngrade());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");

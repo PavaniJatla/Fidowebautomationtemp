@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 
 public class FidoChoosePlanPage extends BasePageClass {
 
@@ -35,6 +37,9 @@ public class FidoChoosePlanPage extends BasePageClass {
 	
 	@FindBy(xpath="//span[@res='category-BYOD-title']")
 	WebElement btnAllPlans;
+
+	@FindBy(xpath="//div[contains(@data-ng-class,'showDetailsSection')]/preceding-sibling::div//div[contains(@ng-click,'onSelectPlan')]")
+	List<WebElement> noOfPlans;
 	
 	/**
 	 * Clicks on all Plans button
@@ -43,8 +48,14 @@ public class FidoChoosePlanPage extends BasePageClass {
 	public void clkAllPlans() {
 		reusableActions.clickWhenVisible(btnAllPlans,120);
 	}
-	
+
+	/**
+	 * This method clicks on the plan tier type
+	 * @param planType Plan tier to be selected
+	 * @author praveen.kumar7
+	 */
 	public void clkPlanType(String planType) {
+		reusableActions.javascriptScrollByVisibleElement(lblChangeYourPlan);
 		switch (planType.trim().toUpperCase()) {
 		case "SMALL":
 			planType = "SMALL";
@@ -76,13 +87,8 @@ public class FidoChoosePlanPage extends BasePageClass {
 			}
 			break;
 		}
-		////a[@class='plan-tab col-xs-12']//span[@res='category-FID_FIN2-title']
-		//reusableActions.clickWhenVisible(By.xpath("//span[@res='category-"+ planType +"-title']/ancestor::a"));
-		try {
-			driver.findElement(By.xpath("//li[@mapping-key='no-term-plans']//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']")).isDisplayed();
-		} catch (Exception e) {
-			reusableActions.clickWhenVisible(By.xpath("//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']"),60);
-		}
+		reusableActions.getWhenReady(By.xpath("//li[@mapping-key='no-term-plans']//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']")).isDisplayed();
+		reusableActions.clickWhenVisible(By.xpath("//a[@class='plan-tab col-xs-12']//span[@res='category-"+ planType +"-title']"),60);
 	}
 	
 	/**
@@ -91,6 +97,30 @@ public class FidoChoosePlanPage extends BasePageClass {
 	 */
 	public void selectFirstAvailablePricePlan() {
 		reusableActions.executeJavaScriptClick(btnSelect);
+	}
+
+	/**
+	 * This method sets the value for dataOptionIndex
+	 * @param dataOptionIndex String value of dataOptionIndex
+	 * @return returns the String value of index
+	 * @author praveen.kumar7
+	 */
+	public String getUpdatedDataOptionIndex(String dataOptionIndex) {
+		if(dataOptionIndex == null || dataOptionIndex.isEmpty() || (Integer.parseInt(dataOptionIndex) > noOfPlans.size()-1)) {
+			dataOptionIndex = "0";
+			return dataOptionIndex;
+		}
+		return dataOptionIndex;
+	}
+
+	/**
+	 * This method clicks on data option to be selected
+	 * @param dataOptionIndex Index of the price plan to be selected
+	 * @author praveen.kumar7
+	 */
+	public void selectDataOption(String dataOptionIndex) {
+		String updatedDataOptionIndex = getUpdatedDataOptionIndex(dataOptionIndex);
+		reusableActions.clickWhenVisible(noOfPlans.get(Integer.parseInt(updatedDataOptionIndex)));
 	}
 	
 	/**
@@ -132,6 +162,6 @@ public class FidoChoosePlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void clkDowngradeFeeContinue() {
-		reusableActions.clickIfAvailable(btnDowngradeFeeContinue, 60);
+		reusableActions.clickIfAvailable(btnDowngradeFeeContinue, 20);
 	}
 }

@@ -29,6 +29,8 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath="//a[@title='Home Internet' and @data-caption='Home Internet']")
 	WebElement lnkHomeInternetForWireless;
 
+	@FindBy(xpath = "//a[@href='/internet/packages']")
+	WebElement btnContentfulInternet;
 
 	@FindBy(xpath="//a[@role='button']//span[@class='m-navLink__chevron fds-icon-down']")
 	WebElement lnkProvince;
@@ -111,6 +113,7 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath = "//a[@id='bc-close-dialog']")
 	WebElement btnCloseChat;
 
+
 	/**
 	 * Verify home page loaded or not
 	 * @author Saurav.Goyal
@@ -148,6 +151,14 @@ public class FidoHomePage extends BasePageClass {
 
 	/**
 	 * Click on myAccount button on the home page
+	 * @author chinnarao.vattam
+	 */
+	public void clkContentfulInternet() {
+		reusableActions.getWhenReady(btnContentfulInternet,2).click();
+	}
+
+	/**
+	 * Click on myAccount button on the home page
 	 * @author aditya.Dhingra
 	 * @return true or false based on availability of the element
 	 */	
@@ -169,7 +180,7 @@ public class FidoHomePage extends BasePageClass {
 	 * @author aditya.Dhingra
 	 */	
 	public void clkLogin() {						
-		//reusableActions.getWhenVisible(lnkLogIn,90).click();
+		reusableActions.getWhenVisible(lnkLogIn,90).click();
 	}
 	
 	/**
