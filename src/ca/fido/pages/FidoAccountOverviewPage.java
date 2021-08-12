@@ -279,7 +279,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Account Overview' or @data-text='Aperçu du compte']")
 	WebElement subNavAccountOverview;
 
-	@FindBy(xpath = "//dsa-subnav-desktop//p[text()='Account Overview' or text()='Aperçu du compte']")
+	@FindAll({
+		@FindBy(xpath = "//dsa-subnav-desktop//p[contains(text(),'Account Overview') or contains(text(),'Aperçu du compte')]"),
+		@FindBy(xpath = "//dsa-subnav-desktop//p[text()='Account Overview' or text()='Aperçu du compte']")})
 	WebElement headerAccountOverview;
 	
 	@FindBy(xpath = "//section[@class='fss-account-detail']")

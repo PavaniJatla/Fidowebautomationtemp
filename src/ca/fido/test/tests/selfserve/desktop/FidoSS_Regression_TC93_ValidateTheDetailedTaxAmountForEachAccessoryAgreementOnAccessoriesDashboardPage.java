@@ -30,14 +30,14 @@ public class FidoSS_Regression_TC93_ValidateTheDetailedTaxAmountForEachAccessory
     @Test(groups = {"DashboardSS"})
     public void validateTheDetailedTaxAmountForEachAccessoryAgreementOnAccessoriesDashboardPage() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
-        getFidohomepage().clkLogin();
+        //getFidohomepage().clkLogin();
 
         String userName = "";
         String password = "";
         userName = TestDataHandler.tc93.getUsername();
         password = TestDataHandler.tc93.getPassword();
         String strCTN = TestDataHandler.tc93.getaccountDetails().getCtn();
-        getFidologinpage().switchToSignInFrame();
+        //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(userName);
         getFidologinpage().setPasswordInFrame(password);
         getReporter().reportLogWithScreenshot("Login Credential is entered.");

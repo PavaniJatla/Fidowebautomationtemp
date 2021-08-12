@@ -47,7 +47,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		String	userName = TestDataHandler.tc5859.getUsername();
 		String	password = TestDataHandler.tc5859.getPassword();
 		String strCTN = TestDataHandler.tc5859.getaccountDetails().getCtn();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -72,7 +72,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		getFidowirelessdashboardpostpaidpage().clkAddDataButton();
 		getReporter().hardAssert(getFidoadddatapage().verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
-							"data add on overlay is not displayed");			
+							"data add on overlay is not displayed");
 		getReporter().reportLogWithScreenshot("Add monthly data add on overlay");
 		//For more than 3 data top-up options, it will show as drop down
 		getFidoadddatapage().clkTheFirstDataPlanBtnOnAddDataOverlay();
@@ -82,7 +82,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 		getReporter().hardAssert(getFidoadddatapage().verifyConfirmPurchasingMsgDisplayed(System.getProperty("Language"),
 				speedPassPrice),
 							"Confirm purchasing on overlay is displayed",
-							"Confirm purchasing on overlay is not displayed");	
+							"Confirm purchasing on overlay is not displayed");
 		getReporter().reportLogWithScreenshot("Confirm purchasing on add data overlay");
 		getFidoadddatapage().clkPurchaseBtnOnAddDataOverlay();
 		double dataAdded = 0;

@@ -33,10 +33,10 @@ public class FidoSS_Regression_TC049_ValidateUsageDetailsOfDataOnlyInTheWireless
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateUsageDetailOfDataOnly() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		getFidohomepage().clkLogin();	
+		//getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc49.getUsername();
 		String password = TestDataHandler.tc49.getPassword();		
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login page, user name and password are set.");

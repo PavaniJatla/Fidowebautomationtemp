@@ -26,8 +26,8 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 	
 	@Test(groups = {"RegressionSS","DashboardSS"}) 
 	public void postpaidLostOrStolen() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc25.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc25.getPassword());
 		getReporter().reportLogWithScreenshot("After click on Login");

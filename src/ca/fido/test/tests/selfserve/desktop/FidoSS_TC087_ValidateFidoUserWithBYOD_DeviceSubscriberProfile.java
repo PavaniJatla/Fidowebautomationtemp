@@ -40,7 +40,7 @@ public class FidoSS_TC087_ValidateFidoUserWithBYOD_DeviceSubscriberProfile exten
     @Test(groups = {"DashboardSS"})
     public void postPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
-        getFidohomepage().clkLogin();
+        //getFidohomepage().clkLogin();
 
         String userName = "";
         String password = "";
@@ -49,7 +49,7 @@ public class FidoSS_TC087_ValidateFidoUserWithBYOD_DeviceSubscriberProfile exten
         userName = TestDataHandler.tc87.getUsername();
         password = TestDataHandler.tc87.getPassword();
         String strCTN = TestDataHandler.tc87.getaccountDetails().getCtn();
-        getFidologinpage().switchToSignInFrame();
+        //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(userName);
         getFidologinpage().setPasswordInFrame(password);
         getReporter().reportLogWithScreenshot("Login Credential is entered.");

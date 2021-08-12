@@ -33,8 +33,8 @@ public class FidoSS_Regression_TC010_PrepaidLostOrStolen extends BaseTestClass {
 
 	@Test(groups = {"RegressionSS","DashboardSS","PrepaidSS"})
 	public void prepaidReportLostOrStolen() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

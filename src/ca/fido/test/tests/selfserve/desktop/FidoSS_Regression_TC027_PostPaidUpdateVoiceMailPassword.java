@@ -35,8 +35,8 @@ public class FidoSS_Regression_TC027_PostPaidUpdateVoiceMailPassword extends Bas
 	
 	@Test(groups = {"SanitySS","DashboardSS"})
 	public void postPaidUpdateVoiceMailPassword() {
-		getFidohomepage().clkLogin();	
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc2732.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc2732.getPassword());
 		getReporter().reportLogWithScreenshot("After click on Login");

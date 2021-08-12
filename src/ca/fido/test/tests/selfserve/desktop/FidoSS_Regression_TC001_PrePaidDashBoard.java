@@ -28,8 +28,8 @@ public class FidoSS_Regression_TC001_PrePaidDashBoard extends BaseTestClass{
 
 	@Test(groups = {"RegressionSS","DashboardSS","PrepaidSS"})
 	public void prePaidDashBoard() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc00101056.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc00101056.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

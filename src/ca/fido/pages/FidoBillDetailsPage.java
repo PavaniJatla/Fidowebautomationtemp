@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -157,7 +158,9 @@ public class FidoBillDetailsPage extends BasePageClass {
 	@FindBy(xpath = "//ins[@translate='global.cta.change']")
 	WebElement lnlChangePaymentMethod;
 
-	@FindBy(xpath = "//ins[@translate='global.label.overview']")
+	@FindAll({
+		@FindBy(xpath = "//li//a//ins[@translate='global.label.overview']"),
+		@FindBy(xpath = "//ins[@translate='global.label.overview']")})
 	WebElement lnkAccountOverview;
 	
 	@FindBy(xpath = "//*[@id='skipNavigationAngularMob']//ins[@translate='global.label.overview']")

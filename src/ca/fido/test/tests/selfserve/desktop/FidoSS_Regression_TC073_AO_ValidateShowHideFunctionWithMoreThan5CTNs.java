@@ -63,8 +63,8 @@ public class FidoSS_Regression_TC073_AO_ValidateShowHideFunctionWithMoreThan5CTN
 	@Test(groups = {"AccountOverviewSS"})
 	public void validateShowHideFunctionWithMoreThan5CTNs() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc73.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc73.getPassword());
 		String strBANIWithMoreThan5CTNS = TestDataHandler.tc73.getaccountDetails().getBan();

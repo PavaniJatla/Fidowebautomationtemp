@@ -37,8 +37,8 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 	@Test(groups = {"AccountOverviewSS"})
 	public void postPaidChangeMOP() {
 //		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc75.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc75.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
