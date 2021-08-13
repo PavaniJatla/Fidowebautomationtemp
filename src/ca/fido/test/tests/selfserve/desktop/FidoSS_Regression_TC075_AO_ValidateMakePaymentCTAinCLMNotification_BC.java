@@ -35,7 +35,7 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 	
 
 	@Test(groups = {"AccountOverviewSS"})
-	public void postPaidChangeMOP() {
+	public void validateMakePaymentCTAinCLMNotificationBC() {
 //		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
 		//getFidologinpage().switchToSignInFrame();

@@ -35,7 +35,7 @@ public class FidoSS_Regression_TC074_AO_ValidateUserCanEditAutomaticPaymentMetho
 	
 
 	@Test(groups = {"AccountOverviewSS"})
-	public void postPaidChangeMOP() {
+	public void validateUserCanEditAutomaticPaymentMethod() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();

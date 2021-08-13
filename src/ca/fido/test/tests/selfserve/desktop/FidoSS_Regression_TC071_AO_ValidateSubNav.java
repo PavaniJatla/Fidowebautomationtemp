@@ -42,7 +42,7 @@ Validate:
 	
 
 	@Test(groups = {"AccountOverviewSS"})
-	public void postPaidChangeMOP() {
+	public void validateSubNav() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();

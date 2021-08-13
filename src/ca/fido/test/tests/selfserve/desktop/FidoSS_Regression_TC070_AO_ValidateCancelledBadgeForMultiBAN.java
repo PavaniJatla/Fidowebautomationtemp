@@ -54,7 +54,7 @@ with that account
 	
 
 	@Test(groups = {"AccountOverviewSS"})
-	public void postPaidChangeMOP() {
+	public void validateCancelledBadgeForMultiBAN() {
 		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrameOld();
