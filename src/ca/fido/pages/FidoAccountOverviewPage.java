@@ -1457,8 +1457,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	public boolean validateBillingCTAButtonAndAALOfferForCancelledAccount(String strCancelledBAN) {
 		
-		return (!reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]"),1))
-				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]"),1)
+		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View all bills from past 18 months for account "+strCancelledBAN+"')]"),1))
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for mobile account "+strCancelledBAN+"')]"),1)
 				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strCancelledBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"),1);
 	}
 
@@ -1479,11 +1479,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean validateDetailsForActiveAccounts(String strActiveBan) {
+		//System.out.println("--------------------------------------------------1")+;
 		
-		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//ds-price"))
-				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for mobile account')]")))
-				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for')]"))
-				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"));
+		return (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//ds-price"),1)
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'View and manage bill for internet account "+strActiveBan+"')]"), 1))
+				&& reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label, 'Make a payment for internet account "+strActiveBan+"')]"), 1)
+				&& !reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strActiveBan+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@title,'Add a line to mobile account')]"), 1);
 	}
 
 	/**
