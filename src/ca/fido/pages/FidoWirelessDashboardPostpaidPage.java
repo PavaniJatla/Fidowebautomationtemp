@@ -337,8 +337,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	WebElement lblMobileDashboardTitle;
 	
 	@FindAll({
-	@FindBy(xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions08']"),	
-	@FindBy(xpath="//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")})
+	@FindBy(xpath = "//button[@class='ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -tertiary -large']"),
+	@FindBy(xpath="//span[text()='Repair, trade or device protection request'")})
 	WebElement lnkRepairMobile;
 
 	@FindBy(xpath = "//*[@translate='global.cta.continue' or text()=' Continuer' or text()=' Continue']")
@@ -387,7 +387,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Thanks for bringing your device' or text()='Merci d’avoir apporté votre appareil']")
 	WebElement msgMyDeviceThanks;
 
-
+    @FindBy(xpath = "//*[@class=\"col m-grid\"]")
+	WebElement lblDashboadBottomView;
 
 	@FindBy(xpath = "//span[@class='device-balance d-flex flex-column']//div[@class='ds-price']")
 	WebElement txtDeviceRemainingBalance;
@@ -1305,7 +1306,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyOverlayForRepairDeviceIsDisplayed() {
 		return reusableActions.isElementVisible(lblGetHelpForYourPhoneOverlay,60);
 	}
-	
+
+	public boolean verifyDashboadBottomVeiw() {
+		return reusableActions.isElementVisible(lblDashboadBottomView,60);
+	}
+
 	/**
 	 * Clicks on the button continue on repair device overlay
 	 * @return returns current window handle

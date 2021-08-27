@@ -59,7 +59,7 @@ Billing Due Date(postpaid/internet)/Balance Expiry Date(Prepaid)
 
 	@Test(groups = {"SanitySS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndUpdateBillingAddress() throws InterruptedException, ParseException {		
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc19.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc19.getPassword());

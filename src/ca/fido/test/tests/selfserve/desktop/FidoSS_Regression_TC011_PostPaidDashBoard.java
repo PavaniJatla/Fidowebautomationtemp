@@ -137,6 +137,9 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Dashboad mid veiw");
 		getFidowirelessdashboardpostpaidpage().scrollToBottomOfPage();
 		getReporter().reportLogWithScreenshot("Dashboad bottom veiw");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDashboadBottomVeiw(),
+				"Dashboad Bottom Veiw device is displayed",
+				"Dashboad Bottom Veiw device is not displayed");
 	}
 	
 }

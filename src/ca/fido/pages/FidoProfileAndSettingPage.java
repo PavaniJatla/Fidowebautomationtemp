@@ -45,7 +45,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy (xpath = "//*[contains(text(),'confirmation')]")
 	WebElement divVerifyText;
 	
-	@FindBy(xpath = "//ajs-address")
+	@FindBy(xpath = "(//*[@class='col-sm-6 col-md-5'])[8]")
 	WebElement lblAddress;	
 	
 	@FindBy(xpath = "//label[contains(text(),'Billing address') or contains(text(),'Adresse de facturation')]/parent::div/parent::div")
