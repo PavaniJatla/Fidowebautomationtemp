@@ -34,10 +34,10 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateLimitedTalkNTextUsageinWirelessDashboard(){
 		getReporter().reportLogWithScreenshot("DashBoard Talk and Text Usage verification started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc54.getUsername();
 		String password = TestDataHandler.tc54.getPassword();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login page, user name and password are set.");

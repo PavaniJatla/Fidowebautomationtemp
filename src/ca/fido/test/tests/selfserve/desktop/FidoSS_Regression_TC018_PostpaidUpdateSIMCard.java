@@ -28,8 +28,8 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postpaidUpdateSIMCard() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc18.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc18.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

@@ -40,14 +40,14 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 	@Test(groups = {"RegressionSS","DashboardSS","AddDataSpeedPass"})
 	public void verifyAddOTTDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 	
 		String	userName = TestDataHandler.tc61.getUsername();
 		String	password = TestDataHandler.tc61.getPassword();
 		HashMap<String, String> speedPassPrice = new HashMap<String, String>();
-		speedPassPrice.put("1", "20.00");
+		speedPassPrice.put("1", "15.00");
 		speedPassPrice.put("3", "40.00");
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

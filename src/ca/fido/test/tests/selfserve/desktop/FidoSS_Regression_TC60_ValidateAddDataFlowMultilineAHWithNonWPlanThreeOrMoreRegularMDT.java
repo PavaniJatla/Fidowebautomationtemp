@@ -42,12 +42,12 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 	@Test(groups = {"RegressionSS","DashboardSS","AddDataSpeedPass"})
 	public void verifyAddMDTDataOnDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 	
 		String	userName = TestDataHandler.tc6062.getUsername();
 		String	password = TestDataHandler.tc6062.getPassword();
 		String ctn = TestDataHandler.tc6062.getaccountDetails().getCtn();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

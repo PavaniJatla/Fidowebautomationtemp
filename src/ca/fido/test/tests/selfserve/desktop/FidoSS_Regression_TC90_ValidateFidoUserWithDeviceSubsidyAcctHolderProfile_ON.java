@@ -30,8 +30,8 @@ public class FidoSS_Regression_TC90_ValidateFidoUserWithDeviceSubsidyAcctHolderP
     @Test(groups = {"DashboardSS"})
     public void postPaidDashBoardValidateFullyFinancedDevice() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
         getReporter().reportLogWithScreenshot("DashBoard verification started");
-        getFidohomepage().clkLogin();
-        getFidologinpage().switchToSignInFrame();
+        //getFidohomepage().clkLogin();
+        //getFidologinpage().switchToSignInFrame();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc90.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc90.getPassword());
         getReporter().reportLogWithScreenshot("Login Credential is entered.");

@@ -31,7 +31,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 	@Test(groups = {"SanitySS","BillingAndPaymentsSS"})
 	public void postPaidPaymentViewBill() throws InterruptedException, ParseException {
 		
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());

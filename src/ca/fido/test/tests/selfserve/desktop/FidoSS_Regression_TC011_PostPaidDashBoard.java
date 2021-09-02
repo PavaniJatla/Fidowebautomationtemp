@@ -36,7 +36,7 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 	@Test(groups = {"SanitySS","DashboardSS","Prepaid"})
 	public void postPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 
 		String userName = "";
 		String password = "";
@@ -45,7 +45,7 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		userName = TestDataHandler.tc1122.getUsername();
 		password = TestDataHandler.tc1122.getPassword();
 		String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -137,6 +137,9 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Dashboad mid veiw");
 		getFidowirelessdashboardpostpaidpage().scrollToBottomOfPage();
 		getReporter().reportLogWithScreenshot("Dashboad bottom veiw");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDashboadBottomVeiw(),
+				"Dashboad Bottom Veiw device is displayed",
+				"Dashboad Bottom Veiw device is not displayed");
 	}
 	
 }

@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -21,7 +22,10 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	
 	@FindBy (xpath = "//button[@translate='ute.easy.login.registration.subscriber']")
 	WebElement btnSubscriber;
-	
+
+	@FindBy(xpath="//input[contains(@formcontrolname,'email')]")
+	WebElement txtFidoEmailAddr;
+
 	@FindBy(name="accountNumber")
 	WebElement txtFidoAccountNumber;
 	
@@ -318,7 +322,18 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	public void clkBtnOkayPrepaidRegister() {
 		reusableActions.clickWhenReady(btnPrepaidOkay,2);
 	}
-	
+
+	/**
+	 * Enters the Email Address
+	 * @param strFidoEmailAddr valid Fido Email Address to be selected
+	 * @author sidhartha.vadrevu
+	 */
+	public void setFidoEmailAddr(String strFidoEmailAddr) {
+		reusableActions.getWhenReady(txtFidoEmailAddr, 3).clear();
+		reusableActions.getWhenReady(txtFidoEmailAddr,3).sendKeys(strFidoEmailAddr);
+		reusableActions.clickWhenReady(By.xpath("//button//span[contains(text(),'Continue')]"));
+	}
+
 	/**
 	 * Enters the Account Number
 	 * @param strFidoAccountNumber valid Fido Account Number to be selected

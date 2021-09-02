@@ -34,6 +34,8 @@ public class FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile extends 
 		//getFidoaccountregistrationpage().clkRegisterNow();
 		getReporter().reportLogWithScreenshot("Register now is clicked.");
 		getFidoaccountregistrationpage().clkAccountHolder();
+		String strFidoEmailAddr = TestDataHandler.tc0301.getaccountDetails().getEmail();
+		getFidoaccountregistrationpage().setFidoEmailAddr(strFidoEmailAddr);
 		String strFidoAccountNumber = TestDataHandler.tc0301.getaccountDetails().getBan();
 		String strPostalCode = TestDataHandler.tc0301.getaccountDetails().getPostalCode();
 		getFidoaccountregistrationpage().setFidoAccountNumber(strFidoAccountNumber);

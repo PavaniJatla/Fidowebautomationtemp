@@ -44,10 +44,10 @@ public class FidoSS_Regression_TC65_ValidateDataUsageDisplayRunningLowStatePostp
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validatewirelessDashboardPageWithRunningLowStateDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc65.getUsername();
 		String password = TestDataHandler.tc65.getPassword();		
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

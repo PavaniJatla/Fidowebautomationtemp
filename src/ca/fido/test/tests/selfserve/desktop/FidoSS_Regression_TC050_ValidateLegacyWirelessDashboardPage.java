@@ -36,10 +36,10 @@ public class FidoSS_Regression_TC050_ValidateLegacyWirelessDashboardPage extends
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validatePostPaidDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		String userName = TestDataHandler.tc5055.getUsername();
 		String password = TestDataHandler.tc5055.getPassword();		
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login page, user name and password are set.");

@@ -33,8 +33,8 @@ public class FidoSS_Regression_TC023_PostpaidCancelledCTNDashboard extends BaseT
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postpaidCancelledCTNDashBoard() throws InterruptedException, IllegalArgumentException, IllegalAccessException {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc23.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc23.getPassword());
 		String strCancelledBAN = TestDataHandler.tc23.getaccountDetails().getBan();

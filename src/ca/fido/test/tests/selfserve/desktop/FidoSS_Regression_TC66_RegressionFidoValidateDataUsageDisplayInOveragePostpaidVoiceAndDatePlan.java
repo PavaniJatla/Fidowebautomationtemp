@@ -45,13 +45,13 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateDemolineValidateUTEwirelessDashboardPageWithOverageDemoline() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		String userName = "";
 		String password = "";
 	
 		userName = TestDataHandler.tc66.getUsername();
 		password = TestDataHandler.tc66.getPassword();		
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

@@ -54,7 +54,7 @@ with that account
 	
 
 	@Test(groups = {"AccountOverviewSS"})
-	public void postPaidChangeMOP() {
+	public void validateCancelledBadgeForMultiBAN() {
 		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
 		getFidologinpage().switchToSignInFrameOld();
@@ -96,7 +96,7 @@ with that account
 				"Billing CTA buttons (View Billing, Make Payment) and AAL offer are not displayed as expected",
 				"");
 		getReporter().hardAssert(getFidoaccountoverviewpage().validateViewBillHistoryLink(strCancelledBAN),
-				"View bill history link is prsent for the cancelled account",
+				"View bill history link is present for the cancelled account",
 				"View Bill history link is not present for the cancelled account");
 		
 		

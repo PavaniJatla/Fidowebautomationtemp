@@ -3,6 +3,7 @@ package ca.fido.pages;
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Hashtable;
@@ -21,13 +22,17 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	WebElement lnkOverview;	
 	
 	//@FindBy(xpath = "//span[text()='Update recovery number']")
-	@FindBy (xpath = "//div[@class='sms-recovery']//a")	
+	@FindAll({
+		@FindBy(xpath = "//div[contains(@class,'sms-recovery')]//a"),
+		@FindBy (xpath = "//div[@class='sms-recovery']//a")})
 	WebElement lnkSetRcvryNumber;
-	
-	@FindBy (xpath = "//iframe[contains(@src,'/pages/easylogin-fido/sms/input/')]")
+
+	@FindAll({
+	@FindBy(xpath = "//iframe[contains(@src,'/profile/recoverynumber')]"),
+	@FindBy(xpath = "//iframe[contains(@src,'/pages/easylogin-fido/sms/input/')]")})
 	WebElement iframeSmsRecovery;
 	
-	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']")
+	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']//..")
 	WebElement txtPhoneNumber;
 	
 	@FindBy (xpath = "//div[@class='recovery-content']//button")
@@ -40,7 +45,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy (xpath = "//*[contains(text(),'confirmation')]")
 	WebElement divVerifyText;
 	
-	@FindBy(xpath = "//ajs-address")
+	@FindBy(xpath = "(//*[@class='col-sm-6 col-md-5'])[8]")
 	WebElement lblAddress;	
 	
 	@FindBy(xpath = "//label[contains(text(),'Billing address') or contains(text(),'Adresse de facturation')]/parent::div/parent::div")
@@ -191,15 +196,17 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 
 	@FindBy (xpath = "//p[text()='Before you start, we need to first verify your identity.' or text()='Avant de commencer, nous devons vérifier votre identité.']")
 	WebElement lblVerifyYourIdentity;
-		
-	@FindBy(xpath = "//button//span[text()='CONTINUER' or text()='CONTINUE']")
+
+	@FindAll({
+		@FindBy(xpath = "//button//span[contains(text(),'Continuer') or contains(text(),'Continue')]"),
+		@FindBy(xpath = "//button//span[text()='CONTINUER' or text()='CONTINUE']")})
 	WebElement btnContinueVerifyIdentity;
 	
 	@FindBy(xpath = "//iframe[@title='DAM Shield']")
 	WebElement frameVerifyIdentity;
 
 
-	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
+	@FindBy(xpath = "//ds-code-input/div/div[2]/input") //div[1]
 	WebElement inputCode;
 
 
@@ -249,7 +256,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setPhoneNumberIframe(String strPhoneNum) {
-		reusableActions.getWhenReady(txtPhoneNumber,20).clear();
+		reusableActions.getWhenReady(txtPhoneNumber,40).clear();
 		reusableActions.getWhenReady(txtPhoneNumber,2).sendKeys(strPhoneNum);		
 	}
 	

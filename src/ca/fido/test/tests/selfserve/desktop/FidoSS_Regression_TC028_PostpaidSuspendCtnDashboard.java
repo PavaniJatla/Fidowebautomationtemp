@@ -27,8 +27,8 @@ public class FidoSS_Regression_TC028_PostpaidSuspendCtnDashboard extends BaseTes
 	
 	@Test (groups = {"RegressionSS","DashboardSS"})
 	public void postpaidSuspendedCTN() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc28.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc28.getPassword());
 		String strBan = TestDataHandler.tc28.getaccountDetails().getBan();

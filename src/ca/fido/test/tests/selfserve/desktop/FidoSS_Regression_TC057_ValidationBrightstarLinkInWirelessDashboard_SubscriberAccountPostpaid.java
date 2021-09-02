@@ -39,12 +39,12 @@ public class FidoSS_Regression_TC057_ValidationBrightstarLinkInWirelessDashboard
 	
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void validateBrightstarLinkInWirelessDashboardForSubscriber() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {		
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		String userName = "";
 		String password = "";	
 		userName = TestDataHandler.tc4557.getUsername();
 		password = TestDataHandler.tc4557.getPassword();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

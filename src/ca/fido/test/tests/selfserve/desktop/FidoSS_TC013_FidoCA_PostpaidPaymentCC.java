@@ -34,9 +34,9 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 	
 	@Test(groups = {"SanitySS","BillingAndPaymentsSS","TC13"})
 	public void postPaidPaymentCC() throws InterruptedException {
-		String amountEntered="0.01";
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -54,6 +54,7 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkPayNowNew(strBAN);
 		getReporter().reportLogWithScreenshot("Pay now");
+		String amountEntered="0.01";
 		getFidomakepaymentpage().setPaymentAmount(amountEntered);
 		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
 		getReporter().reportLogWithScreenshot("Credit card option selected");

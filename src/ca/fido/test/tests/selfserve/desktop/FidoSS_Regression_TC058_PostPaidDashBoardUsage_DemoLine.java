@@ -37,14 +37,14 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 	@Test(groups = {"SanitySS","DashboardSS"})
 	public void verifyDemolineDashBoard() throws SSLHandshakeException, ClientProtocolException, IOException, InterruptedException {
 		getReporter().reportLogWithScreenshot("DashBoard verification for Account : Demoline started");
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		String userName = "";
 		String password = "";
 	
 			userName = TestDataHandler.tc5859.getUsername();
 			password = TestDataHandler.tc5859.getPassword();
 		
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

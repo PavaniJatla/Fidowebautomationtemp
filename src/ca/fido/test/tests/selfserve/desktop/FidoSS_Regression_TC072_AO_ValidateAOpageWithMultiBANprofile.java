@@ -65,12 +65,12 @@ public class FidoSS_Regression_TC072_AO_ValidateAOpageWithMultiBANprofile extend
 	}
 	
 	
-
-	@Test(groups = {"AccountOverviewSS"})
+	@Ignore
+	@Test(groups = {""})
 	public void postPaidChangeMOP() {
-		getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
+		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc70.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc70.getPassword());
 		String strActiveBAN = TestDataHandler.tc70.getaccountDetails().getBan();

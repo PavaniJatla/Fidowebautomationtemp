@@ -34,8 +34,8 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 	@Test(groups = {"RegressionSS","DashboardSS"})
 	public void postPaidDashBoardChangeCTN() {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc1122.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc1122.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

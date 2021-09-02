@@ -13,6 +13,11 @@ import ca.fido.test.helpers.CaptchaBypassHandlers;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.test.helpers.FidoEnums.SauceCapabilities;
 import ca.fido.testdatamanagement.TestDataHandler;
+import com.applitools.eyes.EyesRunner;
+import com.applitools.eyes.RectangleSize;
+import com.applitools.eyes.TestResults;
+import com.applitools.eyes.selenium.ClassicRunner;
+import com.applitools.eyes.selenium.Eyes;
 import extentreport.ExtentTestManager;
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
@@ -33,6 +38,8 @@ public class BaseTestClass {
 
 	protected BrowserDrivers browserdriver;
 	private Reporter reporter;
+	private EyesRunner runner;
+	protected static Eyes eyes;
 	protected HashMap<String,String> xmlTestParameters;
 	protected static final ThreadLocal<EnsHomePage> ensHomePageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<EnsNotificationViewPage> ensNoteViewPageThreadLocal = new ThreadLocal<>();
@@ -439,6 +446,7 @@ public class BaseTestClass {
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				getDriver().get(strUrl+"/profile/signin/"+ language );
 				break;
+
 			case "connectedhome_ssp":
 				getDriver().get(strUrl);
 				break;
@@ -620,6 +628,49 @@ public class BaseTestClass {
 	 */
 	public HashMap<String, String> getXMLParameters() {
 		return xmlTestParameters;
+	}
+
+	public void initiateEyes() {
+		// Initialize the Runner for your test.
+		runner = new ClassicRunner();
+
+		// Initialize the eyes SDK
+		eyes = new Eyes(runner);
+
+		// Raise an error if no API Key has been found.
+		if ((System.getenv("APPLITOOLS_API_KEY")).isEmpty() || (System.getenv("APPLITOOLS_API_KEY")) == null) {
+			throw new RuntimeException("No API Key found; Please set environment variable 'APPLITOOLS_API_KEY'.");
+		}
+	}
+
+	public void reportVisualResult(TestResults result, RectangleSize viewportSize) {
+		String resultStr;
+		String url;
+		String viewport;
+		if (result == null) {
+			resultStr = "Test aborted";
+			url = "undefined";
+		} else {
+			url = result.getUrl();
+			int totalSteps = result.getSteps();
+			if (result.isNew()) {
+				resultStr = "New Baseline Created: " + totalSteps + " steps";
+			} else if (result.isPassed()) {
+				resultStr = "All steps passed:     " + totalSteps + " steps";
+			} else {
+				resultStr = "Test Failed     :     " + totalSteps + " steps";
+				resultStr += " matches=" +  result.getMatches();      /*  matched the baseline */
+				resultStr += " missing=" + result.getMissing();       /* missing in the test*/
+				resultStr += " mismatches=" + result.getMismatches(); /* did not match the baseline */
+			}
+		}
+		if (viewportSize==null) {
+			viewport = "default";
+		} else {
+			viewport = viewportSize.toString();
+		}
+		resultStr += "\n" + "for viewport: " + viewport + " results at " + "<a href=" + url + ">" + url + "/a>";
+		reporter.reportLog(resultStr);
 	}
 
 	/** To start a session using given url, browser, language and test case group name.
