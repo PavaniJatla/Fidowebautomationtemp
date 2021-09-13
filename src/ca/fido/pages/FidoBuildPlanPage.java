@@ -52,9 +52,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "//div[contains(@class,'ds-radioLabel') and contains(.,'full')]/parent::label")
 	WebElement noTermRadioBtn;
-	
-	//@FindBy(xpath = "//button[@id='step-1-continue-button']")
-	@FindBy(xpath = "//p[contains(text(),'1.')]/ancestor::div[contains(@class,'ds-step__content')]//button[contains(@class,'-primary -large')]")
+
+	@FindBy(xpath = "//button[contains(@data-test,'stepper-1-edit-step-continue')]")
 	WebElement btnContinueDeviceCost;
 
 	@FindAll({
@@ -154,6 +153,26 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']")
 	WebElement provinceDropDown;
+
+	@FindBy(xpath = "//div[contains(@class,'dsa-infoWidget__ctnInfo')]//span[contains(@class,'dsa-infoWidget__ctnCopy')]")
+	WebElement infoWidgetCtnCopy;
+
+	@FindBy(xpath = "//button[@data-test='stepper-0-edit-step-continue-button']")
+	WebElement btnChangePlan;
+
+	@FindBy(xpath = "//button[@data-test='downgrade-modal-proceed']")
+	WebElement btnDowngradeFeeModalConitnue;
+
+
+	/**
+	 * This method verifies if info widget is properly displayed in plan config page
+	 * @return true if info widget is loaded successfully, else false
+	 * @author praveen.kumar7
+	 */
+	public boolean verifyPPCPlanConfigPage() {
+		reusableActions.javascriptScrollToTopOfPage();
+		return reusableActions.isElementVisible(infoWidgetCtnCopy,30);
+	}
 
 	/**
 	 * Creates xpath to select multiple options among device cost, data options, talk options
@@ -304,7 +323,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @param dataOptionIndex is a String value given as input, used to fetch required xpath
 	 * @author Sidhartha.Vadrevu
 	 */
-	public void clkDataOption(String dataOptionIndex) {
+	public void clkDataOption(String dataOptionIndex, String className) {
 		reusableActions.clickIfAvailable(viewAllPlansButton, 30);
 		stepper = 2;
 		if (dataOptionIndex != null && !dataOptionIndex.isEmpty()) {
@@ -313,6 +332,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 			//reusableActions.staticWait(5000);
 			reusableActions.javascriptScrollToTopOfPage();
 			reusableActions.clickIfAvailable(dataOptionXpath,10);
+			if(className.toUpperCase().contains("_PPC_")) {
+				reusableActions.staticWait(15000);
+			}
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
 		} else {
 			String xpathDataOption;
@@ -654,10 +676,14 @@ public class FidoBuildPlanPage extends BasePageClass {
 	/**
 	 * This menthod selects basic plan based on the index value
 	 * @param dataOptionIndex : String value of data option to be selected
+	 * @param className name of the class file
 	 * @author praveen.kumar7
 	 */
-	public void selectBasicPlanAndClkContinueBtn(String dataOptionIndex) {
+	public void selectBasicPlanAndClkContinueBtn(String dataOptionIndex,String className) {
 		reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-basic-"+dataOptionIndex+"')]//label[1]"),20);
+		if(className.toUpperCase().contains("_PPC_")) {
+			reusableActions.staticWait(13000);
+		}
 		reusableActions.clickWhenVisible(btnContinueDataOption,20);
 	}
 
@@ -666,9 +692,38 @@ public class FidoBuildPlanPage extends BasePageClass {
 	* @author praveen.kumar7
 	*/
 	public void setProvince(String province) {
-		reusableActions.staticWait(5000);
+		reusableActions.staticWait(8000);
 		reusableActions.clickWhenReady(provinceDropDown, 10);
 		reusableActions.clickWhenReady(By.xpath("//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']/following-sibling::ul//a[@title='"+province+"']"),10);
+	}
+
+	/**
+	 * This method clicks on Change plan CTA
+	 * @author praveen.kumar7
+	 */
+	public void clkChangePlan() {
+		reusableActions.javascriptScrollByVisibleElement(infoWidgetCtnCopy);
+		reusableActions.clickIfAvailable(btnChangePlan);
+	}
+
+	/**
+	 * This method selects the plan type based on the input
+	 * @param planType plan type to be selected
+	 * @author praveen.kumar7
+	 */
+	public void selectPlanType(String planType) {
+		reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[@aria-label='"+planType+"']"));
+		reusableActions.clickWhenVisible(btnContinueDeviceCost);
+		reusableActions.staticWait(15000);
+	}
+
+	/**
+	 * This method clicks on continue button in downgrade fee modal
+	 * @author praveen.kumar7
+	 */
+	public void verifyDowngradeFeeModalAndClkContinue() {
+		reusableActions.waitForElementVisibility(btnDowngradeFeeModalConitnue,30);
+		reusableActions.clickWhenVisible(btnDowngradeFeeModalConitnue);
 	}
 
 }
