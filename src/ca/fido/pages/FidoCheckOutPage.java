@@ -1,9 +1,11 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.FormFiller;
 
 
 public class FidoCheckOutPage extends BasePageClass {
@@ -38,6 +40,22 @@ public class FidoCheckOutPage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@data-test='choose-number-continue']")
 	WebElement buttonChooseNumberContinue;
+
+	@FindBy(xpath = "//div[@data-test='delivery-information']//div[contains(@class,'ds-formField__inputContainer')]")
+	WebElement txtEmailShipping;
+
+
+	/**
+	 * This method enters the value in email address field in shipping page
+	 * @author praveen.kumar7
+	 */
+	public void setEmailBopis() {
+		if (reusableActions.isElementVisible(txtEmailShipping, 20)) {
+			reusableActions.getWhenReady(txtEmailShipping, 20).click();
+			reusableActions.getWhenReady(By.xpath("//div[@data-test='delivery-information']//div[contains(@class,'ds-formField__inputContainer')]//input"), 10).sendKeys(FormFiller.generateEmail());
+			reusableActions.staticWait(2000);
+		}
+	}
 
 	/**
 	 * Verify map on the checkout page

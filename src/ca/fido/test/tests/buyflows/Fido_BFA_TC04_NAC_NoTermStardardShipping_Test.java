@@ -44,7 +44,7 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		//getFidobuildplanpage().clkContinueDataOption();
 		getFidobuildplanpage().clkBasicTab();
 		getReporter().reportLogWithScreenshot("Basic tab selected");
-		getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex());
+		getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPassWithScreenshot("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();

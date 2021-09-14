@@ -39,7 +39,7 @@ public class Fido_BFA_TC19_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
         getReporter().reportLogWithScreenshot("Fido plan config page");
         getFidobuildplanpage().clkBasicTab();
-        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getDataOptionIndex());
+        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc19AALBYODBasicPlanStdShippingQcProv.getDataOptionIndex(),this.getClass().getSimpleName());
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");

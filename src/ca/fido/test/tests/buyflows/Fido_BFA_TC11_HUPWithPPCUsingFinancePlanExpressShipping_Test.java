@@ -48,7 +48,7 @@ public class Fido_BFA_TC11_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
         String dataOptionIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
+        getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");

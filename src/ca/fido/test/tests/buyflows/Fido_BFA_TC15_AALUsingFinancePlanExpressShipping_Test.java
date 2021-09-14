@@ -44,7 +44,7 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
         String dataOptionIndex = TestDataHandler.tc15AALFinancingPlanExpressShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
+        getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
@@ -63,6 +63,7 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");
+            getFidoCheckOutPage().setEmailBopis();
             getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
         } else {
             getReporter().reportLogWithScreenshot("Shipping selected");

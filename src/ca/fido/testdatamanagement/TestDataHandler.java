@@ -63,6 +63,12 @@ public class TestDataHandler {
 	public static AALData tc17AALTabletsStandardShipping;
 	public static AALData tc18AALBYODExpressShipping;
 	public static AALData tc19AALBYODBasicPlanStdShippingQcProv;
+	public static PPCData tc20PPCSLFinInTermDTTPlan;
+	public static PPCData tc21PPCMLFinInTermNotermPlan;
+	public static PPCData tc22PPCSLSubsidyInTermSelectingDTTPlan;
+	public static PPCData tc23PPCSLFinOutTermBasicPlan;
+	public static PPCData tc24PPCSLSubsidyInTermSelectingSubsidyPlan;
+	public static PPCData tc25PPCSLSubsidyOutTermSelectingTTPlan;
 	public static HUPData tc08Hup;
 	public static PPCData tc09Ppc;
 	public static HUPData tc10HupExistingSubsidy;
@@ -216,6 +222,12 @@ public class TestDataHandler {
 		tc17AALTabletsStandardShipping = YamlHandler.getAALData("tc17AALTabletsStandardShipping");
 		tc18AALBYODExpressShipping = YamlHandler.getAALData("tc18AALBYODExpressShipping");
 		tc19AALBYODBasicPlanStdShippingQcProv = YamlHandler.getAALData("tc19AALBYODBasicPlanStdShippingQcProv");
+		tc20PPCSLFinInTermDTTPlan = YamlHandler.getPPCData("tc20PPCSLFinInTermDTTPlan");
+		tc21PPCMLFinInTermNotermPlan = YamlHandler.getPPCData("tc21PPCMLFinInTermNotermPlan");
+		tc22PPCSLSubsidyInTermSelectingDTTPlan = YamlHandler.getPPCData("tc22PPCSLSubsidyInTermSelectingDTTPlan");
+		tc23PPCSLFinOutTermBasicPlan = YamlHandler.getPPCData("tc23PPCSLFinOutTermBasicPlan");
+		tc24PPCSLSubsidyInTermSelectingSubsidyPlan = YamlHandler.getPPCData("tc24PPCSLSubsidyInTermSelectingSubsidyPlan");
+		tc25PPCSLSubsidyOutTermSelectingTTPlan = YamlHandler.getPPCData("tc25PPCSLSubsidyOutTermSelectingTTPlan");
 		tc08Hup = YamlHandler.getHUPData("tc08Hup");
 		tc09Ppc = YamlHandler.getPPCData("tc09Ppc");
 		tc10HupExistingSubsidy = YamlHandler.getHUPData("tc10HupExistingSubsidy");
