@@ -48,6 +48,7 @@ public class Fido_BFA_TC24_PPC_SL_SubsidyInTerm_SelectingSubsidyPlan_Test extend
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getFidobuildplanpage().clkContinueOnExistingAddonModal();
         //--------------------------------------------Review Order page------------------------------------------------
         getReporter().reportLogPassWithScreenshot("Review order page loaded successfully");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();

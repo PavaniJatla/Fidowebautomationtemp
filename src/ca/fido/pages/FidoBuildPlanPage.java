@@ -163,6 +163,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='downgrade-modal-proceed']")
 	WebElement btnDowngradeFeeModalConitnue;
 
+	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary']")
+	WebElement btnExistingAddonModalContinue;
+
 
 	/**
 	 * This method verifies if info widget is properly displayed in plan config page
@@ -332,7 +335,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 			//reusableActions.staticWait(5000);
 			reusableActions.javascriptScrollToTopOfPage();
 			reusableActions.clickIfAvailable(dataOptionXpath,10);
-			if(className.toUpperCase().contains("_PPC_")) {
+			if(className.toUpperCase().contains("_PPC_") && className.toUpperCase().contains("DOWNGRADE")) {
+				verifyDowngradeFeeModalAndClkContinue();
+			}
+			else if(className.toUpperCase().contains("_PPC_") && !(className.toUpperCase().contains("DOWNGRADE"))) {
 				reusableActions.staticWait(15000);
 			}
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
@@ -724,6 +730,14 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public void verifyDowngradeFeeModalAndClkContinue() {
 		reusableActions.waitForElementVisibility(btnDowngradeFeeModalConitnue,30);
 		reusableActions.clickWhenVisible(btnDowngradeFeeModalConitnue);
+	}
+
+	/**
+	 * This method clicks on continue button in addon removal modal if present
+	 * @author praveen.kumar7
+	 */
+	public void clkContinueOnExistingAddonModal() {
+		reusableActions.clickIfAvailable(btnExistingAddonModalContinue,10);
 	}
 
 }

@@ -51,6 +51,7 @@ public class Fido_BFA_TC21_PPC_ML_FinInTerm_SelectingNoTerm_DowngradeFee_Test ex
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getFidobuildplanpage().clkContinueOnExistingAddonModal();
         //--------------------------------------------Review Order page------------------------------------------------
         getReporter().reportLogPassWithScreenshot("Review order page loaded successfully");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();

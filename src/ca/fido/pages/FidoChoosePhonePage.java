@@ -75,9 +75,9 @@ public class FidoChoosePhonePage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public String createXpathWithDeviceName(String deviceName) {
-		String verifyCPODevice = reusableActions.getWhenReady(By.xpath("(//a[contains(@title,'"+ deviceName +"')])[1]/../preceding-sibling::div[1]"),40).getText().toLowerCase();
+		String verifyCPODevice = reusableActions.getWhenReady(By.xpath("(//a[@title='View Details - "+deviceName+"' or @title='Voir les détails - "+deviceName+"'])[1]/../preceding-sibling::div[1]"),40).getText().toLowerCase();
 		if(verifyCPODevice.contains("certified")) {
-			strXpathViewDetails =  "(//a[contains(@title,'"+ deviceName +"')])[2]";
+			strXpathViewDetails =  "(//a[@title='View Details - "+deviceName+"' or @title='Voir les détails - "+deviceName+"'])[2]";
 			return strXpathViewDetails;
 		}
 		else {
