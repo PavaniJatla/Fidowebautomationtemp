@@ -599,6 +599,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	 * 
 	 */
 	public void clkAccountOverview() {
+		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(lnkAccountOverview,30).click();
 	}
 	 

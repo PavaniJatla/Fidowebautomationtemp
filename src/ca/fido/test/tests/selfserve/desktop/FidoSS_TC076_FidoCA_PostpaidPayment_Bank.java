@@ -33,8 +33,8 @@ public class FidoSS_TC076_FidoCA_PostpaidPayment_Bank extends BaseTestClass{
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void postPaidPaymentBank() throws InterruptedException {
 		String amountEntered="0.01";
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

@@ -240,7 +240,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyPaymentMethodModalDisplayed() {
-		return reusableActions.isElementVisible(modalPaymentMethod, 10);
+		return reusableActions.isElementVisible(modalPaymentMethod, 30);
 	}
 	
 	/**
@@ -811,7 +811,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkClose() {
 		reusableActions.waitForElementTobeClickable(btnCloseAfterSwitchToManual, 30);
-		reusableActions.executeJavaScriptClick(btnCloseAfterSwitchToManual);
+  		reusableActions.executeJavaScriptClick(btnCloseAfterSwitchToManual);
 		
 	}
 

@@ -47,6 +47,7 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);
 		getFidologinpage().setPasswordInFrame(password);
+		String strCTN = TestDataHandler.tc5859.getaccountDetails().getCtn();
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();	
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
@@ -58,34 +59,40 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
 		//getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-		String strCTN = TestDataHandler.tc5859.getaccountDetails().getCtn();
-		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().reportLogWithScreenshot("Click on CTN badge");
-		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
-		getReporter().reportLogWithScreenshot("dashboard page loaded");
-		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
-							"Dashboard Section Data Balance Is Displayed",
-							"Dashboard section data balance not displayed");
-		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
-							"usage bar is displayed",
-							"usage bar is not displayed");
-		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
-							"Data Section is displayed",
-							"Data section is not displayed");
-		getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().verifyLabelDataDelayedIsDisplayed(),
-							"Data delay message didn't display.",
-							"Data delay message displayed");
-		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
-							"Label N days reming for Bill cycle is displayed",
-							"Label N days remaining for Bill cycle is not displayed");
-	
-		getReporter().reportLogWithScreenshot("Demo Line account dashboard page is displayed");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 
-		getFidowirelessdashboardpostpaidpage().clkLinkViewDetailInUsage();
+		getReporter().reportLogWithScreenshot("dashboard page loaded");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
+				"Dashboard Section Data Balance Is Displayed",
+				"Dashboard section data balance not displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
+				"usage bar is displayed",
+				"usage bar is not displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
+				"Data Section is displayed",
+				"Data section is not displayed");
+		getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().verifyLabelDataDelayedIsDisplayed(),
+				"Data delay message didn't display.",
+				"Data delay message displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
+				"Label N days reming for Bill cycle is displayed",
+				"Label N days remaining for Bill cycle is not displayed");
+
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getFidoaccountoverviewpage().scrollToTopOfPage();
+		getReporter().reportLogWithScreenshot("Manage Data page loaded");
+
+		//getReporter().reportLogWithScreenshot("Demo Line account dashboard page is displayed");
+		//getFidowirelessdashboardpostpaidpage().clkLinkViewDetailInUsage();
+		//getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidodatamanagementpage().verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
 				"Manage data overlay is not displayed");	
 		getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkPlanDetailsSectionIsDisplayed(),
 				"Talk plan details section is displayed",
 				"Talk plan details section is not displayed");

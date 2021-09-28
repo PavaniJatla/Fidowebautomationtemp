@@ -52,20 +52,22 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc54.getaccountDetails().getCtn();
 		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-		getReporter().reportLogWithScreenshot("Click on CTN badge");
-		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		getReporter().reportLogWithScreenshot("View TALK & TEXT");
+		//getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 
-		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTalkNTextUsageModuleIsDisplayed(),
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyWirelessTalkNTextUsageModuleIsDisplayed(),
 							"Talk usage module is displayed",
 							"Talk usage module is not displayed");
-		getReporter().reportLogWithScreenshot("Wireless dashboard page");
+		//getReporter().reportLogWithScreenshot("Wireless dashboard page");
+
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTalkAnytimeUsageDetailsIsDisplayed(),
+				"Talk anytime usage details section is displayed",
+				"Talk anytime usage details section is not displayed");
 
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkRemainingMinutesIsDisplayed(),
 				"Talk usage detail is checked successfully.",	
 				"Talk usage detail has issue, please investigate.");
-		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkAnytimeUsageDetailsIsDisplayed(),
-		//					"Talk anytime usage details section is displayed",
-		//					"Talk anytime usage details section is not displayed");
+		getReporter().reportLogWithScreenshot("Wireless dashboard page");
 		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkEveningUsageDetailsIsDisplayed(),
 		//					"Talk evening and weekend usage details section is displayed",
 		//					"Talk evening and weekend usage details section is not displayed");
@@ -73,15 +75,15 @@ public class FidoSS_Regression_TC054_ValidateUsageOfLimitedTalkNTextOnlyInWirele
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTextRemainingIsDisplayed(),
 							"Text usage details section is displayed",
 							"Text usage details section is not displayed");
-		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyPictureMsgDetailsIsDisplayed(),
-		//					"Text usage details picture message part is displayed",
-		//					"Text usage details picture message part is not displayed");
-		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyBundlesMsgDetailsIsDisplayed(),
-							//"Text usage details bundles message part is displayed",
-							//"Text usage details bundles message part is not displayed");
-		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyInternationalMsgDetailsIsDisplayed(),
-		//					"Text usage details international message part is displayed",
-		//					"Text usage details international message part is not displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyPictureMsgDetailsIsDisplayed(),
+							"Text usage details picture message part is displayed",
+							"Text usage details picture message part is not displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyBundlesMsgDetailsIsDisplayed(),
+							"Text usage details bundles message part is displayed",
+							"Text usage details bundles message part is not displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyInternationalMsgDetailsIsDisplayed(),
+							"Text usage details international message part is displayed",
+							"Text usage details international message part is not displayed");
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Days remaining in bill cycle for Talk&Text plan is displayed",
 							"Days remaining in bill cycle for Talk&Text plan is not displayed");

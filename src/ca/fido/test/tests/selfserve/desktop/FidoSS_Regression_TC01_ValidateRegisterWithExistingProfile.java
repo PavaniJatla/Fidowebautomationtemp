@@ -28,8 +28,8 @@ public class FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile extends 
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"})
 	public void validateRegisterWithExistingProfile() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkRegisterIframe();
 		//getFidoaccountregistrationpage().clkRegisterNow();
 		getReporter().reportLogWithScreenshot("Register now is clicked.");

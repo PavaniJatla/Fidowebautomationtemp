@@ -35,8 +35,8 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 	@Test(groups = {"RegressionSS","BillingAndPaymentsSS"})
 	public void postPaidPaymentHistoryDataValidations() throws InterruptedException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

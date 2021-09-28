@@ -81,7 +81,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		getCommonbusinessflows().changeToBank();		
 		getFidobilldetailspage().clkAccountOverview();
 		getReporter().reportLogWithScreenshot("Account overview page");
-		//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
+		getFidoaccountoverviewpage().scrollToBottomOfPage();
 		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
 		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",

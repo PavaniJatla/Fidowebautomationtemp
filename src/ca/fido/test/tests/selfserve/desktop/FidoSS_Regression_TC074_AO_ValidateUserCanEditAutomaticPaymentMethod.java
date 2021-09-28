@@ -38,7 +38,7 @@ public class FidoSS_Regression_TC074_AO_ValidateUserCanEditAutomaticPaymentMetho
 	public void validateUserCanEditAutomaticPaymentMethod() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

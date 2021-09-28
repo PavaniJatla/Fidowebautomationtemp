@@ -58,17 +58,19 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 				"Login succeed.", 
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		//getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 		getReporter().reportLogWithScreenshot("Click on CTN badge");
 		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 		getReporter().reportLogWithScreenshot("dashboard page loaded");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Is Displayed",
 							"Dashboard section data balance not displayed");
-		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
-							"usage bar is displayed",
-							"usage bar is not displayed");
+		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
+							//"usage bar is displayed",
+							//"usage bar is not displayed");
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
 							"Data Section is displayed",
 							"Data section is not displayed");
@@ -140,6 +142,8 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDashboadBottomVeiw(),
 				"Dashboad Bottom Veiw device is displayed",
 				"Dashboad Bottom Veiw device is not displayed");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getReporter().reportLogWithScreenshot("PostPaid Dashboard bottom view");
 	}
 	
 }

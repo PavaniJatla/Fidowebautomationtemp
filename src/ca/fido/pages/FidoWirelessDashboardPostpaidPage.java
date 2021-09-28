@@ -182,7 +182,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 			
 	//--- New data section on dashboard
 	
-	@FindBy (xpath = "//*[@class='ss-used-data-data-balance']/span[1]")
+	@FindBy (xpath = "//span[@class='ss-plan-container-data ng-star-inserted']")
 	WebElement divDataBalanceRemaining;
 	
 	@FindBy (xpath = "//div[@class='ss-data-section-total-volume']")
@@ -215,7 +215,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']/following-sibling::td[@class='usage-content']/div")
 	WebElement divAnytimeUsed;
 	
-	@FindBy (xpath = "//div[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
+	@FindBy (xpath = "//*[contains(text(),'talk & text details')]")
 	WebElement divTalkNTextUsage;
 	
 	@FindBy (xpath = "//p[contains(text(),'remaining') or contains(text(),'restantes')]")
@@ -229,7 +229,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='talk-text-usage']//span[contains(text(),'Textos') or contains(text(),'Text')]")
 	WebElement divTextUsage;
 	
-	@FindBy (xpath = "//div[@class='talk-text-usage-wrap']//*[contains(text(),'Textos') or contains(text(),'Text')]")
+	@FindBy (xpath = "//th[contains(text(),'Text')]")
 	WebElement textUsageInTalkNTextOnly;
 	
 	@FindBy (xpath = "//td[contains(text(),'Picture') or contains(text(),'photo')]")
@@ -284,7 +284,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		@FindBy (xpath = "//a/span[@translate='wireless.dashboard.quickActions.quickActions02']")})	
 	WebElement lnkResetVoiceMailPassword;
 	
-	@FindBy (xpath = "//div[@cdktrapfocus]//button[@title='Close']")
+	@FindBy (xpath = "//button[@class='ds-modal__closeButton ds-button ds-corners ds-pointer text-center mw-100 -icon d-inline-flex justify-content-center align-items-center -large ng-star-inserted'][@title='Close']")
 	WebElement btnCloseOnPopup;
 	
 	@FindAll({		
@@ -311,8 +311,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Change my number' or text()='Changer mon numéro']"),
 	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
-	
-	@FindBy(xpath = "//button[@class='ss-data-usage-ondemand-button']")
+
+	@FindBy(xpath = "//span[contains(text(),' View Details')]")
 	WebElement lnkShowMyUsage;
 	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
@@ -336,15 +336,14 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath="//div[contains(@class,'wireless-dashboard')]/div[contains(@class,'wireless-title')]")
 	WebElement lblMobileDashboardTitle;
 	
-	@FindAll({
-	@FindBy(xpath = "//button[@class='ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -tertiary -large']"),
-	@FindBy(xpath="//span[text()='Repair, trade or device protection request'")})
+
+	@FindBy(xpath="//span[text()='Repair, trade or device protection request']")
 	WebElement lnkRepairMobile;
 
-	@FindBy(xpath = "//*[@translate='global.cta.continue' or text()=' Continuer' or text()=' Continue']")
+	@FindBy(xpath = "//*[text()=' Continue']")
 	WebElement btnContinue;
 	
-	@FindBy(xpath = "//h2[@translate='wireless.dashboard.quickActions.trackRepairClaim.heading' or text()='Repairing or trading-in your device' or text()='Réparer ou échanger votre appareil']")
+	@FindBy(xpath = "//*[text()='Repair, trade-in or device protection?' or text()='Réparer ou échanger votre appareil']")
 	WebElement lblGetHelpForYourPhoneOverlay;
 
 	@FindBy(xpath = "//*[text()='Add data to avoid further overage charges']")
@@ -384,7 +383,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Repair or trade-in device' or text()='Réparer ou échanger un appareil']")
 	WebElement lnkRepairOrTradeInMyDevice;
 
-	@FindBy(xpath = "//span[text()='Thanks for bringing your device' or text()='Merci d’avoir apporté votre appareil']")
+	@FindBy(xpath = "//span[text()=' Thank you for bringing your device ' or text()='Merci d’avoir apporté votre appareil']")
 	WebElement msgMyDeviceThanks;
 
     @FindBy(xpath = "//*[@class=\"col m-grid\"]")
@@ -432,12 +431,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//div[@id='ds-accordion-panel-0-body-0']//p")
 	WebElement FidoPaymentProgramDetailsHeaderParagraph;
 
+	@FindBy (xpath = "//*[@class='talk-text-wrapper talk-text-usage-only ng-star-inserted']")
+	WebElement divWirelessTalkNTextUsage;
 
 	/**
 	 * Clicks on the add data button for demoline accounts only
 	 * @author Mirza.Kamran
 	 */
 	public void clkAddDataButton() {
+		reusableActions.staticWait(50000);
 		reusableActions.getWhenReady(btnAddData).click();
 	}
 
@@ -458,6 +460,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public void clkShowMyUsageIfVisible() {
 
 		reusableActions.clickIfAvailable(lnkShowMyUsage, 5);
+
 	}
 	
 	/**
@@ -606,8 +609,18 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public boolean verifyTalkNTextUsageModuleIsDisplayed() {
 		System.out.println("Talk & Text usage module is being checked");
 		return reusableActions.isElementVisible(divTalkNTextUsage);
-	} 
-	
+	}
+
+	/**
+	 * checks talk and text usage model is displayed in wireless dash board
+	 * @return true if the element is displayed else false
+	 * @author Rama Arora
+	 */
+	public boolean verifyWirelessTalkNTextUsageModuleIsDisplayed() {
+		System.out.println("Talk & Text usage module is being checked");
+		return reusableActions.isElementVisible(divWirelessTalkNTextUsage);
+	}
+
 	/**
 	 * checks talk usage is displayed in wireless dash board, talk could be unlimited or limited.
 	 * @return true if the element is displayed else false
@@ -848,7 +861,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public double getValueRemainingData() {
-		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll(",", ".").trim());
+		reusableActions.waitForElementVisibility(divDataBalanceRemaining, 60);
+		return Double.parseDouble(divDataBalanceRemaining.getText().replaceAll("GB", "").trim());
 	}
 	
 	/**
@@ -1319,7 +1333,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public String clkButtonContinueOnRepairDeviceOverlay() {
 		String strCurrenthandle = driver.getWindowHandle();
 		reusableActions.clickWhenReady(btnContinue);
-		reusableActions.staticWait(3000);// adding static buffer for firefox
+		reusableActions.staticWait(5000);// adding static buffer for firefox
 		return strCurrenthandle;
 	}
 	
@@ -1331,7 +1345,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyBrightStarNewTabAndURL(String strParentWindowHandle, String strURL) {
-		reusableActions.waitForNumberOfWindowsToBe(2, 60);
+		reusableActions.waitForNumberOfWindowsToBe(2, 80);
 		reusableActions.switchToNewWindow(strParentWindowHandle);
 		return (driver.getCurrentUrl().trim().contains(strURL)||
  				strURL.contains(driver.getCurrentUrl().trim()));
@@ -1565,7 +1579,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Rohit.Kumar
 	 */
 	public Boolean isFindOutYourExclusiveDealsTextVisible() {
-		System.out.println(txtFindOutYourExclusiveDeals.getText());
+		//System.out.println(txtFindOutYourExclusiveDeals.getText());
 		return reusableActions.isElementVisible(txtFindOutYourExclusiveDeals, 60);
 	}
 
