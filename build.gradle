@@ -43,6 +43,8 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'AWSBYODUrl', test_awsBYODURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+    systemProperty 'OneViewUrl', test_oneViewUrl
+    systemProperty 'OneViewEnv',  test_oneViewEnv
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -78,6 +80,8 @@ task "localTest"(type: Test) {
     systemProperty 'AWSBYODUrl', test_awsBYODURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+    systemProperty 'OneViewUrl', test_oneViewUrl
+    systemProperty 'OneViewEnv',  test_oneViewEnv
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests

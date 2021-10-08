@@ -104,6 +104,7 @@ public class TestDataHandler {
 	public static AccountData tc91;
 	public static AccountData tc92;
 
+	public static AalOVData tc01AalByodFinancingBopisShipping;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -124,12 +125,18 @@ public class TestDataHandler {
 	    		//Buy-Flows Data files
 	    		buyFlowsDataInit();
 	    		match = true;
-	    	} 
+	    	}
+			if(strTestMethodName.contains("buyflowsoneview.")) {
+				//Buy-Flows OneView Data files
+				buyFlowsOneViewDataInit();
+				match = true;
+			}
 	    	if (!match) {
 	    		//All Data files
 	    		connectedHomeDataInit(); 
 	    		selfserveDataInit();
 	    		buyFlowsDataInit();
+	    		buyFlowsOneViewDataInit();
 	    	}
     	
 	}
@@ -237,4 +244,7 @@ public class TestDataHandler {
 		tc14HupPpcFinancingStandardShipping = YamlHandler.getHUPData("tc14HupPpcFinancingStandardShipping");
 	}
 
+	private static void buyFlowsOneViewDataInit() {
+		tc01AalByodFinancingBopisShipping = YamlHandler.getAALOneViewData("tc01AALByodFinancingBopisShipping");
+	}
 }
