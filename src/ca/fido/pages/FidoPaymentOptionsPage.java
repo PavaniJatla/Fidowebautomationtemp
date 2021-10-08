@@ -36,8 +36,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id = 'expiryDate' and @formcontrolname='expiryDate']")
 	WebElement txtExpiryDate;
 	
-	@FindBy(xpath = "//button[@title='Continue' or @title='Continuer']")
-	WebElement btnContinue;
+	/*@FindBy(xpath = "//button[@title='Continue' or @title='Continuer']")
+	WebElement btnContinue;*/
 	
 	@FindBy(xpath = "//ins[@translate='payment-method.review-payment-method.confirmAccountDetails']")
 	WebElement lblConfirmAccountDetails;
@@ -101,15 +101,12 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 
 	@FindBy(xpath = "//div/fds-button/button[@title='Close' or @title='Fermer']")
 	WebElement btnClose;
-	
-	@FindBy(xpath = "//ins[@translate='payment-method.change-payment-method.autoPay']")
-	WebElement lblAutomaticPayments;
-	
+
 	@FindBy(xpath = "//a[@title='Cancel automatic payments' or @title='Annuler les paiements automatiques']")
 	WebElement btnRemoveAutomaticPayment;
 	
-	@FindBy(xpath = "//ins[@translate='payment-method.change-payment-method.on']")
-	WebElement lblAutomaticPaymentOn;
+	@FindBy(xpath = "//*[contains(text(),' Current payment method: ')]")
+	WebElement lblCurrentPaymentOn;
 	
 	@FindBy(xpath = "//button[@title='Yes, Cancel' or @title='Oui, Annuler']")
 	WebElement btnYesCancelAutomaticPayments;
@@ -228,10 +225,56 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
 	WebElement btnBillingOptionClkContinue;
 	
-	@FindBy (xpath = "//div[@class='ss-payment-modal-container']")
+	@FindBy (xpath = "//*[contains(text(),' Current payment method: ')]")
 	WebElement modalPaymentMethod;
 
-	
+	@FindBy(xpath = "//p[text()='2. Review' or text()='2. Vérification']")
+	WebElement lblReview;
+
+	@FindBy(xpath = "//span[contains(text(),'Change to manual payments')]/ancestor::label")
+	WebElement optManualPayments;
+
+	@FindAll({
+			@FindBy(xpath = "//span[text()=' Continue ']"),
+			@FindBy(xpath = "//button[@translate='ute.payment.method.manual_payment_continue']")})
+	WebElement btnContinue;
+
+	@FindBy(xpath = "//rss-invoice-payment-method-review//button[@title='continue']")
+	WebElement btnCancelAutomaticPayments;
+
+	@FindBy(xpath = "//span[contains(text(),'Done') or contains(text(),'Terminé')]/ancestor::button")
+	WebElement btnChangePaymentDone;
+
+	@FindBy(xpath = "//rss-billing-widget//span[contains(text(),'Set up automatic payments') or contains(text(),'Configurer les paiements automatiques')]")
+	WebElement lnkSetUpAutomaticPaymentMethod;
+
+	@FindBy(xpath = "//rss-quick-links//span[contains(text(),'Set up automatic payments') or contains(text(),'Configurer les paiements automatiques')]")
+	WebElement lnkSetUpAutoPayment;
+
+	@FindBy(xpath = "//span[contains(text(),' Use a credit card for automatic payments ') or contains(text(),' Effectuer des paiements automatiques à partir d’un compte de carte de crédit ')]/ancestor::label")
+	WebElement optCardAccount;
+
+	@FindBy(xpath = "//ss-credit-card/following-sibling::div//button[@title='Continue' or @title='Continuer']")
+	WebElement btnContinueSetCC;
+
+	@FindBy(xpath = "//rss-payment-card-detail-review/following-sibling::div//button[@title='Continue' or @title='Continuer']")
+	WebElement btnContinueReview;
+
+	@FindAll({
+			@FindBy(xpath = "//span[text()='Success! Starting next month your bill payments will be made automatically.' or text()='C’est réussi! À partir du mois prochain, vos paiements de facture se feront automatiquement.']"),
+			@FindBy(xpath = "//span[text()='Success! Your payment method has been changed.' or text()='C’est fait! Votre mode de paiement a été modifié.']")})
+	WebElement lblYouAutomaticPaymentWillStart;
+
+	@FindBy (xpath = "//*[@translate='ute.payment.method.payment_method' or @translate='ute.payment.method.will_auto_charge' or contains(text(),'Will be automatically charged to:') or contains(text(),'Mode de paiement:') or contains(text(),'Sera porté automatiquement à :') or text()='Payment method:' or text()='Mode de paiement:']")
+	WebElement lblAutoPayment;
+
+	@FindAll({
+			@FindBy(xpath = "//span[@class='auto-payment-info']/ds-icon"),
+			@FindBy(xpath = "//*[contains(@class,'cc-image') or contains(@class,'cc-icon')]"),
+			@FindBy(xpath = "//img[@class='cardImgSize']")
+	})
+	WebElement imgCC;
+
 	//--------------------------------------------------------------------------------
 	
 	/**
@@ -383,7 +426,116 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.clickWhenVisible(txtInstitutionNumber);
 		reusableActions.getWhenReady(txtInstitutionNumber).sendKeys(strInstitutionNumber);
 	}
-	
+
+	/**
+	 * @Rama Arora
+	 * @return true or false review cc details
+	 */
+	public boolean isReviewCCDetailsPageDisplayed() {
+		// TODO Auto-generated method stub
+		return reusableActions.isElementVisible(lblReview);
+	}
+
+	/**
+	 * Click on Switch to manual payments
+	 * @author Rama Arora
+	 */
+	public void clkSwitchToManualPayments() {
+		reusableActions.isElementVisible(optManualPayments, 60);
+		reusableActions.executeJavaScriptClick(optManualPayments);
+	}
+
+	/**
+	 * Clicks on the 'Yes, cancel automatic payments' button
+	 * @author Rama Arora
+	 */
+	public void clkYesCancelAutomaticPayment() {
+		reusableActions.clickIfAvailable(btnContinue);
+		reusableActions.clickIfAvailable(btnCancelAutomaticPayments,30);
+	}
+
+	/**
+	 * Clicks on the button change payment done
+	 * @author Rama Arora
+	 */
+	public void clkButtonDoneChangePayment() {
+		reusableActions.getWhenReady(btnChangePaymentDone,60).click();
+	}
+
+	/**
+	 * Clicks on the 'Billing and Payment' then 'Set up automatic payment' option
+	 * @author Rama Arora
+	 */
+	public void clkSetUpAutomaticPaymentMethod() {
+		//getReusableActionsInstance().waitForElementVisibility(lnkBillingAndPayment);
+		//getReusableActionsInstance().clickIfAvailable(lnkBillingAndPayment);
+		reusableActions.getWhenReady(lnkSetUpAutomaticPaymentMethod,60).click();
+	}
+
+	/** click on Set up Payment link
+	 * @ Rama ARora
+	 */
+	public void clkSetUpAutoPaymentQuickLink() {
+		reusableActions.waitForElementTobeClickable(lnkSetUpAutoPayment, 60);
+		reusableActions.getWhenReady(lnkSetUpAutoPayment).click();
+	}
+
+	/**
+	 * Click on CC card radio button
+	 * @author Rama Arora
+	 */
+	public void clkUseCCForAutomaticPayments() {
+		reusableActions.waitForElementVisibility(optCardAccount, 60);
+		reusableActions.executeJavaScriptClick(optCardAccount);
+	}
+
+	/*
+	 *  @Rama Arora
+	 */
+	public void clkContinueSettingCC() {
+		reusableActions.getWhenReady(btnContinueSetCC).click();
+	}
+
+	/**
+	 * Clicks on continue button on Review page
+	 * @author Rama Arora
+	 */
+	public void clkContinueOnReviewPg() {
+		reusableActions.getWhenReady(btnContinueReview).click();
+
+	}
+
+	/**
+	 * verify if the label success header is displayed
+	 * @return true if the label is displayed hence false
+	 * @author Rama Arora
+	 */
+	public boolean verifySuccessMessageIsDisplayed() {
+		return reusableActions.isElementVisible(lblYouAutomaticPaymentWillStart,120);
+	}
+
+	/**
+	 * Click on Done button
+	 * @author Rama Arora
+	 */
+	public void clkOnDone() {
+		reusableActions.getWhenReady(btnChangePaymentDone).click();
+	}
+
+	/**
+	 * Checks if the auto payment option is set successfully to CC
+	 * @return true if the payment option is set successfully
+	 * @author Rama Arora
+	 */
+	public boolean verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage() {
+		// buffer static wait added for pageload
+		reusableActions.staticWait(4000);
+		reusableActions.waitForElementVisibility(lblAutoPayment, 50);
+		reusableActions.staticWait(2000);
+		return (reusableActions.isElementVisible(lblAutoPayment,20)
+				&& reusableActions.isElementVisible(imgCC,20));
+	}
+
 	/**
 	 *  Set the transit number for  bank
 	 * @param strTransitNumber  bank transit code of the account
@@ -782,7 +934,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public boolean isAutopaymentAlreadySet() {
 		reusableActions.staticWait(5000);
-		return (reusableActions.isElementVisible(lblAutomaticPaymentOn) && reusableActions.isElementVisible(lblAutomaticPayments)) ;
+		return (reusableActions.isElementVisible(lblCurrentPaymentOn)) ;
 	}
 
 	/**

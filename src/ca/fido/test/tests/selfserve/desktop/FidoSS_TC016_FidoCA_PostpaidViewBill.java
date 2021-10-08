@@ -88,6 +88,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		{
 			getFidobilldetailspage().selectOlderBillViewBillDropDown();
 			getReporter().reportLogWithScreenshot("Older bills selected");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getReporter().hardAssert(getFidobilldetailspage().isLabelComingSoonDisplayed(),
 								"No bills generated yet for this account",
 								"Some issue with bills, please investigate");

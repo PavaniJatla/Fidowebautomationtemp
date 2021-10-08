@@ -1343,6 +1343,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkChangePaymentMethod() {
 		reusableActions.getWhenReady(inkPaymentMethod).click();
 	}
+
+
 	/**
 	 * 
 	 * @return true if element visisble
@@ -1651,6 +1653,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkCTNsViewUsageAndManage(String strCTN) {
+		reusableActions.staticWait(3000);
 		reusableActions.getWhenReady(By.xpath("//div[@class='fss-subscription-detail']//a[contains(@aria-label,'"+strCTN+"')]")).click();
 	}
 

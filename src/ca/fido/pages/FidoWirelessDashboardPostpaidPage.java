@@ -91,7 +91,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	WebElement drpSelectAnotherLine;
 	
 	//My Plan section
-	@FindBy (xpath = "//div[contains(@class,'ss-plan-container-box ng-star-inserted') ]")
+	@FindBy (xpath = "//div[contains(@class,'plan-content-box pr-sm-16 ng-tns-c189-6') ]")
 	WebElement divMyPlan;
 	
 	@FindBy (xpath="//h3[@class='ss-plan-container-sub-heading']")
@@ -113,7 +113,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer' or @title='Close my plan']")
 	WebElement btnCloseFullPlanDetailsOverlay;
-	
+
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
 	WebElement divMyPlanTalkDetails;
 	
@@ -185,7 +185,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//span[@class='ss-plan-container-data ng-star-inserted']")
 	WebElement divDataBalanceRemaining;
 	
-	@FindBy (xpath = "//div[@class='ss-data-section-total-volume']")
+	@FindBy (xpath = "//div[@class='ss-plan-container-header-section']")
 	WebElement divTotalData;
 	
 	@FindBy (xpath = "//p[contains(text(),'Minutes')]")
@@ -312,8 +312,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
 
-	@FindBy(xpath = "//span[contains(text(),' View Details')]")
-	WebElement lnkShowMyUsage;
+	@FindBy(xpath = "//span[contains(text(),'View Details')]")
+	WebElement lnkShowMyUsageTotalPlan;
 	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
@@ -449,8 +449,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkLinkViewDetailInUsage() {	
-		reusableActions.waitForElementTobeClickable(lnkViewDetailsInUsageSection, 60);
-		reusableActions.getWhenReady(lnkViewDetailsInUsageSection,20).click();
+		//reusableActions.waitForElementTobeClickable(lnkShowMyUsageTotalPlan, 60);
+		reusableActions.getWhenReady(lnkShowMyUsageTotalPlan,20).click();
 	}
 		
 	/**
@@ -459,7 +459,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public void clkShowMyUsageIfVisible() {
 
-		reusableActions.clickIfAvailable(lnkShowMyUsage, 5);
+		reusableActions.clickIfAvailable(lnkShowMyUsageTotalPlan, 5);
 
 	}
 	
@@ -743,7 +743,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyTextPlanDetailsSectionIsDisplayed() {
 		System.out.println("text plans details is being checked");
-		return reusableActions.isElementVisible(By.xpath("//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage ')]"),60);
+		//return reusableActions.isElementVisible(By.xpath("//*[@translate='wireless.dashboard.myPlan.text' or contains(@class,'text-usage ')]"),60);
+		return reusableActions.isElementVisible(By.xpath("//span[contains(text(),'Text')]"),60);
+
 	}	
 	
 	/**

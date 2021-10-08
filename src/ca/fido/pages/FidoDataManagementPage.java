@@ -51,7 +51,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]/parent::div/parent::div//strong")})
 	List<WebElement> rowsTotalData;
 	
-	@FindBy (xpath = "//span[contains(text(),'Back') or contains(text(),'Précédent') or contains(text(),'Mobile Dashboard') or contains(text(),'Tableau de bord mobile')]")
+	@FindBy (xpath = "//a[@title='Mobile Dashboard']")
 	WebElement lnkBackOnManageDataOverlay;
 	
 	@FindBy (xpath = "//strong")

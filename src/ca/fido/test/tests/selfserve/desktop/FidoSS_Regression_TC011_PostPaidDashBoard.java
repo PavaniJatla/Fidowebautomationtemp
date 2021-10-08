@@ -57,25 +57,26 @@ public class FidoSS_Regression_TC011_PostPaidDashBoard extends BaseTestClass{
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		getReporter().reportLogWithScreenshot("Account overview page");
-		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		//getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 		getReporter().reportLogWithScreenshot("Click on CTN badge");
-		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+		//getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 		getReporter().reportLogWithScreenshot("dashboard page loaded");
 		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardSectionDataBalanceRemainingIsDisplayed(),
 							"Dashboard Section Data Balance Is Displayed",
 							"Dashboard section data balance not displayed");
-		//getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
-							//"usage bar is displayed",
-							//"usage bar is not displayed");
+		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDataDashBoardUsageBarIsDisplayed(),
+							"usage bar is displayed",
+							"usage bar is not displayed");
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataInUsageSectionIsDisplayed(),
 							"Data Section is displayed",
 							"Data section is not displayed");
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
-							"Label N days reming for Bill cycle is displayed",
+							"Label N days remaining for Bill cycle is displayed",
 							"Label N days remaining for Bill cycle is not displayed");
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkPlanDetailsSectionIsDisplayed(),
 							"Talk plan is displayed",

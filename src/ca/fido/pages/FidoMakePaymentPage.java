@@ -57,7 +57,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//*[@id = 'cvv']")
 	WebElement txtCVVMobile;
 	
-	@FindBy(xpath="//*[@id='amount']")
+	@FindBy(xpath="//*[@id='amount'] or //*[@id='ds-form-input-id-24']")
 	WebElement txtAmount;
 	
 	@FindBy(xpath="//input[@value='Update']")
@@ -118,7 +118,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='bank-section']")
 	WebElement divBankPayment;
 	
-	@FindBy (xpath = "//div[@class='row pay-now-content']")
+	@FindBy (xpath = "//div[@class='row pay-now-content' or //button[@id='ds-tabs-0-tab-0']]")
 	WebElement paymentModal;
 	
 	@FindBy(xpath = "//div[contains(@class,'hidden-xs')]//ins[@translate='global.label.paymentHistoryView']")

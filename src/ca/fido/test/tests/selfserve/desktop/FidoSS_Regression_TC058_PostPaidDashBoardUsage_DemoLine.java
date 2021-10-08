@@ -57,9 +57,10 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		getReporter().reportLogWithScreenshot("Account overview page");
 		//getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+
 		getReporter().reportLogWithScreenshot("Click on CTN badge");
 		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 
@@ -88,11 +89,13 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 		//getReporter().reportLogWithScreenshot("Demo Line account dashboard page is displayed");
 		//getFidowirelessdashboardpostpaidpage().clkLinkViewDetailInUsage();
 		//getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getFidowirelessdashboardpostpaidpage().clkLinkViewDetailInUsage();
 		getReporter().hardAssert(getFidodatamanagementpage().verifyManageDataOverlayDisplayed(),
 				"Manage data overlay is displayed",
-				"Manage data overlay is not displayed");	
+				"Manage data overlay is not displayed");
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		getFidodatamanagementpage().clkLinkBackOnManageDataOverlay();
-		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		//getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkPlanDetailsSectionIsDisplayed(),
 				"Talk plan details section is displayed",
 				"Talk plan details section is not displayed");
