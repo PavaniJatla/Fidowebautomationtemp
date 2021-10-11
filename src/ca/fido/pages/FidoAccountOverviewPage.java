@@ -710,6 +710,16 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		}
 	}
 
+
+	/**
+	 * Click on the payNow button on the account overview page
+	 * @author adittya.Dhingra
+	 */
+	public void clkMakepayment() {
+		reusableActions.getWhenReady(lnkMakepayment,60);
+		reusableActions.clickWhenReady(lnkMakepayment,60);
+	}
+
 	/**
 	 * Click on the payNow button on the account overview page
 	 * @author adittya.Dhingra 

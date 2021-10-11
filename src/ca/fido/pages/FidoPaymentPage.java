@@ -24,28 +24,44 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='modal-header hidden-xs']//button[@class='close square-close-icon']")
 	WebElement btnClosePayment;
 
-	@FindBy(xpath = "//div[@class='cc-payment-section']//descendant::iframe")
+	@FindBy(xpath = "//iframe[contains(@src,'semafone')]")
 	WebElement fraSemaphone;
+	//div[@class='cc-payment-section']//descendant::iframe
 
-	@FindBy(xpath = "//div[@class='ute-pay-now-content ss-pay-now-payment-amount']//input[@id='amount']")
+	@FindBy(xpath = "//input[@aria-describedby='formfield-2-a11yDescription formfield-2-messages']")
 	WebElement txtPaymentAmount;
+	//div[@class='ute-pay-now-content ss-pay-now-payment-amount']//input[@id='amount']
 
 	@FindBy(xpath = "//input[@id='pan']")
 	WebElement 	txtCreditCardNumber;
 
 	@FindBy(xpath = "//select[@id='expiry-date']")
 	WebElement ddlExpiryMonth;
+	//select[@id='expiry-date']
+
+	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-bgcolor-white ds-borders ng-tns-c106-7 ds-brcolor-black ds-color-black']")
+	WebElement ddlExpiryDateContainer;
+
+	@FindBy(xpath = "//input[@id='expiryDate' and @aria-describedby='formfield-0-a11yDescription formfield-0-messages']")
+	WebElement ddlExpiryDate;
 
 	@FindBy(xpath  = "//select[@name='expYear']")
 	WebElement ddlExpiryYear;
 
-	@FindBy(xpath = "//input[@id='cvv']")
+	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-bgcolor-white ds-borders ng-tns-c106-8 ds-brcolor-black ds-color-black']")
+	WebElement txtCvvContainer;
+
+	@FindBy(xpath = "//input[@id='cvc' and @aria-describedby='formfield-1-a11yDescription formfield-1-messages']")
 	WebElement txtCVV;
+	//input[@id='cvv']
 
-	@FindBy(xpath = "//input[@type=\"submit\" and contains(@class,'continue')]")
+	@FindBy(xpath = "//div[@class='mt-32 payment-card-detail']//button[contains(@class,'ds-button')]")
 	WebElement btnReviewAndContinue;
+	//input[@type="submit" and contains(@class,'continue')]
 
-	@FindBy(xpath = "//div[contains(@class,'pay-now-button-primary')]/ins[@translate = \"global.cta.payNow\"]")
+	@FindAll({
+	@FindBy(xpath = "//div[contains(@class,'pay-now-button-primary')]/ins[@translate = \"global.cta.payNow\"]"),
+	@FindBy(xpath = "//button[contains(@class,'w-100 w-sm-auto mr-md-24 mt-16 ds-button')]/span")})
 	WebElement btnPayNow;
 
 	@FindBy(xpath = "//ins[@translate='global.label.paymentConfirmationHeading']")
@@ -191,8 +207,10 @@ public class FidoPaymentPage extends BasePageClass {
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(strPaymentAmount);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 	}
 
@@ -241,6 +259,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void setCVVNumber(String strCVV) {
+		reusableActions.clickWhenVisible(txtCvvContainer);
 		reusableActions.clickWhenVisible(txtCVV);
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
 	}
@@ -263,6 +282,16 @@ public class FidoPaymentPage extends BasePageClass {
 		reusableActions.selectWhenReady(ddlExpiryMonth, strMM);
 	}
 
+	/**
+	 * Selects the credit card expire month for Pre-Auth credit card
+	 * @param strDATE expire month for Pre-Auth credit card
+	 * @author  Aditya.Dhingra
+	 */
+	public void selectExpiryDate(String strDATE) {
+		reusableActions.getWhenReady(ddlExpiryDate,20).click();
+		reusableActions.getWhenReady(ddlExpiryDate).sendKeys(strDATE);
+		//reusableActions.selectWhenReady(ddlExpiryDate, strDATE);
+	}
 
 	/**
 	 * Selects the credit card expire month for Pre-Auth credit card
