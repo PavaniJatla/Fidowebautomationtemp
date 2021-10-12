@@ -64,12 +64,13 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'w-100 w-sm-auto mr-md-24 mt-16 ds-button')]/span")})
 	WebElement btnPayNow;
 
-	@FindBy(xpath = "//ins[@translate='global.label.paymentConfirmationHeading']")
+	@FindBy(xpath = "//span[@class='ds-icon d-inline-flex fds-icon-success ds-color-success']")
 	WebElement msgPaymentConfirmation;
-	
-	@FindBy(xpath = "//button[contains(@class,'col-xs-12 pay-now-button-secondary uppercase ds-button')]")
+	//ins[@translate='global.label.paymentConfirmationHeading']
+
+	@FindBy(xpath = "//a[@aria-label='Finish and return to your Overview dashboard']")
 	WebElement btnPaymentConfirmation;
-	   
+	//button[contains(@class,'col-xs-12 pay-now-button-secondary uppercase ds-button')]
 	@FindBy(xpath = "//button[contains(@class,'pay-now-button-secondary uppercase width-100 ds-button -primary')]")
 	WebElement btnPaymentConfirmationMobile;
 	@FindAll({
@@ -327,7 +328,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkReviewAndContinue() {
-		reusableActions.getWhenVisible(btnReviewAndContinue,120).sendKeys(Keys.ENTER);
+		reusableActions.getWhenVisible(btnReviewAndContinue,30).sendKeys(Keys.ENTER);
 	}
 	
 	/**
