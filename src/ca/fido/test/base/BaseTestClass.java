@@ -1,6 +1,9 @@
 package ca.fido.test.base;
 
+import ca.fido.oneview.pages.AccountOverViewPage;
 import ca.fido.oneview.pages.EnvironmentSelectionPage;
+import ca.fido.oneview.pages.FidoOVChoosePhonePage;
+import ca.fido.oneview.pages.FidoOVPlanConfigPage;
 import ca.fido.pages.*;
 import ca.fido.pages.ens.EnsHomePage;
 import ca.fido.pages.ens.EnsNotificationViewPage;
@@ -98,6 +101,9 @@ public class BaseTestClass {
 	protected static final ThreadLocal<FidoInternetUsagePage> FidoInternetUsagePageThreadLocal = new ThreadLocal<>();
 
 	protected static final ThreadLocal<EnvironmentSelectionPage> environmentSelectionPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<AccountOverViewPage> accountOverViewPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVChoosePhonePage> fidoOVChoosePhonePageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVPlanConfigPage> fidoOVPlanConfigPageThreadLocal = new ThreadLocal<>();
 
 	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
@@ -374,6 +380,18 @@ public class BaseTestClass {
 		return environmentSelectionPageThreadLocal.get();
 	}
 
+	public static AccountOverViewPage getAccountOverViewPage() {
+		return accountOverViewPageThreadLocal.get();
+	}
+
+	public static FidoOVChoosePhonePage getFidoOVChoosePhonePage() {
+		return fidoOVChoosePhonePageThreadLocal.get();
+	}
+
+	public static FidoOVPlanConfigPage getFidoOVPlanConfigPage() {
+		return fidoOVPlanConfigPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -625,6 +643,9 @@ public class BaseTestClass {
 
 			case "buyflowsoneview":
 				environmentSelectionPageThreadLocal.set(new EnvironmentSelectionPage(getDriver()));
+				accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));
+				fidoOVChoosePhonePageThreadLocal.set(new FidoOVChoosePhonePage(getDriver()));
+				fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
 				break;
 
 			default:
