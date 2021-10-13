@@ -55,11 +55,15 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
         getReporter().softAssert(getFidoOVCheckOutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not disaplayed");
         getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
+
         getFidoOVCheckOutPage().selectCityDropdownOption(TestDataHandler.tc01AalByodFinancingBopisShipping.getCtnCity());
         getReporter().reportLogPassWithScreenshot("City Dropdown Value Selected Successfully");
+
         getFidoOVCheckOutPage().selectFirstAvlPhoneNumber();
         getReporter().reportLogPassWithScreenshot("Selected First Available Phone Number");
+
         getReporter().softAssert(getFidoOVCheckOutPage().isFindMoreAvlNumbersButtonPresent(), "Find More Available Number Button Displayed", "Find More Available Number Button not disaplayed");
+
         getFidoOVCheckOutPage().clkChooseNumberContinueButton();
 
         //--------------------------------------Review Order Page--------------------------------------------
