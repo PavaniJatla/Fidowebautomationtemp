@@ -23,7 +23,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogWithScreenshot("Fido Account overview page");
 
         getAccountOverViewPage().selectAddAWirelessLineButton();
-        //getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
+        getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
         getReporter().hardAssert(getFidoOVChoosePhonePage().isCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
         getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel()),
                 String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
@@ -35,17 +35,21 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         //-------------------------------------Plan config page---------------------------------------------
         String deviceName = TestDataHandler.tc01AalByodFinancingBopisShipping.getDeviceName();
         getReporter().hardAssert(getFidoOVPlanConfigPage().ifPlanConfigPageLoaded(), "Plan config page loaded successfully", "Plan config page not loaded");
-        getReporter().softAssert(getFidoOVPlanConfigPage().verifyDeviceTile(deviceName), "Device tile is correct", "Device tile is not correct");
+        getReporter().softAssert(getFidoOVPlanConfigPage().verifyDeviceTitle(deviceName), "Device title is correct", "Device title is not correct");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
         getFidoOVPlanConfigPage().selectDataOptionAndClickContinueButton(getFidoOVPlanConfigPage().getUpdatedDataOptionIndex(TestDataHandler.tc01AalByodFinancingBopisShipping.getDataOptionIndex()));
-        getReporter().reportLogPassWithScreenshot("Data option selected");
+        getReporter().reportLogPassWithScreenshot("Data option was selected");
 
-        getReporter().hardAssert(getFidoOVPlanConfigPage().verifyTalkOptionSelectionAndAddonsContinueButton(getFidoOVPlanConfigPage().getUpdatedTalkOptionIndex(TestDataHandler.tc01AalByodFinancingBopisShipping.getTalkOptionIndex())),
-                "Talk option selected and Addons page in expanded state","Addons page not in expanded state");
-//        getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
-//        getFidoOVPlanConfigPage().clkContinueCallerID();
-//        getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
+        getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state","Addons page is not in expanded state");
+        getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
+        getReporter().reportLogPassWithScreenshot("Addon option was selected");
+
+        getFidoOVPlanConfigPage().PopulateCallerAndClkContinueCallerId();
+        getReporter().reportLogPassWithScreenshot("Caller ID was filled");
+
+        getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
+        getReporter().reportLogWithScreenshot("Proceed to checkout page button was clicked");
 
         //---------------------------------------Checkout pages----------------------------------------------
         getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
@@ -57,6 +61,13 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogPassWithScreenshot("Selected First Available Phone Number");
         getReporter().softAssert(getFidoOVCheckOutPage().isFindMoreAvlNumbersButtonPresent(), "Find More Available Number Button Displayed", "Find More Available Number Button not disaplayed");
         getFidoOVCheckOutPage().clkChooseNumberContinueButton();
+
+        //--------------------------------------Review Order Page--------------------------------------------
+        getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page Title Present", "Order Review Page Title is not Present");
+
+        //--------------------------------------Order Confirmation Page--------------------------------------
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page loaded", "Order Confirmation Error");
+        getReporter().reportLogWithScreenshot("Rogers Order Confirmation Page");
     }
 
     @BeforeMethod(alwaysRun = true)

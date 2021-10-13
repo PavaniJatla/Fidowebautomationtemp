@@ -105,6 +105,7 @@ public class TestDataHandler {
 	public static AccountData tc92;
 
 	public static AalOVData tc01AalByodFinancingBopisShipping;
+	public static AalOVData tc03AalTermTabletFinancingStandardShipping;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -246,5 +247,6 @@ public class TestDataHandler {
 
 	private static void buyFlowsOneViewDataInit() {
 		tc01AalByodFinancingBopisShipping = YamlHandler.getAALOneViewData("tc01AALByodFinancingBopisShipping");
+		//tc03AalTermTabletFinancingStandardShipping = YamlHandler.getAALOneViewData("tc03AAlTermTabletFinancingStandardShipping");
 	}
 }

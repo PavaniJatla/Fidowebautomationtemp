@@ -69,7 +69,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoDeviceReservationSystemPage> FidoDeviceReservationSystemPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoDataManagementPage> FidoDataManagementPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoSetPasswordPage> FidoSetPasswordPageThreadLocal = new ThreadLocal<>();
-	protected static final  ThreadLocal<CommonBusinessFlows> CommonBusinessFlowsThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<CommonBusinessFlows> CommonBusinessFlowsThreadLocal = new ThreadLocal<>(); 
 	protected static final  ThreadLocal<FidoPaymentPage> FidoPaymentPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoInternetDashboardPage> FidoInternetDashboardPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoInternetPackageChangeReviewOrderPage> FidoInternetPackageChangeReviewOrderPageThreadLocal = new ThreadLocal<>();
@@ -79,7 +79,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoCreditCheckPage> FidoCreditCheckPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoTechnicalInstallationPage> FidoTechnicalInstallationPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoOrderConfirmationPage> FidoOrderConfirmationPageThreadLocal = new ThreadLocal<>();
-	protected static final  ThreadLocal<SSPFidoRetailerShopPage> FidoRetailerShopPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<SSPFidoRetailerShopPage> FidoRetailerShopPageThreadLocal = new ThreadLocal<>();	
 	protected static final  ThreadLocal<SSPFidoRetailerHomePage> FidoRetailerHomePageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<SSPFidoRetailerSearchResultsPage> FidoRetailerSearchResultsPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoInternetPackagePage> FidoInternetPackagePageThreadLocal = new ThreadLocal<>();
@@ -92,7 +92,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoChooseSimPage> FidoChooseSimPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoShippingPage> FidoShippingPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
-	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();
+	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();	
 	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoCheckOutPage> FidoCheckOutPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoInternetUsagePage> FidoInternetUsagePageThreadLocal = new ThreadLocal<>();
@@ -102,6 +102,8 @@ public class BaseTestClass {
 	protected static final ThreadLocal<FidoOVChoosePhonePage> fidoOVChoosePhonePageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVPlanConfigPage> fidoOVPlanConfigPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVCheckOutPage> fidoOVCheckOutPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVReviewOrderPage> fidoOVReviewOrderPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVOrderConfirmationPage> fidoOVOrderConfirmationPageThreadLocal = new ThreadLocal<>();
 
 	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
@@ -111,7 +113,7 @@ public class BaseTestClass {
 
 	public BaseTestClass() {
 		 browserdriver =  new BrowserDrivers();
-
+		 
 	}
 
 	public Reporter getReporter() {
@@ -394,6 +396,14 @@ public class BaseTestClass {
 		return fidoOVCheckOutPageThreadLocal.get();
 	}
 
+	public static FidoOVReviewOrderPage getFidoOVReviewOrderPage() {
+		return fidoOVReviewOrderPageThreadLocal.get();
+	}
+
+	public static FidoOVOrderConfirmationPage getFidoOVOrderConfirmationPage() {
+		return fidoOVOrderConfirmationPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -401,7 +411,7 @@ public class BaseTestClass {
 	 * @author Mirza.Kamran
 	 */
 	 private Map<String, String> initializeSauceParamsMap(String strBrowser) {
-
+		
 		 Map<String,String> sauceOptions = new HashMap<String, String>();
 		 sauceOptions.put(SauceCapabilities.seleniumVersion.toString(), TestDataHandler.sauceSettings.getSauceOptions().getSeleniumVersion());
 		 sauceOptions.put(SauceCapabilities.maxDuration.toString(), TestDataHandler.sauceSettings.getSauceOptions().getMaxDuration());
@@ -409,27 +419,27 @@ public class BaseTestClass {
 		 sauceOptions.put(SauceCapabilities.idleTimeout.toString(), TestDataHandler.sauceSettings.getSauceOptions().getIdleTimeout());
 		 sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getSauceOptions().getBuild());
 		 switch (strBrowser.toLowerCase()) {
-         case "saucechrome":
-             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformName());
+         case "saucechrome":                            
+             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformName());                     
              sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getBrowserVersion());
              break;
-         case "saucefirefox":
-             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getPlatformName());
+         case "saucefirefox":                                       
+             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getPlatformName());                     
              sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getBrowserVersion());
              break;
          case "sauceedge":
-             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getPlatformName());
+             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getPlatformName());                     
              sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getBrowserVersion());
              break;
          case "sauceandroidchrome":
-        	 sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformName());
-        	 sauceOptions.put(SauceCapabilities.platformVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformVersion());
-        	 sauceOptions.put(SauceCapabilities.appiumVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getAppiumVersion());
-        	 sauceOptions.put(SauceCapabilities.deviceName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceName());
-        	 sauceOptions.put(SauceCapabilities.deviceOrientation.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceOrientation());
+        	 sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformName()); 
+        	 sauceOptions.put(SauceCapabilities.platformVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformVersion()); 
+        	 sauceOptions.put(SauceCapabilities.appiumVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getAppiumVersion()); 
+        	 sauceOptions.put(SauceCapabilities.deviceName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceName()); 
+        	 sauceOptions.put(SauceCapabilities.deviceOrientation.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceOrientation()); 
         	 break;
 		}
-
+			 			  		        		
 		return sauceOptions;
 	}
 
@@ -638,22 +648,24 @@ public class BaseTestClass {
                 FidoCheckOutPageThreadLocal.set(new FidoCheckOutPage(getDriver()));
                 break;
             case "buyflowsoneview":
-                environmentSelectionPageThreadLocal.set(new EnvironmentSelectionPage(getDriver()));
-                accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));
-                fidoOVChoosePhonePageThreadLocal.set(new FidoOVChoosePhonePage(getDriver()));
-                fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
+				environmentSelectionPageThreadLocal.set(new EnvironmentSelectionPage(getDriver()));
+				accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));
+				fidoOVChoosePhonePageThreadLocal.set(new FidoOVChoosePhonePage(getDriver()));
+				fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
+				fidoOVReviewOrderPageThreadLocal.set(new FidoOVReviewOrderPage(getDriver()));
+				fidoOVOrderConfirmationPageThreadLocal.set(new FidoOVOrderConfirmationPage(getDriver()));
                 fidoOVCheckOutPageThreadLocal.set(new FidoOVCheckOutPage(getDriver()));
                 break;
             default:
 		}
 	}
 
-
+	
 	/**
 	 * To close session, quit driver and close every associated windows.
 	 */
-	public void closeSession() {
-		getDriver().quit();
+	public void closeSession() {			
+		getDriver().quit();		
 	}
 
 	/**
@@ -672,8 +684,8 @@ public class BaseTestClass {
 	public WebDriver getDriver() {
 		return webDriverThreadLocal.get();
 	}
-
-
+	
+	
 	/**
 	 * To get parameters from XML file, it is called in TestListener.
 	 * @return HashMap of test parameters
