@@ -91,7 +91,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	WebElement drpSelectAnotherLine;
 	
 	//My Plan section
-	@FindBy (xpath = "//div[contains(@class,'plan-content-box pr-sm-16 ng-tns-c189-6') ]")
+	@FindBy (xpath = "//fss-wireless//div[contains(@class,'plan-content-box pr-sm-16 ng-tns-c189-6') ]")
 	WebElement divMyPlan;
 	
 	@FindBy (xpath="//h3[@class='ss-plan-container-sub-heading']")
@@ -312,7 +312,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
 
-	@FindBy(xpath = "//span[contains(text(),'View Details')]")
+	@FindBy(xpath = "//ss-data-section//a//span[contains(text(),'View Details')]")
 	WebElement lnkShowMyUsageTotalPlan;
 	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
@@ -458,7 +458,6 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkShowMyUsageIfVisible() {
-
 		reusableActions.clickIfAvailable(lnkShowMyUsageTotalPlan, 5);
 
 	}
@@ -987,6 +986,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public boolean verifyMyMobilePlanDashBoardSectionIsDisplayed() {
 		System.out.println("My Mobile plan usage section is being checked");
+		reusableActions.staticWait(3000);
 		return reusableActions.isElementVisible(divMyPlan);
 				
 	}

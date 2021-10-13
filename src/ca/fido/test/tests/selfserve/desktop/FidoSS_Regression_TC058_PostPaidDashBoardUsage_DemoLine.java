@@ -107,6 +107,7 @@ public class FidoSS_Regression_TC058_PostPaidDashBoardUsage_DemoLine extends Bas
 				"View details displayed below talk and text unlimited", 
 				"View details is NOT displayed below talk and text unlimited");
 		*/
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyMyMobilePlanDashBoardSectionIsDisplayed(),
 						"My Mobile plan dashboard section is displayed",
 						"My mobile plan details section is not displayed");

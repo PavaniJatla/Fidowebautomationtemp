@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 /**
  * This test will check the change method of payment functionality
  * works on French and English both
- * @author Mirza.Kamran
+ * @author Rama Arora
  *
  */
 public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
@@ -33,7 +33,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 	}
 
 
-	//@Test(groups = {"SanitySS","BillingAndPaymentsSS"})
+	@Test(groups = {"SanitySS","BillingAndPaymentsSS"})
 	public void postPaidChangeMOP() {
 		//getFidohomepage().clkLogin();
 		//getFidologinpage().switchToSignInFrame();
@@ -49,21 +49,24 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 				"Login succeed.",
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
-		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
+		/*String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
-		getFidobilldetailspage().clkChangePaymentMethod();
-		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
-		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getFidoaccountoverviewpage().clkChangePaymentMethod();
+        getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
-		getReporter().reportLogWithScreenshot("Change Method of payment overlay");
+		//sgetFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getReporter().reportLogWithScreenshot("Change Method of payment overlay");*/
 		if(getFidopaymentoptionspage().isAutopaymentAlreadySet())
 		{
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getReporter().reportLogWithScreenshot("Automatic payment is already set, trying to switch to manual");
 			getFidoaccountoverviewpage().clkChangePaymentMethod();
 			getFidopaymentoptionspage().clkSwitchToManualPayments();
+			//getFidopaymentoptionspage().clkContinue();
 			getFidopaymentoptionspage().clkYesCancelAutomaticPayment();
 			getReporter().reportLogWithScreenshot("Switch to manual completed");
 			getFidopaymentoptionspage().clkButtonDoneChangePayment();
@@ -73,19 +76,22 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 			getFidopaymentoptionspage().clkSetUpAutomaticPaymentMethod();
 		}else
 		{
-			getFidopaymentoptionspage().clkSetUpAutoPaymentQuickLink();
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
+			getFidopaymentoptionspage().clkSetUpAutomaticPaymentMethod();
 			getReporter().reportLogWithScreenshot("Set auto payment overlay");
 		}
 
 		//Change from manual to CC
 
+		//getDriver().navigate().refresh();
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getFidopaymentoptionspage().clkUseCCForAutomaticPayments();
 		getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+
 		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
 				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
-		getFidorefillpage().selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
-		getReporter().reportLogWithScreenshot("Credit card details entered");
-		getFidorefillpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
+		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 
 		getReporter().reportLogWithScreenshot("CC details entered");
 		getFidopaymentoptionspage().clkContinueSettingCC();
