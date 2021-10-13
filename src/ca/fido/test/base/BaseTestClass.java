@@ -1,9 +1,6 @@
 package ca.fido.test.base;
 
-import ca.fido.oneview.pages.AccountOverViewPage;
-import ca.fido.oneview.pages.EnvironmentSelectionPage;
-import ca.fido.oneview.pages.FidoOVChoosePhonePage;
-import ca.fido.oneview.pages.FidoOVPlanConfigPage;
+import ca.fido.oneview.pages.*;
 import ca.fido.pages.*;
 import ca.fido.pages.ens.EnsHomePage;
 import ca.fido.pages.ens.EnsNotificationViewPage;
@@ -72,7 +69,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoDeviceReservationSystemPage> FidoDeviceReservationSystemPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoDataManagementPage> FidoDataManagementPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoSetPasswordPage> FidoSetPasswordPageThreadLocal = new ThreadLocal<>();
-	protected static final  ThreadLocal<CommonBusinessFlows> CommonBusinessFlowsThreadLocal = new ThreadLocal<>(); 
+	protected static final  ThreadLocal<CommonBusinessFlows> CommonBusinessFlowsThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoPaymentPage> FidoPaymentPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoInternetDashboardPage> FidoInternetDashboardPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoInternetPackageChangeReviewOrderPage> FidoInternetPackageChangeReviewOrderPageThreadLocal = new ThreadLocal<>();
@@ -82,7 +79,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoCreditCheckPage> FidoCreditCheckPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoTechnicalInstallationPage> FidoTechnicalInstallationPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoOrderConfirmationPage> FidoOrderConfirmationPageThreadLocal = new ThreadLocal<>();
-	protected static final  ThreadLocal<SSPFidoRetailerShopPage> FidoRetailerShopPageThreadLocal = new ThreadLocal<>();	
+	protected static final  ThreadLocal<SSPFidoRetailerShopPage> FidoRetailerShopPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<SSPFidoRetailerHomePage> FidoRetailerHomePageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<SSPFidoRetailerSearchResultsPage> FidoRetailerSearchResultsPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoInternetPackagePage> FidoInternetPackagePageThreadLocal = new ThreadLocal<>();
@@ -95,7 +92,7 @@ public class BaseTestClass {
 	protected static final  ThreadLocal<FidoChooseSimPage> FidoChooseSimPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoShippingPage> FidoShippingPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
-	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();	
+	protected static final  ThreadLocal<SSPFidoRetailerChampPage> FidoRetailerChampPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoDeviceConfigPage> FidoDeviceConfigPageThreadLocal = new ThreadLocal<>();
 	protected static final  ThreadLocal<FidoCheckOutPage> FidoCheckOutPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoInternetUsagePage> FidoInternetUsagePageThreadLocal = new ThreadLocal<>();
@@ -104,6 +101,7 @@ public class BaseTestClass {
 	protected static final ThreadLocal<AccountOverViewPage> accountOverViewPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVChoosePhonePage> fidoOVChoosePhonePageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVPlanConfigPage> fidoOVPlanConfigPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVCheckOutPage> fidoOVCheckOutPageThreadLocal = new ThreadLocal<>();
 
 	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
@@ -113,7 +111,7 @@ public class BaseTestClass {
 
 	public BaseTestClass() {
 		 browserdriver =  new BrowserDrivers();
-		 
+
 	}
 
 	public Reporter getReporter() {
@@ -392,6 +390,10 @@ public class BaseTestClass {
 		return fidoOVPlanConfigPageThreadLocal.get();
 	}
 
+	public static FidoOVCheckOutPage getFidoOVCheckOutPage() {
+		return fidoOVCheckOutPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -399,7 +401,7 @@ public class BaseTestClass {
 	 * @author Mirza.Kamran
 	 */
 	 private Map<String, String> initializeSauceParamsMap(String strBrowser) {
-		
+
 		 Map<String,String> sauceOptions = new HashMap<String, String>();
 		 sauceOptions.put(SauceCapabilities.seleniumVersion.toString(), TestDataHandler.sauceSettings.getSauceOptions().getSeleniumVersion());
 		 sauceOptions.put(SauceCapabilities.maxDuration.toString(), TestDataHandler.sauceSettings.getSauceOptions().getMaxDuration());
@@ -407,27 +409,27 @@ public class BaseTestClass {
 		 sauceOptions.put(SauceCapabilities.idleTimeout.toString(), TestDataHandler.sauceSettings.getSauceOptions().getIdleTimeout());
 		 sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getSauceOptions().getBuild());
 		 switch (strBrowser.toLowerCase()) {
-         case "saucechrome":                            
-             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformName());                     
+         case "saucechrome":
+             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformName());
              sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getBrowserVersion());
              break;
-         case "saucefirefox":                                       
-             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getPlatformName());                     
+         case "saucefirefox":
+             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getPlatformName());
              sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableFireFoxCapabilities().getBrowserVersion());
              break;
          case "sauceedge":
-             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getPlatformName());                     
+             sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getPlatformName());
              sauceOptions.put(SauceCapabilities.browserVersion.toString(), TestDataHandler.sauceSettings.getMutableEdgeCapabilities().getBrowserVersion());
              break;
          case "sauceandroidchrome":
-        	 sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformName()); 
-        	 sauceOptions.put(SauceCapabilities.platformVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformVersion()); 
-        	 sauceOptions.put(SauceCapabilities.appiumVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getAppiumVersion()); 
-        	 sauceOptions.put(SauceCapabilities.deviceName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceName()); 
-        	 sauceOptions.put(SauceCapabilities.deviceOrientation.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceOrientation()); 
+        	 sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformName());
+        	 sauceOptions.put(SauceCapabilities.platformVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getPlatformVersion());
+        	 sauceOptions.put(SauceCapabilities.appiumVersion.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getAppiumVersion());
+        	 sauceOptions.put(SauceCapabilities.deviceName.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceName());
+        	 sauceOptions.put(SauceCapabilities.deviceOrientation.toString(), TestDataHandler.sauceSettings.getAndroidChromeCapabilities().getDeviceOrientation());
         	 break;
 		}
-			 			  		        		
+
 		return sauceOptions;
 	}
 
@@ -534,131 +536,124 @@ public class BaseTestClass {
 	 * @param strGroupName string of group name.
 	 */
 	private void init(String strGroupName) {
-		setReporter(new ExtentTestManager(getDriver()));	
+		setReporter(new ExtentTestManager(getDriver()));
 		CommonBusinessFlowsThreadLocal.set(new CommonBusinessFlows(this));
 		switch(strGroupName) {
-		
-		case "selfserve":
-		case "selfserve_login":
-			
-			FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
-			FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
-			FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
-			FidoLogintoFacebookPageThreadLocal.set(new FidoLogintoFacebookPage(getDriver()));
-			FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
-			FidoProfileAndSettingPageThreadLocal.set(new FidoProfileAndSettingPage(getDriver()));
-			FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
-			FidoMakePaymentPageThreadLocal.set(new FidoMakePaymentPage(getDriver()));
-			FidoRecoverPassOrNamePageThreadLocal.set(new FidoRecoverPassOrNamePage(getDriver()));
-			FidoPaymentHistoryPageThreadLocal.set(new FidoPaymentHistoryPage(getDriver()));
-			FidoPrepaidLinkAccountPageThreadLocal.set(new FidoPrepaidLinkAccountPage(getDriver()));
-			FidoInteracOnlinePageThreadLocal.set(new FidoInteracOnlinePage(getDriver()));
-			FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
-			FidoCommunityPageThreadLocal.set(new FidoCommunityPage(getDriver()));
-			FidoRefillPageThreadLocal.set(new FidoRefillPage(getDriver()));
-			FidoWirelessDashboardPostpaidPageThreadLocal.set(new FidoWirelessDashboardPostpaidPage(getDriver()));
-			FidoWirelessDashboardPrepaidPageThreadLocal.set(new FidoWirelessDashboardPrepaidPage(getDriver()));
-			FidoAddDataPageThreadLocal.set(new FidoAddDataPage(getDriver()));
-			FidoReportLostOrStolenPageThreadLocal.set(new FidoReportLostOrStolenPage(getDriver()));
-			FidoChangeCTNPageThreadLocal.set(new FidoChangeCTNPage(getDriver()));
-			FidoBillDetailsPageThreadLocal.set(new FidoBillDetailsPage(getDriver()));
-			FidoResetVoiceMailPasswordPageThreadLocal.set(new FidoResetVoiceMailPasswordPage(getDriver()));
-			FidoDeviceReservationSystemPageThreadLocal.set(new FidoDeviceReservationSystemPage(getDriver()));	
-			FidoDataManagementPageThreadLocal.set(new FidoDataManagementPage(getDriver()));
-			FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
-			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
-			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
-			ensVerificationsThreadLocal.set(new VerifyInEns(this));
-			FidoFinanceAccessoriesPageThreadLocal.set(new FidoFinanceAccessoriesPage(getDriver()));
-			break;
-			
-		case "connectedhome_login":
-			FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
-			FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
-			FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
-			FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
-			FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
-			FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
-			FidoInternetPackageChangeReviewOrderPageThreadLocal.set(new FidoInternetPackageChangeReviewOrderPage(getDriver()));
-			FidoShopInternetPageThreadLocal.set(new FidoShopInternetPage(getDriver()));
-			FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
-			FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver())); 
-			FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
-			FidoTechnicalInstallationPageThreadLocal.set(new FidoTechnicalInstallationPage(getDriver()));
-			FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
-			FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
-			FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
-			FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
-			FidoInternetUsagePageThreadLocal.set(new FidoInternetUsagePage(getDriver()));
-			ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
-			ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
-			ensVerificationsThreadLocal.set(new VerifyInEns(this));
-			break;
-
-			case "connectedhome_anonymous":
-			case "connectedhome_ssp":
-				FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
-				FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
-				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
-				FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
-				FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
-				FidoInternetPackageChangeReviewOrderPageThreadLocal.set(new FidoInternetPackageChangeReviewOrderPage(getDriver()));
-				FidoShopInternetPageThreadLocal.set(new FidoShopInternetPage(getDriver()));
-				FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
-				FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
-				FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
-				FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
-				FidoTechnicalInstallationPageThreadLocal.set(new FidoTechnicalInstallationPage(getDriver()));
-				FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
-				FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
-				FidoRetailerShopPageThreadLocal.set(new SSPFidoRetailerShopPage(getDriver()));
-				FidoRetailerHomePageThreadLocal.set(new SSPFidoRetailerHomePage(getDriver()));
-				FidoRetailerSearchResultsPageThreadLocal.set(new SSPFidoRetailerSearchResultsPage(getDriver()));
-				FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
-				FidoRetailerChampPageThreadLocal.set(new SSPFidoRetailerChampPage(getDriver()));
-				break;
-
-		case "buyflows":
-			FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
-			FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
-			FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
-			FidoWirelessDashboardPostpaidPageThreadLocal.set(new FidoWirelessDashboardPostpaidPage(getDriver()));
-			FidoChoosePhonePageThreadLocal.set(new FidoChoosePhonePage(getDriver()));
-			FidoChoosePlanPageThreadLocal.set(new FidoChoosePlanPage(getDriver()));
-			FidoBuildPlanPageThreadLocal.set(new FidoBuildPlanPage(getDriver()));
-			FidoChooseAddonsPageThreadLocal.set(new FidoChooseAddonsPage(getDriver()));
-			FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
-			FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
-			FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
-			FidoChooseNumberPageThreadLocal.set(new FidoChooseNumberPage(getDriver()));
-			FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
-			FidoOrderReviewPageThreadLocal.set(new FidoOrderReviewPage(getDriver()));
-			FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
-			FidoChooseSimPageThreadLocal.set(new FidoChooseSimPage(getDriver()));
-			FidoShippingPageThreadLocal.set(new FidoShippingPage(getDriver()));
-			FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
-			FidoDeviceConfigPageThreadLocal.set(new FidoDeviceConfigPage(getDriver()));
-			FidoCheckOutPageThreadLocal.set(new FidoCheckOutPage(getDriver()));
-			break;
-
-			case "buyflowsoneview":
-				environmentSelectionPageThreadLocal.set(new EnvironmentSelectionPage(getDriver()));
-				accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));
-				fidoOVChoosePhonePageThreadLocal.set(new FidoOVChoosePhonePage(getDriver()));
-				fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
-				break;
-
-			default:
-
+            case "selfserve":
+            case "selfserve_login":
+                FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+                FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+                FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+                FidoLogintoFacebookPageThreadLocal.set(new FidoLogintoFacebookPage(getDriver()));
+                FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
+                FidoProfileAndSettingPageThreadLocal.set(new FidoProfileAndSettingPage(getDriver()));
+                FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+                FidoMakePaymentPageThreadLocal.set(new FidoMakePaymentPage(getDriver()));
+                FidoRecoverPassOrNamePageThreadLocal.set(new FidoRecoverPassOrNamePage(getDriver()));
+                FidoPaymentHistoryPageThreadLocal.set(new FidoPaymentHistoryPage(getDriver()));
+                FidoPrepaidLinkAccountPageThreadLocal.set(new FidoPrepaidLinkAccountPage(getDriver()));
+                FidoInteracOnlinePageThreadLocal.set(new FidoInteracOnlinePage(getDriver()));
+                FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
+                FidoCommunityPageThreadLocal.set(new FidoCommunityPage(getDriver()));
+                FidoRefillPageThreadLocal.set(new FidoRefillPage(getDriver()));
+                FidoWirelessDashboardPostpaidPageThreadLocal.set(new FidoWirelessDashboardPostpaidPage(getDriver()));
+                FidoWirelessDashboardPrepaidPageThreadLocal.set(new FidoWirelessDashboardPrepaidPage(getDriver()));
+                FidoAddDataPageThreadLocal.set(new FidoAddDataPage(getDriver()));
+                FidoReportLostOrStolenPageThreadLocal.set(new FidoReportLostOrStolenPage(getDriver()));
+                FidoChangeCTNPageThreadLocal.set(new FidoChangeCTNPage(getDriver()));
+                FidoBillDetailsPageThreadLocal.set(new FidoBillDetailsPage(getDriver()));
+                FidoResetVoiceMailPasswordPageThreadLocal.set(new FidoResetVoiceMailPasswordPage(getDriver()));
+                FidoDeviceReservationSystemPageThreadLocal.set(new FidoDeviceReservationSystemPage(getDriver()));
+                FidoDataManagementPageThreadLocal.set(new FidoDataManagementPage(getDriver()));
+                FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
+                ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
+                ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
+                ensVerificationsThreadLocal.set(new VerifyInEns(this));
+                FidoFinanceAccessoriesPageThreadLocal.set(new FidoFinanceAccessoriesPage(getDriver()));
+                break;
+            case "connectedhome_login":
+                FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+                FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+                FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+                FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+                FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
+                FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
+                FidoInternetPackageChangeReviewOrderPageThreadLocal.set(new FidoInternetPackageChangeReviewOrderPage(getDriver()));
+                FidoShopInternetPageThreadLocal.set(new FidoShopInternetPage(getDriver()));
+                FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
+                FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
+                FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
+                FidoTechnicalInstallationPageThreadLocal.set(new FidoTechnicalInstallationPage(getDriver()));
+                FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+                FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
+                FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
+                FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
+                FidoInternetUsagePageThreadLocal.set(new FidoInternetUsagePage(getDriver()));
+                ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
+                ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
+                ensVerificationsThreadLocal.set(new VerifyInEns(this));
+                break;
+            case "connectedhome_anonymous":
+            case "connectedhome_ssp":
+                FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+                FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+                FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+                FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
+                FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));
+                FidoInternetPackageChangeReviewOrderPageThreadLocal.set(new FidoInternetPackageChangeReviewOrderPage(getDriver()));
+                FidoShopInternetPageThreadLocal.set(new FidoShopInternetPage(getDriver()));
+                FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
+                FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
+                FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
+                FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+                FidoTechnicalInstallationPageThreadLocal.set(new FidoTechnicalInstallationPage(getDriver()));
+                FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+                FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
+                FidoRetailerShopPageThreadLocal.set(new SSPFidoRetailerShopPage(getDriver()));
+                FidoRetailerHomePageThreadLocal.set(new SSPFidoRetailerHomePage(getDriver()));
+                FidoRetailerSearchResultsPageThreadLocal.set(new SSPFidoRetailerSearchResultsPage(getDriver()));
+                FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
+                FidoRetailerChampPageThreadLocal.set(new SSPFidoRetailerChampPage(getDriver()));
+                break;
+            case "buyflows":
+                FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
+                FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
+                FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+                FidoWirelessDashboardPostpaidPageThreadLocal.set(new FidoWirelessDashboardPostpaidPage(getDriver()));
+                FidoChoosePhonePageThreadLocal.set(new FidoChoosePhonePage(getDriver()));
+                FidoChoosePlanPageThreadLocal.set(new FidoChoosePlanPage(getDriver()));
+                FidoBuildPlanPageThreadLocal.set(new FidoBuildPlanPage(getDriver()));
+                FidoChooseAddonsPageThreadLocal.set(new FidoChooseAddonsPage(getDriver()));
+                FidoCartSummaryPageThreadLocal.set(new FidoCartSummaryPage(getDriver()));
+                FidoCreateUserPageThreadLocal.set(new FidoCreateUserPage(getDriver()));
+                FidoCreditCheckPageThreadLocal.set(new FidoCreditCheckPage(getDriver()));
+                FidoChooseNumberPageThreadLocal.set(new FidoChooseNumberPage(getDriver()));
+                FidoPaymentOptionsPageThreadLocal.set(new FidoPaymentOptionsPage(getDriver()));
+                FidoOrderReviewPageThreadLocal.set(new FidoOrderReviewPage(getDriver()));
+                FidoOrderConfirmationPageThreadLocal.set(new FidoOrderConfirmationPage(getDriver()));
+                FidoChooseSimPageThreadLocal.set(new FidoChooseSimPage(getDriver()));
+                FidoShippingPageThreadLocal.set(new FidoShippingPage(getDriver()));
+                FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
+                FidoDeviceConfigPageThreadLocal.set(new FidoDeviceConfigPage(getDriver()));
+                FidoCheckOutPageThreadLocal.set(new FidoCheckOutPage(getDriver()));
+                break;
+            case "buyflowsoneview":
+                environmentSelectionPageThreadLocal.set(new EnvironmentSelectionPage(getDriver()));
+                accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));
+                fidoOVChoosePhonePageThreadLocal.set(new FidoOVChoosePhonePage(getDriver()));
+                fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
+                fidoOVCheckOutPageThreadLocal.set(new FidoOVCheckOutPage(getDriver()));
+                break;
+            default:
 		}
 	}
 
-	
+
 	/**
 	 * To close session, quit driver and close every associated windows.
 	 */
-	public void closeSession() {			
-		getDriver().quit();		
+	public void closeSession() {
+		getDriver().quit();
 	}
 
 	/**
@@ -677,8 +672,8 @@ public class BaseTestClass {
 	public WebDriver getDriver() {
 		return webDriverThreadLocal.get();
 	}
-	
-	
+
+
 	/**
 	 * To get parameters from XML file, it is called in TestListener.
 	 * @return HashMap of test parameters

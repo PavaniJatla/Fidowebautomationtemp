@@ -3,7 +3,6 @@ package ca.fido.test.tests.buyflowsoneview;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
-import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -24,7 +23,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogWithScreenshot("Fido Account overview page");
 
         getAccountOverViewPage().selectAddAWirelessLineButton();
-        getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
+        //getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
         getReporter().hardAssert(getFidoOVChoosePhonePage().isCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
         getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel()),
                 String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
@@ -49,6 +48,15 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
 //        getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
 
         //---------------------------------------Checkout pages----------------------------------------------
+        getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
+        getReporter().softAssert(getFidoOVCheckOutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not disaplayed");
+        getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
+        getFidoOVCheckOutPage().selectCityDropdownOption(TestDataHandler.tc01AalByodFinancingBopisShipping.getCtnCity());
+        getReporter().reportLogPassWithScreenshot("City Dropdown Value Selected Successfully");
+        getFidoOVCheckOutPage().selectFirstAvlPhoneNumber();
+        getReporter().reportLogPassWithScreenshot("Selected First Available Phone Number");
+        getReporter().softAssert(getFidoOVCheckOutPage().isFindMoreAvlNumbersButtonPresent(), "Find More Available Number Button Displayed", "Find More Available Number Button not disaplayed");
+        getFidoOVCheckOutPage().clkChooseNumberContinueButton();
     }
 
     @BeforeMethod(alwaysRun = true)
