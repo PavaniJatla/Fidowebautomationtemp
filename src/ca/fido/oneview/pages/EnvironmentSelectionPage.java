@@ -103,6 +103,6 @@ public class EnvironmentSelectionPage extends BasePageClass {
      */
     public void launchOneView() {
         reusableActions.waitForElementVisibility(launchBtn, 30);
-        reusableActions.clickWhenReady(launchBtn,30);
+        reusableActions.clickWhenReady(launchBtn, 30);
     }
 }

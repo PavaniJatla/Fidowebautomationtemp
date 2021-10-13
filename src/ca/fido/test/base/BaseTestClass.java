@@ -1,9 +1,6 @@
 package ca.fido.test.base;
 
-import ca.fido.oneview.pages.AccountOverViewPage;
-import ca.fido.oneview.pages.EnvironmentSelectionPage;
-import ca.fido.oneview.pages.FidoOVChoosePhonePage;
-import ca.fido.oneview.pages.FidoOVPlanConfigPage;
+import ca.fido.oneview.pages.*;
 import ca.fido.pages.*;
 import ca.fido.pages.ens.EnsHomePage;
 import ca.fido.pages.ens.EnsNotificationViewPage;
@@ -104,6 +101,8 @@ public class BaseTestClass {
 	protected static final ThreadLocal<AccountOverViewPage> accountOverViewPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVChoosePhonePage> fidoOVChoosePhonePageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVPlanConfigPage> fidoOVPlanConfigPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVReviewOrderPage> fidoOVReviewOrderPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVOrderConfirmationPage> fidoOVOrderConfirmationPageThreadLocal = new ThreadLocal<>();
 
 	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
 	protected boolean isDockerStarted = false;
@@ -392,6 +391,14 @@ public class BaseTestClass {
 		return fidoOVPlanConfigPageThreadLocal.get();
 	}
 
+	public static FidoOVReviewOrderPage getFidoOVReviewOrderPage() {
+		return fidoOVReviewOrderPageThreadLocal.get();
+	}
+
+	public static FidoOVOrderConfirmationPage getFidoOVOrderConfirmationPage() {
+		return fidoOVOrderConfirmationPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -646,6 +653,8 @@ public class BaseTestClass {
 				accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));
 				fidoOVChoosePhonePageThreadLocal.set(new FidoOVChoosePhonePage(getDriver()));
 				fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
+				fidoOVReviewOrderPageThreadLocal.set(new FidoOVReviewOrderPage(getDriver()));
+				fidoOVOrderConfirmationPageThreadLocal.set(new FidoOVOrderConfirmationPage(getDriver()));
 				break;
 
 			default:

@@ -1,9 +1,12 @@
 package ca.fido.oneview.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class FidoOVChoosePhonePage extends BasePageClass {
 
@@ -16,14 +19,23 @@ public class FidoOVChoosePhonePage extends BasePageClass {
     @FindBy(xpath = "//button[@data-test='modal-credit-evaluation-decline']")
     WebElement btnPlanOnlyOnCreditEvalModal;
 
-    @FindBy(xpath = "//th[contains(text(), 'Security deposit')]//following-sibling::td")
-    WebElement securityDepositAmount;
-
-    @FindBy(xpath = "//th[contains(text(), 'Credit limit')]//following-sibling::td")
-    WebElement creditLimitAmount;
+    @FindBy(xpath = "//th[contains(text(), 'Downpayment')]//following-sibling::td")
+    WebElement downpaymentPercent;
 
     @FindBy(xpath = "//th[contains(text(), 'Risk Level')]//following-sibling::td")
     WebElement riskLevel;
+
+    @FindBy(xpath = "//a[contains(@title,'View Details')]")
+    List<WebElement> viewDetailsButtons;
+
+    @FindBy(xpath = "//div[contains(@class, 'col-undefined col-xs-12')]/div[@class='row']")
+    WebElement devicesCatalog;
+
+    @FindBy(xpath = "//button[@title='Select' or @title='Continue' or @title='Continuer' or @title='Ship to home' or @title='Expédier à la maison']")
+    WebElement continueButtonOnDashboardPhonePage;
+
+    @FindBy(xpath = "//div[contains(@class, 'd-block mt-16')]//h1")
+    WebElement titleOnDashboardPhonePage;
 
     /**
      * Instantiates a new Base page class.
@@ -64,19 +76,15 @@ public class FidoOVChoosePhonePage extends BasePageClass {
      */
     public String checkCustomerType() {
         String customerType = null;
-        String[] security = securityDepositAmount.getText().split("\\$");
-        String[] clmValue = creditLimitAmount.getText().split("\\$");
-        double securityDeposit = Double.parseDouble(security[1]);
-        double clm = Double.parseDouble(clmValue[1]);
         String risk = riskLevel.getText();
+        double downpayment = Double.parseDouble(downpaymentPercent.getText().replace("%", ""));
 
-        if (securityDeposit <= 0 && clm <= 0 && risk.equalsIgnoreCase("Low")) {
+        if (downpayment <= 19 && downpayment >= 0 && risk.equalsIgnoreCase("Low")) {
             customerType = "Low Risk";
-        } else if (securityDeposit == 300 && (clm > 0 && clm < 450) && risk.equalsIgnoreCase("Medium")) {
+        } else if (downpayment >= 20 && risk.equalsIgnoreCase("Medium")) {
             customerType = "Medium Risk";
-        } else if (securityDeposit == 500 && clm >= 450 && risk.equalsIgnoreCase("High")) {
-            customerType = "High Risk";
         }
+
         return customerType;
     }
 
@@ -98,5 +106,53 @@ public class FidoOVChoosePhonePage extends BasePageClass {
     public void clickPlanOnlyButtonOnCreditEvalModal() {
         reusableActions.waitForElementVisibility(btnPlanOnlyOnCreditEvalModal);
         reusableActions.executeJavaScriptClick(btnPlanOnlyOnCreditEvalModal);
+    }
+
+    /**
+     * This method will verify that the device title CTA button is present or not
+     *
+     * @param deviceName name of the Device for which we want to verify device tile CTA button
+     * @return boolean true if the CTA button is present else false
+     * @author Veranika.Siadach
+     */
+    public boolean verifyDeviceTitleButton(String deviceName) {
+        reusableActions.waitForElementVisibility(devicesCatalog, 80);
+        reusableActions.waitForElementVisibility(viewDetailsButtons.get(0), 60);
+
+        return reusableActions.isElementVisible(By.xpath(createXpathForViewDetailsButton(deviceName)), 60);
+    }
+
+    /**
+     * This method creates Xpath of a particular CTA button
+     *
+     * @param deviceName name of the device used to create the xpath
+     * @return a String value which is an xpath for a CTA button
+     * @author Veranika.Siadach
+     */
+    public String createXpathForViewDetailsButton(String deviceName) {
+        String xpathDeviceName = "//p[contains(@class,'text-title-5 ')][contains(text(),'" + deviceName + "')]";
+        return xpathDeviceName + "/ancestor::div[@class='dsa-nacTile__top']//following-sibling::div//span[contains(@class,'ds-button__copy')]";
+    }
+
+    /**
+     * This method Clicks on a device Title CTA button for a particular phone
+     *
+     * @param deviceName name of the Device to be used to generate Xpath
+     * @author Veranika.Siadach
+     */
+    public void clickDeviceTitleButton(String deviceName) {
+        reusableActions.scrollToElement(reusableActions.getWhenReady(By.xpath(createXpathForViewDetailsButton(deviceName))));
+        reusableActions.clickWhenVisible(By.xpath(createXpathForViewDetailsButton(deviceName)), 30);
+    }
+
+    /**
+     * Click on the continue button on Dashboard phone page
+     *
+     * @param deviceName name of the device
+     * @author Veranika.Siadach
+     */
+    public void clickContinueButtonOnDashboardPhonePage(String deviceName) {
+        reusableActions.waitForTextToBePresentInElement(titleOnDashboardPhonePage, deviceName.toUpperCase(), 30);
+        reusableActions.clickWhenReady(continueButtonOnDashboardPhonePage);
     }
 }
