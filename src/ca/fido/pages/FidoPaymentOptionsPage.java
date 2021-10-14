@@ -257,7 +257,10 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//rss-quick-links//span[contains(text(),'Set up automatic payments') or contains(text(),'Configurer les paiements automatiques')]")
 	WebElement lnkSetUpAutoPayment;
 
-	@FindBy(xpath = "//span[contains(text(),' Use a credit card for automatic payments ') or contains(text(),' Effectuer des paiements automatiques à partir d’un compte de carte de crédit ')]/ancestor::label")
+	@FindAll({
+			@FindBy(xpath = "//span[contains(text(),' Use a different credit card for automatic payments ') or contains(text(),' de crédit ')]/ancestor::label"),
+			@FindBy(xpath = "//span[contains(text(),' Use a credit card for automatic payments ') or contains(text(),' Effectuer des paiements automatiques à partir d’un compte de carte de crédit ')]/ancestor::label")
+	})
 	WebElement optCardAccount;
 
 	@FindBy(xpath = "//button[@class='w-100 w-sm-auto ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @title='Continuer']")
