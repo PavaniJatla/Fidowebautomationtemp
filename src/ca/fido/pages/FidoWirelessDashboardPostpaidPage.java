@@ -91,7 +91,10 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	WebElement drpSelectAnotherLine;
 	
 	//My Plan section
-	@FindBy (xpath = "//fss-wireless//div[contains(@class,'plan-content-box pr-sm-16 ng-tns-c189-6') ]")
+	@FindAll({
+			@FindBy(xpath = "//div[contains(@class,'ss-plan-container-header')]//h2"),
+			@FindBy(xpath = "//div[contains(@class,'ss-plan-container-box ng-star-inserted') ]")
+	})
 	WebElement divMyPlan;
 	
 	@FindBy (xpath="//h3[@class='ss-plan-container-sub-heading']")
