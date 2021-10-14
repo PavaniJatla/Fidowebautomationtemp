@@ -34,8 +34,8 @@ public class FidoSS_TC085_SuspendedAccountBillDisplayErrorMessageOnViewBillPage 
 	
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void postPaidPaymentBank() throws InterruptedException {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc28.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc28.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -52,10 +52,9 @@ public class FidoSS_TC085_SuspendedAccountBillDisplayErrorMessageOnViewBillPage 
 		getFidobilldetailspage().switchToDefaultContent();
 		String billAmount = getFidobilldetailspage().getBillAmountFromViewBillDropDown();
 		getReporter().hardAssert(billAmount.equals(""), "No bills Present in the dropdown", "Bills Present in the dropdown");
-		getReporter().hardAssert(
-				getFidobilldetailspage().verifyBillErrorMsg(),
-				"No Bills Error Message Validated Successfully", "No Bills Error Message Not Present");
 		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		getReporter().hardAssert(getFidobilldetailspage().verifyBillErrorMsg(),
+				"No Bills Error Message Validated Successfully", "No Bills Error Message Not Present");
 		getReporter().reportLogWithScreenshot("No Bills Error Message Displayed");
 	}
 

@@ -152,7 +152,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(id="businessExtn")
 	WebElement txtBusinessExtn;
 	
-	@FindBy(xpath = "//button/span[text()='Save' or text()='Sauvegarder' or text()='ENREGISTRER']")
+	@FindBy(xpath = "//button[@title='Save' or text()='Sauvegarder' or text()='ENREGISTRER']")
 	WebElement btnSave;
 	
 	@FindBy (xpath = "//input[@formcontrolname='smsPin']")
@@ -217,7 +217,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//p[text()='Due to recent changes on your account, we are unable to proceed with this transaction.' or text()='En raison de modifications récentes de votre compte, nous ne pouvons pas procéder avec cette transaction.']")
 	WebElement msgUnableToProceed;
 	
-	@FindBy(xpath = "//span[text()=' CLOSE ' or text()=' FERMER ']")
+	@FindBy(xpath = "//span[text()=' Close ']")
 	WebElement btnClose;
 	
 	public void clkProfileNSetting() {

@@ -217,7 +217,8 @@ public class FidoLoginPage extends BasePageClass {
 	 * Click on the login button
 	 * @author Chinnarao.Vattam
 	 */
-	public void clkLoginInFrame() {		
+	public void clkLoginInFrame() {
+		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(btnLogIn,60).click();	  
 	}
 	
@@ -247,7 +248,7 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void switchOutOfSignInFrame() {	
-		reusableActions.clickIfAvailable(btnSkip, 30);
+		reusableActions.clickIfAvailable(btnSkip, 20);
 		driver.switchTo().defaultContent();	
 
 	}

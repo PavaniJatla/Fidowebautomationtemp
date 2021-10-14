@@ -31,8 +31,8 @@ public class FidoSS_Regression_TC044_PostpaidAccHolderUpdateContactInfo extends 
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndUpdateContactInfo() throws InterruptedException, ParseException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc104447.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc104447.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

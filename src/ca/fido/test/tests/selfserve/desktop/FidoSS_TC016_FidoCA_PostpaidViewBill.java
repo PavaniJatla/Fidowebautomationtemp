@@ -32,7 +32,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 	public void postPaidPaymentViewBill() throws InterruptedException, ParseException {
 		
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -88,6 +88,7 @@ public class FidoSS_TC016_FidoCA_PostpaidViewBill extends BaseTestClass{
 		{
 			getFidobilldetailspage().selectOlderBillViewBillDropDown();
 			getReporter().reportLogWithScreenshot("Older bills selected");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getReporter().hardAssert(getFidobilldetailspage().isLabelComingSoonDisplayed(),
 								"No bills generated yet for this account",
 								"Some issue with bills, please investigate");

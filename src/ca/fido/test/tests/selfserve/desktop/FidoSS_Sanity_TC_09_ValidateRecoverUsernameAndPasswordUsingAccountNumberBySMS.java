@@ -28,9 +28,9 @@ public class FidoSS_Sanity_TC_09_ValidateRecoverUsernameAndPasswordUsingAccountN
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc05ValidateRecoverPassUsingSms() {
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		getReporter().reportLogWithScreenshot("Login Page");
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkForgotPassOrNameIframe();	
 		getReporter().reportLogWithScreenshot("Clicked on Forgot Password or username");
 		getFidorecoverpassornamepage().clkBtnBoth();

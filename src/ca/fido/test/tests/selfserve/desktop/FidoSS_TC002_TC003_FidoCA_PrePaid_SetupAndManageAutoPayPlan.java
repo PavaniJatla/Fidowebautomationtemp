@@ -27,10 +27,10 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 	}
 	
 	  	
-	@Test(groups = {"RegressionSS","BillingAndPaymentsSS","PrepaidSS"})
+	//@Test(groups = {"RegressionSS","BillingAndPaymentsSS","PrepaidSS"})
 	public void prepaidSetUpAutoPayRefill() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc0203.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc0203.getPassword());
 		String strBAN = TestDataHandler.tc0203.getaccountDetails().getBan();
@@ -49,6 +49,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 		if(! getFidorefillpage().isRecurringAutoRefillAlreadySet())
 		{
 			getReporter().reportLogWithScreenshot("Set up recurring auto refill");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getFidorefillpage().clkRecurringAutoRefill();
 			//Credit card payment 
 			if(!getFidorefillpage().isCardAlreadyRegistered()) {
@@ -58,6 +59,7 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 				getFidorefillpage().selectCreditcardExpiryYear(TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear());
 				getReporter().reportLogWithScreenshot("Credit card details entered");
 				getFidorefillpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+				getFidoaccountoverviewpage().scrollToMiddleOfPage();
 				getFidorefillpage().clkTnC();
 				getReporter().reportLogWithScreenshot("Credit card T n C selected");
 			}
@@ -65,12 +67,14 @@ public class FidoSS_TC002_TC003_FidoCA_PrePaid_SetupAndManageAutoPayPlan extends
 			//getFidorefillpage().clkRecurringAutoPayContinue();	
 			getFidorefillpage().clkContinue();			
 			getReporter().reportLogWithScreenshot("Click on continue button");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getFidorefillpage().clkSubmit();
 			getReporter().reportLogWithScreenshot("After click on submit button");
 			getReporter().hardAssert(getFidorefillpage().verifyAutoRefillSubmittedSuccessFully(),
 								"Auto refill submitted successfully", 
 								"Auto refill not submitted successfully");
 			getReporter().reportLogWithScreenshot("refill success");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getFidorefillpage().clkBacktoMyAccount();
 			getReporter().reportLogWithScreenshot("Back to Account overview page");
 			getFidoaccountoverviewpage().clkBtnRefillNowNew(strBAN);		

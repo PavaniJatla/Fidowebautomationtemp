@@ -36,8 +36,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//input[@id = 'expiryDate' and @formcontrolname='expiryDate']")
 	WebElement txtExpiryDate;
 	
-	@FindBy(xpath = "//button[@title='Continue' or @title='Continuer']")
-	WebElement btnContinue;
+	/*@FindBy(xpath = "//button[@title='Continue' or @title='Continuer']")
+	WebElement btnContinue;*/
 	
 	@FindBy(xpath = "//ins[@translate='payment-method.review-payment-method.confirmAccountDetails']")
 	WebElement lblConfirmAccountDetails;
@@ -101,15 +101,12 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 
 	@FindBy(xpath = "//div/fds-button/button[@title='Close' or @title='Fermer']")
 	WebElement btnClose;
-	
-	@FindBy(xpath = "//ins[@translate='payment-method.change-payment-method.autoPay']")
-	WebElement lblAutomaticPayments;
-	
+
 	@FindBy(xpath = "//a[@title='Cancel automatic payments' or @title='Annuler les paiements automatiques']")
 	WebElement btnRemoveAutomaticPayment;
 	
-	@FindBy(xpath = "//ins[@translate='payment-method.change-payment-method.on']")
-	WebElement lblAutomaticPaymentOn;
+	@FindBy(xpath = "//*[contains(text(),'Account balance will be automatically charged to:')]")
+	WebElement lblCurrentPaymentOn;
 	
 	@FindBy(xpath = "//button[@title='Yes, Cancel' or @title='Oui, Annuler']")
 	WebElement btnYesCancelAutomaticPayments;
@@ -228,10 +225,65 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
 	WebElement btnBillingOptionClkContinue;
 	
-	@FindBy (xpath = "//div[@class='ss-payment-modal-container']")
+	@FindBy (xpath = "//*[contains(text(),' Current payment method: ')]")
 	WebElement modalPaymentMethod;
 
-	
+	@FindBy(xpath = "//p[text()='2. Review' or text()='2. Vérification']")
+	WebElement lblReview;
+
+	@FindBy(xpath = "//span[contains(text(),'Change to manual payments')]/ancestor::label")
+	WebElement optManualPayments;
+
+	@FindAll({
+			@FindBy(xpath = "//button[@title='payment.auto.manual.step-1.continue']"),
+			@FindBy(xpath = "//span[text()=' Continue ']")})
+	WebElement btnContinue;
+
+	@FindBy(xpath = "//button[@title='Yes, cancel automatic payments']")
+	WebElement btnYesCancelAutoPayment;
+
+	@FindBy(xpath = "//button[@title='No, don’t cancel']")
+	WebElement btnCancelAutomaticPayments;
+
+	@FindBy(xpath = "//ss-payment-message//span[contains(text(),'Done')]//ancestor::a")
+	WebElement btnChangePaymentDone;
+
+	@FindBy(xpath = "//ss-payment-message//span[contains(text(),'Done')]//ancestor::a")
+	WebElement btnManualChangePaymentDone;
+
+	@FindBy(xpath = "//a[@class='ml-8 ds-link ds-pointer d-inline-flex outline-none mw-100 -cta' or contains(text(),'Configurer les paiements automatiques')]")
+	WebElement lnkSetUpAutomaticPaymentMethod;
+
+	@FindBy(xpath = "//rss-quick-links//span[contains(text(),'Set up automatic payments') or contains(text(),'Configurer les paiements automatiques')]")
+	WebElement lnkSetUpAutoPayment;
+
+	@FindBy(xpath = "//span[contains(text(),' Use a credit card for automatic payments ') or contains(text(),' Effectuer des paiements automatiques à partir d’un compte de carte de crédit ')]/ancestor::label")
+	WebElement optCardAccount;
+
+	@FindBy(xpath = "//button[@class='w-100 w-sm-auto ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @title='Continuer']")
+	WebElement btnContinueSetCC;
+
+	@FindBy(xpath = "//button[@class='w-100 w-sm-auto mr-md-24 mt-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @title='Continuer']")
+	WebElement btnContinueReview;
+
+
+	@FindBy(xpath = "//p[text()=' Success! Starting next month your bill payments will be made automatically. ' or text()='C’est réussi! À partir du mois prochain, vos paiements de facture se feront automatiquement.']")
+	WebElement lblYouAutomaticPaymentWillStart;
+
+	@FindBy (xpath = "//*[@translate='ute.payment.method.payment_method' or @translate='ute.payment.method.will_auto_charge' or contains(text(),'Will be automatically charged to:') or contains(text(),'Mode de paiement:') or contains(text(),'Sera porté automatiquement à :') or text()='Payment method:' or text()='Mode de paiement:']")
+	WebElement lblAutoPayment;
+
+
+
+	@FindBy(xpath = "//ds-icon[@class='-size-48']")
+	WebElement imgCC;
+
+	@FindBy(xpath = "//span[contains(text(),'Pay through your bank') or contains(text(),' Paiement par services bancaires')]/ancestor::label")
+	WebElement divBank;
+
+	@FindBy(xpath = "//span[contains(text(),'Pay with credit card, Visa Debit') or contains(text(),'Paiement par carte de crédit, carte Visa Débit ou carte')]/ancestor::label")
+	WebElement divCredit;
+
 	//--------------------------------------------------------------------------------
 	
 	/**
@@ -240,7 +292,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public boolean verifyPaymentMethodModalDisplayed() {
-		return reusableActions.isElementVisible(modalPaymentMethod, 10);
+		return reusableActions.isElementVisible(modalPaymentMethod, 30);
 	}
 	
 	/**
@@ -383,7 +435,155 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.clickWhenVisible(txtInstitutionNumber);
 		reusableActions.getWhenReady(txtInstitutionNumber).sendKeys(strInstitutionNumber);
 	}
-	
+
+	/**
+	 * @Rama Arora
+	 * @return true or false review cc details
+	 */
+	public boolean isReviewCCDetailsPageDisplayed() {
+		// TODO Auto-generated method stub
+		return reusableActions.isElementVisible(lblReview);
+	}
+
+	/**
+	 * Click on Switch to manual payments
+	 * @author Rama Arora
+	 */
+	public void clkSwitchToManualPayments() {
+		reusableActions.isElementVisible(optManualPayments, 60);
+		reusableActions.executeJavaScriptClick(optManualPayments);
+	}
+
+	/**
+	 * Clicks on the 'Yes, cancel automatic payments' button
+	 * @author Rama Arora
+	 */
+	public void clkYesCancelAutomaticPayment() {
+		reusableActions.staticWait(4000);
+		reusableActions.clickIfAvailable(btnContinue);
+		/*reusableActions.clickIfAvailable(btnCancelAutomaticPayments,30);
+		reusableActions.staticWait(4000);
+		reusableActions.clickIfAvailable(btnContinue);*/
+		reusableActions.clickIfAvailable(btnYesCancelAutoPayment);
+	}
+
+	/**
+	 * Clicks on the button change payment done
+	 * @author Rama Arora
+	 */
+	public void clkButtonDoneChangePayment() {
+		reusableActions.staticWait(5000);
+		//reusableActions.getWhenReady(btnManualChangePaymentDone,60).click();
+		reusableActions.executeJavaScriptClick(btnManualChangePaymentDone);
+
+	}
+
+	/**
+	 * Clicks on the 'Billing and Payment' then 'Set up automatic payment' option
+	 * @author Rama Arora
+	 */
+	public void clkSetUpAutomaticPaymentMethod() {
+		//getReusableActionsInstance().waitForElementVisibility(lnkBillingAndPayment);
+		//getReusableActionsInstance().clickIfAvailable(lnkBillingAndPayment);
+		reusableActions.getWhenReady(lnkSetUpAutomaticPaymentMethod,60).click();
+	}
+
+	/** click on Set up Payment link
+	 * @ Rama ARora
+	 *//*
+	public void clkSetUpAutoPaymentQuickLink() {
+		reusableActions.waitForElementTobeClickable(lnkSetUpAutoPayment, 60);
+		reusableActions.getWhenReady(lnkSetUpAutoPayment).click();
+	}*/
+
+	/**
+	 * Click on CC card radio button
+	 * @author Rama Arora
+	 */
+	public void clkUseCCForAutomaticPayments() {
+		reusableActions.waitForElementVisibility(optCardAccount, 60);
+		reusableActions.executeJavaScriptClick(optCardAccount);
+	}
+
+	/*
+	 *  @Rama Arora
+	 */
+	public void clkContinueSettingCC() {
+		reusableActions.getWhenReady(btnContinueSetCC).click();
+	}
+
+	/**
+	 * Clicks on continue button on Review page
+	 * @author Rama Arora
+	 */
+	public void clkContinueOnReviewPg() {
+		reusableActions.getWhenReady(btnContinueReview).click();
+
+	}
+
+	/**
+	 * verify if the label success header is displayed
+	 * @return true if the label is displayed hence false
+	 * @author Rama Arora
+	 */
+	public boolean verifySuccessMessageIsDisplayed() {
+		return reusableActions.isElementVisible(lblYouAutomaticPaymentWillStart,120);
+	}
+
+	/**
+	 * Click on Done button
+	 * @author Rama Arora
+	 */
+	public void clkOnDone() {
+		reusableActions.staticWait(5000);
+		//reusableActions.getWhenReady(btnChangePaymentDone).click();
+		reusableActions.executeJavaScriptClick(btnChangePaymentDone);
+	}
+
+	/**
+	 * Checks if the auto payment option is set successfully to CC
+	 * @return true if the payment option is set successfully
+	 * @author Rama Arora
+	 */
+	public boolean verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage() {
+		// buffer static wait added for pageload
+		reusableActions.staticWait(4000);
+		reusableActions.waitForElementVisibility(lblCurrentPaymentOn, 50);
+		reusableActions.staticWait(2000);
+		return (reusableActions.isElementVisible(lblCurrentPaymentOn,20)
+				&& reusableActions.isElementVisible(imgCC,20));
+	}
+
+	/**
+	 * Selects the payment modes (pac, pacc, invoice) on the payment options page
+	 * @param payOption payment option to pay to buy Internet offer
+	 * @author Rama Arora
+	 */
+	public void selectHowWouldYouLikeToPayNew(PayOptions payOption) {
+		//writing the below element in method since we want to dynamically generate this at run time
+		if(payOption.toString().toLowerCase().equals("bank"))
+		{
+
+			reusableActions.getWhenReady(divBank).click();
+
+		}else if(payOption.toString().toLowerCase().equals("creditcard"))
+		{
+			//getReusableActionsInstance().javascriptScrollByVisibleElement(divCredit);
+			reusableActions.getWhenReady(divCredit).click();
+
+		}
+
+	}
+
+	/**
+	 * Click on the continue button
+	 * @author Mirza.Kamran
+	 */
+	public void clkContinue() {
+		reusableActions.waitForElementTobeClickable(btnContinue, 60);
+		reusableActions.executeJavaScriptClick(btnContinue);
+	}
+
 	/**
 	 *  Set the transit number for  bank
 	 * @param strTransitNumber  bank transit code of the account
@@ -659,13 +859,13 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.getWhenReady(btnUpdate).click();
 	}
 	
-	/**
+/*	*//**
 	 * Click om continue payment button
 	 * @author Mirza.Kamran
-	 */
+	 *//*
 	public void clkContinue() {
 		reusableActions.getWhenReady(btnContinue).click();
-	}
+	}*/
 	
 	/**
 	 * checks if the review credit card details is displayed
@@ -782,7 +982,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public boolean isAutopaymentAlreadySet() {
 		reusableActions.staticWait(5000);
-		return (reusableActions.isElementVisible(lblAutomaticPaymentOn) && reusableActions.isElementVisible(lblAutomaticPayments)) ;
+		return (reusableActions.isElementVisible(lblCurrentPaymentOn)) ;
 	}
 
 	/**
@@ -811,7 +1011,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void clkClose() {
 		reusableActions.waitForElementTobeClickable(btnCloseAfterSwitchToManual, 30);
-		reusableActions.executeJavaScriptClick(btnCloseAfterSwitchToManual);
+  		reusableActions.executeJavaScriptClick(btnCloseAfterSwitchToManual);
 		
 	}
 

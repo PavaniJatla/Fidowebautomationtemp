@@ -28,8 +28,8 @@ public class FidoSS_Regression_TC081_ValidateTheSavePDFLinkInViewBillPage extend
 	@Test(groups = {"BillingAndPaymentsSS",""})
 	public void validateSavePDFLinkInViewBillPage() throws InterruptedException, ParseException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getReporter().reportLogWithScreenshot("Login Frame Page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());

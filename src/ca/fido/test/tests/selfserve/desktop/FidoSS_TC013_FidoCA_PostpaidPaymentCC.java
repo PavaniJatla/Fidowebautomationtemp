@@ -1,6 +1,7 @@
 package ca.fido.test.tests.selfserve.desktop;
 
 import ca.fido.pages.FidoMakePaymentPage;
+import ca.fido.pages.FidoPaymentOptionsPage;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
@@ -52,11 +53,36 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		//getFidoaccountoverviewpage().waitForPayNowToBecomeClickable();
 		//.clkPayNow();
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
+		getReporter().reportLogWithScreenshot("Make Payment button is clicked.");
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		getFidoaccountoverviewpage().clkPayNowNew(strBAN);
 		getReporter().reportLogWithScreenshot("Pay now");
-		String amountEntered="0.01";
+		String amountEntered="2";
+		getFidopaymentoptionspage().selectHowWouldYouLikeToPayNew(FidoPaymentOptionsPage.PayOptions.Creditcard);
 		getFidomakepaymentpage().setPaymentAmount(amountEntered);
-		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
+		getReporter().reportLogWithScreenshot("Card option selected");
+
+		getFidomakepaymentpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
+				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
+
+		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
+
+		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		getFidomakepaymentpage().clkReviewAndContinueButton();
+		getFidomakepaymentpage().clkPayNow();
+
+		getReporter().reportLogWithScreenshot("Payment status");
+		getFidoaccountoverviewpage().scrollToTopOfPage();
+		getReporter().hardAssert(getFidomakepaymentpage().verifyPaymentSuccessful(amountEntered),
+				"Payment confirmaton",
+				"Payment Confirmation message Error. Refer screenshot");
+		String strReferenceNumber= getFidomakepaymentpage().getTransactionReferenceNumberNew();
+		getReporter().reportLogWithScreenshot("Payment Successful, Details :"+strReferenceNumber);
+
+		getFidomakepaymentpage().clickDone();
+
+		/*getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
 		getReporter().reportLogWithScreenshot("Credit card option selected");
 		getFidomakepaymentpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 		getFidomakepaymentpage().selectExpiryMonth();
@@ -76,7 +102,7 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Payment history page selected");
 		getReporter().hardAssert(getFidopaymenthistorypage().verifyPaymentHistory(refNo,FidoMakePaymentPage.MakePayOptions.Creditcard),					
 				"Payment history record is verified for credit  card :"+refNo,
-				"Payment history record is not verified for credit card payment ref no :"+refNo);
+				"Payment history record is not verified for credit card payment ref no :"+refNo);*/
 			
 	}
 

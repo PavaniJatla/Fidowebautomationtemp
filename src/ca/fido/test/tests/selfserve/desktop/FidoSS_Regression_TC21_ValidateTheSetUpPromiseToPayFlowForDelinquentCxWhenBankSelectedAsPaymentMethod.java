@@ -33,8 +33,8 @@ public class FidoSS_Regression_TC21_ValidateTheSetUpPromiseToPayFlowForDelinquen
 	
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void validateTheSetUpPromiseToPayFlowForDelinquentCxWhenCreditCardSelectedAsPaymentMethod() throws InterruptedException {		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc21.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc21.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

@@ -28,7 +28,7 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc05ValidateRecoverPassUsingSms() {
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		getReporter().reportLogWithScreenshot("Login Page");
 		getFidologinpage().switchToSignInFrame();
 		//================  new code ====================

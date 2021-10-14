@@ -67,7 +67,7 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 
 		//double previousTotalData = getFidowirelessdashboardpostpaidpage().getValueTotalData();
 		//double previousRemainingData = getFidowirelessdashboardpostpaidpage().getValueRemainingData();
-		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
+		//getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
 		getReporter().hardAssert(getFidodatamanagementpage().validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");

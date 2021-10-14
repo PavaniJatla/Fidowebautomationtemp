@@ -48,8 +48,10 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 		getFidowirelessdashboardpostpaidpage().clkLnkUpdateSimCard();
 		getReporter().reportLogWithScreenshot("Click on Link : Update Sim card");
 		String strOldSimNum = TestDataHandler.tc18.getaccountDetails().getSimCardNumber();
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getFidowirelessdashboardpostpaidpage().setOldSimNum(strOldSimNum);
-		String strNewSimNum = FormFiller.generateSIMNumber();		
+		//String strNewSimNum = FormFiller.generateSIMNumber();
+		String strNewSimNum = "370102000617860";
 		getFidowirelessdashboardpostpaidpage().setNewSimNum(strNewSimNum);
 		getReporter().reportLogWithScreenshot("Fill old and new sim card details");
 		getFidowirelessdashboardpostpaidpage().clkBtnUpdateSimNext();

@@ -45,7 +45,7 @@ Validate:
 	public void validateSubNav() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

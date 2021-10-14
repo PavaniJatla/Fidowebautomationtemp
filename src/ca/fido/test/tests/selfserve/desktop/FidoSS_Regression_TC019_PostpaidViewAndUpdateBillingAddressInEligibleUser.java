@@ -60,7 +60,7 @@ Billing Due Date(postpaid/internet)/Balance Expiry Date(Prepaid)
 	@Test(groups = {"SanitySS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndUpdateBillingAddress() throws InterruptedException, ParseException {		
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc19.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc19.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -75,6 +75,7 @@ Billing Due Date(postpaid/internet)/Balance Expiry Date(Prepaid)
 		String newAddress;
 		getFidoaccountoverviewpage().clkSubNavProfileAndSettings();
 		getReporter().reportLogWithScreenshot("profile and settings page");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		String existingAddress=getFidoprofileandsettingpage().getOldAddress();
 		if(!existingAddress.contains("4501 Valiant") 
 			&& existingAddress.contains(TestDataHandler.tc1417.getaccountDetails().getAddress().get("line1")))

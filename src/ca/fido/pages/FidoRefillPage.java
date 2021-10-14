@@ -126,10 +126,10 @@ public class FidoRefillPage extends BasePageClass {
     @FindBy(xpath ="//ins[@translate='wireless.message.setUpAutoRefillError']")
     WebElement lblWarning;
 
-    @FindBy(xpath ="//form[@name='form']//descendant::iframe")
+    @FindBy(xpath ="//ss-semafone-credit-card/iframe")
     WebElement fraCC;
 
-    @FindBy(xpath ="//input[@class='semafonemandatory']")
+    @FindBy(xpath ="//input[@id='pan']")
     WebElement txtCardNumber;
         
 	@FindBy(id = "expiry-date")
@@ -542,12 +542,11 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
 	public void setCreditCardNumber(String strAccountNumber) {
-		
-		driver.switchTo().frame(reusableActions.getWhenVisible(fraCC));
-		reusableActions.waitForElementTobeClickable(txtCardNumber, 20);
-		reusableActions.executeJavaScriptClick(txtCardNumber);
-		reusableActions.getWhenReady(txtCardNumber).sendKeys(strAccountNumber);
-		driver.switchTo().defaultContent();	
+		getDriver().switchTo().frame(fraCC);
+		reusableActions.staticWait(7000);
+		txtCardNumber.click();
+		txtCardNumber.sendKeys(strAccountNumber);
+		getDriver().switchTo().defaultContent();
 	}
 	
 
