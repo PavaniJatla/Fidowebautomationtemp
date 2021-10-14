@@ -71,6 +71,12 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//nav[@class='ds-breadcrumb']")
     WebElement breadCrumb;
 
+    @FindBy(xpath="//p[contains(.,'Financing options')]")
+    WebElement txtFinancingOptions;
+
+    @FindBy(xpath = "(//label[contains(@class,'ds-radioLabel')])[2]")
+    WebElement noTermRadioBtn;
+
     /**
      * Instantiates a new Base page class.
      *
@@ -130,6 +136,17 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     }
 
     /**
+     * Clicks on NO TERM radio button in device cost stepper
+     *
+     * @author Veranika.Siadach
+     */
+    public void clkRadioButtonNoTerm() {
+        reusableActions.waitForElementVisibility(txtFinancingOptions, 30);
+        reusableActions.scrollToElement(txtFinancingOptions);
+        reusableActions.clickWhenVisible(noTermRadioBtn);
+    }
+
+    /**
      * Select Device Cost tier on Plan config page and clicks on continue button
      *
      * @param deviceCostIndex String value of Device Cost to be selected
@@ -137,14 +154,17 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      */
     public void selectDeviceCostAndClickOnContinueButton(String deviceCostIndex) {
         int stepper = 1;
-        String xpathValue = createXpathWithInputData(deviceCostIndex, stepper);
-
-        if (Integer.parseInt(deviceCostIndex) == 0) {
-            reusableActions.clickWhenVisible(preCartDeviceCostContinueButton, 30);
-        } else {
-            reusableActions.clickWhenVisible(By.xpath(xpathValue), 60);
-            reusableActions.clickWhenVisible(preCartDeviceCostContinueButton, 30);
+        if (Integer.parseInt(deviceCostIndex) == 1) {
+            clkRadioButtonNoTerm();
         }
+
+        String planIndex = getUpdatedDeviceCostIndex(deviceCostIndex);
+        String xpathValue = createXpathWithInputData(planIndex, stepper);
+
+        if (Integer.parseInt(planIndex) != 0) {
+            reusableActions.clickWhenVisible(By.xpath(xpathValue), 60);
+        }
+        reusableActions.clickWhenVisible(preCartDeviceCostContinueButton, 30);
     }
 
     /**
@@ -268,7 +288,7 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      *
      * @author Veranika.Siadach
      */
-    public void PopulateCallerAndClkContinueCallerId() {
+    public void populateCallerAndClkContinueCallerId() {
         enterFirstName();
         enterLastName();
         clkContinueCallerId();

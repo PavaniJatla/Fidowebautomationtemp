@@ -10,29 +10,29 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with TERM flow by selecting tablet and Standard shipping - E2E (MR- EN - ON)
+ * TC01-OV-AAL Fido add a line with NO TERM flow by selecting smartphone and BOPIS shipping - E2E (LR- EN - ON)
  *
  * @author Veranika.Siadach
  */
-public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC05_AALNoTermRetentionBopisShipping_Test extends BaseTestClass {
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
-    public void aalTermTabletFinancingStandardShippingFlow() {
-        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getBanNo(), TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getContactId());
+    public void aalNoTermRetentionStandardShippingFlow() {
+        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc05AalNoTermRetentionBopisShipping.getBanNo(), TestDataHandler.tc05AalNoTermRetentionBopisShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");
 
         getAccountOverViewPage().selectAddAWirelessLineButton();
         getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
         getReporter().hardAssert(getFidoOVChoosePhonePage().isCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
-        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getCustomerRiskLevel()),
-                String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
-                String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
+        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc05AalNoTermRetentionBopisShipping.getCustomerRiskLevel()),
+                String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc05AalNoTermRetentionBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
+                String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc05AalNoTermRetentionBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
         getReporter().reportLogWithScreenshot("Credit Evaluation Modal");
         getFidoOVChoosePhonePage().clickDeviceAndPlanButtonOnCreditEvalModal();
         getReporter().reportLogWithScreenshot("Clicked on Device and Plan button");
 
-        String deviceName = TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getDeviceName();
+        String deviceName = TestDataHandler.tc05AalNoTermRetentionBopisShipping.getDeviceName();
         getReporter().hardAssert(getFidoOVChoosePhonePage().verifyDeviceTitleButton(deviceName), "Phone catalogue page appeared successfully", "Phone catalogue page did not appear");
         getFidoOVChoosePhonePage().clickDeviceTitleButton(deviceName);
         getFidoOVChoosePhonePage().clickContinueButtonOnDashboardPhonePage(deviceName);
@@ -42,15 +42,15 @@ public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends B
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
-        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc01AalByodFinancingBopisShipping.getDeviceCostIndex());
+        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc05AalNoTermRetentionBopisShipping.getDeviceCostIndex());
         getReporter().reportLogPassWithScreenshot("Device cost option selected");
 
-        getReporter().hardAssert(getFidoOVPlanConfigPage().isDataOptionSelected(), "Data option is selected","Data option is not selected");
+        getFidoOVPlanConfigPage().selectDataOptionAndClickContinueButton(getFidoOVPlanConfigPage().getUpdatedDataOptionIndex(TestDataHandler.tc05AalNoTermRetentionBopisShipping.getDataOptionIndex()));
         getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state","Addons page is not in expanded state");
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
 
-        getFidoOVPlanConfigPage().clkContinueCallerId();
+        getFidoOVPlanConfigPage().populateCallerAndClkContinueCallerId();
         getReporter().reportLogPassWithScreenshot("Caller ID was filled");
 
         getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
@@ -69,4 +69,5 @@ public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends B
     public void afterTest() {
         closeSession();
     }
+
 }

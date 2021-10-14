@@ -45,7 +45,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
 
-        getFidoOVPlanConfigPage().PopulateCallerAndClkContinueCallerId();
+        getFidoOVPlanConfigPage().populateCallerAndClkContinueCallerId();
         getReporter().reportLogPassWithScreenshot("Caller ID was filled");
 
         getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
