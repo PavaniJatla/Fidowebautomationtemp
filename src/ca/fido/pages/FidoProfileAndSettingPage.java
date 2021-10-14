@@ -216,8 +216,11 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 
 	@FindBy(xpath = "//p[text()='Due to recent changes on your account, we are unable to proceed with this transaction.' or text()='En raison de modifications récentes de votre compte, nous ne pouvons pas procéder avec cette transaction.']")
 	WebElement msgUnableToProceed;
-	
-	@FindBy(xpath = "//span[text()=' Close ']")
+
+	@FindAll({
+			@FindBy(xpath = "//span[text()=' Close ' or text()=' Fermer ']"),
+			@FindBy(xpath = "//span[text()=' CLOSE ' or text()=' FERMER ']")
+	})
 	WebElement btnClose;
 	
 	public void clkProfileNSetting() {
