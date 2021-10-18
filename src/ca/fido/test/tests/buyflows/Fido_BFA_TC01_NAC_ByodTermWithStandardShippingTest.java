@@ -21,10 +21,10 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 	public void fidoNACByodTermStandardShippingFlow() {
 		getFidobuildplanpage().setProvince("Ontario");
 		getReporter().reportLog("URL:" + System.getProperty("AWSBYODUrl"));
-		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
+		//getFidobuildplanpage().clkDataAndTextPlan();
 		getFidobuildplanpage().clkBasicTab();
-		getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc01ByodStandardShipping.getDataOptionIndex());
+		getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc01ByodStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPass("Basic Plan selected");
 		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
 		getFidobuildplanpage().clkContinueDataOption();
@@ -53,7 +53,7 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
-		getFidocreditcheckpage().selectIdType(TestDataHandler.tc01ByodStandardShipping.getIdentificationType());
+		//getFidocreditcheckpage().selectIdType(TestDataHandler.tc01ByodStandardShipping.getIdentificationType());
 		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc01ByodStandardShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc01ByodStandardShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseExpiry();
