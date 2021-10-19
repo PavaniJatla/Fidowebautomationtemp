@@ -41,7 +41,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVPlanConfigPage().selectDataOptionAndClickContinueButton(getFidoOVPlanConfigPage().getUpdatedDataOptionIndex(TestDataHandler.tc01AalByodFinancingBopisShipping.getDataOptionIndex()));
         getReporter().reportLogPassWithScreenshot("Data option was selected");
 
-        getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state","Addons page is not in expanded state");
+        getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state", "Addons page is not in expanded state");
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
 
@@ -67,10 +67,20 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVCheckOutPage().clkChooseNumberContinueButton();
 
         //--------------------------------------Review Order Page--------------------------------------------
-        getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page Title Present", "Order Review Page Title is not Present");
+        getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page title is present", "Order Review Page title is not present");
+        getReporter().reportLogPassWithScreenshot("Order Review Page");
+
+        getFidoOVReviewOrderPage().clkPointsToMentionCheckbox();
+        getFidoOVReviewOrderPage().clkEmailConsentCheckbox();
+        getReporter().reportLogPassWithScreenshot("Order Review Page: T&C");
+
+        getFidoOVReviewOrderPage().clkSubmitOrderBtn();
+        getReporter().reportLogWithScreenshot("Submit order button");
 
         //--------------------------------------Order Confirmation Page--------------------------------------
-        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page loaded", "Order Confirmation Error");
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc01AalByodFinancingBopisShipping.getBanNo()),
+                "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
         getReporter().reportLogWithScreenshot("Rogers Order Confirmation Page");
     }
 

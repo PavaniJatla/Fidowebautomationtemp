@@ -14,7 +14,7 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//span[contains(@class,'cartSummary')]")
     WebElement cartSummaryLabel;
 
-    @FindBy(xpath = "//p[@data-test='stepper-0-completed-step-label']")
+    @FindBy(xpath = "//p[contains(text(), 'Bring') or contains(text(), 'Apportez')]")
     WebElement deviceTitleLabel;
 
     @FindBy(xpath = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-infinite-')]//label[1]")
@@ -104,7 +104,11 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public boolean verifyDeviceTitle(String deviceName) {
-        return deviceTitleLabel.getText().equalsIgnoreCase(deviceName);
+        if (deviceName.equalsIgnoreCase("Bring Your Own Device")) {
+            return reusableActions.isElementVisible(deviceTitleLabel, 20);
+        } else {
+            return verifyBreadCrumb(deviceName);
+        }
     }
 
     /**

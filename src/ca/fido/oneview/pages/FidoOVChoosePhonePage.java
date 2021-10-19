@@ -19,10 +19,10 @@ public class FidoOVChoosePhonePage extends BasePageClass {
     @FindBy(xpath = "//button[@data-test='modal-credit-evaluation-decline']")
     WebElement btnPlanOnlyOnCreditEvalModal;
 
-    @FindBy(xpath = "//th[contains(text(), 'Downpayment')]//following-sibling::td")
+    @FindBy(xpath = "//th[contains(text(), 'Downpayment') or contains(text(), 'Acompte')]//following-sibling::td")
     WebElement downpaymentPercent;
 
-    @FindBy(xpath = "//th[contains(text(), 'Risk Level')]//following-sibling::td")
+    @FindBy(xpath = "//th[contains(text(), 'Risk Level') or contains(text(), 'Niveau de risque')]//following-sibling::td")
     WebElement riskLevel;
 
     @FindBy(xpath = "//a[contains(@title,'View Details')]")
@@ -53,7 +53,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public boolean isCreditEvaluationModalPresence() {
-        return reusableActions.isElementVisible(creditEvaluationModal);
+        return reusableActions.isElementVisible(creditEvaluationModal, 60);
     }
 
     /**
@@ -79,9 +79,9 @@ public class FidoOVChoosePhonePage extends BasePageClass {
         String risk = riskLevel.getText();
         double downpayment = Double.parseDouble(downpaymentPercent.getText().replace("%", ""));
 
-        if (downpayment <= 19 && downpayment >= 0 && risk.equalsIgnoreCase("Low")) {
+        if (downpayment <= 19 && downpayment >= 0 && (risk.equalsIgnoreCase("Low") || risk.equalsIgnoreCase("Meugler"))) {
             customerType = "Low Risk";
-        } else if (downpayment >= 20 && risk.equalsIgnoreCase("Medium")) {
+        } else if (downpayment >= 20 && (risk.equalsIgnoreCase("Medium") || risk.equalsIgnoreCase("Moyen"))) {
             customerType = "Medium Risk";
         }
 

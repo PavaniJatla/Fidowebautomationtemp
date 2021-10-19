@@ -42,7 +42,7 @@ public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends B
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
-        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc01AalByodFinancingBopisShipping.getDeviceCostIndex());
+        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getDeviceCostIndex());
         getReporter().reportLogPassWithScreenshot("Device cost option selected");
 
         getReporter().hardAssert(getFidoOVPlanConfigPage().isDataOptionSelected(), "Data option is selected","Data option is not selected");

@@ -10,6 +10,9 @@ public class FidoOVOrderConfirmationPage extends BasePageClass {
     @FindBy(xpath = "//h1[contains(@id,'bfa-page-title') and contains(.,'Confirmation')]")
     WebElement lblOrderConfirmation;
 
+    @FindBy(xpath = "//span[(@class='text-bold')]")
+    WebElement banOrderConfirmation;
+
     /**
      * Instantiates a new Base page class.
      *
@@ -26,7 +29,20 @@ public class FidoOVOrderConfirmationPage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public boolean verifyOrderConfirmationPageLoad() {
-        reusableActions.staticWait(5000);
-        return reusableActions.isElementVisible(lblOrderConfirmation, 60);
+        return reusableActions.isElementVisible(lblOrderConfirmation, 80);
+    }
+
+    /**
+     * Validates whether BAN shown in the Order Confirmation page matches to the BAN of the account given
+     * @return true if 'Order Confirmation' header displayed; else false
+     * @author rajesh.varalli1
+     */
+    public boolean verifyBanOrderConfirmationPage(String banNo) {
+        String ban = reusableActions.getWhenReady(banOrderConfirmation).getText().trim();
+        if (ban.equalsIgnoreCase(banNo)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

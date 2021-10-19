@@ -10,6 +10,15 @@ public class FidoOVReviewOrderPage extends BasePageClass {
     @FindBy(xpath = "//h1[@id='bfa-page-title'][text()='Review Your Order' or contains(text(),'Vérifiez votre')]")
     WebElement orderReviewPageTitle;
 
+    @FindBy(xpath = "//input[contains(@name,'points-to-mention-check')]/..")
+    WebElement pointsToMentionCheck;
+
+    @FindBy(xpath = "//input[contains(@id,'ds-checkbox-id-1')]/..")
+    WebElement chEmailConsent;
+
+    @FindBy(xpath ="//button[@title='Submit order' or @title='Soumettre la commande']")
+    WebElement submitOrderBtn;
+
     /**
      * Instantiates a new Base page class.
      *
@@ -26,7 +35,33 @@ public class FidoOVReviewOrderPage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public boolean isOrderReviewPageTitlePresent() {
-        return reusableActions.isElementVisible(orderReviewPageTitle, 60);
+        return reusableActions.isElementVisible(orderReviewPageTitle, 80);
     }
 
+    /**
+     * Click on the 'Points To Mention' checkbox
+     *
+     * @author Veranika.Siadach
+     */
+    public void clkPointsToMentionCheckbox() {
+        reusableActions.clickWhenReady(pointsToMentionCheck, 2);
+    }
+
+    /**
+     * Click on the 'Email Communication Consent' checkbox
+     *
+     * @author Veranika.Siadach
+     */
+    public void clkEmailConsentCheckbox() {
+        reusableActions.clickWhenReady(chEmailConsent, 5);
+    }
+
+    /**
+     * Click on the 'Submit Order' button
+     *
+     * @author Veranika.Siadach
+     */
+    public void clkSubmitOrderBtn() {
+        reusableActions.clickWhenReady(submitOrderBtn, 5);
+    }
 }
