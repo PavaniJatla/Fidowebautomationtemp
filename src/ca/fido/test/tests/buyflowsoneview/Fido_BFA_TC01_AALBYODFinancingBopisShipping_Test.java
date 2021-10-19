@@ -52,19 +52,32 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogWithScreenshot("Proceed to checkout page button was clicked");
 
         //---------------------------------------Checkout pages----------------------------------------------
-        getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
-        getReporter().softAssert(getFidoOVCheckOutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not disaplayed");
-        getReporter().softAssert(getFidoOVCheckOutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not disaplayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
 
-        getFidoOVCheckOutPage().selectCityDropdownOption(TestDataHandler.tc01AalByodFinancingBopisShipping.getCtnCity());
-        getReporter().reportLogPassWithScreenshot("City Dropdown Value Selected Successfully");
+        getFidoOVCheckoutPage().selectCityDropdownOption(TestDataHandler.tc01AalByodFinancingBopisShipping.getCtnCity());
+        getReporter().reportLogPassWithScreenshot("City dropdown value selected successfully");
 
-        getFidoOVCheckOutPage().selectFirstAvlPhoneNumber();
-        getReporter().reportLogPassWithScreenshot("Selected First Available Phone Number");
+        getFidoOVCheckoutPage().selectFirstAvlPhoneNumber();
+        getReporter().reportLogPassWithScreenshot("Selected first available phone Number");
 
-        getReporter().softAssert(getFidoOVCheckOutPage().isFindMoreAvlNumbersButtonPresent(), "Find More Available Number Button Displayed", "Find More Available Number Button not disaplayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isFindMoreAvlNumbersButtonPresent(), "Find more available number button displayed", "Find more available number button not disaplayed");
 
-        getFidoOVCheckOutPage().clkChooseNumberContinueButton();
+        getFidoOVCheckoutPage().clkChooseNumberContinueButton();
+        getReporter().hardAssert(getFidoOVCheckoutPage().isChooseNumberLabelDisplayed(), "Choose a number identification label displayed successfully", "Choose a number identification label not disaplayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().isSelectedPhoneNumberDisplayed(), "Selected phone number label displayed successfully", "Choose a number identification Label not disaplayed");
+        getReporter().reportLogPassWithScreenshot("Choose a number identification label and selected phone number are displayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().clkBillingAddress(), "Billing Address radio button is selected ", "Billing Address is not selected");
+
+        getFidoOVCheckoutPage().selectDeliveryMethod("STANDARD");
+        getReporter().reportLogPassWithScreenshot("Standard Delivery selected");
+
+        getFidoOVCheckoutPage().clkShippingContinueButton();
+        getReporter().reportLogPassWithScreenshot("Clicked continue button in shipping stepper");
+
+        getFidoOVCheckoutPage().clkSubmitButton();
+        getReporter().reportLogPassWithScreenshot("Clicked submit button below cart summary");
 
         //--------------------------------------Review Order Page--------------------------------------------
         getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page Title Present", "Order Review Page Title is not Present");

@@ -101,7 +101,7 @@ public class BaseTestClass {
 	protected static final ThreadLocal<AccountOverViewPage> accountOverViewPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVChoosePhonePage> fidoOVChoosePhonePageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVPlanConfigPage> fidoOVPlanConfigPageThreadLocal = new ThreadLocal<>();
-	protected static final ThreadLocal<FidoOVCheckOutPage> fidoOVCheckOutPageThreadLocal = new ThreadLocal<>();
+	protected static final ThreadLocal<FidoOVCheckoutPage> fidoOVCheckoutPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVReviewOrderPage> fidoOVReviewOrderPageThreadLocal = new ThreadLocal<>();
 	protected static final ThreadLocal<FidoOVOrderConfirmationPage> fidoOVOrderConfirmationPageThreadLocal = new ThreadLocal<>();
 
@@ -392,8 +392,8 @@ public class BaseTestClass {
 		return fidoOVPlanConfigPageThreadLocal.get();
 	}
 
-	public static FidoOVCheckOutPage getFidoOVCheckOutPage() {
-		return fidoOVCheckOutPageThreadLocal.get();
+	public static FidoOVCheckoutPage getFidoOVCheckoutPage() {
+		return fidoOVCheckoutPageThreadLocal.get();
 	}
 
 	public static FidoOVReviewOrderPage getFidoOVReviewOrderPage() {
@@ -654,7 +654,7 @@ public class BaseTestClass {
 				fidoOVPlanConfigPageThreadLocal.set(new FidoOVPlanConfigPage(getDriver()));
 				fidoOVReviewOrderPageThreadLocal.set(new FidoOVReviewOrderPage(getDriver()));
 				fidoOVOrderConfirmationPageThreadLocal.set(new FidoOVOrderConfirmationPage(getDriver()));
-                fidoOVCheckOutPageThreadLocal.set(new FidoOVCheckOutPage(getDriver()));
+                fidoOVCheckoutPageThreadLocal.set(new FidoOVCheckoutPage(getDriver()));
                 break;
             default:
 		}
