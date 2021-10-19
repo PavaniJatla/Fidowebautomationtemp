@@ -34,15 +34,12 @@ public class FidoOVOrderConfirmationPage extends BasePageClass {
 
     /**
      * Validates whether BAN shown in the Order Confirmation page matches to the BAN of the account given
+     *
      * @return true if 'Order Confirmation' header displayed; else false
-     * @author rajesh.varalli1
+     * @author Veranika.Siadach
      */
     public boolean verifyBanOrderConfirmationPage(String banNo) {
         String ban = reusableActions.getWhenReady(banOrderConfirmation).getText().trim();
-        if (ban.equalsIgnoreCase(banNo)) {
-            return true;
-        } else {
-            return false;
-        }
+        return ban.equalsIgnoreCase(banNo);
     }
 }
