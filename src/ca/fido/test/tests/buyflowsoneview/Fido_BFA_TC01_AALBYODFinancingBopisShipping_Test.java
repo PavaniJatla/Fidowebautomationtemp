@@ -32,7 +32,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVChoosePhonePage().clickPlanOnlyButtonOnCreditEvalModal();
         getReporter().reportLogWithScreenshot("Clicked on Plan only button");
 
-        //-------------------------------------Plan config page---------------------------------------------
+        //------------------------------------- Plan config page ---------------------------------------------
         String deviceName = TestDataHandler.tc01AalByodFinancingBopisShipping.getDeviceName();
         getReporter().hardAssert(getFidoOVPlanConfigPage().ifPlanConfigPageLoaded(), "Plan config page loaded successfully", "Plan config page not loaded");
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyDeviceTitle(deviceName), "Device title is correct", "Device title is not correct");
@@ -51,7 +51,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
         getReporter().reportLogWithScreenshot("Proceed to checkout page button was clicked");
 
-        //---------------------------------------Checkout pages----------------------------------------------
+        //--------------------------------------- Checkout pages ----------------------------------------------
         getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
         getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not disaplayed");
         getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
@@ -79,7 +79,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVCheckoutPage().clkSubmitButton();
         getReporter().reportLogPassWithScreenshot("Clicked submit button below cart summary");
 
-        //--------------------------------------Review Order Page--------------------------------------------
+        //-------------------------------------- Review Order Page --------------------------------------------
         getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page title is present", "Order Review Page title is not present");
         getReporter().reportLogPassWithScreenshot("Order Review Page");
 
@@ -90,7 +90,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVReviewOrderPage().clkSubmitOrderBtn();
         getReporter().reportLogWithScreenshot("Submit order button");
 
-        //--------------------------------------Order Confirmation Page--------------------------------------
+        //-------------------------------------- Order Confirmation Page --------------------------------------
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc01AalByodFinancingBopisShipping.getBanNo()),
                 "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
