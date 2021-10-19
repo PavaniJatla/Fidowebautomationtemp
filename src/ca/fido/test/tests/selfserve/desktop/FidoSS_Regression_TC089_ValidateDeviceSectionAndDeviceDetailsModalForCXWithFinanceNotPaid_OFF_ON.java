@@ -46,8 +46,8 @@ public class FidoSS_Regression_TC089_ValidateDeviceSectionAndDeviceDetailsModalF
         getReporter().reportLogWithScreenshot("Account overview page");
         //getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
         getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(TestDataHandler.tc89.getaccountDetails().getCtn());
-        getReporter().reportLogWithScreenshot("Click on CTN badge");
-        getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
+        //getReporter().reportLogWithScreenshot("Click on CTN badge");
+        //getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
         getReporter().reportLogWithScreenshot("dashboard page loaded");
 
         getFidowirelessdashboardpostpaidpage().scrollToMidOfDasboardPage();

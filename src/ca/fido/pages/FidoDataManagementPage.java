@@ -51,7 +51,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[contains(text(),'TOTAL DATA') or contains(text(),'TOTAL DES DONNÉES')]/parent::div/parent::div//strong")})
 	List<WebElement> rowsTotalData;
 	
-	@FindBy (xpath = "//span[contains(text(),'Back') or contains(text(),'Précédent') or contains(text(),'Mobile Dashboard') or contains(text(),'Tableau de bord mobile')]")
+	@FindBy (xpath = "//a[@title='Mobile Dashboard']")
 	WebElement lnkBackOnManageDataOverlay;
 	
 	@FindBy (xpath = "//strong")
@@ -74,7 +74,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//tr")})
 	List<WebElement> rowsAddMDTData;
 
-	@FindBy (xpath = "//div[@class='ss-data-section-data-volume']//*[@translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container' or text()='View Details' or text()='Afficher les détails']")
+	@FindBy (xpath = "//span[text()='View Details' or text()='Afficher les détails']")
 	WebElement lnkViewDetails;
 
 	@FindBy (xpath = "//*[@title='Cancel this add-on' or contains(@title,'Annuler')]")
@@ -511,7 +511,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 */
 	public boolean validateViewDetailsLink() {
 		boolean isDisplayed=false;
-		reusableActions.waitForElementTobeClickable(lnkViewDetails, 30);
+		reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
 		reusableActions.getWhenReady(lnkViewDetails, 50).click();
 		reusableActions.waitForElementTobeClickable(titleManageData, 30);
 		if(reusableActions.isElementVisible(titleManageData,30)

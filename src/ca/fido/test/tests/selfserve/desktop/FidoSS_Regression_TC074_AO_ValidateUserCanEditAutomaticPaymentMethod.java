@@ -38,7 +38,7 @@ public class FidoSS_Regression_TC074_AO_ValidateUserCanEditAutomaticPaymentMetho
 	public void validateUserCanEditAutomaticPaymentMethod() {
 		//getDriver().get(System.getProperty("QaUrl")+"/self-serve/overview");
 		//getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
@@ -57,6 +57,7 @@ public class FidoSS_Regression_TC074_AO_ValidateUserCanEditAutomaticPaymentMetho
 				"The user should have atleast 1 active account which has already automatic payments option");
 		
 		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");

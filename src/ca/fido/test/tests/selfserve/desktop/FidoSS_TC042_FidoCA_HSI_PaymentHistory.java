@@ -35,8 +35,8 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 	@Test(groups = {"RegressionSS","BillingAndPaymentsSS"})
 	public void postPaidPaymentHistoryHSI() throws InterruptedException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc4246.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc4246.getPassword());
 		getReporter().reportLogWithScreenshot("HSI account credential has been set: ");

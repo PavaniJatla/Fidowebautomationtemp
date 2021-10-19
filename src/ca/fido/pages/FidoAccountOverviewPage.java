@@ -258,7 +258,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//fss-account-detail//fss-preauth-payment//a[@aria-label='Change payment method' or @aria-label='Changer le mode de paiement']")
 	WebElement btnPenIconForChangeAutoPaymentMethod;
 
-	@FindBy(xpath = "//span[@translate='global.cta.changePaymentMethod_header_menu']")
+	@FindBy(xpath = "//a[@title='Change payment method']")
 	WebElement  inkPaymentMethod;
 
 	@FindBy(xpath = "//h4//ins[@translate='payment-method.select-payment-method.setAutomaticPayment']")
@@ -1353,6 +1353,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkChangePaymentMethod() {
 		reusableActions.getWhenReady(inkPaymentMethod).click();
 	}
+
+
 	/**
 	 * 
 	 * @return true if element visisble
@@ -1661,6 +1663,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkCTNsViewUsageAndManage(String strCTN) {
+		reusableActions.staticWait(3000);
 		reusableActions.getWhenReady(By.xpath("//div[@class='fss-subscription-detail']//a[contains(@aria-label,'"+strCTN+"')]")).click();
 	}
 

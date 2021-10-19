@@ -52,13 +52,12 @@ public class FidoSS_Regression_TC048_ValidateUsageOfUnlimitedTalkNTextOnlyInWire
 		getReporter().reportLogWithScreenshot("Account overview page");
 		String strCTN = TestDataHandler.tc48.getaccountDetails().getCtn();
 		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getReporter().reportLogWithScreenshot("Click on View Details");
 		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 
 		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTalkNTextUsageModuleIsDisplayed(),
 							"Talk usage module is displayed",
 							"Talk usage module is not displayed");
-		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
 		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyTalkAnytimeUsageDetailsIsDisplayed(),
 							"Talk anytime usage details section is displayed",
 							"Talk anytime usage details section is not displayed");
@@ -75,10 +74,10 @@ public class FidoSS_Regression_TC048_ValidateUsageOfUnlimitedTalkNTextOnlyInWire
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyInternationalMsgDetailsIsDisplayed(),
 							"Text usage details international message part is displayed",
 							"Text usage details international message part is not displayed");
+		getFidowirelessdashboardpostpaidpage().closeOverlayPopup();
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 							"Days remaining in bill cycle for Talk&Text plan is displayed",
 							"Days remaining in bill cycle for Talk&Text plan is not displayed");
-
 		getFidowirelessdashboardpostpaidpage().scrollToBottomOfPage();
 		getReporter().reportLogWithScreenshot("Wireless Dashboad bottom view");
 			

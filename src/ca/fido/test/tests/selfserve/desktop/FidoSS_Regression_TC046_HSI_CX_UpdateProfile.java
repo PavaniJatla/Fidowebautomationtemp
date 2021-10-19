@@ -33,8 +33,8 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidPaymentViewAndEditProfileContactsForHSI() throws InterruptedException, ParseException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc4246.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc4246.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

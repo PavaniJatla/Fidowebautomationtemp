@@ -35,8 +35,8 @@ public class FidoSS_Regression_TC047_PostpaidAccHolderValidateBillNotification e
 
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postpaidVerifyBillNotification() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		String strUserName = TestDataHandler.tc104447.getUsername();
 		getFidologinpage().setUsernameInFrame(strUserName);
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc104447.getPassword());
