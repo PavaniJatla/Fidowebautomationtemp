@@ -65,7 +65,7 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
-		getFidocreditcheckpage().selectIdType(TestDataHandler.tc05TermStandardShipping.getIdentificationType());
+		//getFidocreditcheckpage().selectIdType(TestDataHandler.tc05TermStandardShipping.getIdentificationType());
 		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc05TermStandardShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc05TermStandardShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseExpiry();

@@ -20,7 +20,6 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
 	public void fidoNACByodTermExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSBYODUrl"));
-		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		getFidobuildplanpage().clkDataAndTextPlan();
 		getReporter().reportLogPass("Data and Text Plan selected");
@@ -50,7 +49,7 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
-		getFidocreditcheckpage().selectIdType(TestDataHandler.tc02ByodExpressShipping.getIdentificationType());
+		//getFidocreditcheckpage().selectIdType(TestDataHandler.tc02ByodExpressShipping.getIdentificationType());
 		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc02ByodExpressShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc02ByodExpressShipping.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseExpiry();

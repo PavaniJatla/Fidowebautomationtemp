@@ -26,8 +26,8 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidobuildplanpage().clkBasicTab();
 		getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc01ByodStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPass("Basic Plan selected");
-		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
-		getFidobuildplanpage().clkContinueDataOption();
+		/*getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
+		getFidobuildplanpage().clkContinueDataOption();*/
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
