@@ -57,6 +57,59 @@ public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends B
         getReporter().reportLogWithScreenshot("Proceed to checkout page button was clicked");
 
         //---------------------------------------Checkout pages----------------------------------------------
+        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not displayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not displayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
+
+        getFidoOVCheckoutPage().selectCityDropdownOption(TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getCtnCity());
+        getReporter().reportLogPassWithScreenshot("City dropdown value selected successfully");
+
+        getFidoOVCheckoutPage().selectFirstAvlPhoneNumber();
+        getReporter().reportLogPassWithScreenshot("Selected first available phone Number");
+
+        getReporter().softAssert(getFidoOVCheckoutPage().isFindMoreAvlNumbersButtonPresent(), "Find more available number button displayed", "Find more available number button not disaplayed");
+
+        getFidoOVCheckoutPage().clkChooseNumberContinueButton();
+        getReporter().hardAssert(getFidoOVCheckoutPage().isChooseNumberLabelDisplayed(), "Choose a number identification label displayed successfully", "Choose a number identification label not disaplayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().isSelectedPhoneNumberDisplayed(), "Selected phone number label displayed successfully", "Choose a number identification Label not disaplayed");
+        getReporter().reportLogPassWithScreenshot("Choose a number identification label and selected phone number are displayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().clkBillingAddress(), "Billing Address radio button is selected ", "Billing Address is not selected");
+
+        getFidoOVCheckoutPage().selectDeliveryMethod("STANDARD");
+        getReporter().reportLogPassWithScreenshot("Standard Delivery selected");
+
+        getFidoOVCheckoutPage().clkShippingContinueButton();
+        getReporter().reportLogPassWithScreenshot("Clicked continue button in shipping stepper");
+
+        getFidoOVCheckoutPage().clkSubmitButton();
+        getReporter().reportLogPassWithScreenshot("Clicked submit button below cart summary");
+
+        //-------------------------------------- Review Order Page --------------------------------------------
+        getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page title is present", "Order Review Page title is not present");
+        getReporter().reportLogPassWithScreenshot("Order Review Page");
+
+        getFidoOVReviewOrderPage().clkPointsToMentionCheckbox();
+        getFidoOVReviewOrderPage().clkEmailConsentCheckbox();
+        getReporter().reportLogPassWithScreenshot("Order Review Page: T&C");
+
+        getFidoOVReviewOrderPage().clkSubmitOrderBtn();
+        getReporter().reportLogWithScreenshot("Submit order button");
+
+        if(getFidoOVReviewOrderPage().isPaymentRequired()) {
+            getFidoOVReviewOrderPage().clkPreAuthorizedCreditCardTokenButton();
+            getFidoOVReviewOrderPage().setCardName();
+            getFidoOVReviewOrderPage().setTokenDetails(TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getNumber3(),
+                    TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getExpiryMonth3(),
+                    TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getExpiryYear3());
+            getReporter().reportLogWithScreenshot("Rogers Payment Page");
+            getFidoOVReviewOrderPage().clkSubmitPayment();
+        }
+
+        //-------------------------------------- Order Confirmation Page --------------------------------------
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getBanNo()),
+                "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
+        getReporter().reportLogWithScreenshot("Rogers Order Confirmation Page");
     }
 
     @BeforeMethod(alwaysRun = true)

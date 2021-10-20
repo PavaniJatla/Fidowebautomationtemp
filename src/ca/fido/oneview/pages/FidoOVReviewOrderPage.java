@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.FormFiller;
 
 public class FidoOVReviewOrderPage extends BasePageClass {
 
@@ -16,8 +17,35 @@ public class FidoOVReviewOrderPage extends BasePageClass {
     @FindBy(xpath = "//input[contains(@id,'ds-checkbox-id-1')]/..")
     WebElement chEmailConsent;
 
-    @FindBy(xpath ="//button[@title='Submit order' or @title='Soumettre la commande']")
+    @FindBy(xpath = "//button[@title='Submit order' or @title='Soumettre la commande']")
     WebElement submitOrderBtn;
+
+    @FindBy(xpath = "//h1[contains(text(),'One Time Payment') or contains(.,'Paiement Unique')]")
+    WebElement lblPaymentStep;
+
+    @FindBy(xpath = "//ds-radio-button[contains(@data-test,'safe-send-radio-button')]")
+    WebElement preAuthorizedCreditCardTokenBtn;
+
+    @FindBy(xpath = "//ds-form-field[@data-test='name']")
+    WebElement cardName;
+
+    @FindBy(xpath = "//ds-form-field[@data-test='name']//input")
+    WebElement inputCardName;
+
+    @FindBy(xpath = "//ds-form-field[@data-test='number']//input")
+    WebElement inputTokenNumber;
+
+    @FindBy(xpath = "//ds-form-field[@data-test='expiry-date']//input")
+    WebElement inputExpiryDate;
+
+    @FindBy(xpath = "//ds-form-field[@data-test='cvv']//div[contains(@class, 'ds-formField__inputContainer')]")
+    WebElement txtContainerCvv;
+
+    @FindBy(xpath = "//ds-form-field[@data-test='cvv']//input")
+    WebElement inputTxtCvv;
+
+    @FindBy(xpath = "//button[@data-test='continue-btn']")
+    WebElement btnSubmitPayment;
 
     /**
      * Instantiates a new Base page class.
@@ -63,5 +91,76 @@ public class FidoOVReviewOrderPage extends BasePageClass {
      */
     public void clkSubmitOrderBtn() {
         reusableActions.clickWhenReady(submitOrderBtn, 5);
+    }
+
+    /**
+     * Determines if payment is required or not
+     *
+     * @return true if 'Payment' appears in the Steps above; else false
+     * @author Veranika.Siadach
+     */
+    public boolean isPaymentRequired() {
+        return reusableActions.isElementVisible(lblPaymentStep, 60);
+    }
+
+    /**
+     * Clicks the pre-Authorized Credit Card Token Radio Button when available
+     *
+     * @author Veranika.Siadach
+     */
+    public void clkPreAuthorizedCreditCardTokenButton() {
+        reusableActions.clickWhenVisible(preAuthorizedCreditCardTokenBtn, 60);
+    }
+
+    /**
+     * Enter the firstName on the Create Profile stepper, First Name field
+     *
+     * @author Veranika.Siadach
+     */
+
+    public void setCardName() {
+        reusableActions.clickWhenReady(cardName);
+        reusableActions.getWhenReady(inputCardName, 10).sendKeys(FormFiller.generateRandomName() + FormFiller.generateRandomName());
+    }
+
+    /**
+     * Sets the Token Number, Expiry Year and Expiry Month
+     *
+     * @param strTokenNumber Token Number
+     * @param strCCExpMonth  Credit Card Expiry Month
+     * @param strCCExpYear   Credit Card Expiry Year
+     * @author Veranika.Siadach
+     */
+    public void setTokenDetails(String strTokenNumber, String strCCExpMonth, String strCCExpYear) {
+        inputTokenNumber.click();
+        inputTokenNumber.sendKeys(strTokenNumber);
+
+        inputExpiryDate.click();
+        reusableActions.getWhenReady(inputExpiryDate, 10).sendKeys(strCCExpMonth + strCCExpYear);
+
+        setCvv();
+    }
+
+    /**
+     * Set the dynamic CVV for Pre-Auth credit card
+     *
+     * @author Veranika.Siadach
+     */
+    public void setCvv() {
+        String strCVV = FormFiller.generateCVVNumber();
+        reusableActions.waitForElementVisibility(txtContainerCvv, 50);
+        reusableActions.getWhenReady(txtContainerCvv, 10).click();
+        inputTxtCvv.click();
+        reusableActions.getWhenReady(inputTxtCvv).sendKeys(strCVV);
+    }
+
+    /**
+     * Clicks on the 'Submit' button
+     *
+     * @author Veranika.Siadach
+     */
+    public void clkSubmitPayment() {
+        reusableActions.waitForElementVisibility(btnSubmitPayment);
+        reusableActions.executeJavaScriptClick(btnSubmitPayment);
     }
 }

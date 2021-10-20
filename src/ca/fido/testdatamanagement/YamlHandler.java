@@ -215,4 +215,17 @@ public class YamlHandler {
 			return null;
 		}
 	}
+
+	public static PaymentDetails getBfaOneViewPaymentDetails() {
+		Yaml yaml = new Yaml(new Constructor(PaymentDetails.class));
+		InputStream inputStream;
+
+		try {
+		inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflowsoneview/FidoPaymentInfo.yml"));
+		return yaml.load(inputStream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -6,6 +6,8 @@ public class PaymentDetails {
 	private BankDetails bankDetails;
 	private PaymentType paymentType;
 	private InteracDetails interacDetails;
+	private TokenDetails tokenDetails;
+
 	/**
 	 * @return the creditCardDetails
 	 */
@@ -54,6 +56,18 @@ public class PaymentDetails {
 	public void setInteracDetails(InteracDetails interacDetails) {
 		this.interacDetails = interacDetails;
 	}
-	
 
+	/**
+	 * @return the tokenDetails
+	 */
+	public TokenDetails getTokenDetails() {
+		return tokenDetails;
+	}
+
+	/**
+	 * @param tokenDetails the tokenDetails to set
+	 */
+	public void setTokenDetails(TokenDetails tokenDetails) {
+		this.tokenDetails = tokenDetails;
+	}
 }

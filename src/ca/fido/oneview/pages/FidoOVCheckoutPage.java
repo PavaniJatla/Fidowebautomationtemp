@@ -70,7 +70,6 @@ public class FidoOVCheckoutPage extends BasePageClass {
      * @author Siarhei.Maiseichyk
      */
     public void clkShippingContinueButton() {
-        reusableActions.waitForElementVisibility(expressLocations);
         reusableActions.javascriptScrollByVisibleElement(btnContinueShipping);
         reusableActions.executeJavaScriptClick(btnContinueShipping);
     }
@@ -82,9 +81,8 @@ public class FidoOVCheckoutPage extends BasePageClass {
      */
     public void clkSubmitButton() {
         reusableActions.staticWait(3000);
-        reusableActions.waitForElementVisibility(btnSubmit);
-        reusableActions.javascriptScrollByVisibleElement(btnSubmit);
-        reusableActions.clickWhenReady(btnSubmit, 30);
+        reusableActions.waitForElementTobeClickable(btnSubmit, 50);
+        reusableActions.executeJavaScriptClick(btnSubmit);
     }
 
     /**
@@ -207,6 +205,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
             case "EXPRESS":
                 reusableActions.waitForElementVisibility(rdoDeliveryMethodExpress, 5);
                 reusableActions.clickWhenReady(rdoDeliveryMethodExpress, 30);
+                reusableActions.waitForElementVisibility(expressLocations, 40);
                 break;
             case "PRO":
                 reusableActions.waitForElementVisibility(rdoDeliveryMethodProOnTheGo, 5);
