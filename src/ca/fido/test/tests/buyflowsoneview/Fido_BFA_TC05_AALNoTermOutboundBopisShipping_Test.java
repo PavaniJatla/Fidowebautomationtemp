@@ -18,7 +18,7 @@ public class Fido_BFA_TC05_AALNoTermOutboundBopisShipping_Test extends BaseTestC
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
     public void aalNoTermOutboundStandardShippingFlow() {
-        getEnvironmentSelectionPage().launchOneView("955960919", TestDataHandler.tc05AalNoTermRetentionBopisShipping.getContactId());
+        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc05AalNoTermRetentionBopisShipping.getBanNo(), TestDataHandler.tc05AalNoTermRetentionBopisShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");
 
