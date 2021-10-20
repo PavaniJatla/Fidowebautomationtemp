@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone - E2E (LR- EN - ON)
+ * TC01-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone and standard shipping - E2E (MR - FR - QC)
  *
- * @author Veranika.Siadach
+ * @author Siarhei.Maiseichyk
  */
 public class Fido_BFA_TC06_AALTermOutboundStandardShipping_Test extends BaseTestClass {
 
