@@ -53,7 +53,7 @@ public class FidoOVReviewOrderPage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public void clkEmailConsentCheckbox() {
-        reusableActions.clickWhenReady(chEmailConsent, 5);
+        reusableActions.clickIfAvailable(chEmailConsent, 5);
     }
 
     /**

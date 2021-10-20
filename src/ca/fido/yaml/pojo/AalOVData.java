@@ -3,7 +3,6 @@ package ca.fido.yaml.pojo;
 public class AalOVData {
     private String contactId;
     private String banNo;
-    private String ctn;
     private String newPlanType;
     private String newPlanCategory;
     private String deviceName;
@@ -11,7 +10,6 @@ public class AalOVData {
     private String dataOptionIndex;
     private String talkOptionIndex;
     private String customerRiskLevel;
-    private String sharingType;
     private String ctnCity;
 
     public String getContactId() {
@@ -28,14 +26,6 @@ public class AalOVData {
 
     public void setBanNo(String banNo) {
         this.banNo = banNo;
-    }
-
-    public String getCtn() {
-        return ctn;
-    }
-
-    public void setCtn(String ctn) {
-        this.ctn = ctn;
     }
 
     public String getNewPlanType() {
@@ -68,14 +58,6 @@ public class AalOVData {
 
     public void setCustomerRiskLevel(String customerRiskLevel) {
         this.customerRiskLevel = customerRiskLevel;
-    }
-
-    public String getSharingType() {
-        return sharingType;
-    }
-
-    public void setSharingType(String sharingType) {
-        this.sharingType = sharingType;
     }
 
     public String getDeviceCostIndex() {

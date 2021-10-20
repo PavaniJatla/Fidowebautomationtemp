@@ -17,19 +17,22 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//p[contains(text(), 'Bring') or contains(text(), 'Apportez')]")
     WebElement deviceTitleLabel;
 
-    @FindBy(xpath = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-infinite-')]//label[1]")
+    @FindBy(xpath = "//ds-selection[contains(@data-test,'stepper-2-edit-step-selection-option-infinite-')]//label[1]")
     List<WebElement> dataOptions;
+
+    @FindBy(xpath = "//div[contains(@data-test,'outbound-plans')]/ds-selection")
+    List<WebElement> outboundDataOptions;
 
     @FindBy(xpath = "//button[@data-test='stepper-1-edit-step-continue-button']")
     WebElement preCartDeviceCostContinueButton;
 
-    @FindBy(xpath = "//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[1]")
+    @FindBy(xpath = "//ds-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[1]")
     List<WebElement> devicesTiers;
 
     @FindBy(xpath = "//button[@data-test='stepper-2-edit-step-continue-button']")
     WebElement preCartDataOptionContinueButton;
 
-    @FindBy(xpath = "//dsa-selection[contains(@data-test,'stepper-3-edit-step-selection-option-')]//label[1]")
+    @FindBy(xpath = "//ds-selection[contains(@data-test,'stepper-3-edit-step-selection-option-')]//label[1]")
     List<WebElement> talkOptions;
 
     @FindBy(xpath = "//button[@data-test='stepper-3-edit-step-continue-button']")
@@ -71,11 +74,14 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//nav[@class='ds-breadcrumb']")
     WebElement breadCrumb;
 
-    @FindBy(xpath="//p[contains(.,'Financing options')]")
+    @FindBy(xpath = "//p[contains(.,'Financing options')]")
     WebElement txtFinancingOptions;
 
     @FindBy(xpath = "(//label[contains(@class,'ds-radioLabel')])[2]")
     WebElement noTermRadioBtn;
+
+    @FindBy(xpath = "//button[contains(@title,'Outbound') or contains(@title, 'Sortant')]")
+    WebElement showOutboundPlanBtn;
 
     /**
      * Instantiates a new Base page class.
@@ -127,6 +133,19 @@ public class FidoOVPlanConfigPage extends BasePageClass {
             reusableActions.clickWhenVisible(By.xpath(xpathValue), 40);
             reusableActions.clickWhenVisible(preCartDataOptionContinueButton, 40);
         }
+    }
+
+    /**
+     * Select outbound data option on Plan config page
+     *
+     * @param dataOptionIndex String value of data option to be selected
+     * @author Veranika.Siadach
+     */
+    public void selectOutboundDataOptionAndClickContinueButton(String dataOptionIndex) {
+        reusableActions.getWhenReady(showOutboundPlanBtn, 40).click();
+        reusableActions.waitForAllElementsVisible(outboundDataOptions, 20);
+        outboundDataOptions.get(Integer.parseInt(dataOptionIndex)).click();
+        reusableActions.clickWhenVisible(preCartDataOptionContinueButton, 30);
     }
 
     /**
@@ -252,13 +271,13 @@ public class FidoOVPlanConfigPage extends BasePageClass {
         String xpath;
 
         if (stepper == 1) {
-            xpath = "//dsa-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-" + xpathValue + "')]//label[1]";
+            xpath = "//ds-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-" + xpathValue + "')]//label[1]";
         } else if (stepper == 2) {
-            xpath = "//dsa-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-infinite-" + xpathValue + "')]//label[1]";
+            xpath = "//ds-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-infinite-" + xpathValue + "')]//label[1]";
         } else if (stepper == 3) {
-            xpath = "//dsa-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-" + xpathValue + "')]//label[1]";
+            xpath = "//ds-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-" + xpathValue + "')]//label[1]";
         } else {
-            xpath = "//dsa-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-" + xpathValue + "')]//label[1]";
+            xpath = "//ds-selection[contains(@data-test,'stepper-" + stepper + "-edit-step-selection-option-" + xpathValue + "')]//label[1]";
         }
         return xpath;
     }

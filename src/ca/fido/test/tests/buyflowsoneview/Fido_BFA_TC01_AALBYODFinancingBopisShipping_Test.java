@@ -70,7 +70,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogPassWithScreenshot("Choose a number identification label and selected phone number are displayed");
         getReporter().hardAssert(getFidoOVCheckoutPage().clkBillingAddress(), "Billing Address radio button is selected ", "Billing Address is not selected");
 
-        getFidoOVCheckoutPage().selectDeliveryMethod("STANDARD");
+        getFidoOVCheckoutPage().selectDeliveryMethod("EXPRESS");
         getReporter().reportLogPassWithScreenshot("Standard Delivery selected");
 
         getFidoOVCheckoutPage().clkShippingContinueButton();

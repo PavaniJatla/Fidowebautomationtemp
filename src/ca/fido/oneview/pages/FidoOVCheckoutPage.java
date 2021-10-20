@@ -27,6 +27,9 @@ public class FidoOVCheckoutPage extends BasePageClass {
     @FindBy(xpath = "//button[@data-test='shipping-continue']")
     WebElement btnContinueShipping;
 
+    @FindBy(xpath = "//store-list/div")
+    WebElement expressLocations;
+
     @FindBy(xpath = "//button[@id='main-continue-button']")
     WebElement btnSubmit;
 
@@ -67,7 +70,9 @@ public class FidoOVCheckoutPage extends BasePageClass {
      * @author Siarhei.Maiseichyk
      */
     public void clkShippingContinueButton() {
-        reusableActions.clickWhenReady(btnContinueShipping, 30);
+        reusableActions.waitForElementVisibility(expressLocations);
+        reusableActions.javascriptScrollByVisibleElement(btnContinueShipping);
+        reusableActions.executeJavaScriptClick(btnContinueShipping);
     }
 
     /**
@@ -76,6 +81,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
      * @author Siarhei.Maiseichyk
      */
     public void clkSubmitButton() {
+        reusableActions.staticWait(3000);
         reusableActions.waitForElementVisibility(btnSubmit);
         reusableActions.javascriptScrollByVisibleElement(btnSubmit);
         reusableActions.clickWhenReady(btnSubmit, 30);
