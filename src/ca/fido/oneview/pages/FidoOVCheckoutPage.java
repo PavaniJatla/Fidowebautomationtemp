@@ -229,8 +229,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
      */
     public void setEmailShippingPage() {
         if (reusableActions.isElementVisible(shippingEmailFormField, 20)) {
-            reusableActions.getWhenReady(inputEmailShipping, 40).click();
-            reusableActions.getWhenReady(inputEmailShipping).sendKeys(FormFiller.generateEmail());
+           inputEmailShipping.sendKeys(FormFiller.generateEmail());
         }
     }
 }
