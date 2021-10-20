@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.FormFiller;
 
 
 public class FidoOVCheckoutPage extends BasePageClass {
@@ -63,6 +64,11 @@ public class FidoOVCheckoutPage extends BasePageClass {
     @FindBy(xpath = "//ds-radio-button//following::div[@data-test='billing-address']")
     WebElement billingAddressShippingText;
 
+    @FindBy(xpath = "//div[@data-test='delivery-information']//ds-form-field")
+    WebElement shippingEmailFormField;
+
+    @FindBy(xpath = "//input[@formcontrolname='emailAddressField']")
+    WebElement inputEmailShipping;
 
     /**
      * Click on the shipping continue button
@@ -205,7 +211,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
             case "EXPRESS":
                 reusableActions.waitForElementVisibility(rdoDeliveryMethodExpress, 5);
                 reusableActions.clickWhenReady(rdoDeliveryMethodExpress, 30);
-                reusableActions.waitForElementVisibility(expressLocations, 40);
+                reusableActions.waitForElementVisibility(expressLocations, 60);
                 break;
             case "PRO":
                 reusableActions.waitForElementVisibility(rdoDeliveryMethodProOnTheGo, 5);
@@ -216,4 +222,15 @@ public class FidoOVCheckoutPage extends BasePageClass {
         }
     }
 
+    /**
+     * This method enters the value in email address field in shipping page
+     *
+     * @author Veranika.Siadach
+     */
+    public void setEmailShippingPage() {
+        if (reusableActions.isElementVisible(shippingEmailFormField, 20)) {
+            reusableActions.getWhenReady(inputEmailShipping, 40).click();
+            reusableActions.getWhenReady(inputEmailShipping).sendKeys(FormFiller.generateEmail());
+        }
+    }
 }

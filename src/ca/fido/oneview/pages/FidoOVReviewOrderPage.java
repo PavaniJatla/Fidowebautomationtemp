@@ -14,8 +14,8 @@ public class FidoOVReviewOrderPage extends BasePageClass {
     @FindBy(xpath = "//input[contains(@name,'points-to-mention-check')]/..")
     WebElement pointsToMentionCheck;
 
-    @FindBy(xpath = "//input[contains(@id,'ds-checkbox-id-1')]/..")
-    WebElement chEmailConsent;
+    @FindBy(xpath = "//ds-checkbox[@data-test='bopis-consent']")
+    WebElement chBopisConsent;
 
     @FindBy(xpath = "//button[@title='Submit order' or @title='Soumettre la commande']")
     WebElement submitOrderBtn;
@@ -76,12 +76,12 @@ public class FidoOVReviewOrderPage extends BasePageClass {
     }
 
     /**
-     * Click on the 'Email Communication Consent' checkbox
+     * Click on the BOPIS checkbox
      *
      * @author Veranika.Siadach
      */
-    public void clkEmailConsentCheckbox() {
-        reusableActions.clickIfAvailable(chEmailConsent, 5);
+    public void clkBopisCheckbox() {
+        reusableActions.clickIfAvailable(chBopisConsent, 10);
     }
 
     /**
@@ -100,7 +100,7 @@ public class FidoOVReviewOrderPage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public boolean isPaymentRequired() {
-        return reusableActions.isElementVisible(lblPaymentStep, 60);
+        return reusableActions.isElementVisible(lblPaymentStep, 40);
     }
 
     /**
