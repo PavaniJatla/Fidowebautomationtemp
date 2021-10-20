@@ -96,6 +96,7 @@ public class FidoSS_Regression_TC66_RegressionFidoValidateDataUsageDisplayInOver
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyDaysRemainingInBillCycleIsDisplayed(),
 						"Days remaining in bill cycle",
 						"Days remaining in bill cycle is not displayed");
+		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 		getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTalkNTextUsageModuleIsDisplayed(),
 						"Talk & Text usage module is displayed",
 						"Talk & Text usage module is not displayed, please investigate");			

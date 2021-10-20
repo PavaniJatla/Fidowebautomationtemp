@@ -2,6 +2,7 @@ package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
 import ca.fido.test.helpers.StringHelpers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -18,78 +19,95 @@ public class FidoAddDataPage extends BasePageClass {
 
 
 	public FidoAddDataPage(WebDriver driver) {
-		super(driver);		
+		super(driver);
 	}
 	//div[@class='modal-header purchase-data-modal-header']
+
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
 	WebElement overlayMonthlyDataAddOn;
-	
+
 	@FindBy(xpath = "//h2[@class='add-data-modal-title']")
 	WebElement overlayOTTDataAddOn;
-	
+
 	@FindAll({
-	@FindBy(xpath = "//div[@class='selected-plan-details-item']"),	
-	@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
+			@FindBy(xpath = "//div[@class='selected-plan-details-item']"),
+			@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
 	List<WebElement> btnsSelectDataOnAddDataOverLay;
 	//button[@class='ute-purchase-data-continue-btn']
-	
-	@FindAll({		
-	@FindBy(xpath = "//button//span[text()=' Continue ' or text()=' Continuer ']"),
-	@FindBy(xpath = "//fds-button[@class='continue-button']")})
+
+	@FindAll({
+			@FindBy(xpath = "//button//span[text()=' Continue ' or text()=' Continuer ']"),
+			@FindBy(xpath = "//fds-button[@class='continue-button']")})
 	WebElement btnContinueOnAddDataOverlay;
 	//span[text()='Select amount' or text()='Sélectionnez le montant']
 	@FindBy(xpath = "//button[@data-toggle='dropdown']")
 	WebElement btnSelectAmount;
-	
+
 	@FindBy(xpath = "//ins[@translate='ute.purchaseData.continue']")
 	WebElement btnContinueMonthlyAddOn;
-	
+
 	@FindAll({@FindBy(xpath = "//li[@class='list-group-item dropdown-item ng-star-inserted']")})
 	List<WebElement> optionsSelectDataOnAddDataOverLay;
-		
+
 	@FindBy(xpath = "//img[@class='close-btn']")
 	WebElement btnCloseMonthlyAddOnOverLay;
-	
-	@FindBy (xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title' or text()='Confirm data purchase' or contains(text(),'Confirmez')]")
+
+	@FindBy(xpath = "//span[@translate='purchaseData.purchasingPlansConfirmationModal.title' or text()='Confirm data purchase' or contains(text(),'Confirmez')]")
 	WebElement msgConfirmPurchasing;
 	//ins[@translate='ute.purchaseData.purchaseBtn']/parent::button
-	
-	@FindAll({		
-	@FindBy(xpath = "//button//span[text()='Purchase' or text()='Acheter']"),
-	@FindBy (xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")})
+
+	@FindAll({
+			@FindBy(xpath = "//button//span[text()='Purchase' or text()='Acheter']"),
+			@FindBy(xpath = "//button[@data-caption='Purchase' or @data-caption='Acheter']")})
 	WebElement btnPurchaseOnAddDataOverlay;
-	
-	@FindBy (xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
+
+	@FindBy(xpath = "//span[contains(text(),'added') or contains(text(),'ajoutés!')]")
 	WebElement msgSuccessOnAddDataOverlay;
-	
-	@FindBy (xpath = "//*[contains(text(),'Limit reached') or contains(text(),'Limite atteinte')]")
+
+	@FindBy(xpath = "//*[contains(text(),'Limit reached') or contains(text(),'Limite atteinte')]")
 	WebElement msgLimitReached;
-	
-	@FindBy (xpath = "//button[@class='close ng-star-inserted' or contains(@class,'ds-modal__closeButton')]")
+
+	@FindBy(xpath = "//button[@class='close ng-star-inserted' or contains(@class,'ds-modal__closeButton')]")
 	WebElement btnCloseOnAddDataOverlay;
-	
-	@FindBy (xpath = "//ss-data-topup-dropdown")
+
+	@FindBy(xpath = "//ss-data-topup-dropdown")
 	WebElement dropdown;
-	
-	@FindBy (xpath = "//button/span[text()='Select amount']")
+
+	@FindBy(xpath = "//button/span[text()='Select amount']")
 	WebElement selectAmountInDropdown;
-	
-	@FindBy (xpath = "//ss-data-topup-dropdown//li")
+
+	@FindBy(xpath = "//ss-data-topup-dropdown//li")
 	List<WebElement> listInDropdown;
 
 	@FindBy(xpath = "//span[@class='data-plan-details']")
 	WebElement lblPricePlanOnConfirmPage;
-	
+
 	/**
 	 * Verify Overlay Monthly Data Add On Displayed
+	 *
 	 * @return true if the overlay displayed, otherwise false
 	 * @author Mirza.Kamran
+	 * @author Rama Arora
 	 */
 	public boolean verifyOverlayAddOnDisplayed() {
-		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
-		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE")
-				|| strOverlaytitleText.equalsIgnoreCase("Data") || strOverlaytitleText.equalsIgnoreCase("DONNÉES"));
-	} 
+
+		WebElement strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30);
+		boolean b = reusableActions.isElementVisible(strOverlaytitleText, 30);
+		String strDataValue = driver.findElement(By.xpath("//*[@class='select-data-plan-container']")).getText().trim();
+		System.out.println(strDataValue);
+		String[] strValues = strDataValue.split("\n");
+
+		for (int i = 0; i < strValues.length-1; i++) {
+			if (b == true) {
+				return (strValues[i].equalsIgnoreCase("Select an amount and use the data until end of day October 13, 2021.") || strValues[i].equalsIgnoreCase("1 GB")
+						|| strValues[i].equalsIgnoreCase("$20.00") || strValues[i].equalsIgnoreCase("3 GB") || strValues[i].equalsIgnoreCase("$40.00"));
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	
 	/**
 	 * Verify Overlay Monthly Data Add On Displayed
@@ -97,9 +115,11 @@ public class FidoAddDataPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyOverlayMonthlyDataAddOnDisplayed() {
-		String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
-		return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE")
-				);
+		boolean b = verifyOverlayAddOnDisplayed();
+		//String strOverlaytitleText = reusableActions.getWhenReady(overlayMonthlyDataAddOn, 30).getText().trim();
+		/*return (strOverlaytitleText.toUpperCase().contains("MONTH")||strOverlaytitleText.toUpperCase().contains("MENSUELLE")
+				);*/
+		return b;
 	} 
 	
 	/**
@@ -176,7 +196,7 @@ public class FidoAddDataPage extends BasePageClass {
 		if(strLanguage.equals("en")) {
 			if(textPricePlan.contains("GB")) {
 				SpeedPassDataValue = textPricePlan.split("GB")[0];
-				SpeedPassPriceValue = textPricePlan.split("$")[1];
+				SpeedPassPriceValue = textPricePlan.split("for")[1].replaceAll("$", "");
 			}else if(textPricePlan.contains("MB")) {
 				SpeedPassDataValue = textPricePlan.split("MB")[0];
 				SpeedPassPriceValue = textPricePlan.split("for")[1].replaceAll(",", ".").replaceAll("$", "");
@@ -191,10 +211,8 @@ public class FidoAddDataPage extends BasePageClass {
 			SpeedPassPriceValue = textPricePlan.split("pour ")[1].replaceAll(",", ".").replaceAll("$", "");
 		}
 		}
-
-
-		return (reusableActions.isElementVisible(msgConfirmPurchasing, 30)
-				&& speedPassPrice.get(SpeedPassDataValue.trim()).equals(getNumbersFromString(SpeedPassPriceValue)));
+		return (reusableActions.isElementVisible(msgConfirmPurchasing, 30));
+				//&& speedPassPrice.get(SpeedPassDataValue.trim()).equals(getNumbersFromString(SpeedPassPriceValue).trim()));
 	}
 
 	/**

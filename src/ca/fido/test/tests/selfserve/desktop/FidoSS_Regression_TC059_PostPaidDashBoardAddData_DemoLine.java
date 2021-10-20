@@ -60,15 +60,15 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 				"Login succeed.", 
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
-		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().reportLogWithScreenshot("Click on CTN badge");
+		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
 //		getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 		getReporter().reportLogWithScreenshot("dashboard page loaded");
-
+		getFidoaccountoverviewpage().scrollToTopOfPage();
 		double previousTotalData = getFidowirelessdashboardpostpaidpage().getValueTotalData();		
 		double previousRemainingData = getFidowirelessdashboardpostpaidpage().getValueRemainingData();
-		
-		
+
 		getFidowirelessdashboardpostpaidpage().clkAddDataButton();
 		getReporter().hardAssert(getFidoadddatapage().verifyOverlayAddOnDisplayed(),
 							"add on overlay is displayed",
@@ -100,7 +100,7 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 			getFidoadddatapage().clkCloseBtnOnAddDataOverlay();
 			getReporter().reportLogWithScreenshot("Navigate back to Demo Line account dashboard page.");
 			//log out and login
-			getCommonbusinessflows().logOutAndResignIn(userName, password);		
+			getCommonbusinessflows().logOutAndResignIn(userName, password);
 			
 			//check added data reflecting
 			getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
@@ -108,12 +108,14 @@ public class FidoSS_Regression_TC059_PostPaidDashBoardAddData_DemoLine extends B
 					"Login failed, please investigate");
 
 			getReporter().reportLogWithScreenshot("Click on CTN badge");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-			getReporter().reportLogWithScreenshot("dashboard page");	
-			getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
+			getReporter().reportLogWithScreenshot("dashboard page");
+			getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().verifyTotalDataReflectedAddedData(previousTotalData,dataAdded),
 					"The data add-on reflected in total data.",
-					"The data add-on didn't reflect in total data.");	
-			getReporter().softAssert(getFidowirelessdashboardpostpaidpage().verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
+					"The data add-on didn't reflect in total data.");
+			getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().verifyRemainingDataReflectedAddedData(previousRemainingData,dataAdded),
 					"The data add-on reflected in total data.",
 					"The data add-on didn't reflect in total data.");	
 

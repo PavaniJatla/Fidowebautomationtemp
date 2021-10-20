@@ -28,7 +28,7 @@ public class FidoSS_Sanity_TC_06_ValidateRecoverUsernameUsingAccountNumberBySMS 
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void tc06ValidtRecvUsrnameByAccNumUsingSms() {				
-		getFidohomepage().clkLogin();
+		//getFidohomepage().clkLogin();
 		getReporter().reportLogWithScreenshot("Login Page");
 		getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkForgotUsernameIframe();
