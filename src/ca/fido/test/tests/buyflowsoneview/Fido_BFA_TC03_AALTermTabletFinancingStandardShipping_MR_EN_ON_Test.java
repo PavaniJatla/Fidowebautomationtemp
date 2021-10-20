@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with TERM flow by selecting tablet and Standard shipping - E2E (MR- EN - ON)
+ * TC01-OV-AAL Fido add a line with TERM flow by selecting tablet and Standard shipping - E2E (MR - EN - ON)
  *
  * @author Veranika.Siadach
  */
-public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_MR_EN_ON_Test extends BaseTestClass {
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
-    public void aalTermTabletFinancingStandardShippingFlow() {
+    public void aalTermTabletFinancingStandardShippingMrEnOnFlow() {
         getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getBanNo(), TestDataHandler.tc03AalTermTabletFinancingStandardShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");
@@ -37,7 +37,7 @@ public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends B
         getFidoOVChoosePhonePage().clickDeviceTitleButton(deviceName);
         getFidoOVChoosePhonePage().clickContinueButtonOnDashboardPhonePage(deviceName);
 
-        //-------------------------------------Plan config page---------------------------------------------
+        //------------------------------------- Plan config page ---------------------------------------------
         getReporter().hardAssert(getFidoOVPlanConfigPage().ifPlanConfigPageLoaded(), "Plan config page loaded successfully", "Plan config page not loaded");
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
@@ -56,7 +56,7 @@ public class Fido_BFA_TC03_AALTermTabletFinancingStandardShipping_Test extends B
         getFidoOVPlanConfigPage().clickCartSummaryContinueButton();
         getReporter().reportLogWithScreenshot("Proceed to checkout page button was clicked");
 
-        //---------------------------------------Checkout pages----------------------------------------------
+        //--------------------------------------- Checkout pages ----------------------------------------------
         getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not displayed");
         getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not displayed");
         getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");

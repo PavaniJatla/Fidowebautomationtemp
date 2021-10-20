@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  *
  * @author Siarhei.Maiseichyk
  */
-public class Fido_BFA_TC06_AALTermOutboundStandardShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends BaseTestClass {
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
     public void aalTermOutboundStandardShippingFlow() {
@@ -23,7 +23,7 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_Test extends BaseTest
         getReporter().reportLogWithScreenshot("Fido Account overview page");
         getAccountOverViewPage().setLanguageFrench();
         getReporter().reportLogWithScreenshot("Language was changed to French");
-        getAccountOverViewPage().setSkipNotification();
+        getAccountOverViewPage().skipNotification();
         getReporter().reportLogWithScreenshot("Notification from bell icon was skipped");
         getAccountOverViewPage().selectAddAWirelessLineButton();
         getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
@@ -92,17 +92,27 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_Test extends BaseTest
         getReporter().reportLogPassWithScreenshot("Order Review Page");
 
         getFidoOVReviewOrderPage().clkPointsToMentionCheckbox();
-        getFidoOVReviewOrderPage().clkEmailConsentCheckbox();
+        getFidoOVReviewOrderPage().clkBopisCheckbox();
         getReporter().reportLogPassWithScreenshot("Order Review Page: T&C");
 
         getFidoOVReviewOrderPage().clkSubmitOrderBtn();
         getReporter().reportLogWithScreenshot("Submit order button");
 
+        //TODO: check
+        if (getFidoOVReviewOrderPage().isPaymentRequired()) {
+            getFidoOVReviewOrderPage().clkPreAuthorizedCreditCardTokenButton();
+            getFidoOVReviewOrderPage().setCardName();
+            getFidoOVReviewOrderPage().setTokenDetails(TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getNumber3(),
+                    TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getExpiryMonth3(),
+                    TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getExpiryYear3());
+            getReporter().reportLogWithScreenshot("Fido Payment Page");
+            getFidoOVReviewOrderPage().clkSubmitPayment();
+        }
         //-------------------------------------- Order Confirmation Page --------------------------------------
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc06AAlTermOutboundStandardShipping.getBanNo()),
                 "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
-        getReporter().reportLogWithScreenshot("Rogers Order Confirmation Page");
+        getReporter().reportLogWithScreenshot("Fido Order Confirmation Page");
     }
 
     @BeforeMethod(alwaysRun = true)

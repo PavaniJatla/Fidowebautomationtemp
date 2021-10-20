@@ -10,35 +10,35 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with BYOD and BOPIS shipping - E2E (LR- EN - ON)
+ * TC01-OV-AAL Fido add a line with BYOD and Standard shipping - E2E (LR - EN - AB)
  *
  * @author Veranika.Siadach
  */
-public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC04_AALBYODFinancingStandardShipping_LR_EN_AB_Test extends BaseTestClass {
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
-    public void aalByodFinancingBopisShippingFlow() {
-        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc01AalByodFinancingBopisShipping.getBanNo(), TestDataHandler.tc01AalByodFinancingBopisShipping.getContactId());
+    public void aalByodFinancingStandardShippingLrEnAbFlow() {
+        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc04AalByodFinancingStandardShipping.getBanNo(), TestDataHandler.tc04AalByodFinancingStandardShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");
 
         getAccountOverViewPage().selectAddAWirelessLineButton();
         getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
         getReporter().hardAssert(getFidoOVChoosePhonePage().isCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
-        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel()),
-                String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
-                String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc01AalByodFinancingBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
+        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc04AalByodFinancingStandardShipping.getCustomerRiskLevel()),
+                String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc04AalByodFinancingStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
+                String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc04AalByodFinancingStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
         getReporter().reportLogWithScreenshot("Credit Evaluation Modal");
         getFidoOVChoosePhonePage().clickPlanOnlyButtonOnCreditEvalModal();
         getReporter().reportLogWithScreenshot("Clicked on Plan only button");
 
         //------------------------------------- Plan config page ---------------------------------------------
-        String deviceName = TestDataHandler.tc01AalByodFinancingBopisShipping.getDeviceName();
+        String deviceName = TestDataHandler.tc04AalByodFinancingStandardShipping.getDeviceName();
         getReporter().hardAssert(getFidoOVPlanConfigPage().ifPlanConfigPageLoaded(), "Plan config page loaded successfully", "Plan config page not loaded");
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyDeviceTitle(deviceName), "Device title is correct", "Device title is not correct");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
-        getFidoOVPlanConfigPage().selectDataOptionAndClickContinueButton(getFidoOVPlanConfigPage().getUpdatedDataOptionIndex(TestDataHandler.tc01AalByodFinancingBopisShipping.getDataOptionIndex()));
+        getFidoOVPlanConfigPage().selectDataOptionAndClickContinueButton(getFidoOVPlanConfigPage().getUpdatedDataOptionIndex(TestDataHandler.tc04AalByodFinancingStandardShipping.getDataOptionIndex()));
         getReporter().reportLogPassWithScreenshot("Data option was selected");
 
         getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state", "Addons page is not in expanded state");
@@ -52,28 +52,27 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogWithScreenshot("Proceed to checkout page button was clicked");
 
         //--------------------------------------- Checkout pages ----------------------------------------------
-        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTitleDisplayed(), "Choose a number title displayed", "Choose a number title not disaplayed");
-        getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not disaplayed");
-        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTitleDisplayed(), "Choose a number title is displayed", "Choose a number title is not displayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select is displayed", "Choose a number title is not displayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs are displayed", "Select a new number / Use existing number tabs are not displayed");
 
-        getFidoOVCheckoutPage().selectCityDropdownOption(TestDataHandler.tc01AalByodFinancingBopisShipping.getCtnCity());
+        getFidoOVCheckoutPage().selectCityDropdownOption(TestDataHandler.tc04AalByodFinancingStandardShipping.getCtnCity());
         getReporter().reportLogPassWithScreenshot("City dropdown value selected successfully");
 
         getFidoOVCheckoutPage().selectFirstAvlPhoneNumber();
         getReporter().reportLogPassWithScreenshot("Selected first available phone Number");
 
-        getReporter().softAssert(getFidoOVCheckoutPage().isFindMoreAvlNumbersButtonPresent(), "Find more available number button displayed", "Find more available number button not disaplayed");
+        getReporter().softAssert(getFidoOVCheckoutPage().isFindMoreAvlNumbersButtonPresent(), "Find more available number button is displayed", "Find more available number button not displayed");
 
         getFidoOVCheckoutPage().clkChooseNumberContinueButton();
-        getReporter().hardAssert(getFidoOVCheckoutPage().isChooseNumberLabelDisplayed(), "Choose a number identification label displayed successfully", "Choose a number identification label not disaplayed");
-        getReporter().hardAssert(getFidoOVCheckoutPage().isSelectedPhoneNumberDisplayed(), "Selected phone number label displayed successfully", "Choose a number identification Label not disaplayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().isChooseNumberLabelDisplayed(), "Choose a number identification label is displayed successfully", "Choose a number identification label is not displayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().isSelectedPhoneNumberDisplayed(), "Selected phone number label is displayed successfully", "Choose a number identification Label is not displayed");
         getReporter().reportLogPassWithScreenshot("Choose a number identification label and selected phone number are displayed");
         getReporter().hardAssert(getFidoOVCheckoutPage().clkBillingAddress(), "Billing Address radio button is selected ", "Billing Address is not selected");
 
-        getFidoOVCheckoutPage().selectDeliveryMethod("EXPRESS");
+        getFidoOVCheckoutPage().selectDeliveryMethod("STANDARD");
         getReporter().reportLogPassWithScreenshot("Standard Delivery selected");
 
-        getFidoOVCheckoutPage().setEmailShippingPage();
         getFidoOVCheckoutPage().clkShippingContinueButton();
         getReporter().reportLogPassWithScreenshot("Clicked continue button in shipping stepper");
 
@@ -85,7 +84,6 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogPassWithScreenshot("Order Review Page");
 
         getFidoOVReviewOrderPage().clkPointsToMentionCheckbox();
-        getFidoOVReviewOrderPage().clkBopisCheckbox();
         getReporter().reportLogPassWithScreenshot("Order Review Page: T&C");
 
         getFidoOVReviewOrderPage().clkSubmitOrderBtn();
@@ -103,7 +101,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
 
         //-------------------------------------- Order Confirmation Page --------------------------------------
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
-        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc01AalByodFinancingBopisShipping.getBanNo()),
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc04AalByodFinancingStandardShipping.getBanNo()),
                 "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
         getReporter().reportLogWithScreenshot("Fido Order Confirmation page");
     }

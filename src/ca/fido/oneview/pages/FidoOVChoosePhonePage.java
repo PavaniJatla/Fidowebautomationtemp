@@ -25,7 +25,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
     @FindBy(xpath = "//th[contains(text(), 'Risk Level') or contains(text(), 'Niveau de risque')]//following-sibling::td")
     WebElement riskLevel;
 
-    @FindBy(xpath = "//a[contains(@title,'View Details')]")
+    @FindBy(xpath = "//a[contains(@title,'View Details') or contains(@title,'Voir les détails')]")
     List<WebElement> viewDetailsButtons;
 
     @FindBy(xpath = "//div[contains(@class, 'col-undefined col-xs-12')]/div[@class='row']")
@@ -79,7 +79,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
         String risk = riskLevel.getText();
         double downpayment = Double.parseDouble(downpaymentPercent.getText().replace("%", ""));
 
-        if (downpayment <= 19 && downpayment >= 0 && (risk.equalsIgnoreCase("Low") || risk.equalsIgnoreCase("Meugler"))) {
+        if (downpayment <= 19 && downpayment >= 0 && (risk.equalsIgnoreCase("Low") || risk.equalsIgnoreCase("Faible"))) {
             customerType = "Low Risk";
         } else if (downpayment >= 20 && (risk.equalsIgnoreCase("Medium") || risk.equalsIgnoreCase("Moyen"))) {
             customerType = "Medium Risk";

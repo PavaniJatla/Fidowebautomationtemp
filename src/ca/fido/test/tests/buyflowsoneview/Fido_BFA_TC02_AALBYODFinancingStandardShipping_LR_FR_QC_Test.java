@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 /**
  * TC01-OV-AAL Fido add a line with BYOD and Standard shipping - E2E (LR - FR - QC)
  *
- * @author Veranika.Siadach
+ * @author Siarhei.Maiseichyk
  */
 public class Fido_BFA_TC02_AALBYODFinancingStandardShipping_LR_FR_QC_Test extends BaseTestClass {
 
@@ -24,7 +24,7 @@ public class Fido_BFA_TC02_AALBYODFinancingStandardShipping_LR_FR_QC_Test extend
 
         getAccountOverViewPage().setLanguageFrench();
         getReporter().reportLogWithScreenshot("Language was changed to French");
-        getAccountOverViewPage().setSkipNotification();
+        getAccountOverViewPage().skipNotification();
         getReporter().reportLogWithScreenshot("Notification from bell icon was closed");
 
         getAccountOverViewPage().selectAddAWirelessLineButton();
