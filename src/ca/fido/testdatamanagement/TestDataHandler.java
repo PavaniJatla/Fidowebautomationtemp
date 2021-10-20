@@ -108,6 +108,7 @@ public class TestDataHandler {
 	public static AalOVData tc01AalByodFinancingBopisShipping;
 	public static AalOVData tc03AalTermTabletFinancingStandardShipping;
 	public static AalOVData tc05AalNoTermOutboundBopisShipping;
+	public static AalOVData tc06AAlTermOutboundStandardShipping;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -252,5 +253,6 @@ public class TestDataHandler {
 		tc01AalByodFinancingBopisShipping = YamlHandler.getAALOneViewData("tc01AALByodFinancingBopisShippingFlow");
 		tc03AalTermTabletFinancingStandardShipping = YamlHandler.getAALOneViewData("tc03AAlTermTabletFinancingStandardShipping");
 		tc05AalNoTermOutboundBopisShipping = YamlHandler.getAALOneViewData("tc05AAlNoTermRetentionBopisShipping");
+		tc06AAlTermOutboundStandardShipping = YamlHandler.getAALOneViewData("tc06AAlTermOutboundStandardShipping");
 	}
 }
