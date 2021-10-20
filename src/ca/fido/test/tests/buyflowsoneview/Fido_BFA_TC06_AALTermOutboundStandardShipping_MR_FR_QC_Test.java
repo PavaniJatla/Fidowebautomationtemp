@@ -18,7 +18,7 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
     public void aalTermOutboundStandardShippingFlow() {
-        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc06AAlTermOutboundStandardShipping.getBanNo(), TestDataHandler.tc06AAlTermOutboundStandardShipping.getContactId());
+        getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc06AalTermOutboundStandardShipping.getBanNo(), TestDataHandler.tc06AalTermOutboundStandardShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");
         getAccountOverViewPage().setLanguageFrench();
@@ -28,14 +28,14 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         getAccountOverViewPage().selectAddAWirelessLineButton();
         getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
         getReporter().hardAssert(getFidoOVChoosePhonePage().isCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
-        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc06AAlTermOutboundStandardShipping.getCustomerRiskLevel()),
-                String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc06AAlTermOutboundStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
-                String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc06AAlTermOutboundStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
+        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc06AalTermOutboundStandardShipping.getCustomerRiskLevel()),
+                String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc06AalTermOutboundStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
+                String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc06AalTermOutboundStandardShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
         getReporter().reportLogWithScreenshot("Credit Evaluation Modal");
         getFidoOVChoosePhonePage().clickDeviceAndPlanButtonOnCreditEvalModal();
         getReporter().reportLogWithScreenshot("Clicked on Device and Plan button");
 
-        String deviceName = TestDataHandler.tc06AAlTermOutboundStandardShipping.getDeviceName();
+        String deviceName = TestDataHandler.tc06AalTermOutboundStandardShipping.getDeviceName();
         getReporter().hardAssert(getFidoOVChoosePhonePage().verifyDeviceTitleButton(deviceName), "Phone catalogue page appeared successfully", "Phone catalogue page did not appear");
         getFidoOVChoosePhonePage().clickDeviceTitleButton(deviceName);
         getFidoOVChoosePhonePage().clickContinueButtonOnDashboardPhonePage(deviceName);
@@ -45,10 +45,10 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
-        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc06AAlTermOutboundStandardShipping.getDeviceCostIndex());
+        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDeviceCostIndex());
         getReporter().reportLogPassWithScreenshot("Device cost option selected");
 
-        getFidoOVPlanConfigPage().selectOutboundDataOptionAndClickContinueButton(TestDataHandler.tc06AAlTermOutboundStandardShipping.getDataOptionIndex());
+        getFidoOVPlanConfigPage().selectOutboundDataOptionAndClickContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDataOptionIndex());
         getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state","Addons page is not in expanded state");
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
@@ -64,7 +64,7 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         getReporter().softAssert(getFidoOVCheckoutPage().verifyCheckOutPage(), "Select city select displayed", "Choose a number title not displayed");
         getReporter().softAssert(getFidoOVCheckoutPage().isChooseNumberTabsDisplayed(), "Select a new number / Use existing number tabs displayed", "Select a new number / Use existing number tabs are not displayed");
 
-        getFidoOVCheckoutPage().selectCityDropdownOption(TestDataHandler.tc06AAlTermOutboundStandardShipping.getCtnCity());
+        getFidoOVCheckoutPage().selectCityDropdownOption(TestDataHandler.tc06AalTermOutboundStandardShipping.getCtnCity());
         getReporter().reportLogPassWithScreenshot("City dropdown value selected successfully");
 
         getFidoOVCheckoutPage().selectFirstAvlPhoneNumber();
@@ -110,7 +110,7 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         }
         //-------------------------------------- Order Confirmation Page --------------------------------------
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
-        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc06AAlTermOutboundStandardShipping.getBanNo()),
+        getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc06AalTermOutboundStandardShipping.getBanNo()),
                 "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
         getReporter().reportLogWithScreenshot("Fido Order Confirmation Page");
     }
