@@ -73,6 +73,7 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getFidoOVCheckoutPage().selectDeliveryMethod("EXPRESS");
         getReporter().reportLogPassWithScreenshot("Standard Delivery selected");
 
+        getFidoOVCheckoutPage().setEmailShippingPage();
         getFidoOVCheckoutPage().clkShippingContinueButton();
         getReporter().reportLogPassWithScreenshot("Clicked continue button in shipping stepper");
 
@@ -84,17 +85,27 @@ public class Fido_BFA_TC01_AALBYODFinancingBopisShipping_Test extends BaseTestCl
         getReporter().reportLogPassWithScreenshot("Order Review Page");
 
         getFidoOVReviewOrderPage().clkPointsToMentionCheckbox();
-        getFidoOVReviewOrderPage().clkEmailConsentCheckbox();
+        getFidoOVReviewOrderPage().clkBopisCheckbox();
         getReporter().reportLogPassWithScreenshot("Order Review Page: T&C");
 
         getFidoOVReviewOrderPage().clkSubmitOrderBtn();
         getReporter().reportLogWithScreenshot("Submit order button");
 
+        if (getFidoOVReviewOrderPage().isPaymentRequired()) {
+            getFidoOVReviewOrderPage().clkPreAuthorizedCreditCardTokenButton();
+            getFidoOVReviewOrderPage().setCardName();
+            getFidoOVReviewOrderPage().setTokenDetails(TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getNumber3(),
+                    TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getExpiryMonth3(),
+                    TestDataHandler.bfaOneViewPaymentInfo.getTokenDetails().getExpiryYear3());
+            getReporter().reportLogWithScreenshot("Fido Payment Page");
+            getFidoOVReviewOrderPage().clkSubmitPayment();
+        }
+
         //-------------------------------------- Order Confirmation Page --------------------------------------
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc01AalByodFinancingBopisShipping.getBanNo()),
                 "BAN displayed is the same as the given BAN", "BAN displayed isn't the same as the given BAN");
-        getReporter().reportLogWithScreenshot("Rogers Order Confirmation Page");
+        getReporter().reportLogWithScreenshot("Fido Order Confirmation page");
     }
 
     @BeforeMethod(alwaysRun = true)

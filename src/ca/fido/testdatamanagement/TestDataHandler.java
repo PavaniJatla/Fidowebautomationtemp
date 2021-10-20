@@ -107,6 +107,7 @@ public class TestDataHandler {
 
 	public static AalOVData tc01AalByodFinancingBopisShipping;
 	public static AalOVData tc03AalTermTabletFinancingStandardShipping;
+	public static AalOVData tc04AalByodFinancingStandardShipping;
 	public static AalOVData tc05AalNoTermOutboundBopisShipping;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
@@ -251,6 +252,7 @@ public class TestDataHandler {
 		bfaOneViewPaymentInfo = YamlHandler.getBfaOneViewPaymentDetails();
 		tc01AalByodFinancingBopisShipping = YamlHandler.getAALOneViewData("tc01AALByodFinancingBopisShippingFlow");
 		tc03AalTermTabletFinancingStandardShipping = YamlHandler.getAALOneViewData("tc03AAlTermTabletFinancingStandardShipping");
+		tc04AalByodFinancingStandardShipping = YamlHandler.getAALOneViewData("tc04AALByodFinancingStandardShippingFlow");
 		tc05AalNoTermOutboundBopisShipping = YamlHandler.getAALOneViewData("tc05AAlNoTermRetentionBopisShipping");
 	}
 }
