@@ -160,7 +160,8 @@ public class FidoOVReviewOrderPage extends BasePageClass {
      * @author Veranika.Siadach
      */
     public void clkSubmitPayment() {
-        reusableActions.waitForElementVisibility(btnSubmitPayment);
+        reusableActions.waitForElementTobeClickable(btnSubmitPayment, 30);
+        reusableActions.javascriptScrollByVisibleElement(btnSubmitPayment);
         reusableActions.executeJavaScriptClick(btnSubmitPayment);
     }
 }
