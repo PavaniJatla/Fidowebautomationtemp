@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with BYOD and Standard shipping - E2E (LR - FR - QC)
+ * TC02-OV-AAL Fido add a line with BYOD and Standard shipping - E2E (LR - FR - QC)
  *
  * @author Siarhei.Maiseichyk
  */

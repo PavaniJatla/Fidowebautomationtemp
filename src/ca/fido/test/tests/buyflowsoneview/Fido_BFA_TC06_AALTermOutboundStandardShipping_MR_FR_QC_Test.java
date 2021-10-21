@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone and standard shipping - E2E (MR - FR - QC)
+ * TC06-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone and standard shipping - E2E (MR - FR - QC)
  *
  * @author Siarhei.Maiseichyk
  */
 public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends BaseTestClass {
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
-    public void aalTermOutboundStandardShippingFlow() {
+    public void aalTermOutboundStandardShippingFlowMrFrQc() {
         getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc06AalTermOutboundStandardShipping.getBanNo(), TestDataHandler.tc06AalTermOutboundStandardShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");

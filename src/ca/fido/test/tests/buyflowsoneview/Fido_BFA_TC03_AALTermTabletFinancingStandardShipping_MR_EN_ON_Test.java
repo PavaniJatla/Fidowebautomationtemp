@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC01-OV-AAL Fido add a line with TERM flow by selecting tablet and Standard shipping - E2E (MR - EN - ON)
+ * TC03-OV-AAL Fido add a line with TERM flow by selecting tablet and Standard shipping - E2E (MR - EN - ON)
  *
  * @author Veranika.Siadach
  */
