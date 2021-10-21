@@ -44,20 +44,15 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
         getReporter().reportLogWithScreenshot("Launched the Account Page");
         String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
         getReporter().reportLogWithScreenshot("Launched the Account Page");
-        getFidoaccountoverviewpage().clkPayNow();
+
+        getFidoaccountoverviewpage().clkMakepayment();
         getReporter().reportLogWithScreenshot("Launched the payment widget");
         getFidopaymentpage().setPaymentAmountMobile(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
-        getReporter().reportLogWithScreenshot("set the payment amount");
-        getFidopaymentpage().selectCreditCardOption();
-        // -- Need to be fixed--workaround/
-        getFidopaymentpage().selectCreditCardOption();
-        getReporter().reportLogWithScreenshot("set the payment mode");
+        getReporter().reportLogWithScreenshot("Launched the credit card widget");
 
         // --------------------Pass it from yaml-----------------//
         getFidopaymentpage().setCreditCardNumberIFrameMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
-        getReporter().reportLogWithScreenshot("set the credit card number");
-        getFidopaymentpage().selectExpiryMonthMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryMonth());
-        getFidopaymentpage().selectExpiryYearMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryYear());
+        getFidopaymentpage().selectExpiryDate(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryYear());
         getFidopaymentpage().setCVVNumberMobile(TestDataHandler.chPaymentInfo.getCreditCardDetails().getCVV());
         getReporter().reportLogWithScreenshot("set the credit card information");
         getFidopaymentpage().clkReviewAndContinue();
@@ -68,10 +63,10 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
         getReporter().reportLogWithScreenshot("payment success widget");
         getFidopaymentpage().clkPaymentConfirmationMobile();
         getFidoaccountoverviewpage().clkOverview();
-        //getFidoaccountoverviewpage().verifyAccountPage(accountBalanceBeforePayment, strLanguage);
+        getFidoaccountoverviewpage().verifyAccountPage(accountBalanceBeforePayment, strLanguage);
         getReporter().reportLogWithScreenshot("Launched the Account Page with updated account balance");
         String accountBalanceAfterPayment=getFidoaccountoverviewpage().getAccountBalanceAfterpayment();
-       // getReporter().hardAssert(getFidoaccountoverviewpage().verifyPayment(accountBalanceBeforePayment,accountBalanceAfterPayment,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
+       getReporter().hardAssert(getFidoaccountoverviewpage().verifyPayment(accountBalanceBeforePayment,accountBalanceAfterPayment,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
     }
 
     @BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

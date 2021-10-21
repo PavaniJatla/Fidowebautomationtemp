@@ -41,20 +41,27 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
-		getFidoaccountoverviewpage().clkPayNow();
+		String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
+		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
+		getFidoaccountoverviewpage().clkMakepayment();
 		getReporter().reportLogWithScreenshot("Launched the payment widget");
 		getFidopaymentpage().setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
 		getReporter().reportLogWithScreenshot("set the payment amount");
-		getFidopaymentpage().selectCreditCardOption();
+		getReporter().reportLogWithScreenshot("Launched the credit card widget");
+
+		// --------------------Pass it from yaml-----------------//
+		getFidopaymentpage().setCreditCardNumberIFrame(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
+		getFidopaymentpage().selectExpiryDate(TestDataHandler.chPaymentInfo.getCreditCardDetails().getExpiryYear());
+		getFidopaymentpage().setCVVNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getCVV());
+		getReporter().reportLogWithScreenshot("set the credit card information");
+		getFidopaymentpage().clkReviewAndContinue();
 		getReporter().reportLogWithScreenshot("set the Credit Card Option");
 		getFidopaymentpage().selectBankOption();
 		getReporter().reportLogWithScreenshot("set the Bank Option");
 		getFidopaymentpage().clkClosePayments();
-		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
-		getFidoaccountoverviewpage().clkChangePaymentMethod();
-		getReporter().hardAssert(getFidoaccountoverviewpage().isAutomaticPayTextDisplay(),"Automatic Pay model has Displayed","Automatic Pay model hasn't Displayed");
-		getReporter().reportLogWithScreenshot("Setup Automatic Payments");
-		getFidoaccountoverviewpage().clkAutomaticPayModelClose();
+		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
+		getFidoaccountoverviewpage().clkViewUsageManage();
+		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		getFidointernetdashboardpage().clkUsageNService();
 		getFidointernetdashboardpage().clkInternetService();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");

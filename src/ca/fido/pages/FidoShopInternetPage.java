@@ -561,6 +561,6 @@ public class FidoShopInternetPage extends BasePageClass {
 
 	public void clickContinue() {
 		reusableActions.getWhenReady(btnContinue,90).click();
-		
+		reusableActions.clickIfAvailable(btnContinue,90);
 	}
 }

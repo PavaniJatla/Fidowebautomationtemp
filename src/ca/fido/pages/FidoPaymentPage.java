@@ -18,10 +18,12 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//label[@for='Creditcard']/ins")
 	WebElement rdoCreditCardOption;
 
-	@FindBy(xpath = "//label[@for='Bank']/ins")
+	@FindBy(xpath = "//button[@aria-label='Automatic Payments']")
 	WebElement rdoBankOption;
 
-	@FindBy(xpath = "//div[@class='modal-header hidden-xs']//button[@class='close square-close-icon']")
+	@FindAll({
+	@FindBy(xpath = "//a[@title='Account Overview']"),
+	@FindBy(xpath = "//div[@class='modal-header hidden-xs']//button[@class='close square-close-icon']")})
 	WebElement btnClosePayment;
 
 	@FindBy(xpath = "//iframe[contains(@src,'semafone')]")
@@ -71,8 +73,9 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//a[@aria-label='Finish and return to your Overview dashboard']")
 	WebElement btnPaymentConfirmation;
 	//button[contains(@class,'col-xs-12 pay-now-button-secondary uppercase ds-button')]
-	@FindBy(xpath = "//button[contains(@class,'pay-now-button-secondary uppercase width-100 ds-button -primary')]")
+	@FindBy(xpath = "//a[@aria-label='Finish and return to your Overview dashboard']")
 	WebElement btnPaymentConfirmationMobile;
+
 	@FindAll({
 		@FindBy(xpath="//iframe[@id='sema']"),
 		@FindBy(xpath="//div[contains(@class,'iframe')]//iframe")
@@ -185,6 +188,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void selectBankOption() {
+		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.getWhenReady(rdoBankOption,20).click();
 	}
 
@@ -208,6 +212,7 @@ public class FidoPaymentPage extends BasePageClass {
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
@@ -221,14 +226,13 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void setPaymentAmountMobile(String strPaymentAmount) {
-		reusableActions.getWhenReady(txtPaymentAmount,120).click();
+		reusableActions.getWhenReady(txtPaymentAmount,60).click();
 		reusableActions.getWhenReady(txtPaymentAmount,5).clear();
 		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(strPaymentAmount);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 	}
 	/**
@@ -271,7 +275,8 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void setCVVNumberMobile(String strCVV) {
-		reusableActions.clickWhenVisible(txtCVV,120);
+		reusableActions.clickWhenVisible(txtCvvContainer,60);
+		reusableActions.clickWhenVisible(txtCVV,60);
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
 	}
 	/**
