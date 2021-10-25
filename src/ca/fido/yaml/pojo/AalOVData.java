@@ -7,6 +7,7 @@ public class AalOVData {
     private String newPlanCategory;
     private String deviceName;
     private String deviceCostIndex;
+    private String financingOptionIndex;
     private String dataOptionIndex;
     private String talkOptionIndex;
     private String customerRiskLevel;
@@ -74,6 +75,14 @@ public class AalOVData {
 
     public void setDataOptionIndex(String dataOptionIndex) {
         this.dataOptionIndex = dataOptionIndex;
+    }
+
+    public String getFinancingOptionIndex() {
+        return financingOptionIndex;
+    }
+
+    public void setFinancingOptionIndex(String financingOptionIndex) {
+        this.financingOptionIndex = financingOptionIndex;
     }
 
     public String getTalkOptionIndex() {
