@@ -45,10 +45,11 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
-        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDeviceCostIndex());
-        getReporter().reportLogPassWithScreenshot("Device cost option selected");
+        getFidoOVPlanConfigPage().selectDeviceCostAndFinancingOptAndClickOnContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDeviceCostIndex()
+                , TestDataHandler.tc06AalTermOutboundStandardShipping.getFinancingOptionIndex());
+        getReporter().reportLogPassWithScreenshot("Device cost and financing option selected");
 
-        getFidoOVPlanConfigPage().selectOutboundDataOptionAndClickContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDataOptionIndex());
+        getFidoOVPlanConfigPage().selectRetentionDataOptionAndClickContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDataOptionIndex());
         getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state","Addons page is not in expanded state");
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
@@ -98,7 +99,6 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         getFidoOVReviewOrderPage().clkSubmitOrderBtn();
         getReporter().reportLogWithScreenshot("Submit order button");
 
-        //TODO: check
         if (getFidoOVReviewOrderPage().isPaymentRequired()) {
             getFidoOVReviewOrderPage().clkPreAuthorizedCreditCardTokenButton();
             getFidoOVReviewOrderPage().setCardName();

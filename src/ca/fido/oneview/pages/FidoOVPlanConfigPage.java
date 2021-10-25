@@ -23,11 +23,17 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//div[contains(@data-test,'outbound-plans')]/ds-selection")
     List<WebElement> outboundDataOptions;
 
+    @FindBy(xpath = "//div[contains(@data-test,'retention-plans')]/ds-selection")
+    List<WebElement> retentionDataOptions;
+
     @FindBy(xpath = "//button[@data-test='stepper-1-edit-step-continue-button']")
     WebElement preCartDeviceCostContinueButton;
 
     @FindBy(xpath = "//ds-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[1]")
     List<WebElement> devicesTiers;
+
+    @FindBy(xpath = "//ds-radio-group[1]//ds-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label")
+    List<WebElement> financingOptions;
 
     @FindBy(xpath = "//button[@data-test='stepper-2-edit-step-continue-button']")
     WebElement preCartDataOptionContinueButton;
@@ -82,6 +88,9 @@ public class FidoOVPlanConfigPage extends BasePageClass {
 
     @FindBy(xpath = "//button[contains(@title,'Outbound') or contains(@title, 'Sortant')]")
     WebElement showOutboundPlanBtn;
+
+    @FindBy(xpath = "//button[contains(@title,'Retention')]")
+    WebElement showRetentionPlanBtn;
 
     /**
      * Instantiates a new Base page class.
@@ -149,6 +158,19 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     }
 
     /**
+     * Select retention data option on Plan config page
+     *
+     * @param dataOptionIndex String value of data option to be selected
+     * @author Veranika.Siadach
+     */
+    public void selectRetentionDataOptionAndClickContinueButton(String dataOptionIndex) {
+        reusableActions.getWhenReady(showRetentionPlanBtn, 40).click();
+        reusableActions.waitForAllElementsVisible(retentionDataOptions, 20);
+        retentionDataOptions.get(Integer.parseInt(dataOptionIndex)).click();
+        reusableActions.clickWhenVisible(preCartDataOptionContinueButton, 30);
+    }
+
+    /**
      * Selects talk option and verifies if addons stepper continue button is displayed
      *
      * @return true if data option is selected, else false
@@ -191,6 +213,33 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     }
 
     /**
+     * Select Device Cost tier and Financing option on Plan config page and clicks on continue button
+     *
+     * @param deviceCostIndex String value of Device Cost to be selected
+     * @param financingOptionIndex String value of Financing Option to be selected
+     * @author Siarhei.Maiseichyk
+     */
+    public void selectDeviceCostAndFinancingOptAndClickOnContinueButton(String deviceCostIndex, String financingOptionIndex) {
+        int stepper = 1;
+        if (Integer.parseInt(deviceCostIndex) == 1) {
+            clkRadioButtonNoTerm();
+        }
+
+        String planIndex = getUpdatedDeviceCostIndex(deviceCostIndex);
+        String xpathValue = createXpathWithInputData(planIndex, stepper);
+        if (Integer.parseInt(planIndex) != 0) {
+            reusableActions.clickWhenVisible(By.xpath(xpathValue), 60);
+        }
+
+        String financingOption = getUpdatedFinancingOptionIndex(financingOptionIndex);
+        if (Integer.parseInt(financingOption) != 0) {
+            reusableActions.clickWhenVisible(financingOptions.get(Integer.parseInt(financingOption)), 60);
+        }
+
+        reusableActions.clickWhenVisible(preCartDeviceCostContinueButton, 30);
+    }
+
+    /**
      * This method sets the value for deviceCostIndex
      *
      * @param deviceCostIndex String value of deviceCostIndex
@@ -203,6 +252,21 @@ public class FidoOVPlanConfigPage extends BasePageClass {
             return deviceCostIndex;
         }
         return deviceCostIndex;
+    }
+
+    /**
+     * This method sets the value for financingOptionIndex
+     *
+     * @param financingOptionIndex String value of financingOptionIndex
+     * @return return the String value of index
+     * @author Siarhei.Maiseichyk
+     */
+    public String getUpdatedFinancingOptionIndex(String financingOptionIndex) {
+        if ((financingOptionIndex == null) || (financingOptionIndex.isEmpty()) || (Integer.parseInt(financingOptionIndex) > financingOptions.size() - 1)) {
+            financingOptionIndex = "0";
+            return financingOptionIndex;
+        }
+        return financingOptionIndex;
     }
 
     /**

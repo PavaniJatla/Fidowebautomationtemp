@@ -31,7 +31,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
     @FindBy(xpath = "//div[contains(@class, 'col-undefined col-xs-12')]/div[@class='row']")
     WebElement devicesCatalog;
 
-    @FindBy(xpath = "//button[@title='Select' or @title='Continue' or @title='Continuer' or @title='Ship to home' or @title='Expédier à la maison']")
+    @FindBy(xpath = "//button[@title='Select' or @title='Continue' or @title='Continuer' or @title='Ship to home' or @title='Expédier à la maison' or contains(@title, 'Disponible à l')]")
     WebElement continueButtonOnDashboardPhonePage;
 
     @FindBy(xpath = "//div[contains(@class, 'd-block mt-16')]//h1")
