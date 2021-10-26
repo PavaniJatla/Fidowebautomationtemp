@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC06-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone and standard shipping - E2E (MR - FR - QC)
+ * TC06-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone and standard shipping option - E2E (MR - FR - QC)
  *
  * @author Siarhei.Maiseichyk
  */
