@@ -28,8 +28,8 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 	
 	@Test
 	public void recoverUsernameByEmail() throws IOException {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		//=============== new code ===================
 		getFidologinpage().clkForgotUsernameIframe();
 		getReporter().reportLogWithScreenshot("Forgot username link is clicked.");
@@ -47,7 +47,7 @@ public class FidoSS_Regression_TC07_ValidateRecoverUsernameByEmail extends BaseT
 		getReporter().reportLogWithScreenshot("Get recovery code");
 		String recoveryCode = getFidorecoverpassornamepage().getVerificationCode();
 		getDriver().switchTo().window(strTestingTab);
-		getFidorecoverpassornamepage().switchToSetCodeIframe();
+		//getFidorecoverpassornamepage().switchToSetCodeIframe();
 		getFidorecoverpassornamepage().setVerificationCode(recoveryCode);
 		getReporter().reportLogWithScreenshot("Set recovery code");
 		getFidorecoverpassornamepage().clkBtnContinue();

@@ -5,6 +5,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -15,9 +16,11 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 		super(driver);
 		
 	}
-		
-	
-	@FindBy (xpath="//div[@class='payment-history-table']//table/tbody")
+
+	@FindAll({
+			@FindBy (xpath = "//ss-payment-history-table//table/tbody"),
+			@FindBy (xpath="//div[@class='payment-history-table']//table/tbody")
+	})
 	WebElement tablePaymentHistory;
 	
 	@FindBy (xpath="//ins[@translate='global.message.myAccountNoPaymentHistory']")
@@ -55,7 +58,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 	 */
 	public int getTotalPage() {
 		
-		List < WebElement > pages = driver.findElements(By.xpath("//div[@class='payment-history-pager']//li/a"));
+		List < WebElement > pages = driver.findElements(By.xpath("//button[@title='Previous page']//following-sibling::div//button")); //div[@class='payment-history-pager']//li/a
 	   	//To calculate no of rows In table.
 		if(pages.size()==0)
 		{
@@ -72,7 +75,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkPageNumber(int pageNumber) {
-		reusableActions.clickIfAvailable(By.xpath("//div[@class='payment-history-pager']//li/a/span[text()='"+Integer.toString(pageNumber)+"']"));
+		reusableActions.clickIfAvailable(By.xpath("//button[@title='Previous page']//following-sibling::div//button[contains(@title,'"+Integer.toString(pageNumber)+"')]")); //div[@class='payment-history-pager']//li/a/span[text()='"+Integer.toString(pageNumber)+"']
 		
 	}
 	   
@@ -109,7 +112,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Boolean isPaymenyHistoryTablePresent() {		
-		return reusableActions.isElementVisible(By.xpath("//div[@class='payment-history-table']//table"));
+		return reusableActions.isElementVisible(By.xpath("//ss-payment-history-table//table")); //div[@class='payment-history-table']//table
 	}
 	
 	/**
@@ -291,7 +294,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public String getCellDateData(int intRow) {
-	   return reusableActions.getWhenReady(By.xpath("//div[@class='payment-history-table']//table/tbody/tr["+(intRow+1)+"]/td[1]")).getText();
+	   return reusableActions.getWhenReady(By.xpath("//ss-payment-history-table//table/tbody/tr["+(intRow+1)+"]/td[1]")).getText();
    }
    
    /**
@@ -301,7 +304,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public String getCellAmountData(int intRow) {
-	   return reusableActions.getWhenReady(By.xpath("//div[@class='payment-history-table']//table/tbody/tr["+(intRow+1)+"]/td[2]")).getText();
+	   return reusableActions.getWhenReady(By.xpath("//ss-payment-history-table//table/tbody/tr["+(intRow+1)+"]/td[2]")).getText();
    }
    
    /**
@@ -311,7 +314,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public String getCellTransactionData(int intRow) {
-	   return reusableActions.getWhenReady(By.xpath("//div[@class='payment-history-table']//table/tbody/tr["+(intRow+1)+"]/td[3]")).getText();
+	   return reusableActions.getWhenReady(By.xpath("//ss-payment-history-table//table/tbody/tr["+(intRow+1)+"]/td[3]")).getText();
    }
    
    /**
@@ -321,7 +324,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public String getCellDetailsData(int intRow) {
-	   return reusableActions.getWhenReady(By.xpath("//div[@class='payment-history-table']//table/tbody/tr["+(intRow+1)+"]/td[4]")).getText();
+	   return reusableActions.getWhenReady(By.xpath("//ss-payment-history-table//table/tbody/tr["+(intRow+1)+"]/td[4]")).getText();
    }
    
    /**
@@ -331,7 +334,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
     * @author Mirza.Kamran
     */
    public String getCellReferenceData(int intRow) {
-	   return reusableActions.getWhenReady(By.xpath("//div[@class='payment-history-table']//table/tbody/tr["+(intRow+1)+"]/td[5]")).getText();
+	   return reusableActions.getWhenReady(By.xpath("//ss-payment-history-table//table/tbody/tr["+(intRow+1)+"]/td[5]")).getText();
    }
    
    /**
@@ -415,7 +418,7 @@ public class FidoPaymentHistoryPage extends BasePageClass {
    
    /**
 	 * Checks the payment history for reference number
-	 * @param strRefNumber Reference number string
+	 //* @param strRefNumber Reference number string
 	 * @return true if reference matches else false
 	 * @author Mirza.Kamran
 	 */
