@@ -26,14 +26,28 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	@FindBy(xpath="//input[contains(@formcontrolname,'email')]")
 	WebElement txtFidoEmailAddr;
 
-	@FindBy(name="accountNumber")
+	@FindBy(xpath = "//input[@formcontrolname='accountNumber']/parent::div")
+	WebElement lblFidoAccountNumber;
+
+	//@FindBy(name="accountNumber")
+	@FindBy(xpath="//input[@formcontrolname='accountNumber']")
 	WebElement txtFidoAccountNumber;
-	
-	@FindBy(id="postalCode-field")
+
+	@FindBy(xpath="//input[@formcontrolname='postalCode']/parent::div")
+	WebElement lblPostalCode;
+
+	//@FindBy(id="postalCode-field")
+	@FindBy(xpath="//input[@formcontrolname='postalCode']")
 	WebElement txtPostalCode;
-	
-	@FindBy(xpath="//button[@class='ute-secondary-button']")
-	WebElement btnContinueAccountRegister;	
+
+	@FindAll({
+			@FindBy(xpath = "//button[@type='submit']"),
+			@FindBy(xpath = "//button[@class='ute-secondary-button']")
+	})
+	WebElement btnContinueAccountRegister;
+
+	@FindBy(xpath = "//span[contains(text(),'Change your email address')]//parent::span[contains(@class,'button')]")
+	WebElement lnkChangeEmail;
 	
 	@FindBy (name = "phoneNumber")
 	WebElement txtMobilePhoneNumber;
@@ -83,8 +97,11 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 
 	@FindBy(xpath="//div[@translate='ute.easy.login.registration.account.eck6']")
 	WebElement lblErroraccountcancelledOrSuspended; 
-	
-	@FindBy (xpath = "//div[@translate='ute.easy.login.registration.email.ecd5']")
+
+	@FindAll({
+			@FindBy(xpath = "//h1[contains(text(),' Already registered')]"),
+			@FindBy(xpath = "//div[@translate='ute.easy.login.registration.email.ecd5']")
+	})
 	WebElement errorMsgEmailUsed;
 	
 	@FindBy (xpath = "//button[@translate='ute.easy.login.registration.prepaidCustomers']")
@@ -340,8 +357,9 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setFidoAccountNumber(String strFidoAccountNumber) {
-		reusableActions.getWhenReady(txtFidoAccountNumber, 3).clear();
-		reusableActions.getWhenReady(txtFidoAccountNumber,3).sendKeys(strFidoAccountNumber);
+		reusableActions.getWhenReady(lblFidoAccountNumber, 3).click();
+		//reusableActions.getWhenReady(txtFidoAccountNumber, 3).clear();
+		reusableActions.getWhenReady(txtFidoAccountNumber,5).sendKeys(strFidoAccountNumber);
 	}
 	
 	/**
@@ -350,8 +368,20 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setPostalCode(String strPostalCode) {
-		reusableActions.getWhenReady(txtPostalCode, 3).clear();
-		reusableActions.getWhenReady(txtPostalCode,3).sendKeys(strPostalCode);
+		reusableActions.getWhenReady(lblPostalCode, 3).click();
+		//reusableActions.getWhenReady(txtPostalCode, 3).clear();
+		reusableActions.getWhenReady(txtPostalCode,5).sendKeys(strPostalCode);
+	}
+
+	/**
+	 * Sets the DOB  for recovery
+	 //* @param strDOB, String, DOB
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void setDOB() {           //String strDOB
+		reusableActions.getWhenReady(lblDOB).click();
+		//getReusableActionsInstance().getWhenReady(txtDOB).clear();
+		reusableActions.getWhenReady(txtDOB).sendKeys("1990/04/23");
 	}
 	
 	/**
@@ -377,7 +407,15 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 		}
 		return clickSuccess;
 	}
-	
+
+	/**
+	 * Click on the link "Change your email address"
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkChangeEmailLink() {
+		reusableActions.clickWhenReady(lnkChangeEmail, 10);
+	}
+
 	/**
 	 * Check if the button "Send Email" is displayed
 	 * @return true if the button displayed, else false.

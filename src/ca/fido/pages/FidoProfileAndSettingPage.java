@@ -31,8 +31,11 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//iframe[contains(@src,'/profile/recoverynumber')]"),
 	@FindBy(xpath = "//iframe[contains(@src,'/pages/easylogin-fido/sms/input/')]")})
 	WebElement iframeSmsRecovery;
+
+	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']//parent::div")
+	WebElement lblPhoneNumber;
 	
-	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']//..")
+	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']")
 	WebElement txtPhoneNumber;
 	
 	@FindBy (xpath = "//div[@class='recovery-content']//button")
@@ -259,8 +262,8 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setPhoneNumberIframe(String strPhoneNum) {
-		reusableActions.getWhenReady(txtPhoneNumber,40).clear();
-		reusableActions.getWhenReady(txtPhoneNumber,2).sendKeys(strPhoneNum);		
+		reusableActions.getWhenReady(txtPhoneNumber,10).click();
+		reusableActions.getWhenReady(txtPhoneNumber,15).sendKeys(strPhoneNum);
 	}
 	
 	/**

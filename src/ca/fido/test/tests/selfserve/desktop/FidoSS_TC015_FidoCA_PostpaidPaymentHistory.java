@@ -56,7 +56,7 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 		getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
 		//getReporter().softAssert(getFidopaymenthistorypage().getTotalRowCount()!=0,"","The row count is blank it seem");
 		
-		getReporter().reportLogWithScreenshot("Payment history page");	
+		getReporter().reportLogWithScreenshot("Payment history page");
 		if(getFidopaymenthistorypage().isPaymenyHistoryTablePresent()) 
 		{
 			getReporter().reportLogWithScreenshot("Transaction records view");

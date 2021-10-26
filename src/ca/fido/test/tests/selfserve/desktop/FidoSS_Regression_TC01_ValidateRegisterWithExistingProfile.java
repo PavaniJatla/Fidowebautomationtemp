@@ -40,17 +40,21 @@ public class FidoSS_Regression_TC01_ValidateRegisterWithExistingProfile extends 
 		String strPostalCode = TestDataHandler.tc0301.getaccountDetails().getPostalCode();
 		getFidoaccountregistrationpage().setFidoAccountNumber(strFidoAccountNumber);
 		getFidoaccountregistrationpage().setPostalCode(strPostalCode);
+		getFidoaccountregistrationpage().setDOB();
 		getReporter().reportLogWithScreenshot("Register the BAN.");
 		getFidoaccountregistrationpage().clkContinueAccountRegister();
+
+		//Click on Change Email Address Link
+		getFidoaccountregistrationpage().clkChangeEmailLink();
 		
 		//Need an existing profile email here
 		String strEmail = TestDataHandler.tc16.getUsername();
-		getFidoaccountregistrationpage().setFidoEmail(strEmail);
-		getFidoaccountregistrationpage().setFidoConfirmEmail(strEmail);
+		getFidoaccountregistrationpage().setFidoEmailAddr(strEmail);
+		//getFidoaccountregistrationpage().setFidoConfirmEmail(strEmail);
 		getFidoaccountregistrationpage().clkContinueAccountRegister();
 		
 		getReporter().softAssert(getFidoaccountregistrationpage().verifyErrorMsgEmailIsUsedIsDisplayed(),
-				"Error message 'This email is being used by another My Account profile' displayed",
+				"Error message 'Sorry, it looks like" +strEmail + "is linked to an existing Fido My Account profile.' displayed",
 				"Error message does Not displayed");
 		getReporter().reportLogWithScreenshot("Error message");
 		

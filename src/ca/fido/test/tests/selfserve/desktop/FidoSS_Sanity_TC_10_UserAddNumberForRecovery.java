@@ -59,7 +59,7 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 		String strTestingTab = getDriver().getWindowHandle();
 		String strPhoneNumber =  TestDataHandler.tc104447.getaccountDetails().getMobilePhone();
 		String strRecoveryNumber = TestDataHandler.tc104447.getaccountDetails().getRecoveryNumber();
-		getFidoprofileandsettingpage().switchToSetRecoveryNumIFrame();
+		//getFidoprofileandsettingpage().switchToSetRecoveryNumIFrame();
 		getFidoprofileandsettingpage().setPhoneNumberIframe(strPhoneNumber);
 		getReporter().reportLogWithScreenshot("Recovery Number");
 		getFidoprofileandsettingpage().clkBtnContinueIframe();

@@ -89,10 +89,13 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
 	WebElement lblYourVerificationCode;
 
+	@FindBy(xpath = "//input[@formcontrolname='username' or @title=\"Enter your email to receive a verification code\" or  @title='Enter your email address here']/parent::div")
+	WebElement lblUsername;
+
 	@FindBy(xpath = "//input[@formcontrolname='username' or @title=\"Enter your email to receive a verification code\" or  @title='Enter your email address here']")
 	WebElement txtUsername;
 
-	@FindBy(xpath = "//ds-code-input/div/div[1]/input")
+	@FindBy(xpath = "//ds-code-input/div/div[2]/input")
 	WebElement inputCode;
 
 	@FindBy(xpath = "//h1//span[text()='Success!' or contains(text(),'ussi!') or contains(text(),'You’re all set!')]")
@@ -345,6 +348,7 @@ public class FidoRecoverPassOrNamePage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setUsernameIFrame(String strUsername) {
+		reusableActions.getWhenVisible(lblUsername).click();
 		reusableActions.getWhenVisible(txtUsername).sendKeys(strUsername);
 
 	}
