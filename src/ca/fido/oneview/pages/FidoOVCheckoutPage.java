@@ -200,6 +200,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
     /**
      * To click on specified delivery method in the shipping stepper
      *
+     * @param deliveryMethod delivery method
      * @author Siarhei.Maiseichyk
      */
     public void selectDeliveryMethod(String deliveryMethod) {

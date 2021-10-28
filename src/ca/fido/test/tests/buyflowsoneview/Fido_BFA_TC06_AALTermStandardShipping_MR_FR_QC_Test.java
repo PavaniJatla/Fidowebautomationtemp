@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC06-OV-AAL Fido add a line with TERM Outbound flow by selecting smartphone and standard shipping option - E2E (MR - FR - QC)
+ * TC06-OV-AAL Fido add a line with TERM flow by selecting smartphone and standard shipping option - E2E (MR - FR - QC)
  *
  * @author Siarhei.Maiseichyk
  */
-public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends BaseTestClass {
+public class Fido_BFA_TC06_AALTermStandardShipping_MR_FR_QC_Test extends BaseTestClass {
 
     @Test(groups = {"RegressionBFA", "RegressionOVBFA", "OVAALBFA"})
-    public void aalTermOutboundStandardShippingFlowMrFrQc() {
+    public void aalTermStandardShippingFlowMrFrQc() {
         getEnvironmentSelectionPage().launchOneView(TestDataHandler.tc06AalTermOutboundStandardShipping.getBanNo(), TestDataHandler.tc06AalTermOutboundStandardShipping.getContactId());
         getReporter().hardAssert(getAccountOverViewPage().verifySuccessfulLogin(), "Login Successful", "Login Failed");
         getReporter().reportLogWithScreenshot("Fido Account overview page");
@@ -45,12 +45,14 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
-        getFidoOVPlanConfigPage().selectDeviceCostAndFinancingOptAndClickOnContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDeviceCostIndex()
-                , TestDataHandler.tc06AalTermOutboundStandardShipping.getFinancingOptionIndex());
-        getReporter().reportLogPassWithScreenshot("Device cost and financing option selected");
+        getFidoOVPlanConfigPage().selectDeviceCostAndClickOnContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDeviceCostIndex());
+        getReporter().reportLogPassWithScreenshot("Device cost option selected");
 
-        getFidoOVPlanConfigPage().selectRetentionDataOptionAndClickContinueButton(TestDataHandler.tc06AalTermOutboundStandardShipping.getDataOptionIndex());
-        getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state","Addons page is not in expanded state");
+        getFidoOVPlanConfigPage().selectDataOptionAndClickContinueButton(getFidoOVPlanConfigPage().getUpdatedDataOptionIndex(TestDataHandler.tc06AalTermOutboundStandardShipping.getDataOptionIndex()));
+        getReporter().reportLogPassWithScreenshot("Data option was selected");
+
+        getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state", "Addons page is not in expanded state");
+
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
 
@@ -108,6 +110,7 @@ public class Fido_BFA_TC06_AALTermOutboundStandardShipping_MR_FR_QC_Test extends
             getReporter().reportLogWithScreenshot("Fido Payment Page");
             getFidoOVReviewOrderPage().clkSubmitPayment();
         }
+
         //-------------------------------------- Order Confirmation Page --------------------------------------
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyOrderConfirmationPageLoad(), "Order Confirmation page is loaded", "Order Confirmation error");
         getReporter().hardAssert(getFidoOVOrderConfirmationPage().verifyBanOrderConfirmationPage(TestDataHandler.tc06AalTermOutboundStandardShipping.getBanNo()),
