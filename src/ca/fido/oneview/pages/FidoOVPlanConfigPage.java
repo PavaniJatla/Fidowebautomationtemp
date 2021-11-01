@@ -107,7 +107,7 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      * @return true if plan config page is loaded, else false
      * @author Veranika.Siadach
      */
-    public boolean ifPlanConfigPageLoaded() {
+    public boolean verifyPlanConfigPageLoad() {
         return reusableActions.isElementVisible(cartSummaryLabel, 30);
     }
 
@@ -176,7 +176,7 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      * @return true if data option is selected, else false
      * @author Veranika.Siadach
      */
-    public boolean isDataOptionSelected() {
+    public boolean verifyDataOptionSelection() {
         return reusableActions.isElementVisible(preCartDataOptionCheckedIcon);
     }
 
@@ -275,7 +275,7 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      * @return true if talk option is selected, else false
      * @author Veranika.Siadach
      */
-    public boolean isTalkOptionSelected() {
+    public boolean verifyTalkOptionSelection() {
         boolean result;
 
         if (reusableActions.isElementVisible(preCartTalkOptionCheckedIcon)) {

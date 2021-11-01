@@ -24,8 +24,8 @@ public class Fido_BFA_TC05_AALNoTermOutboundBopisShipping_LR_EN_ON_Test extends 
 
         getAccountOverViewPage().selectAddAWirelessLineButton();
         getReporter().reportLogWithScreenshot("Add a Wireless Line Button is Selected");
-        getReporter().hardAssert(getFidoOVChoosePhonePage().isCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
-        getReporter().hardAssert(getFidoOVChoosePhonePage().validateCustomerType(TestDataHandler.tc05AalNoTermOutboundBopisShipping.getCustomerRiskLevel()),
+        getReporter().hardAssert(getFidoOVChoosePhonePage().verifyCreditEvaluationModalPresence(), "Credit Evaluation modal is present", "Credit Evaluation modal is not present");
+        getReporter().hardAssert(getFidoOVChoosePhonePage().verifyCustomerType(TestDataHandler.tc05AalNoTermOutboundBopisShipping.getCustomerRiskLevel()),
                 String.format("Given customer risk type %s matches the risk type %s from the credit evaluation modal", TestDataHandler.tc05AalNoTermOutboundBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()),
                 String.format("Given customer risk type %s does not match the risk type %s from the credit evaluation modal", TestDataHandler.tc05AalNoTermOutboundBopisShipping.getCustomerRiskLevel(), getFidoOVChoosePhonePage().checkCustomerType()));
         getReporter().reportLogWithScreenshot("Credit Evaluation Modal");
@@ -38,7 +38,7 @@ public class Fido_BFA_TC05_AALNoTermOutboundBopisShipping_LR_EN_ON_Test extends 
         getFidoOVChoosePhonePage().clickContinueButtonOnDashboardPhonePage(deviceName);
 
         //------------------------------------- Plan config page ---------------------------------------------
-        getReporter().hardAssert(getFidoOVPlanConfigPage().ifPlanConfigPageLoaded(), "Plan config page loaded successfully", "Plan config page not loaded");
+        getReporter().hardAssert(getFidoOVPlanConfigPage().verifyPlanConfigPageLoad(), "Plan config page loaded successfully", "Plan config page not loaded");
         getReporter().softAssert(getFidoOVPlanConfigPage().verifyBreadCrumb(deviceName), "BreadCrumb on Plan config page is working fine", "BreadCrumb is not working fine");
         getReporter().reportLogPassWithScreenshot("Plan Config page loaded successfully");
 
@@ -46,7 +46,7 @@ public class Fido_BFA_TC05_AALNoTermOutboundBopisShipping_LR_EN_ON_Test extends 
         getReporter().reportLogPassWithScreenshot("Device cost option selected");
 
         getFidoOVPlanConfigPage().selectOutboundDataOptionAndClickContinueButton(TestDataHandler.tc05AalNoTermOutboundBopisShipping.getDataOptionIndex());
-        getReporter().hardAssert(getFidoOVPlanConfigPage().isTalkOptionSelected(), "Talk option is selected and Addons page is in expanded state", "Addons page is not in expanded state");
+        getReporter().hardAssert(getFidoOVPlanConfigPage().verifyTalkOptionSelection(), "Talk option is selected and Addons page is in expanded state", "Addons page is not in expanded state");
         getFidoOVPlanConfigPage().clickPreCartAddonsContinueButton();
         getReporter().reportLogPassWithScreenshot("Addon option was selected");
 
@@ -70,8 +70,8 @@ public class Fido_BFA_TC05_AALNoTermOutboundBopisShipping_LR_EN_ON_Test extends 
         getReporter().softAssert(getFidoOVCheckoutPage().isFindMoreAvlNumbersButtonPresent(), "Find more available number button displayed", "Find more available number button not disaplayed");
 
         getFidoOVCheckoutPage().clkChooseNumberContinueButton();
-        getReporter().hardAssert(getFidoOVCheckoutPage().isChooseNumberLabelDisplayed(), "Choose a number identification label displayed successfully", "Choose a number identification label not disaplayed");
-        getReporter().hardAssert(getFidoOVCheckoutPage().isSelectedPhoneNumberDisplayed(), "Selected phone number label displayed successfully", "Choose a number identification Label not disaplayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().verifyChooseNumberLabel(), "Choose a number identification label displayed successfully", "Choose a number identification label not disaplayed");
+        getReporter().hardAssert(getFidoOVCheckoutPage().verifySelectedPhoneNumber(), "Selected phone number label displayed successfully", "Choose a number identification Label not disaplayed");
         getReporter().reportLogPassWithScreenshot("Choose a number identification label and selected phone number are displayed");
         getReporter().hardAssert(getFidoOVCheckoutPage().clkBillingAddress(), "Billing Address radio button is selected ", "Billing Address is not selected");
 
@@ -86,7 +86,7 @@ public class Fido_BFA_TC05_AALNoTermOutboundBopisShipping_LR_EN_ON_Test extends 
         getReporter().reportLogPassWithScreenshot("Clicked submit button below cart summary");
 
         //-------------------------------------- Review Order Page --------------------------------------------
-        getReporter().hardAssert(getFidoOVReviewOrderPage().isOrderReviewPageTitlePresent(), "Order Review Page title is present", "Order Review Page title is not present");
+        getReporter().hardAssert(getFidoOVReviewOrderPage().verifyOrderReviewPageTitle(), "Order Review Page title is present", "Order Review Page title is not present");
         getReporter().reportLogPassWithScreenshot("Order Review Page");
 
         getFidoOVReviewOrderPage().clkPointsToMentionCheckbox();

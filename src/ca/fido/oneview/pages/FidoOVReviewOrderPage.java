@@ -62,7 +62,7 @@ public class FidoOVReviewOrderPage extends BasePageClass {
      * @return true if title of Order Review Page is present, else false
      * @author Veranika.Siadach
      */
-    public boolean isOrderReviewPageTitlePresent() {
+    public boolean verifyOrderReviewPageTitle() {
         return reusableActions.isElementVisible(orderReviewPageTitle, 80);
     }
 

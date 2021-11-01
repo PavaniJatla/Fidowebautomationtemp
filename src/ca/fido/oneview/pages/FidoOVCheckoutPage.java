@@ -168,7 +168,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
      * @return boolean value
      * @author Siarhei.Maiseichyk
      */
-    public boolean isChooseNumberLabelDisplayed() {
+    public boolean verifyChooseNumberLabel() {
         reusableActions.javascriptScrollByVisibleElement(lblChooseNumber);
         return reusableActions.isElementVisible(lblChooseNumber);
     }
@@ -179,7 +179,7 @@ public class FidoOVCheckoutPage extends BasePageClass {
      * @return boolean value
      * @author Siarhei.Maiseichyk
      */
-    public boolean isSelectedPhoneNumberDisplayed() {
+    public boolean verifySelectedPhoneNumber() {
         reusableActions.javascriptScrollByVisibleElement(lblSelectedNumber);
         return reusableActions.isElementVisible(lblSelectedNumber);
     }

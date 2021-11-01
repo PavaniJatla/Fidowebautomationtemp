@@ -52,7 +52,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
      * @return returns if the element is visible or not
      * @author Veranika.Siadach
      */
-    public boolean isCreditEvaluationModalPresence() {
+    public boolean verifyCreditEvaluationModalPresence() {
         return reusableActions.isElementVisible(creditEvaluationModal, 60);
     }
 
@@ -63,7 +63,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
      * @return true if customer types match, false if they don't match
      * @author Veranika.Siadach
      */
-    public boolean validateCustomerType(String customerRiskLevel) {
+    public boolean verifyCustomerType(String customerRiskLevel) {
         String customerType = checkCustomerType();
         return customerRiskLevel != null && !customerRiskLevel.isEmpty() && customerType.matches(customerRiskLevel);
     }
