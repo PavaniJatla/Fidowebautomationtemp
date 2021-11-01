@@ -542,6 +542,7 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
 	public void setCreditCardNumber(String strAccountNumber) {
+		//reusableActions.staticWait(7000);
 		getDriver().switchTo().frame(fraCC);
 		reusableActions.staticWait(7000);
 		txtCardNumber.click();

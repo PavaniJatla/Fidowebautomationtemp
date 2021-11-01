@@ -86,11 +86,12 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		//getDriver().navigate().refresh();
 		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getFidopaymentoptionspage().clkUseCCForAutomaticPayments();
-		getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+		//getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 
 		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
 				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
 		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
+		getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 
 		getReporter().reportLogWithScreenshot("CC details entered");

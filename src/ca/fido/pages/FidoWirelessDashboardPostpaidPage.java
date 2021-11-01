@@ -113,8 +113,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.planDetailsModel.fullPlanDetails' or text()='full plan details' or text()='détails du plan']")
 	WebElement headerFullPlanDetailsOverlay;
-	
-	@FindBy (xpath = "//button[@aria-label='Close' or @aria-label='Fermer' or @title='Close my plan']")
+
+	@FindAll({
+			@FindBy(xpath = "//button[@title='Close' or @title='Fermer' or @title='Close my plan']"),
+			@FindBy(xpath = "//button[@aria-label='Close' or @aria-label='Fermer' or @title='Close my plan']")
+	})
 	WebElement btnCloseFullPlanDetailsOverlay;
 
 	@FindBy (xpath = "//*[@translate='wireless.dashboard.myPlan.talk' or @translate='usageModule.talkAndText.talkTextTitle' or @class='talk-text-container']")
@@ -217,8 +220,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//td[text()='Tout Temps' or text()='Anytime']/following-sibling::td[@class='usage-content']/div")
 	WebElement divAnytimeUsed;
-	
-	@FindBy (xpath = "//*[contains(text(),'talk & text details')]")
+
+	@FindAll({
+			@FindBy(xpath = "//*[contains(text(),'talk & text')]"),
+			@FindBy(xpath = "//*[contains(text(),'talk & text details')]")
+	})
 	WebElement divTalkNTextUsage;
 	
 	@FindBy (xpath = "//p[contains(text(),'remaining') or contains(text(),'restantes')]")
@@ -231,8 +237,11 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='talk-text-usage']//span[contains(text(),'Textos') or contains(text(),'Text')]")
 	WebElement divTextUsage;
-	
-	@FindBy (xpath = "//th[contains(text(),'Text')]")
+
+	@FindAll({
+			@FindBy(xpath = "//span[contains(text(),'Texts')]"),
+			@FindBy(xpath = "//th[contains(text(),'Text')]")
+	})
 	WebElement textUsageInTalkNTextOnly;
 	
 	@FindBy (xpath = "//td[contains(text(),'Picture') or contains(text(),'photo')]")
@@ -932,7 +941,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 */
 	public Boolean verifyViewFullPlanDetails()
 	{						
-		reusableActions.getWhenReady(lnkViewFullPlan).click();
+		//reusableActions.getWhenReady(lnkViewFullPlan).click();
+		reusableActions.clickIfAvailable(lnkViewFullPlan,3000);
 		reusableActions.waitForElementTobeClickable(headerFullPlanDetailsOverlay, 30);		
 		if(!reusableActions.isElementVisible(headerFullPlanDetailsOverlay))
 		{		
