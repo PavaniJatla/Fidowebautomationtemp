@@ -79,9 +79,9 @@ public class FidoOVChoosePhonePage extends BasePageClass {
         String risk = riskLevel.getText();
         double downpayment = Double.parseDouble(downpaymentPercent.getText().replace("%", ""));
 
-        if (downpayment <= 19 && downpayment >= 0 && (risk.equalsIgnoreCase("Low") || risk.equalsIgnoreCase("Faible"))) {
+        if (downpayment == 0 && (risk.equalsIgnoreCase("Low") || risk.equalsIgnoreCase("Faible"))) {
             customerType = "Low Risk";
-        } else if (downpayment >= 20 && (risk.equalsIgnoreCase("Medium") || risk.equalsIgnoreCase("Moyen"))) {
+        } else if (downpayment == 20 && (risk.equalsIgnoreCase("Medium") || risk.equalsIgnoreCase("Moyen"))) {
             customerType = "Medium Risk";
         }
 
