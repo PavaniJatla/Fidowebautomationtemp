@@ -64,9 +64,9 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		getReporter().softAssert(getFidochangectnpage().verifyLabelKeepInMinddetailsIsVisible(),
 							"Label keep in mind details is displayed",
 							"Label keep in mind details is not displayed");
-		getReporter().softAssert(getFidochangectnpage().verifylblChangeCTNBannerDetailsIsVisible(),
+/*		getReporter().softAssert(getFidochangectnpage().verifylblChangeCTNBannerDetailsIsVisible(),
 							"Label change CTN banner is visibile",
-							"Label change CTN banner is not visibile");
+							"Label change CTN banner is not visibile");*/
 		getReporter().softAssert(getFidochangectnpage().verifySelectBoxProvinceAndCityIsVisible(),
 							"Province selecbox is visible",
 							"Province selecbox is not visible");
