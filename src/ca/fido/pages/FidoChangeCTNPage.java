@@ -5,6 +5,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -37,14 +38,23 @@ public class FidoChangeCTNPage extends BasePageClass {
 	
 	@FindBy(xpath = "//ins[@translate='global.message.changeCtnBannerLine2']")
 	WebElement lblChangeCTNBannerLineTwo;
-	
-	@FindBy(xpath = "//select[@ng-model='data.provinceSelected']")
+
+	@FindAll({
+			@FindBy(xpath = "//select[@id='province']"),
+			@FindBy(xpath = "//select[@ng-model='data.provinceSelected']")
+	})
 	WebElement cboProvince;
-	
-	@FindBy(xpath = "//select[@name='cityName']")
+
+	@FindAll({
+			@FindBy(xpath = "//select[@title='select city']"),
+			@FindBy(xpath = "//select[@name='cityName']")
+	})
 	WebElement cboCity;
-	
-	@FindBy(xpath = "//ins[@translate='wireless.label.findAvailableNumber']")
+
+	@FindAll({
+			@FindBy(xpath = "//span[contains(text(),' Find available numbers ')]"),
+			@FindBy(xpath = "//ins[@translate='wireless.label.findAvailableNumber']")
+	})
 	WebElement btnFindAvailableNumber;
 	
 	@FindBy(xpath = "//ins[@translate='global.label.pickNewNumberHeadingRevamp']")
