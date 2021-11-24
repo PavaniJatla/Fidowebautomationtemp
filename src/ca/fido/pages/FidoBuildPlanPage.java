@@ -44,7 +44,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
 
-	@FindBy(xpath = "//div[contains(text(),'Keep my current plan')]//preceding-sibling::div")
+	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
 	WebElement keepMyCurrentPlanButton;
 
 	@FindBy(xpath="//ds-checkbox[@data-test='vdp-checkbox']")
@@ -118,23 +118,23 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@translate='bpo_redeem_offer']")
 	WebElement btnGetThisOffer;
 	
-	@FindBy(xpath = "//span[@class='dsa-cartSummary__copy text-title-3 mb-0']")
-	WebElement textYourCartSummary;
+	@FindBy(xpath = "//span[contains(@class,'dsa-cartSummary')]")
+	WebElement txtCartSummary;
 	
 	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]")
 	WebElement selectFirstTierChooseYourData;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div//input")
+	@FindBy(xpath = "//input[@formcontrolname='firstName']")
 	WebElement inputFirstName;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div")
-	WebElement inputFirstNameDiv;
+	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-first-name']")
+	WebElement frmFieldFirstName;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div//input")
+	@FindBy(xpath = "//input[@formcontrolname='lastName']")
 	WebElement inputLastName;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div")
-	WebElement inputLastNameDiv;
+	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-last-name']")
+	WebElement frmFieldLastName;
 	
 	@FindBy(xpath = "//button[@id='step-5-continue-button' or @data-test='stepper-5-edit-step-continue-button']")
 	WebElement buttonContinueUserName;
@@ -163,8 +163,21 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='downgrade-modal-proceed']")
 	WebElement btnDowngradeFeeModalConitnue;
 
-	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary']")
+	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary']//span")
 	WebElement btnExistingAddonModalContinue;
+
+	@FindBy(xpath = "//input[@value='FIN_DATA_TALK_TEXT']/..")
+	WebElement labelDTTPlanType;
+
+	@FindBy(xpath = "//input[@value='FIN_TALK_TEXT']/..")
+	WebElement labelTTPlanType;
+
+	@FindBy(xpath = "//input[@value='NOTERM']/..")
+	WebElement labelNotermPlanType;
+
+	@FindBy(xpath = "//button[@data-test='stepper-5-edit-step-continue-button']")
+	WebElement btnContinueAccessoriesCost;
+
 
 
 	/**
@@ -185,23 +198,23 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public String createXpath(int stepper,String option) {
 		if (stepper == 1 && stepper != 0) {
 			//ds-radio-button[contains(@data-test,'device-payment-type-financing')]//div/div
-			return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
+			return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
 		} else if(stepper == 2 && stepper != 0) {
 			reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
 				try {
 					if(planType.equals("Data, Talk and Text plans") && planType != null && !planType.isEmpty()) {
-						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+						return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
 					} else if (planType.equals("Data and Text only plans - No calls included") && planType != null && !planType.isEmpty() && reusableActions.isElementVisible(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"))) {
 						reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-1')]"));
-						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-individual-"+option+"')]/label";
+						return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-individual-"+option+"')]/label";
 					} else if (planType.equals("Talk and Text plans") && planType != null && !planType.isEmpty() && reusableActions.isElementVisible(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"))) {
 						reusableActions.clickWhenReady(By.xpath("//button[contains(@id,'ds-tabs-0-tab-2')]"));
-						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-talkAndText-"+option+"')]/label";
+						return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-talkAndText-"+option+"')]/label";
 					} else {
-						return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+						return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
 					}
 				} catch (NullPointerException ex) {
-					return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
+					return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
 				}
 		}
 		return xpath;
@@ -253,7 +266,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void checkKeepMyCurrentPlanButton() {
-		reusableActions.clickIfAvailable(keepMyCurrentPlanButton, 30);
+		reusableActions.clickWhenVisible(keepMyCurrentPlanButton, 30);
 	}
 
 	/**
@@ -402,7 +415,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void enterFirstName() {
 		String strFirstName = FormFiller.generateRandomName();
-		reusableActions.getWhenReady(inputFirstNameDiv, 30).click();
+		reusableActions.getWhenReady(frmFieldFirstName, 30).click();
 		reusableActions.getWhenReady(inputFirstName, 3).sendKeys(strFirstName);
 	}
 	
@@ -412,7 +425,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void enterSecondName() {
 		String strLastName = FormFiller.generateRandomName();
-		reusableActions.getWhenReady(inputLastNameDiv, 30).click();
+		reusableActions.getWhenReady(frmFieldLastName, 30).click();
 		reusableActions.getWhenReady(inputLastName, 3).sendKeys(strLastName);
 	}
 	
@@ -517,7 +530,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueAddOns() {
 		//reusableActions.waitForElementVisibility(btnContinueAddOns, 20);
-		reusableActions.executeJavaScriptClick(btnContinueAddOns);
+		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnContinueAddOns));
 	}
 	
 	/**
@@ -686,7 +699,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void selectBasicPlanAndClkContinueBtn(String dataOptionIndex,String className) {
-		reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-basic-"+dataOptionIndex+"')]//label[1]"),20);
+		reusableActions.clickWhenVisible(By.xpath("//ds-selection[contains(@data-test,'stepper-2-edit-step-selection-option-basic-"+dataOptionIndex+"')]//label[1]"),20);
 		if(className.toUpperCase().contains("_PPC_")) {
 			reusableActions.staticWait(13000);
 		}
@@ -698,8 +711,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	* @author praveen.kumar7
 	*/
 	public void setProvince(String province) {
-		reusableActions.staticWait(8000);
-		reusableActions.clickWhenReady(provinceDropDown, 10);
+		reusableActions.waitForElementVisibility(txtCartSummary,30);
+		reusableActions.clickWhenReady(provinceDropDown);
+		reusableActions.staticWait(3000);
 		reusableActions.clickWhenReady(By.xpath("//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']/following-sibling::ul//a[@title='"+province+"']"),10);
 	}
 
@@ -718,7 +732,16 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void selectPlanType(String planType) {
-		reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[@aria-label='"+planType+"']"));
+		if(planType.equalsIgnoreCase("Financing")) {
+			reusableActions.clickWhenVisible(labelDTTPlanType);
+		}
+		else if(planType.equalsIgnoreCase("TALKTEXTFIN")) {
+			reusableActions.clickWhenVisible(labelTTPlanType);
+		}
+		else if(planType.equalsIgnoreCase("NOTERM")) {
+			reusableActions.clickWhenVisible(labelNotermPlanType);
+		}
+		//reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[@aria-label='"+planType+"']"));
 		reusableActions.clickWhenVisible(btnContinueDeviceCost);
 		reusableActions.staticWait(15000);
 	}
@@ -737,7 +760,25 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkContinueOnExistingAddonModal() {
-		reusableActions.clickIfAvailable(btnExistingAddonModalContinue,10);
+		if(reusableActions.isElementVisible(btnExistingAddonModalContinue)) {
+			reusableActions.executeJavaScriptClick(btnExistingAddonModalContinue);
+		}
+	}
+
+	/**
+	 * This method clicks on NOTERM accessory cost option
+	 * @author praveen.kumar7
+	 */
+	public void selectNoTermAccessoryCost() {
+		reusableActions.clickWhenReady(labelNotermPlanType);
+	}
+
+	/**
+	 * This method clicks on continue button in accessories cost selection stepper
+	 * @author praveen.kumar7
+	 */
+	public void clkContinueAccessoriesCostSelection() {
+		reusableActions.clickWhenVisible(btnContinueAccessoriesCost);
 	}
 
 }

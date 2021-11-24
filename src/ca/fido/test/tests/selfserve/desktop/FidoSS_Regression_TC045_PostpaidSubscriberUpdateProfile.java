@@ -28,8 +28,8 @@ public class FidoSS_Regression_TC045_PostpaidSubscriberUpdateProfile extends Bas
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS"})
 	public void postPaidSubscriberUpdateProfile() throws InterruptedException, ParseException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc4557.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc4557.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

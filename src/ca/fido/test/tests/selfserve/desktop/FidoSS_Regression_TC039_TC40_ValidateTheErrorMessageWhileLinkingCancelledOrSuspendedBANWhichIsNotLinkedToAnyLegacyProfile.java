@@ -32,8 +32,8 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 	@Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"}) 
 	public void acctHolderValidateRegisterFlowWithCancelledOrSuspended(String strUserDetails) {
 		getReporter().reportLogWithScreenshot("Home Page");
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkRegisterIframe();
 		try {
 		getReporter().reportLogWithScreenshot("Registration Page opened");

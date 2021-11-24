@@ -2,10 +2,8 @@ package ca.fido.pages;
 
 
 import ca.fido.pages.base.BasePageClass;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class FidoRefillPage extends BasePageClass {
@@ -126,12 +124,18 @@ public class FidoRefillPage extends BasePageClass {
     @FindBy(xpath ="//ins[@translate='wireless.message.setUpAutoRefillError']")
     WebElement lblWarning;
 
-    @FindBy(xpath ="//form[@name='form']//descendant::iframe")
+    @FindAll({
+			@FindBy(xpath = "//ss-semafone-credit-card/div/iframe"),
+			@FindBy(xpath = "//ss-semafone-credit-card/iframe")
+	})
     WebElement fraCC;
 
-    @FindBy(xpath ="//input[@class='semafonemandatory']")
+    @FindBy(xpath = "//input[@id='pan']")
     WebElement txtCardNumber;
-        
+
+    @FindBy(xpath = "//ss-semafone-credit-card")
+	WebElement txtCardNumberFill;
+
 	@FindBy(id = "expiry-date")
 	WebElement ddlExpiryMonth;
 
@@ -542,14 +546,13 @@ public class FidoRefillPage extends BasePageClass {
      * @author Mirza.Kamran
      */
 	public void setCreditCardNumber(String strAccountNumber) {
-		
-		driver.switchTo().frame(reusableActions.getWhenVisible(fraCC));
-		reusableActions.waitForElementTobeClickable(txtCardNumber, 20);
-		reusableActions.executeJavaScriptClick(txtCardNumber);
-		reusableActions.getWhenReady(txtCardNumber).sendKeys(strAccountNumber);
-		driver.switchTo().defaultContent();	
+		txtCardNumberFill.click();
+		reusableActions.staticWait(2000);
+		getDriver().switchTo().frame(fraCC);
+		reusableActions.staticWait(5000);
+		txtCardNumber.sendKeys(strAccountNumber);
+		getDriver().switchTo().defaultContent();
 	}
-	
 
 	public void selectExpiryMonth(String strMonth) {	
 		reusableActions.waitForElementTobeClickable(ddlExpiryMonth, 30);

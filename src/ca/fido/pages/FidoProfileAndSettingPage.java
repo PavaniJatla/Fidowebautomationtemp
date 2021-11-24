@@ -31,8 +31,11 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//iframe[contains(@src,'/profile/recoverynumber')]"),
 	@FindBy(xpath = "//iframe[contains(@src,'/pages/easylogin-fido/sms/input/')]")})
 	WebElement iframeSmsRecovery;
+
+	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']//parent::div")
+	WebElement lblPhoneNumber;
 	
-	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']//..")
+	@FindBy (xpath = "//input[@formcontrolname='phoneNumber']")
 	WebElement txtPhoneNumber;
 	
 	@FindBy (xpath = "//div[@class='recovery-content']//button")
@@ -152,7 +155,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(id="businessExtn")
 	WebElement txtBusinessExtn;
 	
-	@FindBy(xpath = "//button/span[text()='Save' or text()='Sauvegarder' or text()='ENREGISTRER']")
+	@FindBy(xpath = "//button[@title='Save' or text()='Sauvegarder' or text()='ENREGISTRER']")
 	WebElement btnSave;
 	
 	@FindBy (xpath = "//input[@formcontrolname='smsPin']")
@@ -216,8 +219,11 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 
 	@FindBy(xpath = "//p[text()='Due to recent changes on your account, we are unable to proceed with this transaction.' or text()='En raison de modifications récentes de votre compte, nous ne pouvons pas procéder avec cette transaction.']")
 	WebElement msgUnableToProceed;
-	
-	@FindBy(xpath = "//span[text()=' CLOSE ' or text()=' FERMER ']")
+
+	@FindAll({
+			@FindBy(xpath = "//span[text()=' Close ' or text()=' Fermer ']"),
+			@FindBy(xpath = "//span[text()=' CLOSE ' or text()=' FERMER ']")
+	})
 	WebElement btnClose;
 	
 	public void clkProfileNSetting() {
@@ -256,8 +262,8 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setPhoneNumberIframe(String strPhoneNum) {
-		reusableActions.getWhenReady(txtPhoneNumber,40).clear();
-		reusableActions.getWhenReady(txtPhoneNumber,2).sendKeys(strPhoneNum);		
+		reusableActions.getWhenReady(txtPhoneNumber,10).click();
+		reusableActions.getWhenReady(txtPhoneNumber,15).sendKeys(strPhoneNum);
 	}
 	
 	/**

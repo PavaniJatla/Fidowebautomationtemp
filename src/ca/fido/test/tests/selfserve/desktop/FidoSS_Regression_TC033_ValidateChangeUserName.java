@@ -33,8 +33,8 @@ public class FidoSS_Regression_TC033_ValidateChangeUserName extends BaseTestClas
 		//First attempt
 		//first login attempt with change Username credentials
 		getReporter().reportLogWithScreenshot("View and Update UserName");
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		String oldUserName=TestDataHandler.tc33.getUsername();
 		String password=TestDataHandler.tc33.getPassword();
 		String newUserName=TestDataHandler.tc33.getNewUsername();

@@ -61,6 +61,7 @@ public class FidoSS_Regression_TC075_AO_ValidateMakePaymentCTAinCLMNotification_
 				"The user should have atleast 1 active account which has already automatic payments option");
 		
 		getFidoaccountoverviewpage().clkMakePaymentOnCLMNotification();
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidomakepaymentpage().verifyPaymentModalIsDisplayed(),
 				"Make payment modal displayed.",
 				"Make payment modal didn't display as expected.");

@@ -28,8 +28,8 @@ public class FidoSS_TC086_PrintPDFbillOnViewBillPage  extends BaseTestClass{
 	@Test(groups = {"BillingAndPaymentsSS",""})
 	public void validateSavePDFLinkInViewBillPage() throws InterruptedException, ParseException {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc16.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc16.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

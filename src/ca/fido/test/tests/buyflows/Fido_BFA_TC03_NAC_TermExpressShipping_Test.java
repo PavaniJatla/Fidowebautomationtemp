@@ -37,7 +37,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getFidobuildplanpage().clkDownPaymentChkBox();
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkContinueDataOption();
+		getFidobuildplanpage().clkDataOption(TestDataHandler.tc03TermBopis.getDataOptionIndex(),this.getClass().getSimpleName());
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
@@ -63,7 +63,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
-		getFidocreditcheckpage().selectIdType(TestDataHandler.tc03TermBopis.getIdentificationType());
+		//getFidocreditcheckpage().selectIdType(TestDataHandler.tc03TermBopis.getIdentificationType());
 		getFidocreditcheckpage().selectDrivingLicenseProvince(TestDataHandler.tc03TermBopis.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseNumber(TestDataHandler.tc03TermBopis.getDlProvinceCode());
 		getFidocreditcheckpage().setDrivingLicenseExpiry();

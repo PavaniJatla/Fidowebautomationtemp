@@ -35,8 +35,8 @@ public class FidoSS_TC077_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestCl
 	
 	@Test(groups = {"BillingAndPaymentsSS"})
 	public void postPaidChangeMOP() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc121315.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc121315.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import utils.FormFiller;
 
@@ -33,16 +34,16 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='semafone-container']//descendant::iframe")
 	WebElement fraSemaphone;  
 	
-	@FindBy(xpath="//div[@class='cc-payment-section']//descendant::iframe")
+	@FindBy(xpath="//ss-semafone-credit-card/iframe")
 	WebElement fraCC;
 
-	@FindBy(xpath = "//input[@class='semafonemandatory']")
+	@FindBy(xpath = "//input[@id='pan']")
 	WebElement txtCardNumber;
 
 	@FindBy(id = "expiry-date")
 	WebElement ddlExpiryMonth;
 
-	@FindBy(name = "expYear")
+	@FindBy(xpath = "//div/input[@id='expiryDate']/parent::div[contains(@class,'ds-formField__inputContainer')]")
 	WebElement ddlExpiryYear;
 
 	@FindBy(id = "cvv")
@@ -57,7 +58,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//*[@id = 'cvv']")
 	WebElement txtCVVMobile;
 	
-	@FindBy(xpath="//*[@id='amount']")
+	@FindBy(xpath="//*[@id='ds-form-input-id-2']")
 	WebElement txtAmount;
 	
 	@FindBy(xpath="//input[@value='Update']")
@@ -81,10 +82,10 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//*[@id='terms-conditions-scroll']/ins/div/ins/p[7]")
 	WebElement lbltermsAndConditionBottom;
 	
-	@FindBy(xpath="//div[@class='pay-now-modal']//input[@value='Review & continue' or contains(@value,'rifier et continuer')]")
+	@FindBy(xpath="//*[contains(text(),' Review and Continue ') or contains(@value,'rifier et continuer')]")
 	WebElement btnReviewAndContinue;
 
-	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payNow']")
+	@FindBy(xpath="//button[@class='w-100 w-sm-auto mr-md-24 mt-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or contains(@value,' Pay Now ')]")
 	WebElement btnPayNow;
 	
 	@FindBy(xpath="//div[@class='pay-now-modal']//input[@value='Review & continue' or contains(@value,'rifier et continuer')]")
@@ -95,8 +96,8 @@ public class FidoMakePaymentPage extends BasePageClass {
 	
 	@FindBy(xpath="//ins[@translate='global.label.paymentConfirmationHeading']")
 	WebElement lblPaymentReceived;
-	
-	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.done']")
+
+	@FindBy(xpath = "//ss-payment-message//span[contains(text(),'Done')]//ancestor::a")
 	private WebElement btnDone;
 	
 	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payIntreac']")
@@ -118,7 +119,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='bank-section']")
 	WebElement divBankPayment;
 	
-	@FindBy (xpath = "//div[@class='row pay-now-content']")
+	@FindBy (xpath = "//div[@class='row pay-now-content' or //button[@id='ds-tabs-0-tab-0']]")
 	WebElement paymentModal;
 	
 	@FindBy(xpath = "//div[contains(@class,'hidden-xs')]//ins[@translate='global.label.paymentHistoryView']")
@@ -126,7 +127,22 @@ public class FidoMakePaymentPage extends BasePageClass {
 	
 	@FindBy(xpath = "//ins[@translate='global.label.paymentHistoryView']")
 	WebElement lnkPaymentHistoryOnConfirmationPageFooterMobile;
-	
+
+	@FindBy(xpath = "//div/input[@id='expiryDate']")
+	WebElement txtExpiry;
+
+	@FindBy(xpath = "//div/input[@id='expiryDate']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	WebElement lblExpiry;
+
+	@FindBy(xpath = "//input[@id='securityCode' or @formcontrolname='cvc']")
+	WebElement txtSecurityCode;
+
+	@FindBy(xpath = "//p[text()=' Thank you! We received your payment. ']")
+	WebElement lblPaymentSuccessMsg;
+
+	@FindBy(xpath = "//ss-payment-message//p[contains(text(),'A confirmation email will be sent')]")
+	WebElement lblReferenceNumberNew;
+
 	/**
 	 * Set the Pre-Auth credit card at semaphone frame on the payment options page
 	 * @param strAccountNumber account number of the Pre-Auth credit card
@@ -203,7 +219,10 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectCreditcardExpiryYear(String strYYYY) {
-		reusableActions.selectWhenReadyByVisibleText(ddlExpiryYear, strYYYY);
+		//reusableActions.selectWhenReadyByVisibleText(ddlExpiryYear, strYYYY);
+		reusableActions.getWhenReady(lblExpiry,20).click();
+		reusableActions.getWhenVisible(txtExpiry, 30).clear();
+		reusableActions.getWhenVisible(txtExpiry).sendKeys(strYYYY);
 	}
 
 	/**
@@ -214,7 +233,36 @@ public class FidoMakePaymentPage extends BasePageClass {
 	public void selectCreditcardExpiryYearMobile(String strYYYY) {
 		reusableActions.selectWhenReadyByVisibleText(ddlExpiryYearMobile, strYYYY);
 	}
-	
+
+	/**
+	 * Validates the Payment is successful and the Payment Amount processed
+	 * @param strAmount - Payment Amount
+	 * @return true if Payment Success msg and amount displayed are correct; else false
+	 * @Rama Arora
+	 */
+	public boolean verifyPaymentSuccessful(String strAmount) {
+		reusableActions.waitForElementVisibility(lblPaymentSuccessMsg, 60);
+		return (reusableActions.isElementVisible(lblPaymentSuccessMsg) &&
+				lblReferenceNumberNew.getText().trim().replace("$", "").trim().contains(strAmount));
+	}
+
+	/**
+	 * Returns the reference number after successful transactions
+	 * @return string transaction reference number
+	 * @author Rama Arora
+	 */
+	public String getTransactionReferenceNumberNew() {
+		return reusableActions.getWhenReady(lblReferenceNumberNew).getText().trim();
+	}
+
+	/**
+	 * Clicks on the 'Done' button
+	 * @ Rama Arora
+	 */
+	public void clickDone() {
+		reusableActions.staticWait(5000);
+		reusableActions.executeJavaScriptClick(btnDone);
+	}
 	/**
 	 * Selects the expire month for Pre-Auth credit card
 	 * @param strMM expire month for Pre-Auth credit card
@@ -230,8 +278,10 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setCreditcardCVV(String strCVV) {
-		reusableActions.clickWhenVisible(txtCVV);
-		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
+		//reusableActions.clickWhenVisible(txtCVV);
+		txtSecurityCode.sendKeys(strCVV);
+		/*reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
+		reusableActions.getWhenReady(txtCVV).sendKeys(Keys.TAB);*/
 	}
 	
 	/**
@@ -250,10 +300,18 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setPaymentAmount(String strAmount){
-		reusableActions.getWhenReady(txtAmount).click();
+		//By rdoPaymentOptionLocater=By.xpath("//label[@for='"+enumPaymentOpt.toString()+"']/ins");
+		//reusableActions.executeJavaScriptClick(rdoPaymentOption);
+		reusableActions.getWhenReady(By.xpath("//ss-amount-field//ds-form-field//input")).click();
 		//The default wrapper is not working on french henc added below line
+		/*reusableActions.getWhenReady(txtAmount, 30).clear();
 		reusableActions.enterText(txtAmount,Keys.chord(Keys.CONTROL,"a", Keys.DELETE), 30);	
-		reusableActions.enterText(txtAmount,strAmount, 30);		
+		reusableActions.enterText(txtAmount,strAmount, 30);	*/
+		reusableActions.getWhenReady(By.xpath("//ss-amount-field//ds-form-field//input")).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));;
+		//reusableActions.staticWait(1000);
+
+		reusableActions.staticWait(3000);
+		reusableActions.getWhenReady(By.xpath("//ss-amount-field//ds-form-field//input")).sendKeys(strAmount);
 	}
 	
 	/**

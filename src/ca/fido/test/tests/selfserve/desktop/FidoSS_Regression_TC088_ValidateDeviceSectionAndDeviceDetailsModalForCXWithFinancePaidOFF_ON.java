@@ -83,9 +83,9 @@ public class FidoSS_Regression_TC088_ValidateDeviceSectionAndDeviceDetailsModalF
                 "Fido Payment Program agreement end date is not visible",
                 "Fido Payment Program agreement end date is visible");
 
-        getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isFindOutYourExclusiveDealsTextVisible(),
-                "Find out your exclusive deals text is visible",
-                "Find out your exclusive deals is not visible");
+        getReporter().softAssert(!getFidowirelessdashboardpostpaidpage().isFindOutYourExclusiveDealsTextVisible(),
+                "Find out your exclusive deals is not visible",
+                "Find out your exclusive deals text is visible");
 
         getReporter().softAssert(getFidowirelessdashboardpostpaidpage().isGetANewDeviceLinkVisible(),
                 "Get a new device link is visible",

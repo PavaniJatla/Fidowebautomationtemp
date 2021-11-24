@@ -29,8 +29,8 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 	
 	@Test(groups = {"RegressionSS","ProfileAndSettingSS","RecoverSS"})
 	public void userAddNumberForRecovery() {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		String userName = TestDataHandler.tc104447.getUsername();
 		String password = TestDataHandler.tc104447.getPassword();
 		getFidologinpage().setUsernameInFrame(userName);
@@ -57,9 +57,10 @@ public class FidoSS_Sanity_TC_10_UserAddNumberForRecovery extends BaseTestClass{
 		getFidoprofileandsettingpage().clkSetRcvryNumber();
 		getReporter().reportLogWithScreenshot("Set recovery number");
 		String strTestingTab = getDriver().getWindowHandle();
-		String strRecoveryNumber =  TestDataHandler.tc104447.getaccountDetails().getRecoveryNumber();
-		getFidoprofileandsettingpage().switchToSetRecoveryNumIFrame();
-		getFidoprofileandsettingpage().setPhoneNumberIframe(strRecoveryNumber);
+		String strPhoneNumber =  TestDataHandler.tc104447.getaccountDetails().getMobilePhone();
+		String strRecoveryNumber = TestDataHandler.tc104447.getaccountDetails().getRecoveryNumber();
+		//getFidoprofileandsettingpage().switchToSetRecoveryNumIFrame();
+		getFidoprofileandsettingpage().setPhoneNumberIframe(strPhoneNumber);
 		getReporter().reportLogWithScreenshot("Recovery Number");
 		getFidoprofileandsettingpage().clkBtnContinueIframe();
 		getReporter().reportLogWithScreenshot("click button continue");

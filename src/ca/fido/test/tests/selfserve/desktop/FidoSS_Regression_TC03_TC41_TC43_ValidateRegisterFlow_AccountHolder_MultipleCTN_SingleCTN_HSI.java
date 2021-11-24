@@ -50,8 +50,8 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
  
     @Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"})
 	public void acctHolderValidateRegisterFlow(String strBanPostcodeEmail) throws IOException {
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().clkRegisterIframe();
 		//getFidoaccountregistrationpage().clkRegisterNow();
 		getReporter().reportLogWithScreenshot("Register now is clicked.");
