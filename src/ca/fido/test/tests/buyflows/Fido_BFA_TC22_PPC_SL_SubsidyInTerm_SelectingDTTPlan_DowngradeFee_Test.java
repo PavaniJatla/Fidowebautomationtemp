@@ -26,7 +26,7 @@ public class Fido_BFA_TC22_PPC_SL_SubsidyInTerm_SelectingDTTPlan_DowngradeFee_Te
         closeSession();
     }
 
-    @Test(groups = {"RegressionBFA","AALBFA","PPCBFA"})
+    @Test(groups = {"RegressionBFA","PPCBFA"})
     public void fidoPPC_TC22_SLNonSE_SubsidyInTerm_DTTPlanDowngradeFeeTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc22PPCSLSubsidyInTermSelectingDTTPlan.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc22PPCSLSubsidyInTermSelectingDTTPlan.getPassword());

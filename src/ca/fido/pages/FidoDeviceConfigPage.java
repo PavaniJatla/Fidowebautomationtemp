@@ -25,6 +25,19 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='trident-cta0' or @id='trident-cta-nac']")
 	WebElement modalContainerGetStartedbutton;
 
+	@FindBy(xpath = "//p[contains(.,'Add Accessories') or contains(.,'Ajoutez des accessoires')]/..")
+	WebElement addAccessoriesOption;
+
+	@FindBy(xpath = "//button[@id='continue-accessory-button']")
+	WebElement btnContinueAccessories;
+
+	@FindBy(xpath = "//accessory-view-details-modal")
+	WebElement accessoryViewDetailsModal;
+
+	@FindBy(xpath = "//div[@data-test='accessory-view-details-modal']//button[contains(.,'Add') or contains(.,'Ajouter')]")
+	WebElement btnAddToCartAccessoriesViewDetailsModal;
+
+
 	/**
 	 * Selects the Subscriber on the Choose a line overlay and clicks Continue
 	 * @param strCTN Subscriber phone number
@@ -100,6 +113,54 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	public void clickGetStartedButtonOnModal() {	
 		reusableActions.clickIfAvailable(modalContainerGetStartedbutton);
 	}
+
+	/**
+	 * This method verifies if accessories option is displayed
+	 * @return true if Add accessories option is displayed, else false
+	 * @author praveen.kumar7
+	 */
+	public boolean verifyAddAccessoriesOption() {
+		return reusableActions.isElementVisible(addAccessoriesOption);
+	}
+
+	/**
+	 * This method clicks on Add accessories option
+	 * @author praveen.kumar7
+	 */
+	public void clkAddAccessoriesOption() {
+		reusableActions.clickWhenVisible(addAccessoriesOption);
+	}
+
+	/**
+	 * This method add the accessories to the cart(From Recommended section and view details)
+	 * @param accessoryCount
+	 * @param accessory1
+	 * @author praveen.kumar7
+	 */
+	public void addAccessoriesToCart(String accessoryCount, String accessory1) {
+		if(accessoryCount.equalsIgnoreCase("MULTIPLE")) {
+			//reusableActions.clickWhenVisible(By.xpath("//p[contains(.,'"+accessory1+"')]/../following-sibling::div//button[@title='Add']"));
+			reusableActions.clickWhenVisible(By.xpath("//p[contains(.,'"+accessory1+"')]/../following-sibling::div//button[@data-test='add-to-cart']"));
+			reusableActions.clickWhenVisible(By.xpath("//p[contains(.,'"+accessory1+"')]/../following-sibling::div//button[@data-test='view-details-accessory']"));
+			reusableActions.waitForElementVisibility(accessoryViewDetailsModal);
+			reusableActions.clickWhenVisible(btnAddToCartAccessoriesViewDetailsModal,10);
+			reusableActions.javascriptScrollToTopOfPage();
+			reusableActions.javascriptScrollByVisibleElement(reusableActions.getWhenReady(addAccessoriesOption));
+		}
+		else {
+			reusableActions.clickWhenVisible(By.xpath("//p[contains(.,'"+accessory1+"')]/../following-sibling::div//button[@data-test='add-to-cart']"));
+		}
+	}
+
+	/**
+	 * This method clicks on continue button after selecting accessories
+	 * @author praveen.kumar7
+	 */
+	public void clkContinueAccessories() {
+		reusableActions.clickWhenVisible(btnContinueAccessories);
+
+	}
+	
 }
 	
 	
