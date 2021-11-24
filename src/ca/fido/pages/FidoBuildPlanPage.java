@@ -44,7 +44,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
 
-	@FindBy(xpath = "//div[contains(text(),'Keep my current plan')]//preceding-sibling::div")
+	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
 	WebElement keepMyCurrentPlanButton;
 
 	@FindBy(xpath="//ds-checkbox[@data-test='vdp-checkbox']")
@@ -124,17 +124,17 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]")
 	WebElement selectFirstTierChooseYourData;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div//input")
+	@FindBy(xpath = "//input[@formcontrolname='firstName']")
 	WebElement inputFirstName;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div")
-	WebElement inputFirstNameDiv;
+	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-first-name']")
+	WebElement frmFieldFirstName;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div//input")
+	@FindBy(xpath = "//input[@formcontrolname='lastName']")
 	WebElement inputLastName;
 	
-	@FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div")
-	WebElement inputLastNameDiv;
+	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-last-name']")
+	WebElement frmFieldLastName;
 	
 	@FindBy(xpath = "//button[@id='step-5-continue-button' or @data-test='stepper-5-edit-step-continue-button']")
 	WebElement buttonContinueUserName;
@@ -175,6 +175,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//input[@value='NOTERM']/..")
 	WebElement labelNotermPlanType;
 
+	@FindBy(xpath = "//button[@data-test='stepper-5-edit-step-continue-button']")
+	WebElement btnContinueAccessoriesCost;
+
 
 
 	/**
@@ -195,7 +198,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public String createXpath(int stepper,String option) {
 		if (stepper == 1 && stepper != 0) {
 			//ds-radio-button[contains(@data-test,'device-payment-type-financing')]//div/div
-			return "//dsa-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
+			return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
 		} else if(stepper == 2 && stepper != 0) {
 			reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
 				try {
@@ -263,7 +266,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void checkKeepMyCurrentPlanButton() {
-		reusableActions.clickIfAvailable(keepMyCurrentPlanButton, 30);
+		reusableActions.clickWhenVisible(keepMyCurrentPlanButton, 30);
 	}
 
 	/**
@@ -412,7 +415,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void enterFirstName() {
 		String strFirstName = FormFiller.generateRandomName();
-		reusableActions.getWhenReady(inputFirstNameDiv, 30).click();
+		reusableActions.getWhenReady(frmFieldFirstName, 30).click();
 		reusableActions.getWhenReady(inputFirstName, 3).sendKeys(strFirstName);
 	}
 	
@@ -422,7 +425,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void enterSecondName() {
 		String strLastName = FormFiller.generateRandomName();
-		reusableActions.getWhenReady(inputLastNameDiv, 30).click();
+		reusableActions.getWhenReady(frmFieldLastName, 30).click();
 		reusableActions.getWhenReady(inputLastName, 3).sendKeys(strLastName);
 	}
 	
@@ -527,7 +530,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueAddOns() {
 		//reusableActions.waitForElementVisibility(btnContinueAddOns, 20);
-		reusableActions.executeJavaScriptClick(btnContinueAddOns);
+		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnContinueAddOns));
 	}
 	
 	/**
@@ -760,6 +763,22 @@ public class FidoBuildPlanPage extends BasePageClass {
 		if(reusableActions.isElementVisible(btnExistingAddonModalContinue)) {
 			reusableActions.executeJavaScriptClick(btnExistingAddonModalContinue);
 		}
+	}
+
+	/**
+	 * This method clicks on NOTERM accessory cost option
+	 * @author praveen.kumar7
+	 */
+	public void selectNoTermAccessoryCost() {
+		reusableActions.clickWhenReady(labelNotermPlanType);
+	}
+
+	/**
+	 * This method clicks on continue button in accessories cost selection stepper
+	 * @author praveen.kumar7
+	 */
+	public void clkContinueAccessoriesCostSelection() {
+		reusableActions.clickWhenVisible(btnContinueAccessoriesCost);
 	}
 
 }

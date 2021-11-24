@@ -9,6 +9,8 @@ public class HUPData {
 	private String deviceCostIndex;
 	private String dataOptionIndex;
 	private String shippingType;
+	private String accessoriesCount;
+	private String accessory1;
 
 	/**
 	 * @return the newDevice
@@ -94,5 +96,30 @@ public class HUPData {
 	public void setShippingType(String shippingType) {
 		this.shippingType = shippingType;
 	}
+	/**
+	 * @return the accessories count
+	 */
+	public String getAccessoriesCount() {
+		return accessoriesCount;
+	}
+	/**
+	 * @param accessoriesCount to set
+	 */
+	public void setAccessoriesCount(String accessoriesCount) {
+		this.accessoriesCount = accessoriesCount;
+	}
+	/**
+	 * @return accessory1 to select
+	 */
+	public String getAccessory1() {
+		return accessory1;
+	}
+	/**
+	 * @param accessory1 to set
+	 */
+	public void setAccessory1(String accessory1) {
+		this.accessory1 = accessory1;
+	}
+
 
 }
