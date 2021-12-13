@@ -157,6 +157,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//a[@ui-sref='myAccount.overview({accountNumber: selectedAccountNumber})']")
 	WebElement menuOverview;
 
+	@FindBy (xpath = "//a[contains(@aria-label,'Payment')]")
+	WebElement btnPaymentHistory;
+
+	@FindBy (xpath = "//button[contains(@aria-label,'Automatic Payments')]")
+	WebElement btnAutomaticPayments;
+
+	@FindBy (xpath = "//button[contains(@aria-label,'Payment History')]")
+	WebElement bttnPaymentHistory;
+
 	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
 	WebElement menuOverviewMobile;
 
@@ -276,6 +285,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Profile & Settings' or @data-text='Profil et paramètres']")
 	WebElement subNavProfileAndSettings;
 
+	@FindBy(xpath = "//h2[text()=' SORRY! ']")
+	WebElement tempErrorHeader;
+
+	@FindBy(xpath = "//button[@data-caption='Close']")
+	WebElement tempErrorClose;
+
 	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Account Overview' or @data-text='Aperçu du compte']")
 	WebElement subNavAccountOverview;
 
@@ -353,20 +368,35 @@ public class FidoAccountOverviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//*[contains(@class,'billing-payment-section')]/a[1]")
 	WebElement lblViewManageBill;
-	
-	@FindBy(xpath = "//*[contains(@class,'list-inline')]/li[2]")
+
+	@FindAll({
+			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[5]"),
+			@FindBy(xpath = "//*[contains(@class,'list-inline')]/li[2]")
+	})
 	WebElement lblSavePDF;
-	
-	@FindBy(xpath = "//*[contains(@translate,'global.label.saveBillPDF')]")
+
+	@FindAll({
+			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[10]"),
+			@FindBy(xpath = "//*[contains(@translate,'global.label.saveBillPDF')]")
+	})
 	WebElement lblSaveYourBill;
-	
-	@FindBy(xpath = "//*[contains(@translate,'global.label.confirmAndSaveBills')]")
+
+	@FindAll({
+			@FindBy(xpath = "//*[contains(text(),' Download bills ')]"),
+			@FindBy(xpath = "//*[contains(@translate,'global.label.confirmAndSaveBills')]")
+	})
 	WebElement btnDownloadBill;
 
-	@FindBy(xpath = "//*[contains(@translate,'global.label.printPDF')]")
+	@FindAll({
+			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[5]"),
+			@FindBy(xpath = "//*[contains(@translate,'global.label.printPDF')]")
+	})
 	WebElement lblPrintPDF;
-	
-	@FindBy(xpath = "//*[contains(@translate,'global.label.printBillPDF')]")
+
+	@FindAll({
+			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[12]"),
+			@FindBy(xpath = "//*[contains(@translate,'global.label.printBillPDF')]")
+	})
 	WebElement lblPrintYourBill;
 
 	/**
@@ -456,6 +486,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	}
 
 	/**
+	 * Click on the menu Overview
+	 * @author sidhartha.vadrevu
+	 */
+	public void clkPaymentHistory() {
+		reusableActions.waitForElementTobeClickable(btnPaymentHistory, 100);
+		reusableActions.getWhenReady(btnPaymentHistory,30).click();
+	}
+
+	/**
 	 * Click on the menu Billing and Payments
 	 * @author ning.xue
 	 */
@@ -467,6 +506,14 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		{
 			reusableActions.waitForElementVisibility(menuBillingAndPayments,60);
 		}
+	}
+
+	public void clkPaymentHistoryOnMakePaymentPage() {
+		reusableActions.clickWhenReady(bttnPaymentHistory,40);
+	}
+
+	public void clkAutomaticPaymentsOnMakePaymentPage() {
+		reusableActions.clickWhenReady(btnAutomaticPayments,40);
 	}
 
 	/**
@@ -1344,7 +1391,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkPenIconForChangePaymentMethod() {
-		reusableActions.getWhenReady(btnPenIconForChangeAutoPaymentMethod).click();
+		if (reusableActions.isElementVisible(btnPenIconForChangeAutoPaymentMethod)) {
+			reusableActions.getWhenReady(btnPenIconForChangeAutoPaymentMethod).click();
+		}
 	}
 
 	/**
@@ -1425,7 +1474,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				reusableActions.waitForElementTobeClickable(subNavProfileAndSettings, 60);
 				// buffer static wait added to handle anomalies on firefox
 				reusableActions.staticWait(4000);
-				reusableActions.getWhenReady(subNavProfileAndSettings).click();		
+				reusableActions.getWhenReady(subNavProfileAndSettings).click();
+				if (reusableActions.isElementVisible(tempErrorHeader)){
+					reusableActions.clickWhenReady(tempErrorClose);
+				}
 				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
 				if(reusableActions.isElementVisible(lblHeaderProfileAndSettings))
 				{
@@ -1683,6 +1735,12 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Make a payment for') or contains(@aria-label,'Faire un paiement')]")).click();
 	}
 
+	public void clkSetUpAutomaticPayments(String strBAN) {
+		if (reusableActions.isElementVisible(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Set up Automatic Payments for') or contains(@aria-label,'Configurer les paiements automatiques')]"))) {
+			reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strBAN+"')]/ancestor::section[@class='fss-account-detail']//a[contains(@aria-label,'Set up Automatic Payments for') or contains(@aria-label,'Configurer les paiements automatiques')]")).click();
+		}
+	}
+
 	public void clkBtnRefillNowNew(String strBAN) {
 		reusableActions.getWhenReady(By.xpath("//a[@aria-label='refill balance for prepaid account "+strBAN+"']")).click();
 	}
@@ -1820,7 +1878,7 @@ public boolean validateBillingCTAButtonAddLineForSuspendedAccount(String strSusp
 	 * @author Vedachalam.Vasudevan
 	 */
 	public boolean verifyDownloadBill()	{
-		return reusableActions.isElementVisible(By.xpath("//ins[@translate='global.message.pdfDownloadSuccess']"), 20);
+		return reusableActions.isElementVisible(By.xpath("//ds-modal-container[@aria-label='Success!']"), 20);  //ins[@translate='global.message.pdfDownloadSuccess']
 	}
 
 	public boolean IsAutoPaymentSetUp() {
