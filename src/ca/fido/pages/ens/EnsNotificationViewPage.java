@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
@@ -24,10 +25,13 @@ public class EnsNotificationViewPage extends BasePageClass {
 	
 	@FindBy (xpath = "//input[@value='Search Notificatons']")
 	WebElement btnSearchNotification;
-	
-	@FindBy (xpath = "//div[@class='bd']/table/tbody/tr/td")
+
+	@FindBy(xpath = "//div[@class='bd']/table/tbody/tr/td")
 	WebElement notificationText;
-	
+
+	@FindBy(xpath = "//td[contains(text(),'Verification code')]//parent::tr//following-sibling::tr//td")
+	WebElement notificationSMSText;
+
 	@FindBy (xpath = "//button[contains(text(),'OK')]")
 	WebElement btnOk;
 
@@ -81,8 +85,8 @@ public class EnsNotificationViewPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkLnkPdfForSmsVerify(String strPhoneNum) {
-		reusableActions.waitForAllElementsVisible(driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_pdf_png']")), 30);
-		List<WebElement> lnkHtml = driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_pdf_png']"));
+		reusableActions.waitForAllElementsVisible(driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_html_png']")), 30);
+		List<WebElement> lnkHtml = driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_html_png']"));
 		reusableActions.getWhenVisible(lnkHtml.get(0)).click();
 	}
 	
@@ -96,6 +100,28 @@ public class EnsNotificationViewPage extends BasePageClass {
 		String strNotification = notificationText.getText();
 		System.out.println("++++++++++++" + strNotification + "******************");
 		String strCode = strNotification.substring(strNotification.length()-8);
+		return strCode;
+	}
+
+	/**
+	 * To get the notification code from the last 7 digital string.
+	 * @return string, verification code,
+	 * @author sidhartha.vadrevu
+	 */
+	public String getSMSNotificationCode(String mainWindow) {
+		reusableActions.staticWait(5000);
+		reusableActions.switchToNewWindow(mainWindow);
+/*		ArrayList<String> tabs = new ArrayList<String>(getDriver().getWindowHandles());
+		getDriver().switchTo().window(tabs.get(2));*/
+/*		List<WebElement> contents = getDriver().findElements(By.xpath("//td[@style='vertical-align: top;']//tbody//tr//td"));
+		for (WebElement text : contents) {
+			System.out.println(text.getText());
+		}*/
+		String strNotification = notificationSMSText.getText();
+		System.out.println("++++++++++++" + strNotification + "******************");
+		String strCode = strNotification.substring(strNotification.length()-8);
+		closeCurrentWindow();
+		closeEnsWindow();
 		return strCode;
 	}
 	
@@ -150,6 +176,14 @@ public class EnsNotificationViewPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void closeEnsWindow() {
+		reusableActions.closeCurrentWindow();
+	}
+
+	/**
+	 * Close the ENS Window
+	 * @author sidhartha.vadrevu
+	 */
+	public void closeCurrentWindow() {
 		reusableActions.closeCurrentWindow();
 	}
 

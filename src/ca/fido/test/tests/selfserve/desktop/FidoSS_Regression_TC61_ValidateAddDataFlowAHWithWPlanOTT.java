@@ -45,7 +45,7 @@ public class FidoSS_Regression_TC61_ValidateAddDataFlowAHWithWPlanOTT extends Ba
 		String	userName = TestDataHandler.tc61.getUsername();
 		String	password = TestDataHandler.tc61.getPassword();
 		HashMap<String, String> speedPassPrice = new HashMap<String, String>();
-		speedPassPrice.put("1", "15.00");
+		speedPassPrice.put("1", "20.00");
 		speedPassPrice.put("3", "40.00");
 		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(userName);

@@ -52,12 +52,14 @@ public class FidoSS_TC076_FidoCA_PostpaidPayment_Bank extends BaseTestClass{
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkPayNowNew(strBAN);
 		getReporter().reportLogWithScreenshot("Pay now");
-		getFidomakepaymentpage().setPaymentAmount(amountEntered);
-		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);
+
+/*		getFidomakepaymentpage().setPaymentAmount(amountEntered);
+		getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Bank);*/
+		getFidomakepaymentpage().selectHowToPay();
 		getReporter().reportLogWithScreenshot("Bank option selected");
 		
 		String strMainWindowHandle = getDriver().getWindowHandle();
-		getFidomakepaymentpage().selectBank("CIBC");
+		getFidomakepaymentpage().selectBank("cibc");
 		getReporter().reportLogWithScreenshot("Banking Page");
 		getFidomakepaymentpage().switchToCIBCBankPage(strMainWindowHandle);
 		getReporter().hardAssert(getFidomakepaymentpage().verifyBankPageOpenedSuccessfully("CIBC"),

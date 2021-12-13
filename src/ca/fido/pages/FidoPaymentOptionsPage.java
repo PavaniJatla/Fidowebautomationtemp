@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import ca.fido.testdatamanagement.TestDataHandler;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -104,8 +105,11 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 
 	@FindBy(xpath = "//a[@title='Cancel automatic payments' or @title='Annuler les paiements automatiques']")
 	WebElement btnRemoveAutomaticPayment;
-	
-	@FindBy(xpath = "//*[contains(text(),'Account balance will be automatically charged to:')]")
+
+	@FindAll({
+			@FindBy(xpath = "//*[contains(text(),' Automatic payments ')]"),
+			@FindBy(xpath = "//*[contains(text(),'Account balance will be automatically charged to:')]")
+	})
 	WebElement lblCurrentPaymentOn;
 	
 	@FindBy(xpath = "//button[@title='Yes, Cancel' or @title='Oui, Annuler']")
@@ -122,6 +126,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy(xpath = "//button[@title='Close' or @title='Fermer']")
 	WebElement btnCloseAfterSwitchToManual;
+
 	//----------------- old page object webelements -------------------------
 	@FindBy(xpath = "//select[@ng-model='props.selectedPaymentOption']")
 	WebElement ddlPaymentMode;	
@@ -439,6 +444,26 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.getWhenReady(txtInstitutionNumber).sendKeys(strInstitutionNumber);
 	}
 
+	public void changeBtnAutoPayManual() {
+		// TODO Auto-generated method stub
+		clkSwitchToManualPayments();
+		clkContinue();
+		clkContinue();
+		clkYesCancelAutomaticPayment();
+		clkOnDone();
+	}
+
+	public void setBtnAutoPayCreditCard() {
+		// TODO Auto-generated method stub
+		clkUseCCForAutomaticPayments();
+		clkContinue();
+	}
+
+	public void setBtnAutoPayBank() {
+		// TODO Auto-generated method stub
+		clkContinue();
+	}
+
 	/**
 	 * @Rama Arora
 	 * @return true or false review cc details
@@ -506,6 +531,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void clkUseCCForAutomaticPayments() {
 		reusableActions.waitForElementVisibility(optCardAccount, 60);
 		reusableActions.executeJavaScriptClick(optCardAccount);
+		clkContinue();
 	}
 
 	/*
@@ -575,7 +601,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 			reusableActions.getWhenReady(divCredit).click();
 
 		}
-
+		clkContinue();
 	}
 
 	/**

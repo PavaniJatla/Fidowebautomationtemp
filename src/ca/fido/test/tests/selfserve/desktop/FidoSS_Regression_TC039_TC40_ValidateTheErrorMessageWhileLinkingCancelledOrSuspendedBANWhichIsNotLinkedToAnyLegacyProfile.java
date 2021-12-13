@@ -23,12 +23,14 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 	
 	@DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
-        return new Object[][] {{ TestDataHandler.tc39.getaccountDetails().getBan()+"#"
+        return new Object[][] {{ TestDataHandler.tc39.getaccountDetails().getEmail()+"#"
+				+TestDataHandler.tc39.getaccountDetails().getBan()+"#"
 				+TestDataHandler.tc39.getaccountDetails().getPostalCode() },
-        						{ TestDataHandler.tc40.getaccountDetails().getBan()+"#"
-        						+TestDataHandler.tc40.getaccountDetails().getPostalCode() } };
+        						{ TestDataHandler.tc40.getaccountDetails().getEmail()+"#"
+										+TestDataHandler.tc40.getaccountDetails().getBan()+"#"
+        						+TestDataHandler.tc40.getaccountDetails().getPostalCode()} };
     }
-	
+
 	@Test(dataProvider = "data-provider",groups = {"RegressionSS","ProfileAndSettingSS","RegisterSS"}) 
 	public void acctHolderValidateRegisterFlowWithCancelledOrSuspended(String strUserDetails) {
 		getReporter().reportLogWithScreenshot("Home Page");
@@ -43,9 +45,12 @@ public class FidoSS_Regression_TC039_TC40_ValidateTheErrorMessageWhileLinkingCan
 			getReporter().reportLog(e.getMessage());
 		}
 		getReporter().reportLogWithScreenshot("Account Holder option to select");
-		getFidoaccountregistrationpage().clkAccountHolder();		
-		getFidoaccountregistrationpage().setFidoAccountNumber(strUserDetails.split("#")[0].trim());
-		getFidoaccountregistrationpage().setPostalCode(strUserDetails.split("#")[1].trim());
+		getFidoaccountregistrationpage().clkAccountHolder();
+		//String strFidoEmailAddr = TestDataHandler.tc40.getaccountDetails().getEmail();
+		getFidoaccountregistrationpage().setFidoEmailAddr(strUserDetails.split("#")[0].trim());
+		getFidoaccountregistrationpage().setFidoAccountNumber(strUserDetails.split("#")[1].trim());
+		getFidoaccountregistrationpage().setPostalCode(strUserDetails.split("#")[2].trim());
+		getFidoaccountregistrationpage().setDOB();
 		getReporter().reportLogWithScreenshot("Account number and post code entered");
 		getFidoaccountregistrationpage().clkContinueAccountRegister();			
 		getReporter().reportLogWithScreenshot("Error Page");
