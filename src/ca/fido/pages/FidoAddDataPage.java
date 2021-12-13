@@ -362,7 +362,7 @@ public class FidoAddDataPage extends BasePageClass {
 
 		for (int opt = 0; opt <= AddOnsList.size() - 1; opt++) {
 			String SpeedPassDataValue = AddOnsList.get(opt).getText().split("\n")[0];
-			String SpeedPassPriceValue = AddOnsList.get(opt).getText().split("\n")[2];
+			String SpeedPassPriceValue = AddOnsList.get(opt).getText().split("\n")[1];
 			SpeedPassDataValue = getNumbersFromString(SpeedPassDataValue);
 			SpeedPassPriceValue = getNumbersFromString(SpeedPassPriceValue);
 			if (!speedPassPrice.get(SpeedPassDataValue).equals(SpeedPassPriceValue)) {

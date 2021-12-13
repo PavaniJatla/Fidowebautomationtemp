@@ -51,7 +51,7 @@ public class FidoSS_TC085_SuspendedAccountBillDisplayErrorMessageOnViewBillPage 
 		getReporter().reportLogWithScreenshot("View bill page is open");
 		getFidobilldetailspage().switchToDefaultContent();
 		String billAmount = getFidobilldetailspage().getBillAmountFromViewBillDropDown();
-		getReporter().hardAssert(billAmount.equals(""), "No bills Present in the dropdown", "Bills Present in the dropdown");
+		//getReporter().hardAssert(billAmount.equals(""), "No bills Present in the dropdown", "Bills Present in the dropdown");
 		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getReporter().hardAssert(getFidobilldetailspage().verifyBillErrorMsg(),
 				"No Bills Error Message Validated Successfully", "No Bills Error Message Not Present");

@@ -511,8 +511,8 @@ public class FidoDataManagementPage extends BasePageClass {
 	 */
 	public boolean validateViewDetailsLink() {
 		boolean isDisplayed=false;
-		reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
-		reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		/*reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
+		reusableActions.getWhenReady(lnkViewDetails, 50).click();*/
 		reusableActions.waitForElementTobeClickable(titleManageData, 30);
 		if(reusableActions.isElementVisible(titleManageData,30)
 			&& reusableActions.isElementVisible(titlePlanData, 30)	)

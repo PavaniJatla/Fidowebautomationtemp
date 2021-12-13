@@ -33,11 +33,20 @@ public class FidoMakePaymentPage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[@class='semafone-container']//descendant::iframe")
 	WebElement fraSemaphone;  
-	
-	@FindBy(xpath="//ss-semafone-credit-card/iframe")
+
+	@FindAll({
+			@FindBy(xpath = "//ss-semafone-credit-card/div/iframe"),
+			@FindBy(xpath = "//ss-semafone-credit-card/iframe")
+	})
 	WebElement fraCC;
 
-	@FindBy(xpath = "//input[@id='pan']")
+	@FindBy(xpath = "//div[@class='w-100 d-flex semafone-cc-parent']")
+	WebElement txtCardField;
+
+	@FindAll({
+			@FindBy(xpath = "//input[@id='creditCard']"),
+			@FindBy(xpath = "//input[@id='pan']")
+	})
 	WebElement txtCardNumber;
 
 	@FindBy(id = "expiry-date")
@@ -143,14 +152,19 @@ public class FidoMakePaymentPage extends BasePageClass {
 	@FindBy(xpath = "//ss-payment-message//p[contains(text(),'A confirmation email will be sent')]")
 	WebElement lblReferenceNumberNew;
 
+	@FindAll({
+			@FindBy(xpath = "//button[@title='payment.auto.manual.step-1.continue']"),
+			@FindBy(xpath = "//span[text()=' Continue ']")})
+	WebElement btnContinue;
+
 	/**
 	 * Set the Pre-Auth credit card at semaphone frame on the payment options page
 	 * @param strAccountNumber account number of the Pre-Auth credit card
 	 * @author chinnarao.vattam
 	 */
-	public void setCreditCardNumber(String strAccountNumber) {	
+	public void setCreditCardNumber(String strAccountNumber) {
+		reusableActions.clickWhenVisible(txtCardField);
 		driver.switchTo().frame(reusableActions.getWhenVisible(fraCC));
-		reusableActions.clickWhenVisible(txtCardNumber);
 		reusableActions.getWhenReady(txtCardNumber).sendKeys(strAccountNumber);
 		driver.switchTo().defaultContent();
 	}
@@ -326,6 +340,20 @@ public class FidoMakePaymentPage extends BasePageClass {
 		reusableActions.javascriptScrollByVisibleElement(rdoPaymentOption);//(rdoPaymentOption);
 		reusableActions.executeJavaScriptClick(rdoPaymentOption);
 	}
+
+	/**
+	 * Selects the payment modes (pac, pacc, invoice) on the payment options page
+	 * @param interac payment option to pay to buy Internet offer
+	 * @author Mirza.Kamran
+	 */
+	public void selectHowToPay() {
+		//writing the below element in method since we want to dynamically generate this at run time
+		By rdoPaymentOptionLocater=By.xpath("//span[contains(text(),'bank')]"); //input[@id='ds-radio-input-id-1']//following-sibling::span
+		WebElement rdoPaymentOption=driver.findElement(rdoPaymentOptionLocater);
+		reusableActions.javascriptScrollByVisibleElement(rdoPaymentOption);//(rdoPaymentOption);
+		reusableActions.executeJavaScriptClick(rdoPaymentOption);
+		clkContinue();
+	}
 	
 	/**
 	 * Click on  the Review And Continue button on the make payment page
@@ -464,7 +492,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 * @author Karthic.Hasan
 	 */
 	public void selectBank(String strBankName) {		
-		By lblBankName= By.xpath("//img[@alt='"+strBankName+"']");
+		By lblBankName= By.xpath("//img[contains(@alt,'"+strBankName+"')]");
 		reusableActions.executeJavaScriptClick(getDriver().findElement(lblBankName));
 		reusableActions.waitForNumberOfWindowsToBe(2, 30);
 		reusableActions.staticWait(3000);
@@ -487,6 +515,15 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public boolean verifyBankPageOpenedSuccessfully(String strWindowTitle) {		
 		return getDriver().getTitle().contains(strWindowTitle);
+	}
+
+	/**
+	 * Click on the continue button
+	 * @author Mirza.Kamran
+	 */
+	public void clkContinue() {
+		reusableActions.waitForElementTobeClickable(btnContinue, 60);
+		reusableActions.executeJavaScriptClick(btnContinue);
 	}
 }
 

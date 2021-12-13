@@ -50,22 +50,29 @@ public class FidoSS_TC077_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestCl
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
-		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+/*		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
-		getFidobilldetailspage().clkChangePaymentMethod();
+		getFidobilldetailspage().clkChangePaymentMethod();*/
 		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
-		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
-				"Change payment method modal displayed.",
-				"Change payment method modal didn't display as expected.");
-		getReporter().reportLogWithScreenshot("Change Method of payment overlay");
+		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getFidoaccountoverviewpage().clkSetUpAutomaticPayments(strBAN);
+		getReporter().reportLogWithScreenshot("Automatic Payments Page is open");
+//		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
+//				"Change payment method modal displayed.",
+//				"Change payment method modal didn't display as expected.");
+//		getReporter().reportLogWithScreenshot("Change Method of payment overlay");
 		if(getFidopaymentoptionspage().isAutopaymentAlreadySet())
 		{
-		getCommonbusinessflows().changeToManual();
-			getFidobilldetailspage().clkChangePaymentMethod();
+			getFidopaymentoptionspage().changeBtnAutoPayManual();
+/*		getCommonbusinessflows().changeToManual();
+			getFidobilldetailspage().clkChangePaymentMethod();*/
 			//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
 		}
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
+				"Login succeed.",
+				"Failed to login.");
 		
-		//Change from manual to BANK
+		/*//Change from manual to BANK
 				getReporter().reportLogWithScreenshot("Change method of payment from Manual to BANK");
 				getCommonbusinessflows().changeToBank();		
 				getReporter().reportLogWithScreenshot("Navigation to Account overview page");
@@ -104,7 +111,7 @@ public class FidoSS_TC077_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestCl
 		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
 				"Change payment method modal displayed.",
 				"Change payment method modal didn't display as expected.");
-		
+		*/
 		
 
 	}

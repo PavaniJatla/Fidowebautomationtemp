@@ -1,6 +1,7 @@
 package ca.fido.test.commonbusiness;
 
 import ca.fido.test.base.BaseTestClass;
+import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 
 import java.io.IOException;
@@ -55,6 +56,36 @@ public class VerifyInEns extends BaseTestClass{
 		BaseTestClass.getEnsnoteviewpage().clkBtnOk();
 		BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
 		return strVerifyCode;
+	}
+
+	/**
+	 * To get the verify code in pdf file from ENS and close ENS window.
+	 * @param strPhoneNum, the recovery phone number
+	 * @return String, the verification code.
+	 * @throws ClientProtocolException 	throws ClientProtocolException
+	 * @throws IOException throws IOException
+	 * @author sidhartha.vadrevu
+	 */
+	public String getSMSVerifyCode(String strPhoneNum) throws ClientProtocolException, IOException {
+
+		this.startVerify();
+		this.loginToEns();
+
+		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
+		BaseTestClass.getEnsnoteviewpage().setEmailId(TestDataHandler.tc04To09.getaccountDetails().getEmail());
+		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
+		BaseTestClass.getEnsnoteviewpage().clkLnkPdfForSmsVerify(strPhoneNum);
+		String strMainWindow = getDriver().getWindowHandle();
+		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getSMSNotificationCode(strMainWindow);
+		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
+		//BaseTestClass.getEnsnoteviewpage().clkBtnOk();
+		//BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
+		return strVerifyCode;
+/*		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getNotificationCode();
+		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
+		BaseTestClass.getEnsnoteviewpage().clkBtnOk();
+		BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
+		return strVerifyCode;*/
 	}
 	
 	/**

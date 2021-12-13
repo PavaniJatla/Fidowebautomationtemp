@@ -50,7 +50,7 @@ public class FidoSS_Sanity_TC_05_ValidateRecoverPasswordBySMS extends BaseTestCl
 
 			getReporter().reportLogWithScreenshot("ENS");
 			String strPhoneNum = TestDataHandler.tc04To09.getaccountDetails().getRecoveryNumber();
-			String strCode = getEnsverifications().getVerifyCode(strPhoneNum);
+			String strCode = getEnsverifications().getSMSVerifyCode(strPhoneNum);
 			//switch to working test tab.
 			getDriver().switchTo().window(strTestingTab);
 			getReporter().reportLogWithScreenshot("Set code");

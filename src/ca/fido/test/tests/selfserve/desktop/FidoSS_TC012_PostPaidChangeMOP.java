@@ -95,17 +95,20 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 
 		getReporter().reportLogWithScreenshot("CC details entered");
-		getFidopaymentoptionspage().clkContinueSettingCC();
+		getFidomakepaymentpage().clkReviewAndContinueButton();
+		//getFidopaymentoptionspage().clkContinueSettingCC();
 		getReporter().hardAssert(getFidopaymentoptionspage().isReviewCCDetailsPageDisplayed(),
 				"CC Details encrypted msg displayed",
 				"CC Details encrypted msg NOT displayed");
 		getReporter().reportLogWithScreenshot("CC secured details");
 
-		getFidopaymentoptionspage().clkContinueOnReviewPg();
+		getFidomakepaymentpage().clkPayNow();
+		//getFidopaymentoptionspage().clkContinueOnReviewPg();
 		getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
 				"Set up auto payment is successful",
 				"Set up auto payment is not successful");
 		getReporter().reportLogWithScreenshot("Payment complete page.");
+
 		getFidopaymentoptionspage().clkOnDone();
 		//check payment method on overview page
 		getDriver().navigate().refresh();
