@@ -57,6 +57,12 @@ public class FidoDataManagementPage extends BasePageClass {
 	@FindBy (xpath = "//strong")
 	List<WebElement> listData;
 
+	@FindBy(xpath = "//*[@id='mainContent']/fss-data-management/div/ss-manage-data/div/section[2]/div/div[2]/div/div[1]/strong")
+	WebElement prevData;
+
+	@FindBy(xpath = "//*[@id='mainContent']/fss-data-management/div/ss-manage-data/div/section[2]/div/div[2]/div/div[2]/strong")
+	WebElement addondata;
+
 	@FindAll({
 	@FindBy(xpath = "//h2[contains(text(),'DONNÉES AJOUTÉES') or text()='added data']/parent::div/parent::div//table//strong"),
 	@FindBy(xpath = "//h4[text()='ADDED DATA' or text()='DONNÉES AJOUTÉES']/parent::div/parent::div//table//strong")})
@@ -140,8 +146,13 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @param strAddDataType 
 	 */
 	public double getTotalDataInManageDataOverlay(String strAddDataType) {		
-		String strTotalData = listData.get(listData.size()-2).getText();
-		double doubleTotalData = Double.parseDouble(strTotalData.substring(0, strTotalData.length()-3));
+		//String strTotalData = listData.get(listData.size()-2).getText();
+		String data = prevData.getText().replaceAll( " GB", "");
+		String addonData = addondata.getText().replaceAll("\\+", "").replaceAll( " GB", "");
+		Double totalData = Double.parseDouble(data) + Double.parseDouble(addonData);
+		String strTotalData = String.valueOf(totalData);
+		//double doubleTotalData = Double.parseDouble(strTotalData.substring(0, strTotalData.length()-3));
+		double doubleTotalData = Double.parseDouble(strTotalData);
 		HashMap<String, Double> hashMapDataType = getAllExistingAddDataInMBAndGB(strAddDataType);
 		double intAddData = 0;
 		double finalCalculatedData = 0;
@@ -214,6 +225,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * @return true if the data matches displayed, otherwise false
 	 * @author ning.xue
 	 */
+
 	public boolean verifyDataAccuracyInManageDataOverlay() {
 		String strPlanData = listData.get(0).getText();
 		double intPlanData = Double.parseDouble(strPlanData.substring(0, strPlanData.length()-3));
@@ -511,8 +523,8 @@ public class FidoDataManagementPage extends BasePageClass {
 	 */
 	public boolean validateViewDetailsLink() {
 		boolean isDisplayed=false;
-		reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
-		reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		//reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
+		//reusableActions.getWhenReady(lnkViewDetails, 50).click();
 		reusableActions.waitForElementTobeClickable(titleManageData, 30);
 		if(reusableActions.isElementVisible(titleManageData,30)
 			&& reusableActions.isElementVisible(titlePlanData, 30)	)

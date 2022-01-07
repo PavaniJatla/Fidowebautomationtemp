@@ -191,7 +191,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy (xpath = "//span[@class='ss-plan-container-data ng-star-inserted']")
 	WebElement divDataBalanceRemaining;
 	
-	@FindBy (xpath = "//div[@class='ss-plan-container-header-section']")
+	@FindBy (xpath = "//div[@class='ss-data-section-total-volume']")
 	WebElement divTotalData;
 	
 	@FindBy (xpath = "//p[contains(text(),'Minutes')]")
