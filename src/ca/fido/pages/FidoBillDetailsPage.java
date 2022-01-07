@@ -89,8 +89,11 @@ public class FidoBillDetailsPage extends BasePageClass {
 	
 	@FindBy(xpath="//button/ins[@translate='global.cta.viewBill']")
 	WebElement btnViewBill;
-	
-	@FindBy(id="billDate")
+
+	@FindAll({
+			@FindBy(xpath = "//select[@id='ds-form-input-id-0']"),
+			@FindBy(id = "billDate")
+	})
 	WebElement ddlViewBill;
 	
 	@FindBy(id ="bbAppIFrame")
@@ -308,7 +311,9 @@ public class FidoBillDetailsPage extends BasePageClass {
     * @author Mirza.Kamran 
     */
    public String getBillAmountFromViewBillDropDown() {	   
-	   return getsTheSelectedValueInViewBillDropDown().split("-")[0].trim();	   
+	   String value = getsTheSelectedValueInViewBillDropDown().split("-")[0].trim();
+	   value = value.replace("\n","").replace("$","");
+	   return value;
    }     
    
    /**

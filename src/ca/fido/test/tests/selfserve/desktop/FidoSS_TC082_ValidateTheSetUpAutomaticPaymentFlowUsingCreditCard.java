@@ -50,22 +50,32 @@ public class FidoSS_TC082_ValidateTheSetUpAutomaticPaymentFlowUsingCreditCard ex
 				"Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
-		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
-		getReporter().reportLogWithScreenshot("View bill page is open");
-		getFidobilldetailspage().clkChangePaymentMethod();
-		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
-		getReporter().hardAssert(getFidopaymentoptionspage().verifyPaymentMethodModalDisplayed(),
-				"Change payment method modal displayed.",
-				"Change payment method modal didn't display as expected.");
-		getReporter().reportLogWithScreenshot("Change Method of payment overlay");
+		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
+		getFidoaccountoverviewpage().clkSetUpAutomaticPayments(strBAN);
+		getReporter().reportLogWithScreenshot("Automatic Payments Page is open");
 		if(getFidopaymentoptionspage().isAutopaymentAlreadySet())
 		{
-			getCommonbusinessflows().changeToManual();
-			getFidobilldetailspage().clkChangePaymentMethod();
-			//getFidoaccountoverviewpage().clkChangeMethodOfPayment();
+			getFidopaymentoptionspage().changeBtnAutoPayManual();
+			getFidoaccountoverviewpage().clkSetUpAutomaticPayments(strBAN);
+			getFidopaymentoptionspage().setBtnAutoPayCreditCard();
 		}
+		getFidopaymentoptionspage().setBtnAutoPayCreditCard();
+		getFidomakepaymentpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
+				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
+
+		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
+
+		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+		getFidomakepaymentpage().clkReviewAndContinueButton();
+		getFidomakepaymentpage().clkPayNow();
+		getFidopaymentoptionspage().clkOnDone();
+		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
+				"Login succeed.",
+				"Failed to login.");
+
 		
-		//Change CC to bank
+/*		//Change CC to bank
 		getReporter().reportLogWithScreenshot("Change method of payment from Bank to CC");
 		getCommonbusinessflows().changeToCC();		
 		getFidobilldetailspage().clkAccountOverview();
@@ -74,7 +84,7 @@ public class FidoSS_TC082_ValidateTheSetUpAutomaticPaymentFlowUsingCreditCard ex
 		//getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
 		getReporter().hardAssert(getFidoaccountoverviewpage().IsAutoPaymentSetUp(),
 				"CC Auto payment method set up successful",
-				"CC Auto payment method set up NOT successful");
+				"CC Auto payment method set up NOT successful");*/
 		
 		
 	

@@ -40,7 +40,6 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'Browser', test_browser
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
-    systemProperty 'AWSBYODUrl', test_awsBYODURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
 
@@ -75,7 +74,6 @@ task "localTest"(type: Test) {
     systemProperty 'AWSUrl', test_awsURL
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
-    systemProperty 'AWSBYODUrl', test_awsBYODURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
 

@@ -49,11 +49,14 @@ public class FidoSS_TC084_FidoCA_PostpaidPaymentHistory_NoPayment extends BaseTe
 				"Login succeed.", 
 				"Failed to login.");
 		String strBAN = TestDataHandler.tc84.getaccountDetails().getBan();
-		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		//getFidoaccountoverviewpage().clkViewBillNew(strBAN);
+		getFidoaccountoverviewpage().clkPayNowNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
-		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
+		//getFidoaccountoverviewpage().clkMenuBillingAndPayments();
+		getFidoaccountoverviewpage().clkPaymentHistoryOnMakePaymentPage();
+
 		getReporter().reportLogWithScreenshot("Menu Billings and payments selected");
-		getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
+		//getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
 		//getReporter().softAssert(getFidopaymenthistorypage().getTotalRowCount()!=0,"","The row count is blank it seem");
 						
 			getReporter().hardAssert(getFidopaymenthistorypage().verifyNoPaymentRecordMessage(),

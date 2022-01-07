@@ -26,7 +26,7 @@ public class Fido_BFA_TC24_PPC_SL_SubsidyInTerm_SelectingSubsidyPlan_Test extend
         closeSession();
     }
 
-    @Test(groups = {"RegressionBFA","SanityBF","PPCBFA"})
+    @Test(groups = {"RegressionBFA","PPCBFA"})
     public void fidoPPC_TC24_SLNonSE_SubsidyInTerm_SubsidyPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc24PPCSLSubsidyInTermSelectingSubsidyPlan.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc24PPCSLSubsidyInTermSelectingSubsidyPlan.getPassword());

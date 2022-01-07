@@ -51,11 +51,14 @@ public class FidoSS_TC015_FidoCA_PostpaidPaymentHistory extends BaseTestClass{
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
-		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
+
+		/*getFidoaccountoverviewpage().clkMenuBillingAndPayments();
 		getReporter().reportLogWithScreenshot("Menu Billings and payments selected");
 		getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
-		//getReporter().softAssert(getFidopaymenthistorypage().getTotalRowCount()!=0,"","The row count is blank it seem");
-		
+		//getReporter().softAssert(getFidopaymenthistorypage().getTotalRowCount()!=0,"","The row count is blank it seem");*/
+
+		getFidoaccountoverviewpage().clkPaymentHistory();
+
 		getReporter().reportLogWithScreenshot("Payment history page");
 		if(getFidopaymenthistorypage().isPaymenyHistoryTablePresent()) 
 		{

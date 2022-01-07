@@ -37,7 +37,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getFidobuildplanpage().clkDownPaymentChkBox();
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkContinueDataOption();
+		getFidobuildplanpage().clkDataOption(TestDataHandler.tc03TermBopis.getDataOptionIndex(),this.getClass().getSimpleName());
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
