@@ -65,10 +65,10 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		getFidomakepaymentpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
 				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
-
 		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
-
 		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+
+		getReporter().reportLogWithScreenshot("CC details entered");
 		getFidomakepaymentpage().clkReviewAndContinueButton();
 		getFidomakepaymentpage().clkPayNow();
 

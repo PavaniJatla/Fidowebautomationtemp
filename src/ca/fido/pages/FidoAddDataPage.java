@@ -99,8 +99,8 @@ public class FidoAddDataPage extends BasePageClass {
 
 		for (int i = 0; i < strValues.length-1; i++) {
 			if (b == true) {
-				return (strValues[i].equalsIgnoreCase("Select an amount and use the data until end of day October 13, 2021.") || strValues[i].equalsIgnoreCase("1 GB")
-						|| strValues[i].equalsIgnoreCase("$20.00") || strValues[i].equalsIgnoreCase("3 GB") || strValues[i].equalsIgnoreCase("$40.00"));
+				return (strValues[i].contains("Select an amount and use the data until end of day") || strValues[i].equalsIgnoreCase("500 MB")
+						|| strValues[i].equalsIgnoreCase("$10.00") || strValues[i].equalsIgnoreCase("2.5 GB") || strValues[i].equalsIgnoreCase("$25.00")  || strValues[i].equalsIgnoreCase("5 GB") || strValues[i].equalsIgnoreCase("$40.00"));
 			} else {
 				return false;
 			}
