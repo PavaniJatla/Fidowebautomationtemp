@@ -44,9 +44,9 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+/*		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Login succeed.", 
-				"Failed to login.");
+				"Failed to login.");*/
 		getReporter().reportLogWithScreenshot("Account overview page.");
 		String oldCTN=getFidoaccountoverviewpage().getCTNUsers().get("CTN1").replaceAll(" ", "").replaceAll("-", "");
 		String strCTN = TestDataHandler.tc1122.getaccountDetails().getCtn();
@@ -78,7 +78,8 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		getReporter().hardAssert(getFidochangectnpage().verifyPickANewNumberPageLoaded(),
 							"Pick a new number page loaded",
 							"Pick a new number page not loaded");
-		String newCTN = getFidochangectnpage().selectNewNumber(0);	
+		//String newCTN = getFidochangectnpage().selectNewNumber(0).replaceAll(" ", "").replaceAll("-", "");
+		String newCTN = getFidochangectnpage().selectNewNumber(0);
 		getReporter().reportLogWithScreenshot("Select New number");
 		getFidochangectnpage().clickSelectNumber();
 		getReporter().hardAssert(getFidochangectnpage().verifyReviewYourNewNumberPageLoaded(),
@@ -110,14 +111,17 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 		getReporter().softAssert(getFidochangectnpage().verifyLabelLocalToDetailsIsDisplayed(),
 							"Label local to details is displayed",
 							"label local to details is not displayed");
-		//getReporter().softAssert(getFidochangectnpage().verifyLabelEmailConfirmationOnFinalPageIsDisplayed(),"Email confirmation on final page is displayed","Email confirmation on final page is not displayed");
+		getReporter().softAssert(getFidochangectnpage().verifyLabelEmailConfirmationOnFinalPageIsDisplayed(),"Email confirmation on final page is displayed","Email confirmation on final page is not displayed");
 		getReporter().softAssert(getFidochangectnpage().verifyLabelChangingWillAffectYourBillIsDisplayed(),
 							"Changing will affect your bill is displayed",
 							"Changing will affect your bill is not displayed");		
 		getFidochangectnpage().clkBackToMyAccount();
 		getReporter().reportLogWithScreenshot("After click on back to my account");
-		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);		
-		getReporter().reportLogWithScreenshot("After click on wireless badge");						
+		//getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().hardAssert(getFidochangectnpage().verifyTheCTNChangeDashboardPage(newCTN),
+				"CTN change success page",
+				"CTN change success page not displayed");
+		getReporter().reportLogWithScreenshot("Change Wireless Number displayed");
 	}
 	
 	

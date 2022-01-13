@@ -27,10 +27,16 @@ public class FidoChangeCTNPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//ins[@translate='wireless.label.changePhoneNumberHeading']")
+	@FindAll({
+			@FindBy(xpath = "//h1[@class='text-title-1 ng-star-inserted']"),
+			@FindBy(xpath = "//ins[@translate='wireless.label.changePhoneNumberHeading']")
+	})
 	WebElement lblChangeMyNumberHeader;
-	
-	@FindBy(xpath = "//ins[@translate='global.message.changeCtnKeepinMind']")
+
+	@FindAll({
+			@FindBy(xpath = "//p[text()=' Keep in mind: ']"),
+			@FindBy(xpath = "//ins[@translate='global.message.changeCtnKeepinMind']")
+	})
 	WebElement lblKeepInMind;
 	
 	@FindBy(xpath = "//ins[@translate='global.message.changeCtnBannerLine1']")
@@ -56,8 +62,11 @@ public class FidoChangeCTNPage extends BasePageClass {
 			@FindBy(xpath = "//ins[@translate='wireless.label.findAvailableNumber']")
 	})
 	WebElement btnFindAvailableNumber;
-	
-	@FindBy(xpath = "//ins[@translate='global.label.pickNewNumberHeadingRevamp']")
+
+	@FindAll({
+			@FindBy(xpath = "//h1[text()='Pick a new number.']"),
+			@FindBy(xpath = "//ins[@translate='global.label.pickNewNumberHeadingRevamp']")
+	})
 	WebElement lblPickupNewNumberHeader;
 	
 	@FindBy(xpath = "//ins[@translate=\"wireless.message.refreshMessageAlt\"]")
@@ -66,22 +75,34 @@ public class FidoChangeCTNPage extends BasePageClass {
 
 	@FindBy(xpath = "//ins[@translate='global.message.changeCtnKeepinMind']")
 	WebElement lblkeepInMindBanner;
-	
-	@FindBy(xpath = "//div[@class='row phone-list-new']")
+
+	@FindAll({
+			@FindBy(xpath = "//div[contains(@class,'number-list-container')]"),
+			@FindBy(xpath = "//div[@class='row phone-list-new']")
+	})
 	WebElement divNewNumberList;
 	
 	@FindBy(xpath = "//input[@name='phoneNumber']/parent::div/label")
 	WebElement rdoNewPhoneNumberList;
-	
-	@FindBy(xpath = "//ins[@translate='global.cta.cancel']/parent::a/parent::div/preceding-sibling::div//input[@value='select number' or @value='Veuillez choisir un numéro']")
+
+	@FindAll({
+			@FindBy(xpath = "//a[@title='Select number' or @title='Veuillez choisir un numéro']"),
+			@FindBy(xpath = "//ins[@translate='global.cta.cancel']/parent::a/parent::div/preceding-sibling::div//input[@value='select number' or @value='Veuillez choisir un numéro']")
+	})
 	WebElement btnSelectNumber;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//h1[text()='Review your new number.']"),
 	@FindBy(xpath = "//ins[@translate='global.label.reviewNewNumber']")
+	})
 	WebElement lblReviewNumberHeader;
-	
-	@FindBy(xpath = "//ins[@translate='global.label.reviewPhoneNumberDescriptionNew']")
+
+	@FindAll({
+			@FindBy(xpath = "//h2"),
+			@FindBy(xpath = "//ins[@translate='global.label.reviewPhoneNumberDescriptionNew']")
+	})
 	WebElement lblReviewPhoneNumberDescriptionNew;
-	
+
 	@FindBy(xpath = "//ins[@translate='global.message.rememberMsg']")
 	WebElement lblRememberMessage;
 	
@@ -90,35 +111,68 @@ public class FidoChangeCTNPage extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@class='currNum-Value newNumValue-mobile']")
 	WebElement lblNewNumber;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//span[@class='text-bold text-capitalize']"),
 	@FindBy(xpath = "//ins[@translate='global.label.localTo']/parent::div/div")
+	})
 	WebElement divLocalTo;
 	
 	@FindBy(xpath = "//ins[@translate='global.label.confirmationMailReview']")
 	WebElement lblConfirmationEmailWillBeSentTo;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//span[text()=' Confirm ' or text()=' Confirmer ']"),
 	@FindBy(xpath = "//input[@value='Confirm' or @value='Confirmer']")
+	})
 	WebElement btnConfirm;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//h1[@class='text-title-1']"),
 	@FindBy(xpath = "//ins[@translate='wireless.label.thatsAllFolks']")
+	})
 	WebElement lblThatsAllHeader;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//ss-telephone-number-change-alert//div[contains(@class,'mw-content')]//child::span//strong"),
 	@FindBy(xpath = "//ins[@translate='wireless.message.yourChangeWillBeDone']")
+	})
 	WebElement lblHeaderYourChangeWillbeDoneInFewMins;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//ss-telephone-number-change-alert//div[contains(@class,'mw-content')]//child::span"),
 	@FindBy(xpath = "//ins[@translate='wireless.message.yourChangeWillBeDone']/parent::div//following-sibling::div[contains(@class,'change-ctn-new-number')]//span[@class='ctn-new-number']")
+	})
 	WebElement spanNewNumberConfirmation;
-	
-	@FindBy(xpath = "//button[@translate='global.cta.backToAccount']")
+
+	@FindBy(xpath = "//h1//following-sibling::span//span")
+	WebElement spanNewNumberDashboard;
+
+	@FindAll({
+			@FindBy(xpath = "//a[@variant='secondary']"),
+			@FindBy(xpath = "//button[@translate='global.cta.backToAccount']")
+	})
 	WebElement btnBackToMyAccount;
-	
+
+	@FindBy(xpath = "//div[contains(@class,'talk-text-usage-heading')]")
+	WebElement talkTextHeadingDashboardPage;
+
+	@FindAll({
+	@FindBy(xpath = "//div[contains(@class,'ng-star-inserted')]//p[contains(text(),'Local to:')]"),
 	@FindBy(xpath = "//div[@class='confirmPage']//ins[@translate='global.label.localTo']/parent::div/div")
+	})
 	WebElement lblLocalToOnConfirmationPage;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//div[contains(@class,'ng-star-inserted')]//p[contains(text(),'Confirmation')]"),
 	@FindBy(xpath = "//ins[@translate='global.label.confirmationEmail']")
+	})
 	WebElement lblEmailConfirmationOnFinalPage;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//button[contains(@title,'expand/hide for details')]"),
 	@FindBy(xpath = "//ins[@translate='wireless.label.howChangeWillAffectAlt']")
+	})
 	WebElement lblChangingWillAffectYourBill;
 	
 	@FindBy(xpath = "//div[@class='row error-message-wrapper']")
@@ -187,20 +241,19 @@ public class FidoChangeCTNPage extends BasePageClass {
 		return(reusableActions.isElementVisible(cboProvince)
 		        && reusableActions.isElementVisible(cboCity));
 	}
-	
-	
+
 	/**
 	 * This method will select the Province and City where the customer will be dialing more frequently
 	 * @return map of province and city details
 	 * @author Mirza.Kamran
 	 */
 	public Map<String, String> selectCallingProvinceAndCity() {
-		Map<String, String> map=new Hashtable<String, String>();			
-		reusableActions.staticWait(5000);					
-		reusableActions.selectWhenReady(cboProvince,"on");
-		waitForDropDownToLoad(cboCity,60);	
-		reusableActions.selectWhenReady(cboCity, "TOR");
-		reusableActions.staticWait(1000);
+		Map<String, String> map=new Hashtable<String, String>();
+		new Select(cboProvince).selectByVisibleText("Ontario");
+		//reusableActions.selectWhenReady(cboProvince," Ontario ");
+		waitForDropDownToLoad(cboCity,60);
+		new Select(cboCity).selectByVisibleText("Toronto");
+		//reusableActions.selectWhenReady(cboCity, " Toronto ");
 		map.put("province",reusableActions.getSelectedValue(cboProvince));
 		map.put("city",reusableActions.getSelectedValue(cboCity));
 		
@@ -248,7 +301,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 */
 	public Boolean verifyPickANewNumberPageLoaded() {
 		reusableActions.waitForPageLoad();
-		reusableActions.waitForElementTobeNotClickable(btnSelectNumber);
+		reusableActions.waitForElementVisibility(btnSelectNumber);
 		reusableActions.waitForElementVisibility(lblPickupNewNumberHeader,300);
 		reusableActions.waitForElementVisibility(divNewNumberList,300);
 		if(reusableActions.isElementVisible(lblPickupNewNumberHeader)	
@@ -268,7 +321,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 */
 	public String selectNewNumber(int intIndex) {
 		String newCTNString="";
-		List<WebElement> newNumbers=driver.findElements(By.xpath("//input[@name='phoneNumber']/parent::div/label"));
+		List<WebElement> newNumbers=driver.findElements(By.xpath("//ds-radio-group[@aria-label='Choose phone number']//div//ds-radio-button//div[@id]"));
 		if(newNumbers.size()>0)
 		{
 			newCTNString=reusableActions.getWhenReady(newNumbers.get(intIndex)).getText();
@@ -364,7 +417,24 @@ public class FidoChangeCTNPage extends BasePageClass {
 	public boolean verifyTheCTNChangeSuccessPage(String strNewNumber) {
 		reusableActions.waitForPageLoad();		
 		reusableActions.waitForElementVisibility(btnBackToMyAccount, 60);
-		if(reusableActions.getWhenReady(spanNewNumberConfirmation).getText().trim().equals(strNewNumber))
+		if(reusableActions.getWhenReady(spanNewNumberConfirmation).getText().trim().contains(strNewNumber))
+		{
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	/**
+	 * Verify the CTN Number change is successful
+	 * @param strNewNumber the new number selected
+	 * @return will return true if all details match else false
+	 * @author Sidhartha.vadrevu
+	 */
+	public boolean verifyTheCTNChangeDashboardPage(String strNewNumber) {
+		reusableActions.waitForPageLoad();
+		reusableActions.waitForElementVisibility(talkTextHeadingDashboardPage,60);
+		if(reusableActions.getWhenReady(spanNewNumberDashboard).getText().trim().contains(strNewNumber))
 		{
 			return true;
 		}else {
