@@ -34,7 +34,7 @@ public class FidoOVChoosePhonePage extends BasePageClass {
     @FindBy(xpath = "//button[@title='Select' or @title='Continue' or @title='Continuer' or @title='Ship to home' or @title='Expédier à la maison' or contains(@title, 'Disponible à l')]")
     WebElement continueButtonOnDashboardPhonePage;
 
-    @FindBy(xpath = "//div[contains(@class, 'd-block mt-16')]//h1")
+    @FindBy(xpath = "//h1[@id='bfa-page-title']")
     WebElement titleOnDashboardPhonePage;
 
     /**

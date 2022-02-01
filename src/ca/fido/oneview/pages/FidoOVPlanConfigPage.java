@@ -56,16 +56,16 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//div[@id='ds-stepper-id-1-completedContent-4']//ds-icon")
     WebElement preCartAddonsCheckedIcon;
 
-    @FindBy(xpath = "//input[@id='ds-form-input-id-0']/parent::div")
+    @FindBy(xpath = "//input[@formcontrolname='firstName']/ancestor::ds-form-field")
     WebElement callerFirstNameField;
 
-    @FindBy(xpath = "//input[@id='ds-form-input-id-0']")
+    @FindBy(xpath = "//input[@formcontrolname='firstName']")
     WebElement callerFirstNameInput;
 
-    @FindBy(xpath = "//input[@id='ds-form-input-id-1']/parent::div")
+    @FindBy(xpath = "//input[@formcontrolname='lastName']/ancestor::ds-form-field")
     WebElement callerLastNameField;
 
-    @FindBy(xpath = "//input[@id='ds-form-input-id-1']")
+    @FindBy(xpath = "//input[@formcontrolname='lastName']")
     WebElement callerLastNameInput;
 
     @FindBy(xpath = "//button[@data-test='stepper-5-edit-step-continue-button' and not(@aria-disabled)]")
@@ -80,7 +80,7 @@ public class FidoOVPlanConfigPage extends BasePageClass {
     @FindBy(xpath = "//nav[@class='ds-breadcrumb']")
     WebElement breadCrumb;
 
-    @FindBy(xpath = "//p[contains(.,'Financing options')]")
+    @FindBy(xpath = "//p[contains(.,'Financing options') or contains(.,'Options de financement')]")
     WebElement txtFinancingOptions;
 
     @FindBy(xpath = "(//label[contains(@class,'ds-radioLabel')])[2]")
@@ -91,6 +91,15 @@ public class FidoOVPlanConfigPage extends BasePageClass {
 
     @FindBy(xpath = "//button[contains(@title,'Retention')]")
     WebElement showRetentionPlanBtn;
+
+    @FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
+    WebElement keepMyCurrentPlanButton;
+
+    @FindBy(xpath="//ds-checkbox[@data-test='vdp-checkbox']")
+    WebElement vdpCheckBox;
+
+    @FindBy(xpath = "//button[@title='Add Device Protection']/preceding-sibling::button")
+    WebElement btnContinueDeviceProtection;
 
     /**
      * Instantiates a new Base page class.
@@ -433,5 +442,40 @@ public class FidoOVPlanConfigPage extends BasePageClass {
      */
     public boolean verifyBreadCrumb(String deviceName) {
         return reusableActions.isElementVisible(buildPlanInBreadCrumb) && breadCrumb.getText().toUpperCase().contains((deviceName).toUpperCase());
+    }
+
+    /**
+     * This menthod clicks on data option continue button
+     * @author praveen.kumar7
+     */
+    public void clkPreCartDataOptionContinueBtn() {
+        reusableActions.clickWhenVisible(preCartDataOptionContinueButton);
+    }
+
+    /**
+     * This method clicks on the 'Keep My Current Plan' button in Device Cost Stepper
+     * @author praveen.kumar7
+     */
+    public void checkKeepMyCurrentPlanButton() {
+        reusableActions.clickWhenVisible(keepMyCurrentPlanButton);
+    }
+
+    /**
+     * This method clicks on downpaymment checkbox in device cost stepper
+     * @author praveen.kumar7
+     */
+    public void clkDownPaymentChkBox() {
+        reusableActions.scrollToElement(vdpCheckBox);
+        reusableActions.clickWhenReady(vdpCheckBox);
+    }
+
+    /**
+     * This method clicks on continue button in device protection modal if present
+     * @author praveen.kumar7
+     */
+    public void clkContinueDeviceProtection() {
+        if(reusableActions.isElementVisible(btnContinueDeviceProtection,10)) {
+            reusableActions.executeJavaScriptClick(btnContinueDeviceProtection);
+        }
     }
 }

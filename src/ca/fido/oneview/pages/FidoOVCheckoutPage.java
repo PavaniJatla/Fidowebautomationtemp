@@ -1,6 +1,7 @@
 package ca.fido.oneview.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,6 +70,18 @@ public class FidoOVCheckoutPage extends BasePageClass {
 
     @FindBy(xpath = "//input[@formcontrolname='emailAddressField']")
     WebElement inputEmailShipping;
+
+    @FindBy(xpath = "//ds-radio-button[@data-test='from-value-different-shipping']/label")
+    WebElement radioBtnNewAddress;
+
+    @FindBy(xpath = "(//*[@data-test='shipping-delivery-address']//ds-form-field)[1]")
+    WebElement newAddressFormField;
+
+    @FindBy(xpath = "//div[@data-test='modal-credit-evaluation-fraud']")
+    WebElement nfdbFraudPopup;
+
+    @FindBy(xpath = "(//*[@data-test='shipping-delivery-address']//input)[1]")
+    WebElement inputNewAddress;
 
     /**
      * Click on the shipping continue button
@@ -206,16 +219,16 @@ public class FidoOVCheckoutPage extends BasePageClass {
     public void selectDeliveryMethod(String deliveryMethod) {
         switch (deliveryMethod.toUpperCase()) {
             case "STANDARD":
-                reusableActions.waitForElementVisibility(rdoDeliveryMethodStandard, 5);
+                reusableActions.waitForElementVisibility(rdoDeliveryMethodStandard, 10);
                 reusableActions.clickWhenReady(rdoDeliveryMethodStandard);
                 break;
             case "EXPRESS":
-                reusableActions.waitForElementVisibility(rdoDeliveryMethodExpress, 5);
+                reusableActions.waitForElementVisibility(rdoDeliveryMethodExpress, 10);
                 reusableActions.clickWhenReady(rdoDeliveryMethodExpress, 30);
                 reusableActions.waitForElementVisibility(expressLocations, 60);
                 break;
             case "PRO":
-                reusableActions.waitForElementVisibility(rdoDeliveryMethodProOnTheGo, 5);
+                reusableActions.waitForElementVisibility(rdoDeliveryMethodProOnTheGo, 10);
                 reusableActions.clickWhenReady(rdoDeliveryMethodProOnTheGo, 30);
                 break;
             default:
@@ -233,4 +246,36 @@ public class FidoOVCheckoutPage extends BasePageClass {
            inputEmailShipping.sendKeys(FormFiller.generateEmail());
         }
     }
+
+    /**
+     * To click on the Billing Address radio button in the Shipping stepper
+     * @author praveen.kumar7
+     */
+    public void clkNewAddress() {
+        reusableActions.javascriptScrollToTopOfPage();
+        reusableActions.waitForElementTobeClickable(radioBtnNewAddress,20);
+        reusableActions.clickWhenReady(radioBtnNewAddress, 30);
+    }
+
+    /**
+     * This method enters new address in Enter new address field
+     * @param newShippingAddrress to enter
+     * @author praveen.kumar7
+     */
+    public void enterNewAddress(String newShippingAddrress) {
+        reusableActions.clickWhenVisible(newAddressFormField);
+        inputNewAddress.sendKeys(newShippingAddrress);
+        reusableActions.clickIfAvailable(By.xpath("(//ul[@role='listbox']//li)[1]"),10);
+        reusableActions.staticWait(5000);
+    }
+
+    /**
+     * This method verifies if NFDB popup is displayed
+     * @return true if popup displayed, else false
+     * @author praveen.kumar7
+     */
+    public boolean verifyNFDBErrorMsg() {
+        return reusableActions.isElementVisible(nfdbFraudPopup);
+    }
+
 }

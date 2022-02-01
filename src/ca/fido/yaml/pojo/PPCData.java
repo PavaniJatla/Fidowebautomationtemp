@@ -7,6 +7,7 @@ public class PPCData {
 	private String ctn;
 	private String newPlanType;
 	private String dataOptionIndex;
+	private String ban;
 
 	/**
 	 * @return the username
@@ -67,5 +68,17 @@ public class PPCData {
 	 */
 	public void setDataOptionIndex(String dataOptionIndex) {
 		this.dataOptionIndex = dataOptionIndex;
+	}
+	/**
+	 * @return ban number
+	 */
+	public String getBan() {
+		return ban;
+	}
+	/**
+	 * @param ban number to set
+	 */
+	public void setBan(String ban) {
+		this.ban = ban;
 	}
 }

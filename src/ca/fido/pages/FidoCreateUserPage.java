@@ -67,7 +67,7 @@ public class FidoCreateUserPage extends BasePageClass {
 	
 	@FindAll({
 		@FindBy(xpath="//div[@class='pca pcalist']/div[contains(@class,'pcalastitem')]/span[@class='pcadescription']/.."),
-		@FindBy(xpath="//ul[@role='listbox']//li[last()]"),
+		@FindBy(xpath="//ul[@role='listbox']//li[not(contains(.,'Addresses'))]"),
 	})
 	WebElement lblAddressResult;
 
@@ -121,7 +121,7 @@ public void setFirstName(){
 	String strName = FormFiller.generateRandomName();
 	String strFname="Fido"+ strName;
 	reusableActions.getWhenReady(txtFirstName, 60).click();
-	reusableActions.getWhenReady(lblTxtFirstName,3).sendKeys(strFname);
+	lblTxtFirstName.sendKeys(strFname);
 }
 
 	/**
@@ -142,7 +142,7 @@ public void setLastName(){
 	String strName = FormFiller.generateRandomName();
 	String strLname="Automation"+ strName;
 	reusableActions.getWhenReady(txtLastName, 3).click();
-	reusableActions.getWhenReady(lblTxtLastName,3).sendKeys(strLname);
+	lblTxtLastName.sendKeys(strLname);
 }
 
 	/**

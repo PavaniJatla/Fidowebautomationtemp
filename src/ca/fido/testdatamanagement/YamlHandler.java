@@ -216,6 +216,19 @@ public class YamlHandler {
 		}
 	}
 
+	public static HUPOVData getHUPOneViewData(String dataFileName) {
+		Yaml yaml = new Yaml(new Constructor(HUPOVData.class));
+		InputStream inputStream;
+
+		try {
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflowsoneview/" + dataFileName + ".yml"));
+			return yaml.load(inputStream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public static PaymentDetails getBfaOneViewPaymentDetails() {
 		Yaml yaml = new Yaml(new Constructor(PaymentDetails.class));
 		InputStream inputStream;

@@ -1,6 +1,7 @@
 package ca.fido.oneview.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -25,6 +26,10 @@ public class AccountOverViewPage extends BasePageClass {
 
     @FindBy(xpath = "//agent-notifications")
     WebElement notificationBell;
+
+    @FindBy(xpath = "//t[contains(.,'Upgrade') or contains(.,'Rehausse')]/ancestor::a")
+    WebElement linkUpgrade;
+
 
     /**
      * Instantiates a new Base page class.
@@ -53,7 +58,8 @@ public class AccountOverViewPage extends BasePageClass {
     public void selectAddAWirelessLineButton() {
         reusableActions.javascriptScrollToBottomOfPage();
         reusableActions.waitForElementVisibility(addNewWirelessLineButton);
-        reusableActions.clickWhenReady(addNewWirelessLineButton, 45);
+        reusableActions.javascriptScrollToBottomOfPage();
+        reusableActions.executeJavaScriptClick(addNewWirelessLineButton);
     }
 
     /**
@@ -74,4 +80,15 @@ public class AccountOverViewPage extends BasePageClass {
             notificationBell.click();
         }
     }
+
+    /**
+     * Clicks on the 'Upgrade My Device' button
+     * @author praveen.kumar7
+     */
+    public void clkUpgradeMyDevice() {
+        reusableActions.waitForElementVisibility(linkUpgrade ,30);
+        reusableActions.executeJavaScriptClick(linkUpgrade);
+        reusableActions.waitForElementInvisibilityNOException(linkUpgrade,30);
+    }
+
 }

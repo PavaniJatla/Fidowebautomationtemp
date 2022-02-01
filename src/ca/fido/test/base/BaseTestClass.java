@@ -495,7 +495,11 @@ public class BaseTestClass {
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
-				}else{
+				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("BFA_PROD")) {
+					getDriver().get(strUrl);
+					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					getDriver().get(strUrl+"/profile/signin");
+				} else{
 					getDriver().get(strUrl);
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl+"/profile/signin");

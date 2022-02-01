@@ -43,7 +43,7 @@ pipeline {
         string(name: 'QaUrl', defaultValue: "", description: "Test QA URL Link")
         string(name: 'SSPUrl', defaultValue: "", description: "SSP URL")
         string(name: 'AWSUrl', defaultValue: "", description: "BFA AWS URL")
-        string(name: 'AWSBYODUrl', defaultValue: "", description: "BFA AWS BYOD URL")
+        string(name: 'AWSPRODUrl', defaultValue: "", description: "BFA AWS PROD URL")
         string(name: 'EnsUrl', defaultValue: "", description: "ENS URL Link")
     }
 
@@ -113,8 +113,8 @@ pipeline {
                             if(!params.AWSUrl.isEmpty()){
                                 urlLink = urlLink + "-Ptest_awsURL=${params.AWSUrl}";
                             }
-                            if(!params.AWSBYODUrl.isEmpty()){
-                                urlLink = urlLink + "-Ptest_awsBYODURL=${params.AWSBYODUrl}";
+                            if(!params.AWSPRODUrl.isEmpty()){
+                                urlLink = urlLink + "-Ptest_awsPRODURL=${params.AWSPRODUrl}";
                             }
                             if(!params.EnsUrl.isEmpty()){
                                 urlLink = urlLink + "-Ptest_ensURL=${params.EnsUrl}";
