@@ -16,10 +16,10 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='button-new']")
 	WebElement lnkCheckAvailability;
 
-	@FindBy(xpath = "//input[@id='addressLookup']")
+	@FindBy(xpath = "//input[@id='addressLookup-0']")
 	WebElement txtAddressLookup;
 	
-	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-borders ds-bgcolor-white ds-brcolor-black ds-color-black']")
+	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-bgcolor-white ds-borders ng-tns-c96-2 ds-brcolor-black ds-color-black']")
 	WebElement txtAddressLookupContainer;
 	
 	@FindBy(xpath = "//ins[@translate='global.cta.checkAvailability']")
@@ -35,6 +35,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	WebElement btnBuyNow;
 
 	@FindAll({@FindBy(xpath = "//button[@title='Buy Fido Home Internet now']"),
+			@FindBy(xpath = "//button[@aria-label='Buy Fido Home Internet now Buy now']"),
 			@FindBy(xpath = "//a[@title='Buy Fido Home Internet now']")})
 	WebElement btnBuyNowReskin;
 	//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100']
