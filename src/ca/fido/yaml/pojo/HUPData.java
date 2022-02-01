@@ -11,6 +11,7 @@ public class HUPData {
 	private String shippingType;
 	private String accessoriesCount;
 	private String accessory1;
+	private String ban;
 
 	/**
 	 * @return the newDevice
@@ -119,6 +120,18 @@ public class HUPData {
 	 */
 	public void setAccessory1(String accessory1) {
 		this.accessory1 = accessory1;
+	}
+	/**
+	 * @return ban number
+	 */
+	public String getBan() {
+		return ban;
+	}
+	/**
+	 * @param ban number to set
+	 */
+	public void setBan(String ban) {
+		this.ban = ban;
 	}
 
 

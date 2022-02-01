@@ -17,29 +17,22 @@ public class Fido_BFA_TC14_HUPWithNoTermDeviceAndNoTermMultipleAccessories_Test 
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","HUPBF"})
+    @Test(groups = {"RegressionBFA","HUPBFA"})
     public void fidoHUPWithNoTermDeviceAndNoTermMultipleAccessoriesFlowTest() {
-        /*getFidologinpage().setUsernameInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getUsername());
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc14HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-        getDriver().get(System.getProperty("AWSUrl")+"/phones");*/
-        getDriver().get("https://qa5.fido.ca/phones/?flowType=hup");
-        getFidologinpage().switchToSignInFrame();
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc11HupPpcFinancingExpressShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc11HupPpcFinancingExpressShipping.getPassword());
-        getReporter().reportLogWithScreenshot("Login overlay");
-        getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();
+        getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc14HupPpcFinancingStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        /*getFidochoosephonepage().selectUpgradeMyDeviceButton();
-        getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");*/
+        getFidochoosephonepage().selectUpgradeMyDeviceButton();
+        getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
         //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");

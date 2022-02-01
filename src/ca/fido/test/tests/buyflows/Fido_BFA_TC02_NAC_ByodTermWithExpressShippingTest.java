@@ -19,12 +19,10 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
 	public void fidoNACByodTermExpressShippingFlow() {
-		getReporter().reportLog("URL:" + System.getProperty("AWSBYODUrl"));
+		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
-		getFidobuildplanpage().clkDataAndTextPlan();
-		getReporter().reportLogPass("Data and Text Plan selected");
-		getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
-		getFidobuildplanpage().clkContinueDataOption();
+		getFidobuildplanpage().clkDataOption(TestDataHandler.tc02ByodExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());
+		getReporter().reportLogPass("Data, Talk and Text Plan selected");
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
@@ -46,6 +44,7 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
 		getFidocreditcheckpage().selectDOBMonth();
+		getFidoCheckOutPage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
 		getFidocreditcheckpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth1() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear1());
@@ -85,7 +84,7 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 
 	@BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
 	public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
-		startSession(System.getProperty("AWSBYODUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
+		startSession(System.getProperty("AWSUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
 	}
 
 	@AfterMethod(alwaysRun = true)

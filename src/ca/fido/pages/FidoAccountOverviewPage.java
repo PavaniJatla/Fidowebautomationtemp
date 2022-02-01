@@ -222,14 +222,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//span[@class='ds-icon d-inline-flex fds-icon-add-circle']")
 	WebElement lnkAddALine;
 
-	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlowDevice']/parent::button/preceding-sibling::div//span")
-	//@FindBy (xpath = "//span[@translate='aal.cta.addALineFlow']/parent::button")
-	//@FindBy (xpath = "//ds-modal//button[contains(@class,'-primary -large')]")
-	@FindBy (xpath = "(//div[contains(@class,'modalWindow')]//a)[1]")
-	WebElement buttonAALCurrentPhone;
+	@FindBy(xpath = "//ds-modal-container//a[contains(.,'Already') or contains(.,'Déjà')]")
+	WebElement aalByodLnk;
 
-	@FindBy (xpath = "(//div[contains(@class,'modalWindow')]//a)[2]")
-	WebElement buttonAALNewPhone;
+	@FindBy(xpath = "//ds-modal-container//a[contains(.,'New') or contains(.,'Nouve')]")
+	WebElement aalTermLnk;
 
 	@FindBy (xpath = "//div[@class='onboarding-progress-bar']")
 	WebElement lblProgressBar;
@@ -400,40 +397,25 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	WebElement lblPrintYourBill;
 
 	/**
-	 * Verify Modal Window AAL
-	 * @return true if the modal window appears else false
-	 * @author Saurav.Goyal
-	 */
-	public Boolean verifyModalWindowAAL() {
-		return reusableActions.isElementVisible(buttonAALNewPhone, 60);
-	}
-
-
-	/**
-	 * Click button "Add a line" on modal dialogue window.
-	 * @author Saurav.Goyal
-	 */
-	public void clkButtonAALNewPhone() {
-		reusableActions.waitForElementTobeClickable(buttonAALNewPhone, 60);
-		reusableActions.getWhenReady(buttonAALNewPhone,30).click();
-	}
-
-	/**
-	 * Click button "Add a line" on modal dialogue window.
-	 * @author Saurav.Goyal
-	 */
-	public void clkButtonAddALineAlreadyHaveAPhone() {
-		reusableActions.waitForElementTobeClickable(buttonAALCurrentPhone, 100);
-		reusableActions.getWhenReady(buttonAALCurrentPhone,30).click();
-	}
-
-	/**
 	 * Click link "Add a line" in overview page.
 	 * @author Saurav.Goyal
 	 */
-	public void clkLnkAddALine() {
-		reusableActions.waitForElementTobeClickable(lnkAddALine, 100);
-		reusableActions.getWhenReady(lnkAddALine,30).click();
+	public void clkLnkAddALine(String banNo) {
+		reusableActions.clickWhenReady(By.xpath("//div[contains(@class,'add-another-line')]//a[contains(@title,'"+banNo+"')]"));
+	}
+
+	/**
+	 * This method clicks on AAL link based on the flowType string in class name
+	 * @param className
+	 * @author praveen.kumar7
+	 */
+	public void clkAddALineLnkInModal(String className) {
+		if(className.toUpperCase().contains("TERM")) {
+			reusableActions.clickWhenReady(aalTermLnk);
+		}
+		else {
+			reusableActions.clickWhenReady(aalByodLnk);
+		}
 	}
 
 	/**
@@ -1213,8 +1195,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * Clicks on the view usage and manage link
 	 * @author Saurav.Goyal
 	 */
-	public void clkViewUsageAndManageLink() {
-		reusableActions.clickWhenVisible(By.xpath("//div[@class='fss-subscription-detail']//a"),30);
+	public void clkViewUsageAndManageLink(String ctn) {
+		reusableActions.clickWhenVisible(By.xpath("//a[contains(@aria-label,'"+ctn+"')]"),30);
 	}
 	/**
 	 * Waits until the Loading indicator disappears from the page

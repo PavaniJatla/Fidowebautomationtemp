@@ -13,6 +13,7 @@ public class AALData {
 	private String dataOptionIndex;
 	private String cityName;
 	private String shippingType;
+	private String ban;
 	
 	
 	/**
@@ -86,6 +87,13 @@ public class AALData {
 	}
 	public void setNewPlanType(String newPlanType) {
 		this.newPlanType = newPlanType;
+	}
+	public String getBan() {
+		return ban;
+	}
+
+	public void setBan(String ban) {
+		this.ban = ban;
 	}
 	/**
 	 * @return the DeviceCostIndex

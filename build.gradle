@@ -37,11 +37,14 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'QaUrl', test_qaURL
     systemProperty 'SSPUrl', test_sspURL
     systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Browser', test_browser
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+    systemProperty 'OneViewUrl', test_oneViewUrl
+    systemProperty 'OneViewEnv',  test_oneViewEnv
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -72,10 +75,13 @@ task "localTest"(type: Test) {
     systemProperty 'SSPUrl', test_sspURL
     systemProperty 'Browser', test_browser
     systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+    systemProperty 'OneViewUrl', test_oneViewUrl
+    systemProperty 'OneViewEnv',  test_oneViewEnv
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests

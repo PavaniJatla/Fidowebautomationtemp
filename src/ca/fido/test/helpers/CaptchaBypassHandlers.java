@@ -10,13 +10,14 @@ import java.io.IOException;
 import java.util.Date;
 
 public class CaptchaBypassHandlers {
-	
-	private WebDriver driver;
+
+	private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
 	AppiumDriver<MobileElement> adriver;
+
 	public CaptchaBypassHandlers(WebDriver driver) {
-		this.driver = driver;
+		webDriverThreadLocal.set(driver);
 	}
-	
+
 	public CaptchaBypassHandlers(AppiumDriver<MobileElement> adriver) {
 		this.adriver = adriver;
 	}
@@ -53,8 +54,8 @@ public class CaptchaBypassHandlers {
 		String strCookieFileType = "fido";
 		String strCookieName = "temp_token_f";
 		Cookie captchBypass = new Cookie (strCookieName ,CookieFetcher.setAndFetchCookie(strCookieUserName, strCookieUserPassword, strUrl, strCookieFetchURL, strCookieRegistrationURL , strCookieFileType , strCookieName));
-		System.out.print(driver.getCurrentUrl());
-		driver.manage().addCookie(captchBypass);
+		System.out.print(getDriver().getCurrentUrl());
+		getDriver().manage().addCookie(captchBypass);
   }
 
 	/**
@@ -62,10 +63,11 @@ public class CaptchaBypassHandlers {
 	 * @param strUrl                     string of test url
 	 */
 	public String generateCookieFetchURL(String strUrl) {
-		String strCookieFetchURL=null;
 		String cookieEnv = envMapping(strUrl);
-		strCookieFetchURL = cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
-		return strCookieFetchURL;
+		if(!strUrl.contains("www.fido.ca")) {
+			return cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
+		}
+		return cookieEnv + ".eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
 	}
 
 	/**
@@ -73,10 +75,11 @@ public class CaptchaBypassHandlers {
 	 * @param strUrl                     string of test url
 	 */
 	public String generateCookieRegistrationURL(String strUrl) {
-		String strCookieRegistrationURL=null;
 		String cookieEnv = envMapping(strUrl);
-		strCookieRegistrationURL = cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
-		return strCookieRegistrationURL;
+		if(!strUrl.contains("www.fido.ca")) {
+			return cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
+		}
+		return cookieEnv + ".eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
 	}
 
 	/**
@@ -94,9 +97,69 @@ public class CaptchaBypassHandlers {
 			cookieEnv = "https://ute4";
 		} else if (strUrl.contains("qa4.")) {
 			cookieEnv = "https://ute2";
-		} else {
+		}
+		else if (strUrl.contains("www.fido.ca")) {
+			cookieEnv = "https://ute1.prod01";
+		}
+		else {
 			cookieEnv = System.getProperty("CookieFetcherMapping");
 		}
 		return cookieEnv;
+	}
+
+	/**
+	 * To Bypass Captcha for login Flows
+	 *
+	 * @param strUrl           string of test url
+	 * @param strAccNo         string of account number
+	 * @param strLoginID       string of login id
+	 * @param strLanID         string of lan id
+	 * @param strLanguage      string of language to use
+	 * @param strContactID     string of contact id
+	 */
+	public void chOneViewFlow(String strUrl, String strAccNo, String strLoginID, String strLanID, String strLanguage, String strContactID) {
+		String oneViewUrl = "";
+		if (strLoginID.isEmpty())
+			oneViewUrl = strUrl;
+		else if (strContactID.equals(""))
+			oneViewUrl = CaptchaBypassHandlers.urlOneViewExistingCustomer(strUrl, strLoginID, strLanID, strAccNo, strLanguage);
+		else
+			oneViewUrl = CaptchaBypassHandlers.chOneViewNacUrl(strUrl, strLoginID, strLanID, strLanguage, strContactID);
+		System.out.println(oneViewUrl + "----------------------------------------------------------------------------");
+		getDriver().get(oneViewUrl);
+	}
+
+	/**
+	 * Get url for one view flow
+	 *
+	 * @param strUrl           string of test url
+	 * @param strLoginID       string of login id
+	 * @param strLanID         string of lan id
+	 * @param strAccNo         string of account number
+	 * @param strLanguage      string of language to use
+	 */
+	public static String urlOneViewExistingCustomer(String strUrl, String strLoginID, String strLanID, String strAccNo, String strLanguage) {
+		String queryParam = "LoginId=" + strLoginID + "&UserRole=CSR,BRT%20Authorized%20CSR-3,Oneview Pilot-1,Oneview Pilot-2,Oneview Pilot-4,Oneview BRT-1,Oneview BRT-2,Oneview BRT-3,Oneview BRT-4,R76,BT User,R21,R39,R60,R75,R77,R180,R182,R185,R246,R252,R261,R167,R306,R307,R304,R309,R311,R310,BRT Authorized CSR-1,BRT Authorized CSR-3,BRT Authorized CSR-4&AccNo=" + strAccNo + "&Target=UTE&TimeStamp=2021-07-25T11:29:45.442-04:00&Lang=" + strLanguage + "&AppId=CRM&li=" + strLanID;
+
+		return strUrl + queryParam;
+	}
+
+	/**
+	 * Get url for NAC one view flow
+	 *
+	 * @param strUrl           string of test url
+	 * @param strLoginID       string of login id
+	 * @param strLanID         string of lan id
+	 * @param strLanguage      string of language to use
+	 * @param strContactID     string of contact id
+	 */
+	public static String chOneViewNacUrl(String strUrl, String strLoginID, String strLanID, String strLanguage, String strContactID) {
+		String queryParam = "LoginId=" + strLoginID + "64&UserRole=CSR,Oneview Pilot-1,Oneview BRT-1,R76,BT User,R33,R45,R21,R75,R77,R180,R182,R252,R47,R52,R54,R55,R65,R68,R75,R77,R246,Telesales,R188,R252,R261,R167,R306,R307,R304,R311,BRT Authorized CSR-3,BRT Authorized CSR-4,Ignite Learning Lab Additive Role&IntID=&Target=UTE&TimeStamp=2021-05-16T11:29:45.4412-04:00&Lang=" + strLanguage + "&AppId=CRM&li=" + strLanID + "&AccNo=&ContactID=" + strContactID + "&targetURL=IgniteNAC";
+
+		return strUrl + queryParam;
+	}
+
+	private WebDriver getDriver(){
+		return webDriverThreadLocal.get();
 	}
 }

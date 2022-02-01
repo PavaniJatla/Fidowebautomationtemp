@@ -38,7 +38,7 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkContinueDataOption();
+		getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPassWithScreenshot("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
