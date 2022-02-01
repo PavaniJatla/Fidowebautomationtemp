@@ -19,7 +19,7 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
 	public void fidoNACByodTermExpressShippingFlow() {
-		getReporter().reportLog("URL:" + System.getProperty("AWSBYODUrl"));
+		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		getFidobuildplanpage().clkDataOption(TestDataHandler.tc02ByodExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPass("Data, Talk and Text Plan selected");
