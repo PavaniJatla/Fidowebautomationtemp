@@ -31,13 +31,5 @@ public class Retry implements IRetryAnalyzer {
             iTestResult.setStatus(ITestResult.SUCCESS);      //If test passes, TestNG marks it as passed
         }
         return false;
-    }  
- 
-    public void extendReportsFailOperations (ITestResult iTestResult) {
-        Object testClass = iTestResult.getInstance();
-        WebDriver webDriver = ((BaseTestClass) testClass).getDriver();
-        String base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)webDriver).getScreenshotAs(OutputType.BASE64);
-        ExtentTestManager.getTest().log(LogStatus.SKIP,"Test Failed",
-                ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot)+ iTestResult.getThrowable().getMessage().split("Build")[0].replace("<", "&lt;")+" " + Thread.currentThread().getStackTrace()[2].getMethodName()+"\"" + " action method");
     }
 }

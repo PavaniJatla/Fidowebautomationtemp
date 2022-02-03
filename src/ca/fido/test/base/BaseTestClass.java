@@ -19,6 +19,7 @@ import com.applitools.eyes.RectangleSize;
 import com.applitools.eyes.TestResults;
 import com.applitools.eyes.selenium.ClassicRunner;
 import com.applitools.eyes.selenium.Eyes;
+import extentreport.ExtentListener;
 import extentreport.ExtentTestManager;
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
@@ -462,6 +463,7 @@ public class BaseTestClass {
 			sauceParameters = initializeSauceParamsMap(browser);
 		}
 	    webDriverThreadLocal.set(browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString()));
+		ExtentListener.setDriver(getDriver());
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {

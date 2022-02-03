@@ -51,7 +51,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     useTestNG() {
         parallel = test_parallel
         threadCount = test_threadCount as int
-        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
+        Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
         if (project.hasProperty('test_groupName')){
             includeGroups test_groupName
@@ -88,7 +88,7 @@ task "localTest"(type: Test) {
     useTestNG() {
         parallel = test_parallel
         threadCount = test_threadCount as int
-        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
+        Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
         if (project.hasProperty('test_groupName')){
             includeGroups test_groupName
@@ -115,7 +115,7 @@ dependencies {
     api 'com.relevantcodes:extentreports:2.41.2'
     api 'org.seleniumhq.selenium:selenium-java:3.141.59'
     api 'org.testng:testng:6.14.3'
-    api 'automation-utils:common-utils:latest.release'
+    api 'automation-utils:common-utils:1.64-SNAPSHOT'
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'
 	api 'org.json:json:20180813'
