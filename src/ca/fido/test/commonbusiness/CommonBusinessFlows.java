@@ -4,9 +4,9 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.testng.annotations.Listeners;
 
-@Listeners ({ca.fido.test.listeners.TestListener.class 
+@Listeners ({extentreport.ExtentListener.class
 	, ca.fido.test.listeners.AnnotationTransformer.class 
-	, ca.fido.test.listeners.TestListener.class })
+	, extentreport.ExtentListener.class })
 
 /**
  * Common business flows

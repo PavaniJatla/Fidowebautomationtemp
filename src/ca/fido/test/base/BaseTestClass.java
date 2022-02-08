@@ -19,12 +19,16 @@ import com.applitools.eyes.RectangleSize;
 import com.applitools.eyes.TestResults;
 import com.applitools.eyes.selenium.ClassicRunner;
 import com.applitools.eyes.selenium.Eyes;
+import extentreport.ExtentListener;
 import extentreport.ExtentTestManager;
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeSuite;
 import utils.BrowserDrivers;
 import utils.Reporter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -462,6 +466,7 @@ public class BaseTestClass {
 			sauceParameters = initializeSauceParamsMap(browser);
 		}
 	    webDriverThreadLocal.set(browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString()));
+		ExtentListener.setDriver(getDriver());
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
@@ -771,4 +776,8 @@ public class BaseTestClass {
 		return TestParameters;
 	}
 
+	@BeforeSuite(alwaysRun = true)
+	public void beforeSuite(ITestContext iTestContext) throws FileNotFoundException {
+		TestDataHandler.dataInit(iTestContext.getSuite().getAllMethods());
+	}
 }

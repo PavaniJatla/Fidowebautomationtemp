@@ -6,7 +6,7 @@ import org.apache.http.client.ClientProtocolException;
 
 import java.io.IOException;
 
-public class VerifyInEns extends BaseTestClass{
+public class VerifyInEns{
 
 	BaseTestClass baseTestClass; 
 	public VerifyInEns(BaseTestClass baseTestClass) {
@@ -75,7 +75,7 @@ public class VerifyInEns extends BaseTestClass{
 		BaseTestClass.getEnsnoteviewpage().setEmailId(TestDataHandler.tc04To09.getaccountDetails().getEmail());
 		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
 		BaseTestClass.getEnsnoteviewpage().clkLnkPdfForSmsVerify(strPhoneNum);
-		String strMainWindow = getDriver().getWindowHandle();
+		String strMainWindow = baseTestClass.getDriver().getWindowHandle();
 		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getSMSNotificationCode(strMainWindow);
 		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
 		//BaseTestClass.getEnsnoteviewpage().clkBtnOk();
