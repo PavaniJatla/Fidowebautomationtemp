@@ -100,7 +100,7 @@ task "localTest"(type: Test) {
 }
 
 repositories {
-    mavenLocal()
+//    mavenLocal()
     maven {
         url = "${artifactory_url}/${artifactory_repoKey}"
         credentials {
@@ -113,7 +113,7 @@ repositories {
 
 dependencies {
 
-    api 'automation-utils:common-utils:1.64-SNAPSHOT'
+    api 'automation-utils:common-utils:latest.release'
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'
 	api 'org.json:json:20180813'
