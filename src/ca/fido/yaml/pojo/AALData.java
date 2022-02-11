@@ -14,8 +14,19 @@ public class AALData {
 	private String cityName;
 	private String shippingType;
 	private String ban;
-	
-	
+	private String promoCode;
+
+	/**
+	 * @return the Promo Code
+	 */
+	public String getPromoCode() {return promoCode;}
+	/**
+	 * @param promoCode Promocode to set
+	 */
+	public void setPromoCode(String promoCode){
+		this.promoCode = promoCode;
+	}
+
 	/**
 	 * @return the newDevice
 	 */

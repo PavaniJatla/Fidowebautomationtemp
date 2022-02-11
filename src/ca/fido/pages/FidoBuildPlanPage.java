@@ -187,7 +187,26 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'dsa-cartSummary')]")
 	WebElement btnCartSummary;
 
+	@FindBy(xpath = "//span[contains(text(),'Have a promo code') or contains(text(),'code promotionnel')]")
+	WebElement promoSection;
 
+	@FindBy(xpath = "//div[contains(@class,'ds-formField__wrapper')]/ancestor::ds-form-field")
+	WebElement promoCodeField;
+
+	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
+	WebElement txtPromoCode;
+
+	@FindBy(xpath = "//button[contains(@data-test,'promo-button-check') and contains(text(),'Check') or contains(text(),'Vérifier')]")
+	WebElement btnCheckPromo;
+
+	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to cart') or contains(text(),' ajouté au panier')]")
+	WebElement promoCodeSuccessMsg;
+
+	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'with promo code') or contains(text(),'avec le code promotionnel')]")
+	WebElement promoCodeDuration;
+
+	@FindBy(xpath = "//span[contains(text(),'Promo code:') or contains(text(),'Code promotionnel :')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	WebElement promoCartLineItem;
 
 	/**
 	 * This method verifies if info widget is properly displayed in plan config page
@@ -830,4 +849,59 @@ public class FidoBuildPlanPage extends BasePageClass {
 		return reusableActions.isElementVisible(btnCartSummary);
 	}
 
+	/**
+	 * Clicks on the 'Promo Section' to enter Promo code
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clkPromoSection() {
+		reusableActions.waitForElementVisibility(promoSection, 20);
+		reusableActions.clickWhenVisible(promoSection);
+	}
+
+	/**
+	 * Enter the Promo code on Promo Input Field
+	 * @param promoCode Promo code from yaml file
+	 * @author Subash.Nedunchezhian
+	 */
+	public void setPromoCode(String promoCode) {
+		reusableActions.getWhenReady(promoCodeField, 60).click();
+		reusableActions.getWhenReady(txtPromoCode,20).sendKeys(promoCode);
+	}
+
+	/**
+	 * Clicks on the 'Check' button to verify the Promo code
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clkCheckPromoBtn(){
+		reusableActions.waitForElementVisibility(btnCheckPromo);
+		reusableActions.clickWhenReady(btnCheckPromo);
+	}
+
+	/**
+	 * Validates the Success message of the Promotion
+	 * @return true if the 'PromoCode added to Cart' message displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyPromoSuccessMsg() {
+		return reusableActions.isElementVisible(promoCodeSuccessMsg, 60);
+	}
+
+	/**
+	 * Validates the Line Item of the Promotion in cart summary
+	 * @return true if the Promo code and discount amount line item displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyCartLineItem(){
+		reusableActions.javascriptScrollByVisibleElement(promoCartLineItem);
+		return reusableActions.isElementVisible(promoCartLineItem);
+	}
+
+	/**
+	 * Validates the Discount Value and Duration of the Promotion
+	 * @return true if the 'Discount Value and Duration' message displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyPromoDuration(){
+		return reusableActions.isElementVisible(promoCodeDuration);
+	}
 }
