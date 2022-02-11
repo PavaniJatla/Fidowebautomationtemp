@@ -12,6 +12,7 @@ public class TestDataHandler {
 	public static PaymentDetails paymentInfo;
 	public static PaymentDetails chPaymentInfo;
 	public static PaymentDetails bfaPaymentInfo;
+	public static PaymentDetails bfaOneViewPaymentInfo;
 	public static AccountData tc00101056;
 	public static AccountData tc0203;
 	public static AccountData tc0405;
@@ -63,12 +64,16 @@ public class TestDataHandler {
 	public static AALData tc17AALTabletsStandardShipping;
 	public static AALData tc18AALBYODExpressShipping;
 	public static AALData tc19AALBYODBasicPlanStdShippingQcProv;
+	public static AALData BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip;
+	public static AALData BFA_ProdTest_tc04_AALBYOD_ExpressShipping;
+	public static AALData BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping;
 	public static PPCData tc20PPCSLFinInTermDTTPlan;
 	public static PPCData tc21PPCMLFinInTermNotermPlan;
 	public static PPCData tc22PPCSLSubsidyInTermSelectingDTTPlan;
 	public static PPCData tc23PPCSLFinOutTermBasicPlan;
 	public static PPCData tc24PPCSLSubsidyInTermSelectingSubsidyPlan;
 	public static PPCData tc25PPCSLSubsidyOutTermSelectingTTPlan;
+	public static PPCData BFA_ProdTest_tc07_PPC_DTTPlan;
 	public static HUPData tc08Hup;
 	public static PPCData tc09Ppc;
 	public static HUPData tc10HupExistingSubsidy;
@@ -76,6 +81,7 @@ public class TestDataHandler {
 	public static HUPData tc12HupPpcNoTermStandardShipping;
 	public static HUPData tc13HupPpcKeepExistingExpressShipping;
 	public static HUPData tc14HupPpcFinancingStandardShipping;
+	public static HUPData BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping;
 	public static AccountData tc6062;
 	public static AccountData tc002003;
 	public static AccountData tc61;
@@ -105,6 +111,17 @@ public class TestDataHandler {
 	public static AccountData tc92;
 	public static AccountData tc094;
 
+	public static AalOVData tc01AalByodFinancingBopisShipping;
+	public static AalOVData tc02AalByodFinancingStandardShipping;
+	public static AalOVData tc03AalTermTabletFinancingStandardShipping;
+	public static AalOVData tc04AalByodFinancingStandardShipping;
+	public static AalOVData tc05AalNoTermOutboundBopisShipping;
+	public static AalOVData tc06AalTermOutboundStandardShipping;
+	public static HUPOVData tc07HUPNoTermCareBopisShipping;
+	public static HUPOVData tc08HUP_KeepCurrentPlan_FinancingAndVDP_BopisShipping;
+	public static HUPOVData tc09HUPWithPPC_FinPlan_StdShipping_QCProv;
+	public static HUPOVData tc10HUPWithPPC_NFDBValidation;
+	public static HUPOVData tc11HUPWithPPC_MediumRisk_StdShipping;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -125,12 +142,18 @@ public class TestDataHandler {
 	    		//Buy-Flows Data files
 	    		buyFlowsDataInit();
 	    		match = true;
-	    	} 
+	    	}
+			if(strTestMethodName.contains("buyflowsoneview.")) {
+				//Buy-Flows OneView Data files
+				buyFlowsOneViewDataInit();
+				match = true;
+			}
 	    	if (!match) {
 	    		//All Data files
 	    		connectedHomeDataInit(); 
 	    		selfserveDataInit();
 	    		buyFlowsDataInit();
+	    		buyFlowsOneViewDataInit();
 	    	}
     	
 	}
@@ -237,6 +260,25 @@ public class TestDataHandler {
 		tc12HupPpcNoTermStandardShipping = YamlHandler.getHUPData("tc12HupPpcNoTermStandardShipping");
 		tc13HupPpcKeepExistingExpressShipping = YamlHandler.getHUPData("tc13HupPpcKeepExistingExpressShipping");
 		tc14HupPpcFinancingStandardShipping = YamlHandler.getHUPData("tc14HupPpcFinancingStandardShipping");
+		BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip = YamlHandler.getAALData("BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip");
+		BFA_ProdTest_tc04_AALBYOD_ExpressShipping = YamlHandler.getAALData("BFA_ProdTest_tc04_AALBYOD_ExpressShipping");
+		BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping = YamlHandler.getAALData("BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping");
+		BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping = YamlHandler.getHUPData("BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping");
+		BFA_ProdTest_tc07_PPC_DTTPlan = YamlHandler.getPPCData("BFA_ProdTest_tc07_PPC_DTTPlan");
 	}
 
+	private static void buyFlowsOneViewDataInit() {
+		bfaOneViewPaymentInfo = YamlHandler.getBfaOneViewPaymentDetails();
+		tc01AalByodFinancingBopisShipping = YamlHandler.getAALOneViewData("tc01AALByodFinancingBopisShippingFlow");
+		tc02AalByodFinancingStandardShipping = YamlHandler.getAALOneViewData("tc02AALByodFinancingStandardShipping");
+		tc03AalTermTabletFinancingStandardShipping = YamlHandler.getAALOneViewData("tc03AALTermTabletFinancingStandardShipping");
+		tc04AalByodFinancingStandardShipping = YamlHandler.getAALOneViewData("tc04AALByodFinancingStandardShippingFlow");
+		tc05AalNoTermOutboundBopisShipping = YamlHandler.getAALOneViewData("tc05AALNoTermRetentionBopisShipping");
+		tc06AalTermOutboundStandardShipping = YamlHandler.getAALOneViewData("tc06AALTermOutboundStandardShipping");
+		tc07HUPNoTermCareBopisShipping = YamlHandler.getHUPOneViewData("tc07HUPNoTermCareBopisShipping");
+		tc08HUP_KeepCurrentPlan_FinancingAndVDP_BopisShipping = YamlHandler.getHUPOneViewData("tc08HUP_KeepCurrentPlan_FinancingAndVDP_BopisShipping");
+		tc09HUPWithPPC_FinPlan_StdShipping_QCProv = YamlHandler.getHUPOneViewData("tc09HUPWithPPC_FinPlan_StdShipping_QCProv");
+		tc10HUPWithPPC_NFDBValidation = YamlHandler.getHUPOneViewData("tc10HUPWithPPC_NFDBValidation");
+		tc11HUPWithPPC_MediumRisk_StdShipping = YamlHandler.getHUPOneViewData("tc11HUPWithPPC_MediumRisk_StdShipping");
+	}
 }

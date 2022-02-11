@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import utils.FormFiller;
 
@@ -43,6 +44,15 @@ public class FidoCheckOutPage extends BasePageClass {
 
 	@FindBy(xpath = "//div[@data-test='delivery-information']//div[contains(@class,'ds-formField__inputContainer')]")
 	WebElement txtEmailShipping;
+
+	@FindAll({
+			@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]"),
+			@FindBy(xpath = "//div[contains(@class,'button-container')]//button[contains(.,'No')]")
+	})
+	WebElement btnClkNoThanks;
+
+	@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]")
+	WebElement btnNoThanks;
 
 
 	/**
@@ -144,4 +154,20 @@ public class FidoCheckOutPage extends BasePageClass {
     	reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
 
     }
+
+	/**
+	 * This method clicks on No Thanks button in survey modal if available
+	 * @author praveen.kumar7
+	 */
+	public void clkNoThanks() {
+		reusableActions.clickIfAvailable(btnClkNoThanks,5);
+	}
+
+	/**
+	 * This method clicks on No Thanks button in survey modal if available
+	 * @author praveen.kumar7
+	 */
+	public void clkBtnNoThanks() {
+		reusableActions.clickIfAvailable(btnNoThanks,5);
+	}
 }

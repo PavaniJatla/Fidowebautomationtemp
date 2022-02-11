@@ -56,6 +56,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@data-test,'stepper-1-edit-step-continue')]")
 	WebElement btnContinueDeviceCost;
 
+	@FindBy(xpath = "//button[contains(@data-test,'stepper-2-edit-step-continue')]")
+	WebElement btnContinuePlanStepper;
+
 	@FindAll({
 		@FindBy(xpath = "//button[contains(@title,'Continue to')]"),
 		@FindBy(xpath = "//ds-modal[contains(@data-test,'upfront-edge-return-modal')]//button[contains(@title,'Continue')]")
@@ -178,6 +181,12 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='stepper-5-edit-step-continue-button']")
 	WebElement btnContinueAccessoriesCost;
 
+	@FindBy(xpath = "//button[contains(@title,'Device Protection')]/preceding-sibling::button")
+	WebElement btnContinueDeviceProtection;
+
+	@FindBy(xpath = "//button[contains(@class,'dsa-cartSummary')]")
+	WebElement btnCartSummary;
+
 
 
 	/**
@@ -186,6 +195,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public boolean verifyPPCPlanConfigPage() {
+		reusableActions.staticWait(15000);
 		reusableActions.javascriptScrollToTopOfPage();
 		return reusableActions.isElementVisible(infoWidgetCtnCopy,30);
 	}
@@ -200,7 +210,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 			//ds-radio-button[contains(@data-test,'device-payment-type-financing')]//div/div
 			return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-"+option+"')]/label";
 		} else if(stepper == 2 && stepper != 0) {
-			reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
+			//reusableActions.scrollToElement(getDriver().findElement(By.xpath("//p[contains(text(),'All Plans Include')]")));
+			reusableActions.javascriptScrollToTopOfPage();
 				try {
 					if(planType.equals("Data, Talk and Text plans") && planType != null && !planType.isEmpty()) {
 						return "//ds-selection[contains(@data-test,'stepper-"+stepper+"-edit-step-selection-option-infinite-"+option+"')]/label";
@@ -266,7 +277,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void checkKeepMyCurrentPlanButton() {
-		reusableActions.clickWhenVisible(keepMyCurrentPlanButton, 30);
+		reusableActions.waitForElementTobeClickable(keepMyCurrentPlanButton,40);
+		reusableActions.clickWhenVisible(keepMyCurrentPlanButton, 10);
 	}
 
 	/**
@@ -340,7 +352,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void clkDataOption(String dataOptionIndex, String className) {
-		reusableActions.clickIfAvailable(viewAllPlansButton, 30);
+		reusableActions.clickIfAvailable(viewAllPlansButton);
 		stepper = 2;
 		if (dataOptionIndex != null && !dataOptionIndex.isEmpty()) {
 			String xpathDataOption = createXpath(stepper,dataOptionIndex);
@@ -348,11 +360,11 @@ public class FidoBuildPlanPage extends BasePageClass {
 			//reusableActions.staticWait(5000);
 			reusableActions.javascriptScrollToTopOfPage();
 			reusableActions.clickIfAvailable(dataOptionXpath,10);
-			if(className.toUpperCase().contains("_PPC_") && className.toUpperCase().contains("DOWNGRADE")) {
+			if(className.toUpperCase().contains("_PPC_") && className.toUpperCase().contains("DOWNGRADE") && !(Integer.parseInt(dataOptionIndex)==0)) {
 				verifyDowngradeFeeModalAndClkContinue();
 			}
 			else if(className.toUpperCase().contains("_PPC_") && !(className.toUpperCase().contains("DOWNGRADE"))) {
-				reusableActions.staticWait(15000);
+				reusableActions.waitForElementTobeClickable(btnContinueDataOption,40);
 			}
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
 		} else {
@@ -448,6 +460,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public boolean verifyContinueDeviceCostButton() {
 		return reusableActions.isElementVisible(btnContinueDeviceCost, 60);
 	}
+
+	/**
+	 * Verify the 'Continue' button for plann stepper
+	 * @return boolean true is the element is present else false
+	 * @author praveen.kumar7
+	 */
+	public boolean verifyContinueBtnPlanStepper() {
+		return reusableActions.isElementVisible(btnContinuePlanStepper, 60);
+	}
 	
 	/**
 	 * Clicks on the 'Continue' button for your data
@@ -497,7 +518,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkNoBPOOfferButtonTalkOptions() {
-		reusableActions.clickIfAvailable(btnNoBPOOffer, 10);
+		reusableActions.clickIfAvailable(btnNoBPOOffer, 5);
 	}
 	
 	/**
@@ -529,7 +550,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueAddOns() {
-		//reusableActions.waitForElementVisibility(btnContinueAddOns, 20);
+		reusableActions.waitForElementTobeClickable(btnContinueAddOns,30);
 		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnContinueAddOns));
 	}
 	
@@ -538,8 +559,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkContinueBelowCartSummary() {
-		reusableActions.waitForElementVisibility(btnContinueBelowCartSummary, 30);
-		reusableActions.staticWait(5000);
+		reusableActions.waitForElementTobeClickable(btnContinueBelowCartSummary, 30);
 		//reusableActions.executeJavaScriptClick(btnContinueBelowCartSummary);
 		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.clickWhenReady(btnContinueBelowCartSummary);
@@ -689,6 +709,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkBasicTab() {
+	    reusableActions.waitForElementVisibility(btnBasicPlan);
 		reusableActions.clickWhenReady(btnBasicPlan,20);
 	}
 
@@ -701,7 +722,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public void selectBasicPlanAndClkContinueBtn(String dataOptionIndex,String className) {
 		reusableActions.clickWhenVisible(By.xpath("//ds-selection[contains(@data-test,'stepper-2-edit-step-selection-option-basic-"+dataOptionIndex+"')]//label[1]"),20);
 		if(className.toUpperCase().contains("_PPC_")) {
-			reusableActions.staticWait(13000);
+			reusableActions.waitForElementTobeClickable(btnContinueDataOption,40);
 		}
 		reusableActions.clickWhenVisible(btnContinueDataOption,20);
 	}
@@ -779,6 +800,34 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkContinueAccessoriesCostSelection() {
 		reusableActions.clickWhenVisible(btnContinueAccessoriesCost);
+	}
+
+	/**
+	 * This method clicks on continue button in device protection modal if present
+	 * @author praveen.kumar7
+	 */
+	public void clkContinueDeviceProtection() {
+		if (reusableActions.isElementVisible(btnContinueDeviceProtection,10)) {
+			reusableActions.clickWhenVisible(btnContinueDeviceProtection, 5);
+		}
+	}
+
+	/**
+	 * This method clicks on continue button in caller ID stepper
+	 * @author praveen.kumar7
+	 */
+	public void clkCallerIdContinueBtn() {
+		reusableActions.waitForElementVisibility(callerIDContinue,30);
+		reusableActions.clickWhenVisible(callerIDContinue,10);
+	}
+
+	/**
+	 * This method verifies if plan config page is loaded successfully
+	 * @return true if plan config page is loaded, else false
+	 */
+	public boolean verifyPlanConfigPage() {
+		reusableActions.waitForElementTobeClickable(btnCartSummary, 50);
+		return reusableActions.isElementVisible(btnCartSummary);
 	}
 
 }

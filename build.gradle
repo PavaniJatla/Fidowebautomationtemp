@@ -37,18 +37,21 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'QaUrl', test_qaURL
     systemProperty 'SSPUrl', test_sspURL
     systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Browser', test_browser
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+    systemProperty 'OneViewUrl', test_oneViewUrl
+    systemProperty 'OneViewEnv',  test_oneViewEnv
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG() {
         parallel = test_parallel
         threadCount = test_threadCount as int
-        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
+        Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
         if (project.hasProperty('test_groupName')){
             includeGroups test_groupName
@@ -72,17 +75,20 @@ task "localTest"(type: Test) {
     systemProperty 'SSPUrl', test_sspURL
     systemProperty 'Browser', test_browser
     systemProperty 'AWSUrl', test_awsURL
+    systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+    systemProperty 'OneViewUrl', test_oneViewUrl
+    systemProperty 'OneViewEnv',  test_oneViewEnv
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG() {
         parallel = test_parallel
         threadCount = test_threadCount as int
-        Set listeners = ["ca.fido.test.listeners.TestListener", "ca.fido.test.listeners.AnnotationTransformer"]
+        Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
         setListeners(listeners)
         if (project.hasProperty('test_groupName')){
             includeGroups test_groupName
@@ -94,7 +100,7 @@ task "localTest"(type: Test) {
 }
 
 repositories {
-    mavenLocal()
+//    mavenLocal()
     maven {
         url = "${artifactory_url}/${artifactory_repoKey}"
         credentials {
@@ -106,9 +112,7 @@ repositories {
 }
 
 dependencies {
-    api 'com.relevantcodes:extentreports:2.41.2'
-    api 'org.seleniumhq.selenium:selenium-java:3.141.59'
-    api 'org.testng:testng:6.14.3'
+
     api 'automation-utils:common-utils:latest.release'
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'

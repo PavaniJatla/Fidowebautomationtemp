@@ -39,6 +39,12 @@ public class FidoChooseNumberPage extends BasePageClass {
 	
 	@FindBy(xpath="//button[@data-test='choose-number-continue' and @disabled='true']")
 	WebElement disabledBtnContinueChooseANumberSection;
+
+	@FindAll({
+			@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]"),
+			@FindBy(xpath = "//div[contains(@class,'button-container')]//button[contains(.,'No')]")
+	})
+	WebElement btnClkNoThanks;
 	
 	/**
 	 * Clicks on the 'Select a number for your new phone' button
@@ -92,6 +98,15 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 */
 	public void clkContinue() {
 		reusableActions.clickWhenVisible(btnContinueChooseANumberSection);
+		clkNoThanks();
+	}
+
+	/**
+	 * This method clicks on No Thanks button in survey modal if available
+	 * @author praveen.kumar7
+	 */
+	public void clkNoThanks() {
+		reusableActions.clickIfAvailable(btnClkNoThanks,5);
 	}
 	
 }

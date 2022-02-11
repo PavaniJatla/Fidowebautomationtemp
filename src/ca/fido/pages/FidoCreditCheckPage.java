@@ -122,6 +122,12 @@ public class FidoCreditCheckPage extends BasePageClass {
 	})
 	WebElement lblCreditCheckProcessing;
 
+	@FindAll({
+			@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]"),
+			@FindBy(xpath = "//div[contains(@class,'button-container')]//button[contains(.,'No')]")
+	})
+	WebElement btnClkNoThanks;
+
 	/**
 	 * Set dynamic date of birth year on Credit check page
 	 * @author Chinnarao.Vattam
@@ -141,6 +147,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 		String strDOBMonth = FormFiller.generateMonth();
 		reusableActions.waitForElementVisibility(ddlDOBMonth, 30);
 		reusableActions.selectWhenReady(ddlDOBMonth, strDOBMonth);
+		clkNoThanks();
 	}
 	
 	public void selectDOBMonthSingleDigit() {
@@ -413,6 +420,14 @@ public class FidoCreditCheckPage extends BasePageClass {
 		if(reusableActions.isElementVisible(buttonSecurityDepositConsentAccept, 60)) {
 			reusableActions.clickWhenReady(buttonSecurityDepositConsentAccept , 10);
 		}
+	}
+
+	/**
+	 * This method clicks on No Thanks button in survey modal if available
+	 * @author praveen.kumar7
+	 */
+	public void clkNoThanks() {
+		reusableActions.clickIfAvailable(btnClkNoThanks,5);
 	}
 
 }
