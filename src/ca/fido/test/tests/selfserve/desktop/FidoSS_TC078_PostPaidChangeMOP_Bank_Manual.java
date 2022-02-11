@@ -71,7 +71,7 @@ public class FidoSS_TC078_PostPaidChangeMOP_Bank_Manual extends BaseTestClass{
 			getFidopaymentoptionspage().setBankTransitNumber(TestDataHandler.paymentInfo.getBankDetails().getTransitCode());
 			getFidopaymentoptionspage().setInstitutionNumber(TestDataHandler.paymentInfo.getBankDetails().getBankCode());
 			getFidopaymentoptionspage().setBankAccountNumer(TestDataHandler.paymentInfo.getBankDetails().getAccountNumber());
-			getFidopaymentoptionspage().clkContinue();
+			getFidopaymentoptionspage().clkContinueInBankSection();
 			getFidopaymentoptionspage().clkAgreeTermsAndCondition();
 			getFidopaymentoptionspage().clkSubmit();
 			getFidopaymentoptionspage().clkOnDone();

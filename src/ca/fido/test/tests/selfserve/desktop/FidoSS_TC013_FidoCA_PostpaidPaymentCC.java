@@ -81,6 +81,10 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Payment Successful, Details :"+strReferenceNumber);
 
 		getFidomakepaymentpage().clickDone();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage()
+				,"Auto payment CC details displayed on the account overview page"
+				,"Auto payment CC details NOT displayed on the account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page, check the payment method.");
 
 		/*getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
 		getReporter().reportLogWithScreenshot("Credit card option selected");

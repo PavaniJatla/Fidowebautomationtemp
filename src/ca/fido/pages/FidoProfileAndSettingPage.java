@@ -61,7 +61,7 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//label[text()='Bill type:' or text()='Type de facture :']/parent::div/following-sibling::div")
 	WebElement lblBillType;
 	
-	@FindBy(xpath = "//input[@id='addressLookup']")
+	@FindBy(xpath = "//input[@id='addressLookup']/..")
 	WebElement txtEnterNewAddress;
 	 
 	@FindBy(xpath = "//button[@data-caption]")
@@ -694,12 +694,14 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setNewAddress(String strAddress) {
-
-		WebElement txtEnterNewAdd=reusableActions.getWhenReady(txtEnterNewAddress);
-		reusableActions.clickWhenReady(txtEnterNewAddress);
-		txtEnterNewAdd.clear();
-		txtEnterNewAdd.click();
-		setCharacterByCharacterTextInWebElement(txtEnterNewAdd,strAddress);
+		reusableActions.staticWait(3000);
+		//reusableActions.getWhenReady(txtEnterNewAddress).click();
+		//reusableActions.clickWhenReady(txtEnterNewAddress);
+		//reusableActions.executeJavaScriptClick(txtEnterNewAdd);
+		reusableActions.executeJavaScriptClick(txtEnterNewAddress);
+		//txtEnterNewAdd.clear();
+		//txtEnterNewAdd.click();
+		setCharacterByCharacterTextInWebElement(reusableActions.getWhenReady(txtEnterNewAddress),strAddress);
 		reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(txtEnterNewAddress).sendKeys(Keys.ENTER);	
 		reusableActions.staticWait(2000);

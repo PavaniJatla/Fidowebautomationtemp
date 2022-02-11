@@ -51,9 +51,11 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 		String strBAN = TestDataHandler.tc4246.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");
-		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
-		getReporter().reportLogWithScreenshot("Menu billing and payments selected");
-		getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
+		getFidoaccountoverviewpage().clkMakepayment();
+		getReporter().reportLogWithScreenshot("Make a Payment button clicked");
+		getFidoaccountoverviewpage().clkPaymentHistoryOnMakePaymentPage();
+		getReporter().reportLogWithScreenshot("clicks on Payment History tab");
+		//getFidoaccountoverviewpage().selectBillingAndpaymentsSubMenus(FidoAccountOverviewPage.BillingAndPaymentsSubMenuOptions.PaymentHistory);
 		if(getFidoaccountoverviewpage().verifyIfAnyPaymentMade())
 		{
 			getReporter().reportLogWithScreenshot("Transaction record table view page");

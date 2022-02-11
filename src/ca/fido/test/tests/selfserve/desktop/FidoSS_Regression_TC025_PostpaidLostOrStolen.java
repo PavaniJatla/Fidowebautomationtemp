@@ -69,8 +69,8 @@ public class FidoSS_Regression_TC025_PostpaidLostOrStolen extends BaseTestClass 
 		
 		//Successfully suspend the device, now need to reactivate the device
 		getFidoaccountoverviewpage().clkMenuOverview();
-		getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
-		getReporter().reportLogWithScreenshot("Navigating back to Overview page and click on CTN badge");
+		/*getFidoaccountoverviewpage().clkCTNsViewUsageAndManage(strCTN);
+		getReporter().reportLogWithScreenshot("Navigating back to Overview page and click on CTN badge");*/
 		getFidowirelessdashboardpostpaidpage().clkLnkReactivate();		
 		getFidoreportlostorstolenpage().clkBtnReactivateDevice();
 		getReporter().reportLogWithScreenshot("After click on button Reactivate");

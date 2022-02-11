@@ -40,7 +40,7 @@ public class FidoSS_Regression_TC90_ValidateFidoUserWithDeviceSubsidyAcctHolderP
                 "Login proceed without error.",
                 "Login failed with error.");
         getFidologinpage().switchOutOfSignInFrame();
-        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
+        getReporter().hardAssert(getFidoaccountoverviewpage(). verifySuccessfulLogin(),
                 "Login succeed.",
                 "Failed to login.");
         getReporter().reportLogWithScreenshot("Account overview page");

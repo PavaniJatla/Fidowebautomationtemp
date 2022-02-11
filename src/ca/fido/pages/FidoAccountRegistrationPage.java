@@ -381,7 +381,7 @@ public class FidoAccountRegistrationPage extends BasePageClass {
 	public void setDOB() {           //String strDOB
 		reusableActions.getWhenReady(lblDOB).click();
 		//getReusableActionsInstance().getWhenReady(txtDOB).clear();
-		reusableActions.getWhenReady(txtDOB).sendKeys("1990/04/23");
+		reusableActions.getWhenReady(txtDOB).sendKeys("1990/10/10"); //1990/04/23
 	}
 	
 	/**

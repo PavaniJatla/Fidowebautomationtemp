@@ -242,7 +242,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 		        && reusableActions.isElementVisible(cboCity));
 	}
 
-	/**
+	/**FidoSS_Regression_TC022_PostPaidChangeCTN
 	 * This method will select the Province and City where the customer will be dialing more frequently
 	 * @return map of province and city details
 	 * @author Mirza.Kamran
@@ -252,7 +252,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 		new Select(cboProvince).selectByVisibleText("Ontario");
 		//reusableActions.selectWhenReady(cboProvince," Ontario ");
 		waitForDropDownToLoad(cboCity,60);
-		new Select(cboCity).selectByVisibleText("Toronto");
+		new Select(cboCity).selectByVisibleText("toronto");
 		//reusableActions.selectWhenReady(cboCity, " Toronto ");
 		map.put("province",reusableActions.getSelectedValue(cboProvince));
 		map.put("city",reusableActions.getSelectedValue(cboCity));

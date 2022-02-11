@@ -133,7 +133,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 
 			getFidomakepaymentpage().clkPayNow();
 			//getFidopaymentoptionspage().clkContinueOnReviewPg();
-			getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
+ 			getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
 					"Set up auto payment is successful",
 					"Set up auto payment is not successful");
 			getReporter().reportLogWithScreenshot("Payment complete page.");

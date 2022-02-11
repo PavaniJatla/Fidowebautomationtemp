@@ -21,8 +21,10 @@ public class FidoDataManagementPage extends BasePageClass {
 	public FidoDataManagementPage(WebDriver driver) {
 		super(driver);		
 	}
-	
-	
+
+	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
+	WebElement lnkShowMyUsageTotalPlan;
+
 	@FindBy (xpath = "//h1[contains(@class,'manage-data-title') or @class='manage-data-title']")
 	WebElement titleManageData;
 	
@@ -215,7 +217,8 @@ public class FidoDataManagementPage extends BasePageClass {
 	 * Perform click on view details link in usage section
 	 * @author ning.xue
 	 */
-	public void clkLinkBackOnManageDataOverlay() {			
+	public void clkLinkBackOnManageDataOverlay() {
+		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.getWhenReady(lnkBackOnManageDataOverlay,20).click();
 		reusableActions.staticWait(6000);
 	}
@@ -525,6 +528,12 @@ public class FidoDataManagementPage extends BasePageClass {
 		boolean isDisplayed=false;
 		//reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
 		//reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		if (reusableActions.isElementVisible(lnkShowMyUsageTotalPlan)==true) {
+			new FidoWirelessDashboardPostpaidPage(driver).clkShowMyUsageIfVisible();
+		}
+		/*if (reusableActions.isElementVisible(lnkShowMyUsageTotalPlan) == true) {
+			reusableActions.getWhenReady(lnkShowMyUsageTotalPlan,5).click();
+		}*/
 		reusableActions.waitForElementTobeClickable(titleManageData, 30);
 		if(reusableActions.isElementVisible(titleManageData,30)
 			&& reusableActions.isElementVisible(titlePlanData, 30)	)
