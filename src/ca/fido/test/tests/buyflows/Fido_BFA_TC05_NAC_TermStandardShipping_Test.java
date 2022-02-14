@@ -30,12 +30,22 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Modal window displayed");
 		getFidodeviceconfigpage().clickGetStartedButtonOnModal();
 		getReporter().reportLogPass("Clicked Get Started Button on the modal window");
+		// ***************************Device config page************************************
 		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
 		getReporter().reportLogWithScreenshot("Device config page");
 		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
+		// ***************************Promo Section************************************
+		getFidobuildplanpage().clkPromoSection();
+		getReporter().reportLogWithScreenshot("Promo Section Displayed");
+		getFidobuildplanpage().setPromoCode(TestDataHandler.tc05TermStandardShipping.getPromoCode());
+		getReporter().reportLogWithScreenshot("Promo Code Entered");
+		getFidobuildplanpage().clkCheckPromoBtn();
+		getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promo Code Applied Successfully", "Promo Code Not Applied");
+		getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
+		// ***************************Plan Builder page************************************
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
 		getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
@@ -46,6 +56,7 @@ public class Fido_BFA_TC05_NAC_TermStandardShipping_Test extends BaseTestClass{
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
+		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");

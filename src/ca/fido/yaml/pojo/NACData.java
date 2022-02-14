@@ -11,6 +11,7 @@ public class NACData {
 	private String username;
 	private String deviceCostIndex;
 	private String dataOptionIndex;
+	private String promoCode;
 
 	public String getUsername() {
 		return username;
@@ -117,5 +118,15 @@ public class NACData {
 		this.dataOptionIndex = dataOptionIndex;
 	}
 
+	/**
+	 * @return the Promo Code
+	 */
+	public String getPromoCode() {return promoCode;}
+	/**
+	 * @param promoCode Promocode to set
+	 */
+	public void setPromoCode(String promoCode){
+		this.promoCode = promoCode;
+	}
 
 }

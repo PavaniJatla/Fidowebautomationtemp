@@ -37,6 +37,15 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         //getReporter().reportLogPassWithScreenshot("Add a Line Button Selected");
         //getFidobuildplanpage().clkDeviceBalancePopUp();
         //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
+        // ***************************Promo Section************************************
+        getFidobuildplanpage().clkPromoSection();
+        getReporter().reportLogWithScreenshot("Promo Section Displayed");
+        getFidobuildplanpage().setPromoCode(TestDataHandler.tc18AALBYODExpressShipping.getPromoCode());
+        getReporter().reportLogWithScreenshot("Promo Code Entered");
+        getFidobuildplanpage().clkCheckPromoBtn();
+        getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promo Code Applied Successfully", "Promo Code Not Applied");
+        getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
+        // ***************************Plan Builder page************************************
         String dataOptionIndex = TestDataHandler.tc18AALBYODExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
@@ -46,6 +55,7 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
+        getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         String cityName = TestDataHandler.tc18AALBYODExpressShipping.getCityName();
