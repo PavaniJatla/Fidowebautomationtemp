@@ -1,6 +1,7 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -106,7 +107,9 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkNoThanks() {
-		reusableActions.clickIfAvailable(btnClkNoThanks,5);
+		if ((reusableActions.isElementVisible(btnClkNoThanks, 5)) ||
+				(reusableActions.isElementVisible(By.xpath("//div[contains(@class,'button-container')]//button[contains(.,'No,')]"), 5))) {
+			reusableActions.executeJavaScriptClick(btnClkNoThanks);
+		}
 	}
-	
 }
