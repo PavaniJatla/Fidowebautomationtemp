@@ -109,6 +109,7 @@ public class TestDataHandler {
 	public static AccountData tc90;
 	public static AccountData tc91;
 	public static AccountData tc92;
+	public static AccountData tc094;
 
 	public static AalOVData tc01AalByodFinancingBopisShipping;
 	public static AalOVData tc02AalByodFinancingStandardShipping;
@@ -227,6 +228,7 @@ public class TestDataHandler {
 		tc90 = YamlHandler.getAccountData("tc90FinanceNotPaidWithSubsidyOn");
 		tc91 = YamlHandler.getAccountData("tc91SubsidyPaidOFF");
 		tc92 =YamlHandler.getAccountData("tc92CXWithSubsidyPaidOFFSubscriberProfile");
+		tc094 =YamlHandler.getAccountData("tc094PostPaidDemoline");
 	}
 	
 	private static void buyFlowsDataInit() {

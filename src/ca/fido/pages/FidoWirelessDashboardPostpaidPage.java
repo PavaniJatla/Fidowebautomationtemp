@@ -41,6 +41,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//button[@translate='global.cta.next']")
 	WebElement btnUpdateSimNext;
+
+	@FindBy (xpath = "//div[@class='heads-up-section']")
+	WebElement headsUpSection;
 	
 	@FindBy (xpath = "//div[@translate='page.update-sim-card.review']")
 	WebElement titleReview;
@@ -89,6 +92,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 
 	@FindBy (xpath = "//select[@id='selectCtn']")
 	WebElement drpSelectAnotherLine;
+
+	@FindBy(xpath = "//a[@title='Reactivate your service now.' or @title='top-banner.reactivate-suspended-service-cta-alt']")
+	WebElement reactiveService;
 	
 	//My Plan section
 	@FindAll({
@@ -190,11 +196,8 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//span[@class='ss-plan-container-data ng-star-inserted']")
 	WebElement divDataBalanceRemaining;
-
-	@FindAll({
-			@FindBy(xpath = "//div[@class='ss-data-section-total-volume']"),
-			@FindBy(xpath = "//div[@class='ss-plan-container-header-section']")
-	})
+	
+	@FindBy (xpath = "//div[@class='ss-data-section-total-volume']")
 	WebElement divTotalData;
 	
 	@FindBy (xpath = "//p[contains(text(),'Minutes')]")
@@ -327,7 +330,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
 
-	@FindBy(xpath = "//ss-data-section//a//span[contains(text(),'View Details')]")
+	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
 	WebElement lnkShowMyUsageTotalPlan;
 	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
@@ -373,8 +376,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//img[@alt='Attention']")
 	WebElement imgAttentionOverage;
 	@FindAll({
-		@FindBy (xpath = "//div[contains(@class,'ss-plan-container-addons-holder')]//li"),
-		@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")})
+			@FindBy(xpath = "//ss-manage-data//child::div[contains(@class,'section ng-star-inserted')]//div[contains(@class,'col-md-9 section-body')]//div[@class='ng-star-inserted']//table"),
+			@FindBy (xpath = "//div[contains(@class,'ss-plan-container-addons-holder')]//li"),
+			@FindBy(xpath = "//span[@translate='wireless.dashboard.myPlan.addOns']/ancestor::div[contains(@class,'addons')]//li")})
 	List<WebElement> lstMyPlanAddOns;
 
 	@FindBy(xpath = "//*[@translate='usageModule.runningLow.title' or @class='ss-data-usage-bar-background']") 
@@ -473,7 +477,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkShowMyUsageIfVisible() {
-		reusableActions.clickIfAvailable(lnkShowMyUsageTotalPlan, 5);
+		if (reusableActions.isElementVisible(lnkShowMyUsageTotalPlan) == true) {
+			reusableActions.getWhenReady(lnkShowMyUsageTotalPlan,5).click();
+		}
+		//reusableActions.clickIfAvailable(lnkShowMyUsageTotalPlan, 5);
+		/*reusableActions.clickIfAvailable(By.xpath("//span[contains(@class,'ds-icon d-inline-flex fds-icon-close')]"));
+		if (reusableActions.isElementVisible(By.xpath("//span[contains(@class,'ds-icon d-inline-flex fds-icon-close')]")) == true) {
+			reusableActions.waitForElementVisibility(lnkShowMyUsageTotalPlan,5);
+			reusableActions.clickIfAvailable(lnkShowMyUsageTotalPlan, 5);
+		}*/
 
 	}
 	
@@ -515,8 +527,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * click the link to reactivate account on wireless dashboard
 	 * @author ning.xue
 	 */
-	public void clkLnkReactivate() { 
-		reusableActions.getWhenReady(By.xpath("//a[@title='Reactivate your service now.' or @title='top-banner.reactivate-suspended-service-cta-alt']"), 60).click();		
+	public void clkLnkReactivate() {
+		reusableActions.waitForElementVisibility(reactiveService);
+		reusableActions.getWhenReady(reactiveService, 60).click();
 	}
 	
 	/**
@@ -1208,7 +1221,17 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 
 		reusableActions.getWhenVisible(btnUpdateSimNext, 20).click();
 	}
-	
+	//div[@class='heads-up-section']
+
+	/**
+	 * To verify if the heads up section is visible.
+	 * @return true when all the condition match, otherwise false.
+	 * @author Sidhartha.vadrevu
+	 */
+	public Boolean verifyHeadsUpSection() {
+		return reusableActions.isElementVisible(headsUpSection, 30);
+	}
+
 	/**
 	 * To verify if the review page opened and check if the SIM card number are the same as inputed in previous step.
 	 * @param oldSimNum, String, old SIM card number
@@ -1231,6 +1254,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	public void clkBtnUpdateSim() {
 
 		reusableActions.getWhenVisible(btnUpdateSim, 20).click();
+		reusableActions.staticWait(5000);
 	}
 
 	/**
@@ -1441,13 +1465,13 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 		HashMap<String, Integer> addData = new HashMap<String, Integer>();
 		for(WebElement row:lstMyPlanAddOns)
 		{
-			if((row.getText().toLowerCase().contains("monthly data")&& row.getText().toLowerCase().contains("expires"))
-				||(row.getText().toLowerCase().contains("mensuel")&& row.getText().toLowerCase().contains("expiration")))
+			if((/*row.getText().toLowerCase().contains("monthly data")&& */row.getText().contains("Expires"))
+				||(/*row.getText().toLowerCase().contains("mensuel")&&*/ row.getText().contains("Prend")))
 			{
 				cancelled++;
 				
-			}else if((row.getText().toLowerCase().contains("monthly data")&& !row.getText().toLowerCase().contains("expires"))
-					||(row.getText().toLowerCase().contains("mensuel")&& !row.getText().toLowerCase().contains("expiration")))
+			}else if((/*row.getText().toLowerCase().contains("monthly data")&&*/ row.getText().toLowerCase().contains("cancel"))
+					||(/*row.getText().toLowerCase().contains("mensuel")&&*/ row.getText().toLowerCase().contains("Annuler")))
 			{
 				active++;
 			}else

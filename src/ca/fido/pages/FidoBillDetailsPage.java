@@ -91,7 +91,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	WebElement btnViewBill;
 
 	@FindAll({
-			@FindBy(xpath = "//select[@id='ds-form-input-id-0']"),
+			@FindBy(xpath = "//select[@id='ds-form-input-id-1']"),
 			@FindBy(id = "billDate")
 	})
 	WebElement ddlViewBill;

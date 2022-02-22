@@ -32,8 +32,8 @@ public class FidoSS_Regression_TC009_PrePaidChangeCTN extends BaseTestClass{
 	@Test(groups = {"RegressionSS"})
 	public void prePaidDashBoardChangeCTN() {
 		
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrame();
+		//getFidohomepage().clkLogin();
+		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc006009.getUsername());
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc006009.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");

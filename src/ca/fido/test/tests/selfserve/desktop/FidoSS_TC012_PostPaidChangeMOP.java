@@ -67,56 +67,85 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 			getFidoaccountoverviewpage().clkChangePaymentMethod();
 			getFidopaymentoptionspage().clkSwitchToManualPayments();
 			//getFidopaymentoptionspage().clkContinue();
+			getFidopaymentoptionspage().clkContinue();
+			getFidopaymentoptionspage().clkContinue();
+			//getFidopaymentoptionspage().clkButtonDoneChangePayment();
+			getReporter().reportLogWithScreenshot("Account overveiew page");
 			getFidopaymentoptionspage().clkYesCancelAutomaticPayment();
 			getReporter().reportLogWithScreenshot("Switch to manual completed");
-			getFidopaymentoptionspage().clkButtonDoneChangePayment();
-			getReporter().reportLogWithScreenshot("Account overveiew page");
 			getDriver().navigate().refresh();
 			getReporter().reportLogWithScreenshot("Account overveiew page page refresh");
 			getFidopaymentoptionspage().clkSetUpAutomaticPaymentMethod();
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
+			getFidopaymentoptionspage().clkUseCCForAutomaticPayments();
+			//getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+
+			String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
+					TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
+			getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
+			getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+			getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+
+			getReporter().reportLogWithScreenshot("CC details entered");
+			getFidomakepaymentpage().clkReviewAndContinueButton();
+			//getFidopaymentoptionspage().clkContinueSettingCC();
+			getReporter().hardAssert(getFidopaymentoptionspage().isReviewCCDetailsPageDisplayed(),
+					"CC Details encrypted msg displayed",
+					"CC Details encrypted msg NOT displayed");
+			getReporter().reportLogWithScreenshot("CC secured details");
+
+			getFidomakepaymentpage().clkPayNow();
+			//getFidopaymentoptionspage().clkContinueOnReviewPg();
+			getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
+					"Set up auto payment is successful",
+					"Set up auto payment is not successful");
+			getReporter().reportLogWithScreenshot("Payment complete page.");
+
+			getFidopaymentoptionspage().clkOnDone();
+			//check payment method on overview page
+			getDriver().navigate().refresh();
+			getReporter().hardAssert(getFidopaymentoptionspage().verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage()
+					,"Auto payment CC details displayed on the account overview page"
+					,"Auto payment CC details NOT displayed on the account overview page");
+			getReporter().reportLogWithScreenshot("Account overview page, check the payment method.");
 		}else
 		{
 			getFidoaccountoverviewpage().scrollToMiddleOfPage();
 			getFidopaymentoptionspage().clkSetUpAutomaticPaymentMethod();
 			getReporter().reportLogWithScreenshot("Set auto payment overlay");
+			getFidoaccountoverviewpage().scrollToMiddleOfPage();
+			getFidopaymentoptionspage().clkUseCCForAutomaticPayments();
+			//getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+
+			String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
+					TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
+			getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
+			getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
+			getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+
+			getReporter().reportLogWithScreenshot("CC details entered");
+			getFidomakepaymentpage().clkReviewAndContinueButton();
+			//getFidopaymentoptionspage().clkContinueSettingCC();
+			getReporter().hardAssert(getFidopaymentoptionspage().isReviewCCDetailsPageDisplayed(),
+					"CC Details encrypted msg displayed",
+					"CC Details encrypted msg NOT displayed");
+			getReporter().reportLogWithScreenshot("CC secured details");
+
+			getFidomakepaymentpage().clkPayNow();
+			//getFidopaymentoptionspage().clkContinueOnReviewPg();
+ 			getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
+					"Set up auto payment is successful",
+					"Set up auto payment is not successful");
+			getReporter().reportLogWithScreenshot("Payment complete page.");
+
+			getFidopaymentoptionspage().clkOnDone();
+			//check payment method on overview page
+			getDriver().navigate().refresh();
+			getReporter().hardAssert(getFidopaymentoptionspage().verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage()
+					,"Auto payment CC details displayed on the account overview page"
+					,"Auto payment CC details NOT displayed on the account overview page");
+			getReporter().reportLogWithScreenshot("Account overview page, check the payment method.");
 		}
-
-		//Change from manual to CC
-
-		//getDriver().navigate().refresh();
-		getFidoaccountoverviewpage().scrollToMiddleOfPage();
-		getFidopaymentoptionspage().clkUseCCForAutomaticPayments();
-		//getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-
-		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
-				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
-		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
-		getFidorefillpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
-		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
-
-		getReporter().reportLogWithScreenshot("CC details entered");
-		getFidomakepaymentpage().clkReviewAndContinueButton();
-		//getFidopaymentoptionspage().clkContinueSettingCC();
-		getReporter().hardAssert(getFidopaymentoptionspage().isReviewCCDetailsPageDisplayed(),
-				"CC Details encrypted msg displayed",
-				"CC Details encrypted msg NOT displayed");
-		getReporter().reportLogWithScreenshot("CC secured details");
-
-		getFidomakepaymentpage().clkPayNow();
-		//getFidopaymentoptionspage().clkContinueOnReviewPg();
-		getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
-				"Set up auto payment is successful",
-				"Set up auto payment is not successful");
-		getReporter().reportLogWithScreenshot("Payment complete page.");
-
-		getFidopaymentoptionspage().clkOnDone();
-		//check payment method on overview page
-		getDriver().navigate().refresh();
-		getReporter().hardAssert(getFidopaymentoptionspage().verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage()
-				,"Auto payment CC details displayed on the account overview page"
-				,"Auto payment CC details NOT displayed on the account overview page");
-		getReporter().reportLogWithScreenshot("Account overview page, check the payment method.");
-
 /*
 		getCommonbusinessflows().changeToCC();
 		getFidobilldetailspage().clkAccountOverview();

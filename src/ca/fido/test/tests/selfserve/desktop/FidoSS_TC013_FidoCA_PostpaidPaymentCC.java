@@ -65,10 +65,10 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		getFidomakepaymentpage().setCreditCardNumber(TestDataHandler.paymentInfo.getCreditCardDetails().getNumber());
 		String strDDMM = TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryMonth() +
 				TestDataHandler.paymentInfo.getCreditCardDetails().getExpiryYear().substring(2);
-
 		getFidomakepaymentpage().selectCreditcardExpiryYear(strDDMM);
-
 		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
+
+		getReporter().reportLogWithScreenshot("CC details entered");
 		getFidomakepaymentpage().clkReviewAndContinueButton();
 		getFidomakepaymentpage().clkPayNow();
 
@@ -81,6 +81,10 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Payment Successful, Details :"+strReferenceNumber);
 
 		getFidomakepaymentpage().clickDone();
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyThatAutoPaymentWithCCIsDisplayedOnAccountOverViewPage()
+				,"Auto payment CC details displayed on the account overview page"
+				,"Auto payment CC details NOT displayed on the account overview page");
+		getReporter().reportLogWithScreenshot("Account overview page, check the payment method.");
 
 		/*getFidomakepaymentpage().selectHowWouldYouLikeToPay(FidoEnums.MakePayOptions.Creditcard);
 		getReporter().reportLogWithScreenshot("Credit card option selected");

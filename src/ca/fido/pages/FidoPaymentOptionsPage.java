@@ -60,14 +60,41 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy(xpath = "//label[@class='a-checkbox']")
 	WebElement chkAcceptTnC;
-	
-	@FindBy(id="transitNumber")
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='transit']//parent::div"),
+			@FindBy(id="transitNumber")
+	})
+	WebElement txtTransitNumberClick;
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='institution']//parent::div"),
+			@FindBy(id="institutionNumber")
+	})
+	WebElement txtInstitutionNumberClick;
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='account']//parent::div"),
+			@FindBy(id="accountNumber")
+	})
+	WebElement txtAcountNumberClick;
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='transit']"),
+			@FindBy(id="transitNumber")
+	})
 	WebElement txtTransitNumber;
-	
-	@FindBy(id="institutionNumber")
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='institution']"),
+			@FindBy(id="institutionNumber")
+	})
 	WebElement txtInstitutionNumber;
-	
-	@FindBy(id="accountNumber")
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='account']"),
+			@FindBy(id="accountNumber")
+	})
 	WebElement txtAcountNumber;
 	
 	@FindBy(xpath = "//*[@id = 'transitNumber']")
@@ -187,14 +214,29 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy(id="bank-code")
 	WebElement txtBankCode;
-	
-	@FindBy(id="account-number")
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='account']//parent::div"),
+			@FindBy(id = "account-number")
+	})
+	WebElement txtbankAccountNumberClick;
+
+	@FindAll({
+			@FindBy(xpath = "//input[@formcontrolname='account']"),
+			@FindBy(id = "account-number")
+	})
 	WebElement txtbankAccountNumber;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//label[@for='ds-checkbox-id-0']"),
 	@FindBy(xpath="//label[@for='agree-to-terms-and-conditions']")
+	})
 	WebElement chkAgreeTermsAndCond;
-	
+
+	@FindAll({
+	@FindBy(xpath = "//*[@id='ds-checkbox-id-0-label-container']"),
 	@FindBy(xpath = "//*[@id='terms-conditions-scroll']/ins/div/ins/p[7]")
+	})
 	WebElement lbltermsAndConditionBottom;
 	
 	@FindBy(xpath="//input[@value='Review & continue']")
@@ -240,9 +282,12 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	WebElement optManualPayments;
 
 	@FindAll({
-			@FindBy(xpath = "//button[@title='payment.auto.manual.step-1.continue']"),
-			@FindBy(xpath = "//span[text()=' Continue ']")})
+			@FindBy(xpath = "//button[contains(@class,'w-100 w-sm-auto ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')]"),
+			@FindBy(xpath = "//span[text()=' Continue ']//ancestor::button")})
 	WebElement btnContinue;
+
+	@FindBy(xpath = "(//button[contains(@class,'ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')])[2]")
+	WebElement btnContinueInBankSection;
 
 	@FindBy(xpath = "//button[@title='Yes, cancel automatic payments']")
 	WebElement btnYesCancelAutoPayment;
@@ -421,7 +466,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setBankTransitNumber(String strTransitNumber) {
-		reusableActions.clickWhenVisible(txtTransitNumber);
+		reusableActions.clickWhenVisible(txtTransitNumberClick);
 		reusableActions.getWhenReady(txtTransitNumber).sendKeys(strTransitNumber);
 	}
 	/**
@@ -440,7 +485,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setInstitutionNumber(String strInstitutionNumber) {
-		reusableActions.clickWhenVisible(txtInstitutionNumber);
+		reusableActions.clickWhenVisible(txtInstitutionNumberClick);
 		reusableActions.getWhenReady(txtInstitutionNumber).sendKeys(strInstitutionNumber);
 	}
 
@@ -614,6 +659,15 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	}
 
 	/**
+	 * Click on the continue button
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkContinueInBankSection() {
+		reusableActions.waitForElementTobeClickable(btnContinueInBankSection, 60);
+		reusableActions.executeJavaScriptClick(btnContinueInBankSection);
+	}
+
+	/**
 	 *  Set the transit number for  bank
 	 * @param strTransitNumber  bank transit code of the account
 	 * @author Mirza.Kamran
@@ -640,7 +694,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void setBankAccountNumer(String strBankAccountNumber) {
-		reusableActions.clickWhenVisible(txtbankAccountNumber);
+		reusableActions.clickWhenVisible(txtbankAccountNumberClick);
 		reusableActions.getWhenReady(txtbankAccountNumber).sendKeys(strBankAccountNumber);
 	}
 
@@ -650,7 +704,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void setAccountNumber(String strBankAccountNumber) {
-		reusableActions.clickWhenVisible(txtAcountNumber);
+		reusableActions.clickWhenVisible(txtAcountNumberClick);
 		reusableActions.getWhenReady(txtAcountNumber).sendKeys(strBankAccountNumber);
 	}
 	
@@ -1010,7 +1064,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean isAutopaymentAlreadySet() {
-		reusableActions.staticWait(5000);
+		reusableActions.staticWait(2000);
 		return (reusableActions.isElementVisible(lblCurrentPaymentOn)) ;
 	}
 

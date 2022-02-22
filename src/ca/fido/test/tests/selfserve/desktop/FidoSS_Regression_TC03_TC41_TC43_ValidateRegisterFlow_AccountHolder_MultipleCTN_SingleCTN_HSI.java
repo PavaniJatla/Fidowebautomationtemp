@@ -68,7 +68,7 @@ public class FidoSS_Regression_TC03_TC41_TC43_ValidateRegisterFlow_AccountHolder
 		getFidorecoverpassornamepage().setUsernameIFrame(strEmail);
 		getReporter().reportLogWithScreenshot("Set email/username for user registartion");
 		getFidorecoverpassornamepage().clkBtnContinue();
-		getFidorecoverpassornamepage().setAccountNumber(strFidoAccountNumber);
+		getFidorecoverpassornamepage(). setAccountNumber(strFidoAccountNumber);
 		getFidorecoverpassornamepage().setPostCode(strPostalCode);
 		getFidorecoverpassornamepage().setDOB(strDOB);
 		getReporter().reportLogWithScreenshot("Set Account, post code and DOB number for registration");

@@ -299,7 +299,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//section[@class='fss-account-detail']")
 	List<WebElement> lstOfAllAccounts;
 
+	@FindAll({
+	@FindBy(xpath = "//h1[contains(text(),'Your bill and account balance')]"),
 	@FindBy(xpath = "//*[@translate='global.label.accountBillBalance']")
+	})
 	WebElement headerYourBillAndAccountBalance;
 
 	@FindBy(xpath = "//ins[@translate='global.label.paymentHistory']")
@@ -373,7 +376,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	WebElement lblSavePDF;
 
 	@FindAll({
-			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[10]"),
+			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[9]"),
 			@FindBy(xpath = "//*[contains(@translate,'global.label.saveBillPDF')]")
 	})
 	WebElement lblSaveYourBill;
@@ -391,7 +394,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	WebElement lblPrintPDF;
 
 	@FindAll({
-			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[12]"),
+			@FindBy(xpath = "(//*[contains(@class,'d-inline-block')])[11]"),
 			@FindBy(xpath = "//*[contains(@translate,'global.label.printBillPDF')]")
 	})
 	WebElement lblPrintYourBill;

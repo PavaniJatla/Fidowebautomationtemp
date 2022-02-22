@@ -145,8 +145,8 @@ public class FidoSS_Regression_TC60_ValidateAddDataFlowMultilineAHWithNonWPlanTh
 			countAddData++;
 			}
 		}
-		
-		
+
+		//getFidowirelessdashboardpostpaidpage().clkShowMyUsageIfVisible();
 		getReporter().hardAssert(getFidodatamanagementpage().validateViewDetailsLink(),
 				"'Data details' page is displayed after click on view details link",
 				"'Data details' page is NOT displayed after click on view details link");
