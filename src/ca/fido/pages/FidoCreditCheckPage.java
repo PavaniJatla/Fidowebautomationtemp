@@ -124,7 +124,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 
 	@FindAll({
 			@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]"),
-			@FindBy(xpath = "//div[contains(@class,'button-container')]//button[contains(.,'No')]")
+			@FindBy(xpath = "//div[contains(@class,'button-container')]//button[contains(.,'No,')]")
 	})
 	WebElement btnClkNoThanks;
 
@@ -427,7 +427,9 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkNoThanks() {
-		reusableActions.clickIfAvailable(btnClkNoThanks,5);
+		if((reusableActions.isElementVisible(btnClkNoThanks,5)) ||
+				(reusableActions.isElementVisible(By.xpath("//div[contains(@class,'button-container')]//button[contains(.,'No,')]"),5))) {
+			reusableActions.executeJavaScriptClick(btnClkNoThanks);
+		}
 	}
-
 }

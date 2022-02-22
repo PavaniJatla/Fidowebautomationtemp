@@ -54,6 +54,7 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		getFidobuildplanpage().clkContinueDeviceProtection();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -68,6 +69,7 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getFidocreateuserpage().clkContinue();
 		//issue in DOBYear
 		getFidocreditcheckpage().selectDOBYear();
+		getFidoCheckOutPage().clkBtnNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());

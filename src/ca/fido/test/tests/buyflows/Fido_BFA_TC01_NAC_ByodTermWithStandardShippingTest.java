@@ -36,6 +36,7 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		getFidobuildplanpage().clkContinueDeviceProtection();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -49,6 +50,7 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
+		getFidocreditcheckpage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
@@ -62,6 +64,7 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidocreditcheckpage().clkContinue();
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
 		getFidochoosenumberpage().selectCity(TestDataHandler.tc01ByodStandardShipping.getCtnCity());
+		getFidocreditcheckpage().clkNoThanks();
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
