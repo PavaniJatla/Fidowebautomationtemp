@@ -46,6 +46,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
+		getFidobuildplanpage().clkContinueDeviceProtection();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -59,6 +60,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
+		getFidocreditcheckpage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
