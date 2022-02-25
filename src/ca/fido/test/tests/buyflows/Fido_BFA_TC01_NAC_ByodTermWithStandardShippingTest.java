@@ -50,6 +50,7 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
+		getFidoCheckOutPage().clkNoThanks();
 		getFidocreditcheckpage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
@@ -67,10 +68,12 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidocreditcheckpage().clkNoThanks();
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
+		getFidoCheckOutPage().clkNoThanks();
 		getFidochoosenumberpage().clkContinue();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
+		getFidoCheckOutPage().clkNoThanks();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
 		getFidoCheckOutPage().clkShippingType("STANDARD");
 		getReporter().reportLogWithScreenshot("Shipping selected");
