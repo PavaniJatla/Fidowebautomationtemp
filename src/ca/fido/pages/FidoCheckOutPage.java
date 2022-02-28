@@ -160,7 +160,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkNoThanks() {
-		if((reusableActions.isElementVisible(btnClkNoThanks,5)) ||
+		if((reusableActions.isElementVisible(btnClkNoThanks,8)) ||
 				(reusableActions.isElementVisible(By.xpath("//div[contains(@class,'button-container')]//button[contains(.,'No,')]"),5))) {
 			reusableActions.executeJavaScriptClick(btnNoThanks);
 		}

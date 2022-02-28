@@ -60,6 +60,7 @@ public class Fido_BFA_TC15_AALUsingFinancePlanExpressShipping_Test extends BaseT
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc15AALFinancingPlanExpressShipping.getShippingType();
+        getFidoCheckOutPage().clkNoThanks();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");
