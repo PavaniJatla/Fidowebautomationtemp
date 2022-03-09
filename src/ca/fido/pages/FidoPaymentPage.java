@@ -30,7 +30,7 @@ public class FidoPaymentPage extends BasePageClass {
 	WebElement fraSemaphone;
 	//div[@class='cc-payment-section']//descendant::iframe
 
-	@FindBy(xpath = "//input[@aria-describedby='formfield-2-a11yDescription formfield-2-messages']")
+	@FindBy(xpath = "//input[@aria-describedby='formfield-6-a11yDescription formfield-6-messages']")
 	WebElement txtPaymentAmount;
 	//div[@class='ute-pay-now-content ss-pay-now-payment-amount']//input[@id='amount']
 
@@ -44,20 +44,20 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-bgcolor-white ds-borders ng-tns-c106-7 ds-brcolor-black ds-color-black']")
 	WebElement ddlExpiryDateContainer;
 
-	@FindBy(xpath = "//input[@id='expiryDate' and @aria-describedby='formfield-0-a11yDescription formfield-0-messages']")
+	@FindBy(xpath = "//input[@id='expiryDate' and @formcontrolname='expiryDate']")
 	WebElement ddlExpiryDate;
 
 	@FindBy(xpath  = "//select[@name='expYear']")
 	WebElement ddlExpiryYear;
 
-	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-bgcolor-white ds-borders ng-tns-c106-8 ds-brcolor-black ds-color-black']")
+	@FindBy(xpath = "//input[@id='cvc' and @formcontrolname='cvc']/..")
 	WebElement txtCvvContainer;
 
-	@FindBy(xpath = "//input[@id='cvc' and @aria-describedby='formfield-1-a11yDescription formfield-1-messages']")
+	@FindBy(xpath = "//input[@id='cvc' and @formcontrolname='cvc']")
 	WebElement txtCVV;
 	//input[@id='cvv']
 
-	@FindBy(xpath = "//div[@class='mt-32 payment-card-detail']//button[contains(@class,'ds-button')]")
+	@FindBy(xpath = "//div[@class='d-flex flex-column flex-md-row justify-content-end mb-8']/button[contains(@class,'ds-button')]")
 	WebElement btnReviewAndContinue;
 	//input[@type="submit" and contains(@class,'continue')]
 
@@ -99,7 +99,10 @@ public class FidoPaymentPage extends BasePageClass {
 	
 	@FindBy(xpath="//span[@translate='btn_complete_order']/parent::button")
 	WebElement btnCompleteOrder;
-	
+
+	@FindBy(xpath="//div[@class='d-flex flex-column flex-md-row justify-content-end mt-24 mb-8']/button/span")
+	WebElement btnContinue;
+
 	@FindBy(xpath="//input[@id='ds-radio-input-id-21']/parent::label//div[@class='ds-radioButton__outerCircle my-12']")
 	WebElement rdoPayWithAnotherCC;
 	
@@ -385,7 +388,7 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkPaymentConfirmation() {
-		reusableActions.getWhenReady(btnPaymentConfirmation,60).click();	
+		reusableActions.getWhenReady(btnPaymentConfirmation,60).click();
 	}
 	
 	/**
@@ -439,5 +442,12 @@ public class FidoPaymentPage extends BasePageClass {
 	public void clkContinueOrder() {
 		reusableActions.clickWhenReady(btnCompleteOrder);
 	}
-	
+
+	/**
+	 * Continue to proceed payment
+	 * @author manpreet.kaur3
+	 */
+	public void clkContinue() {
+		reusableActions.clickWhenReady(btnContinue);
+	}
 }
