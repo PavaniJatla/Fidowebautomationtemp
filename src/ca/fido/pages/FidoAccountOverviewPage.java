@@ -57,7 +57,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//span[contains(text(),'View Usage & Manage') or contains(text(),'Voir et gérer l’utilisation')]")
 	WebElement lnkViewUsageManage;
 
-	@FindBy (xpath="//a[contains(@aria-label,'usage and manage account') or contains(@aria-label,'internet et gérer le compte')]")
+	//@FindBy (xpath="//a[contains(@aria-label,'usage and manage account') or contains(@aria-label,'internet et gérer le compte')]")
+	@FindBy (xpath="//a[contains(@aria-label,'usage and manage account')]/span/span")
 	WebElement lnkViewUsageManageMobile;
 
 	@FindBy (xpath="//span[contains(text(),'Make a payment') or contains(text(),'Faire un paiement')]")
@@ -830,7 +831,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lnkViewUsageManageMobile,120);
 		reusableActions.getWhenReady(lnkViewUsageManageMobile,30).click();
 	}
-
 	/**
 	 * Click on the WirelessBadge on the account overview page
 	 * @author chinnarao.vattam 
@@ -845,7 +845,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			reusableActions.executeJavaScriptClick(badgeWireless);
 		}
 	}
-
 	/**
 	 * Verify the Welcome heading on the account overview page
 	 * @return true, if the account overview page display the Account Balance, else false
