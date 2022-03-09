@@ -43,14 +43,20 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 
 	@Test(groups = {"RegressionCH","FidoCableMobileCH"})
 	public void checkInternetBuyFlowMobile() {
-		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+		//getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         getFidoshopinternetpage().clkServiceAvailabilityCheck();
-        //getFidohomepage().clkCheckAvailabilityMobile();
+        getReporter().reportLogWithScreenshot("Multiple Address Popup is displayed");
+        if(getFidoshopinternetpage().veriyMultipleAddressModal()) {
+            getFidoshopinternetpage().clkContinueMultipleAddressPopup();
+            getReporter().reportLogWithScreenshot("Continue to Good News Modal");
+        }
+       // getFidohomepage().clkCheckAvailabilityMobile();
         getReporter().reportLogWithScreenshot("Good News for the Service availability");
         getFidoshopinternetpage().clkBuyNowReskin();
         getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
@@ -111,7 +117,7 @@ public class Mobile_FidoCH_Regression_TC_001_HSIBuyFlowTest extends BaseTestClas
 		getReporter().reportLogWithScreenshot("Consent Check has Done");
 		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order has created", "Order hasn't created");
-		getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
+		getReporter().reportLogWithScreenshot("Order Success and order confirmation details"); 
 	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
