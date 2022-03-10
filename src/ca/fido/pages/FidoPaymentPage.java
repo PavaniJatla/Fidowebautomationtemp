@@ -210,15 +210,13 @@ public class FidoPaymentPage extends BasePageClass {
 	 */
 	public void setPaymentAmount(String strPaymentAmount) {
 		reusableActions.getWhenReady(txtPaymentAmount,60).click();
-		reusableActions.getWhenReady(txtPaymentAmount,5).clear();
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
-		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		int len = 6;
+		while(len > 0) {
+			reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+			len--;
+		}
+
 		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(strPaymentAmount);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.TAB);
 	}
@@ -232,6 +230,9 @@ public class FidoPaymentPage extends BasePageClass {
 		reusableActions.getWhenReady(txtPaymentAmount,60).click();
 		reusableActions.getWhenReady(txtPaymentAmount,5).clear();
 		reusableActions.getWhenReady(txtPaymentAmount,5).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
+		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
 		reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);
