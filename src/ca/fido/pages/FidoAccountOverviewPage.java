@@ -70,7 +70,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//h1[@class='welcome-text']")
 	WebElement msgWelcome;
 
-	@FindBy (xpath="//h2[@translate='global.label.accountBillBalance']")
+	@FindBy (xpath="//div[contains(@class,'account-balance')]")
 	WebElement msgPaymentpage;
 
 
@@ -911,7 +911,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			String strBalance= strBalanceValue[0];
 			Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
 			String strExpectedBalance=Integer.toString(intExpectedBalance);
-			reusableActions.getWhenVisible(By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
+			reusableActions.getWhenVisible(By.xpath("//div[contains(text(),'"+strExpectedBalance+"')]"),180);
 		}
 		else
 		{
@@ -919,7 +919,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			String strBalance= strBalanceValue[0];
 			Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
 			String strExpectedBalance=Integer.toString(intExpectedBalance);
-			reusableActions.waitForElementVisibility((WebElement) By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
+			reusableActions.waitForElementVisibility((WebElement) By.xpath("//div[contains(text(),'"+strExpectedBalance+"')]"),180);
 		}	
 		return reusableActions.isElementVisible(msgPaymentpage,30);
 	}
