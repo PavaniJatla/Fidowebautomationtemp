@@ -15,9 +15,9 @@ import java.lang.reflect.Method;
  * TC04 - Regression - [FNAC TERM] - Perform Fido Net New Activation - TERM with Standard Shipping(No Term Plan)_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass{
+public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA","DP"})
 	public void fidoNACNoTermStandardShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
@@ -51,10 +51,14 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getReporter().reportLogPass("Continue button on talk option clicked");
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
+		getFidobuildplanpage().selectDeviceProtectionAddon();
+		getReporter().reportLogPassWithScreenshot("Device Protection Addon is selected");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-		getFidobuildplanpage().clkContinueDeviceProtection();
+		getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+		String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
+		getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -97,6 +101,9 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_Test extends BaseTestClass
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
+		getReporter().hardAssert(getFidoCheckOutPage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+		String deviceProtectionAddon = getFidoCheckOutPage().getDeviceProtectionAddon();
+		getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
 		getFidoorderreviewpage().clkSubmitMyOrder();

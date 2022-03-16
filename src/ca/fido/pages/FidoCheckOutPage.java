@@ -54,6 +54,8 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]")
 	WebElement btnNoThanks;
 
+	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Prem Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	WebElement dpAddonCarLineItem;
 
 	/**
 	 * This method enters the value in email address field in shipping page
@@ -172,5 +174,25 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public void clkBtnNoThanks() {
 		reusableActions.clickIfAvailable(btnNoThanks,5);
+	}
+
+	/**
+	 * This method will get the Device Protection Addon amount from the cart summary
+	 * @return String having Device Protection Addon and amount
+	 * @author subash.nedunchezhian
+	 */
+	public String getDeviceProtectionAddon() {
+		return dpAddonCarLineItem.getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method verifies the Device Protection Add-on added to Cart
+	 * @return True if Device Protection Line Item is displayed in Cart summary; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyDPCartLineItem(){
+		reusableActions.staticWait(10000);
+		reusableActions.javascriptScrollByVisibleElement(dpAddonCarLineItem);
+		return reusableActions.isElementVisible(dpAddonCarLineItem);
 	}
 }

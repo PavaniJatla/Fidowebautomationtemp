@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC20 - Price plan change for an existing Single line account from FIN to FIN(Data, Talk and Text Plan)
+ * TC19 - Price plan change for an existing Single line account from Subsidy to Subsidy(Former subsidy plan type)
  * @author praveen.kumar7
  */
 
-public class Fido_BFA_TC20_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTestClass {
+public class Fido_BFA_TC19_PPC_SL_SubsidyInTerm_SelectingSubsidyPlan_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -26,10 +26,10 @@ public class Fido_BFA_TC20_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTe
         closeSession();
     }
 
-    @Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
-    public void fidoPPC_TC20_SLNonSE_FINInTerm_DTTPlanTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc20PPCSLFinInTermDTTPlan.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc20PPCSLFinInTermDTTPlan.getPassword());
+    @Test(groups = {"RegressionBFA","PPCBFA"})
+    public void fidoPPC_TC24_SLNonSE_SubsidyInTerm_SubsidyPlanTest() {
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc19PPCSLSubsidyInTermSelectingSubsidyPlan.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc19PPCSLSubsidyInTermSelectingSubsidyPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
@@ -40,9 +40,9 @@ public class Fido_BFA_TC20_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTe
         getReporter().hardAssert(getFidobuildplanpage().verifyPPCPlanConfigPage(),"PPC Build plan page is loaded successfully","PPC build plan page is not loaded");
         getFidobuildplanpage().clkChangePlan();
         getReporter().reportLogWithScreenshot("Clicked on Change Plan");
-        getFidobuildplanpage().selectPlanType(TestDataHandler.tc20PPCSLFinInTermDTTPlan.getNewPlanType());
+        getFidobuildplanpage().selectPlanType(TestDataHandler.tc19PPCSLSubsidyInTermSelectingSubsidyPlan.getNewPlanType());
         getReporter().reportLogPassWithScreenshot("Plan Type is selected successfully");
-        getFidobuildplanpage().clkDataOption(TestDataHandler.tc20PPCSLFinInTermDTTPlan.getDataOptionIndex(), this.getClass().getSimpleName());
+        getFidobuildplanpage().clkDataOption(TestDataHandler.tc19PPCSLSubsidyInTermSelectingSubsidyPlan.getDataOptionIndex(), this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
