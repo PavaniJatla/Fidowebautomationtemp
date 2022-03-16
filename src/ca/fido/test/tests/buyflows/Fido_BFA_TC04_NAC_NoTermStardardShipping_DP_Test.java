@@ -101,8 +101,8 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestCl
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
-		getReporter().hardAssert(getFidoCheckOutPage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
-		String deviceProtectionAddon = getFidoCheckOutPage().getDeviceProtectionAddon();
+		getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+		String deviceProtectionAddon = getFidoorderreviewpage().getDeviceProtectionAddon();
 		getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");

@@ -78,8 +78,8 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
-        getReporter().hardAssert(getFidoCheckOutPage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
-        String deviceProtectionAddon = getFidoCheckOutPage().getDeviceProtectionAddon();
+        getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+        String deviceProtectionAddon = getFidoorderreviewpage().getDeviceProtectionAddon();
         getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();

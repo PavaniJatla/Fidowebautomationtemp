@@ -80,8 +80,8 @@ public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
-        getReporter().hardAssert(getFidoCheckOutPage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
-        String deviceProtectionAddon = getFidoCheckOutPage().getDeviceProtectionAddon();
+        getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+        String deviceProtectionAddon = getFidoorderreviewpage().getDeviceProtectionAddon();
         getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();

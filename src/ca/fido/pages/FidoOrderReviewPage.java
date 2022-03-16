@@ -95,6 +95,9 @@ public class FidoOrderReviewPage extends BasePageClass {
 	@FindBy(xpath = "//input[@name='financingConsent']/../..")
 	WebElement chkBoxFinancingConsent;
 
+	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Prem Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	WebElement dpAddonCarLineItem;
+
 	/**
 	 * Clicks on the 'Submit my order' button
 	 * @author Saurav.Goyal
@@ -258,5 +261,23 @@ public class FidoOrderReviewPage extends BasePageClass {
 		}
 
 	}*/
+	/**
+	 * This method will get the Device Protection Addon amount from the cart summary
+	 * @return String having Device Protection Addon and amount
+	 * @author subash.nedunchezhian
+	 */
+	public String getDeviceProtectionAddon() {
+		return dpAddonCarLineItem.getText().replaceAll("\\n", "");
+	}
 
+	/**
+	 * This method verifies the Device Protection Add-on added to Cart
+	 * @return True if Device Protection Line Item is displayed in Cart summary; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyDPCartLineItem(){
+		reusableActions.waitForElementVisibility(lblReviewPage,40);
+		reusableActions.javascriptScrollByVisibleElement(dpAddonCarLineItem);
+		return reusableActions.isElementVisible(dpAddonCarLineItem);
+	}
 }
