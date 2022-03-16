@@ -10,7 +10,12 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
+/**
+ * TC14 - Validate Fido AAL BYOD flow by selecting BASIC PLAN for Quebec account
+ * @author praveen.Kumar7
+ */
+
+public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -22,32 +27,19 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALBYODStandardShippingFlowTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc18AALBYODExpressShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc18AALBYODExpressShipping.getPassword());
+    public void fidoAALBYODBasicPlanStdShippingFlowTest() {
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
         //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-        getDriver().get(System.getProperty("AWSUrl") + "/phones/bring-your-own-device?flowType=aal");
+        getDriver().get(System.getProperty("AWSUrl") + "/phones/bring-your-own-device?flowType=aal&province=qc");
         getReporter().hardAssert(getFidobuildplanpage().verifyContinueBtnPlanStepper(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
         getReporter().reportLogWithScreenshot("Fido plan config page");
-        //getFidochoosephonepage().selectAddALineButton();
-        //getReporter().reportLogPassWithScreenshot("Add a Line Button Selected");
-        //getFidobuildplanpage().clkDeviceBalancePopUp();
-        //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        // ***************************Promo Section************************************
-        getFidobuildplanpage().clkPromoSection();
-        getReporter().reportLogWithScreenshot("Promo Section Displayed");
-        getFidobuildplanpage().setPromoCode(TestDataHandler.tc18AALBYODExpressShipping.getPromoCode());
-        getReporter().reportLogWithScreenshot("Promo Code Entered");
-        getFidobuildplanpage().clkCheckPromoBtn();
-        getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promo Code Applied Successfully", "Promo Code Not Applied");
-        getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
-        // ***************************Plan Builder page************************************
-        String dataOptionIndex = TestDataHandler.tc18AALBYODExpressShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
+        getFidobuildplanpage().clkBasicTab();
+        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getDataOptionIndex(),this.getClass().getSimpleName());
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
@@ -55,21 +47,15 @@ public class Fido_BFA_TC18_AALBYODExpressShipping_Test extends BaseTestClass {
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
-        getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
-        String cityName = TestDataHandler.tc18AALBYODExpressShipping.getCityName();
+        String cityName = TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        String deliveryMethod = TestDataHandler.tc18AALBYODExpressShipping.getShippingType();
+        String deliveryMethod = TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
-        if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
-            getReporter().reportLogWithScreenshot("Express Shipping selected");
-            getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
-        } else {
-            getReporter().reportLogWithScreenshot("Shipping selected");
-        }
+        getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();

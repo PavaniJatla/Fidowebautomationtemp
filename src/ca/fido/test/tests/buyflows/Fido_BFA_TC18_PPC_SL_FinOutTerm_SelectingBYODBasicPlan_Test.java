@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * TC22 - Price plan change for an existing Single line subsidy account from Subsidy Plan to DTT plan(Data, Talk and Text Plan type) and Validating Downgrade fee
+ * TC18 - Price plan change for an existing Single line Noterm account from NOTERM financing plan to NOTERM(Basic plan)
  * @author praveen.kumar7
  */
 
-public class Fido_BFA_TC22_PPC_SL_SubsidyInTerm_SelectingDTTPlan_DowngradeFee_Test extends BaseTestClass {
+public class Fido_BFA_TC18_PPC_SL_FinOutTerm_SelectingBYODBasicPlan_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -27,9 +27,9 @@ public class Fido_BFA_TC22_PPC_SL_SubsidyInTerm_SelectingDTTPlan_DowngradeFee_Te
     }
 
     @Test(groups = {"RegressionBFA","PPCBFA"})
-    public void fidoPPC_TC22_SLNonSE_SubsidyInTerm_DTTPlanDowngradeFeeTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc22PPCSLSubsidyInTermSelectingDTTPlan.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc22PPCSLSubsidyInTermSelectingDTTPlan.getPassword());
+    public void fidoPPC_TC23_SLNonSE_FinOutTerm_BasicPlanTest() {
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc18PPCSLFinOutTermBasicPlan.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc18PPCSLFinOutTermBasicPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
@@ -40,11 +40,11 @@ public class Fido_BFA_TC22_PPC_SL_SubsidyInTerm_SelectingDTTPlan_DowngradeFee_Te
         getReporter().hardAssert(getFidobuildplanpage().verifyPPCPlanConfigPage(),"PPC Build plan page is loaded successfully","PPC build plan page is not loaded");
         getFidobuildplanpage().clkChangePlan();
         getReporter().reportLogWithScreenshot("Clicked on Change Plan");
-        getFidobuildplanpage().selectPlanType(TestDataHandler.tc22PPCSLSubsidyInTermSelectingDTTPlan.getNewPlanType());
-        getReporter().reportLogPassWithScreenshot("Plan Type is selected successfully and Downgradefee popup is displayed");
-        getFidobuildplanpage().verifyDowngradeFeeModalAndClkContinue();
-        getFidobuildplanpage().clkDataOption(TestDataHandler.tc22PPCSLSubsidyInTermSelectingDTTPlan.getDataOptionIndex(), this.getClass().getSimpleName());
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        getFidobuildplanpage().selectPlanType(TestDataHandler.tc18PPCSLFinOutTermBasicPlan.getNewPlanType());
+        getReporter().reportLogPassWithScreenshot("Plan Type is selected successfully");
+        getFidobuildplanpage().clkBasicTab();
+        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc18PPCSLFinOutTermBasicPlan.getDataOptionIndex(),this.getClass().getSimpleName());
+        getReporter().reportLogPass("Basic Plan selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueBelowCartSummary();

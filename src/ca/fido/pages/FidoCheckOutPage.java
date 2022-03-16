@@ -54,7 +54,6 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]")
 	WebElement btnNoThanks;
 
-
 	/**
 	 * This method enters the value in email address field in shipping page
 	 * @author praveen.kumar7
