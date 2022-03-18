@@ -356,7 +356,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void selectInternetPlan(String strDowngradeDataPlan, String strUpgradePlanCost) {
 		//reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::p[contains(@class,'dsa-rateCard__priceLegal') and contains(text(),'"+strUpgradePlanCost+"')]/ancestor::div[contains(@class,'dsa-rate-card__price')]/descendant::a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']/span"), 60).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[contains(@class,'dsa')]/descendant::p[contains(@class,'dsa-rateCard__details') and contains(text(),'"+strUpgradePlanCost+"')]/ancestor::div[contains(@class,'dsa-rate-card__details')]/following::a[contains(@aria-label,'Buy')]/span"), 60).click();
 	}
 
 	/**
