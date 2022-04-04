@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  * TC02 - Regression - [FNAC BYOD] - Perform Fido Net New Activation - BYOD with Express Pickup Shipping - BOPIS_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestClass{
+public class Fido_BFA_TC02_NAC_ByodTermWithExpressShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
 	public void fidoNACByodTermExpressShippingFlow() {
@@ -28,8 +28,21 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 		getReporter().reportLogPass("Continue button on talk option clicked");
 		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
+		getFidobuildplanpage().selectBYODdpAddon();
+		getReporter().reportLogPassWithScreenshot("Device Protection Addon option is selected");
+		getFidobuildplanpage().enterDPIMEI(TestDataHandler.tc02ByodExpressShipping.getDpIMEI());
+		getReporter().reportLogPassWithScreenshot("DP Addon IMEI Entered");
+		getFidobuildplanpage().setDPDeviceStorage(TestDataHandler.tc02ByodExpressShipping.getDpDeviceStorage());
+		getReporter().reportLogPassWithScreenshot("DP Addon Device Storage Selected");
+		getFidobuildplanpage().setDPDeviceColor(TestDataHandler.tc02ByodExpressShipping.getDpDeviceColor());
+		getReporter().reportLogPassWithScreenshot("DP Addon Device Color Selected");
+		getFidobuildplanpage().clkDpEligCheckBtn();
+		getReporter().hardAssert(getFidobuildplanpage().verifyEligibilityMsg(),"Entered IMEI is eligible for Device Protection Addon","Entered IMEI is not eligible");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogPass("Continue button on AddOns clicked");
+		getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+		String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
+		getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -72,6 +85,9 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShippingTest extends BaseTestC
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
+		getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+		String deviceProtectionAddon = getFidoorderreviewpage().getDeviceProtectionAddon();
+		getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().setOrderCommunicationConsent();
 		getReporter().reportLogPass("Terms and conditions clicked");

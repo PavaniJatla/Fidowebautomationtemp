@@ -134,7 +134,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 */
 	public void selectDOBYear() {
 		reusableActions.staticWait(5000);
-		reusableActions.waitForElementVisibility(ddlDOBYear, 60);
+		reusableActions.waitForElementVisibility(ddlDOBYear, 20);
 		String strDOBYear = FormFiller.generateDOBYear();
 		reusableActions.selectWhenReady(ddlDOBYear, strDOBYear , 30);
 	}
