@@ -6,7 +6,6 @@ import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -44,10 +43,10 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
         getReporter().reportLogWithScreenshot("Launched the Account Page");
         String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
         getReporter().reportLogWithScreenshot("Launched the Account Page");
-
         getFidoaccountoverviewpage().clkMakepayment();
         getReporter().reportLogWithScreenshot("Launched the payment widget");
-        getFidopaymentpage().setPaymentAmountMobile(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
+        getFidopaymentpage().clkContinue();
+        getFidopaymentpage().setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
         getReporter().reportLogWithScreenshot("Launched the credit card widget");
 
         // --------------------Pass it from yaml-----------------//
@@ -62,7 +61,6 @@ public class Mobile_FidoCH_Regression_TC_003_HSIPayNowTest extends BaseTestClass
         getReporter().hardAssert(getFidopaymentpage().verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
         getReporter().reportLogWithScreenshot("payment success widget");
         getFidopaymentpage().clkPaymentConfirmationMobile();
-        getFidoaccountoverviewpage().clkOverview();
         getFidoaccountoverviewpage().verifyAccountPage(accountBalanceBeforePayment, strLanguage);
         getReporter().reportLogWithScreenshot("Launched the Account Page with updated account balance");
         String accountBalanceAfterPayment=getFidoaccountoverviewpage().getAccountBalanceAfterpayment();

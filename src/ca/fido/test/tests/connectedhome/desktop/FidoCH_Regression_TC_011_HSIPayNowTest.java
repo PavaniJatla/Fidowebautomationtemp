@@ -41,9 +41,12 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
+
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		getFidoaccountoverviewpage().clkMakepayment();
 		getReporter().reportLogWithScreenshot("Launched the payment widget");
+		getFidopaymentpage().clkContinue();
+
 		getFidopaymentpage().setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
 		getReporter().reportLogWithScreenshot("set the payment amount");
 		getReporter().reportLogWithScreenshot("Launched the credit card widget");
@@ -60,9 +63,12 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		getReporter().hardAssert(getFidopaymentpage().verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		getReporter().reportLogWithScreenshot("payment success widget");
 		getFidopaymentpage().clkPaymentConfirmation();
+		getFidoaccountoverviewpage().verifyAccountPage(accountBalanceBeforePayment, strLanguage);
 		getReporter().reportLogWithScreenshot("Launched the Account Page with updated account balance");
+
 		String accountBalanceAfterPayment=getFidoaccountoverviewpage().getAccountBalanceAfterpayment();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifyPayment(accountBalanceBeforePayment,accountBalanceAfterPayment,TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment(), strLanguage),"Payment Success","Payment Failed");
+
 		}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

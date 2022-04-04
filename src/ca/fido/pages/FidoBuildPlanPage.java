@@ -21,7 +21,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	public String xpath;
 	public int stepper;
-	String planType = TestDataHandler.tc17AALTabletsStandardShipping.getNewPlanType();
+	String planType = TestDataHandler.tc12AALTabletsStandardShipping.getNewPlanType();
 
 	public FidoBuildPlanPage(WebDriver driver) {
 		super(driver);		
@@ -207,6 +207,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(text(),'Promo code:') or contains(text(),'Code promotionnel :')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement promoCartLineItem;
+
+	@FindBy(xpath = "//button[contains(@class,'ds-tablet')]//p[contains(text(),'Device Protection') or contains(text(),'Protection de l’appareil')]")
+	WebElement deviceProtectionAddonTab;
+
+	@FindBy(xpath = "//div[contains(@class,'ds-checkboxLabel')]//parent::label[contains(@title,'Device Protection') or contains(@title,'Protect supér appareil ')]")
+	WebElement deviceProtectionAddon;
+
+	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Prem Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	WebElement dpAddonCarLineItem;
 
 	/**
 	 * This method verifies if info widget is properly displayed in plan config page
@@ -903,5 +912,33 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public boolean verifyPromoDuration(){
 		return reusableActions.isElementVisible(promoCodeDuration);
+	}
+
+	/**
+	 * This method clicks on Device Protection Tab in Add-ons stepper
+	 * @author Subash.Nedunchezhian
+	 */
+	public void selectDeviceProtectionAddon(){
+		reusableActions.executeJavaScriptClick(deviceProtectionAddonTab);
+		reusableActions.clickWhenReady(deviceProtectionAddon,20);
+	}
+
+	/**
+	 * This method verifies the Device Protection Add-on added to Cart
+	 * @return True if Device Protection Line Item is displayed in Cart summary; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyDPCartLineItem(){
+		reusableActions.javascriptScrollByVisibleElement(dpAddonCarLineItem);
+		return reusableActions.isElementVisible(dpAddonCarLineItem);
+	}
+
+	/**
+	 * This method will get the Device Protection Addon amount from the cart summary
+	 * @return String having Device Protection Addon and amount
+	 * @author subash.nedunchezhian
+	 */
+	public String getDeviceProtectionAddon() {
+		return dpAddonCarLineItem.getText().replaceAll("\\n", "");
 	}
 }

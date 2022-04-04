@@ -43,17 +43,23 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowTest extends BaseTestClass {
 	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlow() {
         getReporter().reportLogWithScreenshot("Launched the packages Page");
-        getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+       // getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        getFidoshopinternetpage().clkServiceAvailabilityCheck();        
+        getFidoshopinternetpage().clkServiceAvailabilityCheck();
+        getReporter().reportLogWithScreenshot("Multiple Address Popup is displayed");
+        if(getFidoshopinternetpage().veriyMultipleAddressModal()) {
+            getFidoshopinternetpage().clkContinueMultipleAddressPopup();
+            getReporter().reportLogWithScreenshot("Continue to Good News Modal");
+        }
         getReporter().reportLogWithScreenshot("Good News for the Service availability");
         getFidoshopinternetpage().clkBuyNowReskin();
-        getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");       
-        getFidocartsummarypage().clkInternetCheckout();              
+        getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
+        getFidocartsummarypage().clkInternetCheckout();
         getReporter().reportLogWithScreenshot("Create user page has launched to give the user information");
         getFidocreateuserpage().setCommunicationDetails();
         getFidocreateuserpage().setFirstName();

@@ -57,7 +57,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//span[contains(text(),'View Usage & Manage') or contains(text(),'Voir et gérer l’utilisation')]")
 	WebElement lnkViewUsageManage;
 
-	@FindBy (xpath="//a[contains(@aria-label,'usage and manage account') or contains(@aria-label,'internet et gérer le compte')]")
+	//@FindBy (xpath="//a[contains(@aria-label,'usage and manage account') or contains(@aria-label,'internet et gérer le compte')]")
+	@FindBy (xpath="//a[contains(@aria-label,'usage and manage account')]/span/span")
 	WebElement lnkViewUsageManageMobile;
 
 	@FindBy (xpath="//span[contains(text(),'Make a payment') or contains(text(),'Faire un paiement')]")
@@ -69,7 +70,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//h1[@class='welcome-text']")
 	WebElement msgWelcome;
 
-	@FindBy (xpath="//h2[@translate='global.label.accountBillBalance']")
+	@FindBy (xpath="//div[contains(@class,'account-balance')]")
 	WebElement msgPaymentpage;
 
 
@@ -830,7 +831,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lnkViewUsageManageMobile,120);
 		reusableActions.getWhenReady(lnkViewUsageManageMobile,30).click();
 	}
-
 	/**
 	 * Click on the WirelessBadge on the account overview page
 	 * @author chinnarao.vattam 
@@ -845,7 +845,6 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			reusableActions.executeJavaScriptClick(badgeWireless);
 		}
 	}
-
 	/**
 	 * Verify the Welcome heading on the account overview page
 	 * @return true, if the account overview page display the Account Balance, else false
@@ -912,7 +911,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			String strBalance= strBalanceValue[0];
 			Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
 			String strExpectedBalance=Integer.toString(intExpectedBalance);
-			reusableActions.getWhenVisible(By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
+			reusableActions.getWhenVisible(By.xpath("//div[contains(text(),'"+strExpectedBalance+"')]"),180);
 		}
 		else
 		{
@@ -920,7 +919,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			String strBalance= strBalanceValue[0];
 			Integer intExpectedBalance= Integer.parseInt(strBalance)-1;
 			String strExpectedBalance=Integer.toString(intExpectedBalance);
-			reusableActions.waitForElementVisibility((WebElement) By.xpath("//span[contains(text(),'"+strExpectedBalance+"')]"),180);
+			reusableActions.waitForElementVisibility((WebElement) By.xpath("//div[contains(text(),'"+strExpectedBalance+"')]"),180);
 		}	
 		return reusableActions.isElementVisible(msgPaymentpage,30);
 	}

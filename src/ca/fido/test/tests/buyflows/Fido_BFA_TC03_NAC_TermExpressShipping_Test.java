@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
  */
 public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 
-	@Test(groups = {"RegressionBFA","NACBFA"})
+	@Test(groups = {"RegressionBFA","NACBFA","SanityBFA"})
 	public void fidoNACTermExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
@@ -75,11 +75,13 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
 		getFidochoosenumberpage().selectCity(TestDataHandler.tc03TermBopis.getCtnCity());
 		getFidochoosenumberpage().selectFirstAvailableNumber();
+		getFidoCheckOutPage().clkNoThanks();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
+		getFidoCheckOutPage().clkNoThanks();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
 		getFidoCheckOutPage().clkShippingType("EXPRESS");
 		getReporter().reportLogWithScreenshot("Shipping selected");

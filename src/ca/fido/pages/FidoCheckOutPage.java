@@ -54,7 +54,6 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]")
 	WebElement btnNoThanks;
 
-
 	/**
 	 * This method enters the value in email address field in shipping page
 	 * @author praveen.kumar7
@@ -160,7 +159,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	 * @author praveen.kumar7
 	 */
 	public void clkNoThanks() {
-		if((reusableActions.isElementVisible(btnClkNoThanks,5)) ||
+		if((reusableActions.isElementVisible(btnClkNoThanks,8)) ||
 				(reusableActions.isElementVisible(By.xpath("//div[contains(@class,'button-container')]//button[contains(.,'No,')]"),5))) {
 			reusableActions.executeJavaScriptClick(btnNoThanks);
 		}

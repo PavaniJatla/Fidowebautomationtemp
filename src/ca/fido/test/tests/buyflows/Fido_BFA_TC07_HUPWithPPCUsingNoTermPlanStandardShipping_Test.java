@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC07_HUPWithPPCUsingNoTermPlanStandardShipping_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
@@ -20,8 +20,8 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
     @Test(groups = {"RegressionBFA","HUPBFA"})
     public void fidoHUPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
         // **************************Regular Login Flow**************************************
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc12HupPpcNoTermStandardShipping.getPassword());
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc07HupPpcNoTermStandardShipping.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc07HupPpcNoTermStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
@@ -30,7 +30,7 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
         getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose phone page loaded successfully", "Choose phone page not loaded successfully");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc12HupPpcNoTermStandardShipping.getNewDevice();
+        String deviceName = TestDataHandler.tc07HupPpcNoTermStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
         //getFidochoosephonepage().selectUpgradeMyDeviceButton();
@@ -52,7 +52,7 @@ public class Fido_BFA_TC12_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        String deliveryMethod = TestDataHandler.tc12HupPpcNoTermStandardShipping.getShippingType();
+        String deliveryMethod = TestDataHandler.tc07HupPpcNoTermStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");

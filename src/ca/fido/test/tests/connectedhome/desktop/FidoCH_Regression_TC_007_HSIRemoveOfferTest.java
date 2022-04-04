@@ -41,7 +41,12 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
         getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
-        getFidoshopinternetpage().clkServiceAvailabilityCheck();        
+        getFidoshopinternetpage().clkServiceAvailabilityCheck();
+		getReporter().reportLogWithScreenshot("Multiple Address Popup is displayed");
+		if(getFidoshopinternetpage().veriyMultipleAddressModal()) {
+			getFidoshopinternetpage().clkContinueMultipleAddressPopup();
+			getReporter().reportLogWithScreenshot("Continue to Good News Modal");
+		}
         getReporter().reportLogWithScreenshot("Good News for the Service availability");
         getFidoshopinternetpage().clkBuyNowReskin();
         getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");

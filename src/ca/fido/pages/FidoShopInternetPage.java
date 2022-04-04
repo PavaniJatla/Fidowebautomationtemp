@@ -27,7 +27,10 @@ public class FidoShopInternetPage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@class='mr-sm-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large']")
 	WebElement btnAvailabilityCheck;
-	
+
+	@FindBy(xpath = "//button[@title='Continue with selected address']")
+	WebElement btnMutlipleAddress;
+
 	@FindBy(xpath = "//div[@class='col-xs-6 col-sm-3 modal-serviceability-options modal-serviceability-options-gap-first']/img[@class='modal-serviceability-image']")
 	WebElement btnBuyOnline;
 	
@@ -240,7 +243,13 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.waitForElementTobeClickable(btnAvailabilityCheck, 60);
 		reusableActions.getWhenReady(btnAvailabilityCheck, 60).click();
 	}
-	
+
+
+	public void clkContinueMultipleAddressPopup() {
+
+		reusableActions.waitForElementTobeClickable(btnMutlipleAddress, 60);
+		reusableActions.getWhenReady(btnMutlipleAddress, 60).click();
+	}
 	/**
 	 * Click on availability confirmation button on the service ability Lookup popup
 	 * @author chinnarao.vattam
@@ -346,7 +355,17 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectInternetPlan(String strDowngradeDataPlan, String strUpgradePlanCost) {
-		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+ strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card ds-shadow px-12']//div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
+		//reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::div[contains(@aria-label,'"+strUpgradePlanCost+"')]/ancestor::div[@class='dsa-rate-card__price px-4 py-24 px-md-12']//a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[contains(@class,'dsa')]/descendant::p[contains(@class,'dsa-rateCard__details') and contains(text(),'"+strUpgradePlanCost+"')]/ancestor::div[contains(@class,'dsa-rate-card__details')]/following::a[contains(@aria-label,'Buy')]/span"), 60).click();
+	}
+
+	/**
+	 * Select the plan on shop Internet page
+	 * @param strDowngradeDataPlan of the plan to be selected
+	 * @author manpreet.kaur3
+	 */
+	public void select150InternetPlan(String strDowngradeDataPlan) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
 	}
 
 	/**
@@ -564,4 +583,8 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.getWhenReady(btnContinue,90).click();
 		reusableActions.clickIfAvailable(btnContinue,90);
 	}
+
+    public boolean veriyMultipleAddressModal() {
+		return reusableActions.isElementVisible(btnMutlipleAddress, 60);
+    }
 }
