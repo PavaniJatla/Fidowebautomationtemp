@@ -90,8 +90,8 @@ public class FidoMakePaymentPage extends BasePageClass {
 	
 	@FindBy(xpath = "//*[@id='terms-conditions-scroll']/ins/div/ins/p[7]")
 	WebElement lbltermsAndConditionBottom;
-	
-	@FindBy(xpath="//*[contains(text(),' Review and Continue ') or contains(@value,'rifier et continuer')]")
+
+	@FindBy(xpath="//ss-payment-details//button[@ds-button]") //*[contains(text(),' Review and Continue ') or contains(@value,'rifier et continuer')]//parent::span//parent::button
 	WebElement btnReviewAndContinue;
 
 	@FindBy(xpath="//button[@class='w-100 w-sm-auto mr-md-24 mt-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or contains(@value,' Pay Now ')]")
@@ -156,6 +156,9 @@ public class FidoMakePaymentPage extends BasePageClass {
 			@FindBy(xpath = "//button[@title='payment.auto.manual.step-1.continue']"),
 			@FindBy(xpath = "//span[text()=' Continue ']")})
 	WebElement btnContinue;
+
+	@FindBy (xpath = "//button[contains(@class,'w-100 w-sm-auto mr-md-24 mt-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')]")
+	WebElement btnContinueInReview;
 
 	/**
 	 * Set the Pre-Auth credit card at semaphone frame on the payment options page
@@ -361,8 +364,10 @@ public class FidoMakePaymentPage extends BasePageClass {
 	 */
 	public void clkReviewAndContinueButton()
 	{	
-		Actions act=new Actions(driver);		
-		act.moveToElement(reusableActions.getWhenReady(btnReviewAndContinue)).click().build().perform();
+		/*Actions act=new Actions(driver);
+		act.moveToElement(reusableActions.getWhenReady(btnReviewAndContinue)).click().build().perform();*/
+		//reusableActions.waitForElementVisibility(btnReviewAndContinue, 30);
+		reusableActions.clickWhenVisible(btnReviewAndContinue, 60);
 	   
 	}
 	
@@ -524,6 +529,15 @@ public class FidoMakePaymentPage extends BasePageClass {
 	public void clkContinue() {
 		reusableActions.waitForElementTobeClickable(btnContinue, 60);
 		reusableActions.executeJavaScriptClick(btnContinue);
+	}
+
+	/**
+	 * Click on the continue button
+	 * @author Mirza.Kamran
+	 */
+	public void clkContinueInReview() {
+		reusableActions.waitForElementTobeClickable(btnContinueInReview, 60);
+		reusableActions.executeJavaScriptClick(btnContinueInReview);
 	}
 }
 

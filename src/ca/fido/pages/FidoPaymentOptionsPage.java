@@ -130,6 +130,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//div/fds-button/button[@title='Close' or @title='Fermer']")
 	WebElement btnClose;
 
+	@FindBy(xpath = "//button[contains(@aria-label,'Automatic Payments')]")
+	WebElement btnAutomaticPaymentPanel;
+
 	@FindBy(xpath = "//a[@title='Cancel automatic payments' or @title='Annuler les paiements automatiques']")
 	WebElement btnRemoveAutomaticPayment;
 
@@ -285,6 +288,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 			@FindBy(xpath = "//button[contains(@class,'w-100 w-sm-auto ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')]"),
 			@FindBy(xpath = "//span[text()=' Continue ']//ancestor::button")})
 	WebElement btnContinue;
+
+	@FindBy(xpath = "//button[contains(@title,'payment.auto.manual.step-1.continue')]")
+	WebElement btnContinueInManualPaymentsSection;
 
 	@FindBy(xpath = "(//button[contains(@class,'ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')])[2]")
 	WebElement btnContinueInBankSection;
@@ -656,6 +662,15 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void clkContinue() {
 		reusableActions.waitForElementTobeClickable(btnContinue, 60);
 		reusableActions.executeJavaScriptClick(btnContinue);
+	}
+
+	/**
+	 * Click on the continue button
+	 * @author Sidhartha.Vadrevu
+	 */
+	public void clkContinueInManualPaymentsSection() {
+		reusableActions.waitForElementTobeClickable(btnContinueInManualPaymentsSection, 60);
+		reusableActions.executeJavaScriptClick(btnContinueInManualPaymentsSection);
 	}
 
 	/**
@@ -1076,6 +1091,15 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(btnRemoveAutomaticPayment);
 		reusableActions.waitForElementTobeClickable(btnRemoveAutomaticPayment, 60);
 		reusableActions.executeJavaScriptClick(btnRemoveAutomaticPayment);		
+	}
+
+	/**
+	 * Clicks on automatic payment button from Panel
+	 * @author sidhartha.vadrevu
+	 */
+	public void clkAutomaticPayment() {
+		reusableActions.scrollToElement(btnAutomaticPaymentPanel);
+		reusableActions.clickIfAvailable(btnAutomaticPaymentPanel,30);
 	}
 
 	/**
