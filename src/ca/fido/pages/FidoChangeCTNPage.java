@@ -248,11 +248,12 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public Map<String, String> selectCallingProvinceAndCity() {
+		reusableActions.scrollToElement(cboProvince);
 		Map<String, String> map=new Hashtable<String, String>();
 		new Select(cboProvince).selectByVisibleText("Ontario");
 		//reusableActions.selectWhenReady(cboProvince," Ontario ");
 		waitForDropDownToLoad(cboCity,60);
-		new Select(cboCity).selectByVisibleText("toronto");
+		new Select(cboCity).selectByVisibleText("toronto")  ;
 		//reusableActions.selectWhenReady(cboCity, " Toronto ");
 		map.put("province",reusableActions.getSelectedValue(cboProvince));
 		map.put("city",reusableActions.getSelectedValue(cboCity));

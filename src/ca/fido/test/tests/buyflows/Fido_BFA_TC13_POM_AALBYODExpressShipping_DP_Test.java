@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC13_POM_AALBYODExpressShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -51,11 +51,24 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_Test extends BaseTestClass
         getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
+        getFidobuildplanpage().selectBYODdpAddon();
+        getReporter().reportLogPassWithScreenshot("Device Protection Addon option is selected");
+        getFidobuildplanpage().enterDPIMEI(TestDataHandler.tc13AALBYODExpressShipping.getDpIMEI());
+        getReporter().reportLogPassWithScreenshot("DP Addon IMEI Entered");
+        getFidobuildplanpage().setDPDeviceStorage(TestDataHandler.tc13AALBYODExpressShipping.getDpDeviceStorage());
+        getReporter().reportLogPassWithScreenshot("DP Addon Device Storage Selected");
+        getFidobuildplanpage().setDPDeviceColor(TestDataHandler.tc13AALBYODExpressShipping.getDpDeviceColor());
+        getReporter().reportLogPassWithScreenshot("DP Addon Device Color Selected");
+        getFidobuildplanpage().clkDpEligCheckBtn();
+        getReporter().hardAssert(getFidobuildplanpage().verifyEligibilityMsg(),"Entered IMEI is eligible for Device Protection Addon","Entered IMEI is not eligible");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
+        getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+        String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
+        getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         String cityName = TestDataHandler.tc13AALBYODExpressShipping.getCityName();
@@ -74,6 +87,9 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_Test extends BaseTestClass
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
+        getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+        String deviceProtectionAddon = getFidoorderreviewpage().getDeviceProtectionAddon();
+        getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         //getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
