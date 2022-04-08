@@ -217,6 +217,36 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Prem Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement dpAddonCarLineItem;
 
+	@FindBy(xpath = "//label[@aria-label='Device Protection' or contains(@aria-label,'Protection de l’appareil')]")
+	WebElement BYODdpAddon;
+
+	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	WebElement dpimeiField;
+
+	@FindBy(xpath = "//input[@formcontrolname='imei']")
+	WebElement inputDPIMEI;
+
+	@FindBy(xpath = "//div[@class='d-flex flex-row-reverse']//span[contains(text(),'Continue')]")
+	WebElement dpIMEIContinue;
+
+	@FindBy(xpath = "//select[@data-test='byod-equipment-storage']")
+	WebElement inputDeviceStorage;
+
+	@FindBy(xpath = "//select[@data-test='byod-equipment-color']")
+	WebElement inputDeviceColor;
+
+	@FindBy(xpath = "//button[@data-test='byod-check-eligibility-cta']")
+	WebElement imeiEligCheckBtn;
+
+	@FindBy(xpath = "//p[contains(.,'Your device is eligible') or contains(.,' Bonne nouvelle! Votre appareil est admissible')]")
+	WebElement imeiSuccessEligibleMsg;
+
+	@FindBy(xpath = "//label[@aria-label='No Device Protection' or contains(@aria-label,'Aucune protection de l’appareil')]")
+	WebElement byodNoDeviceProtection;
+
+	@FindBy(xpath = "//p[contains(.,'not eligible') or contains(.,'Votre appareil n’est pas admissible')]")
+	WebElement imeiNotEligibleMsg;
+
 	/**
 	 * This method verifies if info widget is properly displayed in plan config page
 	 * @return true if info widget is loaded successfully, else false
@@ -738,7 +768,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkBasicTab() {
 	    reusableActions.waitForElementVisibility(btnBasicPlan);
-		reusableActions.clickWhenReady(btnBasicPlan,20);
+		reusableActions.executeJavaScriptClick(btnBasicPlan);
 	}
 
 	/**
@@ -864,7 +894,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void clkPromoSection() {
 		reusableActions.waitForElementVisibility(promoSection, 20);
-		reusableActions.clickWhenVisible(promoSection);
+		reusableActions.clickWhenReady(promoSection);
 	}
 
 	/**
@@ -873,8 +903,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void setPromoCode(String promoCode) {
-		reusableActions.getWhenReady(promoCodeField, 60).click();
-		reusableActions.getWhenReady(txtPromoCode,20).sendKeys(promoCode);
+		reusableActions.clickWhenReady(promoCodeField, 30);
+		reusableActions.getWhenReady(txtPromoCode,30).sendKeys(promoCode);
 	}
 
 	/**
@@ -941,4 +971,77 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public String getDeviceProtectionAddon() {
 		return dpAddonCarLineItem.getText().replaceAll("\\n", "");
 	}
+
+	/**
+	 * This method clicks on Device Protection Tab in BYOD Add-ons stepper
+	 * @author Subash.Nedunchezhian
+	 */
+	public void selectBYODdpAddon() {
+		reusableActions.executeJavaScriptClick(deviceProtectionAddonTab);
+		reusableActions.clickWhenReady(BYODdpAddon);
+	}
+
+	/**
+	 * This method enters the IMEI/TacCode on IMEI Input Field
+	 * @param tacCode IMEI/TacCode from yaml file
+	 * @author Subash.Nedunchezhian
+	 */
+	public void enterDPIMEI(String tacCode) {
+		reusableActions.clickWhenReady(dpimeiField, 20);
+		reusableActions.getWhenReady(inputDPIMEI, 20).sendKeys(tacCode + FormFiller.generateRandomNumber(7));
+		reusableActions.clickWhenReady(dpIMEIContinue);
+	}
+
+	/**
+	 * This method selects the Device storage from the Storage Drop-down field
+	 * @param dpStorage Storage from yaml file
+	 * @author Subash.Nedunchezhian
+	 */
+	public void setDPDeviceStorage(String dpStorage) {
+		reusableActions.clickWhenReady(inputDeviceStorage);
+		reusableActions.selectWhenReady(inputDeviceStorage, dpStorage);
+	}
+
+	/**
+	 * This method selects the Device color from the Color Drop-down field
+	 * @param dpColor Color from yaml file
+	 * @author Subash.Nedunchezhian
+	 */
+	public void setDPDeviceColor(String dpColor) {
+		reusableActions.clickWhenReady(inputDeviceColor);
+		reusableActions.selectWhenReady(inputDeviceColor, dpColor);
+	}
+
+	/**
+	 * This method click on Check/Get My Quote button to validate Device Protection Eligibility of the IMEI
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clkDpEligCheckBtn() {
+		reusableActions.clickWhenReady(imeiEligCheckBtn);
+	}
+
+	/**
+	 * This method validates the Device Protection Eligibility(Success) message of the IMEI
+	 * @return true if the 'Your device is eligible' message displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyEligibilityMsg() {
+		return reusableActions.isElementVisible(imeiSuccessEligibleMsg);
+	}
+	/**
+	 * This method validates the Device Protection Not Eligibile(Failure) message of the IMEI
+	 * @return true if the 'Your device is Not eligible' message displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyNotEligibleMsg(){
+		return reusableActions.isElementVisible(imeiNotEligibleMsg);
+	}
+	/**
+	 * This method click on No Device Protection option in Add-on stepper
+	 * @author Subash.Nedunchezhian
+	 */
+	public void selectNoDeviceProtection(){
+		reusableActions.clickWhenReady(byodNoDeviceProtection);
+	}
+
 }
