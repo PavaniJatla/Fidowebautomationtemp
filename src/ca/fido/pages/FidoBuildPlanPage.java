@@ -214,7 +214,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//div[contains(@class,'ds-checkboxLabel')]//parent::label[contains(@title,'Device Protection') or contains(@title,'Protect supér appareil ')]")
 	WebElement deviceProtectionAddon;
 
-	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Prem Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement dpAddonCarLineItem;
 
 	@FindBy(xpath = "//label[@aria-label='Device Protection' or contains(@aria-label,'Protection de l’appareil')]")
