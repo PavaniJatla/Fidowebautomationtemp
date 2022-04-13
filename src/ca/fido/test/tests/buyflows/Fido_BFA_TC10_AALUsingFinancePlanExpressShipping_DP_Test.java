@@ -53,11 +53,11 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         getReporter().reportLogPass("Device Protection Addon is selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
+        getFidobuildplanpage().clkContinueCallerID();
+        getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
         String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
         getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
-        getFidobuildplanpage().clkContinueCallerID();
-        getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         String cityName = TestDataHandler.tc10AALFinancingPlanExpressShipping.getCityName();
