@@ -21,7 +21,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	public String xpath;
 	public int stepper;
-	String planType = TestDataHandler.tc12AALTabletsStandardShipping.getNewPlanType();
+	String planType = TestDataHandler.tc13AALBYODExpressShipping.getNewPlanType();
 
 	public FidoBuildPlanPage(WebDriver driver) {
 		super(driver);		
@@ -903,7 +903,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void setPromoCode(String promoCode) {
-		reusableActions.clickWhenReady(promoCodeField, 30);
+		reusableActions.executeJavaScriptClick(promoCodeField);
 		reusableActions.getWhenReady(txtPromoCode,30).sendKeys(promoCode);
 	}
 
