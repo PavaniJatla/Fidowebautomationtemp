@@ -61,9 +61,9 @@ pipeline {
     environment {
         SAUCE_USERNAME = credentials('SAUCE_USERNAME')
         SAUCE_ACCESS_KEY = credentials('SAUCE_ACCESS_KEY')
-        FTP_SERVER = credentials('FTP_SERVER')
-        FTP_USERNAME = credentials('FTP_USERNAME')
-        FTP_PASSWORD = credentials('FTP_PASSWORD')
+        NETSTORAGE_HOST = credentials('NETSTORAGE_HOST')
+        NETSTORAGE_ID = credentials('NETSTORAGE_ID')
+        NETSTORAGE_ACCESS_KEY = credentials('NETSTORAGE_ACCESS_KEY')
         ENS_USERNAME= credentials('ENS_USERNAME')
         ENS_PASSWORD= credentials('ENS_PASSWORD')
 
@@ -148,10 +148,7 @@ pipeline {
                                 def buildTimeStamp = "${env.BUILD_TIMESTAMP}"
                                 def testProfile = "${env.TestProfile}"
                                 def destinationFolder=jobName.replaceAll("\\s+", "").replace("digital-qe/","") + "/" +testProfile+"/"+ buildTimeStamp.replaceAll("\\s+", "")+"/"
-                                sh label: 'NS upload', script: """ 
-                                netstorage-upload.sh /mnt/ns/nskey.pem ./report Digital-QE/
-                                """
-                                REPORT_URL="${REPORT_URL}"+"/report/"+destinationFolder+"/results.html"
+                                REPORT_URL="${REPORT_URL}"+"report/"+destinationFolder+"results.html"
                             }
 
                         }
