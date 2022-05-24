@@ -45,9 +45,9 @@ public class FidoSS_TC077_PostPaidChangeMOP_Bank_CC_to_Manual extends BaseTestCl
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+/*		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Login succeed.", 
-				"Failed to login.");
+				"Failed to login.");*/
 		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
 /*		getFidoaccountoverviewpage().clkViewBillNew(strBAN);

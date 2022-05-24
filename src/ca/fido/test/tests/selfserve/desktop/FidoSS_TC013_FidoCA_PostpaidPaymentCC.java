@@ -46,9 +46,9 @@ public class FidoSS_TC013_FidoCA_PostpaidPaymentCC extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+/*		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Login succeed.", 
-				"Failed to login.");
+				"Failed to login.");*/
 		getReporter().reportLogWithScreenshot("Account overview page");
 		//getFidoaccountoverviewpage().waitForPayNowToBecomeClickable();
 		//.clkPayNow();

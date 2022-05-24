@@ -358,7 +358,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
 
-	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
+	@FindAll({
+	@FindBy(xpath = "//span[contains(text(),' View Details')]"),
+	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")})
 	WebElement lnkShowMyUsageTotalPlan;
 	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})

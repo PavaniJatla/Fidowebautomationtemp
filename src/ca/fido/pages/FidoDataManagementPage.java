@@ -22,7 +22,8 @@ public class FidoDataManagementPage extends BasePageClass {
 		super(driver);		
 	}
 
-	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
+
+	@FindBy(xpath = "//a[contains(@role,'link')]//span[contains(text(),'View Details')]")
 	WebElement lnkShowMyUsageTotalPlan;
 
 	@FindBy (xpath = "//h1[contains(@class,'manage-data-title') or @class='manage-data-title']")
@@ -528,6 +529,7 @@ public class FidoDataManagementPage extends BasePageClass {
 		boolean isDisplayed=false;
 		//reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
 		//reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		reusableActions.staticWait(5000);
 		if (reusableActions.isElementVisible(lnkShowMyUsageTotalPlan)==true) {
 			new FidoWirelessDashboardPostpaidPage(driver).clkShowMyUsageIfVisible();
 		}

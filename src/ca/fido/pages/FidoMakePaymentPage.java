@@ -21,7 +21,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 	    Creditcard,
 	    Interac
 	  }
-	
+
 	@FindBy(xpath = "//select[@ng-model='props.selectedPaymentOption']")
 	WebElement ddlPaymentMode;
 
@@ -30,9 +30,9 @@ public class FidoMakePaymentPage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@translate='global.cta.confirm']")
 	WebElement btnPaymentConfirm;
-	
+
 	@FindBy(xpath = "//div[@class='semafone-container']//descendant::iframe")
-	WebElement fraSemaphone;  
+	WebElement fraSemaphone;
 
 	@FindAll({
 			@FindBy(xpath = "//ss-semafone-credit-card/div/iframe"),
@@ -57,7 +57,7 @@ public class FidoMakePaymentPage extends BasePageClass {
 
 	@FindBy(id = "cvv")
 	WebElement txtCVV;
-	
+
 	@FindBy(xpath = "//*[@id = 'expiry-date']")
 	WebElement ddlExpiryMonthMobile;
 
@@ -66,28 +66,28 @@ public class FidoMakePaymentPage extends BasePageClass {
 
 	@FindBy(xpath = "//*[@id = 'cvv']")
 	WebElement txtCVVMobile;
-	
+
 	@FindBy(xpath="//*[@id='ds-form-input-id-2']")
 	WebElement txtAmount;
-	
+
 	@FindBy(xpath="//input[@value='Update']")
 	WebElement btnUpdate;
-	
+
 	@FindBy(xpath="//ins[@translate='global.cta.updatePaymentMethod']")
 	WebElement btnUpdatePaymentMethod;
-	
+
 	@FindBy(name="transitCode")
 	WebElement txtTransitCode;
-	
+
 	@FindBy(id="bank-code")
 	WebElement txtBankCode;
-	
+
 	@FindBy(id="account-number")
 	WebElement txtbankAccountNumber;
-	
+
 	@FindBy(xpath="//label[@for='agree-to-terms-and-conditions']")
 	WebElement chkAgreeTermsAndCond;
-	
+
 	@FindBy(xpath = "//*[@id='terms-conditions-scroll']/ins/div/ins/p[7]")
 	WebElement lbltermsAndConditionBottom;
 
@@ -96,44 +96,44 @@ public class FidoMakePaymentPage extends BasePageClass {
 
 	@FindBy(xpath="//button[@class='w-100 w-sm-auto mr-md-24 mt-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or contains(@value,' Pay Now ')]")
 	WebElement btnPayNow;
-	
+
 	@FindBy(xpath="//div[@class='pay-now-modal']//input[@value='Review & continue' or contains(@value,'rifier et continuer')]")
 	WebElement btnReviewAndContinueMobile;
 
 	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payNow']")
 	WebElement btnPayNowMobile;
-	
+
 	@FindBy(xpath="//ins[@translate='global.label.paymentConfirmationHeading']")
 	WebElement lblPaymentReceived;
 
 	@FindBy(xpath = "//ss-payment-message//span[contains(text(),'Done')]//ancestor::a")
 	private WebElement btnDone;
-	
+
 	@FindBy(xpath="//div[@class='pay-now-modal']//ins[@translate='global.cta.payIntreac']")
 	WebElement btnPayOntheInteracSite;
-	
+
 	@FindBy(xpath="//div[@class='pay-now-payment-text']")
 	WebElement paymentAmount;
-	
+
 	@FindBy(xpath="//div[@ng-if='paymentReferenceNumberExists']//div[@class='pay-now-payment-text uppercase']")
 	WebElement lblRefrenceNumber;
-	
+
 	@FindBy(xpath="//div[@class='col-xs-12 col-md-12 hidden-xs']//ins[@translate='global.label.paymentHistoryView']")
 	WebElement btnPaymentHistory;
-	
+
 	@FindBy(xpath="//div[@class='pay-now-modal']/div[@class='modal-header hidden-xs']/div/button[@class='close square-close-icon']")
 	WebElement btnCloseMakePayment;
-	
-	
+
+
 	@FindBy(xpath = "//div[@class='bank-section']")
 	WebElement divBankPayment;
-	
+
 	@FindBy (xpath = "//div[@class='row pay-now-content' or //button[@id='ds-tabs-0-tab-0']]")
 	WebElement paymentModal;
-	
+
 	@FindBy(xpath = "//div[contains(@class,'hidden-xs')]//ins[@translate='global.label.paymentHistoryView']")
 	WebElement lnkPaymentHistoryOnConfirmationPageFooter;
-	
+
 	@FindBy(xpath = "//ins[@translate='global.label.paymentHistoryView']")
 	WebElement lnkPaymentHistoryOnConfirmationPageFooterMobile;
 
@@ -154,10 +154,10 @@ public class FidoMakePaymentPage extends BasePageClass {
 
 	@FindAll({
 			@FindBy(xpath = "//button[@title='payment.auto.manual.step-1.continue']"),
-			@FindBy(xpath = "//span[text()=' Continue ']")})
+			@FindBy(xpath = "//span[text()=' Continue '][1]")})
 	WebElement btnContinue;
 
-	@FindBy (xpath = "//button[contains(@class,'w-100 w-sm-auto mr-md-24 mt-16 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')]")
+	@FindBy (xpath = "//span[text()=' Cancel ']//ancestor::button//preceding-sibling::button")
 	WebElement btnContinueInReview;
 
 	/**
@@ -368,7 +368,11 @@ public class FidoMakePaymentPage extends BasePageClass {
 		act.moveToElement(reusableActions.getWhenReady(btnReviewAndContinue)).click().build().perform();*/
 		//reusableActions.waitForElementVisibility(btnReviewAndContinue, 30);
 		reusableActions.clickWhenVisible(btnReviewAndContinue, 60);
-	   
+		if (reusableActions.isElementVisible(btnContinueInReview) == false) {
+			reusableActions.clickWhenVisible(btnReviewAndContinue, 60);
+		} else {
+			clkContinueInReview();
+		}
 	}
 	
 	/**

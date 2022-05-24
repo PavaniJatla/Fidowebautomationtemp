@@ -157,6 +157,9 @@ public class FidoChangeCTNPage extends BasePageClass {
 	@FindBy(xpath = "//div[contains(@class,'talk-text-usage-heading')]")
 	WebElement talkTextHeadingDashboardPage;
 
+	@FindBy(xpath = "//div[contains(@class,'wireless-title-dropdown-container')]")
+	WebElement headingDashboardPage;
+
 	@FindAll({
 	@FindBy(xpath = "//div[contains(@class,'ng-star-inserted')]//p[contains(text(),'Local to:')]"),
 	@FindBy(xpath = "//div[@class='confirmPage']//ins[@translate='global.label.localTo']/parent::div/div")
@@ -253,7 +256,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 		new Select(cboProvince).selectByVisibleText("Ontario");
 		//reusableActions.selectWhenReady(cboProvince," Ontario ");
 		waitForDropDownToLoad(cboCity,60);
-		new Select(cboCity).selectByVisibleText("toronto")  ;
+		new Select(cboCity).selectByVisibleText("Toronto")  ;
 		//reusableActions.selectWhenReady(cboCity, " Toronto ");
 		map.put("province",reusableActions.getSelectedValue(cboProvince));
 		map.put("city",reusableActions.getSelectedValue(cboCity));
@@ -434,7 +437,7 @@ public class FidoChangeCTNPage extends BasePageClass {
 	 */
 	public boolean verifyTheCTNChangeDashboardPage(String strNewNumber) {
 		reusableActions.waitForPageLoad();
-		reusableActions.waitForElementVisibility(talkTextHeadingDashboardPage,60);
+		reusableActions.waitForElementVisibility(headingDashboardPage,60);
 		if(reusableActions.getWhenReady(spanNewNumberDashboard).getText().trim().contains(strNewNumber))
 		{
 			return true;

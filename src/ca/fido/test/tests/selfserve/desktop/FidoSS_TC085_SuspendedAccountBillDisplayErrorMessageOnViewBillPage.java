@@ -40,8 +40,8 @@ public class FidoSS_TC085_SuspendedAccountBillDisplayErrorMessageOnViewBillPage 
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc28.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();
-		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), "Login proceed without error.",
-				"Login failed with error.");
+/*		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), "Login proceed without error.",
+				"Login failed with error.");*/
 		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login succeed.", "Failed to login.");
 		getReporter().reportLogWithScreenshot("Account overview page");

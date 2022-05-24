@@ -74,7 +74,8 @@ public class FidoSS_Regression_TC017_PostpaidViewAndUpdateBillingAddress extends
     			getReporter().reportLogWithScreenshot("Close the Overlay");
     			getFidoprofileandsettingpage().switchToVerifyIdentityIFrame();
     			getFidoprofileandsettingpage().setRecoveryCode(recoveryCode);
-    			getFidoprofileandsettingpage().clkBtnContinue();    						
+    			getFidoprofileandsettingpage().clkBtnContinue();
+    			getFidoprofileandsettingpage().switchOutofSetRecoveryNumIframe();
     						
     		} catch (Exception e) {
     			e.printStackTrace();

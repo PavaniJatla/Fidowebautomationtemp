@@ -45,9 +45,9 @@ public class FidoSS_TC042_FidoCA_HSI_PaymentHistory extends BaseTestClass{
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+/*		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Login succeed.", 
-				"Failed to login.");
+				"Failed to login.");*/
 		String strBAN = TestDataHandler.tc4246.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getReporter().reportLogWithScreenshot("View bill page is open");

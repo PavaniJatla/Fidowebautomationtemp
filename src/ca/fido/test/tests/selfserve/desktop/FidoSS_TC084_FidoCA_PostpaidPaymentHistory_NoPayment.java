@@ -45,9 +45,9 @@ public class FidoSS_TC084_FidoCA_PostpaidPaymentHistory_NoPayment extends BaseTe
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+/*		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Login succeed.", 
-				"Failed to login.");
+				"Failed to login.");*/
 		String strBAN = TestDataHandler.tc84.getaccountDetails().getBan();
 		//getFidoaccountoverviewpage().clkViewBillNew(strBAN);
 		getFidoaccountoverviewpage().clkPayNowNew(strBAN);

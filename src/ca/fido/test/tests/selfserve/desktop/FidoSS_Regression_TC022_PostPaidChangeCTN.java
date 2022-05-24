@@ -72,7 +72,7 @@ public class FidoSS_Regression_TC022_PostPaidChangeCTN extends BaseTestClass{
 							"Province selecbox is not visible");
 		Map<String, String> callingAreaDetails = getFidochangectnpage().selectCallingProvinceAndCity();
 		getReporter().reportLogWithScreenshot("Select calling province and city");
-		
+
 		getFidochangectnpage().clickFindAvailableNumbers();
 		getReporter().reportLogWithScreenshot("Find Available Numbers");
 		getReporter().hardAssert(getFidochangectnpage().verifyPickANewNumberPageLoaded(),

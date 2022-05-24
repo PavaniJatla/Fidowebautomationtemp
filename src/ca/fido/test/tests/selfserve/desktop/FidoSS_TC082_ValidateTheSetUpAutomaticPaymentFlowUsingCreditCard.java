@@ -45,9 +45,9 @@ public class FidoSS_TC082_ValidateTheSetUpAutomaticPaymentFlowUsingCreditCard ex
 				"Login proceed without error.", 
 				"Login failed with error.");
 		getFidologinpage().switchOutOfSignInFrame();
-		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
+/*		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),
 				"Login succeed.", 
-				"Failed to login.");
+				"Failed to login.");*/
 		getReporter().reportLogWithScreenshot("Account overview page");
 		String strBAN = TestDataHandler.tc121315.getaccountDetails().getBan();
 		getFidoaccountoverviewpage().clkPenIconForChangePaymentMethod();
@@ -68,6 +68,7 @@ public class FidoSS_TC082_ValidateTheSetUpAutomaticPaymentFlowUsingCreditCard ex
 
 		getFidomakepaymentpage().setCreditcardCVV(TestDataHandler.paymentInfo.getCreditCardDetails().getCVV());
 		getFidomakepaymentpage().clkReviewAndContinueButton();
+		//getFidomakepaymentpage().clkContinue();
 		getFidomakepaymentpage().clkPayNow();
 		getFidopaymentoptionspage().clkOnDone();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),

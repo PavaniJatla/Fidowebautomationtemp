@@ -261,8 +261,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	WebElement ddlPaymentMethod;
 	
 	@FindAll({
-		@FindBy(xpath="//span[@checkout-res='checkout_pay_submit']/parent::button"),
-		@FindBy(xpath="//button[@id='main-continue-button']")
+			@FindBy(xpath = "//button[@title='Continue']//span[contains(text(),' Submit ')]/.."),
+			@FindBy(xpath="//span[@checkout-res='checkout_pay_submit']/parent::button"),
+			@FindBy(xpath="//button[@id='main-continue-button']")
 	})
 	WebElement btnSubmit;
 
@@ -285,6 +286,7 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	WebElement optManualPayments;
 
 	@FindAll({
+			@FindBy(xpath = "//button[contains(@title,'payment.auto.manual.step-1.continue')]"),
 			@FindBy(xpath = "//button[contains(@class,'w-100 w-sm-auto ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large')]"),
 			@FindBy(xpath = "//span[text()=' Continue ']//ancestor::button")})
 	WebElement btnContinue;

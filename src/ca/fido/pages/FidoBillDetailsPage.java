@@ -402,6 +402,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	   
 	   //===commenting the old code below ================
 	   //return reusableActions.getWhenReady(divBillValue).getText().trim();
+	   reusableActions.staticWait(5000);
 	   return reusableActions.getWhenReady(divBillValueNew).getAttribute("amount").trim();
    }
    
