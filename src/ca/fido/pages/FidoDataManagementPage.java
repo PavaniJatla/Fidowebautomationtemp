@@ -23,7 +23,7 @@ public class FidoDataManagementPage extends BasePageClass {
 	}
 
 
-	@FindBy(xpath = "//a[contains(@role,'link')]//span[contains(text(),'View Details')]")
+	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
 	WebElement lnkShowMyUsageTotalPlan;
 
 	@FindBy (xpath = "//h1[contains(@class,'manage-data-title') or @class='manage-data-title']")

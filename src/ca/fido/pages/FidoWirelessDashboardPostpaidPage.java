@@ -359,7 +359,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	WebElement lnlChangeMyNumber;
 
 	@FindAll({
-	@FindBy(xpath = "//span[contains(text(),' View Details')]"),
+	//@FindBy(xpath = "//span[contains(text(),' View Details')]"),
 	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")})
 	WebElement lnkShowMyUsageTotalPlan;
 	
