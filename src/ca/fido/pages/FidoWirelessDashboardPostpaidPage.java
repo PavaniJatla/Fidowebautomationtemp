@@ -32,20 +32,42 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Update SIM Card ' or text()='Mettre à jour la carte SIM']"),
 	@FindBy (xpath = "//span[@translate='wireless.dashboard.quickActions.quickActions04']")})
 	WebElement lnkUpdateSimCard;
-	
+
+	@FindAll({
+	@FindBy (xpath = "//input[@placeholder='Current SIM card number']"),
 	@FindBy (xpath = "//input[@name='oldSimNumber']")
+	})
 	WebElement txtOldSimNum;
-	
+
+	@FindAll({
+	@FindBy (xpath = "//input[@placeholder='New SIM card number']"),
 	@FindBy (xpath = "//input[@name='newSimNumber']")
+	})
 	WebElement txtNewSimNum;
-	
+
+	@FindAll({
+	@FindBy (xpath = "//span[text()='Next']//parent::span//parent::a"),
 	@FindBy (xpath = "//button[@translate='global.cta.next']")
+	})
 	WebElement btnUpdateSimNext;
 
+	@FindAll({
+	@FindBy (xpath = "//span[@class='text-uppercase']"),
 	@FindBy (xpath = "//div[@class='heads-up-section']")
+	})
 	WebElement headsUpSection;
-	
-	@FindBy (xpath = "//div[@translate='page.update-sim-card.review']")
+
+	@FindBy (xpath = "//div[contains(text(),'Done!')]")
+	WebElement titleDone;
+
+	@FindBy (xpath = "//a[@ng-click='closeModal()']")
+	WebElement closeDone;
+
+	@FindAll({
+			@FindBy (xpath = "//div[contains(text(),'Done!')]"),
+			@FindBy (xpath = "//p[contains(@class,'success')]"),
+			@FindBy (xpath = "//div[@translate='page.update-sim-card.review']")
+	})
 	WebElement titleReview;
 	
 	@FindBy (xpath = "//div[@class='review-page-oldsim-number']")
@@ -53,9 +75,15 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	
 	@FindBy (xpath = "//input[@name='newSimNumber']")
 	WebElement reviewNewSim;	
-	
+
+	@FindAll({
+	@FindBy (xpath = "//button[contains(@class,'ds-button')]"),
 	@FindBy (xpath = "//button[@translate='page.update-sim-card.update-sim-btn']")
-	WebElement btnUpdateSim;	
+	})
+	WebElement btnUpdateSim;
+
+	@FindBy (xpath = "//a[contains(@variant,'secondary')]")
+	WebElement btnBackUsageDash;
 	
 	@FindBy (xpath = "//a[.//ins[@translate='global.label.changePackage']]")
 	WebElement lnkChangePackage;
@@ -330,7 +358,9 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	@FindBy(xpath = "//a/span[@translate=\"wireless.dashboard.quickActions.quickActions05\"]")})
 	WebElement lnlChangeMyNumber;
 
-	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
+	@FindAll({
+	//@FindBy(xpath = "//span[contains(text(),' View Details')]"),
+	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")})
 	WebElement lnkShowMyUsageTotalPlan;
 	
 	@FindAll({@FindBy(xpath = "//div[@class='selected-plan-details-item']//h2")})
@@ -1198,7 +1228,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setOldSimNum(String oldSimNum) {
-		reusableActions.getWhenReady(txtOldSimNum, 30).clear();
+		reusableActions.getWhenReady(txtOldSimNum, 30).click();
 		reusableActions.getWhenReady(txtOldSimNum).sendKeys(oldSimNum);
 	}
 	
@@ -1209,7 +1239,7 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setNewSimNum(String newSimNum) {
-		reusableActions.getWhenReady(txtNewSimNum, 30).clear();
+		reusableActions.getWhenReady(txtNewSimNum, 30).click();
 		reusableActions.getWhenReady(txtNewSimNum).sendKeys(newSimNum);
 	}
 	
@@ -1245,6 +1275,41 @@ public class FidoWirelessDashboardPostpaidPage extends BasePageClass {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * To verify if the review page opened and to check the success message.
+	 * @return true when all the condition match, otherwise false.
+	 * @author sidhartha.vadrevu
+	 */
+	public Boolean verifyDoneMsg() {
+		if (reusableActions.isElementVisible(titleDone, 30)) {
+			reusableActions.clickWhenVisible(closeDone);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * To verify if the review page opened and to check the success message.
+	 * @return true when all the condition match, otherwise false.
+	 * @author sidhartha.vadrevu
+	 */
+	public Boolean verifyUpdateSimReviewMsg() {
+		if (reusableActions.isElementVisible(titleReview, 30)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Click on Back to Usage Dashboard button
+	 * @author ning.xue
+	 */
+	public void clkBtnBckUsageDash() {
+
+		reusableActions.getWhenVisible(btnBackUsageDash, 20).click();
+		reusableActions.staticWait(5000);
 	}
 	
 	/**

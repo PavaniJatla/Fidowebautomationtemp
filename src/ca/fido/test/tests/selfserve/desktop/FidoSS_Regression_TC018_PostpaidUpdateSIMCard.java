@@ -48,10 +48,10 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 		getFidowirelessdashboardpostpaidpage().clkLnkUpdateSimCard();
 		getReporter().reportLogWithScreenshot("Click on Link : Update Sim card");
 		String strOldSimNum = TestDataHandler.tc18.getaccountDetails().getSimCardNumber();
-		getFidoaccountoverviewpage().scrollToMiddleOfPage();
+		//getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getFidowirelessdashboardpostpaidpage().setOldSimNum(strOldSimNum);
 		//String strNewSimNum = FormFiller.generateSIMNumber();
-		String strNewSimNum = "370333000069253"; //370102000617860
+		String strNewSimNum = "370107180139080"; //370102000617860
 		getFidowirelessdashboardpostpaidpage().setNewSimNum(strNewSimNum);
 		getReporter().reportLogWithScreenshot("Fill old and new sim card details");
 		getFidowirelessdashboardpostpaidpage().clkBtnUpdateSimNext();
@@ -59,12 +59,21 @@ public class FidoSS_Regression_TC018_PostpaidUpdateSIMCard extends BaseTestClass
 		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyHeadsUpSection(),
 				"Heads up Section is displayed",
 				"Heads up Section is not displayed");
+		getFidoaccountoverviewpage().scrollToMiddleOfPage();
 		getFidowirelessdashboardpostpaidpage().clkBtnUpdateSim();
 		getReporter().reportLogWithScreenshot("Click Button update SIM button");
-		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyUpdateSimReview(strOldSimNum, strNewSimNum),
+/*		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyUpdateSimReview(strOldSimNum, strNewSimNum),
 				"SIM review successful",
-				"SIM review is not successful, please investigate");	
+				"SIM review is not successful, please investigate");*/
+		getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyDoneMsg(),
+				"Done Message seen",
+				"Done Message is not seen, please investigate");
+		/*getReporter().hardAssert(getFidowirelessdashboardpostpaidpage().verifyUpdateSimReviewMsg(),
+				"SIM review successful",
+				"SIM review is not successful, please investigate");
 		getReporter().reportLogWithScreenshot("Update SIM card review page.");
+		getFidowirelessdashboardpostpaidpage().clkBtnBckUsageDash();*/
+		getReporter().reportLogWithScreenshot("Navigates Back to Usage Dashboard page.");
 	}
 
 }

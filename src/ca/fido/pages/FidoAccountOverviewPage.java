@@ -110,6 +110,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath="//span[@translate='global.cta.makePayment_header_menu']")
 	WebElement subMenuMakeAPayment;
 
+	@FindBy(xpath="//a[contains(@aria-label,'Make a payment')]")
+	WebElement btnMakeAPayment;
+
 	@FindBy(xpath="//button/ins[@translate='global.cta.viewBill']")
 	WebElement btnViewBill;
 
@@ -478,6 +481,15 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	public void clkPaymentHistory() {
 		reusableActions.waitForElementTobeClickable(btnPaymentHistory, 100);
 		reusableActions.getWhenReady(btnPaymentHistory,30).click();
+	}
+
+	/**
+	 * Click on Make a Payment Button
+	 * @author sidhartha.vadrevu
+	 */
+	public void clkMakeAPayment() {
+		reusableActions.scrollToElement(btnMakeAPayment);
+		reusableActions.getWhenReady(btnMakeAPayment,30).click();
 	}
 
 	/**

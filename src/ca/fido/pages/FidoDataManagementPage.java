@@ -22,6 +22,7 @@ public class FidoDataManagementPage extends BasePageClass {
 		super(driver);		
 	}
 
+
 	@FindBy(xpath = "//a//span[contains(text(),'View Details')]")
 	WebElement lnkShowMyUsageTotalPlan;
 
@@ -528,6 +529,7 @@ public class FidoDataManagementPage extends BasePageClass {
 		boolean isDisplayed=false;
 		//reusableActions.waitForElementTobeClickable(lnkViewDetails, 50);
 		//reusableActions.getWhenReady(lnkViewDetails, 50).click();
+		reusableActions.staticWait(5000);
 		if (reusableActions.isElementVisible(lnkShowMyUsageTotalPlan)==true) {
 			new FidoWirelessDashboardPostpaidPage(driver).clkShowMyUsageIfVisible();
 		}
