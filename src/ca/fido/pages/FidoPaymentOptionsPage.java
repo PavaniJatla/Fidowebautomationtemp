@@ -328,7 +328,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	WebElement btnContinueReview;
 
 
-	@FindBy(xpath = "//p[text()=' Success! Starting next month your bill payments will be made automatically. ' or text()='C’est réussi! À partir du mois prochain, vos paiements de facture se feront automatiquement.']")
+	@FindAll({
+	@FindBy(xpath = "//p[text()=' Success! ' or text()=' C’est fait! ']"),
+	@FindBy(xpath = "//p[text()=' Success! Starting next month your bill payments will be made automatically. ' or text()='C’est réussi! À partir du mois prochain, vos paiements de facture se feront automatiquement.']")})
 	WebElement lblYouAutomaticPaymentWillStart;
 
 	@FindBy (xpath = "//*[@translate='ute.payment.method.payment_method' or @translate='ute.payment.method.will_auto_charge' or contains(text(),'Will be automatically charged to:') or contains(text(),'Mode de paiement:') or contains(text(),'Sera porté automatiquement à :') or text()='Payment method:' or text()='Mode de paiement:']")

@@ -98,7 +98,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 					"CC Details encrypted msg displayed",
 					"CC Details encrypted msg NOT displayed");
 			getReporter().reportLogWithScreenshot("CC secured details");*/
-			getFidomakepaymentpage().clkContinueInReview();
+			//getFidomakepaymentpage().clkContinueInReview();
 			//getFidomakepaymentpage().clkPayNow();
 			//getFidopaymentoptionspage().clkContinueOnReviewPg();
 			getReporter().hardAssert(getFidopaymentoptionspage().verifySuccessMessageIsDisplayed(),
@@ -135,7 +135,7 @@ public class FidoSS_TC012_PostPaidChangeMOP extends BaseTestClass{
 					"CC Details encrypted msg displayed",
 					"CC Details encrypted msg NOT displayed");
 			getReporter().reportLogWithScreenshot("CC secured details");*/
-			getFidomakepaymentpage().clkContinueInReview();
+			//getFidomakepaymentpage().clkContinueInReview();
 
 			//getFidomakepaymentpage().clkPayNow();
 			//getFidopaymentoptionspage().clkContinueOnReviewPg();
