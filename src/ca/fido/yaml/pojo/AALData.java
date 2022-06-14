@@ -18,6 +18,7 @@ public class AALData {
 	private String dpIMEI;
 	private String dpDeviceStorage;
 	private String dpDeviceColor;
+	private String portInNumber;
 
 	/**
 	 * @return the Promo Code
@@ -192,6 +193,18 @@ public class AALData {
 	 */
 	public void setDpDeviceColor(String dpDeviceColor) {
 		this.dpDeviceColor = dpDeviceColor;
+	}
+	/**
+	 * @return the PortIn Number from yaml
+	 */
+	public String getPortInNumber() {
+		return portInNumber;
+	}
+	/**
+	 * @param portInNumber PortIn Number to set
+	 */
+	public void setPortInNumber(String portInNumber) {
+		this.portInNumber = portInNumber;
 	}
 
 }
