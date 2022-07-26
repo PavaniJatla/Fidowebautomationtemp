@@ -19,6 +19,7 @@ public class AALData {
 	private String dpDeviceStorage;
 	private String dpDeviceColor;
 	private String portInNumber;
+	private String newShippingAddress;
 
 	/**
 	 * @return the Promo Code
@@ -206,5 +207,16 @@ public class AALData {
 	public void setPortInNumber(String portInNumber) {
 		this.portInNumber = portInNumber;
 	}
-
+	/**
+	 * @return the new Shipping Address from yaml
+	 */
+	public String getNewShippingAddress() {
+		return newShippingAddress;
+	}
+	/**
+	 * @param newShippingAddress to set
+	 */
+	public void setNewShippingAddress(String newShippingAddress) {
+		this.newShippingAddress = newShippingAddress;
+	}
 }

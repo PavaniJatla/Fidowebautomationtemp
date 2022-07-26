@@ -98,6 +98,24 @@ public class FidoOrderReviewPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Prem Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement dpAddonCarLineItem;
 
+	@FindAll({
+			@FindBy(xpath = "//span[contains(text(),'Delivery Method') or contains(text(),'Mode de livraison')]/following::a[@class='link']"),
+			@FindBy(xpath = "//a[@class='link' and contains(text(),'Edit')]")
+	})
+	WebElement editDeliveryMethod;
+
+	@FindBy(xpath = "//div[@data-test='in-store-pickup-address']/p[1]")
+	WebElement selectedStoreLocation;
+
+	@FindBy(xpath = "//p[contains(.,'Shipping Address')]/following-sibling::p[1]")
+	WebElement selectedShippingAddress;
+
+	@FindAll({
+			@FindBy(xpath = "//div[contains(@class,'mb-24')]/p[contains(text(),'mailinator.com')]"),
+			@FindBy(xpath = "//div[contains(@class,'mb-24')]/p[4]")
+	})
+	WebElement emailAddress;
+
 	/**
 	 * Clicks on the 'Submit my order' button
 	 * @author Saurav.Goyal
@@ -279,5 +297,41 @@ public class FidoOrderReviewPage extends BasePageClass {
 		reusableActions.waitForElementVisibility(lblReviewPage,40);
 		reusableActions.javascriptScrollByVisibleElement(dpAddonCarLineItem);
 		return reusableActions.isElementVisible(dpAddonCarLineItem);
+	}
+
+	/**
+	 * This method clicks on Edit Shipping Method on Order Review page
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clickEditShipping(){
+		reusableActions.clickWhenReady(editDeliveryMethod);
+	}
+
+	/**
+	 * This method gets the Express Pickup Store Location on Order Review page
+	 *  @return String Express Pickup Store Location
+	 * @author Subash.Nedunchezhian
+	 */
+	public String getSelectedStoreLocation(){
+		return reusableActions.getWhenReady(selectedStoreLocation).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method gets the Selected Shipping Address on Order Review page
+	 *  @return String Selected Shipping Address
+	 * @author Subash.Nedunchezhian
+	 */
+	public String getSelectedShippingAddress(){
+		reusableActions.waitForElementVisibility(selectedShippingAddress);
+		return reusableActions.getWhenReady(selectedShippingAddress).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method gets new Email Address on Order Review page
+	 *  @return String new Email Address
+	 * @author Subash.Nedunchezhian
+	 */
+	public String getEmailAddress(){
+		return  reusableActions.getWhenReady(emailAddress).getText().replaceAll("\\n", "");
 	}
 }
