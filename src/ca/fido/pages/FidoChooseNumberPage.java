@@ -46,6 +46,21 @@ public class FidoChooseNumberPage extends BasePageClass {
 			@FindBy(xpath = "//div[contains(@class,'button-container')]//button[contains(.,'No')]")
 	})
 	WebElement btnClkNoThanks;
+
+	@FindBy(xpath = "//p[contains(text(),'Use an existing number') or contains(text(),'Utilisez un numéro actuel')]")
+	WebElement existingNumberTab;
+
+	@FindBy(xpath = "//ds-form-field[@data-test='choose-number-existing-number']")
+	WebElement existingNumberField;
+
+	@FindBy(xpath = "//input[@formcontrolname='existingNumber']")
+	WebElement inputPortInNumber;
+
+	@FindBy(xpath = "//span[contains(text(),'Vérifiez la disponibilité') or contains(text(),'Check availability')]")
+	WebElement btnCheckEligibility;
+
+	@FindBy(xpath = "//span[@data-test='port-in-success' or @data-test='Bonne nouvelle']")
+	WebElement successPortInMessage;
 	
 	/**
 	 * Clicks on the 'Select a number for your new phone' button
@@ -72,7 +87,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	public void selectCity(String city) {
 		reusableActions.waitForElementVisibility(btnContinueChooseANumberSection , 30);
 		reusableActions.scrollToElement(ddlCity);
-		reusableActions.selectWhenReady(ddlCity, 73 ,30);
+		reusableActions.selectWhenReady(ddlCity, 82 ,30);
 		//city.toUpperCase()
 	}
 	
@@ -112,4 +127,47 @@ public class FidoChooseNumberPage extends BasePageClass {
 			reusableActions.executeJavaScriptClick(btnClkNoThanks);
 		}
 	}
+
+	/**
+	 * This method clicks on Use an Existing Number Tab in Choose Number Stepper
+	 * @author subash.nedunchezhian
+	 */
+	public void clkExistingNumberTab(){
+		reusableActions.executeJavaScriptClick(existingNumberTab);
+	}
+
+	/**
+	 * This method enters PortInNumber from yaml file in Existing Number input field
+	 * @author subash.nedunchezhian
+	 */
+	public void setExistingPortInNumber(String eligiblePortInNumber){
+		reusableActions.clickWhenReady(existingNumberField);
+		reusableActions.getWhenReady(inputPortInNumber).sendKeys(eligiblePortInNumber);
+	}
+
+	/**
+	 * This method clicks on Check Eligibility button in Choose Number stepper
+	 * @author subash.nedunchezhian
+	 */
+	public void clkCheckEligibilityBtn(){
+		reusableActions.clickWhenVisible(btnCheckEligibility);
+	}
+
+	/**
+	 * This method check PortIn Eligible success message after checking the port-in eligibility
+	 * @return True if entered number is eligible for port-in or False if not eligible.
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyPortInSuccess(){
+		return reusableActions.isElementVisible(successPortInMessage);
+	}
+
+	/**
+	 * This method clicks on Continue button in Choose Number stepper
+	 * @author subash.nedunchezhian
+	 */
+	public void clkContinueChooseNumber(){
+		reusableActions.clickWhenReady(btnContinueChooseANumberSection);
+	}
+
 }

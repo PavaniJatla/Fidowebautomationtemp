@@ -24,14 +24,61 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//p[@data-test='step-title-shipping']")
 	WebElement lblShippingPickUp;
 
-	@FindBy(xpath = "//ds-radio-button[@data-test='in-store-pickup']")
+	@FindAll({
+			@FindBy(xpath = "//ds-radio-button[@data-test='in-store-pickup']"),
+			@FindBy(xpath = "//p[contains(text(),'Express Pickup')]/ancestor::span[contains(@class,'ds-selection__label')]"),
+			@FindBy(xpath = "//ds-selection[@data-test='shipping-option-inStorePickUP']//p[contains(text(),' Express Pickup – FREE')]")
+	})
 	WebElement rdoDeliveryMethodExpress;
 
 	@FindBy(xpath = "//ds-radio-button[@data-test='proOnTheGo']")
 	WebElement rdoDeliveryMethodProOnTheGo;
 
-	@FindBy(xpath = "//ds-radio-button[@data-test='standard-delivery']")
+	@FindAll({
+	@FindBy(xpath = "//ds-radio-button[@data-test='standard-delivery']"),
+			@FindBy(xpath = "//ds-selection[@data-test='shipping-option-standard']//p[contains(text(),'Standard Delivery')]"),
+			@FindBy(xpath = "//p[contains(text(),'Standard Delivery')]/ancestor::span[contains(@class,'ds-selection__label')]")
+	})
 	WebElement rdoDeliveryMethodStandard;
+
+	@FindAll({
+			@FindBy(xpath = "//span[contains(@class,'ds-button__copy text-button') and contains(.,'Change address')]"),
+			@FindBy(xpath = "//button[@data-test='change-address-btn']//span[contains(text(),'Change address')]")
+	})
+	WebElement changeShipAddressbtn;
+
+	@FindBy(xpath="//r-address-auto-complete//input//parent::div")
+	WebElement txtHomeAddress;
+
+	@FindAll({
+			@FindBy(xpath="//r-address-auto-complete//input"),
+			@FindBy(xpath="(//ul[@role='listbox']//li)[1]"),
+	})
+	WebElement lblTxtHomeAddress;
+
+	@FindAll({
+			@FindBy(xpath="//div[@class='pca pcalist']/div[contains(@class,'pcalastitem')]/span[@class='pcadescription']/.."),
+			@FindBy(xpath="//ul[@role='listbox']//li[not(contains(.,'Addresses'))]"),
+	})
+	WebElement lblAddressResult;
+
+	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
+	WebElement inputNewShippingAddress;
+
+	@FindBy(xpath = "//button[@data-test='edit-email-btn']//span[contains(text(),'edit')]")
+	WebElement editEmail;
+
+	@FindBy(xpath = "//input[contains(@formcontrolname,'emailAddressField') and contains(@id,'ds-form-input-id')]/parent::div")
+	WebElement emailField;
+
+	@FindBy(xpath = "//input[contains(@formcontrolname,'emailAddressField') and contains(@id,'ds-form-input-id')]")
+	WebElement inputEmailShipping;
+
+	@FindBy(xpath = "//div[@data-test='location-item']//span[contains(text(),'2')]")
+	WebElement selectAnotherBOPISStore;
+
+	@FindBy(xpath = "//div[@data-test='location-item']//span[contains(text(),'2')]/following::div[2]/p")
+	WebElement selectedBOPISStoreLoc;
 
 	@FindBy(xpath = "//button[@data-test='shipping-continue']")
 	WebElement btnContinueShipping;
@@ -101,15 +148,57 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public void clkShippingType(String deliveryMethod) {
 		if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
-			reusableActions.staticWait(5000);
+			//reusableActions.staticWait(5000);
 			reusableActions.clickWhenReady(rdoDeliveryMethodExpress, 30);
 		} else if (deliveryMethod.equalsIgnoreCase("PRO")) {
-			reusableActions.staticWait(5000);
+			//reusableActions.staticWait(5000);
 			reusableActions.clickWhenReady(rdoDeliveryMethodProOnTheGo, 30);
 		} else {
-			reusableActions.staticWait(5000);
+			//reusableActions.staticWait(5000);
 			reusableActions.clickWhenReady(rdoDeliveryMethodStandard, 30);
 		}
+	}
+
+	/**
+	 * This method selects the another Express Pickup Store Location on Shipping page
+	 * @author Subash.Nedunchezhian
+	 */
+	public void selectAnotherBOPISStore(){
+		reusableActions.executeJavaScriptClick(selectAnotherBOPISStore);
+	}
+	/**
+	 * This method gets the Express Pickup Store Location on Order Review page
+	 *  @return String Express Pickup Store Location
+	 * @author Subash.Nedunchezhian
+	 */
+	public String getSelectedBOPISStoreLoc(){
+		return reusableActions.getWhenReady(selectedBOPISStoreLoc).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * Enter the new Shipping Address on the Shipping page and select it from the dropdown
+	 * @param newShippingAddress from yaml file
+	 * @author subash.nedunchezhian
+	 */
+	public void selectNewShippingAddress(String newShippingAddress) {
+		reusableActions.executeJavaScriptClick(changeShipAddressbtn);
+		reusableActions.executeJavaScriptClick(txtHomeAddress);
+		lblTxtHomeAddress.sendKeys(newShippingAddress);
+		//reusableActions.getWhenReady(lblTxtHomeAddress,10).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+		reusableActions.executeJavaScriptClick(lblAddressResult);
+		if (reusableActions.isElementVisible(lblAddressResult, 10)) {
+			reusableActions.executeJavaScriptClick(lblAddressResult);
+		}
+	}
+	/**
+	 * This method clicks on Edit Email and enter new email address from FormFiller
+	 * @author subash.nedunchezhian
+	 */
+	public void setNewEmailAddress(){
+		reusableActions.clickWhenVisible(editEmail);
+		reusableActions.getWhenReady(inputEmailShipping).clear();
+		reusableActions.clickWhenReady(emailField);
+		reusableActions.getWhenReady(inputEmailShipping).sendKeys(FormFiller.generateEmail());
 	}
 
 	/**
