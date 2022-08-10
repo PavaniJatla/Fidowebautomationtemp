@@ -411,17 +411,19 @@ public class BaseTestClass {
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
+	 * @param strGroupName string containing the project name which passing as build name for sauce
 	 * @return hashmap with sauce capabilities
 	 * @author Mirza.Kamran
 	 */
-	 private Map<String, String> initializeSauceParamsMap(String strBrowser) {
+	 private Map<String, String> initializeSauceParamsMap(String strBrowser,String strGroupName) {
 		
 		 Map<String,String> sauceOptions = new HashMap<String, String>();
 		 sauceOptions.put(SauceCapabilities.seleniumVersion.toString(), TestDataHandler.sauceSettings.getSauceOptions().getSeleniumVersion());
 		 sauceOptions.put(SauceCapabilities.maxDuration.toString(), TestDataHandler.sauceSettings.getSauceOptions().getMaxDuration());
 		 sauceOptions.put(SauceCapabilities.commandTimeout.toString(), TestDataHandler.sauceSettings.getSauceOptions().getCommandTimeout());
 		 sauceOptions.put(SauceCapabilities.idleTimeout.toString(), TestDataHandler.sauceSettings.getSauceOptions().getIdleTimeout());
-		 sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getSauceOptions().getBuild());
+		 //sauceOptions.put(SauceCapabilities.build.toString(), TestDataHandler.sauceSettings.getSauceOptions().getBuild());
+		 sauceOptions.put(SauceCapabilities.build.toString(), strGroupName.toUpperCase());
 		 switch (strBrowser.toLowerCase()) {
          case "saucechrome":                            
              sauceOptions.put(SauceCapabilities.platformName.toString(), TestDataHandler.sauceSettings.getMutableChromeCapabilities().getPlatformName());                     
@@ -463,7 +465,7 @@ public class BaseTestClass {
 
 	    if(browser.contains("sauce"))
 		{
-			sauceParameters = initializeSauceParamsMap(browser);
+			sauceParameters = initializeSauceParamsMap(browser,enumGroupName.toString());
 		}
 	    webDriverThreadLocal.set(browserdriver.driverInit(browser,sauceParameters, currentTestMethodName, enumGroupName.toString()));
 		ExtentListener.setDriver(getDriver());
@@ -541,7 +543,7 @@ public class BaseTestClass {
 		String browser = RunParameters.get("Browser").toLowerCase();
 		String language = RunParameters.get("Language").toLowerCase();
 		if (browser.contains("sauce")) {
-			sauceParameters = initializeSauceParamsMap(browser);
+			sauceParameters = initializeSauceParamsMap(browser,strGroupName);
 		}
 		webDriverThreadLocal.set(browserdriver.driverInit(browser, sauceParameters, currentTestMethodName, strGroupName));
 		System.out.println(strUrl + "----------------------------------------------------------------------------");
