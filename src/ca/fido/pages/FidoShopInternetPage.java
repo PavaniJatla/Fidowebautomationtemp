@@ -173,17 +173,15 @@ public class FidoShopInternetPage extends BasePageClass {
 	 * @param strAddress address to check the service ability
 	 * @author chinnarao.vattam
 	 */
-	public void setInternetAddressLookup(String strAddress) {		
-		reusableActions.getWhenReady(txtAddressLookupContainer,60).click();
-		reusableActions.getWhenReady(txtAddressLookup,60).clear();
-		reusableActions.getWhenReady(txtAddressLookup, 20).sendKeys(strAddress);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.TAB);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
+	public void setInternetAddressLookup(String strAddress) {
+		reusableActions.waitForElementTobeClickable(txtAddressLookupContainer, 60);
+		reusableActions.getWhenReady(txtAddressLookupContainer, 3).click();
+		reusableActions.getWhenReady(txtAddressLookup, 3).clear();
+		reusableActions.getWhenReady(txtAddressLookup, 5).sendKeys(strAddress);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.SPACE);
-		//reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
+		reusableActions.staticWait(5000);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
+
 	}
 	
 	/**
