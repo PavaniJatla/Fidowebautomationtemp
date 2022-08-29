@@ -167,22 +167,22 @@ public class FidoShopInternetPage extends BasePageClass {
 		reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
 	}
-	
+
 	/**
 	 * To set the Lookup address on the service ability Lookup popup
 	 * @param strAddress address to check the service ability
-	 * @author chinnarao.vattam
+	 * @author karthic.hasan
 	 */
-	public void setInternetAddressLookup(String strAddress) {		
-		reusableActions.getWhenReady(txtAddressLookupContainer,60).click();
-		reusableActions.getWhenReady(txtAddressLookup,60).clear();
-		reusableActions.getWhenReady(txtAddressLookup, 20).sendKeys(strAddress);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.TAB);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ARROW_DOWN);
-		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.SPACE);
-		//reusableActions.getWhenVisible(By.xpath("//div[@class='pcaitem pcafirstitem pcalastitem pcaselected']"));
+	public void setInternetAddressLookup(String strAddress) {
+		reusableActions.waitForElementTobeClickable(txtAddressLookupContainer, 60);
+		reusableActions.getWhenReady(txtAddressLookupContainer, 3).click();
+		reusableActions.getWhenReady(txtAddressLookup, 3).clear();
+		for (int i = 0; i < strAddress.length(); i++){
+			char c = strAddress.charAt(i);
+			String charAddress = new StringBuilder().append(c).toString();
+			txtAddressLookup.sendKeys(charAddress);
+		}
+		reusableActions.staticWait(3000);
 		reusableActions.getWhenVisible(txtAddressLookup).sendKeys(Keys.ENTER);
 	}
 	

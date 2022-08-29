@@ -30,7 +30,7 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 	final String strLanguage=System.getProperty("Language");
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
 	public void checkFidoHSIPayNowFunctionality() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
