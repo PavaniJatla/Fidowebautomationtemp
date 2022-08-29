@@ -17,7 +17,7 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","AALBFA","DP"})
-    public void fidoAALUsingFinancePlanExpressShippingFlowTest() {
+    public void tc10_fidoAALUsingFinancePlanExpressShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc10AALFinancingPlanExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc10AALFinancingPlanExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

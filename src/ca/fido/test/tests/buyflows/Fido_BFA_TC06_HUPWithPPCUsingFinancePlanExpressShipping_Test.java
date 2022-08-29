@@ -19,7 +19,7 @@ public class Fido_BFA_TC06_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void fidoHUPWithPPCUsingFinancePlanExpressShippingFlowTest() {
+    public void tc06_fidoHUPWithPPCUsingFinancePlanExpressShippingFlowTest() {
 /*        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
         getFidohomepage().clkLogin();*/
         //getFidologinpage().switchToSignInFrame();

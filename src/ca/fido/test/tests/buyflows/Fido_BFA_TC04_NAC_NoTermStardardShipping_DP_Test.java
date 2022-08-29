@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","DP"})
-	public void fidoNACNoTermStandardShippingFlow() {
+	public void tc04_fidoNACNoTermStandardShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");

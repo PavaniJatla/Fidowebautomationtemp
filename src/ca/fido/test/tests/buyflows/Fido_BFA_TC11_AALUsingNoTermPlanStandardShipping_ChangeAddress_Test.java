@@ -17,13 +17,13 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALUsingNoTermPlanStandardShippingFlowTest() {
+    public void tc11_fidoAALUsingNoTermPlanStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");

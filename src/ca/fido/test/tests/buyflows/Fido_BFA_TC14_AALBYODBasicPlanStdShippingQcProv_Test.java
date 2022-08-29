@@ -27,7 +27,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALBYODBasicPlanStdShippingFlowTest() {
+    public void tc14_fidoAALBYODBasicPlanStdShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -45,6 +45,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
+        getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getFidobuildplanpage().clkContinueBelowCartSummary();

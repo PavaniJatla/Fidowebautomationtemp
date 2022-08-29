@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","SanityBFA"})
-	public void fidoNACTermExpressShippingFlow() {
+	public void tc03_fidoNACTermExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
