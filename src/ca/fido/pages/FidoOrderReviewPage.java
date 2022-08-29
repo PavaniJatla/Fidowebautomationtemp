@@ -322,7 +322,6 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public String getSelectedShippingAddress(){
-		reusableActions.waitForElementVisibility(selectedShippingAddress);
 		return reusableActions.getWhenReady(selectedShippingAddress).getText().replaceAll("\\n", "");
 	}
 

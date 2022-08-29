@@ -45,10 +45,18 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
     systemProperty 'OneViewUrl', test_oneViewUrl
     systemProperty 'OneViewEnv',  test_oneViewEnv
-
+    systemProperty 'XrayImportFlag', xray_import_flag
+    systemProperty 'JiraProjectKey', jira_project_key
+    systemProperty 'TestPlanKey',test_plan_key
+    systemProperty 'TestExecutionKey',test_execution_key
+    systemProperty 'JiraAssignee', test_jira_assignee
+    systemProperty 'JiraReporter', test_jira_reporter
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
+
     useTestNG() {
+        outputDirectory = file("$project.buildDir//testngOutput")
+        useDefaultListeners = true
         parallel = test_parallel
         threadCount = test_threadCount as int
         Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
@@ -82,10 +90,18 @@ task "localTest"(type: Test) {
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
     systemProperty 'OneViewUrl', test_oneViewUrl
     systemProperty 'OneViewEnv',  test_oneViewEnv
+    systemProperty 'XrayImportFlag', xray_import_flag
+    systemProperty 'JiraProjectKey', jira_project_key
+    systemProperty 'TestPlanKey',test_plan_key
+    systemProperty 'TestExecutionKey',test_execution_key
+    systemProperty 'JiraAssignee', test_jira_assignee
+    systemProperty 'JiraReporter', test_jira_reporter
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
     useTestNG() {
+        outputDirectory = file("$project.buildDir//testngOutput")
+        useDefaultListeners = true
         parallel = test_parallel
         threadCount = test_threadCount as int
         Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
@@ -113,7 +129,7 @@ repositories {
 
 dependencies {
 
-    api 'automation-utils:common-utils:1.68-SNAPSHOT'
+    api 'automation-utils:common-utils:latest.release'
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'
 	api 'org.json:json:20180813'

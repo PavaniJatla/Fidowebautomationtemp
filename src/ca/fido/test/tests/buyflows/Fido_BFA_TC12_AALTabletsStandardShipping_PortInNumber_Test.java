@@ -22,7 +22,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALTabletsStandardShippingFlowTest() {
+    public void tc12_fidoAALTabletsStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -43,10 +43,10 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         //getFidobuildplanpage().clkDeviceBalancePopUp();
         //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        /*String dataOptionIndex = TestDataHandler.tc17AALTabletsStandardShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");*/
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
+        String dataOptionIndex = TestDataHandler.tc12AALTabletsStandardShipping.getDataOptionIndex();
+        getFidobuildplanpage().clkDataOption(dataOptionIndex,this.getClass().getSimpleName());
+        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        //getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();

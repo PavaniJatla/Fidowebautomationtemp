@@ -22,7 +22,7 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestCl
     }
 
     @Test(groups = {"RegressionBFA","AALBFA","POM"})
-    public void fidoAALBYODStandardShippingFlowTest() {
+    public void tc13_fidoAALBYODStandardShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13AALBYODExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13AALBYODExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

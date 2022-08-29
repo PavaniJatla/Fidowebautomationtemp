@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC02_NAC_ByodTermWithExpressShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
-	public void fidoNACByodTermExpressShippingFlow() {
+	public void tc02_fidoNACByodTermExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		getFidobuildplanpage().clkDataOption(TestDataHandler.tc02ByodExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());

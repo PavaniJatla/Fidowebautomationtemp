@@ -17,8 +17,8 @@ public class Fido_BFA_TC09_HUPWithNoTermDeviceAndNoTermMultipleAccessories_SS_Te
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","HUPBFA"})
-    public void fidoHUPWithNoTermDeviceAndNoTermMultipleAccessoriesFlowTest() {
+    @Test(groups = {"RegressionBFA"})
+    public void tc09_fidoHUPWithNoTermDeviceAndNoTermMultipleAccessoriesFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

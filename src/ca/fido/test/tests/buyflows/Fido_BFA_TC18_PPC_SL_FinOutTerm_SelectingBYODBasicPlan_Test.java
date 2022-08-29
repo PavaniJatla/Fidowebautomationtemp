@@ -27,7 +27,7 @@ public class Fido_BFA_TC18_PPC_SL_FinOutTerm_SelectingBYODBasicPlan_Test extends
     }
 
     @Test(groups = {"RegressionBFA","PPCBFA"})
-    public void fidoPPC_TC23_SLNonSE_FinOutTerm_BasicPlanTest() {
+    public void tc18_fidoPPCSLNonSE_FinOutTerm_BasicPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc18PPCSLFinOutTermBasicPlan.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc18PPCSLFinOutTermBasicPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

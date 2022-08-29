@@ -18,7 +18,7 @@ public class Fido_BFA_TC07_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA"})
-    public void fidoHUPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
+    public void tc07_fidoHUPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
         // **************************Regular Login Flow**************************************
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc07HupPpcNoTermStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc07HupPpcNoTermStandardShipping.getPassword());
@@ -49,6 +49,7 @@ public class Fido_BFA_TC07_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
+        getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
