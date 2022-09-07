@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -15,8 +16,11 @@ public class FidoDeviceConfigPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(text(),'Appareils') or contains(text(),'Devices')]")
 	WebElement devicesInHearder;
-	
-	@FindBy(xpath = "//button[@id='continue-button' or contains(@class,'-primary -large')]")
+
+	@FindAll({
+			@FindBy(xpath = "//button[contains(.,' Build Your Plan ')]"),
+			@FindBy(xpath = "//button[contains(@title,'Build Your Plan') or @title=\"Disponible à l'achat\"]")
+	})
 	WebElement continueButton;
 	
 	@FindBy(xpath = "//ds-modal-container")
