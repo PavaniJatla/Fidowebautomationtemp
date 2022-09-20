@@ -50,7 +50,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
-        getReporter().reportLogWithScreenshot("Called ID information a");
+        getReporter().reportLogWithScreenshot("Called ID information");
         getFidobuildplanpage().clkCallerIdContinueBtn();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
