@@ -205,8 +205,11 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'with promo code') or contains(text(),'avec le code promotionnel')]")
 	WebElement promoCodeDuration;
 
-	@FindBy(xpath = "//span[contains(text(),'Promo code:') or contains(text(),'Code promotionnel :')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	@FindBy(xpath = "//span[contains(text(),'Plan discount') or contains(text(),'Rabais sur le forfait')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement promoCartLineItem;
+
+	@FindBy(xpath = "//span[@data-test='delete-promo-detail-info']")
+	WebElement deletePromo;
 
 	@FindBy(xpath = "//button[contains(@class,'ds-tablet')]//p[contains(text(),'Device Protection') or contains(text(),'Protection de l’appareil')]")
 	WebElement deviceProtectionAddonTab;
@@ -942,6 +945,14 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public boolean verifyPromoDuration(){
 		return reusableActions.isElementVisible(promoCodeDuration);
+	}
+
+	/**
+	 * Clicks on the 'Delete' button to remove the applied Promo code
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clickDeletePromo(){
+		reusableActions.clickIfAvailable(deletePromo);
 	}
 
 	/**

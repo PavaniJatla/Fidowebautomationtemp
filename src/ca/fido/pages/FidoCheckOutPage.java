@@ -149,13 +149,13 @@ public class FidoCheckOutPage extends BasePageClass {
 	public void clkShippingType(String deliveryMethod) {
 		if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
 			//reusableActions.staticWait(5000);
-			reusableActions.clickWhenReady(rdoDeliveryMethodExpress, 30);
+			reusableActions.executeJavaScriptClick(rdoDeliveryMethodExpress);
 		} else if (deliveryMethod.equalsIgnoreCase("PRO")) {
 			//reusableActions.staticWait(5000);
 			reusableActions.clickWhenReady(rdoDeliveryMethodProOnTheGo, 30);
 		} else {
 			//reusableActions.staticWait(5000);
-			reusableActions.clickWhenReady(rdoDeliveryMethodStandard, 30);
+			reusableActions.executeJavaScriptClick(rdoDeliveryMethodStandard);
 		}
 	}
 
