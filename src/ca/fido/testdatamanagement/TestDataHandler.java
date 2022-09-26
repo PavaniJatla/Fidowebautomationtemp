@@ -118,6 +118,9 @@ public class TestDataHandler {
 	public static HUPOVData tc10HUPWithPPC_NFDBValidation;
 	public static HUPOVData tc11HUPWithPPC_MediumRisk_StdShipping;
 
+	public static AddonData tc21SAA_AddVoicemail;
+	public static AddonData tc22SAA_RemoveVoicemail;
+
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
 
@@ -255,6 +258,8 @@ public class TestDataHandler {
 		BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping = YamlHandler.getAALData("BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping");
 		BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping = YamlHandler.getHUPData("BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping");
 		BFA_ProdTest_tc07_PPC_DTTPlan = YamlHandler.getPPCData("BFA_ProdTest_tc07_PPC_DTTPlan");
+		tc21SAA_AddVoicemail = YamlHandler.getAddonData("tc21SAA_AddVoicemail");
+		tc22SAA_RemoveVoicemail = YamlHandler.getAddonData("tc22SAA_RemoveVoicemail");
 	}
 
 	private static void buyFlowsOneViewDataInit() {
