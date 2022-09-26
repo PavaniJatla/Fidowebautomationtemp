@@ -116,6 +116,24 @@ public class FidoOrderReviewPage extends BasePageClass {
 	})
 	WebElement emailAddress;
 
+	@FindBy(xpath = "//h4[contains(text(),'Order Summary')]/ancestor::div[@data-test='addOn-summary']")
+	WebElement addonOrderSummary;
+
+	@FindBy(xpath = "//ds-checkbox[@formcontrolname='checkboxControl']/label[contains(@class,'ds-checkboxLabel')]")
+	WebElement addonsAgreement;
+
+	@FindBy(xpath = "//button[@data-test='add-to-plan-btn' and contains(.,'Add to my plan')]")
+	WebElement addToPlanButton;
+
+	@FindBy(xpath = "//button[@data-test='remove-addon-btn' and contains(.,'Remove')]")
+	WebElement addonRemoveButton;
+
+	@FindBy(xpath = "//p[contains(text(),'Remove add-on')]")
+	WebElement addonRemovalModal;
+
+	@FindBy(xpath = "//button[@data-test='addOn-removal-modal-button' and contains(.,'Remove')]")
+	WebElement addonRemovalModalbtn;
+
 	/**
 	 * Clicks on the 'Submit my order' button
 	 * @author Saurav.Goyal
@@ -332,5 +350,63 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 */
 	public String getEmailAddress(){
 		return  reusableActions.getWhenReady(emailAddress).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method verify if url contains Review on Order Review page
+	 *  @return true if review page displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean isAddonReviewPageDisplayed(){
+		if (getDriver().getCurrentUrl().contains("review")) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	/**
+	 * This method gets the Order Summary content on Review page
+	 * @return String text of Order Summary
+	 * @author subash.nedunchezhian
+	 */
+	public String addonOrderSummary(){
+		reusableActions.javascriptScrollByVisibleElement(addonOrderSummary);
+		return  reusableActions.getWhenReady(addonOrderSummary).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method clicks the Addons Agreement checkbox on Order Review page
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clkAddonsAgreementConsent(){
+		reusableActions.clickWhenVisible(addonsAgreement,15);
+	}
+
+	/**
+	 * This method clicks Add To Plan button on Order Review page
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clkAddToPlanBtn(){
+		reusableActions.clickWhenVisible(addToPlanButton,10);
+	}
+
+	/**
+	 * This method clicks Remove Button on Order Review page
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clkRemoveBtn(){
+		reusableActions.clickWhenVisible(addonRemoveButton,10);
+	}
+
+	/**
+	 * This method clicks Remove button on Addon Removal Modal
+	 *  @return true if Remove button on Addon Removal Modal clicked; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean clkRemovalModalBtn(){
+		reusableActions.isElementVisible(addonRemovalModal,10);
+		reusableActions.clickWhenReady(addonRemovalModalbtn,10);
+		return true;
 	}
 }

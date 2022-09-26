@@ -241,4 +241,16 @@ public class YamlHandler {
 			return null;
 		}
 	}
+
+	public static AddonData getAddonData(String dataFileName) {
+		Yaml yaml = new Yaml(new Constructor(AddonData.class));
+		InputStream inputStream;
+		try {
+			inputStream = new FileInputStream(new File(System.getProperty("user.dir") + "/test-data/fido/buyflows/" + dataFileName + ".yml"));
+			return yaml.load(inputStream);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

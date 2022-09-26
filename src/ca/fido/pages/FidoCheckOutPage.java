@@ -14,6 +14,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	public FidoCheckOutPage(WebDriver driver) {
 		super(driver);
 	}
+	public String strXpathAddonViewcta;
 
 	@FindBy(xpath = "//agm-map")
 	WebElement mapBopis;
@@ -100,6 +101,18 @@ public class FidoCheckOutPage extends BasePageClass {
 
 	@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]")
 	WebElement btnNoThanks;
+
+	@FindBy(xpath = "//h1[@id='manageaddons-page-title' or contains(text(),'Manage add ons Page')]")
+	WebElement manageAddonsPageTitle;
+
+	@FindBy(xpath = "//addons-tile[contains(@data-test,'existing-addon')]/parent::div")
+	WebElement activeAddons;
+	
+	@FindBy(xpath ="//p[contains(text(),'changes to your add-ons')]")
+	WebElement addonConflictModal;
+
+	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary' and contains(.,'Continue')]")
+	WebElement conflictContinueBtn;
 
 	/**
 	 * This method enters the value in email address field in shipping page
@@ -260,5 +273,63 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public void clkBtnNoThanks() {
 		reusableActions.clickIfAvailable(btnNoThanks,5);
+	}
+
+	/**
+	 * Selects by clicking on 'View' button against the addon needed
+	 * @param addonName Name of the addon needed
+	 * @return true if addon found; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean selectAddon(String addonName) {
+		reusableActions.waitForElementTobeClickable(reusableActions.getWhenReady(By.xpath("//p[contains(text(),'"+addonName+"')]")),20);
+		strXpathAddonViewcta = createXpathWithAddonName(addonName);
+		if(reusableActions.isElementVisible(By.xpath(strXpathAddonViewcta),30)) {
+			reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathAddonViewcta)));
+			System.out.println("View clicked");
+			return true;
+		}
+		System.out.println("View Not clicked");
+		return false;
+	}
+	/**
+	 * This method creates Xpath of a particular CTA button
+	 * @param	addonName : name of the addon used to create the xpath
+	 * @return a String value which is a xpath for View CTA button
+	 * @author subash.nedunchezhian
+	 */
+	public String createXpathWithAddonName(String addonName) {
+		strXpathAddonViewcta = "//p[contains(text(),'"+addonName+"')]//following::button[1]";
+		System.out.println("Xpath Created = " +strXpathAddonViewcta);
+		return strXpathAddonViewcta;
+	}
+
+	/**
+	 * This method verify if conflict modal appears on the Addon page and clicks on Continue Button
+	 * @return true if clicked Continue button; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean clkConflictContinueBtn(){
+		reusableActions.isElementVisible(addonConflictModal,10);
+		reusableActions.clickWhenReady(conflictContinueBtn,10);
+		return true;
+	}
+
+	/**
+	 * This method verify if Addon page displayed or not
+	 * @return true if addon page displayed; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyAddonsPage(){
+		return reusableActions.isElementVisible(manageAddonsPageTitle,30);
+	}
+
+	/**
+	 * This method gets the value of Addon under Active Addons section
+	 * @return String text of Addon under Active Addons section
+	 * @author subash.nedunchezhian
+	 */
+	public String getSelectedAddon(){
+		return  reusableActions.getWhenReady(activeAddons).getText().replaceAll("\\n", "");
 	}
 }
