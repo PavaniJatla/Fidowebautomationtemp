@@ -358,6 +358,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public boolean isAddonReviewPageDisplayed(){
+		reusableActions.staticWait(5000);
 		if (getDriver().getCurrentUrl().contains("review")) {
 			return true;
 		}else {

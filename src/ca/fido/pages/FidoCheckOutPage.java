@@ -107,12 +107,24 @@ public class FidoCheckOutPage extends BasePageClass {
 
 	@FindBy(xpath = "//addons-tile[contains(@data-test,'existing-addon')]/parent::div")
 	WebElement activeAddons;
-	
+
 	@FindBy(xpath ="//p[contains(text(),'changes to your add-ons')]")
 	WebElement addonConflictModal;
 
 	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary' and contains(.,'Continue')]")
 	WebElement conflictContinueBtn;
+
+	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'Premium Device Protection')]")
+	WebElement dpAddonPageTitle;
+
+	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	WebElement dpimeiField;
+
+	@FindBy(xpath = "//input[@formcontrolname='imei']")
+	WebElement inputDPIMEI;
+
+	@FindBy(xpath = "//button[@data-test='continue-btn' and contains(.,'Continue')]")
+	WebElement dpAddonContinue;
 
 	/**
 	 * This method enters the value in email address field in shipping page
@@ -286,10 +298,8 @@ public class FidoCheckOutPage extends BasePageClass {
 		strXpathAddonViewcta = createXpathWithAddonName(addonName);
 		if(reusableActions.isElementVisible(By.xpath(strXpathAddonViewcta),30)) {
 			reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathAddonViewcta)));
-			System.out.println("View clicked");
 			return true;
 		}
-		System.out.println("View Not clicked");
 		return false;
 	}
 	/**
@@ -331,5 +341,34 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public String getSelectedAddon(){
 		return  reusableActions.getWhenReady(activeAddons).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method enters the IMEI/TacCode on IMEI Input Field
+	 * @param tacCode IMEI/TacCode from yaml file
+	 * @author Subash.Nedunchezhian
+	 */
+	public void enterDPIMEI(String tacCode) {
+		reusableActions.clickWhenReady(dpimeiField, 10);
+		reusableActions.getWhenReady(inputDPIMEI, 10).sendKeys(tacCode + FormFiller.generateRandomNumber(7));
+	}
+	/**
+	 * This method clicks the Continue Button on DP Addon page
+	 * @return true if Continue clicked else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean clkDpAddonContinue(){
+		reusableActions.isElementVisible(dpAddonContinue);
+		reusableActions.executeJavaScriptClick(dpAddonContinue);
+		return true;
+	}
+
+	/**
+	 * This method verify if DP Addon page displayed or not
+	 * @return true if DP addon page displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyDpAddonPage(){
+		return reusableActions.isElementVisible(dpAddonPageTitle,10);
 	}
 }

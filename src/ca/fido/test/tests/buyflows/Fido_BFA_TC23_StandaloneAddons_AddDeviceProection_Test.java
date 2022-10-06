@@ -10,16 +10,16 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC21_StandaloneAddons_AddVisualVoicemail_AcceptConflict_Test extends BaseTestClass {
+public class Fido_BFA_TC23_StandaloneAddons_AddDeviceProection_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
     @Test(groups = {"RegressionBFA","SAABFA"})
-    public void tc21_fidoSAAAddVisualVoicemailTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc21SAA_AddVoicemail.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc21SAA_AddVoicemail.getPassword());
+    public void tc23_rogersSAAAddDeviceProtectionTest() {
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc23SAA_AddDeviceProtection.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc23SAA_AddDeviceProtection.getPassword());
         getReporter().reportLogWithScreenshot("Login Popup");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
@@ -29,29 +29,33 @@ public class Fido_BFA_TC21_StandaloneAddons_AddVisualVoicemail_AcceptConflict_Te
         getReporter().reportLogPassWithScreenshot("Dashboard Page");
         getDriver().get(System.getProperty("AWSUrl") + "/phones/manage-addons");
         getReporter().hardAssert(getFidoCheckOutPage().verifyAddonsPage(),
-                "Fido Standalone Addons Page Displayed","Fido Standalone Addons Page not Displayed");
-        String newAddon = TestDataHandler.tc21SAA_AddVoicemail.getAddonName();
+                "Fido Standalone Addons Page Displayed", "Fido Standalone Addons Page not Displayed");
+        String newAddon = TestDataHandler.tc23SAA_AddDeviceProtection.getAddonName();
         getFidoCheckOutPage().selectAddon(newAddon);
-        getReporter().reportLogPassWithScreenshot(  "New " +newAddon +"Addon Selected");
-        getReporter().hardAssert(getFidoCheckOutPage().clkConflictContinueBtn(),
-                "Clicked Continue on Addon Conflict Modal","Addon Conflict Modal not displayed");
+        getReporter().reportLogPassWithScreenshot("New " + newAddon + "Addon Selected");
+        getReporter().hardAssert(getFidoCheckOutPage().verifyDpAddonPage(),
+                "DP Addon Page Displayed", "DP Addon Page Not Displayed");
+        getFidoCheckOutPage().enterDPIMEI(TestDataHandler.tc23SAA_AddDeviceProtection.getDpIMEI());
+        getReporter().reportLogPassWithScreenshot("DP Addon IMEI Entered");
+        getReporter().hardAssert(getFidoCheckOutPage().clkDpAddonContinue(),
+                "Continue Btn clicked", "Continue btn not clicked");
         getReporter().hardAssert(getFidoorderreviewpage().isAddonReviewPageDisplayed(),
-                "Addons Order Review Page Displayed","Addons Order Review Page Not Displayed");
+                "Addons Order Review Page Displayed", "Addons Order Review Page Not Displayed");
+        getReporter().hardAssert(getFidobuildplanpage().verifyEligibilityMsg(), "Entered IMEI is eligible for Device Protection Addon", "Entered IMEI is not eligible");
         String addonOrderSummary = getFidoorderreviewpage().addonOrderSummary();
-        getReporter().reportLogPassWithScreenshot("Addons Order Summary: " +addonOrderSummary);
+        getReporter().reportLogPassWithScreenshot("Addons Order Summary: " + addonOrderSummary);
         getFidoorderreviewpage().clkAddonsAgreementConsent();
         getReporter().reportLogPassWithScreenshot("Addon Agreement clicked");
         getFidoorderreviewpage().clkAddToPlanBtn();
         getReporter().hardAssert(getFidoorderconfirmationpage().verifyAddonOrderConfirm(),
-                "Addons Order Confirmation Page Displayed","Addons Order Confirmation Page Not Displayed");
+                "Addons Order Confirmation Page Displayed", "Addons Order Confirmation Page Not Displayed");
         String OrderConfirmMessage = getFidoorderconfirmationpage().getOrderConfirmMsg();
-        getReporter().reportLogPassWithScreenshot("Addons Order Confirmation Message: " +OrderConfirmMessage);
+        getReporter().reportLogPassWithScreenshot("Addons Order Confirmation Message: " + OrderConfirmMessage);
         getFidoorderconfirmationpage().clickBackToAddonBtn();
         getReporter().hardAssert(getFidoCheckOutPage().verifyAddonsPage(),
-                "Fido Standalone Addons Page Displayed","Fido Standalone Addons Page not Displayed");
+                "Fido Standalone Addons Page Displayed", "Fido Standalone Addons Page not Displayed");
         String selectedAddon = getFidoCheckOutPage().getSelectedAddon();
-        getReporter().hardAssert(selectedAddon.contains(newAddon),
-                "Selected Addon is reflected in Addons page after submission","Selected Addon is not reflected");
+        getReporter().reportLogPassWithScreenshot("Active Addons: " +selectedAddon);
     }
 
     @AfterMethod(alwaysRun = true)
