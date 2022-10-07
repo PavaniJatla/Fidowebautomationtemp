@@ -120,6 +120,7 @@ public class TestDataHandler {
 
 	public static AddonData tc21SAA_AddVoicemail;
 	public static AddonData tc22SAA_RemoveVoicemail;
+	public static AddonData tc23SAA_AddDeviceProtection;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -260,6 +261,7 @@ public class TestDataHandler {
 		BFA_ProdTest_tc07_PPC_DTTPlan = YamlHandler.getPPCData("BFA_ProdTest_tc07_PPC_DTTPlan");
 		tc21SAA_AddVoicemail = YamlHandler.getAddonData("tc21SAA_AddVoicemail");
 		tc22SAA_RemoveVoicemail = YamlHandler.getAddonData("tc22SAA_RemoveVoicemail");
+		tc23SAA_AddDeviceProtection = YamlHandler.getAddonData("tc23SAA_AddDeviceProtection");
 	}
 
 	private static void buyFlowsOneViewDataInit() {

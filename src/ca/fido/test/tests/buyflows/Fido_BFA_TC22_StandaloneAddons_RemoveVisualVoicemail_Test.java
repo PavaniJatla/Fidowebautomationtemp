@@ -43,7 +43,8 @@ public class Fido_BFA_TC22_StandaloneAddons_RemoveVisualVoicemail_Test extends B
         String removeConfirmMessage = getFidoorderconfirmationpage().getOrderConfirmMsg();
         getReporter().reportLogPassWithScreenshot("Addons Remove Confirmation Message: " +removeConfirmMessage);
         getFidoorderconfirmationpage().clickBackToAddonBtn();
-        getReporter().reportLogWithScreenshot("Fido Standalone Add-ons Page after Add-on Removal");
+        getReporter().hardAssert(getFidoCheckOutPage().verifyAddonsPage(),
+                "Fido Standalone Addons Page Displayed after Add-on Removal","Fido Standalone Addons Page not Displayed after Add-on Removal");
     }
 
     @AfterMethod(alwaysRun = true)
