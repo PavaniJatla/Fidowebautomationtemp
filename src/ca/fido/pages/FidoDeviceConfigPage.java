@@ -41,6 +41,11 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	@FindBy(xpath = "//div[@data-test='accessory-view-details-modal']//button[contains(.,'Add') or contains(.,'Ajouter')]")
 	WebElement btnAddToCartAccessoriesViewDetailsModal;
 
+	@FindBy(xpath = "//span[@data-test='wirelessDiscount-promo-ribbon']")
+	WebElement regularPromoRibbon;
+
+	@FindBy(xpath = "//span[@data-test='wirelessDiscount-promo-ribbon']/following::p[1]")
+	WebElement regularPromoDetail;
 
 	/**
 	 * Selects the Subscriber on the Choose a line overlay and clicks Continue
@@ -162,9 +167,27 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 */
 	public void clkContinueAccessories() {
 		reusableActions.clickWhenVisible(btnContinueAccessories);
-
 	}
-	
+
+	/**
+	 * This method verifies Regular Promo Ribbon on Device Config page
+	 * @return true if Regular Promo Ribbon displayed else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyRegularPromoRibbon() {
+		reusableActions.waitForElementVisibility(regularPromoRibbon,10);
+		reusableActions.scrollToElement(regularPromoRibbon);
+		return reusableActions.isElementVisible(regularPromoRibbon);
+	}
+
+	/**
+	 * This method gets Regular Promo Discount value and Promo Duration text on Device Config page
+	 * @return Regular Promo Discount value and Promo Duration text
+	 * @author subash.nedunchezhian
+	 */
+	public String getRegularPromoDetails(){
+		return regularPromoDetail.getText().replaceAll("\\n", "");
+	}
 }
 	
 	

@@ -2,10 +2,8 @@ package ca.fido.test.tests.buyflows;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import ca.fido.test.base.BaseTestClass;
@@ -17,7 +15,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author Saurav.Goyal
  *
  */
-public class Fido_BFA_TC05_POM_NAC_TermStandardShipping_Test extends BaseTestClass{
+public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","POM"})
 	public void tc05_fidoNACTermStandardShippingFlow() {
@@ -33,30 +31,31 @@ public class Fido_BFA_TC05_POM_NAC_TermStandardShipping_Test extends BaseTestCla
 		// ***************************Device config page************************************
 		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
 		getReporter().reportLogWithScreenshot("Device config page");
+		getReporter().hardAssert(getFidodeviceconfigpage().verifyRegularPromoRibbon(),
+				"Regular Promo - MSF Offer Displayed","Regular Promo - MSF Offer not Displayed");
+		String regularPromoDetails = getFidodeviceconfigpage().getRegularPromoDetails();
+		getReporter().reportLogPassWithScreenshot("Regular Promo Details " +regularPromoDetails);
 		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		// ***************************Promo Section************************************
-		getFidobuildplanpage().clkPromoSection();
-		getReporter().reportLogWithScreenshot("Promo Section Displayed");
-		getFidobuildplanpage().setPromoCode(TestDataHandler.tc05TermStandardShipping.getPromoCode());
-		getReporter().reportLogWithScreenshot("Promo Code Entered");
-		getFidobuildplanpage().clkCheckPromoBtn();
-		getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promo Code Applied Successfully", "Promo Code Not Applied");
-		getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
+		getReporter().reportLogWithScreenshot("Regular Promo MSF Applied");
+		getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promotion Applied Successfully", "Promotion Not Applied");
+		String regularPromoName = getFidobuildplanpage().getRegularPromoName();
+		getReporter().reportLogPassWithScreenshot("Regular Promo Name " +regularPromoName);
 		// ***************************Plan Builder page************************************
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
+		//getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPassWithScreenshot("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-		getReporter().reportLogPass("skipped BPO option");
+		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		//getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
-		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
+		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Discount amount Line Item displayed","Promo line item not displayed");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getFidobuildplanpage().clkContinueDeviceProtection();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
@@ -101,6 +100,8 @@ public class Fido_BFA_TC05_POM_NAC_TermStandardShipping_Test extends BaseTestCla
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
+		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),
+				"Promo Discount amount Line Item displayed","Promo line item not displayed");
 		getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
 		getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
 		getReporter().reportLogWithScreenshot("Terms and conditions clicked");
