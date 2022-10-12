@@ -199,16 +199,25 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@data-test,'promo-button-check') and contains(text(),'Check') or contains(text(),'Vérifier')]")
 	WebElement btnCheckPromo;
 
-	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to cart') or contains(text(),' ajouté au panier')]")
+	@FindAll({
+			@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to cart') or contains(text(),' ajouté au panier')]"),
+			@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to your cart') or contains(text(),' ajoutée à votre panier')]")
+	})
 	WebElement promoCodeSuccessMsg;
 
 	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'with promo code') or contains(text(),'avec le code promotionnel')]")
 	WebElement promoCodeDuration;
 
+	@FindBy(xpath = "//span[@data-test='promo-detail-info']/following::span[3]")
+	WebElement regularPromoDetail;
+
 	@FindBy(xpath = "//span[contains(text(),'Plan discount') or contains(text(),'Rabais sur le forfait')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement promoCartLineItem;
 
-	@FindBy(xpath = "//span[@data-test='delete-promo-detail-info']")
+	@FindAll({
+			@FindBy(xpath = "//span[@data-test='delete-promo-detail-info']"),
+			@FindBy(xpath = "//span[@data-test='delete-promo']")
+	})
 	WebElement deletePromo;
 
 	@FindBy(xpath = "//button[contains(@class,'ds-tablet')]//p[contains(text(),'Device Protection') or contains(text(),'Protection de l’appareil')]")
@@ -1053,6 +1062,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void selectNoDeviceProtection(){
 		reusableActions.clickWhenReady(byodNoDeviceProtection);
+	}
+
+	/**
+	 * This method gets Regular Promo Discount value and Promo Duration text on Device Config page
+	 * @return Regular Promo Discount value and Promo Duration text
+	 * @author subash.nedunchezhian
+	 */
+	public String getRegularPromoName(){
+		return regularPromoDetail.getText().replaceAll("\\n", "");
 	}
 
 }
