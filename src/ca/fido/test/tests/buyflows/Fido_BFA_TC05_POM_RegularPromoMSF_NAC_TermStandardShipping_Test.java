@@ -47,7 +47,7 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		// ***************************Plan Builder page************************************
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		//getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
+		getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPassWithScreenshot("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");

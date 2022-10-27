@@ -78,6 +78,7 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	 * @author subash.nedunchezhian
 	 */
 	public void clickBackToAddonBtn(){
+		reusableActions.staticWait(3000);
 		reusableActions.clickWhenReady(backToAddonBtn,10);
 	}
 }

@@ -186,6 +186,7 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 * @author subash.nedunchezhian
 	 */
 	public String getRegularPromoDetails(){
+		reusableActions.scrollToElement(regularPromoDetail);
 		return regularPromoDetail.getText().replaceAll("\\n", "");
 	}
 }
