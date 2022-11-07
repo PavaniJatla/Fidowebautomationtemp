@@ -259,6 +259,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//p[contains(.,'not eligible') or contains(.,'Votre appareil n’est pas admissible')]")
 	WebElement imeiNotEligibleMsg;
 
+	@FindBy(xpath = "//ds-modal-container//*[contains(text(),'Continue with selected plan')]")
+	WebElement continueSelectedPlan;
+
 	/**
 	 * This method verifies if info widget is properly displayed in plan config page
 	 * @return true if info widget is loaded successfully, else false
@@ -915,8 +918,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void setPromoCode(String promoCode) {
-		reusableActions.executeJavaScriptClick(promoCodeField);
-		reusableActions.getWhenReady(txtPromoCode,30).sendKeys(promoCode);
+		//reusableActions.executeJavaScriptClick(promoCodeField);
+		reusableActions.getWhenReady(promoCodeField,20).click();
+		reusableActions.getWhenReady(txtPromoCode,30).click();
+		txtPromoCode.sendKeys(promoCode);
 	}
 
 	/**
@@ -1071,6 +1076,13 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public String getRegularPromoName(){
 		return regularPromoDetail.getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 *
+	 */
+	public void differentPlanSelectionModal(){
+		reusableActions.clickIfAvailable(continueSelectedPlan, 5);
 	}
 
 }

@@ -55,9 +55,9 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
-        getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+        /*getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
         String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
-        getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
+        getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);*/
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         String cityName = TestDataHandler.tc10AALFinancingPlanExpressShipping.getCityName();
@@ -78,9 +78,9 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
-        getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
+        /*getReporter().hardAssert(getFidoorderreviewpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
         String deviceProtectionAddon = getFidoorderreviewpage().getDeviceProtectionAddon();
-        getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);
+        getReporter().reportLogPassWithScreenshot("Device Protection - " +deviceProtectionAddon);*/
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
