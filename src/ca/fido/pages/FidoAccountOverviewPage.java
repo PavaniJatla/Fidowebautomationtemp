@@ -950,7 +950,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author chinnarao.vattam 
 	 */
 	public String getAccountBalanceBeforePayment() {    	
-		String strIntialBalance=reusableActions.getWhenVisible(infoAccountBalance,3).getText();
+		String strIntialBalance=reusableActions.getWhenVisible(infoAccountBalance,30).getText();
 		return strIntialBalance;
 	}
 

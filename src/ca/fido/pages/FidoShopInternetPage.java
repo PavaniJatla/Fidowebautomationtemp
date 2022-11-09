@@ -16,10 +16,10 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//button[@class='button-new']")
 	WebElement lnkCheckAvailability;
 
-	@FindBy(xpath = "//input[@id='addressLookup-0']")
+	@FindBy(xpath = "//input[contains(@id,'addressLookup')]")
 	WebElement txtAddressLookup;
 	
-	@FindBy(xpath = "//div[@class='ds-formField__inputContainer d-flex position-relative ds-bgcolor-white ds-borders ng-tns-c96-2 ds-brcolor-black ds-color-black']")
+	@FindBy(xpath = "//div[contains(@class,'ds-formField__inputContainer')]")
 	WebElement txtAddressLookupContainer;
 	
 	@FindBy(xpath = "//ins[@translate='global.cta.checkAvailability']")
@@ -366,6 +366,17 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void select150InternetPlan(String strDowngradeDataPlan) {
 		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
+	}
+
+	/**
+	 * Select the plan on shop Internet page
+	 * @param strDowngradeDataPlan of the plan to be selected
+	 * @author manpreet.kaur3
+	 */
+	public void select150InternetPlanMobile(String strDowngradeDataPlan) {
+		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60);
+		WebElement ele = getDriver().findElement(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"));
+		reusableActions.executeJavaScriptClick(ele);
 	}
 
 	/**
