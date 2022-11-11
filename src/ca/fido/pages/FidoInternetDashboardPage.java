@@ -282,11 +282,11 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void selectHSIPackageByBandwidthMobile(String strBandwidth) {
-		By packageNameLocator = By.xpath("(//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update'])[1]");
+		By packageNameLocator = By.xpath("//span[@ng-bind='tier.speed.download' and text()='"+strBandwidth+"']/ancestor::div[@class='twentyseventeen-internet-tier']/parent::div//button[@ute-tracking='internet:package:selector:offerchange']//ins[@translate='global.cta.update']");
 		reusableActions.javascriptScrollToMiddleOfPage();
 		reusableActions.staticWait(5000);
 		WebElement pkg = driver.findElement(packageNameLocator);
-		reusableActions.staticWait(5000);
+		//reusableActions.staticWait(5000);
 		reusableActions.getWhenReady(packageNameLocator, 120);
 		reusableActions.executeJavaScriptClick(pkg);
 	}
@@ -313,7 +313,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author aditya.dhingra
 	 */
 	public void clkConfirmPackageChange() {		
-		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();		
+		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();
 	}
 
 	/**
@@ -339,6 +339,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public boolean verifyDowngradePopup(){
+		reusableActions.waitForElementVisibility(popupDowngrade, 60);
 		return reusableActions.isElementVisible(popupDowngrade);
 	}
 	

@@ -966,7 +966,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void clickDeletePromo(){
-		reusableActions.clickIfAvailable(deletePromo);
+		reusableActions.isElementVisible(deletePromo);
+		reusableActions.clickWhenReady(deletePromo);
 	}
 
 	/**

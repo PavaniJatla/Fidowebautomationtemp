@@ -258,7 +258,6 @@ public class FidoPaymentPage extends BasePageClass {
 	 */
 	public void setCreditCardNumberIFrameMobile(String strCreditCard) {
 		driver.switchTo().frame(reusableActions.getWhenVisible(fraSemaphone));
-		reusableActions.getWhenVisible(txtCreditCardNumber,90).click();
 		reusableActions.getWhenReady(txtCreditCardNumber).sendKeys(strCreditCard);
 		driver.switchTo().defaultContent();
 	}
@@ -279,8 +278,8 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void setCVVNumberMobile(String strCVV) {
-		reusableActions.clickWhenVisible(txtCvvContainer,60);
-		reusableActions.clickWhenVisible(txtCVV,60);
+		reusableActions.executeJavaScriptClick(txtCvvContainer);
+		reusableActions.executeJavaScriptClick(txtCVV);
 		reusableActions.getWhenReady(txtCVV).sendKeys(strCVV);
 	}
 	/**
@@ -298,7 +297,9 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author  Aditya.Dhingra
 	 */
 	public void selectExpiryDate(String strDATE) {
-		reusableActions.getWhenReady(ddlExpiryDate,20).click();
+	//	reusableActions.executeJavaScriptClick(ddlExpiryDateContainer);
+	//	reusableActions.executeJavaScriptClick(ddlExpiryDate);
+
 		reusableActions.getWhenReady(ddlExpiryDate).sendKeys(strDATE);
 		//reusableActions.selectWhenReady(ddlExpiryDate, strDATE);
 	}
@@ -337,7 +338,8 @@ public class FidoPaymentPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public void clkReviewAndContinue() {
-		reusableActions.getWhenVisible(btnReviewAndContinue,30).sendKeys(Keys.ENTER);
+		//reusableActions.getWhenVisible(btnReviewAndContinue,30).sendKeys(Keys.ENTER);
+		reusableActions.executeJavaScriptClick(btnReviewAndContinue);
 	}
 	
 	/**
