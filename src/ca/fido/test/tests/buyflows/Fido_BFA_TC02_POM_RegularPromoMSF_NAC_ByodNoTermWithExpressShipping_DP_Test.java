@@ -4,7 +4,6 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -15,7 +14,7 @@ import java.lang.reflect.Method;
  * TC02 - Regression - [FNAC BYOD] - Perform Fido Net New Activation - BYOD with Express Pickup Shipping - BOPIS_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC02_NAC_ByodTermWithExpressShipping_DP_Test extends BaseTestClass{
+public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
 	public void tc02_fidoNACByodTermExpressShippingFlow() {
@@ -26,7 +25,7 @@ public class Fido_BFA_TC02_NAC_ByodTermWithExpressShipping_DP_Test extends BaseT
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().selectBYODdpAddon();
 		getReporter().reportLogPassWithScreenshot("Device Protection Addon option is selected");

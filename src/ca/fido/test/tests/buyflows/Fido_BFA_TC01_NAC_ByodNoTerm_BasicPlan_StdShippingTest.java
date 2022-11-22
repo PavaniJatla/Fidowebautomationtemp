@@ -4,7 +4,6 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -15,7 +14,7 @@ import java.lang.reflect.Method;
  * TC01 - Regression - [FNAC BYOD] - Perform Fido Net New Activation - BYOD with Standard Shipping_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTestClass{
+public class Fido_BFA_TC01_NAC_ByodNoTerm_BasicPlan_StdShippingTest extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA","NACBFABYOD"})
 	public void tc01_fidoNACByodTermStandardShippingFlow() {
