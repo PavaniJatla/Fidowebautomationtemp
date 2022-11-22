@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping_DP_EditEmail_Test extends BaseTestClass {
+public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShipping_DP_EditEmail_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"strBrowser", "strLanguage"})
@@ -54,10 +54,6 @@ public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        /*String dataOptionIndex = TestDataHandler.tc10HupExistingSubsidy1.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");*/
         getFidobuildplanpage().selectDeviceProtectionAddon();
         getReporter().reportLogPass("Device Protection Addon is selected");
         getFidobuildplanpage().clkContinueAddOns();

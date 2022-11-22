@@ -22,6 +22,7 @@ import com.applitools.eyes.selenium.Eyes;
 import extentreport.ExtentListener;
 import extentreport.ExtentTestManager;
 import org.apache.http.client.ClientProtocolException;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
@@ -497,6 +498,8 @@ public class BaseTestClass {
 				break;
 
 			case "buyflows":
+				getDriver().get(strUrl+"/phones");
+				deleteCookie();
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
@@ -784,5 +787,14 @@ public class BaseTestClass {
 	@BeforeSuite(alwaysRun = true)
 	public void beforeSuite(ITestContext iTestContext) throws FileNotFoundException {
 		TestDataHandler.dataInit(iTestContext.getSuite().getAllMethods());
+	}
+
+	public void setCookie(String strUrl) {
+		Cookie cookie = new Cookie("QSI_SI_eOGekr50Kdqo3dQ_intercept", "true", ".fido.ca", "/phones", null);
+		getDriver().manage().addCookie(cookie);
+	}
+
+	public void deleteCookie() {
+		getDriver().manage().deleteCookieNamed("QSI_HistorySession");
 	}
 }

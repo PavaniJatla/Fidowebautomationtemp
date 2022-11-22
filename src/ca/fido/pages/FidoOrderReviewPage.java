@@ -179,7 +179,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkTermsNConditionsFinancingConsent() {
-		reusableActions.clickWhenVisible(chkBoxFinancingConsent, 60);
+		reusableActions.clickIfAvailable(chkBoxFinancingConsent, 20);
 	}
 
 	/**
