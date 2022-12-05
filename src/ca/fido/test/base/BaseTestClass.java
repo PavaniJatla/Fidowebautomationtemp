@@ -476,7 +476,7 @@ public class BaseTestClass {
 				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				getDriver().get(strUrl+"/internet/packages"+"?setLanguage="+ language);
-				getDriver().manage().deleteAllCookies();
+				//getDriver().manage().deleteAllCookies();
 				break;
 
 			case "connectedhome_login":
