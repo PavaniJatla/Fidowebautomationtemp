@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC09_POM_PromoCode_HUPWithPPCUsingFinancingPlan_SS_Test extends BaseTestClass {
+public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {

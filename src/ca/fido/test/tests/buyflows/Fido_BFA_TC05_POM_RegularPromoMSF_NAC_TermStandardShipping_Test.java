@@ -18,7 +18,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","POM"})
-	public void tc05_fidoNACTermStandardShippingFlow() {
+	public void tc05_pomfidoNACTermStandardShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");

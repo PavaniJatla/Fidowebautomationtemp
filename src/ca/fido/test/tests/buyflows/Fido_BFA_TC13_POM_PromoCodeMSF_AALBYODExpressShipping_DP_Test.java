@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC13_POM_PromoCode_AALBYODExpressShipping_DP_Test extends BaseTestClass {
+public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -22,7 +22,7 @@ public class Fido_BFA_TC13_POM_PromoCode_AALBYODExpressShipping_DP_Test extends 
     }
 
     @Test(groups = {"RegressionBFA","AALBFA","POM"})
-    public void tc13_fidoAALBYODStandardShippingFlowTest() {
+    public void tc13_pomfidoAALBYODExpressShippingFlowTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13AALBYODExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13AALBYODExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -48,7 +48,7 @@ public class Fido_BFA_TC13_POM_PromoCode_AALBYODExpressShipping_DP_Test extends 
         // ***************************Plan Builder page************************************
         String dataOptionIndex = TestDataHandler.tc13AALBYODExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().selectBYODdpAddon();
