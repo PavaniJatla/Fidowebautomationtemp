@@ -75,13 +75,13 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
 		getFidochoosenumberpage().selectCity(TestDataHandler.tc03TermBopis.getCtnCity());
 		getFidochoosenumberpage().selectFirstAvailableNumber();
-		getFidoCheckOutPage().clkNoThanks();
+		//getFidoCheckOutPage().clkNoThanks();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
-		getFidoCheckOutPage().clkNoThanks();
+		//getFidoCheckOutPage().clkNoThanks();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
 		getFidoCheckOutPage().clkShippingType("EXPRESS");
 		getReporter().reportLogWithScreenshot("Shipping selected");
