@@ -30,6 +30,11 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getReporter().reportLogPass("Clicked Get Started Button on the modal window");
 		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
 		getReporter().reportLogWithScreenshot("Device config page");
+		String deviceCost = getFidodeviceconfigpage().getDeviceFullPrice();
+		String financeProgramCredit = "0.0";
+		financeProgramCredit = getFidodeviceconfigpage().getFinanceProgramCreditPrice();
+		/*String upfrontEdge = "0.0";
+		upfrontEdge = getFidodeviceconfigpage().getUpfrontEdgePrice();*/
 		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
@@ -73,6 +78,11 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("Credit Evaluation page");
 		getFidocreditcheckpage().clkContinue();
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
+		String expectedDownPayment = getFidocreditcheckpage().setDownPaymentUpfrontEdge(TestDataHandler.tc03TermBopis.getRiskClass(),deviceCost,financeProgramCredit);
+		getReporter().reportLog("Expected DownPayment: <b> " +expectedDownPayment +"</b>");
+		getReporter().hardAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
+				"Downpayment amount is displayed correctly", "Downpayment amount is not displayed correctly");
+		getFidocreditcheckpage().clkAcceptButton();
 		getFidochoosenumberpage().selectCity(TestDataHandler.tc03TermBopis.getCtnCity());
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		//getFidoCheckOutPage().clkNoThanks();
