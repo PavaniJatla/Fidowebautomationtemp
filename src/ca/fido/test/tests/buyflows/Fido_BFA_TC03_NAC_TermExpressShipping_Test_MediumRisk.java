@@ -15,10 +15,10 @@ import java.lang.reflect.Method;
  * TC03 - Regression - [FNAC TERM] - Perform Fido Net New Activation - TERM with Express Pickup Shipping(Finance Plan) - BOPIS_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC03_NAC_TermExpressShipping_Test extends BaseTestClass{
+public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","SanityBFA"})
-	public void tc03_fidoNACTermExpressShippingFlow() {
+	public void tc03_fidoNACTermExpressShippingFlowMediumRisk() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
