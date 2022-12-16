@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Test extends BaseTestClass {
+public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_High_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
@@ -33,6 +33,9 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Te
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
+        String deviceCost = getFidodeviceconfigpage().getDeviceFullPrice();
+        String financeProgramCredit = "0.0";
+        financeProgramCredit = getFidodeviceconfigpage().getFinanceProgramCreditPrice();
         getFidodeviceconfigpage().clickContinueButton();
         // ***************************Promo Section************************************
         getFidobuildplanpage().clkPromoSection();
@@ -62,6 +65,10 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Te
                 "Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        String expectedDownPayment = getFidocreditcheckpage().setDownPaymentUpfrontEdge(TestDataHandler.tc09HupPpcFinancingStandardShipping.getRiskClass(),deviceCost,financeProgramCredit);
+        getReporter().reportLog("Expected DownPayment: <b> " +expectedDownPayment +"</b>");
+        getReporter().hardAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
+                "Downpayment amount is displayed correctly", "Downpayment amount is not displayed correctly");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc09HupPpcFinancingStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

@@ -13,6 +13,7 @@ public class HUPData {
 	private String accessory1;
 	private String ban;
 	private String promoCode;
+	private String riskClass;
 
 	/**
 	 * @return the newDevice
@@ -145,4 +146,11 @@ public class HUPData {
 		this.promoCode = promoCode;
 	}
 
+	public String getRiskClass() {
+		return riskClass;
+	}
+
+	public void setRiskClass(String riskClass) {
+		this.riskClass = riskClass;
+	}
 }
