@@ -87,6 +87,7 @@ public class FidoCH_Regression_TC_003_HSIBuyUnwiredAddressTechInstallPreauthoriz
         getReporter().reportLogWithScreenshot("Credit consent Check Done");
         getFidocreditcheckpage().clkCreditCheckSubmit();
         getReporter().reportLogWithScreenshot("Tech-Install page has launched");
+        getFidotechnicalinstallationpage().clkTechInstallSlot();
         getReporter().reportLogWithScreenshot(" selected the slot for Tech-Instal");
         getFidotechnicalinstallationpage().clkTechInstalConfirm();
         getReporter().reportLogWithScreenshot("Payment page has launched");
