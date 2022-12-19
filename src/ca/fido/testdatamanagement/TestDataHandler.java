@@ -73,7 +73,7 @@ public class TestDataHandler {
 	public static PPCData tc20PPCSLSubsidyOutTermSelectingTTPlan;
 	public static PPCData BFA_ProdTest_tc07_PPC_DTTPlan;
 	public static HUPData tc06HupPpcFinancingExpressShipping;
-	public static HUPData tc07HupPpcNoTermStandardShipping;
+	public static HUPData tc07TabletHupPpcFinExpressShipping;
 	public static HUPData tc08HupPpcKeepExistingExpressShipping;
 	public static HUPData tc09HupPpcFinancingStandardShipping;
 	public static HUPData BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping;
@@ -251,7 +251,7 @@ public class TestDataHandler {
 		tc19PPCSLSubsidyInTermSelectingSubsidyPlan = YamlHandler.getPPCData("tc19PPCSLSubsidyInTermSelectingSubsidyPlan");
 		tc20PPCSLSubsidyOutTermSelectingTTPlan = YamlHandler.getPPCData("tc20PPCSLSubsidyOutTermSelectingTTPlan");
 		tc06HupPpcFinancingExpressShipping = YamlHandler.getHUPData("tc06HupPpcFinancingExpressShipping");
-		tc07HupPpcNoTermStandardShipping = YamlHandler.getHUPData("tc07HupPpcNoTermStandardShipping");
+		tc07TabletHupPpcFinExpressShipping = YamlHandler.getHUPData("tc07TabletHupPpcFinExpressShipping");
 		tc08HupPpcKeepExistingExpressShipping = YamlHandler.getHUPData("tc08HupPpcKeepExistingExpressShipping");
 		tc09HupPpcFinancingStandardShipping = YamlHandler.getHUPData("tc09HupPpcFinancingStandardShipping");
 		BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip = YamlHandler.getAALData("BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip");

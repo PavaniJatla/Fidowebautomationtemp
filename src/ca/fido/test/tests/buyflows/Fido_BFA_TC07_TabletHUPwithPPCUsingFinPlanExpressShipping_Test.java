@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC07_HUPWithPPCUsingNoTermPlanStandardShipping_Test extends BaseTestClass {
+public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
@@ -18,42 +18,44 @@ public class Fido_BFA_TC07_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA"})
-    public void tc07_fidoHUPWithPPCUsingNoTermPlanStandardShippingFlowTest() {
+    public void tc07_fidoTabletHUPWithPPCUsingFinPlanExpressShippingFlowTest() {
         // **************************Regular Login Flow**************************************
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc07HupPpcNoTermStandardShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc07HupPpcNoTermStandardShipping.getPassword());
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
+        getReporter().reportLogWithScreenshot("CTN selection modal is displayed");
+        getFidodeviceconfigpage().selectSubscriber(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getCtn());
         getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose phone page loaded successfully", "Choose phone page not loaded successfully");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc07HupPpcNoTermStandardShipping.getNewDevice();
+        String deviceName = TestDataHandler.tc07TabletHupPpcFinExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
-        getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        //getFidochoosephonepage().selectUpgradeMyDeviceButton();
-        //getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
-        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(), "Page loading fine", "Page is not loading");
+        getReporter().reportLogWithScreenshot("Tablet " + deviceName + " Selected");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        getFidobuildplanpage().checkKeepMyCurrentPlanButton();
-        getFidobuildplanpage().clkRadioButtonNoTerm();
         getFidobuildplanpage().clkContinueDeviceCost();
+        //getFidobuildplanpage().clkDataOption(TestDataHandler.tc07HupPpcNoTermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
         //String deviceCostIndex = TestDataHandler.tc12HupPpcNoTermStandardShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
+       //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        getFidobuildplanpage().clkContinueTalkOptions();
+        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getFidoCheckOutPage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        String deliveryMethod = TestDataHandler.tc07HupPpcNoTermStandardShipping.getShippingType();
+        String deliveryMethod = TestDataHandler.tc07TabletHupPpcFinExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");
@@ -66,7 +68,7 @@ public class Fido_BFA_TC07_HUPWithPPCUsingNoTermPlanStandardShipping_Test extend
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
-        //getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
+        getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
