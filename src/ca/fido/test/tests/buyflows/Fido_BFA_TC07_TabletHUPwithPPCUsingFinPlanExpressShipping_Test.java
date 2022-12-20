@@ -10,60 +10,52 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC09_POM_PromoCode_HUPWithPPCUsingFinancingPlan_SS_Test extends BaseTestClass {
+public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","HUPBFA","POM"})
-    public void tc09_pomFidoHUPWithPPCFinancingPlanTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getUsername());
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPassword());
+    @Test(groups = {"RegressionBFA","HUPBFA"})
+    public void tc07_fidoTabletHUPWithPPCUsingFinPlanExpressShippingFlowTest() {
+        // **************************Regular Login Flow**************************************
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getUsername());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
+        getReporter().reportLogWithScreenshot("CTN selection modal is displayed");
+        getFidodeviceconfigpage().selectSubscriber(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getCtn());
+        getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose phone page loaded successfully", "Choose phone page not loaded successfully");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc09HupPpcFinancingStandardShipping.getNewDevice();
+        String deviceName = TestDataHandler.tc07TabletHupPpcFinExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
-        getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
+        getReporter().reportLogWithScreenshot("Tablet " + deviceName + " Selected");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
-        getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
+        getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        // ***************************Promo Section************************************
-        getFidobuildplanpage().clkPromoSection();
-        getReporter().reportLogWithScreenshot("Promo Section Displayed");
-        getFidobuildplanpage().setPromoCode(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPromoCode());
-        getReporter().reportLogWithScreenshot("Promo Code Entered");
-        getFidobuildplanpage().clkCheckPromoBtn();
-        getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(),
-                "Promo Code Applied Successfully", "Promo Code Not Applied");
-        getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(),
-                "Discount Value and Duration displayed", "Promo Code Not Applied");
         getFidobuildplanpage().clkContinueDeviceCost();
-        //String deviceCostIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDeviceCostIndex();
+        //getFidobuildplanpage().clkDataOption(TestDataHandler.tc07HupPpcNoTermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
+        //String deviceCostIndex = TestDataHandler.tc12HupPpcNoTermStandardShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        String dataOptionIndex = TestDataHandler.tc09HupPpcFinancingStandardShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+       //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        getFidobuildplanpage().clkContinueTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
-        getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),
-                "Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getFidoCheckOutPage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        String deliveryMethod = TestDataHandler.tc09HupPpcFinancingStandardShipping.getShippingType();
+        String deliveryMethod = TestDataHandler.tc07TabletHupPpcFinExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
             getReporter().reportLogWithScreenshot("Express Shipping selected");
@@ -75,8 +67,6 @@ public class Fido_BFA_TC09_POM_PromoCode_HUPWithPPCUsingFinancingPlan_SS_Test ex
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
-        getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),
-                "Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
@@ -92,9 +82,9 @@ public class Fido_BFA_TC09_POM_PromoCode_HUPWithPPCUsingFinancingPlan_SS_Test ex
             getReporter().reportLogWithScreenshot("OneTime payment page displayed before submitting");
             getFidoorderreviewpage().clkSubmitMyOrder();
         }
-        getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
-        getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
-        getReporter().reportLogWithScreenshot("Order Confirmation page");
+            getReporter().hardAssert(getFidoorderconfirmationpage().verifyThankYou(), "Thank you message Confirmed", "Thank you message Error");
+            getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order Confirmed", "Order Confirmation Error");
+            getReporter().reportLogWithScreenshot("Order Confirmation page");
     }
 
     @AfterMethod(alwaysRun = true)

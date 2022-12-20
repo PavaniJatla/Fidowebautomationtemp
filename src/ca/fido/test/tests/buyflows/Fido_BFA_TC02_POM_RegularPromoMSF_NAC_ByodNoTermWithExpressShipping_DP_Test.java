@@ -17,9 +17,15 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
-	public void tc02_fidoNACByodTermExpressShippingFlow() {
+	public void tc02_pomfidoNACByodExpressShippingFlow() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
+		// ***************************Promo Section************************************
+		getReporter().reportLogWithScreenshot("Regular Promo MSF Applied");
+		getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promotion Applied Successfully", "Promotion Not Applied");
+		String regularPromoName = getFidobuildplanpage().getRegularPromoName();
+		getReporter().reportLogPassWithScreenshot("Regular Promo Name " +regularPromoName);
+		// ***************************Plan Builder page************************************
 		getFidobuildplanpage().clkDataOption(TestDataHandler.tc02ByodExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPass("Data, Talk and Text Plan selected");
 		getReporter().reportLogPass("Continue button on Data option clicked");
@@ -42,6 +48,8 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 		getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
 		String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
 		getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
+		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Discount amount Line Item displayed",
+				"Promo line item not displayed");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -55,7 +63,7 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
-		getFidoCheckOutPage().clkNoThanks();
+		//getFidoCheckOutPage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());

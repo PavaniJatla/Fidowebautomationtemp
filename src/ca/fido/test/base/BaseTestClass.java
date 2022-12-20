@@ -499,7 +499,7 @@ public class BaseTestClass {
 
 			case "buyflows":
 				getDriver().get(strUrl+"/phones");
-				deleteCookie();
+				setCookie(strUrl);
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
@@ -790,11 +790,8 @@ public class BaseTestClass {
 	}
 
 	public void setCookie(String strUrl) {
-		Cookie cookie = new Cookie("QSI_SI_eOGekr50Kdqo3dQ_intercept", "true", ".fido.ca", "/phones", null);
+		Cookie cookie = new Cookie("QSI_SI_1Ycr2XA3syHKzWe_intercept", "true", ".fido.ca", "/phones", null);
 		getDriver().manage().addCookie(cookie);
 	}
 
-	public void deleteCookie() {
-		getDriver().manage().deleteCookieNamed("QSI_HistorySession");
-	}
 }

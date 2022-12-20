@@ -126,6 +126,15 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='continue-btn' and contains(.,'Continue')]")
 	WebElement dpAddonContinue;
 
+	@FindBy(xpath = "//div[contains(text(),'Not now')]/parent::label")
+	WebElement skipAutoPay;
+
+	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
+	WebElement paymentContinueButton;
+
+	@FindBy(xpath = "//button[@data-test='auto-pay-removal-modal-button']//span[contains(text(),'Continue')]")
+	WebElement autoPayRemovalCtnBtn;
+
 	/**
 	 * This method enters the value in email address field in shipping page
 	 * @author praveen.kumar7
@@ -361,6 +370,18 @@ public class FidoCheckOutPage extends BasePageClass {
 		reusableActions.isElementVisible(dpAddonContinue);
 		reusableActions.executeJavaScriptClick(dpAddonContinue);
 		return true;
+	}
+
+	/**
+	 * This method opts out AutoPay payment method and clicks Continue in AutoPay Removal Modal
+	 * @author subash.nedunchezhian
+	 */
+	public void clickSkipAutopay(){
+		if(reusableActions.isElementVisible(skipAutoPay, 20)) {
+			reusableActions.getWhenReady(skipAutoPay, 10).click();
+			reusableActions.getWhenReady(paymentContinueButton,10).click();
+			reusableActions.getWhenReady(autoPayRemovalCtnBtn,10).click();
+		}
 	}
 
 	/**

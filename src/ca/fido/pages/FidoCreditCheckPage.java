@@ -128,6 +128,16 @@ public class FidoCreditCheckPage extends BasePageClass {
 	})
 	WebElement btnClkNoThanks;
 
+	@FindAll({
+			@FindBy(xpath = "//ds-modal//*[@data-test='modal-credit-evaluation-section']//*[contains(@class,'text-right')]/p[2]"),
+			@FindBy(xpath = "//ds-modal//p[@data-test='modal-credit-evaluation-downpayment']"),
+			@FindBy(xpath = "//dsa-order-table//*[contains(text(),'Down payment')]/parent::div/following-sibling::div/span")
+	})
+	WebElement downPaymentAmt;
+
+	@FindBy(xpath = "//button[@title='Accept' or contains(@title,'accepte')]")
+	WebElement acceptButton;
+
 	/**
 	 * Set dynamic date of birth year on Credit check page
 	 * @author Chinnarao.Vattam
@@ -432,4 +442,73 @@ public class FidoCreditCheckPage extends BasePageClass {
 			reusableActions.executeJavaScriptClick(btnClkNoThanks);
 		}
 	}
+
+	/**
+	 * This method calculates expected mandatory down payment amount(deviceCost-upfrontEdgeAmt) based on Risk
+	 * @param financeProgramCredit finance program credit for the device
+	 * @param deviceCost full price of the device
+	 * @param riskClass HIGH/MEDIUM risk
+	 * @author Vedachalam.Vasudevan
+	 */
+	public String setDownPaymentUpfrontEdge(String riskClass, String deviceCost,String financeProgramCredit) {
+		double mandatoryDownPayment = (Double.parseDouble(deviceCost)) - (Double.parseDouble(financeProgramCredit) * 24);
+		if (riskClass.toUpperCase().contains("HIGH")) {
+			double expectedDownPayment = (mandatoryDownPayment / 100.0) * 40.0;
+			//return String.valueOf(expectedDownPayment);
+			return modifyMandatoryDownPayment(expectedDownPayment);
+		} else if (riskClass.toUpperCase().contains("MEDIUM")) {
+			double expectedDownPayment = (mandatoryDownPayment / 100.0) * 20.0;
+			//return String.valueOf(expectedDownPayment);
+			return modifyMandatoryDownPayment(expectedDownPayment);
+		} else return "0";
+	}
+
+	/**
+	 * Method substring decimal value of down Payment to two digit
+	 * @param downPay
+	 * @return Expected down payment
+	 * @author Vedachalam.Vasudevan
+	 */
+	public String modifyMandatoryDownPayment(Double downPay) {
+		String downPayment = String.valueOf(downPay);
+		int decimal=0;
+		String[] modify = downPayment.split("\\.");
+		if(modify[1].length() >= 3) {
+			char secondDecimal = modify[1].charAt(1);
+			char thirdDecimal = modify[1].charAt(2);
+			if (Integer.parseInt(String.valueOf(thirdDecimal)) >= 5) {
+				decimal = Integer.parseInt(String.valueOf(secondDecimal)) + 1;
+			} else {
+				decimal = Integer.parseInt(String.valueOf(secondDecimal));
+			}
+			downPayment = modify[0] + "." + modify[1].substring(0, 1) + decimal;
+		}
+		return downPayment;
+	}
+
+	/**
+	 * This method verifies if mandatory downpayment amount is displayed properly
+	 * @param expectedDownPayment min DownPayment for the device
+	 * @return true if deposit is displayed correctly, else false
+	 * @author Vedachalam.Vasudevan
+	 */
+	public boolean verifyDownPaymentAmt(String expectedDownPayment) {
+		String actualDownPayment = reusableActions.getWhenReady(downPaymentAmt, 20).getText().trim().replace("$", "");
+		if (actualDownPayment.contains(expectedDownPayment) || actualDownPayment.replace(",", ".").contains(expectedDownPayment)) {
+			reusableActions.scrollToElement(downPaymentAmt);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * This method clicks on the Accpet button in security deposit modal
+	 * @author Vedachalam.Vasudevan
+	 */
+	public void clkAcceptButton() {
+		if(reusableActions.isElementVisible(acceptButton, 20)) {
+			reusableActions.getWhenReady(acceptButton, 20).click();
+		}
+	}
+
 }

@@ -47,6 +47,15 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	@FindBy(xpath = "//span[@data-test='wirelessDiscount-promo-ribbon']/following::p[1]")
 	WebElement regularPromoDetail;
 
+	@FindBy(xpath = "//div[contains(@data-test,'device-config')]//p[contains(.,'Full') or contains(.,'Plein')]//span")
+	WebElement txtDeviceCost;
+
+	@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'financing program promotion') or contains(text(),'payment program promotion')]")
+	WebElement financeCreditAmount;
+
+	@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'Upfront Edge credit')]")
+	WebElement upfrontEdgeAmount;
+
 	/**
 	 * Selects the Subscriber on the Choose a line overlay and clicks Continue
 	 * @param strCTN Subscriber phone number
@@ -188,6 +197,46 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	public String getRegularPromoDetails(){
 		reusableActions.scrollToElement(regularPromoDetail);
 		return regularPromoDetail.getText().replaceAll("\\n", "");
+	}
+
+	public String getDeviceFullPrice() {
+		if (System.getProperty("Language").equalsIgnoreCase("fr")) {
+			String deviceFullPriceFR = reusableActions.getWhenReady(txtDeviceCost).getText().trim();
+			return deviceFullPriceFR.substring(0, deviceFullPriceFR.indexOf(","));
+		} else {
+			String deviceFullPriceEN = reusableActions.getWhenReady(txtDeviceCost).getText().trim();
+			return deviceFullPriceEN.substring(1, deviceFullPriceEN.indexOf(".")).replace(",", "");
+		}
+	}
+
+	/**
+	 * Finance Program Credit price will be return
+	 * @return Finance Program Credit price
+	 * @author Vedachalam.Vasudevan
+	 */
+	public String getFinanceProgramCreditPrice() {
+		String financeCredit = "0.0";
+		if(reusableActions.isElementVisible(financeCreditAmount)) {
+			financeCredit = reusableActions.getWhenReady(financeCreditAmount).getText().trim();
+			return financeCredit.substring(financeCredit.indexOf("$") + 1, financeCredit.indexOf("/"));
+		} else {
+			return financeCredit;
+		}
+	}
+
+	/**
+	 * Upfront Edge price will be return
+	 * @return Upfront Edge price
+	 * @author Vedachalam.Vasudevan
+	 */
+	public String getUpfrontEdgePrice() {
+		String upfrontEdgeAmt = "0.0";
+		if(reusableActions.isElementVisible(upfrontEdgeAmount)) {
+			upfrontEdgeAmt = reusableActions.getWhenReady(upfrontEdgeAmount).getText().trim();
+			return upfrontEdgeAmt.substring(upfrontEdgeAmt.indexOf("$")+1,upfrontEdgeAmt.indexOf(" "));
+		} else {
+			return upfrontEdgeAmt;
+		}
 	}
 }
 	

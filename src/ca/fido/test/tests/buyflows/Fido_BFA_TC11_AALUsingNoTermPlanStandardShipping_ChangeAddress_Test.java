@@ -60,12 +60,12 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        getFidoCheckOutPage().clkNoThanks();
+        //getFidoCheckOutPage().clkNoThanks();
         getFidoCheckOutPage().selectNewShippingAddress(TestDataHandler.tc11AALNoTermPlanStandardShipping.getNewShippingAddress());
         getReporter().reportLogPassWithScreenshot("Entered new Shipping Address");
         String deliveryMethod = TestDataHandler.tc11AALNoTermPlanStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
-        getFidoCheckOutPage().clkNoThanks();
+        //getFidoCheckOutPage().clkNoThanks();
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
