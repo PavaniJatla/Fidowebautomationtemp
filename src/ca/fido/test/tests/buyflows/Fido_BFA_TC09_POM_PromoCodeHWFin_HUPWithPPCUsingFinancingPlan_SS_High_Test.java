@@ -18,7 +18,7 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Hi
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA","POM"})
-    public void tc09_pomFidoHUPWithPPCFinancingPlanTest() {
+    public void tc09_pomFidoHUPWithPPCFinancingPlanHighRiskAcctTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

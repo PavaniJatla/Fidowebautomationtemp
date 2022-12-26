@@ -27,7 +27,7 @@ public class Fido_BFA_TC16_PPC_ML_FinInTerm_SelectingNoTermDTT_DowngradeFee_Test
     }
 
     @Test(groups = {"RegressionBFA","PPCBFA"})
-    public void tc16_fidoPPCMLNonSE_FINInTerm_NOTERMPlanTest() {
+    public void tc16_fidoPPCML_FINInTerm_NOTERMPlanDowngradeFeeTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc16PPCMLFinInTermNotermPlan.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc16PPCMLFinInTermNotermPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

@@ -157,7 +157,7 @@ public class FidoCreditCheckPage extends BasePageClass {
 		String strDOBMonth = FormFiller.generateMonth();
 		reusableActions.waitForElementVisibility(ddlDOBMonth, 30);
 		reusableActions.selectWhenReady(ddlDOBMonth, strDOBMonth);
-		clkNoThanks();
+		//clkNoThanks();
 	}
 	
 	public void selectDOBMonthSingleDigit() {

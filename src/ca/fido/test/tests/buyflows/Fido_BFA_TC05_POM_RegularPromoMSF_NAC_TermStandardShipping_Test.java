@@ -18,7 +18,7 @@ import ca.fido.testdatamanagement.TestDataHandler;
 public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","POM"})
-	public void tc05_pomfidoNACTermStandardShippingFlow() {
+	public void tc05_pomfidoNACTermStandardShipping() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
@@ -70,9 +70,8 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		getFidocreateuserpage().setHomeAddress(TestDataHandler.tc05TermStandardShipping.getBillingAddress());
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
-		//issue in DOBYear
 		getFidocreditcheckpage().selectDOBYear();
-		getFidocreditcheckpage().clkNoThanks();
+		//getFidocreditcheckpage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());

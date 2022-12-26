@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","SanityBFA"})
-	public void tc03_fidoNACTermExpressShippingFlowMediumRisk() {
+	public void tc03_fidoNACTermExpressShippingMediumRisk() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
@@ -33,8 +33,6 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseT
 		String deviceCost = getFidodeviceconfigpage().getDeviceFullPrice();
 		String financeProgramCredit = "0.0";
 		financeProgramCredit = getFidodeviceconfigpage().getFinanceProgramCreditPrice();
-		/*String upfrontEdge = "0.0";
-		upfrontEdge = getFidodeviceconfigpage().getUpfrontEdgePrice();*/
 		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
@@ -65,7 +63,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseT
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
-		getFidocreditcheckpage().clkNoThanks();
+		//getFidocreditcheckpage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());

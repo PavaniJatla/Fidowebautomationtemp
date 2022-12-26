@@ -17,7 +17,7 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void tc11_fidoAALUsingNoTermPlanStandardShippingFlowTest() {
+    public void tc11_fidoAALUsingNoTermPlanStandardShippingTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");

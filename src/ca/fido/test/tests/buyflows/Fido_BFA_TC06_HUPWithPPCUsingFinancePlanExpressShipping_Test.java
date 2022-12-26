@@ -19,7 +19,7 @@ public class Fido_BFA_TC06_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void tc06_fidoHUPWithPPCUsingFinancePlanExpressShippingFlowTest() {
+    public void tc06_fidoHUPWithPPCUsingFinancePlanExpressShippingTest() {
         getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc06HupPpcFinancingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc06HupPpcFinancingExpressShipping.getPassword());
