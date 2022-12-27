@@ -110,6 +110,10 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestCl
 		getReporter().reportLogPass("Submit button selected on review page");
 		//getFidopaymentpage().clkRadioPayWithAnotherCreditCard();
 		getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+		getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+				"One Time Payment Page displayed","One Time Payment Page Not displayed");
+		String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+		getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
 		getFidopaymentpage().setCreditCardName();
 		getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
 		getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());
