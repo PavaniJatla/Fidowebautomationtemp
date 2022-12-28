@@ -87,6 +87,15 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='main-continue-button']")
 	WebElement btnSubmit;
 
+	@FindBy(xpath = "//p[contains(text(),'Please try another number')]/parent::div")
+	WebElement phoneNumReservedAlert;
+
+	@FindBy(xpath = "//button[@data-test='reserve-another-number']")
+	WebElement closeBtnReservedAlert;
+
+	@FindBy(xpath = "//ds-radio-group[@formcontrolname='newNumber']/div/div[4]")
+	WebElement selectAnotherPhoneNumber;
+	
 	@FindBy(xpath = "//button[@data-test='choose-number-continue']")
 	WebElement buttonChooseNumberContinue;
 
@@ -276,7 +285,23 @@ public class FidoCheckOutPage extends BasePageClass {
     	reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
 
     }
-
+	/**
+	 * This method verify Phone Number Reserved Alert Modal after Phone Number selection in the Choose a Number stepper
+	 * @return True if Alert Displayed else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean isReservedAlertDisplayed(){
+		return reusableActions.isElementVisible(phoneNumReservedAlert,10);
+	}
+	/**
+	 * This method select the another Available Phone number Radio button in the Choose a Number stepper
+	 * @author Subash.Nedunchezhian
+	 */
+	public void selectAnotherPhoneNumber(){
+		reusableActions.clickWhenReady(closeBtnReservedAlert);
+		reusableActions.getWhenReady(selectAnotherPhoneNumber, 30).click();
+		reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
+	}
 	/**
 	 * This method clicks on No Thanks button in survey modal if available
 	 * @author praveen.kumar7
