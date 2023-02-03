@@ -114,7 +114,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 */
 	public void clkContinue() {
 		reusableActions.clickWhenVisible(btnContinueChooseANumberSection);
-		clkNoThanks();
+		//clkNoThanks();
 	}
 
 	/**
