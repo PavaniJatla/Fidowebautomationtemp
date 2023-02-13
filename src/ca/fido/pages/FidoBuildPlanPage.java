@@ -65,6 +65,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	})
 	WebElement deviceBalancePopUp;
 
+	@FindBy(xpath = "//ds-modal//button[@data-test='modal-pom-continue']")
+	WebElement btnContinueWithSeletecPlan;
+
 	@FindBy(xpath = "//span[contains(text(),'View All Plans')]")
 	WebElement viewAllPlansButton;
 	
@@ -211,7 +214,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[@data-test='promo-detail-info']/following::span[3]")
 	WebElement regularPromoDetail;
 
-	@FindBy(xpath = "//span[contains(text(),'Plan discount') or contains(text(),'Rabais sur le forfait')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	@FindAll({
+			@FindBy(xpath = "//*[contains(text(),'Payment Program Promotion credit')]"),
+			@FindBy(xpath = "//span[contains(text(),'Plan discount') or contains(text(),'Rabais sur le forfait')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	})
 	WebElement promoCartLineItem;
 
 	@FindAll({
@@ -407,6 +413,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void clkDeviceBalancePopUp() {
+		reusableActions.clickIfAvailable(btnContinueWithSeletecPlan, 10);
 		reusableActions.clickIfAvailable(deviceBalancePopUp, 10);
 	}
 
@@ -908,6 +915,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void clkPromoSection() {
+		reusableActions.staticWait(15000);
 		reusableActions.waitForElementVisibility(promoSection, 20);
 		reusableActions.clickWhenReady(promoSection);
 	}
