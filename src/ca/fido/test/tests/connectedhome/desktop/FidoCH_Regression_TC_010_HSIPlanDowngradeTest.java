@@ -32,6 +32,8 @@ public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass
 	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameDowngrade());
+		getReporter().reportLogWithScreenshot("Continue Login");
+		getFidologinpage().clkContinueSignIn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();

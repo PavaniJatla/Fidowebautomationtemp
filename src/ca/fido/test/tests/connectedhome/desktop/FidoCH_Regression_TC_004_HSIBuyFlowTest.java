@@ -48,7 +48,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowTest extends BaseTestClass {
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2);
         getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         getFidoshopinternetpage().clkServiceAvailabilityCheck();
         getReporter().reportLogWithScreenshot("Multiple Address Popup is displayed");
@@ -90,7 +90,7 @@ public class FidoCH_Regression_TC_004_HSIBuyFlowTest extends BaseTestClass {
         getReporter().reportLogWithScreenshot("Credit consent Check Done");
         getFidocreditcheckpage().clkCreditCheckSubmit();
         getReporter().reportLogWithScreenshot("Tech-Install page has launched");
-        getReporter().reportLogWithScreenshot(" selected the slot for Tech-Install");
+
         getFidotechnicalinstallationpage().clkTechInstalConfirm();
         getReporter().reportLogWithScreenshot("Payment page has launched");        
         getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());

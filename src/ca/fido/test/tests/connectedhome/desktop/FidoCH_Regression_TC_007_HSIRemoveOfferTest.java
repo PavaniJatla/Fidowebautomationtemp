@@ -40,7 +40,7 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
-        getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
+        getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2);
         getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
         getFidoshopinternetpage().clkServiceAvailabilityCheck();
 		getReporter().reportLogWithScreenshot("Multiple Address Popup is displayed");

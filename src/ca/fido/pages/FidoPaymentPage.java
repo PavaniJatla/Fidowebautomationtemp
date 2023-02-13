@@ -66,7 +66,7 @@ public class FidoPaymentPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'w-100 w-sm-auto mr-md-24 mt-16 ds-button')]/span")})
 	WebElement btnPayNow;
 
-	@FindBy(xpath = "//span[@class='ds-icon d-inline-flex fds-icon-success ds-color-success']")
+	@FindBy(xpath = "//span[contains(@class,'ds-color-success')]")
 	WebElement msgPaymentConfirmation;
 	//ins[@translate='global.label.paymentConfirmationHeading']
 
