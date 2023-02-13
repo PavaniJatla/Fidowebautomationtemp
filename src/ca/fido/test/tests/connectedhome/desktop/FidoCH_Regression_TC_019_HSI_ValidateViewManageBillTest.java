@@ -34,6 +34,8 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 	public void checkFidoHsiUsageFunctionality() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUsage());
+		getReporter().reportLogWithScreenshot("Continue Login");
+		getFidologinpage().clkContinueSignIn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();

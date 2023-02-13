@@ -41,7 +41,8 @@ public class FidoCH_Regression_TC_003_HSIBuyUnwiredAddressTechInstallPreauthoriz
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkBuyUnwiredAddressTechInstallPreauthorizedChequingTest() {
         getReporter().reportLogWithScreenshot("Launched the packages Page");
-        getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccountwithUnwiredAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+      //  getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccountwithUnwiredAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccountwithUnwiredAddress.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccountwithUnwiredAddress.getaccountDetails().getAddress().get("line2");
@@ -88,7 +89,7 @@ public class FidoCH_Regression_TC_003_HSIBuyUnwiredAddressTechInstallPreauthoriz
         getFidocreditcheckpage().clkCreditCheckSubmit();
         getReporter().reportLogWithScreenshot("Tech-Install page has launched");
         getFidotechnicalinstallationpage().clkTechInstallSlot();
-        getReporter().reportLogWithScreenshot(" selected the slot for Tech-Instal");
+        getReporter().reportLogWithScreenshot(" selected the slot for Tech-Install");
         getFidotechnicalinstallationpage().clkTechInstalConfirm();
         getReporter().reportLogWithScreenshot("Payment page has launched");
         getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());

@@ -33,6 +33,8 @@ public class FidoCH_Regression_TC_012_HSIDataPlanDowngradeWithSameSpeedTest exte
 	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameDowngradeSameSpeed());
+		getReporter().reportLogWithScreenshot("Continue Login");
+		getFidologinpage().clkContinueSignIn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentails");
 		getFidologinpage().clkLoginInFrame();
