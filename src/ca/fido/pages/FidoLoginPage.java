@@ -14,16 +14,16 @@ public class FidoLoginPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@id='username']")
+	@FindBy(xpath = "//input[@type='email']")
 	WebElement txtUsername;
 
 	@FindBy(xpath = "//label[@for='username']//parent::span[contains(@class,'ds-form')]")
 	WebElement txtUsername1;
 
-	@FindBy(xpath = "//input[@formcontrolname='password']")
+	@FindBy(xpath = "//input[@type='password']")
 	WebElement txtPassword;
 
-	@FindBy(xpath = "//input[@formcontrolname='password']/parent::div")
+	@FindBy(xpath = "//input[@type='password']/parent::div")
 	WebElement lblPassword;
 
 	@FindBy(xpath = "//iframe[contains(@src,'/pages/easylogin-fido/signin/')]")
@@ -54,7 +54,7 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement lnlResignInAsMobile;
 	
 	
-	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn') or @title='Sign in' or @title='Ouvrir une session']")
+	@FindBy(xpath = "//div[contains(@class,'signInButton')]//button[@type='submit']")
 	WebElement btnLogIn;
 
 	@FindAll({
@@ -103,11 +103,13 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
 	WebElement lnkForgotUserName;
 
-	@FindBy(xpath = "//input[@id='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	@FindBy(xpath = "//input[@type='email']/parent::div[contains(@class,'ds-formField__inputContainer')]")
 	WebElement lblUserName;
 
 	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
 	WebElement lnkForgotPassword;
+
+
 
 	/**
 	 * Set the user name on login page
@@ -120,6 +122,7 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
+		clkLoginInFrame();
 	}
 	
 	
