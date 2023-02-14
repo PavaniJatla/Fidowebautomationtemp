@@ -50,7 +50,6 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().selectBYODdpAddon();
         getReporter().reportLogPassWithScreenshot("Device Protection Addon option is selected");
         getFidobuildplanpage().enterDPIMEI(TestDataHandler.tc13AALBYODExpressShipping.getDpIMEI());
