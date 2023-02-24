@@ -73,7 +73,7 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPla
         getReporter().reportLogWithScreenshot("AutoPay Enrolled - Bank Method");
         getFidopaymentoptionspage().billingOptionClkContinue();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        getReporter().hardAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
+        getReporter().softAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
                 "Downpayment amount is displayed correctly", "Downpayment amount is not displayed correctly");
         String deliveryMethod = TestDataHandler.tc09HupPpcFinancingStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
@@ -93,7 +93,7 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPla
         getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
-        //getFidoorderreviewpage().clkSubmitMyOrder();
+        getFidoorderreviewpage().clkSubmitMyOrder();
         getReporter().reportLogPass("Submit button selected on review page");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");

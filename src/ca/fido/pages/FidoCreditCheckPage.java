@@ -498,7 +498,6 @@ public class FidoCreditCheckPage extends BasePageClass {
 		System.out.println(actualDownPayment);
 		if (actualDownPayment.contains(expectedDownPayment) || actualDownPayment.replace(",", ".").contains(expectedDownPayment)) {
 			reusableActions.scrollToElement(downPaymentAmt);
-			System.out.println(actualDownPayment);
 			return true;
 		}
 		return false;
