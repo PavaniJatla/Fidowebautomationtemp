@@ -49,8 +49,8 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
 		getFidobuildplanpage().clkDataOption(TestDataHandler.tc05TermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
 		getReporter().reportLogPassWithScreenshot("Continue button on Data option clicked");
-		getFidobuildplanpage().clkContinueTalkOptions();
-		getReporter().reportLogPass("Continue button on talk option clicked");
+		//getFidobuildplanpage().clkContinueTalkOptions();
+		//getReporter().reportLogPass("Continue button on talk option clicked");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		//getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
@@ -91,6 +91,7 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
+		getFidopaymentoptionspage().clickSkipNacAutopay();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
 		getFidoCheckOutPage().clkShippingType("STANDARD");
 		getReporter().reportLogWithScreenshot("Shipping selected");

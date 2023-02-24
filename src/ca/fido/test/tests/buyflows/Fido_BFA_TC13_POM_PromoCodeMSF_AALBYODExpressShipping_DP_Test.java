@@ -50,7 +50,6 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().selectBYODdpAddon();
         getReporter().reportLogPassWithScreenshot("Device Protection Addon option is selected");
         getFidobuildplanpage().enterDPIMEI(TestDataHandler.tc13AALBYODExpressShipping.getDpIMEI());
@@ -74,6 +73,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         String cityName = TestDataHandler.tc13AALBYODExpressShipping.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc13AALBYODExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

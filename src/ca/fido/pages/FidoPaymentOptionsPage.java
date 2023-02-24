@@ -347,8 +347,66 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Pay with credit card, Visa Debit') or contains(text(),'Paiement par carte de crédit, carte Visa Débit ou carte')]/ancestor::label")
 	WebElement divCredit;
 
+	@FindBy(xpath = "//auto-pay-promo-banner")
+	WebElement autoPayBanner;
+
+	@FindBy(xpath = "//*[@data-test='transit-number']")
+	WebElement formTransitNumber;
+
+	@FindBy(xpath = "//*[@data-test='institution-number']")
+	WebElement formInstitutionNumber;
+
+	@FindBy(xpath = "//*[@data-test='account-number']")
+	WebElement formAccountNumber;
+
+	@FindBy(xpath = "//*[@data-test='transit-number']//input")
+	WebElement inputTransitNumber;
+
+	@FindBy(xpath = "//*[@data-test='institution-number']//input")
+	WebElement inputInstitutionNumber;
+
+	@FindBy(xpath = "//*[@data-test='account-number']//input")
+	WebElement inputAccountNumber;
+
+	@FindBy(xpath = "//ds-checkbox[contains(@id,'dsa-terms-conditions')]")
+	WebElement chAutoPayConsent;
+
+	@FindBy(xpath = "//div[contains(text(),'Not now')]/parent::label")
+	WebElement skipAutoPay;
+
+	@FindBy(xpath = "//button[@data-test='auto-pay-removal-modal-button']//span[contains(text(),'Continue')]")
+	WebElement autoPayRemovalCtnBtn;
+
+	@FindBy(xpath="//div[contains(@class,'iframe')]//iframe")
+	WebElement frmCreditCard;
+
+	@FindBy(xpath = "//input[@id='pan']")
+	WebElement 	txtCreditCardNumber;
+	@FindAll({
+			@FindBy(xpath="//select[@name='month']"),
+			@FindBy(xpath="//input[@formcontrolname='expiryDate']/parent::div")
+	})
+	WebElement ddlCreditCardExpiryMonthAndYear;
+
+	@FindBy(xpath="//input[@formcontrolname='expiryDate']")
+	WebElement lblDdlCreditCardExpiryMonthAndYear;
+
+	@FindBy(xpath="//input[@formcontrolname='cvv']/parent::div")
+	WebElement creditCardCvv;
+
+	@FindBy(xpath="//input[@formcontrolname='cvv']")
+	WebElement lblCreditCardCvv;
+
+	@FindBy(xpath="//input[@formcontrolname='name']/parent::div[contains(@class,'ds-formField')]")
+	WebElement txtFirstName;
+
+	@FindBy(xpath="//span[contains(@class,'ds-formField')]/following::input[@formcontrolname='name']")
+	WebElement inputTxtFirstName;
+
+	@FindBy(xpath = "//button[@data-test='add-card-btn']")
+	WebElement addCardBtn;
 	//--------------------------------------------------------------------------------
-	
+
 	/**
 	 * Verify if the payment method modal is displayed
 	 * @return true if the modal displayed, else false.
@@ -1197,5 +1255,116 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 		
 	}
 
+	/**
+	 * This method opts out AutoPay payment method and clicks Continue in AutoPay Removal Modal
+	 * @author subash.nedunchezhian
+	 */
+	public void clickSkipAutopay(){
+		if(reusableActions.isElementVisible(skipAutoPay, 20)) {
+			reusableActions.getWhenReady(skipAutoPay, 10).click();
+			reusableActions.getWhenReady(btnBillingOptionClkContinue,10).click();
+			reusableActions.getWhenReady(autoPayRemovalCtnBtn,10).click();
+		}
+	}
+	/**
+	 * This method opts out AutoPay payment method and clicks Continue in AutoPay Removal Modal in NAC flow
+	 * @author subash.nedunchezhian
+	 */
+	public void clickSkipNacAutopay(){
+		reusableActions.clickIfAvailable(autoPayRemovalCtnBtn);
+	}
 
+	/**
+	 * This method verifies the presence of autopay page
+	 * @return true if autopay page is displayed, else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyAutoPaymentPage() {
+		return reusableActions.isElementVisible(autoPayBanner,60);
+	}
+
+	/**
+	 * This method fills the necessary form fields in Automatic payment page
+	 * @author subash.nedunchezhian
+	 */
+	public void enterBankDetails() {
+		reusableActions.getWhenReady(formTransitNumber).click();
+		inputTransitNumber.sendKeys("00011");
+		reusableActions.getWhenReady(formInstitutionNumber).click();
+		inputInstitutionNumber.sendKeys("001");
+		reusableActions.getWhenReady(formAccountNumber).click();
+		inputAccountNumber.sendKeys(FormFiller.generateRandomNumber(10));
+	}
+
+	/**
+	 * Clicks on automatic payment consent checkbox
+	 * @author subash.nedunchezhian
+	 */
+	public void clkAutoPayConsentCheckBox() {
+		reusableActions.clickWhenReady(chAutoPayConsent);
+	}
+
+
+	/**
+	 * Selects the Payment Method as 'Invoive (manual payments)'
+	 * @author subash.nedunchezhian
+	 */
+	public void setAutoPayPreAuthMethod() {
+		reusableActions.staticWait(5000);
+		reusableActions.waitForElementTobeClickable(ddlPaymentMethod , 40);
+		reusableActions.javascriptScrollToTopOfPage();
+		reusableActions.selectWhenReady(ddlPaymentMethod, "PREAUTHCREDIT");
+	}
+	/**
+	 * Set the dynamic Name on the credit card for AutoPay Enrollment
+	 * @author subash.nedunchezhian
+	 */
+	public void setCreditCardNameAutoPay(){
+		String strName = FormFiller.generateRandomName();
+		String strFname="Fido"+ strName;
+		reusableActions.getWhenReady(txtFirstName, 3).click();
+		reusableActions.getWhenReady(inputTxtFirstName,3).sendKeys(strFname);
+	}
+
+	/**
+	 * Enters the Credit Card Number for AutoPay Enrollment
+	 * @param ccNumber Credit Card Number
+	 * @author subash.nedunchezhian
+	 */
+	public void setCreditCardNumberAutoPay(String ccNumber) {
+		driver.switchTo().frame(frmCreditCard);
+		reusableActions.staticWait(5000);
+		txtCreditCardNumber.click();
+		txtCreditCardNumber.sendKeys(ccNumber);
+		driver.switchTo().defaultContent();//checkout-res="checkout_credit_card_number"
+	}
+
+	/**
+	 * Enter Credit Card Expiry month and year for AutoPay Enrollment
+	 * @param monthAndYear in numbers like 0112,0212,....,1212
+	 * @author subash.nedunchezhian
+	 */
+	public void setCreditCardExpiryMonthAndYearAutoPay(String monthAndYear) {
+		reusableActions.getWhenReady(ddlCreditCardExpiryMonthAndYear, 10).click();
+		reusableActions.getWhenReady(lblDdlCreditCardExpiryMonthAndYear,10).sendKeys(monthAndYear);
+	}
+
+	/**
+	 * Enter Credit Card cvv number for AutoPay Enrollment
+	 * @param cvv in numbers like 011
+	 * @author subash.nedunchezhian
+	 */
+	public void setCreditCardCvvAutoPay(String cvv) {
+		reusableActions.getWhenReady(creditCardCvv, 10).click();
+		reusableActions.getWhenReady(lblCreditCardCvv,10).sendKeys(cvv);
+	}
+
+	/**
+	 * This method click on Add Card button after entering required CC Info for AutoPay Enrollment
+	 * @author subash.nedunchezhian
+	 */
+	public void clkAddCard(){
+		reusableActions.waitForElementVisibility(addCardBtn);
+		reusableActions.clickWhenReady(addCardBtn,10);
+	}
 }

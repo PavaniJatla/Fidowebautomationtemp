@@ -50,6 +50,7 @@ public class Fido_BFA_TC15_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTe
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         getFidobuildplanpage().clkContinueOnExistingAddonModal();
         //--------------------------------------------Review Order page------------------------------------------------
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().reportLogPassWithScreenshot("Review order page loaded successfully");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");

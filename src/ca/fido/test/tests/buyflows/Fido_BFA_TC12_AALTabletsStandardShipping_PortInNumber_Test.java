@@ -64,6 +64,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
         getFidochoosenumberpage().clkCheckEligibilityBtn();
         getReporter().hardAssert(getFidochoosenumberpage().verifyPortInSuccess(),"Entered Number is eligible for PortIn","Entered Number is not eligible for PortIn");
         getFidochoosenumberpage().clkContinueChooseNumber();
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc12AALTabletsStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

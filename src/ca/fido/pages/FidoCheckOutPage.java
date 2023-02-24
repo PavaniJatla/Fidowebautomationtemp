@@ -398,18 +398,6 @@ public class FidoCheckOutPage extends BasePageClass {
 	}
 
 	/**
-	 * This method opts out AutoPay payment method and clicks Continue in AutoPay Removal Modal
-	 * @author subash.nedunchezhian
-	 */
-	public void clickSkipAutopay(){
-		if(reusableActions.isElementVisible(skipAutoPay, 20)) {
-			reusableActions.getWhenReady(skipAutoPay, 10).click();
-			reusableActions.getWhenReady(paymentContinueButton,10).click();
-			reusableActions.getWhenReady(autoPayRemovalCtnBtn,10).click();
-		}
-	}
-
-	/**
 	 * This method verify if DP Addon page displayed or not
 	 * @return true if DP addon page displayed; else false
 	 * @author Subash.Nedunchezhian

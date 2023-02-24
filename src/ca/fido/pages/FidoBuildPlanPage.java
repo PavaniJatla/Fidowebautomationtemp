@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.FormFiller;
 
 import java.lang.reflect.Method;
@@ -26,6 +27,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	public FidoBuildPlanPage(WebDriver driver) {
 		super(driver);		
 	}
+	List<WebElement> autoPayText = null;
+
+	@FindBy(xpath = "//*[@id='bfa-page-title' and contains(text(),'Build Your Plan')]")
+	WebElement buildPlanTitle;
 
 	@FindBy(xpath = "(//div[@class='features-section' or @class='features-section dataSectionEmpty']/button)[3]")
 	WebElement btnAdd;
@@ -64,6 +69,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 		@FindBy(xpath = "//ds-modal[contains(@data-test,'upfront-edge-return-modal')]//button[contains(@title,'Continue')]")
 	})
 	WebElement deviceBalancePopUp;
+
+	@FindBy(xpath = "//ds-modal//button[@data-test='modal-pom-continue']")
+	WebElement btnContinueWithSeletecPlan;
 
 	@FindBy(xpath = "//span[contains(text(),'View All Plans')]")
 	WebElement viewAllPlansButton;
@@ -190,7 +198,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Have a promo code') or contains(text(),'code promotionnel')]")
 	WebElement promoSection;
 
-	@FindBy(xpath = "//div[contains(@class,'ds-formField__wrapper')]/ancestor::ds-form-field")
+	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]/ancestor::ds-form-field")
 	WebElement promoCodeField;
 
 	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
@@ -211,7 +219,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[@data-test='promo-detail-info']/following::span[3]")
 	WebElement regularPromoDetail;
 
-	@FindBy(xpath = "//span[contains(text(),'Plan discount') or contains(text(),'Rabais sur le forfait')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	@FindAll({
+			@FindBy(xpath = "//*[contains(text(),'Payment Program Promotion credit')]"),
+			@FindBy(xpath = "//span[contains(text(),'Plan discount') or contains(text(),'Rabais sur le forfait')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
+	})
 	WebElement promoCartLineItem;
 
 	@FindAll({
@@ -407,6 +418,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Sidhartha.Vadrevu
 	 */
 	public void clkDeviceBalancePopUp() {
+		reusableActions.clickIfAvailable(btnContinueWithSeletecPlan, 10);
 		reusableActions.clickIfAvailable(deviceBalancePopUp, 10);
 	}
 
@@ -428,19 +440,23 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.clickIfAvailable(viewAllPlansButton);
 		stepper = 2;
 		if (dataOptionIndex != null && !dataOptionIndex.isEmpty()) {
-			String xpathDataOption = createXpath(stepper,dataOptionIndex);
-			By dataOptionXpath = By.xpath(xpathDataOption);
-			//reusableActions.staticWait(5000);
-			reusableActions.javascriptScrollToTopOfPage();
-			reusableActions.clickIfAvailable(dataOptionXpath,10);
-			if(className.toUpperCase().contains("_PPC_") && className.toUpperCase().contains("DOWNGRADE") && !(Integer.parseInt(dataOptionIndex)==0)) {
-				verifyDowngradeFeeModalAndClkContinue();
+			String xpathDataOption = createXpath(stepper, dataOptionIndex);
+			//By dataOptionXpath = By.xpath(xpathDataOption);
+			if (Integer.parseInt(dataOptionIndex) == 0) {
+				autoPayText = getDriver().findElements(By.xpath(xpathDataOption + "//div[@class='dsa-dataBlock']//*[contains(text(),'Automatic')]"));
+				reusableActions.staticWait(5000);
+				reusableActions.clickWhenVisible(btnContinueDataOption, 20);
+			} else {
+				autoPayText = getDriver().findElements(By.xpath(xpathDataOption + "//div[@class='dsa-dataBlock']//*[contains(text(),'Automatic')]"));
+				reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(By.xpath(xpathDataOption), 20));
+				if (className.toUpperCase().contains("_PPC_") && className.toUpperCase().contains("DOWNGRADE") && !(Integer.parseInt(dataOptionIndex) == 0)) {
+					verifyDowngradeFeeModalAndClkContinue();
+				} else if (className.toUpperCase().contains("_PPC_") && !(className.toUpperCase().contains("DOWNGRADE"))) {
+					reusableActions.waitForElementTobeClickable(btnContinueDataOption, 40);
+				}
+				reusableActions.clickWhenReady(btnContinueDataOption, 30);
 			}
-			else if(className.toUpperCase().contains("_PPC_") && !(className.toUpperCase().contains("DOWNGRADE"))) {
-				reusableActions.waitForElementTobeClickable(btnContinueDataOption,40);
-			}
-			reusableActions.clickWhenReady(btnContinueDataOption, 30);
-		} else {
+		}else {
 			String xpathDataOption;
 			if (planType.equals("Data, Talk and Text plans")) {
 				xpathDataOption = "//dsa-selection[contains(@data-test,'stepper-2-edit-step-selection-option-infinite-0')]/label";
@@ -456,7 +472,58 @@ public class FidoBuildPlanPage extends BasePageClass {
 			reusableActions.clickWhenReady(btnContinueDataOption, 30);
 		}
 	}
-	
+
+	/**
+	 * Verifies the selection of Autopay plan
+	 * @param dataOptionIndex - Index of the plan
+	 * @param className - Class name of the test
+	 * @return true if Autopay plan is selected, else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyAutoPayPlanSelection(String dataOptionIndex, String className) {
+		clkDataOption(dataOptionIndex,className);
+		return autoPayText.size()==1;
+	}
+
+	/**
+	 * Verifies the autopay discount in the cart summary
+	 * @return true if Autopay is applied in cart summary, else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyAutoPayDiscountInCartSummary() {
+		return reusableActions.isElementVisible(By.xpath("(//span[contains(@class,'dsa-orderTable__strikeCopy')])[1]"));
+	}
+
+	/**
+	 * This method gets the inxed value of the autopay discount plan
+	 * @param autoPayDiscountType - Automatic payment discount type
+	 * @return String value of autopay plan index
+	 * @author Subash.Nedunchezhian
+	 */
+	public String getAutoPayPlanIndex(String autoPayDiscountType) {
+		String dataOptionIndex = "";
+		try {
+			if (autoPayDiscountType.equalsIgnoreCase("MSF")) {
+				if (getDriver().findElements(By.xpath("//label[contains(.,'Includes $')]")).size() > 0) {
+					dataOptionIndex = getDriver().findElement(By.xpath("(//label[contains(.,'Includes $')])[1]/..")).getAttribute("data-test").split("infinite-")[1];
+				} else {
+					Assert.assertTrue(getDriver().findElements(By.xpath("//label[contains(.,'Includes $')]")).size() > 0, "No plan is displayed with Autopay MSF discount");
+				}
+			}
+			if (autoPayDiscountType.equalsIgnoreCase("PERCENT")) {
+				if (getDriver().findElements(By.xpath("//label[contains(.,'%') and contains(.,'Automatic')]")).size() > 0) {
+					dataOptionIndex = getDriver().findElement(By.xpath("(//label[contains(.,'%') and contains(.,'Automatic')])[1]/..")).getAttribute("data-test").split("infinite-")[1];
+				} else {
+					Assert.assertTrue(getDriver().findElements(By.xpath("//label[contains(.,'%') and contains(.,'Automatic')]")).size() > 0, "No plan is displayed with Autopay Percent discount");
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dataOptionIndex;
+	}
+
 	/**
 	 * Clicks on the X - close Dialogue window
 	 * @author Saurav.Goyal
@@ -908,6 +975,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void clkPromoSection() {
+		reusableActions.staticWait(15000);
 		reusableActions.waitForElementVisibility(promoSection, 20);
 		reusableActions.clickWhenReady(promoSection);
 	}

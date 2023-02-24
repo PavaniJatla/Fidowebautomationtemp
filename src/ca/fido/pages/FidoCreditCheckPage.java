@@ -129,9 +129,9 @@ public class FidoCreditCheckPage extends BasePageClass {
 	WebElement btnClkNoThanks;
 
 	@FindAll({
-			@FindBy(xpath = "//ds-modal//*[@data-test='modal-credit-evaluation-section']//*[contains(@class,'text-right')]/p[2]"),
+			@FindBy(xpath = "//dsa-order-table//*[contains(text(),'Down payment')]/parent::div/following-sibling::div/span"),
 			@FindBy(xpath = "//ds-modal//p[@data-test='modal-credit-evaluation-downpayment']"),
-			@FindBy(xpath = "//dsa-order-table//*[contains(text(),'Down payment')]/parent::div/following-sibling::div/span")
+			@FindBy(xpath = "//ds-modal//*[@data-test='modal-credit-evaluation-section']//*[contains(@class,'text-right')]/p[2]")
 	})
 	WebElement downPaymentAmt;
 
@@ -493,7 +493,9 @@ public class FidoCreditCheckPage extends BasePageClass {
 	 * @author Vedachalam.Vasudevan
 	 */
 	public boolean verifyDownPaymentAmt(String expectedDownPayment) {
+		reusableActions.scrollToElement(downPaymentAmt);
 		String actualDownPayment = reusableActions.getWhenReady(downPaymentAmt, 20).getText().trim().replace("$", "");
+		System.out.println(actualDownPayment);
 		if (actualDownPayment.contains(expectedDownPayment) || actualDownPayment.replace(",", ".").contains(expectedDownPayment)) {
 			reusableActions.scrollToElement(downPaymentAmt);
 			return true;

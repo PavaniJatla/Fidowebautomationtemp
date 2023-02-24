@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_High_Test extends BaseTestClass {
+public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPlan_SS_High_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
@@ -18,7 +18,7 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Hi
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA","POM"})
-    public void tc09_pomFidoHUPWithPPCFinancingPlanHighRiskAcctTest() {
+    public void tc09_pomFidoHUPWithPPCFinancingAutoPayPlanHighRiskAcctTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -45,31 +45,36 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingPlan_SS_Hi
         getFidobuildplanpage().clkCheckPromoBtn();
         getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(),
                 "Promo Code Applied Successfully", "Promo Code Not Applied");
-        getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(),
-                "Discount Value and Duration displayed", "Promo Code Not Applied");
         getFidobuildplanpage().clkContinueDeviceCost();
         //String deviceCostIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        String dataOptionIndex = TestDataHandler.tc09HupPpcFinancingStandardShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
+                "Autopay plan is selected successfully","Autopay plan is not selected");
+        //getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
         getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),
                 "Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
+        getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayDiscountInCartSummary(),"AutoPay discount is added in cart summary",
+                "AutoPay is not added in cart summary");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         String expectedDownPayment = getFidocreditcheckpage().setDownPaymentUpfrontEdge(TestDataHandler.tc09HupPpcFinancingStandardShipping.getRiskClass(),deviceCost,financeProgramCredit);
         getReporter().reportLog("Expected DownPayment: <b> " +expectedDownPayment +"</b>");
-        getReporter().hardAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
-                "Downpayment amount is displayed correctly", "Downpayment amount is not displayed correctly");
+        getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
+        getFidopaymentoptionspage().enterBankDetails();
+        getFidopaymentoptionspage().clkAutoPayConsentCheckBox();
+        getReporter().reportLogWithScreenshot("AutoPay Enrolled - Bank Method");
+        getFidopaymentoptionspage().billingOptionClkContinue();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
+        getReporter().softAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
+                "Downpayment amount is displayed correctly", "Downpayment amount is not displayed correctly");
         String deliveryMethod = TestDataHandler.tc09HupPpcFinancingStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {

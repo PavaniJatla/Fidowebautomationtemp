@@ -53,6 +53,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         String cityName = TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

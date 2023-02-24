@@ -505,7 +505,7 @@ public class BaseTestClass {
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				} else if(currentTestMethodName.getName().contains("NAC")) { //HUP
 					//getDriver().get(strUrl);
-					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
+					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
 				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("BFA_PROD")) {

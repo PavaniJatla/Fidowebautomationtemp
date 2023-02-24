@@ -50,7 +50,10 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	@FindBy(xpath = "//div[contains(@data-test,'device-config')]//p[contains(.,'Full') or contains(.,'Plein')]//span")
 	WebElement txtDeviceCost;
 
-	@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'financing program promotion') or contains(text(),'payment program promotion')]")
+	@FindAll({
+			@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'payment program promotion credit')]"),
+			@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'financing program promotion') or contains(text(),'payment program promotion')]")
+	})
 	WebElement financeCreditAmount;
 
 	@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'Upfront Edge credit')]")
@@ -205,7 +208,7 @@ public class FidoDeviceConfigPage extends BasePageClass {
 			return deviceFullPriceFR.substring(0, deviceFullPriceFR.indexOf(","));
 		} else {
 			String deviceFullPriceEN = reusableActions.getWhenReady(txtDeviceCost).getText().trim();
-			return deviceFullPriceEN.substring(1, deviceFullPriceEN.indexOf(".")).replace(",", "");
+			return deviceFullPriceEN.replaceAll("[^0-9.]","");
 		}
 	}
 

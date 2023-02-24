@@ -53,7 +53,7 @@ public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test exte
         getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
-        getFidoCheckOutPage().clickSkipAutopay();
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc07TabletHupPpcFinExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

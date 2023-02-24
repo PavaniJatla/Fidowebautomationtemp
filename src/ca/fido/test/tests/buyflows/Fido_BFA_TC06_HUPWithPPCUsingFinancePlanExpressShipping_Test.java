@@ -49,6 +49,8 @@ public class Fido_BFA_TC06_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getReporter().reportLogWithScreenshot("Autopay Enrollment Page");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc06HupPpcFinancingExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
