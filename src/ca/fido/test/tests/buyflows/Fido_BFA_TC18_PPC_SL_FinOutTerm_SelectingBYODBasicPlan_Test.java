@@ -51,6 +51,7 @@ public class Fido_BFA_TC18_PPC_SL_FinOutTerm_SelectingBYODBasicPlan_Test extends
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         getFidobuildplanpage().clkContinueOnExistingAddonModal();
         //--------------------------------------------Review Order page------------------------------------------------
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().reportLogPassWithScreenshot("Review order page loaded successfully");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");

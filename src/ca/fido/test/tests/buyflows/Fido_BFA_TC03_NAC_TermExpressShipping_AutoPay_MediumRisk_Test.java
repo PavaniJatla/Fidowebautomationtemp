@@ -4,7 +4,6 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -15,10 +14,10 @@ import java.lang.reflect.Method;
  * TC03 - Regression - [FNAC TERM] - Perform Fido Net New Activation - TERM with Express Pickup Shipping(Finance Plan) - BOPIS_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseTestClass{
+public class Fido_BFA_TC03_NAC_TermExpressShipping_AutoPay_MediumRisk_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","SanityBFA"})
-	public void tc03_fidoNACTermExpressShippingMediumRisk() {
+	public void tc03_fidoNACTermAutoPayExpressShippingMediumRisk() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
@@ -40,16 +39,18 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseT
 		getFidobuildplanpage().clkDownPaymentChkBox();
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");
-		getFidobuildplanpage().clkDataOption(TestDataHandler.tc03TermBopis.getDataOptionIndex(),this.getClass().getSimpleName());
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
+				"Autopay plan is selected successfully","Autopay plan is not selected");
+		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
 		getFidobuildplanpage().clkContinueDeviceProtection();
+		getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayDiscountInCartSummary(),"AutoPay discount is added in cart summary","AutoPay is not added in cart summary");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
@@ -86,8 +87,10 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_Test_MediumRisk extends BaseT
 		//getFidoCheckOutPage().clkNoThanks();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
-		getFidopaymentoptionspage().setManualPaymentMethod();
-		getReporter().reportLogWithScreenshot("Payment method selected");
+		getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
+		getFidopaymentoptionspage().enterBankDetails();
+		getFidopaymentoptionspage().clkAutoPayConsentCheckBox();
+		getReporter().reportLogWithScreenshot("AutoPay Enrolled - Bank Method");
 		getFidopaymentoptionspage().billingOptionClkContinue();
 		//getFidoCheckOutPage().clkNoThanks();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");

@@ -73,6 +73,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         String cityName = TestDataHandler.tc13AALBYODExpressShipping.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc13AALBYODExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

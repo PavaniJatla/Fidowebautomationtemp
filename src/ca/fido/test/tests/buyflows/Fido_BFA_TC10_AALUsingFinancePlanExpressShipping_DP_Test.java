@@ -58,6 +58,7 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         String cityName = TestDataHandler.tc10AALFinancingPlanExpressShipping.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc10AALFinancingPlanExpressShipping.getShippingType();
         //getFidoCheckOutPage().clkNoThanks();

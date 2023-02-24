@@ -63,6 +63,7 @@ public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShi
         getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage(), "Shipping label displayed", "Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);

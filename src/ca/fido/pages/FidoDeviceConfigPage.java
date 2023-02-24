@@ -18,7 +18,6 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	WebElement devicesInHearder;
 
 	@FindAll({
-			@FindBy(xpath = "//button[contains(.,'Ship to home')]"),
 			@FindBy(xpath = "//button[contains(.,' Build Your Plan ')]"),
 			@FindBy(xpath = "//button[contains(@title,'Build Your Plan') or @title=\"Disponible à l'achat\"]")
 	})

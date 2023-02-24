@@ -52,6 +52,15 @@ public class Fido_BFA_TC16_PPC_ML_FinInTerm_SelectingNoTermDTT_DowngradeFee_Test
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
         getFidobuildplanpage().clkContinueOnExistingAddonModal();
+        getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
+        getFidopaymentoptionspage().setAutoPayPreAuthMethod();
+        getFidopaymentoptionspage().setCreditCardNameAutoPay();
+        getFidopaymentoptionspage().setCreditCardNumberAutoPay(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
+        getFidopaymentoptionspage().setCreditCardExpiryMonthAndYearAutoPay(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());
+        getFidopaymentoptionspage().setCreditCardCvvAutoPay(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getCvv2());
+        getFidopaymentoptionspage().clkAddCard();
+        getReporter().reportLogWithScreenshot("AutoPay Enrolled - PreAuth Credit Card Method");
+        getFidopaymentoptionspage().billingOptionClkContinue();
         //--------------------------------------------Review Order page------------------------------------------------
         getReporter().reportLogPassWithScreenshot("Review order page loaded successfully");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
