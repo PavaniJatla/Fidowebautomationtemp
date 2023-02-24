@@ -36,7 +36,8 @@ public class FidoCH_Regression_TC_002_HSIServiceabilityModalforOtherProvinceTest
 	public void serviceabilityModalforOtherProvinceTest() {
         getReporter().hardAssert(getFidoshopinternetpage().verifyPackagesPage(),"Launched the packages Page", "Packages Page did not Launched");
         getReporter().reportLogWithScreenshot("Launched the packages Page");
-        getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
+        getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
+        //getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getUpgradePlanCost());
         getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAnotherProvinceAddress.getaccountDetails().getAddress().get("line2");

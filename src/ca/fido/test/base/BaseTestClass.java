@@ -474,15 +474,15 @@ public class BaseTestClass {
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
-				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				/*getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				*/
 				getDriver().get(strUrl+"/internet/packages"+"?setLanguage="+ language);
-				//getDriver().manage().deleteAllCookies();
 				break;
 
 			case "connectedhome_login":
-				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
-				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+				/*getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);*/
 				getDriver().get(strUrl+"/profile/signin"+"?setLanguage="+ language);
 				break;
 

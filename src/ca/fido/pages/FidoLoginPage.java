@@ -14,16 +14,22 @@ public class FidoLoginPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@type='email']")
+	@FindAll({
+			@FindBy(xpath = "//input[@type='email']"),
+			@FindBy(xpath = "//input[@formcontrolname='username']")
+	})
 	WebElement txtUsername;
 
-	@FindBy(xpath = "//label[@for='username']//parent::span[contains(@class,'ds-form')]")
-	WebElement txtUsername1;
+	@FindBy(xpath = "//button[@type='submit']//span[contains(text(),'Continue')] | //button//span[text()='Continue' or text()='Continuer']")
+	WebElement btnContinue;
 
-	@FindBy(xpath = "//input[@type='password']")
+	@FindAll({
+	@FindBy(xpath = "//input[@type='password']"),
+	@FindBy(xpath = "//input[@formcontrolname='input_password']")
+	})
 	WebElement txtPassword;
 
-	@FindBy(xpath = "//input[@type='password']/parent::div")
+	@FindBy(xpath = "//input[@formcontrolname='input_password']/parent::div")
 	WebElement lblPassword;
 
 	@FindBy(xpath = "//iframe[contains(@src,'/pages/easylogin-fido/signin/')]")
@@ -103,7 +109,10 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
 	WebElement lnkForgotUserName;
 
-	@FindBy(xpath = "//input[@type='email']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	@FindAll({
+		@FindBy(xpath = "//input[@type='email']/parent::div[contains(@class,'ds-formField__inputContainer')]"),
+		@FindBy(xpath = "//input[@formcontrolname='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+		})
 	WebElement lblUserName;
 
 	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
@@ -124,7 +133,15 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
 		clkLoginInFrame();
 	}
-	
+
+	/**
+	 * To Click Continue button on login page
+	 * @author manpreet.kaur3
+	 */
+	public void clkContinueSignIn() {
+		reusableActions.getWhenReady(btnContinue, 30);
+		reusableActions.clickWhenReady(btnContinue);
+	}
 	
 	/**
 	 * Set the user name on login page

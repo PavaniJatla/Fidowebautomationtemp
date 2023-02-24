@@ -31,6 +31,8 @@ public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTe
 	public void checkFidoHSIValidateRestartModem() {
 		getReporter().reportLogWithScreenshot("Launched the sign in Page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
+		getReporter().reportLogWithScreenshot("Continue Login");
+		getFidologinpage().clkContinueSignIn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
