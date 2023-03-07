@@ -54,7 +54,7 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement lnlResignInAsMobile;
 	
 	
-	@FindBy(xpath = "//button[contains(@class,'primary-button state-btn') or @title='Sign in' or @title='Ouvrir une session']")
+	@FindBy(xpath = "//button[@title='Select to sign in to Fido My Account']")
 	WebElement btnLogIn;
 
 	@FindAll({
@@ -192,7 +192,13 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Aditya.Dhingra
 	 */
 	public void setPasswordInFrame(String strPassword) {
-		try {
+		reusableActions.waitForElementVisibility(lblPassword);
+		reusableActions.getWhenReady(lblPassword).click();
+		reusableActions.getWhenReady(txtPassword,30).clear();
+		reusableActions.clickIfAvailable(lblPassword);
+		reusableActions.getWhenReady(txtPassword,10).sendKeys(strPassword);
+
+		/*try {
 			reusableActions.clickIfAvailable(lblPassword);
 			reusableActions.getWhenReady(txtPassword, 10).clear();
 			reusableActions.clickIfAvailable(lblPassword);
@@ -201,7 +207,7 @@ public class FidoLoginPage extends BasePageClass {
 		}catch (Exception ex){
 			reusableActions.clickIfAvailable(lblPassword);
 			reusableActions.getWhenReady(txtPassword).sendKeys(strPassword);
-		}
+		}*/
 	}
 
 	/**
