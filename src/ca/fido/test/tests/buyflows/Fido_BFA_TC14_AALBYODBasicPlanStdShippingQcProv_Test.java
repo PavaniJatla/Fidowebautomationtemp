@@ -27,7 +27,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALBYODBasicPlanStdShippingFlowTest() {
+    public void tc14_fidoAALBYODBasicPlanStdShippingQCTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -45,6 +45,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
+        getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getFidobuildplanpage().clkContinueBelowCartSummary();
@@ -52,6 +53,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         String cityName = TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
@@ -68,6 +70,10 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getReporter().reportLogPass("Submit button selected");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+            getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+                    "One Time Payment Page displayed","One Time Payment Page Not displayed");
+            String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+            getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
             getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());

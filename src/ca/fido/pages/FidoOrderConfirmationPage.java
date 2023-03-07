@@ -27,6 +27,15 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	})
 	WebElement lblThankYou;
 
+	@FindBy(xpath = "//h1[contains(text(),'Confirmation')]/parent::div")
+	WebElement addonOrderConfirm;
+
+	@FindBy(xpath = "//h1[contains(text(),'Confirmation')]/following::div[1]")
+	WebElement addonOrderConfirmMessage;
+
+	@FindBy(xpath = "//span[contains(@class,'ds-button__copy text-button') and contains(.,'Back to add-ons')]")
+	WebElement backToAddonBtn;
+
 	/**
 	 * Verify the coder completion by verifying the confirmation message
 	 * @return true, if the Order confirmation page display the confirmation message, else false
@@ -43,5 +52,33 @@ public class FidoOrderConfirmationPage extends BasePageClass {
 	 */
 	public boolean verifyThankYou() {
 		return reusableActions.isElementVisible(lblThankYou, 60);
+	}
+
+	/**
+	 * This method verify the Confirmation title on Confirmation Page
+	 *  @return true if Confirmation title displayed; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyAddonOrderConfirm(){
+		return reusableActions.isElementVisible(addonOrderConfirm,20);
+	}
+
+	/**
+	 * This method gets the Confirmation message on Confirmation Page
+	 * @return String text of Confirmation message
+	 * @author subash.nedunchezhian
+	 */
+	public String getOrderConfirmMsg(){
+		reusableActions.waitForElementVisibility(addonOrderConfirm,20);
+		return reusableActions.getWhenReady(addonOrderConfirmMessage).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method clicks on Back To Addon button on Confirmation Page
+	 * @author subash.nedunchezhian
+	 */
+	public void clickBackToAddonBtn(){
+		reusableActions.staticWait(3000);
+		reusableActions.clickWhenReady(backToAddonBtn,10);
 	}
 }

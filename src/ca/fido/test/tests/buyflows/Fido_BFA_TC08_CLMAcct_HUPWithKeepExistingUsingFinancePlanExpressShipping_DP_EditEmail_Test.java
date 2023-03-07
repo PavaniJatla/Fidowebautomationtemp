@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping_DP_EditEmail_Test extends BaseTestClass {
+public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShipping_DP_EditEmail_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"strBrowser", "strLanguage"})
@@ -24,7 +24,7 @@ public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA","DP"})
-    public void fidoHUPWithPPC_KeepExistingUsingFinancePlanStandardShippingFlowTest() {
+    public void tc08_CLMAcctfidoHUPWithKEPExpressShippingTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -54,10 +54,6 @@ public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        /*String dataOptionIndex = TestDataHandler.tc10HupExistingSubsidy1.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");*/
         getFidobuildplanpage().selectDeviceProtectionAddon();
         getReporter().reportLogPass("Device Protection Addon is selected");
         getFidobuildplanpage().clkContinueAddOns();
@@ -67,6 +63,7 @@ public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage(), "Shipping label displayed", "Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
@@ -93,6 +90,10 @@ public class Fido_BFA_TC08_HUPWithPPCKeepExistingUsingFinancePlanExpressShipping
         getReporter().reportLogPass("Submit button selected");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+            getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+                    "One Time Payment Page displayed","One Time Payment Page Not displayed");
+            String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+            getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
             getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());

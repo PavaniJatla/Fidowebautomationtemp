@@ -27,7 +27,7 @@ public class Fido_BFA_TC20_PPC_SL_SubsidyOutTerm_SelectingTTFINPlan_Test extends
     }
 
     @Test(groups = {"RegressionBFA","PPCBFA"})
-    public void fidoPPC_TC25_SLNonSE_SubsidyOutTerm_TTPlanTest() {
+    public void tc20_fidoPPCSL_SubsidyOutTerm_TTPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -42,7 +42,7 @@ public class Fido_BFA_TC20_PPC_SL_SubsidyOutTerm_SelectingTTFINPlan_Test extends
         getReporter().reportLogWithScreenshot("Clicked on Change Plan");
         getFidobuildplanpage().selectPlanType(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getNewPlanType());
         getReporter().reportLogPassWithScreenshot("Plan Type is selected successfully");
-        getFidobuildplanpage().clkDataOption(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getDataOptionIndex(), this.getClass().getSimpleName());
+        //getFidobuildplanpage().clkDataOption(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getDataOptionIndex(), this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");

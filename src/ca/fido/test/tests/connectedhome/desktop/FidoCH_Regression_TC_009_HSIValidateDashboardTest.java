@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestClass {
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
 	public void checkFidoHSIValidateDashboard() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());

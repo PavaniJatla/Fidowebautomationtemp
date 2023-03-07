@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestClass {
+public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -22,7 +22,7 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestCl
     }
 
     @Test(groups = {"RegressionBFA","AALBFA","POM"})
-    public void fidoAALBYODStandardShippingFlowTest() {
+    public void tc13_pomfidoAALBYODExpressShippingDPAddonTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13AALBYODExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13AALBYODExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -48,9 +48,8 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestCl
         // ***************************Plan Builder page************************************
         String dataOptionIndex = TestDataHandler.tc13AALBYODExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().selectBYODdpAddon();
         getReporter().reportLogPassWithScreenshot("Device Protection Addon option is selected");
         getFidobuildplanpage().enterDPIMEI(TestDataHandler.tc13AALBYODExpressShipping.getDpIMEI());
@@ -74,6 +73,7 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestCl
         String cityName = TestDataHandler.tc13AALBYODExpressShipping.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc13AALBYODExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
@@ -98,6 +98,10 @@ public class Fido_BFA_TC13_POM_AALBYODExpressShipping_DP_Test extends BaseTestCl
         getReporter().reportLogPass("Submit button selected");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+            getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+                    "One Time Payment Page displayed","One Time Payment Page Not displayed");
+            String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+            getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
             getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());

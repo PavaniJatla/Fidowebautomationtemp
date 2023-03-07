@@ -32,7 +32,7 @@ public class FidoCH_Regression_TC_007_HSIRemoveOfferTest extends BaseTestClass {
 
 	
 	
-	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH"})
+	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH","ReleaseSanity"})
 	public void checkRemoveOffer() {
         getReporter().reportLogWithScreenshot("Launched the packages Page");
         //getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());

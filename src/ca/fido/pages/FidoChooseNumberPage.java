@@ -114,7 +114,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 */
 	public void clkContinue() {
 		reusableActions.clickWhenVisible(btnContinueChooseANumberSection);
-		clkNoThanks();
+		//clkNoThanks();
 	}
 
 	/**
@@ -142,7 +142,9 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 */
 	public void setExistingPortInNumber(String eligiblePortInNumber){
 		reusableActions.clickWhenReady(existingNumberField);
-		reusableActions.getWhenReady(inputPortInNumber).sendKeys(eligiblePortInNumber);
+		reusableActions.executeJavaScriptClick(inputPortInNumber);
+		inputPortInNumber.clear();
+		inputPortInNumber.sendKeys(eligiblePortInNumber);
 	}
 
 	/**

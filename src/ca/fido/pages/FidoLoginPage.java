@@ -14,13 +14,19 @@ public class FidoLoginPage extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//input[@formcontrolname='username']")
+	@FindAll({
+			@FindBy(xpath = "//input[@type='email']"),
+			@FindBy(xpath = "//input[@formcontrolname='username']")
+	})
 	WebElement txtUsername;
 
 	@FindBy(xpath = "//button[@type='submit']//span[contains(text(),'Continue')] | //button//span[text()='Continue' or text()='Continuer']")
 	WebElement btnContinue;
 
+	@FindAll({
+	@FindBy(xpath = "//input[@type='password']"),
 	@FindBy(xpath = "//input[@formcontrolname='input_password']")
+	})
 	WebElement txtPassword;
 
 	@FindBy(xpath = "//input[@formcontrolname='input_password']/parent::div")
@@ -52,7 +58,6 @@ public class FidoLoginPage extends BasePageClass {
 	
 	@FindBy(xpath = "//nav[@nav-id='main']//li[contains(@class,'loginStates stateCookied stateActive')]/a[@aria-label='Sign in to My Fido']//span[contains(text(),'Sign in as')]")
 	WebElement lnlResignInAsMobile;
-	
 	
 	@FindBy(xpath = "//button[@title='Select to sign in to Fido My Account']")
 	WebElement btnLogIn;
@@ -103,11 +108,16 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Forgot username' or contains(text(),'utilisateur oubli')]")
 	WebElement lnkForgotUserName;
 
-	@FindBy(xpath = "//input[@formcontrolname='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+	@FindAll({
+		@FindBy(xpath = "//input[@type='email']/parent::div[contains(@class,'ds-formField__inputContainer')]"),
+		@FindBy(xpath = "//input[@formcontrolname='username']/parent::div[contains(@class,'ds-formField__inputContainer')]")
+		})
 	WebElement lblUserName;
 
 	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
 	WebElement lnkForgotPassword;
+
+
 
 	/**
 	 * Set the user name on login page
@@ -120,6 +130,7 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
+		clkLoginInFrame();
 	}
 
 	/**

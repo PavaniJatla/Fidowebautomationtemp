@@ -22,6 +22,7 @@ import com.applitools.eyes.selenium.Eyes;
 import extentreport.ExtentListener;
 import extentreport.ExtentTestManager;
 import org.apache.http.client.ClientProtocolException;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeSuite;
@@ -497,12 +498,14 @@ public class BaseTestClass {
 				break;
 
 			case "buyflows":
+				getDriver().get(strUrl+"/phones");
+				setCookie(strUrl);
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				} else if(currentTestMethodName.getName().contains("NAC")) { //HUP
 					//getDriver().get(strUrl);
-					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&?province=" + "ON");
+					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&province=" + "ON");
 					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
 				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("BFA_PROD")) {
@@ -785,4 +788,10 @@ public class BaseTestClass {
 	public void beforeSuite(ITestContext iTestContext) throws FileNotFoundException {
 		TestDataHandler.dataInit(iTestContext.getSuite().getAllMethods());
 	}
+
+	public void setCookie(String strUrl) {
+		Cookie cookie = new Cookie("QSI_SI_1Ycr2XA3syHKzWe_intercept", "true", ".fido.ca", "/phones", null);
+		getDriver().manage().addCookie(cookie);
+	}
+
 }

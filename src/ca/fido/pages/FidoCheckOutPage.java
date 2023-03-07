@@ -14,6 +14,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	public FidoCheckOutPage(WebDriver driver) {
 		super(driver);
 	}
+	public String strXpathAddonViewcta;
 
 	@FindBy(xpath = "//agm-map")
 	WebElement mapBopis;
@@ -86,6 +87,15 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='main-continue-button']")
 	WebElement btnSubmit;
 
+	@FindBy(xpath = "//p[contains(text(),'Please try another number')]/parent::div")
+	WebElement phoneNumReservedAlert;
+
+	@FindBy(xpath = "//button[@data-test='reserve-another-number']")
+	WebElement closeBtnReservedAlert;
+
+	@FindBy(xpath = "//ds-radio-group[@formcontrolname='newNumber']/div/div[4]")
+	WebElement selectAnotherPhoneNumber;
+	
 	@FindBy(xpath = "//button[@data-test='choose-number-continue']")
 	WebElement buttonChooseNumberContinue;
 
@@ -100,6 +110,39 @@ public class FidoCheckOutPage extends BasePageClass {
 
 	@FindBy(xpath = "(//div[contains(@class,'button-container')]//button)[2]")
 	WebElement btnNoThanks;
+
+	@FindBy(xpath = "//h1[@id='manageaddons-page-title' or contains(text(),'Manage add ons Page')]")
+	WebElement manageAddonsPageTitle;
+
+	@FindBy(xpath = "//addons-tile[contains(@data-test,'existing-addon')]/parent::div")
+	WebElement activeAddons;
+
+	@FindBy(xpath ="//p[contains(text(),'changes to your add-ons')]")
+	WebElement addonConflictModal;
+
+	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary' and contains(.,'Continue')]")
+	WebElement conflictContinueBtn;
+
+	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'Premium Device Protection')]")
+	WebElement dpAddonPageTitle;
+
+	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	WebElement dpimeiField;
+
+	@FindBy(xpath = "//input[@formcontrolname='imei']")
+	WebElement inputDPIMEI;
+
+	@FindBy(xpath = "//button[@data-test='continue-btn' and contains(.,'Continue')]")
+	WebElement dpAddonContinue;
+
+	@FindBy(xpath = "//div[contains(text(),'Not now')]/parent::label")
+	WebElement skipAutoPay;
+
+	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
+	WebElement paymentContinueButton;
+
+	@FindBy(xpath = "//button[@data-test='auto-pay-removal-modal-button']//span[contains(text(),'Continue')]")
+	WebElement autoPayRemovalCtnBtn;
 
 	/**
 	 * This method enters the value in email address field in shipping page
@@ -149,13 +192,13 @@ public class FidoCheckOutPage extends BasePageClass {
 	public void clkShippingType(String deliveryMethod) {
 		if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
 			//reusableActions.staticWait(5000);
-			reusableActions.clickWhenReady(rdoDeliveryMethodExpress, 30);
+			reusableActions.executeJavaScriptClick(rdoDeliveryMethodExpress);
 		} else if (deliveryMethod.equalsIgnoreCase("PRO")) {
 			//reusableActions.staticWait(5000);
 			reusableActions.clickWhenReady(rdoDeliveryMethodProOnTheGo, 30);
 		} else {
 			//reusableActions.staticWait(5000);
-			reusableActions.clickWhenReady(rdoDeliveryMethodStandard, 30);
+			reusableActions.executeJavaScriptClick(rdoDeliveryMethodStandard);
 		}
 	}
 
@@ -242,7 +285,23 @@ public class FidoCheckOutPage extends BasePageClass {
     	reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
 
     }
-
+	/**
+	 * This method verify Phone Number Reserved Alert Modal after Phone Number selection in the Choose a Number stepper
+	 * @return True if Alert Displayed else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean isReservedAlertDisplayed(){
+		return reusableActions.isElementVisible(phoneNumReservedAlert,10);
+	}
+	/**
+	 * This method select the another Available Phone number Radio button in the Choose a Number stepper
+	 * @author Subash.Nedunchezhian
+	 */
+	public void selectAnotherPhoneNumber(){
+		reusableActions.clickWhenReady(closeBtnReservedAlert);
+		reusableActions.getWhenReady(selectAnotherPhoneNumber, 30).click();
+		reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
+	}
 	/**
 	 * This method clicks on No Thanks button in survey modal if available
 	 * @author praveen.kumar7
@@ -260,5 +319,90 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public void clkBtnNoThanks() {
 		reusableActions.clickIfAvailable(btnNoThanks,5);
+	}
+
+	/**
+	 * Selects by clicking on 'View' button against the addon needed
+	 * @param addonName Name of the addon needed
+	 * @return true if addon found; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean selectAddon(String addonName) {
+		reusableActions.waitForElementTobeClickable(reusableActions.getWhenReady(By.xpath("//p[contains(text(),'"+addonName+"')]")),20);
+		strXpathAddonViewcta = createXpathWithAddonName(addonName);
+		if(reusableActions.isElementVisible(By.xpath(strXpathAddonViewcta),30)) {
+			reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strXpathAddonViewcta)));
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * This method creates Xpath of a particular CTA button
+	 * @param	addonName : name of the addon used to create the xpath
+	 * @return a String value which is a xpath for View CTA button
+	 * @author subash.nedunchezhian
+	 */
+	public String createXpathWithAddonName(String addonName) {
+		strXpathAddonViewcta = "//p[contains(text(),'"+addonName+"')]//following::button[1]";
+		System.out.println("Xpath Created = " +strXpathAddonViewcta);
+		return strXpathAddonViewcta;
+	}
+
+	/**
+	 * This method verify if conflict modal appears on the Addon page and clicks on Continue Button
+	 * @return true if clicked Continue button; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean clkConflictContinueBtn(){
+		reusableActions.isElementVisible(addonConflictModal,10);
+		reusableActions.clickWhenReady(conflictContinueBtn,10);
+		return true;
+	}
+
+	/**
+	 * This method verify if Addon page displayed or not
+	 * @return true if addon page displayed; else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyAddonsPage(){
+		return reusableActions.isElementVisible(manageAddonsPageTitle,30);
+	}
+
+	/**
+	 * This method gets the value of Addon under Active Addons section
+	 * @return String text of Addon under Active Addons section
+	 * @author subash.nedunchezhian
+	 */
+	public String getSelectedAddon(){
+		return  reusableActions.getWhenReady(activeAddons).getText().replaceAll("\\n", "");
+	}
+
+	/**
+	 * This method enters the IMEI/TacCode on IMEI Input Field
+	 * @param tacCode IMEI/TacCode from yaml file
+	 * @author Subash.Nedunchezhian
+	 */
+	public void enterDPIMEI(String tacCode) {
+		reusableActions.clickWhenReady(dpimeiField, 10);
+		reusableActions.getWhenReady(inputDPIMEI, 10).sendKeys(tacCode + FormFiller.generateRandomNumber(7));
+	}
+	/**
+	 * This method clicks the Continue Button on DP Addon page
+	 * @return true if Continue clicked else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean clkDpAddonContinue(){
+		reusableActions.isElementVisible(dpAddonContinue);
+		reusableActions.executeJavaScriptClick(dpAddonContinue);
+		return true;
+	}
+
+	/**
+	 * This method verify if DP Addon page displayed or not
+	 * @return true if DP addon page displayed; else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyDpAddonPage(){
+		return reusableActions.isElementVisible(dpAddonPageTitle,10);
 	}
 }

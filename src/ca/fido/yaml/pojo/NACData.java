@@ -15,6 +15,7 @@ public class NACData {
 	private String dpIMEI;
 	private String dpDeviceStorage;
 	private String dpDeviceColor;
+	private String riskClass;
 
 	public String getUsername() {
 		return username;
@@ -168,4 +169,11 @@ public class NACData {
 		this.dpDeviceColor = dpDeviceColor;
 	}
 
+	public String getRiskClass() {
+		return riskClass;
+	}
+
+	public void setRiskClass(String riskClass) {
+		this.riskClass = riskClass;
+	}
 }

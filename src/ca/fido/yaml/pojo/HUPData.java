@@ -12,6 +12,8 @@ public class HUPData {
 	private String accessoriesCount;
 	private String accessory1;
 	private String ban;
+	private String promoCode;
+	private String riskClass;
 
 	/**
 	 * @return the newDevice
@@ -133,6 +135,22 @@ public class HUPData {
 	public void setBan(String ban) {
 		this.ban = ban;
 	}
+	/**
+	 * @return the Promo Code
+	 */
+	public String getPromoCode() {return promoCode;}
+	/**
+	 * @param promoCode Promocode to set
+	 */
+	public void setPromoCode(String promoCode){
+		this.promoCode = promoCode;
+	}
 
+	public String getRiskClass() {
+		return riskClass;
+	}
 
+	public void setRiskClass(String riskClass) {
+		this.riskClass = riskClass;
+	}
 }

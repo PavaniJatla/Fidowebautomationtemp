@@ -73,7 +73,7 @@ public class TestDataHandler {
 	public static PPCData tc20PPCSLSubsidyOutTermSelectingTTPlan;
 	public static PPCData BFA_ProdTest_tc07_PPC_DTTPlan;
 	public static HUPData tc06HupPpcFinancingExpressShipping;
-	public static HUPData tc07HupPpcNoTermStandardShipping;
+	public static HUPData tc07TabletHupPpcFinExpressShipping;
 	public static HUPData tc08HupPpcKeepExistingExpressShipping;
 	public static HUPData tc09HupPpcFinancingStandardShipping;
 	public static HUPData BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping;
@@ -117,6 +117,10 @@ public class TestDataHandler {
 	public static HUPOVData tc09HUPWithPPC_FinPlan_StdShipping_QCProv;
 	public static HUPOVData tc10HUPWithPPC_NFDBValidation;
 	public static HUPOVData tc11HUPWithPPC_MediumRisk_StdShipping;
+
+	public static AddonData tc21SAA_AddVoicemail;
+	public static AddonData tc22SAA_RemoveVoicemail;
+	public static AddonData tc23SAA_AddDeviceProtection;
 
 	public static void dataInit (List<ITestNGMethod> lstTestMethodName) {
 			sauceSettings = YamlHandler.getSauceSettings("/test-data/fido/SauceSettings.yml");
@@ -247,7 +251,7 @@ public class TestDataHandler {
 		tc19PPCSLSubsidyInTermSelectingSubsidyPlan = YamlHandler.getPPCData("tc19PPCSLSubsidyInTermSelectingSubsidyPlan");
 		tc20PPCSLSubsidyOutTermSelectingTTPlan = YamlHandler.getPPCData("tc20PPCSLSubsidyOutTermSelectingTTPlan");
 		tc06HupPpcFinancingExpressShipping = YamlHandler.getHUPData("tc06HupPpcFinancingExpressShipping");
-		tc07HupPpcNoTermStandardShipping = YamlHandler.getHUPData("tc07HupPpcNoTermStandardShipping");
+		tc07TabletHupPpcFinExpressShipping = YamlHandler.getHUPData("tc07TabletHupPpcFinExpressShipping");
 		tc08HupPpcKeepExistingExpressShipping = YamlHandler.getHUPData("tc08HupPpcKeepExistingExpressShipping");
 		tc09HupPpcFinancingStandardShipping = YamlHandler.getHUPData("tc09HupPpcFinancingStandardShipping");
 		BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip = YamlHandler.getAALData("BFA_ProdTest_tc03_AALTERM_VDP_DTTPlan_StdShip");
@@ -255,6 +259,9 @@ public class TestDataHandler {
 		BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping = YamlHandler.getAALData("BFA_ProdTest_tc05_AALTERM_Tablet_StdShipping");
 		BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping = YamlHandler.getHUPData("BFA_ProdTest_tc06_HUPNoTerm_KEP_ExpressShipping");
 		BFA_ProdTest_tc07_PPC_DTTPlan = YamlHandler.getPPCData("BFA_ProdTest_tc07_PPC_DTTPlan");
+		tc21SAA_AddVoicemail = YamlHandler.getAddonData("tc21SAA_AddVoicemail");
+		tc22SAA_RemoveVoicemail = YamlHandler.getAddonData("tc22SAA_RemoveVoicemail");
+		tc23SAA_AddDeviceProtection = YamlHandler.getAddonData("tc23SAA_AddDeviceProtection");
 	}
 
 	private static void buyFlowsOneViewDataInit() {

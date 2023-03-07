@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTestClass {
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH"})
+	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
 	public void checkFidoHSIValidateRestartModem() {
 		getReporter().reportLogWithScreenshot("Launched the sign in Page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());

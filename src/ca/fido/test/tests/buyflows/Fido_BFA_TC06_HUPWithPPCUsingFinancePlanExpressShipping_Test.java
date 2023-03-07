@@ -19,25 +19,17 @@ public class Fido_BFA_TC06_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","HUPBFA"})
-    public void fidoHUPWithPPCUsingFinancePlanExpressShippingFlowTest() {
-/*        getReporter().hardAssert(getFidohomepage().verifyHomePageLoaded() , "Home page loaded successfully" , "Home page not loaded successfully");
-        getFidohomepage().clkLogin();*/
-        //getFidologinpage().switchToSignInFrame();
+    public void tc06_fidoHUPWithPPCUsingFinancePlanExpressShippingTest() {
+        getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc06HupPpcFinancingExpressShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc06HupPpcFinancingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
-        getReporter().reportLogWithScreenshot("Account Overview page");
-        getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         String deviceName = TestDataHandler.tc06HupPpcFinancingExpressShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        //getFidochoosephonepage().selectUpgradeMyDeviceButton();
-        //getReporter().reportLogPassWithScreenshot("Upgrade My Device Button Selected");
-        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
@@ -50,13 +42,15 @@ public class Fido_BFA_TC06_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         String dataOptionIndex = TestDataHandler.tc06HupPpcFinancingExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
+        getReporter().reportLogWithScreenshot("Autopay Enrollment Page");
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc06HupPpcFinancingExpressShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
@@ -78,6 +72,10 @@ public class Fido_BFA_TC06_HUPWithPPCUsingFinancePlanExpressShipping_Test extend
         getReporter().reportLogPass("Submit button selected on review page");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+            getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+                    "One Time Payment Page displayed","One Time Payment Page Not displayed");
+            String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+            getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
             getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());

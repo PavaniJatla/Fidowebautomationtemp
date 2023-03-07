@@ -17,13 +17,13 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALUsingNoTermPlanStandardShippingFlowTest() {
+    public void tc11_fidoAALUsingNoTermPlanStandardShippingTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
@@ -59,11 +59,18 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
         String cityName = TestDataHandler.tc11AALNoTermPlanStandardShipping.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
+        getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
+        getFidopaymentoptionspage().enterBankDetails();
+        getFidopaymentoptionspage().clkAutoPayConsentCheckBox();
+        getReporter().reportLogWithScreenshot("AutoPay Enrolled - Bank Method");
+        getFidopaymentoptionspage().billingOptionClkContinue();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
+        //getFidoCheckOutPage().clkNoThanks();
         getFidoCheckOutPage().selectNewShippingAddress(TestDataHandler.tc11AALNoTermPlanStandardShipping.getNewShippingAddress());
         getReporter().reportLogPassWithScreenshot("Entered new Shipping Address");
         String deliveryMethod = TestDataHandler.tc11AALNoTermPlanStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
+        //getFidoCheckOutPage().clkNoThanks();
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
@@ -79,6 +86,10 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
         getFidoorderreviewpage().clkSubmitMyOrder();
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+            getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+                    "One Time Payment Page displayed","One Time Payment Page Not displayed");
+            String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+            getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
             getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());

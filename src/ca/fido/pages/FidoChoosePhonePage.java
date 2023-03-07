@@ -49,6 +49,9 @@ public class FidoChoosePhonePage extends BasePageClass {
 	
 	@FindBy(xpath = "//div[contains(@class,'catalog-selector')]//span[@translate='device-manufacturer']")
 	WebElement lblDeviceManufacturer;
+
+	@FindBy(xpath = "//a[contains(@aria-label,'Sign in')]/span[contains(.,'Sign in')]")
+	WebElement bannerSignIn;
 	
 	/**
 	 * Validates that the Choose-Phones page load is successful
@@ -145,8 +148,14 @@ public class FidoChoosePhonePage extends BasePageClass {
 			reusableActions.clickWhenReady(By.xpath(strCtnXpath));
 			reusableActions.clickWhenReady(By.xpath("//button[@res='_continue']"));
 		}
-		
 	}
-		
+
+	/**
+	 * This method clicks on Sign In on the Sign In Banner in Device Catalog
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clickBannerSignIn() {
+		reusableActions.clickWhenReady(bannerSignIn, 10);
+	}
 }
 	

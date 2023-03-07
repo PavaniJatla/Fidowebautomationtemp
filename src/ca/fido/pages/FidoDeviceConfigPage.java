@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -15,8 +16,11 @@ public class FidoDeviceConfigPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(text(),'Appareils') or contains(text(),'Devices')]")
 	WebElement devicesInHearder;
-	
-	@FindBy(xpath = "//button[@id='continue-button' or contains(@class,'-primary -large')]")
+
+	@FindAll({
+			@FindBy(xpath = "//button[contains(.,' Build Your Plan ')]"),
+			@FindBy(xpath = "//button[contains(@title,'Build Your Plan') or @title=\"Disponible à l'achat\"]")
+	})
 	WebElement continueButton;
 	
 	@FindBy(xpath = "//ds-modal-container")
@@ -37,6 +41,23 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	@FindBy(xpath = "//div[@data-test='accessory-view-details-modal']//button[contains(.,'Add') or contains(.,'Ajouter')]")
 	WebElement btnAddToCartAccessoriesViewDetailsModal;
 
+	@FindBy(xpath = "//span[@data-test='wirelessDiscount-promo-ribbon']")
+	WebElement regularPromoRibbon;
+
+	@FindBy(xpath = "//span[@data-test='wirelessDiscount-promo-ribbon']/following::p[1]")
+	WebElement regularPromoDetail;
+
+	@FindBy(xpath = "//div[contains(@data-test,'device-config')]//p[contains(.,'Full') or contains(.,'Plein')]//span")
+	WebElement txtDeviceCost;
+
+	@FindAll({
+			@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'payment program promotion credit')]"),
+			@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'financing program promotion') or contains(text(),'payment program promotion')]")
+	})
+	WebElement financeCreditAmount;
+
+	@FindBy(xpath = "//dsa-promo-block//*[contains(text(),'Upfront Edge credit')]")
+	WebElement upfrontEdgeAmount;
 
 	/**
 	 * Selects the Subscriber on the Choose a line overlay and clicks Continue
@@ -158,9 +179,68 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	 */
 	public void clkContinueAccessories() {
 		reusableActions.clickWhenVisible(btnContinueAccessories);
-
 	}
-	
+
+	/**
+	 * This method verifies Regular Promo Ribbon on Device Config page
+	 * @return true if Regular Promo Ribbon displayed else false
+	 * @author subash.nedunchezhian
+	 */
+	public boolean verifyRegularPromoRibbon() {
+		reusableActions.waitForElementVisibility(regularPromoRibbon,10);
+		reusableActions.scrollToElement(regularPromoRibbon);
+		return reusableActions.isElementVisible(regularPromoRibbon);
+	}
+
+	/**
+	 * This method gets Regular Promo Discount value and Promo Duration text on Device Config page
+	 * @return Regular Promo Discount value and Promo Duration text
+	 * @author subash.nedunchezhian
+	 */
+	public String getRegularPromoDetails(){
+		reusableActions.scrollToElement(regularPromoDetail);
+		return regularPromoDetail.getText().replaceAll("\\n", "");
+	}
+
+	public String getDeviceFullPrice() {
+		if (System.getProperty("Language").equalsIgnoreCase("fr")) {
+			String deviceFullPriceFR = reusableActions.getWhenReady(txtDeviceCost).getText().trim();
+			return deviceFullPriceFR.substring(0, deviceFullPriceFR.indexOf(","));
+		} else {
+			String deviceFullPriceEN = reusableActions.getWhenReady(txtDeviceCost).getText().trim();
+			return deviceFullPriceEN.replaceAll("[^0-9.]","");
+		}
+	}
+
+	/**
+	 * Finance Program Credit price will be return
+	 * @return Finance Program Credit price
+	 * @author Vedachalam.Vasudevan
+	 */
+	public String getFinanceProgramCreditPrice() {
+		String financeCredit = "0.0";
+		if(reusableActions.isElementVisible(financeCreditAmount)) {
+			financeCredit = reusableActions.getWhenReady(financeCreditAmount).getText().trim();
+			return financeCredit.substring(financeCredit.indexOf("$") + 1, financeCredit.indexOf("/"));
+		} else {
+			return financeCredit;
+		}
+	}
+
+	/**
+	 * Upfront Edge price will be return
+	 * @return Upfront Edge price
+	 * @author Vedachalam.Vasudevan
+	 */
+	public String getUpfrontEdgePrice() {
+		String upfrontEdgeAmt = "0.0";
+		if(reusableActions.isElementVisible(upfrontEdgeAmount)) {
+			upfrontEdgeAmt = reusableActions.getWhenReady(upfrontEdgeAmount).getText().trim();
+			return upfrontEdgeAmt.substring(upfrontEdgeAmt.indexOf("$")+1,upfrontEdgeAmt.indexOf(" "));
+		} else {
+			return upfrontEdgeAmt;
+		}
+	}
 }
 	
 	

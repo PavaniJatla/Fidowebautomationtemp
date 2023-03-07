@@ -22,7 +22,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void fidoAALTabletsStandardShippingFlowTest() {
+    public void tc12_fidoAALTabletStandardShippingPortInTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
@@ -43,14 +43,14 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         //getFidobuildplanpage().clkDeviceBalancePopUp();
         //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        /*String dataOptionIndex = TestDataHandler.tc17AALTabletsStandardShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex);
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");*/
-        getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
+        String dataOptionIndex = TestDataHandler.tc12AALTabletsStandardShipping.getDataOptionIndex();
+        getFidobuildplanpage().clkDataOption(dataOptionIndex,this.getClass().getSimpleName());
+        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        //getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
-        getReporter().reportLogWithScreenshot("Called ID information a");
+        getReporter().reportLogWithScreenshot("Called ID information");
         getFidobuildplanpage().clkCallerIdContinueBtn();
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
@@ -64,6 +64,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
         getFidochoosenumberpage().clkCheckEligibilityBtn();
         getReporter().hardAssert(getFidochoosenumberpage().verifyPortInSuccess(),"Entered Number is eligible for PortIn","Entered Number is not eligible for PortIn");
         getFidochoosenumberpage().clkContinueChooseNumber();
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
         String deliveryMethod = TestDataHandler.tc12AALTabletsStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
@@ -85,6 +86,10 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
         getReporter().reportLogPass("Submit button selected");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
+            getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
+                    "One Time Payment Page displayed","One Time Payment Page Not displayed");
+            String otpAmount = getFidopaymentpage().getOneTimePaymentAmount();
+            getReporter().reportLogWithScreenshot("One Time Payment Amount = " +otpAmount);
             getFidopaymentpage().setCreditCardName();
             getFidopaymentpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber2());
             getFidopaymentpage().setCreditCardExpiryMonthAndYear(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryMonth2() + TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getExpiryYear2());

@@ -4,7 +4,6 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -15,10 +14,10 @@ import java.lang.reflect.Method;
  * TC01 - Regression - [FNAC BYOD] - Perform Fido Net New Activation - BYOD with Standard Shipping_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTestClass{
+public class Fido_BFA_TC01_NAC_ByodNoTerm_BasicPlan_StdShippingTest extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA","NACBFABYOD"})
-	public void fidoNACByodTermStandardShippingFlow() {
+	public void tc01_fidoNACByodTermStandardShipping() {
 		getFidobuildplanpage().setProvince("Ontario");
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
@@ -28,10 +27,11 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getReporter().reportLogPass("Basic Plan selected");
 		/*getFidobuildplanpage().clkFirstTierChooseYourDataAAL();
 		getFidobuildplanpage().clkContinueDataOption();*/
+		getFidobuildplanpage().differentPlanSelectionModal();
 		getReporter().reportLogPass("Continue button on Data option clicked");
 		getFidobuildplanpage().clkContinueTalkOptions();
 		getReporter().reportLogPass("Continue button on talk option clicked");
-		getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
@@ -50,8 +50,6 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getReporter().reportLogWithScreenshot("Phone number  and home address set");
 		getFidocreateuserpage().clkContinue();
 		getFidocreditcheckpage().selectDOBYear();
-		getFidoCheckOutPage().clkNoThanks();
-		getFidocreditcheckpage().clkNoThanks();
 		getFidocreditcheckpage().selectDOBMonth();
 		getFidocreditcheckpage().selectDOBDay();
 		getFidocreditcheckpage().setCreditCardNumber(TestDataHandler.bfaPaymentInfo.getCreditCardDetails().getNumber1());
@@ -65,15 +63,15 @@ public class Fido_BFA_TC01_NAC_ByodTermWithStandardShippingTest extends BaseTest
 		getFidocreditcheckpage().clkContinue();
 		getFidocreditcheckpage().waitForCreditCheckProcessing();
 		getFidochoosenumberpage().selectCity(TestDataHandler.tc01ByodStandardShipping.getCtnCity());
-		getFidocreditcheckpage().clkNoThanks();
+		//getFidocreditcheckpage().clkNoThanks();
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
-		getFidoCheckOutPage().clkNoThanks();
+		//getFidoCheckOutPage().clkNoThanks();
 		getFidochoosenumberpage().clkContinue();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
-		getFidoCheckOutPage().clkNoThanks();
+		//getFidoCheckOutPage().clkNoThanks();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
 		getFidoCheckOutPage().clkShippingType("STANDARD");
 		getReporter().reportLogWithScreenshot("Shipping selected");

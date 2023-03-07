@@ -129,6 +129,12 @@ public class FidoPaymentPage extends BasePageClass {
 	
 	@FindBy(xpath="//input[@formcontrolname='name']")
 	WebElement lblTxtFirstName;
+
+	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'One Time Payment')]")
+	WebElement otpPage;
+
+	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'One Time Payment')]/following::div[@class='ds-price'][1]")
+	WebElement otpAmount;
 	
 	/**
 	 * Set the dynamic Name on the credit card
@@ -452,5 +458,25 @@ public class FidoPaymentPage extends BasePageClass {
 	 */
 	public void clkContinue() {
 		reusableActions.clickWhenReady(btnContinue);
+	}
+
+	/**
+	 * Verify the onetime payment page is getting displayed
+	 * @return true if onetime payment page displayed else false
+	 * @author Subash.Nedunchezhian
+	 */
+	public boolean verifyOneTimePaymentTitle() {
+		reusableActions.waitForElementVisibility(otpPage,30);
+		return reusableActions.isElementVisible(otpPage, 10);
+	}
+
+	/**
+	 * This method gets One Time Payment Amount in OTP page
+	 * @return One Time Payment Amount in OTP page
+	 * @author subash.nedunchezhian
+	 */
+	public String getOneTimePaymentAmount(){
+		reusableActions.scrollToElement(otpAmount);
+		return otpAmount.getText().replaceAll("\\n", "");
 	}
 }

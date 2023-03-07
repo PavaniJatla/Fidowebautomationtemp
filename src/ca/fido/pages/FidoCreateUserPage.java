@@ -66,8 +66,7 @@ public class FidoCreateUserPage extends BasePageClass {
 	WebElement lblTxtHomeAddress;
 	
 	@FindAll({
-		@FindBy(xpath="//div[@class='pca pcalist']/div[contains(@class,'pcalastitem')]/span[@class='pcadescription']/.."),
-		@FindBy(xpath="//ul[@role='listbox']//li[not(contains(.,'Addresses'))]"),
+		@FindBy(xpath="//ul[@role='listbox']//li[not(contains(.,'Addresses'))]")
 	})
 	WebElement lblAddressResult;
 
@@ -179,8 +178,9 @@ public void setPhone() {
 	 * @author Saurav.Goyal
 	 */
 	public void setSpecificPhoneNumber(String contactNumber) {
-		reusableActions.getWhenReady(txtPhone, 3).click();
-		reusableActions.getWhenReady(lblTxtPhone,3).sendKeys(contactNumber);
+		reusableActions.getWhenReady(txtPhone, 30).click();
+		//reusableActions.getWhenReady(lblTxtPhone,3).sendKeys(contactNumber);
+		lblTxtPhone.sendKeys(contactNumber);
 	}
 
 /**
@@ -220,7 +220,7 @@ public void setHomeAddress(String homeAddress) {
 	reusableActions.getWhenReady(txtHomeAddress, 10).click();
 	lblTxtHomeAddress.sendKeys(homeAddress);
 	//reusableActions.getWhenReady(lblTxtHomeAddress,10).sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
-	reusableActions.executeJavaScriptClick(lblAddressResult);
+	//reusableActions.executeJavaScriptClick(lblAddressResult);
 	if(reusableActions.isElementVisible(lblAddressResult,10)) {
 		reusableActions.executeJavaScriptClick(lblAddressResult);
 	}
