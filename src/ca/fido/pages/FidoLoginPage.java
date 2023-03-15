@@ -130,7 +130,7 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.clickIfAvailable(lblUserName);
 		//reusableActions.getWhenReady(txtUsername,10).click();
 		reusableActions.getWhenReady(txtUsername,30).sendKeys(strUsername);
-		clkLoginInFrame();
+		//clkLoginInFrame();
 	}
 
 	/**

@@ -19,7 +19,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath = "//input[contains(@id,'addressLookup')]")
 	WebElement txtAddressLookup;
 	
-	@FindBy(xpath = "//div[contains(@class,'ds-formField__inputContainer')]")
+	@FindBy(xpath = "//div[@class='dsa-serviceability-container']//div[contains(@class,'ds-formField__inputContainer')]")
 	WebElement txtAddressLookupContainer;
 	
 	@FindBy(xpath = "//ins[@translate='global.cta.checkAvailability']")
