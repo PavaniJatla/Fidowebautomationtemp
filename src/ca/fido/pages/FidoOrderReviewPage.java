@@ -340,7 +340,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public String getSelectedShippingAddress(){
-		return reusableActions.getWhenReady(selectedShippingAddress).getText().replaceAll("\\n", "");
+		return selectedShippingAddress.getText().replaceAll("\\n", "");
 	}
 
 	/**

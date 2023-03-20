@@ -39,14 +39,14 @@ public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test exte
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
         getFidobuildplanpage().clkContinueDeviceCost();
-        //getFidobuildplanpage().clkDataOption(TestDataHandler.tc07HupPpcNoTermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
-        //String deviceCostIndex = TestDataHandler.tc12HupPpcNoTermStandardShipping.getDeviceCostIndex();
+        //String deviceCostIndex = TestDataHandler.tc07TabletHupPpcFinExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-       //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-        getFidobuildplanpage().clkContinueTalkOptions();
+        getFidobuildplanpage().clkDataOption(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        //getFidobuildplanpage().clkContinueTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
