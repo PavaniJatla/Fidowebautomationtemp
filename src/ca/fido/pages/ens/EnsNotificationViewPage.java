@@ -85,8 +85,8 @@ public class EnsNotificationViewPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkLnkPdfForSmsVerify(String strPhoneNum) {
-		reusableActions.waitForAllElementsVisible(driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_html_png']")), 30);
-		List<WebElement> lnkHtml = driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_html_png']"));
+		reusableActions.waitForAllElementsVisible(getDriver().findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_pdf_png']")), 60);
+		List<WebElement> lnkHtml = getDriver().findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_pdf_png']"));
 		reusableActions.getWhenVisible(lnkHtml.get(0)).click();
 	}
 	

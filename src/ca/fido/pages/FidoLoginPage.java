@@ -117,6 +117,30 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Forgot password ' or contains(text(),'Mot de passe oubli')]")
 	WebElement lnkForgotPassword;
 
+	@FindBy(xpath = "//button[contains(@title,'wireless recovery number')]/span")
+	WebElement btnTextToAsRecoveryOption;
+
+	@FindBy(xpath="//h1[text()='Receive verification code']")
+	WebElement lblMFAwindow;
+
+	/**
+	 * Click on Text button as a recovery option fpr MFA
+	 * @author manpreet.kaur3
+	 */
+	public void clkTextToAsRecoveryOption() {
+		reusableActions.getWhenReady(btnTextToAsRecoveryOption,60).click();
+	}
+
+	/**
+	 * verifies the MFA screen
+	 * @return true if MFA screen is visible, else false
+	 * @author manpreet.kaur3
+	 */
+	public boolean verifyMFAScreenIsVisible() {
+		return reusableActions.isElementVisible(lblMFAwindow,30);
+	}
+
+
 
 
 	/**
@@ -398,4 +422,5 @@ public class FidoLoginPage extends BasePageClass {
 		reusableActions.getWhenReady(lnkForgotUserName).click();
 
 	}
+
 }
