@@ -52,7 +52,7 @@ pipeline {
         parameterizedCron(env.BRANCH_NAME == 'fido-maintenance-march-ch' ? '''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
-                    15 16 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=1;TestProfile=ConnectedHome
+                    0 6 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=1;TestProfile=ConnectedHome
                     
                 ''' : '')
     }
