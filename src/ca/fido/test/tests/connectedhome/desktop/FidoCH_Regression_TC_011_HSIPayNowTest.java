@@ -31,7 +31,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 	final String strLanguage=System.getProperty("Language");
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
-	public void checkFidoHSIPayNowFunctionality() {
+	public void checkFidoHSIPayNowFunctionality() throws IOException {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		getReporter().reportLogWithScreenshot("Continue Login");
@@ -39,7 +39,7 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
-		getEnsverifications().setVerificationCodeEmailIncognitoWindows();
+		getEnsverifications().setVerificationCodeTextSauceMac();
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 
 		String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();

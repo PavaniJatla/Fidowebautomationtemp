@@ -49,12 +49,10 @@ pipeline {
     }
 
     triggers {
-        parameterizedCron(env.BRANCH_NAME == 'master' ? '''
+        parameterizedCron(env.BRANCH_NAME == 'fido-maintenance-march-ch' ? '''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
-                    00 06 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=2;TestProfile=ConnectedHome
-                    30 06 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanitySS;ThreadCount=3;TestProfile=SelfServe
-                    45 06 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityBFA;ThreadCount=2;TestProfile=BuyFlows
+                    15 16 * * 1-5 %Browser=saucechrome;Language=en;Groups=SanityCH;ThreadCount=1;TestProfile=ConnectedHome
                     
                 ''' : '')
     }

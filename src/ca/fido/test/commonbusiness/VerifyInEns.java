@@ -65,6 +65,23 @@ public class VerifyInEns{
 		return strVerifyCode;
 	}
 
+	public void setVerificationCodeTextSauceMac() throws IOException {
+		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
+			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
+			baseTestClass.getFidologinpage().clkTextOptionMFA();
+			String strTestingTab = baseTestClass.getDriver().getWindowHandle();
+			baseTestClass.getReporter().reportLogWithScreenshot("ENS");
+			String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
+			String strVerifyCode = getVerifyCode(strPhoneNum);
+			baseTestClass.getDriver().switchTo().window(strTestingTab);
+			baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
+			baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
+			baseTestClass.getFidoprofileandsettingpage().clkBtnContinue();
+			baseTestClass.getReporter().reportLogWithScreenshot("Continue to Account Overview");
+		}
+
+	}
+
 	public void setVerificationCodeTextIncognitoWindows() {
 		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
 			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
