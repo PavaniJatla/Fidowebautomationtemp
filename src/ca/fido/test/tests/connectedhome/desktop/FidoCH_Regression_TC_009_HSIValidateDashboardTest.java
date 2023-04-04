@@ -38,7 +38,8 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
-		getEnsverifications().setVerificationCodeIncognitoWindows();
+		//getEnsverifications().setVerificationCodeTextIncognitoWindows();
+		getEnsverifications().setVerificationCodeEmailIncognitoWindows();
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();

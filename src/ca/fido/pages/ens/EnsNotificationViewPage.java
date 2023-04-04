@@ -41,6 +41,15 @@ public class EnsNotificationViewPage extends BasePageClass {
 	@FindBy (xpath = "//img[@alt='Set password']")
 	WebElement btnSetPasswordInEmail;
 
+	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
+	WebElement lblYourVerificationCode;
+
+	public String getVerificationCode() {
+		String strMsg = reusableActions.getWhenReady(lblYourVerificationCode).getText();
+		return strMsg.trim();
+	}
+
+
 	/**
 	 * Click on menu Notification Viewer
 	 * @author ning.xue 

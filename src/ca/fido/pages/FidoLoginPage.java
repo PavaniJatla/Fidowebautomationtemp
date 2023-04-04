@@ -118,7 +118,10 @@ public class FidoLoginPage extends BasePageClass {
 	WebElement lnkForgotPassword;
 
 	@FindBy(xpath = "//button[contains(@title,'wireless recovery number')]/span")
-	WebElement btnTextToAsRecoveryOption;
+	WebElement btnTextMFA;
+
+	@FindBy(xpath="//button[contains(@title,'email')]")
+	WebElement btnEmailMFA;
 
 	@FindBy(xpath="//h1[text()='Receive verification code']")
 	WebElement lblMFAwindow;
@@ -127,10 +130,20 @@ public class FidoLoginPage extends BasePageClass {
 	 * Click on Text button as a recovery option fpr MFA
 	 * @author manpreet.kaur3
 	 */
-	public void clkTextToAsRecoveryOption() {
-		reusableActions.getWhenReady(btnTextToAsRecoveryOption,60).click();
+	public void clkTextOptionMFA() {
+		reusableActions.getWhenReady(btnTextMFA,20).click();
 	}
 
+	public void loadEnsUrl(){
+		reusableActions.staticWait(4000);
+		getDriver().get(System.getProperty("EnsUrl"));
+	}
+
+	public void clkEmailOptionMFA() {
+
+		reusableActions.getWhenReady(btnEmailMFA,20).click();
+
+	}
 	/**
 	 * verifies the MFA screen
 	 * @return true if MFA screen is visible, else false

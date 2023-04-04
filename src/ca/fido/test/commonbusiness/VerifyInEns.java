@@ -3,7 +3,6 @@ package ca.fido.test.commonbusiness;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
-
 import java.io.IOException;
 
 public class VerifyInEns{
@@ -25,8 +24,8 @@ public class VerifyInEns{
 
 	private void startVerifyCH() {
 		String strEnsStsUrl = "https://"+System.getenv("ENS_USERNAME")+":"+System.getenv("ENS_PASSWORD")+"@sts.rci.rogers.ca/adfs/ls/wia?client-request-id=5be570eb-c7e2-49f8-b3f5-57b29e72515f&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=LoginOptions%3D3%26estsredirect%3d2%26estsrequest%3drQQIARAA42KwEkzNKy5MNNEryk9PLSrWS87PLRLiEnhd8DT60fEfnpu_hm-aVxQYv4rRMKOkpKDYSl8fQ72-q1-wfnFGfrlvYmZeQGJ6ql5icklmft4hRtVQS6NUC4NE8yTdJEOjNF2TFDNLXctUE0tdI1NTizQzC9PkFBODC4yMLxgZbzGxBifm5hj9YjIpLcqzyk8sziy2ykvMTS22Kkm2Cnb09bEy0jMAi2Sm6KblF-UmllgVAJ2QWVySmlcyi1laPy-_JDMtMzkRZHlxWGZqeWoR1CmbmFUMEpNMkpOSgI5ISjbXNbEwMtNNMjVK1k00NElLTTE1sjBLsnzELJObmFdQlJpaopedWFpk7FCUnAn3aeIFFp5XLDwGzFYcHFwCDBIMCgw_WBgXsQKDqyCs5RBX_CXffuNzzyVWTGM4xarv6B7pFxrkFVTuEZhhXBWaUpGaGWCRZpSl7-0UkhSZWWFq6JruG-lraZlkYWtmZTiBjfcUG8MHNsYOdoZZ7Ay7OEkP7wO8DD_4pr08c3zLthNvPQA1&cbcxt=&username=&mkt=&lc=";
-
 		BaseTestClass.getEnshomepage().openNewTabForEns(strEnsStsUrl);
+		//BaseTestClass.getFidologinpage().loadEnsUrl();
 		baseTestClass.getReporter().reportLogWithScreenshot("Ens Window");
 	}
 
@@ -66,14 +65,31 @@ public class VerifyInEns{
 		return strVerifyCode;
 	}
 
-	public void setVerificationCodeIncognitoWindows() {
+	public void setVerificationCodeTextIncognitoWindows() {
 		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
 			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
-			baseTestClass.getFidologinpage().clkTextToAsRecoveryOption();
+			baseTestClass.getFidologinpage().clkTextOptionMFA();
 			String strTestingTab = baseTestClass.getDriver().getWindowHandle();
 			baseTestClass.getReporter().reportLogWithScreenshot("ENS");
 			String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
 			String strVerifyCode = getVerifyCodeCH(strPhoneNum);
+			baseTestClass.getDriver().switchTo().window(strTestingTab);
+			baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
+			baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
+			baseTestClass.getFidoprofileandsettingpage().clkBtnContinue();
+			baseTestClass.getReporter().reportLogWithScreenshot("Continue to Account Overview");
+		}
+
+	}
+
+	public void setVerificationCodeEmailIncognitoWindows() {
+		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
+			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
+			baseTestClass.getFidologinpage().clkEmailOptionMFA();
+			String strTestingTab = baseTestClass.getDriver().getWindowHandle();
+			baseTestClass.getReporter().reportLogWithScreenshot("ENS");
+			String strAccount = TestDataHandler.fidoHSIAccount.getUsername();
+			String strVerifyCode= getEmailVerifyPageCH(strAccount);
 			baseTestClass.getDriver().switchTo().window(strTestingTab);
 			baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
 			baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
@@ -147,6 +163,17 @@ public class VerifyInEns{
 		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);		
 		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);		
 	}
+
+	public String getEmailVerifyPageCH(String strAccountId) {
+		this.startVerifyCH();
+		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
+		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
+		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
+		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
+		return BaseTestClass.getEnsnoteviewpage().getVerificationCode();
+	}
+
+
 
 	/**
 	 * To get the user name sent to the recovery number in pdf file from ENS and close ENS window.
