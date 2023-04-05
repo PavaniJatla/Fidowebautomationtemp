@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTestClass {
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
-	public void checkFidoHSIValidateRestartModem() throws IOException {
+	public void checkFidoHSIValidateRestartModem() {
 		getReporter().reportLogWithScreenshot("Launched the sign in Page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getReporter().reportLogWithScreenshot("Continue Login");
@@ -36,7 +36,7 @@ public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTe
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
-		getEnsverifications().setVerificationCodeTextSauceMac();
+		getEnsverifications().setVerificationCodeCH("email");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();

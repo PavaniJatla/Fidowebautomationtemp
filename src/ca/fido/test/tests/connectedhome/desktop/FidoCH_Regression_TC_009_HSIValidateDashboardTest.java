@@ -30,7 +30,7 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
-	public void checkFidoHSIValidateDashboard() throws IOException {
+	public void checkFidoHSIValidateDashboard() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getReporter().reportLogWithScreenshot("Continue Login");
@@ -38,9 +38,7 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
-		//getEnsverifications().setVerificationCodeTextIncognitoWindows();
-		//getEnsverifications().setVerificationCodeEmailIncognitoWindows();
-		getEnsverifications().setVerificationCodeTextSauceMac();
+		getEnsverifications().setVerificationCodeCH("email");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();

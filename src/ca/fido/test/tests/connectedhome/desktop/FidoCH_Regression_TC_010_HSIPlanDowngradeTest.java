@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass {
 
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
-	public void checkFidoHSIPlanDowngrade() throws IOException {
+	public void checkFidoHSIPlanDowngrade() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameDowngrade());
 		getReporter().reportLogWithScreenshot("Continue Login");
@@ -37,7 +37,7 @@ public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
-		getEnsverifications().setVerificationCodeTextSauceMac();
+		getEnsverifications().setVerificationCodeCH("email");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();

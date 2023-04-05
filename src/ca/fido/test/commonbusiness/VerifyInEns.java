@@ -65,73 +65,75 @@ public class VerifyInEns{
 		return strVerifyCode;
 	}
 
-	public void setVerificationCodeTextSauceMac() throws IOException {
-		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
-			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
-			baseTestClass.getFidologinpage().clkTextOptionMFA();
-			String strTestingTab = baseTestClass.getDriver().getWindowHandle();
-			baseTestClass.getReporter().reportLogWithScreenshot("ENS");
-			String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
-			String strVerifyCode = getVerifyCode(strPhoneNum);
-			baseTestClass.getDriver().switchTo().window(strTestingTab);
-			baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
-			baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
-			baseTestClass.getFidoprofileandsettingpage().clkBtnContinue();
-			baseTestClass.getReporter().reportLogWithScreenshot("Continue to Account Overview");
-		}
 
+	public void setVerificationCodeCH(String verificationMethod){
+		if(verificationMethod == "email"){
+			setVerificationCodeEmail();
+		} else{
+			setVerificationCodeText();
+		}
 	}
 
-	public void setVerificationCodeTextIncognitoWindows() {
-		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
-			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
-			baseTestClass.getFidologinpage().clkTextOptionMFA();
-			String strTestingTab = baseTestClass.getDriver().getWindowHandle();
-			baseTestClass.getReporter().reportLogWithScreenshot("ENS");
-			String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
-			String strVerifyCode = getVerifyCodeCH(strPhoneNum);
-			baseTestClass.getDriver().switchTo().window(strTestingTab);
-			baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
-			baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
-			baseTestClass.getFidoprofileandsettingpage().clkBtnContinue();
-			baseTestClass.getReporter().reportLogWithScreenshot("Continue to Account Overview");
+	public void setVerificationCodeText(){
+		baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
+		baseTestClass.getFidologinpage().clkTextOptionMFA();
+		String strTestingTab = baseTestClass.getDriver().getWindowHandle();
+		baseTestClass.getReporter().reportLogWithScreenshot("ENS");
+		String browser = System.getProperty("Browser");
+		baseTestClass.getReporter().reportLogWithScreenshot(browser);
+		if(browser.contains("sauce")){
+			this.startVerify();
+			this.loginToEns();
+		} else {
+			this.startVerifyCH();
 		}
-
-	}
-
-	public void setVerificationCodeEmailIncognitoWindows() {
-		if(baseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
-			baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
-			baseTestClass.getFidologinpage().clkEmailOptionMFA();
-			String strTestingTab = baseTestClass.getDriver().getWindowHandle();
-			baseTestClass.getReporter().reportLogWithScreenshot("ENS");
-			String strAccount = TestDataHandler.fidoHSIAccount.getUsername();
-			String strVerifyCode= getEmailVerifyPageCH(strAccount);
-			baseTestClass.getDriver().switchTo().window(strTestingTab);
-			baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
-			baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
-			baseTestClass.getFidoprofileandsettingpage().clkBtnContinue();
-			baseTestClass.getReporter().reportLogWithScreenshot("Continue to Account Overview");
-		}
-
-	}
-
-
-	public String getVerifyCodeCH(String strPhoneNum) {
-
-		this.startVerifyCH();
-		//this.loginToEns();
-
-		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
-		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
+		clkEnsSearchNotification();
+		String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
 		BaseTestClass.getEnsnoteviewpage().clkLnkPdfForSmsVerify(strPhoneNum);
 		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getNotificationCode();
 		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
 		BaseTestClass.getEnsnoteviewpage().clkBtnOk();
 		BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
-		return strVerifyCode;
+		switchToMainWindowAndSetVerificationCode(strTestingTab,strVerifyCode);
 	}
 
+
+	public void setVerificationCodeEmail(){
+		baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
+		baseTestClass.getFidologinpage().clkEmailOptionMFA();
+		String strTestingTab = baseTestClass.getDriver().getWindowHandle();
+		baseTestClass.getReporter().reportLogWithScreenshot("ENS");
+		String browser = System.getProperty("Browser");
+		baseTestClass.getReporter().reportLogWithScreenshot(browser);
+		if(browser.contains("sauce")){
+			this.startVerify();
+			this.loginToEns();
+		} else {
+			this.startVerifyCH();
+		}
+		clkEnsSearchNotification();
+		String strAccountId = TestDataHandler.fidoHSIAccount.getUsername();
+		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
+		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
+		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getVerificationCode();
+		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
+		switchToMainWindowAndSetVerificationCode(strTestingTab,strVerifyCode);
+	}
+
+
+	private void clkEnsSearchNotification() {
+		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
+		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
+	}
+
+	private void switchToMainWindowAndSetVerificationCode(String strTestingTab, String strVerifyCode) {
+		baseTestClass.getDriver().switchTo().window(strTestingTab);
+		baseTestClass.getReporter().reportLogWithScreenshot("Close the Overlay");
+		baseTestClass.getFidoprofileandsettingpage().setRecoveryCode(strVerifyCode);
+		baseTestClass.getFidoprofileandsettingpage().clkBtnContinue();
+		baseTestClass.getReporter().reportLogWithScreenshot("Continue to Account Overview");
+
+	}
 
 
 	/**
@@ -180,16 +182,6 @@ public class VerifyInEns{
 		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);		
 		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);		
 	}
-
-	public String getEmailVerifyPageCH(String strAccountId) {
-		this.startVerifyCH();
-		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
-		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
-		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
-		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
-		return BaseTestClass.getEnsnoteviewpage().getVerificationCode();
-	}
-
 
 
 	/**
