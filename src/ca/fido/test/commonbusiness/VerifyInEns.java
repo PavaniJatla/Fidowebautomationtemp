@@ -6,12 +6,12 @@ import org.apache.http.client.ClientProtocolException;
 import java.io.IOException;
 
 public class VerifyInEns{
+	BaseTestClass baseTestClass;
 
-	BaseTestClass baseTestClass; 
 	public VerifyInEns(BaseTestClass baseTestClass) {
 		this.baseTestClass = baseTestClass;
 	}
-	
+
 	/**
 	 * To launch the ENS URL, it will be different for different QA environment.
 	 * @author ning.xue
@@ -29,13 +29,13 @@ public class VerifyInEns{
 		baseTestClass.getReporter().reportLogWithScreenshot("Ens Window");
 	}
 
-	
+
 	/**
 	 * To login to ENS using operator name and password.
 	 * @author ning.xue
 	 */
 	private void loginToEns() {
-		
+
 		BaseTestClass.getEnshomepage().setEmail(System.getenv("ENS_USERNAME"));
 		BaseTestClass.getEnshomepage().clkBtnNext();
 		BaseTestClass.getEnshomepage().setPassword(System.getenv("ENS_PASSWORD"));
@@ -46,7 +46,7 @@ public class VerifyInEns{
 	 * To get the verify code in pdf file from ENS and close ENS window.
 	 * @param strPhoneNum, the recovery phone number
 	 * @return String, the verification code.
-	 * @throws ClientProtocolException 	throws ClientProtocolException
+	 * @throws ClientProtocolException     throws ClientProtocolException
 	 * @throws IOException throws IOException
 	 * @author ning.xue
 	 */
@@ -54,7 +54,7 @@ public class VerifyInEns{
 
 		this.startVerify();
 		this.loginToEns();
-		
+
 		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
 		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
 		BaseTestClass.getEnsnoteviewpage().clkLnkPdfForSmsVerify(strPhoneNum);
@@ -65,65 +65,63 @@ public class VerifyInEns{
 		return strVerifyCode;
 	}
 
-
-	public void setVerificationCodeCH(String verificationMethod){
-		if(verificationMethod == "email"){
-			setVerificationCodeEmail();
-		} else{
-			setVerificationCodeText();
+	public void setVerificationCodeCH(String strAccountId, String verificationMethod) {
+		if (BaseTestClass.getFidologinpage().verifyMFAScreenIsVisible()) {
+			switch (verificationMethod) {
+				case "email":
+					setVerificationCodeEmail(strAccountId);
+					break;
+				case "sms":
+					setVerificationCodeText();
+					break;
+			}
 		}
 	}
 
 	public void setVerificationCodeText(){
-		baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
+		String browser = System.getProperty("Browser");
+		String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
+		baseTestClass.getReporter().reportLogWithScreenshot(browser);
+		baseTestClass.getReporter().reportLogWithScreenshot("Click on SMS as recovery option");
 		baseTestClass.getFidologinpage().clkTextOptionMFA();
 		String strTestingTab = baseTestClass.getDriver().getWindowHandle();
-		baseTestClass.getReporter().reportLogWithScreenshot("ENS");
-		String browser = System.getProperty("Browser");
-		baseTestClass.getReporter().reportLogWithScreenshot(browser);
+		baseTestClass.getReporter().reportLogWithScreenshot("Launching ENS Portal");
 		if(browser.contains("sauce")){
 			this.startVerify();
 			this.loginToEns();
 		} else {
 			this.startVerifyCH();
 		}
-		clkEnsSearchNotification();
-		String strPhoneNum = TestDataHandler.fidoHSIAccount.getaccountDetails().getPhoneNumber();
+		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
+		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
 		BaseTestClass.getEnsnoteviewpage().clkLnkPdfForSmsVerify(strPhoneNum);
 		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getNotificationCode();
-		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
+		baseTestClass.getReporter().reportLogWithScreenshot("Retrieved SMS verification code");
 		BaseTestClass.getEnsnoteviewpage().clkBtnOk();
 		BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
 		switchToMainWindowAndSetVerificationCode(strTestingTab,strVerifyCode);
 	}
 
-
-	public void setVerificationCodeEmail(){
-		baseTestClass.getReporter().reportLogWithScreenshot("Click on Text as recovery option");
-		baseTestClass.getFidologinpage().clkEmailOptionMFA();
-		String strTestingTab = baseTestClass.getDriver().getWindowHandle();
-		baseTestClass.getReporter().reportLogWithScreenshot("ENS");
+	public void setVerificationCodeEmail(String strAccountId) {
 		String browser = System.getProperty("Browser");
 		baseTestClass.getReporter().reportLogWithScreenshot(browser);
-		if(browser.contains("sauce")){
+		baseTestClass.getReporter().reportLogWithScreenshot("Click on EMAIL as verification option");
+		baseTestClass.getFidologinpage().clkEmailOptionMFA();
+		String strTestingTab = baseTestClass.getDriver().getWindowHandle();
+		baseTestClass.getReporter().reportLogWithScreenshot("Launching ENS Portal");
+		if (browser.contains("sauce")) {
 			this.startVerify();
 			this.loginToEns();
 		} else {
 			this.startVerifyCH();
 		}
-		clkEnsSearchNotification();
-		String strAccountId = TestDataHandler.fidoHSIAccount.getUsername();
-		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
-		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
-		String strVerifyCode = BaseTestClass.getEnsnoteviewpage().getVerificationCode();
-		baseTestClass.getReporter().reportLogWithScreenshot("Got message notification code.");
-		switchToMainWindowAndSetVerificationCode(strTestingTab,strVerifyCode);
-	}
-
-
-	private void clkEnsSearchNotification() {
 		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
 		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
+		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
+		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
+		String strVerificationCode = BaseTestClass.getEnsnoteviewpage().getVerificationCode();
+		baseTestClass.getReporter().reportLogWithScreenshot("Email OTP successfully copied from MFA Window - ENS Portal");
+		switchToMainWindowAndSetVerificationCode(strTestingTab, strVerificationCode);
 	}
 
 	private void switchToMainWindowAndSetVerificationCode(String strTestingTab, String strVerifyCode) {
@@ -135,12 +133,11 @@ public class VerifyInEns{
 
 	}
 
-
 	/**
 	 * To get the verify code in pdf file from ENS and close ENS window.
 	 * @param strPhoneNum, the recovery phone number
 	 * @return String, the verification code.
-	 * @throws ClientProtocolException 	throws ClientProtocolException
+	 * @throws ClientProtocolException     throws ClientProtocolException
 	 * @throws IOException throws IOException
 	 * @author sidhartha.vadrevu
 	 */
@@ -165,7 +162,7 @@ public class VerifyInEns{
 		BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
 		return strVerifyCode;*/
 	}
-	
+
 	/**
 	 * To get the email notification by clicking the html link in ENS, and switch to the new openned tab.
 	 * @param strAccountId is string Account Id
@@ -179,8 +176,8 @@ public class VerifyInEns{
 
 		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
 		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
-		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);		
-		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);		
+		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
+		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
 	}
 
 
@@ -192,7 +189,7 @@ public class VerifyInEns{
 	public String getAccountUserName(String strPhoneNum) {
 		this.startVerify();
 		this.loginToEns();
-		
+
 		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
 		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
 		BaseTestClass.getEnsnoteviewpage().clkLnkPdfForSmsVerify(strPhoneNum);
@@ -202,5 +199,5 @@ public class VerifyInEns{
 		BaseTestClass.getEnsnoteviewpage().closeEnsWindow();
 		return strVerifyCode;
 	}
-	
+
 }
