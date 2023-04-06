@@ -46,6 +46,9 @@ pipeline {
         string(name: 'AWSUrl', defaultValue: "", description: "BFA AWS URL")
         string(name: 'AWSPRODUrl', defaultValue: "", description: "BFA AWS PROD URL")
         string(name: 'EnsUrl', defaultValue: "", description: "ENS URL Link")
+        string(name: 'TestPlanKey', defaultValue: "", description: "Test plan to update the test results in JIRA")
+        string(name: 'TestExecutionKey', defaultValue: "", description: "Test Execution to update the test results in JIRA")
+        string(name: 'XrayImportFlag', defaultValue: "true", description: "Flag to check whether results need to be imported in Xray")
     }
 
     triggers {
@@ -65,6 +68,8 @@ pipeline {
         NETSTORAGE_ACCESS_KEY = credentials('NETSTORAGE_ACCESS_KEY')
         ENS_USERNAME= credentials('ENS_USERNAME')
         ENS_PASSWORD= credentials('ENS_PASSWORD')
+        XRAY_PROD_CRED_USR = credentials('XRAY_PROD_CRED_USR')
+        XRAY_PROD_CRED_PSW = credentials('XRAY_PROD_CRED_PSW')
 
     }
     stages {
