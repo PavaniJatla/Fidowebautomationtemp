@@ -20,13 +20,13 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath="//li[contains(@class,'o-mobileNavLinkList__item loginStates stateAnonymous')]//a[contains(@class,'signin-interceptor')]//span[contains(@class,'m-mobileNavLink__caption')]")
 	WebElement lnkLogInMobile;
 	
-	@FindBy(xpath="//a[@class='m-navLink']//span[@class='m-navLink__chevron fds-icon-down']")
+	@FindBy(xpath="//a[@aria-label='Shop']//span[@role='text']")
 	WebElement lnkShop;	
 	
 	@FindBy(xpath="//a[@href='/pages/#/internet' and @class='m-navLink -dropdown']")
 	WebElement lnkHomeInternet;
 
-	@FindBy(xpath="//a[@title='Home Internet' and @data-caption='Home Internet']")
+	@FindBy(xpath="//a[@href='/internet/packages']")
 	WebElement lnkHomeInternetForWireless;
 
 	@FindBy(xpath = "//a[@href='/internet/packages']")
