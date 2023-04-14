@@ -463,7 +463,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public boolean verifyManageSettings() {
-		return reusableActions.isElementVisible(btnManageSettings);
+		return reusableActions.isElementVisible(btnManageSettings, 60);
 	}
 
 	/**
@@ -481,7 +481,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public boolean verifySuccessModel() {
-		return reusableActions.isElementVisible(mdlSuccess);
+		return reusableActions.isElementVisible(mdlSuccess, 60);
 	}
 
 	/**

@@ -28,6 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestClass {
 
+
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
 	public void checkFidoHSIValidateDashboard() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
@@ -37,9 +38,8 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
+		getEnsverifications().setVerificationCodeCH(TestDataHandler.fidoHSIAccount.getUsername(), "sms");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		getFidologinpage().switchOutOfSignInFrame();
-	//	getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");

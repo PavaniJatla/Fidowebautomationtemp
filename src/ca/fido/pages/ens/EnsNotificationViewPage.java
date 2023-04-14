@@ -41,6 +41,15 @@ public class EnsNotificationViewPage extends BasePageClass {
 	@FindBy (xpath = "//img[@alt='Set password']")
 	WebElement btnSetPasswordInEmail;
 
+	@FindBy(xpath = "//td[text()=' Verification code: ' or contains(text(),'Code de v')]/parent::tr/following-sibling::tr/td")
+	WebElement lblYourVerificationCode;
+
+	public String getVerificationCode() {
+		String strMsg = reusableActions.getWhenReady(lblYourVerificationCode).getText();
+		return strMsg.trim();
+	}
+
+
 	/**
 	 * Click on menu Notification Viewer
 	 * @author ning.xue 
@@ -85,8 +94,8 @@ public class EnsNotificationViewPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkLnkPdfForSmsVerify(String strPhoneNum) {
-		reusableActions.waitForAllElementsVisible(driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_html_png']")), 30);
-		List<WebElement> lnkHtml = driver.findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_html_png']"));
+		reusableActions.waitForAllElementsVisible(getDriver().findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_pdf_png']")), 60);
+		List<WebElement> lnkHtml = getDriver().findElements(By.xpath("//td[contains(text(),'" + strPhoneNum + "')]//following-sibling::td/a[@class='img_pdf_png']"));
 		reusableActions.getWhenVisible(lnkHtml.get(0)).click();
 	}
 	
