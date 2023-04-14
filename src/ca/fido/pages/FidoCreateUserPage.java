@@ -196,6 +196,7 @@ public void clkUserProfileNext() {
  * @author chinnarao.vattam 
  */
 public void clkUserProfileNextForExistingCustomer() {
+	reusableActions.waitForPageLoad();
 	reusableActions.waitForElementVisibility(btnUserProfileNext, 30);
 	reusableActions.executeJavaScriptClick(btnUserProfileNext);
 }
