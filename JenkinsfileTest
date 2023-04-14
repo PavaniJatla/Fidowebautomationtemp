@@ -52,7 +52,7 @@ pipeline {
     }
 
     triggers {
-        parameterizedCron(env.BRANCH_NAME == 'fido-maintenance-march-ch' ? '''
+        parameterizedCron(env.BRANCH_NAME == 'master' ? '''
                     # leave spaces where you want them around the parameters. They'll be trimmed.
                     # we let the build run with the default name
                     
