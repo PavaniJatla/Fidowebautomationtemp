@@ -43,24 +43,22 @@ public class FidoCH_Regression_TC_013_HSIPlanUpgradeTest extends BaseTestClass {
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
-		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();
-		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
+		getReporter().reportLogWithScreenshot("Clicked on View Usage and manage Button to land to Internet Dashboard Page");
 		getFidointernetdashboardpage().clkChangePackage();
-		getReporter().reportLogWithScreenshot("Launched the packages Page");
+		getReporter().reportLogWithScreenshot("Clicked on change Package button");
 		getFidointernetdashboardpage().selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan());
-		getReporter().reportLogWithScreenshot("Selected the package");
+		getReporter().reportLogWithScreenshot("Selected the 150 Mbps package to upgrade");
 		getFidointernetdashboardpage().clkConfirmPackageChange();
-		getReporter().reportLogWithScreenshot("Order review page has launched");
+		getReporter().reportLogWithScreenshot("Confirm Package Change to launch Order Review page");
 		getReporter().softAssert(getFidointernetpackagechangerevieworderpage().verifyPlanInfomation(TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlan()),"Verified the Plan Information","Plan Information Verification has failed");
 		getReporter().softAssert(getFidointernetpackagechangerevieworderpage().verifyFidoTermsAndConditions(),"Verified the Terms And Conditions","Terms And Conditions Verification has failed");
 		getFidointernetpackagechangerevieworderpage().chkConsentCheckbox();
 		getReporter().reportLogWithScreenshot("Consent Check has Done");
 		getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifySubmitButtonEnabled(),"button enabled","button disabled");
 		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
-		getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
+		getReporter().reportLogWithScreenshot("Order Submitted");
 		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Plan Upgrade success", "Plan Upgrade Failed");
 		}
 

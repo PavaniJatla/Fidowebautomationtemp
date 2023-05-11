@@ -45,7 +45,7 @@ public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass
 		getFidointernetdashboardpage().clkChangePackage();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
 		getFidointernetdashboardpage().selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradePlan());
-		getReporter().reportLogWithScreenshot("Selected the package");
+		getReporter().reportLogWithScreenshot("Selected the 50 Mbps Download speed package to downgrade");
 		getFidointernetdashboardpage().clkConfirmPackageChange();
 		getReporter().reportLogWithScreenshot("Plan downgrade ways popup has displayed");
 		getReporter().hardAssert(getFidointernetdashboardpage().verifyDowngradePopup(),"Plan downgrade ways popup has displayed","Plan downgrade ways popup hasn't displayed");

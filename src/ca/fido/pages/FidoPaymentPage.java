@@ -30,7 +30,7 @@ public class FidoPaymentPage extends BasePageClass {
 	WebElement fraSemaphone;
 	//div[@class='cc-payment-section']//descendant::iframe
 
-	@FindBy(xpath = "//input[@aria-describedby='formfield-6-a11yDescription formfield-6-messages']")
+	@FindBy(xpath = "//input[contains(@aria-label,'Enter Payment Amount')]|//input[contains(@aria-label,'$')]")
 	WebElement txtPaymentAmount;
 	//div[@class='ute-pay-now-content ss-pay-now-payment-amount']//input[@id='amount']
 
@@ -216,7 +216,6 @@ public class FidoPaymentPage extends BasePageClass {
 	 */
 	public void setPaymentAmount(String strPaymentAmount) {
 		reusableActions.getWhenReady(txtPaymentAmount,60).click();
-
 		int len = 6;
 		while(len > 0) {
 			reusableActions.getWhenReady(txtPaymentAmount).sendKeys(Keys.BACK_SPACE);

@@ -25,7 +25,7 @@ public class VerifyInEns{
 	private void startVerifyCH() {
 		String strEnsStsUrl = "https://"+System.getenv("ENS_USERNAME")+":"+System.getenv("ENS_PASSWORD")+"@sts.rci.rogers.ca/adfs/ls/wia?client-request-id=5be570eb-c7e2-49f8-b3f5-57b29e72515f&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=LoginOptions%3D3%26estsredirect%3d2%26estsrequest%3drQQIARAA42KwEkzNKy5MNNEryk9PLSrWS87PLRLiEnhd8DT60fEfnpu_hm-aVxQYv4rRMKOkpKDYSl8fQ72-q1-wfnFGfrlvYmZeQGJ6ql5icklmft4hRtVQS6NUC4NE8yTdJEOjNF2TFDNLXctUE0tdI1NTizQzC9PkFBODC4yMLxgZbzGxBifm5hj9YjIpLcqzyk8sziy2ykvMTS22Kkm2Cnb09bEy0jMAi2Sm6KblF-UmllgVAJ2QWVySmlcyi1laPy-_JDMtMzkRZHlxWGZqeWoR1CmbmFUMEpNMkpOSgI5ISjbXNbEwMtNNMjVK1k00NElLTTE1sjBLsnzELJObmFdQlJpaopedWFpk7FCUnAn3aeIFFp5XLDwGzFYcHFwCDBIMCgw_WBgXsQKDqyCs5RBX_CXffuNzzyVWTGM4xarv6B7pFxrkFVTuEZhhXBWaUpGaGWCRZpSl7-0UkhSZWWFq6JruG-lraZlkYWtmZTiBjfcUG8MHNsYOdoZZ7Ay7OEkP7wO8DD_4pr08c3zLthNvPQA1&cbcxt=&username=&mkt=&lc=";
 		BaseTestClass.getEnshomepage().openNewTabForEns(strEnsStsUrl);
-		//BaseTestClass.getFidologinpage().loadEnsUrl();
+		BaseTestClass.getFidologinpage().loadEnsUrl();
 		baseTestClass.getReporter().reportLogWithScreenshot("Ens Window");
 	}
 
