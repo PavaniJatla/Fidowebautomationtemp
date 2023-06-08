@@ -49,6 +49,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'JiraProjectKey', jira_project_key
     systemProperty 'TestPlanKey',test_plan_key
     systemProperty 'TestExecutionKey',test_execution_key
+    systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
     systemProperties(System.getProperties())
@@ -94,6 +95,7 @@ task "localTest"(type: Test) {
     systemProperty 'JiraProjectKey', jira_project_key
     systemProperty 'TestPlanKey',test_plan_key
     systemProperty 'TestExecutionKey',test_execution_key
+    systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
 

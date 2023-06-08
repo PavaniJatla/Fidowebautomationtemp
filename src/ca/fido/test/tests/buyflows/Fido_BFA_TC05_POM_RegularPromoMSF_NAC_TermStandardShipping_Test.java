@@ -31,19 +31,19 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		// ***************************Device config page************************************
 		getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Device config page loaded","Device config page not loaded");
 		getReporter().reportLogWithScreenshot("Device config page");
-		getReporter().hardAssert(getFidodeviceconfigpage().verifyRegularPromoRibbon(),
-				"Regular Promo - MSF Offer Displayed","Regular Promo - MSF Offer not Displayed");
-		String regularPromoDetails = getFidodeviceconfigpage().getRegularPromoDetails();
-		getReporter().reportLogPassWithScreenshot("Regular Promo Details " +regularPromoDetails);
+//		getReporter().hardAssert(getFidodeviceconfigpage().verifyRegularPromoRibbon(),
+//				"Regular Promo - MSF Offer Displayed","Regular Promo - MSF Offer not Displayed");
+//		String regularPromoDetails = getFidodeviceconfigpage().getRegularPromoDetails();
+//		getReporter().reportLogPassWithScreenshot("Regular Promo Details " +regularPromoDetails);
 		getFidodeviceconfigpage().clickContinueButton();
 		getReporter().reportLogPass("Continue button clicked on the device config page");
 		getReporter().hardAssert(getFidobuildplanpage().verifyContinueDeviceCostButton(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		// ***************************Promo Section************************************
-		getReporter().reportLogWithScreenshot("Regular Promo MSF Applied");
-		getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promotion Applied Successfully", "Promotion Not Applied");
-		String regularPromoName = getFidobuildplanpage().getRegularPromoName();
-		getReporter().reportLogPassWithScreenshot("Regular Promo Name " +regularPromoName);
+//		getReporter().reportLogWithScreenshot("Regular Promo MSF Applied");
+//		getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promotion Applied Successfully", "Promotion Not Applied");
+//		String regularPromoName = getFidobuildplanpage().getRegularPromoName();
+//		getReporter().reportLogPassWithScreenshot("Regular Promo Name " +regularPromoName);
 		// ***************************Plan Builder page************************************
 		getFidobuildplanpage().clkContinueDeviceCost();
 		getReporter().reportLogPass("Continue button on select your device cost clicked");

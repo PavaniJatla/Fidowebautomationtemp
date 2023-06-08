@@ -21,6 +21,7 @@ public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test exte
     public void tc07_fidoTabletHUPWithPPCUsingFinPlanExpressShippingTest() {
         // **************************Regular Login Flow**************************************
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
@@ -44,7 +45,7 @@ public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test exte
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        getFidobuildplanpage().clkDataOption(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());
+        //getFidobuildplanpage().clkDataOption(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getDataOptionIndex(),this.getClass().getSimpleName());
         //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         //getFidobuildplanpage().clkContinueTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");

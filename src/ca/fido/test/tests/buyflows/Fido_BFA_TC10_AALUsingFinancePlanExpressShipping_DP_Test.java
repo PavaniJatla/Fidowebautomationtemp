@@ -22,6 +22,7 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         getFidochoosephonepage().clickBannerSignIn();
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc10AALFinancingPlanExpressShipping.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc10AALFinancingPlanExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();

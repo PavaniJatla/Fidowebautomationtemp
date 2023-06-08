@@ -24,6 +24,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
     @Test(groups = {"RegressionBFA","AALBFA"})
     public void tc12_fidoAALTabletStandardShippingPortInTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
