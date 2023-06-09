@@ -222,10 +222,10 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	@FindBy(xpath = "//a[@href='#/my-account/internet/usage/monthly']")
 	WebElement linkMonthlyUsage;
 
-	@FindBy (xpath = "//ins[@translate='global.label.services']")
+	@FindBy (xpath = "//ins[@translate='global.label.services']|//ge-dropdown[contains(@class,'authentication')]//span[@role='text']")
 	WebElement navUsageNService;
 	
-	@FindBy (xpath = "//ins[@translate='global.label.internet']")
+	@FindBy (xpath = "//ins[@translate='global.label.internet']|//a[@href='/self-serve/wireless']//span[@role='text']")
 	WebElement navInternetService;
 	
 	@FindBy (xpath = "//ins[@translate='global.cta.manageSettings']")
@@ -379,7 +379,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyIfDailyUsageLinkVisible() {
-		return reusableActions.isElementVisible(lnkDailyUsage);
+		return reusableActions.isElementVisible(lnkDailyUsage, 60);
 	}
 	
 	/**
@@ -388,7 +388,9 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public boolean verifyIfChangePackageLinkVisible() {
+		reusableActions.javascriptScrollToMiddleOfPage();
 		return reusableActions.isElementVisible(lnkChangePackage);
+
 	}
 	
 	/**
@@ -463,7 +465,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public boolean verifyManageSettings() {
-		return reusableActions.isElementVisible(btnManageSettings);
+		return reusableActions.isElementVisible(btnManageSettings, 60);
 	}
 
 	/**
@@ -481,7 +483,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao. vattam
 	 */
 	public boolean verifySuccessModel() {
-		return reusableActions.isElementVisible(mdlSuccess);
+		return reusableActions.isElementVisible(mdlSuccess, 60);
 	}
 
 	/**

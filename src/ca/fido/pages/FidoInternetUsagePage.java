@@ -50,6 +50,9 @@ public class FidoInternetUsagePage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.label.internetUsageNotificationSubheading']")
 	WebElement btnUsageHistory;
 
+	@FindBy(xpath="//ins[@translate='global.label.internetUsageMonthlySubheading']")
+	WebElement btnMonthlyUsage;
+
 	@FindBy(xpath="//table[@class='table ute-table table-centred ng-table']")
 	WebElement tblUsageHistory;
 
@@ -62,6 +65,16 @@ public class FidoInternetUsagePage extends BasePageClass {
 		reusableActions.javascriptScrollToTopOfPage();
 		reusableActions.getWhenReady(btnUsageHistory,60);
 		reusableActions.executeJavaScriptClick(btnUsageHistory);
+	}
+
+	/**
+	 * Click on the Monthly Usage button
+	 * @author Manpreet.kaur3
+	 */
+	public void clkMonthlyUsage() {
+		reusableActions.javascriptScrollToTopOfPage();
+		reusableActions.getWhenReady(btnMonthlyUsage,60);
+		reusableActions.executeJavaScriptClick(btnMonthlyUsage);
 	}
 
 	/**

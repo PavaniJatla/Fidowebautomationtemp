@@ -61,7 +61,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath="//a[contains(@aria-label,'usage and manage account')]/span/span")
 	WebElement lnkViewUsageManageMobile;
 
-	@FindBy (xpath="//a[contains(@aria-label,'Make a payment')]/span")
+	@FindBy (xpath="//a[contains(@aria-label,'Make a payment') and contains(@class,'billing-payment')]/span")
 	WebElement lnkMakepayment;
 
 	@FindBy (xpath="//div[@ng-if='subscriberService.wireless']/a")

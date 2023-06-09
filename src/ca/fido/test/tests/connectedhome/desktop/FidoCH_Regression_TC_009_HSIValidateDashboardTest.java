@@ -28,6 +28,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestClass {
 
+
 	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
 	public void checkFidoHSIValidateDashboard() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
@@ -37,19 +38,18 @@ public class FidoCH_Regression_TC_009_HSIValidateDashboardTest extends BaseTestC
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
+		getEnsverifications().setVerificationCodeCH(TestDataHandler.fidoHSIAccount.getUsername(), "email");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		getFidologinpage().switchOutOfSignInFrame();
-	//	getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
-		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();
-		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
+		getReporter().reportLogWithScreenshot("Clicked on View usage and Manage Button");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyManageSettings(),"Verified the Manage Settings link","Manage Settings link Verification has failed");
     	getReporter().softAssert(getFidointernetdashboardpage().verifyIfPlanInformationLoaded(),"Verified the Plan Information Loaded link","Plan Information Loaded link Verification has failed");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyIfUsageInfoDisplayed(),"Verified the Data Usage summary","Data Usage summary Verification has failed");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyIfDailyUsageLinkVisible(),"Verified Daily Usage link","Daily Usage link Verification has failed");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyIfMonthlyUsageLinkVisible(),"Verified Monthly Usage link","Monthly Usage link Verification has failed");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyIfChangePackageLinkVisible(),"Verified Change Package link","Change Package link Verification has failed");
-		getReporter().reportLogWithScreenshot("Internet Dashboard Page");
+
+		getReporter().reportLogWithScreenshot("Internet Dashboard Page links verified");
 	}
 
 	@BeforeMethod (alwaysRun = true)

@@ -33,7 +33,7 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHsiUsageFunctionality() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
-		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUsage());
+		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernamePay());
 		getReporter().reportLogWithScreenshot("Continue Login");
 		getFidologinpage().clkContinueSignIn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
@@ -46,7 +46,6 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		getFidoaccountoverviewpage().clkMakepayment();
-		getReporter().reportLogWithScreenshot("Launched the payment widget");
 		getReporter().reportLogWithScreenshot("Launched the payment widget");
 		getFidopaymentpage().clkContinue();
 		getFidopaymentpage().setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
@@ -72,10 +71,12 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
-		getFidointernetdashboardpage().clkUsageNService();
-		getFidointernetdashboardpage().clkInternetService();
+		//getFidointernetdashboardpage().clkUsageNService();
+		//getFidointernetdashboardpage().clkInternetService();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		getReporter().hardAssert(getFidointernetdashboardpage().verifyIfDailyUsageLinkVisible(),"Daily Usage link has Displayed","Daily Usage link hasn't Displayed");
+		getReporter().hardAssert(getFidointernetdashboardpage().verifyIfMonthlyUsageLinkVisible(),"Monthly Usage link has Displayed","Monthly Usage link hasn't Displayed");
+
 		getFidointernetdashboardpage().clkDailyUsage();
 		getReporter().softAssert(getFidoInternetUsagePage().verifyIntrnetDailyUsage(),"Daily Usage has Displayed","Daily Usage hasn't Displayed");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyDailyInternetUsageChart(),"Daily Usage Chart has Displayed","Daily Usage Chart hasn't Displayed");
@@ -83,11 +84,10 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getReporter().softAssert(getFidoInternetUsagePage().verifyDailyBreakdown(),"Daily Usage breakdown has Displayed","Daily Usage breakdown  hasn't Displayed");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyDailyBreakdownChart(),"Daily Usage table has Displayed","Daily Usage table hasn't Displayed");
 		getReporter().reportLogWithScreenshot("Daily Usage table");
-		getFidointernetdashboardpage().clkUsageNService();
-		getFidointernetdashboardpage().clkInternetService();
-		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
-		getReporter().hardAssert(getFidointernetdashboardpage().verifyIfMonthlyUsageLinkVisible(),"Monthly Usage link has Displayed","Monthly Usage link hasn't Displayed");
-		getFidointernetdashboardpage().clkMonthlyUsage();
+		/*getFidointernetdashboardpage().clkUsageNService();
+		getFidointernetdashboardpage().clkInternetService();*/
+
+		getFidoInternetUsagePage().clkMonthlyUsage();
 		getReporter().softAssert(getFidoInternetUsagePage().verifyMonthlyInternetUsage(),"Monthly Usage has Displayed","Monthly Usage hasn't Displayed");
 		getReporter().softAssert(getFidoInternetUsagePage().verifyMonthlyUsageChart(),"Monthly Usage Chart has Displayed","Monthly Usage Chart hasn't Displayed");
 		getReporter().reportLogWithScreenshot("Monthly Usage Chart");

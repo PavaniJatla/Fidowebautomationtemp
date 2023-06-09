@@ -477,7 +477,8 @@ public class BaseTestClass {
 				/*getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				*/
-				getDriver().get(strUrl+"/internet/packages"+"?setLanguage="+ language);
+
+				getDriver().get(strUrl+"/internet/packages");
 				break;
 
 			case "connectedhome_login":
@@ -616,7 +617,8 @@ public class BaseTestClass {
                 FidoInternetPackagePageThreadLocal.set(new FidoInternetPackagePage(getDriver()));
                 FidoSetPasswordPageThreadLocal.set(new FidoSetPasswordPage(getDriver()));
                 FidoInternetUsagePageThreadLocal.set(new FidoInternetUsagePage(getDriver()));
-                ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
+				FidoProfileAndSettingPageThreadLocal.set(new FidoProfileAndSettingPage(getDriver()));
+				ensHomePageThreadLocal.set(new EnsHomePage(getDriver()));
                 ensNoteViewPageThreadLocal.set(new EnsNotificationViewPage(getDriver()));
                 ensVerificationsThreadLocal.set(new VerifyInEns(this));
                 break;

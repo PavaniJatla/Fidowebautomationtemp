@@ -37,16 +37,15 @@ public class FidoCH_Regression_TC_010_HSIPlanDowngradeTest extends BaseTestClass
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
+		getEnsverifications().setVerificationCodeCH(TestDataHandler.fidoHSIAccount.getUsername(), "sms");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		getFidologinpage().switchOutOfSignInFrame();
-		//getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		getFidointernetdashboardpage().clkChangePackage();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
 		getFidointernetdashboardpage().selectHSIPackageByBandwidth(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradePlan());
-		getReporter().reportLogWithScreenshot("Selected the package");
+		getReporter().reportLogWithScreenshot("Selected the 50 Mbps Download speed package to downgrade");
 		getFidointernetdashboardpage().clkConfirmPackageChange();
 		getReporter().reportLogWithScreenshot("Plan downgrade ways popup has displayed");
 		getReporter().hardAssert(getFidointernetdashboardpage().verifyDowngradePopup(),"Plan downgrade ways popup has displayed","Plan downgrade ways popup hasn't displayed");

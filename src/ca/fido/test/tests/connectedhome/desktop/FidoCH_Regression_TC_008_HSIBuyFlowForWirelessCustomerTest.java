@@ -46,35 +46,31 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
 	public void checkInternetBuyFlowForExistingCustomer() {
 		getReporter().reportLogWithScreenshot("Launched the Home Page");
-
-		// +++++++++++++++ old flow code, will be remove once the issue fixed  ++++++++++++++++ //
-		//getReporter().reportLogWithScreenshot("//****  There is a production issue on the login cookie if we directly land on the login page through contentful page, hence time being landing on the home page and then logging in to the account.   ****//");
-		/*getDriver().get(System.getProperty("QaUrl"));
-		getFidohomepage().clkContentfulInternet();
-		getFidohomepage().clkLogin();
-		getFidologinpage().switchToSignInFrameOld();*/
-		// +++++++++++++++ old flow code, will be remove once the issue fixed ++++++++++++++++ //
-
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameWirelessAcc());
 		getReporter().reportLogWithScreenshot("Continue Login");
 		getFidologinpage().clkContinueSignIn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the credentials");
 		getFidologinpage().clkLoginInFrame();
-		//getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		getFidologinpage().switchOutOfSignInFrame();
+		getEnsverifications().setVerificationCodeCH(TestDataHandler.fidoHSIAccount.getUsernameWirelessAcc(), "email");
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidohomepage().clkShop();
+		getReporter().reportLogWithScreenshot("Clicked on Shop-> Home Internet");
 		getFidohomepage().clkHomeInternetForWireless();
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
-		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+		getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
 		String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
 		String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
 		getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2+", CANADA");
 		getReporter().reportLogWithScreenshot("Serviceability check popup has displayed to check the Service availability");
 		getFidoshopinternetpage().clkServiceAvailabilityCheck();
+		if(getFidoshopinternetpage().veriyMultipleAddressModal()) {
+			getReporter().reportLogWithScreenshot("Multiple Address Popup is displayed");
+			getFidoshopinternetpage().clkContinueMultipleAddressPopup();
+			getReporter().reportLogWithScreenshot("Continue to Good News Modal");
+		}
 		getReporter().reportLogWithScreenshot("Good News for the Service availability");
 		getFidoshopinternetpage().clkBuyNowReskin();
 		getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");

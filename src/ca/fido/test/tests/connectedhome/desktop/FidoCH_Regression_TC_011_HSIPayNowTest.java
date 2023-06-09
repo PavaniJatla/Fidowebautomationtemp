@@ -39,16 +39,16 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the account credentials");
 		getFidologinpage().clkLoginInFrame();
+		getEnsverifications().setVerificationCodeCH(TestDataHandler.fidoHSIAccount.getUsername(), "sms");
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
-		getFidologinpage().switchOutOfSignInFrame();
-	//	getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
+
 		String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
 
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		getFidoaccountoverviewpage().clkMakepayment();
-		getReporter().reportLogWithScreenshot("Launched the payment widget");
+		getReporter().reportLogWithScreenshot("Clicked on Make payment button to Launch the payment widget");
 		getFidopaymentpage().clkContinue();
-
+		getReporter().reportLogWithScreenshot("Click continue to proceed");
 		getFidopaymentpage().setPaymentAmount(TestDataHandler.fidoHSIAccount.getaccountDetails().getPayment());
 		getReporter().reportLogWithScreenshot("set the payment amount");
 		getReporter().reportLogWithScreenshot("Launched the credit card widget");
@@ -59,12 +59,13 @@ public class FidoCH_Regression_TC_011_HSIPayNowTest extends BaseTestClass {
 		getFidopaymentpage().setCVVNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getCVV());
 		getReporter().reportLogWithScreenshot("set the credit card information");
 		getFidopaymentpage().clkReviewAndContinue();
-		getReporter().reportLogWithScreenshot("payment confirmation widget");
+		getReporter().reportLogWithScreenshot("Clicked on Review and Continue on payment confirmation widget");
 		getFidopaymentpage().clkPayNow();
-		getReporter().reportLogWithScreenshot("payment processing with payment gateway");
+		getReporter().reportLogWithScreenshot("Clicked Pay now for payment processing with payment gateway");
 		getReporter().hardAssert(getFidopaymentpage().verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		getReporter().reportLogWithScreenshot("payment success widget");
 		getFidopaymentpage().clkPaymentConfirmation();
+		getReporter().reportLogWithScreenshot("payment Confirmation");
 		getFidoaccountoverviewpage().verifyAccountPage(accountBalanceBeforePayment, strLanguage);
 		getReporter().reportLogWithScreenshot("Launched the Account Page with updated account balance");
 
