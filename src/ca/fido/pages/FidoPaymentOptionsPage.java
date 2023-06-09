@@ -275,6 +275,9 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	
 	@FindBy(xpath = "//button[@data-test='payment-method-continue']")
 	WebElement btnBillingOptionClkContinue;
+
+	@FindBy(xpath = "//button[@data-test='continue-btn']")
+	WebElement btnAutoPaySubmit;
 	
 	@FindBy (xpath = "//*[contains(text(),' Current payment method: ')]")
 	WebElement modalPaymentMethod;
@@ -1311,8 +1314,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 */
 	public void setAutoPayPreAuthMethod() {
 		reusableActions.staticWait(5000);
-		reusableActions.waitForElementTobeClickable(ddlPaymentMethod , 40);
-		reusableActions.javascriptScrollToTopOfPage();
+		reusableActions.waitForElementTobeClickable(ddlPaymentMethod , 20);
+		reusableActions.javascriptScrollByVisibleElement(ddlPaymentMethod);
 		reusableActions.selectWhenReady(ddlPaymentMethod, "PREAUTHCREDIT");
 	}
 	/**
@@ -1366,5 +1369,13 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	public void clkAddCard(){
 		reusableActions.waitForElementVisibility(addCardBtn);
 		reusableActions.clickWhenReady(addCardBtn,10);
+	}
+
+	/**
+	 * click Submit button on AutoPay enrollment page
+	 * @author subash.nedunchezhian
+	 */
+	public void clkSubmitAutoPay() {
+		reusableActions.clickWhenReady(btnAutoPaySubmit , 10);
 	}
 }

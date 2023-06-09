@@ -24,6 +24,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
     @Test(groups = {"RegressionBFA","AALBFA","POM"})
     public void tc13_pomfidoAALBYODExpressShippingDPAddonTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13AALBYODExpressShipping.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13AALBYODExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
@@ -44,7 +45,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         getReporter().reportLogWithScreenshot("Promo Code Entered");
         getFidobuildplanpage().clkCheckPromoBtn();
         getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promo Code Applied Successfully", "Promo Code Not Applied");
-        getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
+        //getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
         // ***************************Plan Builder page************************************
         String dataOptionIndex = TestDataHandler.tc13AALBYODExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());

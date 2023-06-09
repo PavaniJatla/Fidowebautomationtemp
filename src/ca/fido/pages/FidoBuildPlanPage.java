@@ -64,10 +64,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@data-test,'stepper-2-edit-step-continue')]")
 	WebElement btnContinuePlanStepper;
 
-	@FindAll({
-		@FindBy(xpath = "//button[contains(@title,'Continue to')]"),
-		@FindBy(xpath = "//ds-modal[contains(@data-test,'upfront-edge-return-modal')]//button[contains(@title,'Continue')]")
-	})
+	@FindBy(xpath = "//ds-modal[contains(@data-test,'upfront-edge-return-modal')]//button[contains(@title,'Continue')]")
 	WebElement deviceBalancePopUp;
 
 	@FindBy(xpath = "//ds-modal//button[@data-test='modal-pom-continue']")

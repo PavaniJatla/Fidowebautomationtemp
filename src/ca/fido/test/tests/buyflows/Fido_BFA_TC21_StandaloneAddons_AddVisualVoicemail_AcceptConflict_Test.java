@@ -19,6 +19,7 @@ public class Fido_BFA_TC21_StandaloneAddons_AddVisualVoicemail_AcceptConflict_Te
     @Test(groups = {"RegressionBFA","SAABFA"})
     public void tc21_fidoSAAAddVisualVoicemailTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc21SAA_AddVoicemail.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc21SAA_AddVoicemail.getPassword());
         getReporter().reportLogWithScreenshot("Login Popup");
         getFidologinpage().clkLoginInFrame();

@@ -26,6 +26,7 @@ public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShi
     @Test(groups = {"RegressionBFA","HUPBFA","DP"})
     public void tc08_CLMAcctfidoHUPWithKEPExpressShippingTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();

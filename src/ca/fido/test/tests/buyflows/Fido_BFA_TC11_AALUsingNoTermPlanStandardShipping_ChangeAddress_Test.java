@@ -19,6 +19,7 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
     @Test(groups = {"RegressionBFA","AALBFA"})
     public void tc11_fidoAALUsingNoTermPlanStandardShippingTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
@@ -59,18 +60,12 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
         String cityName = TestDataHandler.tc11AALNoTermPlanStandardShipping.getCityName();
         getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
         getReporter().reportLogWithScreenshot("City Name and available phone number selected");
-        getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
-        getFidopaymentoptionspage().enterBankDetails();
-        getFidopaymentoptionspage().clkAutoPayConsentCheckBox();
-        getReporter().reportLogWithScreenshot("AutoPay Enrolled - Bank Method");
-        getFidopaymentoptionspage().billingOptionClkContinue();
+        getFidopaymentoptionspage().clickSkipAutopay();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        //getFidoCheckOutPage().clkNoThanks();
         getFidoCheckOutPage().selectNewShippingAddress(TestDataHandler.tc11AALNoTermPlanStandardShipping.getNewShippingAddress());
         getReporter().reportLogPassWithScreenshot("Entered new Shipping Address");
         String deliveryMethod = TestDataHandler.tc11AALNoTermPlanStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
-        //getFidoCheckOutPage().clkNoThanks();
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");

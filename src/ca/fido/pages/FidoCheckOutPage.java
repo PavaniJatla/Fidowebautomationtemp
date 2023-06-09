@@ -123,7 +123,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='addons-removal-modal-button-primary' and contains(.,'Continue')]")
 	WebElement conflictContinueBtn;
 
-	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'Premium Device Protection')]")
+	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'Device Protection')]")
 	WebElement dpAddonPageTitle;
 
 	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")

@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  * @author praveen.kumar7
  */
 
-public class Fido_BFA_TC16_PPC_ML_FinInTerm_SelectingNoTermDTT_DowngradeFee_Test extends BaseTestClass {
+public class Fido_BFA_TC16_PPC_ML_FinInTerm_SelectingNoTermDTTAutoPayPlan_DowngradeFee_PreAuthEnroll_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -29,6 +29,7 @@ public class Fido_BFA_TC16_PPC_ML_FinInTerm_SelectingNoTermDTT_DowngradeFee_Test
     @Test(groups = {"RegressionBFA","PPCBFA"})
     public void tc16_fidoPPCML_FINInTerm_NOTERMPlanDowngradeFeeTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc16PPCMLFinInTermNotermPlan.getUsername());
+        getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc16PPCMLFinInTermNotermPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
@@ -61,6 +62,7 @@ public class Fido_BFA_TC16_PPC_ML_FinInTerm_SelectingNoTermDTT_DowngradeFee_Test
         getFidopaymentoptionspage().clkAddCard();
         getReporter().reportLogWithScreenshot("AutoPay Enrolled - PreAuth Credit Card Method");
         getFidopaymentoptionspage().billingOptionClkContinue();
+        getFidopaymentoptionspage().clkSubmitAutoPay();
         //--------------------------------------------Review Order page------------------------------------------------
         getReporter().reportLogPassWithScreenshot("Review order page loaded successfully");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
