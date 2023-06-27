@@ -60,26 +60,28 @@ public class CaptchaBypassHandlers {
 
 	/**
 	 * To Bypass Captcha for login Flows
-	 * @param strUrl                     string of test url
+	 *
+	 * @param strUrl string of test url
 	 */
 	public String generateCookieFetchURL(String strUrl) {
 		String cookieEnv = envMapping(strUrl);
 		if(!strUrl.contains("www.fido.ca")) {
-			return cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
+			return cookieEnv + ".qa01.cex.aks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
 		}
-		return cookieEnv + ".eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
+		return cookieEnv + ".cex.aks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/login";
 	}
 
 	/**
 	 * To Bypass Captcha for login Flows
-	 * @param strUrl                     string of test url
+	 *
+	 * @param strUrl string of test url
 	 */
 	public String generateCookieRegistrationURL(String strUrl) {
 		String cookieEnv = envMapping(strUrl);
 		if(!strUrl.contains("www.fido.ca")) {
-			return cookieEnv + ".qa01.eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
+			return cookieEnv + ".qa01.cex.aks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
 		}
-		return cookieEnv + ".eks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
+		return cookieEnv + ".cex.aks.rogers.com/api/recaptcha/v1/user/recaptchaBypass/register";
 	}
 
 	/**
@@ -89,17 +91,20 @@ public class CaptchaBypassHandlers {
 	 */
 	public String envMapping(String strUrl) {
 		String cookieEnv=null;
-		if (strUrl.contains("qa1.") || strUrl.contains("qa5.") || strUrl.contains("qa6.") || strUrl.contains("qa7.")) {
-			cookieEnv = "https://ute" + strUrl.split("qa")[1].charAt(0);
-		} else if (strUrl.contains("qa2.")) {
-			cookieEnv = "https://ute3";
-		} else if (strUrl.contains("qa3.")) {
-			cookieEnv = "https://ute4";
-		} else if (strUrl.contains("qa4.")) {
-			cookieEnv = "https://ute2";
+//		if (strUrl.contains("qa1.") || strUrl.contains("qa5.") || strUrl.contains("qa6.") || strUrl.contains("qa7.")) {
+//			cookieEnv = "https://ute" + strUrl.split("qa")[1].charAt(0);
+//		} else if (strUrl.contains("qa2.")) {
+//			cookieEnv = "https://ute3";
+//		} else if (strUrl.contains("qa3.")) {
+//			cookieEnv = "https://ute4";
+//		} else if (strUrl.contains("qa4.")) {
+//			cookieEnv = "https://ute2";
+//		}
+		if(strUrl.contains("qa")) {
+			cookieEnv = "https://self-serve" + strUrl.split("qa")[1].charAt(0);
 		}
 		else if (strUrl.contains("www.fido.ca")) {
-			cookieEnv = "https://ute1.prod01";
+			cookieEnv = "https://self-serve.proda01";
 		}
 		else {
 			cookieEnv = System.getProperty("CookieFetcherMapping");
