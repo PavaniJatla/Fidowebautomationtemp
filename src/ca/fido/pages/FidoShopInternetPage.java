@@ -135,6 +135,27 @@ public class FidoShopInternetPage extends BasePageClass {
 	@FindBy(xpath="//ds-icon[@name='location']")
 	WebElement iconLocation;
 
+	@FindBy(xpath="//h2[contains(@class,'billboard') and contains(text(),'TNAC')]")
+	WebElement headerBillboardTNAC;
+
+	@FindBy(xpath="//span[contains(@class, 'dsa-promoBlock__headingCopy')]")
+	WebElement headerPromoBlockTNAC;
+
+	@FindBy(xpath="//ds-icon/span[@class='ds-icon d-inline-flex fds-icon-tag']//ancestor::ds-expander/following-sibling::div/button[contains(@title,'See full details')]/span")
+	WebElement btnViewDetailsExclusiveOffer;
+
+	@FindBy(xpath="//span[contains(@class,'fds-icon-tag')]")
+	WebElement imgPromoTag;
+
+	@FindBy(xpath="//span[contains(@class,'fds-icon-tag')]/ancestor::div[contains(@class,'dsa-rate-card')]//dsa-cta/a[contains(@aria-label,'Buy now')]/span")
+	WebElement btnBuyNowExclusiveOffer;
+
+	@FindBy(xpath="//h2[text()='A special offer for you!']")
+	WebElement txtSpecialOffer;
+
+	@FindBy(xpath="//div[@class='dsa-promoBlock__description']/ul/li/span")
+	WebElement txtexclusiveOffer;
+
 	@FindBy(xpath="//button[@title='Log into Fido My Account']")
 	WebElement btnLogin;
 
@@ -366,6 +387,35 @@ public class FidoShopInternetPage extends BasePageClass {
 	 */
 	public void select150InternetPlan(String strDowngradeDataPlan) {
 		reusableActions.getWhenReady(By.xpath("//span[contains(text(),'"+strDowngradeDataPlan+"')]/ancestor::div[@class='dsa-rate-card px-12']/descendant::a[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large ng-star-inserted']"), 60).click();
+	}
+
+	public boolean verifyBillBoardTNAC(){
+		return reusableActions.isElementVisible(headerBillboardTNAC, 30);
+	}
+
+	public boolean verifyPromoBlockTNAC(){
+		return reusableActions.isElementVisible(headerPromoBlockTNAC, 30);
+	}
+	public void scrollToPromoBlockTNAC(){
+		reusableActions.javascriptScrollByVisibleElement(txtSpecialOffer);
+	}
+
+	public void selectPlanWithExclusiveOffer(){
+		reusableActions.getWhenReady(btnBuyNowExclusiveOffer, 10).click();
+	}
+
+	public void expandViewDetailsExclusiveOffer(){
+		reusableActions.getWhenReady(btnViewDetailsExclusiveOffer, 30).click();
+		reusableActions.staticWait(3000);
+
+	}
+
+	public String getPackageWithExclusiveOffer(){
+		String exclusiveOfferPackageText = reusableActions.getWhenReady(txtexclusiveOffer, 30).getText();
+		String[] subs= exclusiveOfferPackageText.split("Fido ");
+		String[] finalPack = subs[1].split(" ");
+		System.out.println("******************"+finalPack[0]);
+		return finalPack[0];
 	}
 
 	/**
