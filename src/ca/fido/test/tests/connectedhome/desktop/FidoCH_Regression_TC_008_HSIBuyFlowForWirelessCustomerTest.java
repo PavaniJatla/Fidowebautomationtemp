@@ -52,7 +52,6 @@ public class FidoCH_Regression_TC_008_HSIBuyFlowForWirelessCustomerTest extends 
 		getFidologinpage().setPasswordInFrame(TestDataHandler.fidoHSIAccount.getPassword());
 		getReporter().reportLogWithScreenshot("Entered the credentials");
 		getFidologinpage().clkLoginInFrame();
-		getEnsverifications().setVerificationCodeCH(TestDataHandler.fidoHSIAccount.getUsernameWirelessAcc(), "email");
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
 		getFidohomepage().clkShop();

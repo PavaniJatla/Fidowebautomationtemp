@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 /**
  * This class contains the test method to test the pay now functionality for Fido.ca   
  * 
- * @author aditya.dhingra
+ * @author nandan.master
  * 
  * Test steps:
  *
@@ -25,10 +25,10 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTestClass {
+public class FidoCH_Regression_TC_023_HSIValidateSubHeaderLinksTest extends BaseTestClass {
 
-	@Test(groups = {"SanityCH","RegressionCH","FidoHSIDashboardCH","ReleaseSanity"})
-	public void checkFidoHSIValidateRestartModem() {
+	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
+	public void FidoCH_Regression_TC_023_HSIValidateSubHeaderLinks() {
 		getReporter().reportLogWithScreenshot("Launched the sign in Page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsername());
 		getReporter().reportLogWithScreenshot("Continue Login");
@@ -38,6 +38,28 @@ public class FidoCH_Regression_TC_021_HSIValidateRestartModemTest extends BaseTe
 		getFidologinpage().clkLoginInFrame();
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getReporter().reportLogWithScreenshot("Launched the Account Page");
+		getFidohomepage().clkShop();
+		getReporter().reportLogWithScreenshot("Clicked on SHOP option from subheader");
+		getFidohomepage().clkHomeInternet();
+		getReporter().reportLogWithScreenshot("Clicked on Home Internet from Shop options - #1");
+		getFidohomepage().clkShop();
+		getFidohomepage().clkHomeInternet();
+		getReporter().reportLogWithScreenshot("Clicked on Home Internet from Shop options - #2");
+		getReporter().softAssert(getFidointernetdashboardpage().verifyIfUsageInfoDisplayed(),"Verified the Data Usage summary","Data Usage summary Verification has failed");
+
+		getReporter().hardAssert(getFidointernetdashboardpage().verifyProfileNSettings(),"Verified Profile & Setting navigation on subheader","Profile & Setting navigation on subheader not verified");
+
+		getFidoaccountoverviewpage().clkMenuBillingAndPayments();
+		getReporter().reportLogWithScreenshot("Clicked on Billing & Payment menu dropdown");
+
+		getFidoaccountoverviewpage().clkMenuUsageNService();
+		getReporter().reportLogWithScreenshot("Clicked on Usage & Services menu dropdown");
+
+
+
+
+
+
 		getFidoaccountoverviewpage().clkViewUsageManage();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
 		getReporter().softAssert(getFidointernetdashboardpage().verifyManageSettings(),"Verified the Manage Settings link","Manage Settings link Verification has failed");

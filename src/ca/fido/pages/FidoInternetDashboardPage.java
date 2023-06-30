@@ -156,7 +156,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	
 	@FindBy(xpath="//h3[@class='ss-plan-container-sub-heading']")
 	WebElement lblPlanNameheading;
-	
+
 	@FindBy(xpath = "//span[@class='ss-plan-container-data']")
 	WebElement lblPlanData;
 	
@@ -222,10 +222,13 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	@FindBy(xpath = "//a[@href='#/my-account/internet/usage/monthly']")
 	WebElement linkMonthlyUsage;
 
-	@FindBy (xpath = "//ins[@translate='global.label.services']|//ge-dropdown[contains(@class,'authentication')]//span[@role='text']")
+	@FindBy (xpath = "//ins[@translate='global.label.services']")
 	WebElement navUsageNService;
+
+	@FindBy(xpath = "//ins[@translate='global.label.profileAndSettings']")
+	WebElement navProfileNSettings;
 	
-	@FindBy (xpath = "//ins[@translate='global.label.internet']|//a[@href='/self-serve/wireless']//span[@role='text']")
+	@FindBy (xpath = "//ins[@translate='global.label.internet']")
 	WebElement navInternetService;
 	
 	@FindBy (xpath = "//ins[@translate='global.cta.manageSettings']")
@@ -412,26 +415,31 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		
 	}
 
-
 	/**
-	 * Click on the Usage Service navigation link 
-	 * @author chinnarao. vattam
+	 * Click on the Usage Service navigation link
+	 * @author chinnarao.vattam
 	 */
 	public void clkUsageNService() {
 		//SSP to HSI handshake requires soem time
 		reusableActions.staticWait(3000);
 		reusableActions.getWhenReady(navUsageNService, 20).click();
 	}
+
+	/**
+	 * Verifies Profile & Settings subheader option
+	 * @author nandan.master
+	 */
+	public Boolean verifyProfileNSettings() {
+		return reusableActions.isElementVisible(navProfileNSettings, 40);
+	}
 	
 	/**
 	 * Click on the Internet Service navigation link 
-	 * @author chinnarao. vattam
+	 * @author chinnarao.vattam
 	 */
 	public void clkInternetService() {
 		reusableActions.waitForElementTobeClickable(navInternetService, 30);
 		reusableActions.getWhenReady(navInternetService, 30).click();
-		
-		
 	}
 
 	/**

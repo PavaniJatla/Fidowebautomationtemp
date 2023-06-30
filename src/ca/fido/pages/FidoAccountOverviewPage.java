@@ -1,6 +1,4 @@
 package ca.fido.pages;
-
-
 import ca.fido.pages.base.BasePageClass;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.openqa.selenium.*;
@@ -16,16 +14,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
 public class FidoAccountOverviewPage extends BasePageClass {
 
 	public FidoAccountOverviewPage(WebDriver driver) {
 		super(driver);
 
 	}
-
-
-
 
 	public enum BillingAndPaymentsSubMenuOptions {
 		ViewBill,
@@ -299,7 +293,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		@FindBy(xpath = "//dsa-subnav-desktop//p[contains(text(),'Account Overview') or contains(text(),'Aperçu du compte')]"),
 		@FindBy(xpath = "//dsa-subnav-desktop//p[text()='Account Overview' or text()='Aperçu du compte']")})
 	WebElement headerAccountOverview;
-	
+
 	@FindBy(xpath = "//section[@class='fss-account-detail']")
 	List<WebElement> lstOfAllAccounts;
 
@@ -498,11 +492,10 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 */
 	public void clkMenuBillingAndPayments() {
 		try {
-			reusableActions.waitForElementVisibility(menuBillingAndPayments,60);
-			reusableActions.getWhenReady(menuBillingAndPayments,60).click();
-		}catch (StaleElementReferenceException e) 
-		{
-			reusableActions.waitForElementVisibility(menuBillingAndPayments,60);
+			reusableActions.waitForElementVisibility(menuBillingAndPayments, 60);
+			reusableActions.getWhenReady(menuBillingAndPayments, 60).click();
+		} catch (StaleElementReferenceException e) {
+			reusableActions.waitForElementVisibility(menuBillingAndPayments, 60);
 		}
 	}
 
