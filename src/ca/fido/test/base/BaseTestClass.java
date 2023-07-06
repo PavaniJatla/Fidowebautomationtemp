@@ -601,6 +601,7 @@ public class BaseTestClass {
                 FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
                 FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
                 FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+				FidoBillDetailsPageThreadLocal.set(new FidoBillDetailsPage(getDriver()));
                 FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
                 FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
                 FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));

@@ -155,14 +155,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy (xpath = "//a[@ui-sref='myAccount.overview({accountNumber: selectedAccountNumber})']")
 	WebElement menuOverview;
 
-	@FindBy (xpath = "//a[contains(@aria-label,'Payment')]")
-	WebElement btnPaymentHistory;
-
 	@FindBy (xpath = "//button[contains(@aria-label,'Automatic Payments')]")
 	WebElement btnAutomaticPayments;
 
 	@FindBy (xpath = "//button[contains(@aria-label,'Payment History')]")
-	WebElement bttnPaymentHistory;
+	WebElement btnPaymentHistory;
 
 	@FindBy(xpath = "//span[contains(@class,'header')]//*[@translate='global.label.overview']")
 	WebElement menuOverviewMobile;
@@ -333,7 +330,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//p[text()='Promise to Pay available' or text()='Vous devez reporter votre paiement?']")
 	WebElement divPromiseToPayAvailable;
 
-	@FindBy(xpath = "//span[text()='Set up a Promise to Pay.' or text()='Configurez une promesse de paiement.']")
+	@FindBy(xpath = "//span[text()='Set up Promise To Pay' or text()='Configurez une promesse de paiement.']")
 	WebElement lnkSetUpPromiseToPay;
 
 	@FindBy(xpath = "//select[@formcontrolname='paymentMethod']")
@@ -494,13 +491,22 @@ public class FidoAccountOverviewPage extends BasePageClass {
 		try {
 			reusableActions.waitForElementVisibility(menuBillingAndPayments, 60);
 			reusableActions.getWhenReady(menuBillingAndPayments, 60).click();
+			reusableActions.staticWait(3000);
 		} catch (StaleElementReferenceException e) {
 			reusableActions.waitForElementVisibility(menuBillingAndPayments, 60);
 		}
 	}
 
 	public void clkPaymentHistoryOnMakePaymentPage() {
-		reusableActions.clickWhenReady(bttnPaymentHistory,40);
+		reusableActions.clickWhenReady(btnPaymentHistory,40);
+	}
+
+	/**
+	 * Validates if Payment History option is present on Payment Details page
+	 */
+	public Boolean verifyPaymentHistoryButton() {
+		reusableActions.waitForElementVisibility(btnPaymentHistory, 40);
+		return reusableActions.isElementVisible(btnPaymentHistory);
 	}
 
 	public void clkAutomaticPaymentsOnMakePaymentPage() {
@@ -898,7 +904,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	 * @author sidhartha.Vadrevu
 	 */
 	public boolean verifyLandingPageLoad() {
-		return reusableActions.isElementVisible(By.xpath("//span[contains(@data-text,'Account Overview')]"));
+		reusableActions.waitForElementVisibility(txtAccountOverview, 40);
+		return reusableActions.isElementVisible(txtAccountOverview);
 	}
 	
 	/**
@@ -1087,7 +1094,37 @@ public class FidoAccountOverviewPage extends BasePageClass {
 			break;
 		}
 
-	}   
+	}
+
+	/**
+	 * To select sub-menu of billing and payments & open it in a new tab, need to click billing and payment menu before select any sub-menu.
+	 * @param enumBillandPaymentOption Enum, sub-menu options of Billing And Payment menu
+	 */
+	public void selectBillingAndpaymentsSubMenuInNewTab(BillingAndPaymentsSubMenuOptions enumBillandPaymentOption) {
+		switch(enumBillandPaymentOption)
+		{
+			case ViewBill:
+				reusableActions.waitForElementTobeClickable(subMenuViewBill,60);
+				reusableActions.getWhenReady(subMenuViewBill).sendKeys(Keys.chord(Keys.CONTROL,Keys.RETURN));
+				break;
+			case MakePayment:
+				reusableActions.waitForElementTobeClickable(subMenuMakeAPayment,60);
+				reusableActions.getWhenReady(subMenuMakeAPayment).sendKeys(Keys.CONTROL,Keys.ENTER);
+				break;
+			case PaymentHistory:
+				reusableActions.waitForElementTobeClickable(subMenuPaymentHistory,60);
+				reusableActions.getWhenReady(subMenuPaymentHistory).sendKeys(Keys.CONTROL,Keys.ENTER);
+				break;
+			case SetAutomaticPayments:
+				reusableActions.waitForElementTobeClickable(subMenuSetUpAutomaticPayment,60);
+				reusableActions.getWhenReady(subMenuSetUpAutomaticPayment).sendKeys(Keys.CONTROL,Keys.ENTER);
+				break;
+			default:
+				System.out.print("No sub menu matched in the billing and payment sub menu");
+				break;
+		}
+
+	}
 
 	/**
 	 * Clicks on the Button view bill
@@ -1740,6 +1777,11 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	
 	public boolean verifyPromiseToPayLink() {		
 		return reusableActions.isElementVisible(divPromiseToPayAvailable);
+	}
+
+	public boolean verifySetupPromiseToPayLinkSubMenu() {
+		reusableActions.waitForElementVisibility(lnkSetUpPromiseToPay, 20);
+		return reusableActions.isElementVisible(lnkSetUpPromiseToPay);
 	}
 
 	public void clkSetUpAPromiseToPay() {

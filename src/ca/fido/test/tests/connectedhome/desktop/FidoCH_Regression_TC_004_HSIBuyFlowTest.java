@@ -34,7 +34,7 @@ import java.lang.reflect.Method;
  *14.  Click on Confirm
  *15. Select Invoice option from dropdown list 
  *16. Click on Confirm button
- *17. Scroll down all the way down in Agreement field and select "I have read understood….." checkbox
+ *17. Scroll down all the way down in Agreement field and select "I have read understood…" checkbox
  *18. Click on Submit
  *
  **/

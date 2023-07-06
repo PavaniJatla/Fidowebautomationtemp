@@ -225,8 +225,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	@FindBy (xpath = "//ins[@translate='global.label.services']")
 	WebElement navUsageNService;
 
-	@FindBy(xpath = "//ins[@translate='global.label.profileAndSettings']")
-	WebElement navProfileNSettings;
+	@FindBy(xpath = "//*[@translate='global.label.profileAndSettings']")
+	WebElement subNavProfileAndSettings;
 	
 	@FindBy (xpath = "//ins[@translate='global.label.internet']")
 	WebElement navInternetService;
@@ -420,7 +420,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clkUsageNService() {
-		//SSP to HSI handshake requires soem time
+		//SSP to HSI handshake requires some time
 		reusableActions.staticWait(3000);
 		reusableActions.getWhenReady(navUsageNService, 20).click();
 	}
@@ -430,7 +430,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * @author nandan.master
 	 */
 	public Boolean verifyProfileNSettings() {
-		return reusableActions.isElementVisible(navProfileNSettings, 40);
+		reusableActions.waitForElementVisibility(subNavProfileAndSettings, 20);
+		return reusableActions.isElementVisible(subNavProfileAndSettings, 40);
 	}
 	
 	/**
