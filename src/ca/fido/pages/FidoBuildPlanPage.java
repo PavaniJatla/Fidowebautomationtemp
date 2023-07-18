@@ -25,8 +25,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	String planType = TestDataHandler.tc13AALBYODExpressShipping.getNewPlanType();
 
 	public FidoBuildPlanPage(WebDriver driver) {
-		super(driver);		
+		super(driver);
 	}
+
 	List<WebElement> autoPayText = null;
 
 	@FindBy(xpath = "//*[@id='bfa-page-title' and contains(text(),'Build Your Plan')]")
@@ -34,25 +35,25 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "(//div[@class='features-section' or @class='features-section dataSectionEmpty']/button)[3]")
 	WebElement btnAdd;
-	
+
 	@FindBy(xpath = "//button[@translate='_continue']")
 	WebElement btnContinue;
-	
+
 	////f-cart-summary//button[contains(@class,'-primary -large') or @id='main-continue-button']//span[contains(@class,'ds-no-overflow mw-100')]
 	//@FindBy(xpath = "//button[@id='main-continue-button']")
 	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @data-test='build-plan-checkout-flow-button']")
 	WebElement btnContinueBelowCartSummary;
 
-	@FindBy(xpath="//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]/parent::div")
+	@FindBy(xpath = "//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]/parent::div")
 	WebElement txtEmail;
-	
+
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
 
 	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
 	WebElement keepMyCurrentPlanButton;
 
-	@FindBy(xpath="//ds-checkbox[@data-test='vdp-checkbox']")
+	@FindBy(xpath = "//ds-checkbox[@data-test='vdp-checkbox']")
 	WebElement vdpCheckBox;
 
 	@FindBy(xpath = "//div[contains(@class,'ds-radioLabel') and contains(.,'full')]/parent::label")
@@ -72,10 +73,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(text(),'View All Plans')]")
 	WebElement viewAllPlansButton;
-	
+
 	@FindBy(xpath = "//button[@id='step-2-continue-button' or @data-test='stepper-2-edit-step-continue-button']")
 	WebElement btnContinueDataOption;
-	
+
 	@FindBy(xpath = "//button[@id='step-3-continue-button' or @data-test='stepper-3-edit-step-continue-button']")
 	WebElement btnContinueTalkOptions;
 
@@ -83,83 +84,86 @@ public class FidoBuildPlanPage extends BasePageClass {
 	WebElement btnDataAndTextPlan;
 
 	@FindAll({
-		@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']"),
-		@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
+			@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']"),
+			@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
 	})
 	WebElement btnNoBPOOffer;
 
 	@FindAll({
-		@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']"),
-		@FindBy(xpath = "//button[contains(@id,'dummyContinueCta')]/span/span")
+			@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']"),
+			@FindBy(xpath = "//button[contains(@id,'dummyContinueCta')]/span/span")
 	})
 	WebElement btnContinueAddOns;
 
 	@FindBy(xpath = "//span[contains(text(),'CONTINUE')]")
 	WebElement callerIDContinue;
-	
+
 	@FindBy(xpath = "//span[@translate='createAccount']/parent::button")
 	WebElement btnCreateAnAccount;
-	
+
 	@FindBy(xpath = "//span[@translate='login-cta']/parent::button")
 	WebElement btnLogin;
-	
+
 	@FindBy(xpath = "//div[contains(@class,'current-balance-container')]//span[contains(@ng-if,'planCategory') and contains(@res,'category')]")
 	WebElement lblCurrentPlanCategory;
-	
+
 	@FindBy(xpath = "//span[contains(@class,'ui-slider-handle')]")
 	WebElement planSlider;
-	
+
 	@FindBy(xpath = "//button[@translate='btn_continue_to_addons']")
 	WebElement btnContinueToAddons;
-	
-	List<String> planCategory = Arrays.asList("category-SMALL","category-MEDIUM","category-LARGE","category-EXTRALARGE","category-2XLARGE");
-	
+
+	List<String> planCategory = Arrays.asList("category-SMALL", "category-MEDIUM", "category-LARGE", "category-EXTRALARGE", "category-2XLARGE");
+
 	@FindBy(xpath = "//a[@res='keep-existing']")
 	WebElement lnkKeepExisting;
-	
+
 	@FindBy(xpath = "//span[@res='keep-existing']/parent::button")
 	WebElement btnKeepExistingPlan;
-	
+
 	@FindBy(xpath = "//div[@res='build-your-phone']")
 	WebElement lblBuildYourPlan;
-	
+
 	@FindBy(xpath = "//button[@translate='bpo_redeem_offer']")
 	WebElement btnGetThisOffer;
-	
+
 	@FindBy(xpath = "//span[contains(@class,'dsa-cartSummary')]")
 	WebElement txtCartSummary;
-	
+
 	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]")
 	WebElement selectFirstTierChooseYourData;
-	
+
 	@FindBy(xpath = "//input[@formcontrolname='firstName']")
 	WebElement inputFirstName;
-	
+
 	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-first-name']")
 	WebElement frmFieldFirstName;
-	
+
 	@FindBy(xpath = "//input[@formcontrolname='lastName']")
 	WebElement inputLastName;
-	
+
 	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-last-name']")
 	WebElement frmFieldLastName;
-	
+
 	@FindBy(xpath = "//button[@id='step-5-continue-button' or @data-test='stepper-5-edit-step-continue-button']")
 	WebElement buttonContinueUserName;
-	
+
 	@FindBy(xpath = "//select[contains(@id,'ds-form-input-id')]")
 	WebElement selectCity;
-	
+
 	@FindBy(xpath = "//button[@data-test='choose-number-continue']")
 	WebElement buttonChooseNumberContinue;
-	
+
 	@FindBy(xpath = "//img[@alt='Close']")
 	WebElement closeDialogWindow;
 
 	@FindBy(xpath = "//p[contains(.,'Basic plans') or contains(.,'Forfait de base')]/ancestor::button")
 	WebElement btnBasicPlan;
 
-	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']")
+	@FindAll({
+	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']"),
+	@FindBy(xpath = "//a[@aria-label='Province']")
+	})
 	WebElement provinceDropDown;
 
 	@FindBy(xpath = "//div[contains(@class,'dsa-infoWidget__ctnInfo')]//span[contains(@class,'dsa-infoWidget__ctnCopy')]")

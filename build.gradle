@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id 'com.jfrog.artifactory' version '4.15.1'
+    id 'com.jfrog.artifactory' version '4.28.1'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'net.researchgate.release' version '2.8.1'
     id 'net.saliman.properties' version '1.5.1'
@@ -22,7 +22,7 @@ def sauce = [
 ]
 
 
-task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
+task "sauceTest"(type: Test) {
 
     if(!test_browser){
         test_browser='saucechrome'
@@ -52,6 +52,12 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
+    systemProperty 'ReleaseName', test_release
+    systemProperty 'TestEnv', test_env
+    systemProperty 'TestUrl', test_TestURL
+    systemProperty 'IsPieChartRequired', IsPieChartRequired
+    systemProperty 'TunnelName', TunnelName
+    systemProperty 'parentTunnelOwner', parentTunnelOwner
     /*systemProperty 'TunnelName', "DigitalQETunnel"
     systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"*/
 
@@ -101,6 +107,10 @@ task "localTest"(type: Test) {
     systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
+    systemProperty 'ReleaseName', test_release
+    systemProperty 'TestEnv', test_env
+    systemProperty 'TestUrl', test_TestURL
+    systemProperty 'IsPieChartRequired', IsPieChartRequired
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -134,7 +144,7 @@ repositories {
 
 dependencies {
 
-    api 'automation-utils:common-utils:latest.release'
+    api 'automation-utils:common-utils:1.79'
     api 'io.rest-assured:rest-assured:4.3.1'
 	api 'io.rest-assured:json-path:4.3.1'
 	api 'org.json:json:20180813'

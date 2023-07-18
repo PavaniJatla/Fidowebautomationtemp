@@ -41,7 +41,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getReporter().reportLogWithScreenshot("Fido plan config page");
         getFidobuildplanpage().clkBasicTab();
         getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getDataOptionIndex(),this.getClass().getSimpleName());
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();

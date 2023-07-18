@@ -503,19 +503,19 @@ public class BaseTestClass {
 				setCookie(strUrl);
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				} else if(currentTestMethodName.getName().contains("NAC")) { //HUP
 					//getDriver().get(strUrl);
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
 				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("BFA_PROD")) {
 					getDriver().get(strUrl);
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl+"/profile/signin");
 				} else{
 					getDriver().get(strUrl);
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl+"/profile/signin");
 					//getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 				}
