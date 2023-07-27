@@ -474,10 +474,8 @@ public class BaseTestClass {
 		captcha_bypass_handlers = new CaptchaBypassHandlers(getDriver());
 		switch(enumGroupName.toString().toLowerCase().trim()) {
 			case "connectedhome_anonymous":
-				/*getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
+				getDriver().get(strUrl+"/pages/api/selfserve/bypassrecaptcha");
 				captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
-				*/
-
 				getDriver().get(strUrl+"/internet/packages");
 				break;
 
@@ -603,6 +601,7 @@ public class BaseTestClass {
                 FidoHomePageThreadLocal.set(new FidoHomePage(getDriver()));
                 FidoLoginPageThreadLocal.set(new FidoLoginPage(getDriver()));
                 FidoAccountOverviewPageThreadLocal.set(new FidoAccountOverviewPage(getDriver()));
+				FidoBillDetailsPageThreadLocal.set(new FidoBillDetailsPage(getDriver()));
                 FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
                 FidoInternetDashboardPageThreadLocal.set(new FidoInternetDashboardPage(getDriver()));
                 FidoAccountRegistrationPageThreadLocal.set(new FidoAccountRegistrationPage(getDriver()));

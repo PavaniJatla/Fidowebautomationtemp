@@ -2,10 +2,12 @@ package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import utils.GetOTP;
 
 
 public class FidoLoginPage extends BasePageClass {
@@ -13,6 +15,7 @@ public class FidoLoginPage extends BasePageClass {
 	public FidoLoginPage(WebDriver driver) {
 		super(driver);
 	}
+	public String emailID;
 
 	@FindAll({
 			@FindBy(xpath = "//input[@type='email']"),
@@ -22,6 +25,9 @@ public class FidoLoginPage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@type='submit']//span[contains(text(),'Continue')] | //button//span[text()='Continue' or text()='Continuer']")
 	WebElement btnContinue;
+
+	@FindBy(xpath = "//ds-code-input/div/div[2]/input") //div[1]
+	WebElement inputCode;
 
 	@FindAll({
 	@FindBy(xpath = "//input[@type='password']"),
@@ -140,7 +146,6 @@ public class FidoLoginPage extends BasePageClass {
 	}
 
 	public void clkEmailOptionMFA() {
-
 		reusableActions.getWhenReady(btnEmailMFA,20).click();
 
 	}
@@ -157,11 +162,12 @@ public class FidoLoginPage extends BasePageClass {
 
 
 	/**
-	 * Set the user name on login page
-	 * @param strUsername user name to be login
+	 * Set the username on login page
+	 * @param strUsername username to be login
 	 * @author Aditya.Dhingra
 	 */
 	public void setUsernameInFrame(String strUsername) {
+		emailID = strUsername;
 		reusableActions.clickIfAvailable(lblUserName);
 		reusableActions.getWhenReady(txtUsername,90).clear();
 		reusableActions.clickIfAvailable(lblUserName);
@@ -180,8 +186,8 @@ public class FidoLoginPage extends BasePageClass {
 	}
 	
 	/**
-	 * Set the user name on login page
-	 * @param strUsername user name to be login
+	 * Set the username on login page
+	 * @param strUsername username to be login
 	 * @author Mirza.Kamran
 	 */
 	public void setUsernameInFrameAfterReSignIn(String strUsername) {
@@ -193,8 +199,8 @@ public class FidoLoginPage extends BasePageClass {
 		  }
 		}
 	/**
-	 * Set the user name on login page
-	 * @param strUsername user name to be login
+	 * Set the username on login page
+	 * @param strUsername username to be login
 	 * @author Mirza.Kamran
 	 */
 	public void setUsernameAfterReSignInFrame(String strUsername) {
@@ -280,12 +286,24 @@ public class FidoLoginPage extends BasePageClass {
 	 * @author Chinnarao.Vattam
 	 */
 	public void clkLoginInFrame() {
-		reusableActions.staticWait(5000);
-		reusableActions.getWhenReady(btnLogIn,60).click();	  
-	}
-	
 
-	
+		try {
+			reusableActions.waitForElementTobeClickable(btnLogIn, 2);
+			reusableActions.getWhenReady(btnLogIn, 20).click();
+		} catch (ElementClickInterceptedException ex) {
+			reusableActions.getWhenReady(btnLogIn, 20).click();
+		}
+		// Click on the Email to As Recovery option for OTP
+		if(verifyMFAScreenIsVisible()) {
+			clkEmailOptionMFA();
+			String emailOTP = GetOTP.getEmailOTP(System.getProperty("ensEnv"), emailID);
+			if (emailOTP != null) {
+				reusableActions.getWhenReady(inputCode).sendKeys(emailOTP);
+				reusableActions.getWhenReady(btnContinue).click();
+			}
+		}
+	}
+
 	/**
 	 * Click on the login button
 	 * @author Mirza.Kamran

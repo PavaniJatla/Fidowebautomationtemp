@@ -23,7 +23,7 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath="//a[@aria-label='Shop']//span[@role='text']")
 	WebElement lnkShop;	
 	
-	@FindBy(xpath="//a[@href='/pages/#/internet' and @class='m-navLink -dropdown']")
+	@FindBy(xpath="//span[contains(@class,'ds-link__copy')]//span[contains(text(),'Home Internet')]")
 	WebElement lnkHomeInternet;
 
 	@FindBy(xpath="//a[@href='/internet/packages']")
@@ -200,7 +200,7 @@ public class FidoHomePage extends BasePageClass {
 			reusableActions.getWhenReady(lnkProvince,10).click();
 			reusableActions.getWhenReady(lnkProvinceON,10).click();
 	       }
-		reusableActions.waitForElementTobeClickable(lnkShop,90);
+		reusableActions.waitForElementTobeClickable(lnkShop,60);
 		reusableActions.getWhenReady(lnkShop,10).click();
 	}
 	
@@ -209,8 +209,9 @@ public class FidoHomePage extends BasePageClass {
 	 * @author aditya.Dhingra 
 	 */
 	public void clkHomeInternet() {
-		reusableActions.waitForElementVisibility(lnkHomeInternet,20);
+		reusableActions.waitForElementVisibility(lnkHomeInternet,60);
 		reusableActions.executeJavaScriptClick(lnkHomeInternet);
+		reusableActions.waitForPageLoad();
 	}
 
 	/**
