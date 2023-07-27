@@ -72,7 +72,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 	@FindBy(xpath="//div[@class='row page-dashboard-service-section']//div[@ng-repeat='subscriberService in account.subscriberServices track by $index'][1]")
 	WebElement divFirstCTNBadge;
 	
-	@FindBy(xpath="//span[@class='ng-tns-c44-5']")
+	@FindBy(xpath="//a[contains(@class, 'dsa-subnav__categoryLink')]/descendant::span[text() = 'Billing & Payment']/ancestor::li[@role = 'menuitem']")
 	WebElement menuBillingAndPayments; 
 	
 	@FindBy(xpath="//span[@translate='global.cta.viewBill']")
