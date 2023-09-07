@@ -15,6 +15,9 @@ public class FidoPaymentPage extends BasePageClass {
 		super(driver);
 	}
 
+	@FindBy(xpath = "//h1[text()='Payment Details']")
+	WebElement headerPaymentDetails;
+
 	@FindBy(xpath = "//label[@for='Creditcard']/ins")
 	WebElement rdoCreditCardOption;
 
@@ -135,7 +138,15 @@ public class FidoPaymentPage extends BasePageClass {
 
 	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'One Time Payment')]/following::div[@class='ds-price'][1]")
 	WebElement otpAmount;
-	
+
+	/**
+	 * verifies if Payment Details page is loaded correctly - by validating header
+	 */
+	public Boolean verifyPaymentDetailsPage() {
+		reusableActions.waitForElementVisibility(headerPaymentDetails, 20);
+		return reusableActions.isElementVisible(headerPaymentDetails);
+	}
+
 	/**
 	 * Set the dynamic Name on the credit card
 	 * @author Saurav.Goyal

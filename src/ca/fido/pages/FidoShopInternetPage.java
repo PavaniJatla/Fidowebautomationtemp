@@ -361,7 +361,7 @@ public class FidoShopInternetPage extends BasePageClass {
 	}
 	
 	/**
-	 * Select the plan the plan on shop Internet page
+	 * Select the plan on shop Internet page
 	 * @author chinnarao.vattam
 	 */
 	public void selectPlan() {

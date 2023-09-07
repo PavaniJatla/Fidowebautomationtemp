@@ -72,13 +72,13 @@ public class FidoBillDetailsPage extends BasePageClass {
 	@FindBy(xpath="//div[@class='row page-dashboard-service-section']//div[@ng-repeat='subscriberService in account.subscriberServices track by $index'][1]")
 	WebElement divFirstCTNBadge;
 	
-	@FindBy(xpath="//li[@class='services bill-pay']//span[@class='down-arrow-span']")
+	@FindBy(xpath="//a[contains(@class, 'dsa-subnav__categoryLink')]/descendant::span[text() = 'Billing & Payment']/ancestor::li[@role = 'menuitem']")
 	WebElement menuBillingAndPayments; 
 	
 	@FindBy(xpath="//span[@translate='global.cta.viewBill']")
 	WebElement subMenuViewBill;
 	
-	@FindBy(xpath="//span[@translate='global.cta.makePayment_header_menu']")
+	@FindBy(xpath="//a[contains(@class, 'dsa-subnav__link')]/descendant::span[@class='ds-link__menuCopy'][normalize-space()='Make a payment']")
 	WebElement subMenuMakeAPayment;
 	
 	@FindBy(xpath="//span[@translate='global.cta.changePaymentMethod_header_menu']")
@@ -210,7 +210,7 @@ public class FidoBillDetailsPage extends BasePageClass {
 		    	reusableActions.clickIfAvailable(subMenuViewBill);
 			    break;		   
 			case MakePayment:
-				reusableActions.clickIfAvailable(subMenuMakeAPayment);
+				reusableActions.executeJavaScriptClick(subMenuMakeAPayment);
 				break;
 			case PaymentHistory:
 				 reusableActions.clickIfAvailable(subMenuPaymentHistory);
