@@ -22,6 +22,9 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//select[contains(@id,'ds-form-input-id')]")
 	WebElement selectCity;
 
+	@FindBy(xpath = "//button[@data-test='search-available-number-button']")
+	WebElement searchNumberBtn;
+
 	@FindBy(xpath = "//p[@data-test='step-title-shipping']")
 	WebElement lblShippingPickUp;
 
@@ -281,6 +284,7 @@ public class FidoCheckOutPage extends BasePageClass {
     public void selectCityForChooseYourTelephoneNum(String cityName) {
     	reusableActions.getWhenReady(selectCity, 30).click();
     	reusableActions.selectWhenReadyByVisibleText(selectCity,cityName);
+		reusableActions.clickWhenReady(searchNumberBtn);
     	reusableActions.waitForElementVisibility(buttonChooseNumberContinue,10);
     	reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
 

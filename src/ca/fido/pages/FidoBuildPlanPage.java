@@ -95,6 +95,12 @@ public class FidoBuildPlanPage extends BasePageClass {
 	})
 	WebElement btnContinueAddOns;
 
+	@FindBy(xpath = "//ds-radio-button[@data-test='stepper-5-radio-no']")
+	WebElement eSIMOptNo;
+
+	@FindBy(xpath = "//button[@data-test='stepper-5-continue-cta']")
+	WebElement eSIMContinue;
+
 	@FindBy(xpath = "//span[contains(text(),'CONTINUE')]")
 	WebElement callerIDContinue;
 
@@ -694,7 +700,16 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.waitForElementTobeClickable(btnContinueAddOns,30);
 		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnContinueAddOns));
 	}
-	
+
+	/**
+	 * Click continue on eSIM Stepper in BYOD Plan config page
+	 * @author subash.nedunchezhian
+	 */
+	public void clickeSIMContinueButton() {
+		reusableActions.clickWhenVisible(eSIMOptNo,10);
+		reusableActions.clickWhenReady(eSIMContinue, 5);
+	}
+
 	/**
 	 * Clicks on the 'Continue' button at the bottom of the cart summary
 	 * @author Saurav.Goyal

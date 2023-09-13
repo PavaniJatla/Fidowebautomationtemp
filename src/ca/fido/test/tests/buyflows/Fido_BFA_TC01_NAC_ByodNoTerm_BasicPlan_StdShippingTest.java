@@ -18,7 +18,7 @@ public class Fido_BFA_TC01_NAC_ByodNoTerm_BasicPlan_StdShippingTest extends Base
 
 	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA","NACBFABYOD"})
 	public void tc01_fidoNACByodTermStandardShipping() {
-		getFidobuildplanpage().setProvince("Ontario");
+		//getFidobuildplanpage().setProvince("Ontario");
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		//getFidobuildplanpage().clkDataAndTextPlan();
@@ -37,6 +37,7 @@ public class Fido_BFA_TC01_NAC_ByodNoTerm_BasicPlan_StdShippingTest extends Base
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getFidobuildplanpage().clkContinueDeviceProtection();
+		getFidobuildplanpage().clickeSIMContinueButton();
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");

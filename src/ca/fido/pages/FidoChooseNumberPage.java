@@ -34,7 +34,10 @@ public class FidoChooseNumberPage extends BasePageClass {
 	
 	@FindBy(xpath="(//ds-radio-group[@formcontrolname='newNumber']//div[@class='ds-radioButton__innerCircle'])[1]")
 	WebElement lblAvailableNumbers;
-	
+
+	@FindBy(xpath = "//button[@data-test='search-available-number-button']")
+	WebElement searchNumberBtn;
+
 	@FindBy(xpath="//button[@data-test='choose-number-continue']")
 	WebElement btnContinueChooseANumberSection;
 	
@@ -87,7 +90,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	public void selectCity(String city) {
 		reusableActions.waitForElementVisibility(btnContinueChooseANumberSection , 30);
 		reusableActions.scrollToElement(ddlCity);
-		reusableActions.selectWhenReady(ddlCity, 82 ,30);
+		reusableActions.selectWhenReady(ddlCity, 81 ,30);
 		//city.toUpperCase()
 	}
 	
@@ -104,7 +107,8 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void selectFirstAvailableNumber() {
-		reusableActions.waitForElementTobeClickable(btnContinueChooseANumberSection, 30);
+		reusableActions.waitForElementTobeClickable(searchNumberBtn, 30);
+		reusableActions.clickWhenReady(searchNumberBtn);
 		reusableActions.executeJavaScriptClick(lblAvailableNumbers);
 	}
 	

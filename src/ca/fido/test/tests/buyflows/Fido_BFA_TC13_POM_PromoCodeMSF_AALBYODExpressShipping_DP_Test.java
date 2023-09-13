@@ -63,6 +63,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         getReporter().hardAssert(getFidobuildplanpage().verifyEligibilityMsg(),"Entered IMEI is eligible for Device Protection Addon","Entered IMEI is not eligible");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
+        getFidobuildplanpage().clickeSIMContinueButton();
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");

@@ -47,6 +47,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
+        getFidobuildplanpage().clickeSIMContinueButton();
         getFidobuildplanpage().clkContinueCallerID();
         getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
         getFidobuildplanpage().clkContinueBelowCartSummary();

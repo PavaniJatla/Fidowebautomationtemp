@@ -45,6 +45,7 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 		getReporter().hardAssert(getFidobuildplanpage().verifyEligibilityMsg(),"Entered IMEI is eligible for Device Protection Addon","Entered IMEI is not eligible");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogPass("Continue button on AddOns clicked");
+		getFidobuildplanpage().clickeSIMContinueButton();
 		getReporter().hardAssert(getFidobuildplanpage().verifyDPCartLineItem(),"DP Addon added to cart","DP Addon not added to cart");
 		String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
 		getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
@@ -80,10 +81,10 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
-		//getFidopaymentoptionspage().setManualPaymentMethod();
+		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().clickSkipAutopay();
-		//getFidopaymentoptionspage().billingOptionClkContinue();
+		getFidopaymentoptionspage().billingOptionClkContinue();
 		getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
 		getFidoCheckOutPage().clkShippingType("EXPRESS");
 		getReporter().reportLogWithScreenshot("Shipping selected");
