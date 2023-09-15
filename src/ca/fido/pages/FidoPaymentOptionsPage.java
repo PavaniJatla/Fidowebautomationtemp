@@ -93,7 +93,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 
 	@FindAll({
 			@FindBy(xpath = "//input[@formcontrolname='account']"),
-			@FindBy(id="accountNumber")
+			@FindBy(id="accountNumber"),
+			@FindBy(xpath="//input[@name='accountNumber']")
 	})
 	WebElement txtAcountNumber;
 	
@@ -212,10 +213,10 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	@FindBy(xpath="//ins[@translate='global.cta.updatePaymentMethod']")
 	WebElement btnUpdatePaymentMethod;
 	
-	@FindBy(name="transitCode")
+	@FindBy(xpath="//input[@name='transitCode']")
 	WebElement txtTransitCode;
 	
-	@FindBy(id="bank-code")
+	@FindBy(xpath="//input[@id='bank-code']")
 	WebElement txtBankCode;
 
 	@FindAll({
@@ -901,7 +902,8 @@ public class FidoPaymentOptionsPage extends BasePageClass {
 	 * Selects the expire month for Pre-Auth credit card
 	 * @author chinnarao.vattam
 	 */
-	public void selectExpiryMonth() {		
+	public void selectExpiryMonth() {
+		reusableActions.staticWait(3000);
 		String strMM = FormFiller.generateMonth();		
 		reusableActions.waitForElementVisibility(ddlExpiryMonth, 30);
 		//reusableActions.javascriptScrollByVisibleElement(ddlExpiryMonth);

@@ -26,7 +26,7 @@ public class FidoHomePage extends BasePageClass {
 	@FindBy(xpath="//span[contains(@class,'ds-link__copy')]//span[contains(text(),'Home Internet')]")
 	WebElement lnkHomeInternet;
 
-	@FindBy(xpath="//a[@href='/internet/packages']")
+	@FindBy(xpath="//span[text()='Home Internet']/ancestor::span[@role='text']")
 	WebElement lnkHomeInternetForWireless;
 
 	@FindBy(xpath = "//a[@href='/internet/packages']")

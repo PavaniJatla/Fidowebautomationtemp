@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 
 public class FidoCH_Regression_TC_013_HSIPlanUpgradeTest extends BaseTestClass {
 
-	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
+	@Test(groups = {"RegressionCH","FidoHSIDashboardCH","ERM"})
 	public void checkFidoHSIPlanUpgrade() {
 		getReporter().reportLogWithScreenshot("Launched the SignIn page");
 		getFidologinpage().setUsernameInFrame(TestDataHandler.fidoHSIAccount.getUsernameUpgrade());

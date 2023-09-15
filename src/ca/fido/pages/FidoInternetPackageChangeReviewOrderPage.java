@@ -22,8 +22,14 @@ WebElement termsAndConditionsSspFido;
 @FindBy(xpath="//li[contains(text(),'819 994 6591')]")
 WebElement lnkUnsubscribe;
 
+@FindBy(xpath="//p[contains(text(),'Pre-Authorized Chequing')]")
+WebElement lnkPAC;
+
 @FindBy(xpath="//*[contains(@translate,'label.reviewConsent')]")
 WebElement chkConsentCheckbox;
+
+@FindBy(xpath="//label[(@for='agree-to-terms-and-conditions')]")
+WebElement chkConsentCheckboxPAC;
 
 @FindBy(xpath="//input[@name='submit']")
 WebElement btnSubmit;
@@ -31,6 +37,12 @@ WebElement btnSubmit;
 @FindBy(name="submit")
 WebElement btnEditIcon;
 
+@FindBy(xpath="//div[@data-package='review']//i")
+WebElement btnEditPackage;
+
+	//ins[@translate='global.label.paymentDetails']/following-sibling::a/i
+	//a[@ute-tracking='internet:package:editcheckout:internet']/i
+	//button[contains(@ute-tracking,'ok')]
 @FindBy(xpath ="//ins[@translate='global.label.paymentDetails']/parent::h4/a/i[@class='ute-icon-edit ute-md']")
 WebElement btnEditPayment;
 
@@ -78,6 +90,9 @@ public void chkConsentCheckbox() {
 	reusableActions.getWhenReady(chkConsentCheckbox).click();
 }
 
+public void chkConsentCheckboxPAC() {
+	reusableActions.getWhenReady(chkConsentCheckboxPAC).click();
+}
 /**
  * Verify the presence of the agreement on the order review page
  * @return true, if the submit button is enables and visible, else false
@@ -99,6 +114,11 @@ public void clkReviewSubmitButton() {
 public void clkscrollToElement() {
 	reusableActions.waitForElementVisibility(lnkUnsubscribe,120);
 	reusableActions.javascriptScrollByVisibleElement(lnkUnsubscribe);
+}
+
+public void clkscrollToEndOfAgreement(){
+	reusableActions.waitForElementVisibility(lnkPAC,120);
+	reusableActions.javascriptScrollByVisibleElement(lnkPAC);
 }
 
 /**
@@ -124,6 +144,11 @@ public void clickEditPaymentIcon() {
 	reusableActions.waitForElementVisibility(btnEditPayment,60);
 	reusableActions.clickWhenReady(btnEditPayment);
 	
+}
+
+public void clickEditPackage() {
+	reusableActions.waitForElementVisibility(btnEditPackage,60);
+	reusableActions.clickWhenReady(btnEditPackage);
 }
 
 /**

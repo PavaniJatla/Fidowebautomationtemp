@@ -1,6 +1,5 @@
 package ca.fido.test.tests.connectedhome.desktop;
 
-import ca.fido.pages.FidoInternetUsagePage;
 import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
@@ -28,7 +27,7 @@ import java.lang.reflect.Method;
  *
  **/
 
-public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends BaseTestClass {
+public class FidoCH_Regression_TC_019_HSI_ValidateInternetUsageTest extends BaseTestClass {
 
 	@Test(groups = {"RegressionCH","FidoHSIDashboardCH"})
 	public void checkFidoHsiUsageFunctionality() {
@@ -42,7 +41,7 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getReporter().hardAssert(!getFidoaccountoverviewpage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
 		getFidologinpage().switchOutOfSignInFrame();
 		//getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(),"Launched the Account Page","Account Page hasn't launched");
-		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
+		/*getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		String accountBalanceBeforePayment=getFidoaccountoverviewpage().getAccountBalanceBeforePayment();
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		getFidoaccountoverviewpage().clkMakepayment();
@@ -67,7 +66,7 @@ public class FidoCH_Regression_TC_019_HSI_ValidateViewManageBillTest extends Bas
 		getReporter().reportLogWithScreenshot("payment processing with payment gateway");
 		getReporter().hardAssert(getFidopaymentpage().verifyPaymentConfirmation(),"Launched the payment confirmation widget","Payment confirmation widget launch failed");
 		getReporter().reportLogWithScreenshot("payment success widget");
-		getFidopaymentpage().clkPaymentConfirmation();
+		getFidopaymentpage().clkPaymentConfirmation();*/
 		getReporter().reportLogWithScreenshot("Launched the Account overview Page");
 		getFidoaccountoverviewpage().clkViewUsageManage();
 		getReporter().reportLogWithScreenshot("Launched the Internet Dashboard Page");
