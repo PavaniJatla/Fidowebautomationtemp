@@ -17,7 +17,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	
 	@FindBy(xpath="//ins[@translate='global.cta.confirm']/parent::button")
 	WebElement btnConfirmPackageChange;
-	
+
 	@FindBy(xpath="//ins[@translate='global.label.cannotProceed']")
 	WebElement popupDowngrade;
 	
@@ -318,6 +318,7 @@ public class FidoInternetDashboardPage extends BasePageClass {
 		reusableActions.getWhenVisible(btnConfirmPackageChange,60).click();
 	}
 
+
 	/**
 	 * Click the confirm button on the change confirm popup
 	 * @author chinnarao.vattam
@@ -447,8 +448,8 @@ public class FidoInternetDashboardPage extends BasePageClass {
 	 * Click on the Manage Settings link 
 	 * @author chinnarao. vattam
 	 */
-	public void clkManageSettings() {		
-		reusableActions.getWhenVisible(btnManageSettings, 60).click();
+	public void clkManageSettings() {
+		reusableActions.executeJavaScriptClick(btnManageSettings);
 	}
 
 	/**
