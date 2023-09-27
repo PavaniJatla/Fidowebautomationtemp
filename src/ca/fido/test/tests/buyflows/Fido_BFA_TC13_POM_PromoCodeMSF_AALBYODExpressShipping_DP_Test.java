@@ -45,7 +45,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
         getReporter().reportLogWithScreenshot("Promo Code Entered");
         getFidobuildplanpage().clkCheckPromoBtn();
         getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(), "Promo Code Applied Successfully", "Promo Code Not Applied");
-        //getReporter().hardAssert(getFidobuildplanpage().verifyPromoDuration(), "Discount Value and Duration displayed", "Promo Code Not Applied");
+        getFidobuildplanpage().clickContinuePromoModal();
         // ***************************Plan Builder page************************************
         String dataOptionIndex = TestDataHandler.tc13AALBYODExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());

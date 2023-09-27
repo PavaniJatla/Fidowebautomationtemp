@@ -46,9 +46,6 @@ public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShi
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
-        getFidobuildplanpage().checkKeepMyCurrentPlanButton();
-        getReporter().reportLogWithScreenshot("Keep My Current Plan checkbox is checked");
-        getFidobuildplanpage().clkDownPaymentChkBox();
         getFidobuildplanpage().clkContinueDeviceCost();
         //String deviceCostIndex = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);

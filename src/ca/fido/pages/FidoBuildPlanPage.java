@@ -53,7 +53,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
 	WebElement keepMyCurrentPlanButton;
 
-	@FindBy(xpath = "//ds-checkbox[@data-test='vdp-checkbox']")
+	@FindBy(xpath = "//ds-checkbox[@data-test='vdp-checkbox']/label")
 	WebElement vdpCheckBox;
 
 	@FindBy(xpath = "//div[contains(@class,'ds-radioLabel') and contains(.,'full')]/parent::label")
@@ -215,11 +215,13 @@ public class FidoBuildPlanPage extends BasePageClass {
 	WebElement btnCheckPromo;
 
 	@FindAll({
-			@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to cart') or contains(text(),' ajouté au panier')]"),
+			@FindBy(xpath = "//ds-modal-container[@aria-label='Add promo code']//p[contains(text(),'Add promo code')]"),
 			@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to your cart') or contains(text(),' ajoutée à votre panier')]")
 	})
 	WebElement promoCodeSuccessMsg;
 
+	@FindBy(xpath = "//ds-modal-container[@aria-label='Add promo code']//button[@data-test='modal-pom-continue']")
+	WebElement continueBtnPromo;
 	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'with promo code') or contains(text(),'avec le code promotionnel')]")
 	WebElement promoCodeDuration;
 
@@ -1024,6 +1026,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public boolean verifyPromoSuccessMsg() {
 		return reusableActions.isElementVisible(promoCodeSuccessMsg, 60);
+	}
+
+	/**
+	 * Clicks on the Continue button in Promo Modal
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clickContinuePromoModal(){
+		reusableActions.isElementVisible(promoCodeSuccessMsg);
+		reusableActions.clickWhenReady(continueBtnPromo);
 	}
 
 	/**

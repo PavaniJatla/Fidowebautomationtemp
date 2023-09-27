@@ -46,6 +46,7 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPla
         getFidobuildplanpage().clkCheckPromoBtn();
         getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(),
                 "Promo Code Applied Successfully", "Promo Code Not Applied");
+        getFidobuildplanpage().clickContinuePromoModal();
         getFidobuildplanpage().clkContinueDeviceCost();
         //String deviceCostIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
