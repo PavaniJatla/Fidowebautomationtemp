@@ -12,15 +12,15 @@ import java.lang.reflect.Method;
 
 
 /**
- * This class contains the test method to test the TNAC buy flow for Fido.ca
- * TC003_CH-9855_Fido TNAC_Anonymous Cx_Use paid media link_Validate the Exclusive offer & Regular cards_See full details_Enter serviceable address_E2E_ON_CH_EN
+ * This class contains the test method to test the HSI buy flow and edit the internet package from order review page for Fido.ca   
+ * Manual_Fido UTE_Regression_CX Anonymous_HSI Buy flow for an unwired address with Tech install as the Fulfillment option Pre-authorized chequing as payment method - From Review page edit the package
  * @author manpreet.kaur3
  * 
  * Test steps:
  *
- *1. Launch paid media link
+ *1. Launch fido.ca url
  *2. Click on home internet under shop menu
- *3. Click on check Availability button for the package with exclusive offer
+ *3. Click on check Availability button
  *4. Enter valid address in serviceability check pop up and click on Check availablity button.
  *5. Click on Buy online option
  *6. Select any Internet package form the list of packages available and click on Buy Now button
@@ -31,30 +31,25 @@ import java.lang.reflect.Method;
  *11. Check the "Sure, lets do a Credit Evaluation" check box
  *12. Click on Confirm
  *13. Select the Service address
- *14.  Click on Confirm
- *15. Select Invoice option from dropdown list 
+ *14. Click on Confirm
+ *15. Select PAC option from dropdown list and enter details
  *16. Click on Confirm button
- *17. Scroll down all the way down in Agreement field and select "I have read understood….." checkbox
- *18. Click on Submit
+ *17. On Review page, click on edit package
+ *18. Select the package of your choice
+ *19. Click on checkout
+ *20. Click on Continue on Tech Install page
+ *21. Verify order review page
+ *22. Scroll down all the way down in Agreement field and select "I have read understood….." checkbox
+ *23. Click on Submit
  *
  **/
 
-public class FidoCH_Regression_TC_022_TNAC_SpecialOffer_BuyFlowTest extends BaseTestClass {
-	@Test(groups = {"RegressionCH"})
-	public void fidoCH_Regression_TC_022_TNAC_SpecialOffer_BuyFlow() {
-        getDriver().get(System.getProperty("QaUrl") + "/internet/packages?offerid=FIDO15075Unlimited");
+public class FidoCH_ERM_TC01_HSIBuyFlow_Unwired_PAC_ReviewPageEditThePackageTest extends BaseTestClass {
+	@Test(groups = {"ERM"})
+	public void fidoCH_ERM_TC01_HSIBuyFlow_Unwired_PAC_ReviewPageEditThePackage() {
         getReporter().reportLogWithScreenshot("Launched the packages Page");
-        getReporter().hardAssert(getFidoshopinternetpage().verifyBillBoardTNAC(),"TNAC Billboard verified","TNAC Billboard not verified");
-        getReporter().hardAssert(getFidoshopinternetpage().verifyPromoBlockTNAC(),"TNAC Promoblock verified","TNAC Promoblock not verified");
-		getFidoshopinternetpage().scrollToPromoBlockTNAC();
-		getReporter().reportLogWithScreenshot("verified the TNAC Exclusive Offer");
-		// String offerToBeSelected = getFidoshopinternetpage().getPackageWithExclusiveOffer();
-
-		getFidoshopinternetpage().expandViewDetailsExclusiveOffer();
-        getReporter().reportLogWithScreenshot("Click on View Details");
-        getFidoshopinternetpage().selectPlanWithExclusiveOffer();
-		getReporter().reportLogWithScreenshot("Selected the plan with exclusive offer");
-
+        getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2);
@@ -99,25 +94,40 @@ public class FidoCH_Regression_TC_022_TNAC_SpecialOffer_BuyFlowTest extends Base
         getReporter().reportLogWithScreenshot("Credit consent Check Done");
         getFidocreditcheckpage().clkCreditCheckSubmit();
         getReporter().reportLogWithScreenshot("Tech-Install page has launched");
-
         getFidotechnicalinstallationpage().clkTechInstalConfirm();
-        getReporter().reportLogWithScreenshot("Payment page has launched");        
-        getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
-        getFidopaymentoptionspage().selectExpiryMonth();
-        getFidopaymentoptionspage().selectExpiryYear();
-        getFidopaymentoptionspage().setCVV();     
+        getReporter().reportLogWithScreenshot("Payment page has launched");
+        getFidopaymentoptionspage().selectPaymentMode("Pre-Authorized Chequing");
+        getReporter().reportLogWithScreenshot("Payment Option PAC");
+        getFidopaymentoptionspage().setBankTransitCode(TestDataHandler.chPaymentInfo.getBankDetails().getTransitCode());
+        getFidopaymentoptionspage().setBankCode(TestDataHandler.chPaymentInfo.getBankDetails().getBankCode());
+        getFidopaymentoptionspage().setAccountNumberOnBuyFlow(TestDataHandler.chPaymentInfo.getBankDetails().getAccountNumber());
         getReporter().reportLogWithScreenshot("Payment details has set");
-        getFidopaymentoptionspage().clkPaymentConfirm();        
+        getFidointernetpackagechangerevieworderpage().clkscrollToEndOfAgreement();
+        getReporter().reportLogWithScreenshot("Scroll to end of agreement");
+        getFidointernetpackagechangerevieworderpage().chkConsentCheckboxPAC();
+        getReporter().reportLogWithScreenshot("Check PAC Consent");
+        getFidopaymentoptionspage().clkPaymentConfirm();
         getReporter().reportLogWithScreenshot("Order review page has launched");
         getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifyFidoTermsAndConditions(), "Terms And Conditions are verified", "Terms And Conditions verification has failed");
-		getFidointernetpackagechangerevieworderpage().clkscrollToElement();
-		getFidointernetpackagechangerevieworderpage().chkAgreementConsentCheckbox();
-		getReporter().reportLogWithScreenshot("Consent Check has Done");
-		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
-		getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
-		getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order has created", "Order hasn't created");
-		getReporter().reportLogWithScreenshot("Order details");
-	}
+        getFidointernetpackagechangerevieworderpage().clickEditPackage();
+        getReporter().reportLogWithScreenshot("Clicked Edit Package on Review page");
+        getFidointernetpackagechangerevieworderpage().clickYesOnEditPaymentOverLay();
+        getReporter().reportLogWithScreenshot("Clicked yes to edit package");
+        getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
+        getReporter().reportLogWithScreenshot("Selected another internet package");
+        getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
+        getFidocartsummarypage().clkInternetCheckout();
+        getReporter().reportLogWithScreenshot("Tech-Install page has launched");
+        getFidotechnicalinstallationpage().clkTechInstalConfirm();
+        getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifyFidoTermsAndConditions(), "Terms And Conditions are verified", "Terms And Conditions verification has failed");
+        getFidointernetpackagechangerevieworderpage().clkscrollToElement();
+        getFidointernetpackagechangerevieworderpage().chkAgreementConsentCheckbox();
+        getReporter().reportLogWithScreenshot("Consent Check has Done");
+        getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();
+        getReporter().reportLogWithScreenshot("Order Success and order confirmation details");
+        getReporter().hardAssert(getFidoorderconfirmationpage().verifyOrderConfirm(), "Order has created", "Order hasn't created");
+        getReporter().reportLogWithScreenshot("Order details");
+    }
 	
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})

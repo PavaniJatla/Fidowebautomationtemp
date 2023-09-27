@@ -12,16 +12,16 @@ import java.lang.reflect.Method;
 
 
 /**
- * This class contains the test method to test the TNAC buy flow for Fido.ca
- * TC003_CH-9855_Fido TNAC_Anonymous Cx_Use paid media link_Validate the Exclusive offer & Regular cards_See full details_Enter serviceable address_E2E_ON_CH_EN
- * @author manpreet.kaur3
+ * This class contains the test method to test the HSI buy flow for Fido.ca   
+ * 
+ * @author chinnarao.vattam
  * 
  * Test steps:
  *
- *1. Launch paid media link
+ *1. Launch fido.ca url
  *2. Click on home internet under shop menu
- *3. Click on check Availability button for the package with exclusive offer
- *4. Enter valid address in serviceability check pop up and click on Check availablity button.
+ *3. Click on check Availability button
+ *4. Enter valid address address in serviceability check pop up and click on Check availablity button.
  *5. Click on Buy online option
  *6. Select any Internet package form the list of packages available and click on Buy Now button
  *7. Click on Check out button
@@ -34,27 +34,18 @@ import java.lang.reflect.Method;
  *14.  Click on Confirm
  *15. Select Invoice option from dropdown list 
  *16. Click on Confirm button
- *17. Scroll down all the way down in Agreement field and select "I have read understood….." checkbox
+ *17. Scroll down all the way down in Agreement field and select "I have read understood…" checkbox
  *18. Click on Submit
  *
  **/
 
-public class FidoCH_Regression_TC_022_TNAC_SpecialOffer_BuyFlowTest extends BaseTestClass {
-	@Test(groups = {"RegressionCH"})
-	public void fidoCH_Regression_TC_022_TNAC_SpecialOffer_BuyFlow() {
-        getDriver().get(System.getProperty("QaUrl") + "/internet/packages?offerid=FIDO15075Unlimited");
+public class FidoCH_Regression_TC_004_HSIBuyFlow_Invoice_Test extends BaseTestClass {
+	@Test(groups = {"SanityCH","RegressionCH","FidoCableBuyCH", "ERM"})
+	public void checkInternetBuyFlow() {
         getReporter().reportLogWithScreenshot("Launched the packages Page");
-        getReporter().hardAssert(getFidoshopinternetpage().verifyBillBoardTNAC(),"TNAC Billboard verified","TNAC Billboard not verified");
-        getReporter().hardAssert(getFidoshopinternetpage().verifyPromoBlockTNAC(),"TNAC Promoblock verified","TNAC Promoblock not verified");
-		getFidoshopinternetpage().scrollToPromoBlockTNAC();
-		getReporter().reportLogWithScreenshot("verified the TNAC Exclusive Offer");
-		// String offerToBeSelected = getFidoshopinternetpage().getPackageWithExclusiveOffer();
-
-		getFidoshopinternetpage().expandViewDetailsExclusiveOffer();
-        getReporter().reportLogWithScreenshot("Click on View Details");
-        getFidoshopinternetpage().selectPlanWithExclusiveOffer();
-		getReporter().reportLogWithScreenshot("Selected the plan with exclusive offer");
-
+       // getFidoshopinternetpage().selectInternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.fidoHSIAccount.getaccountDetails().getUpgradePlanCost());
+        getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
+        getReporter().reportLogWithScreenshot("Launched the serviceability check page");
         String  strAddressLine1=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line1");
         String  strAddressLine2=TestDataHandler.fidoHSIAccount.getaccountDetails().getAddress().get("line2");
         getFidoshopinternetpage().setInternetAddressLookup(strAddressLine1+", "+strAddressLine2);
@@ -102,15 +93,18 @@ public class FidoCH_Regression_TC_022_TNAC_SpecialOffer_BuyFlowTest extends Base
 
         getFidotechnicalinstallationpage().clkTechInstalConfirm();
         getReporter().reportLogWithScreenshot("Payment page has launched");        
-        getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
+      /*  getFidopaymentoptionspage().setCreditCardNumber(TestDataHandler.chPaymentInfo.getCreditCardDetails().getNumber());
         getFidopaymentoptionspage().selectExpiryMonth();
         getFidopaymentoptionspage().selectExpiryYear();
-        getFidopaymentoptionspage().setCVV();     
-        getReporter().reportLogWithScreenshot("Payment details has set");
-        getFidopaymentoptionspage().clkPaymentConfirm();        
+        getFidopaymentoptionspage().setCVV();
+         getReporter().reportLogWithScreenshot("Payment details has set");*/
+
+        getFidopaymentoptionspage().selectPaymentMode("Invoice");
+        getReporter().reportLogWithScreenshot("Select Invoice as payment type");
+        getFidopaymentoptionspage().clkPaymentConfirm();
         getReporter().reportLogWithScreenshot("Order review page has launched");
         getReporter().hardAssert(getFidointernetpackagechangerevieworderpage().verifyFidoTermsAndConditions(), "Terms And Conditions are verified", "Terms And Conditions verification has failed");
-		getFidointernetpackagechangerevieworderpage().clkscrollToElement();
+        getFidointernetpackagechangerevieworderpage().clkscrollToElement();
 		getFidointernetpackagechangerevieworderpage().chkAgreementConsentCheckbox();
 		getReporter().reportLogWithScreenshot("Consent Check has Done");
 		getFidointernetpackagechangerevieworderpage().clkReviewSubmitButton();

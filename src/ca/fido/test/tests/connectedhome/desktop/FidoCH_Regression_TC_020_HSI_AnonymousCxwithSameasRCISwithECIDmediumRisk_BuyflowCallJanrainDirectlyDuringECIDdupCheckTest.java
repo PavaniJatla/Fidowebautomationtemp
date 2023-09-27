@@ -43,7 +43,9 @@ public class FidoCH_Regression_TC_020_HSI_AnonymousCxwithSameasRCISwithECIDmediu
 	@Test(groups = {"RegressionCH","FidoCableBuyCH"})
     public void checkCRMaddressMismatchWithSGI_ServiceabilityTest() {
 		getReporter().reportLogWithScreenshot("Launched the packages Page");
-		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getUpgradePlanCost());
+		getFidoshopinternetpage().select150InternetPlan(TestDataHandler.fidoHSIAccount.getaccountDetails().getDowngradeDataPlan());
+		getReporter().reportLogWithScreenshot("Launched the 100 mbps Internet plan");
+//		getFidoshopinternetpage().selectInternetPlan(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getDowngradeDataPlan(),TestDataHandler.validateRCISandECIDLowRiskHighRiskCC.getaccountDetails().getUpgradePlanCost());
 		getReporter().reportLogWithScreenshot("Launched the serviceability check page");
 		String  strAddressLine1=TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getAddress().get("line1");
 		String  strAddressLine2=TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getAddress().get("line2");
@@ -57,10 +59,12 @@ public class FidoCH_Regression_TC_020_HSI_AnonymousCxwithSameasRCISwithECIDmediu
 		}
 		getReporter().reportLogWithScreenshot("Good News for the Service availability");
 		getFidoshopinternetpage().clkBuyNowReskin();
-		getReporter().reportLogWithScreenshot("Cart-summary Page with the selected plan");
+		getReporter().reportLogWithScreenshot("Clicked on Buy Now to land to cart summary page");
 		getFidocartsummarypage().clkInternetCheckout();
-		getReporter().reportLogWithScreenshot("Create user page has launched to give the user information");
+		getReporter().reportLogWithScreenshot("CLicked on checkout on Cart-summary Page with the selected plan");
+
 		getFidocreateuserpage().setCommunicationDetails(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getUsername());
+		getReporter().reportLogWithScreenshot("Create user page has launched to give the user information");
 		getFidocreateuserpage().setFirstName(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getFirstName());
 		getFidocreateuserpage().setLastName(TestDataHandler.janrainDirectlyDuringECIDdupCheck.getaccountDetails().getLastName());
 		getReporter().reportLogWithScreenshot("Entered the user personal information");
