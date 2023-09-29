@@ -22,7 +22,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
     }
 
     @Test(groups = {"RegressionBFA","AALBFA","POM"})
-    public void tc13_pomfidoAALBYODExpressShippingDPAddonTest() {
+    public void tc13_POMPromoCodeMSFFidoAALBYODExpressShippingDPAddonTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc13AALBYODExpressShipping.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc13AALBYODExpressShipping.getPassword());

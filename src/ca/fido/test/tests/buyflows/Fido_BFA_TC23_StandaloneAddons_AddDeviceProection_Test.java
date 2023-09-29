@@ -17,7 +17,7 @@ public class Fido_BFA_TC23_StandaloneAddons_AddDeviceProection_Test extends Base
     }
 
     @Test(groups = {"RegressionBFA","SAABFA"})
-    public void tc23_fidoSAAAddDeviceProtectionTest() {
+    public void tc23_FidoSAAAddDeviceProtectionTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc23SAA_AddDeviceProtection.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc23SAA_AddDeviceProtection.getPassword());

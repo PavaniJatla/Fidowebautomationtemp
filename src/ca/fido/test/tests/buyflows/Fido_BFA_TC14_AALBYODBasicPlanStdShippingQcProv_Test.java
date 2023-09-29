@@ -27,7 +27,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void tc14_fidoAALBYODBasicPlanStdShippingQCTest() {
+    public void tc14_FidoAALBYODBasicPlanStdShippingQCTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc14AALBYODBasicPlanStdShippingQcProv.getPassword());

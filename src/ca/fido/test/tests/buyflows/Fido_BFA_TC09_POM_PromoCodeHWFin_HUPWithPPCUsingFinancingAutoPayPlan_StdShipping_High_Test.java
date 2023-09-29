@@ -10,75 +10,94 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test extends BaseTestClass {
+public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPlan_StdShipping_High_Test extends BaseTestClass {
+
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
     }
 
-    @Test(groups = {"RegressionBFA","AALBFA"})
-    public void tc11_fidoAALUsingNoTermPlanStandardShippingTest() {
-        getFidologinpage().setUsernameInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getUsername());
+    @Test(groups = {"RegressionBFA","HUPBFA","POM"})
+    public void tc09_POMPromoCodeHWFinFidoHUPWithPPCFinancingAutoPayPlanStdShippingHighRiskAcctTest() {
+        getFidologinpage().setUsernameInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().clkContinueSignIn();
-        getFidologinpage().setPasswordInFrame(TestDataHandler.tc11AALNoTermPlanStandardShipping.getPassword());
+        getFidologinpage().setPasswordInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
         getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
-        getDriver().get(System.getProperty("AWSUrl")+"/phones");
+        getDriver().get(System.getProperty("AWSUrl")+"/phones?flowType=hup&?setLanguage=EN&?province=ON");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
-        String deviceName = TestDataHandler.tc11AALNoTermPlanStandardShipping.getNewDevice();
+        String deviceName = TestDataHandler.tc09HupPpcFinancingStandardShipping.getNewDevice();
         getFidochoosephonepage().selectDevice(deviceName);
         getReporter().reportLogWithScreenshot("Device " + deviceName + " Selected");
-        getFidochoosephonepage().selectAddALineButton();
-        getReporter().reportLogPassWithScreenshot("Add a Line Button Selected");
-        //getReporter().hardAssert(getFidodeviceconfigpage().verifyDevicesInHeader(),"Page loading fine","Page is not loading");
         getReporter().reportLogWithScreenshot("Fido Device Configuration page loaded");
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(),"Continue button is displayed","Continue button is not displayed");
+        String deviceCost = getFidodeviceconfigpage().getDeviceFullPrice();
+        String financeProgramCredit = "0.0";
+        financeProgramCredit = getFidodeviceconfigpage().getFinanceProgramCreditPrice();
         getFidodeviceconfigpage().clickContinueButton();
-        getFidobuildplanpage().clkRadioButtonNoTerm();
+        // ***************************Promo Section************************************
+        getFidobuildplanpage().clkPromoSection();
+        getReporter().reportLogWithScreenshot("Promo Section Displayed");
+        getFidobuildplanpage().setPromoCode(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPromoCode());
+        getReporter().reportLogWithScreenshot("Promo Code Entered");
+        getFidobuildplanpage().clkCheckPromoBtn();
+        getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(),
+                "Promo Code Applied Successfully", "Promo Code Not Applied");
+        getFidobuildplanpage().clickContinuePromoModal();
         getFidobuildplanpage().clkContinueDeviceCost();
-        //String deviceCostIndex = TestDataHandler.tc16AALNoTermPlanStandardShipping.getDeviceCostIndex();
+        //String deviceCostIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
-        //getFidobuildplanpage().clkDeviceCost1(deviceCostIndex, "Finance");
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        getFidobuildplanpage().clkBasicTab();
-        getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-        getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        //getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
+        //        "Autopay plan is selected successfully","Autopay plan is not selected");
+        //getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        getFidobuildplanpage().clkContinueDataOption();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");
         getFidobuildplanpage().clkContinueDeviceProtection();
-        getFidobuildplanpage().clkContinueCallerID();
-        getReporter().reportLogWithScreenshot("Called ID information entered and continue button pressed");
+        getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),
+                "Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
+        getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayDiscountInCartSummary(),"AutoPay discount is added in cart summary",
+                "AutoPay is not added in cart summary");
         getFidobuildplanpage().clkContinueBelowCartSummary();
         getReporter().reportLogWithScreenshot("Plan Config Page Checkout Button selected");
-        String cityName = TestDataHandler.tc11AALNoTermPlanStandardShipping.getCityName();
-        getFidoCheckOutPage().selectCityForChooseYourTelephoneNum(cityName);
-        getReporter().reportLogWithScreenshot("City Name and available phone number selected");
-        getFidopaymentoptionspage().clickSkipAutopay();
+        String expectedDownPayment = getFidocreditcheckpage().setDownPaymentUpfrontEdge(TestDataHandler.tc09HupPpcFinancingStandardShipping.getRiskClass(),deviceCost,financeProgramCredit);
+        getReporter().reportLog("Expected DownPayment: <b> " +expectedDownPayment +"</b>");
+        getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
+        getFidopaymentoptionspage().enterBankDetails();
+        getFidopaymentoptionspage().clkAutoPayConsentCheckBox();
+        getReporter().reportLogWithScreenshot("AutoPay Enrolled - Bank Method");
+        getFidopaymentoptionspage().billingOptionClkContinue();
         getReporter().hardAssert(getFidoCheckOutPage().verifyShippingLabelCheckOutPage() , "Shipping label displayed"  ,"Shipping label not displayed");
-        getFidoCheckOutPage().selectNewShippingAddress(TestDataHandler.tc11AALNoTermPlanStandardShipping.getNewShippingAddress());
-        getReporter().reportLogPassWithScreenshot("Entered new Shipping Address");
-        String deliveryMethod = TestDataHandler.tc11AALNoTermPlanStandardShipping.getShippingType();
+        getReporter().softAssert(getFidocreditcheckpage().verifyDownPaymentAmt(expectedDownPayment),
+                "Downpayment amount is displayed correctly", "Downpayment amount is not displayed correctly");
+        String deliveryMethod = TestDataHandler.tc09HupPpcFinancingStandardShipping.getShippingType();
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
-        getReporter().reportLogWithScreenshot("Shipping selected");
+        if (deliveryMethod.equalsIgnoreCase("EXPRESS")) {
+            getReporter().reportLogWithScreenshot("Express Shipping selected");
+            getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
+        } else {
+            getReporter().reportLogWithScreenshot("Shipping selected");
+        }
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();
-        String selectedShippingAddress = getFidoorderreviewpage().getSelectedShippingAddress();
-        getReporter().softAssert(TestDataHandler.tc11AALNoTermPlanStandardShipping.getNewShippingAddress().contains(selectedShippingAddress),
-                "Selected Shipping Address is same as in yaml file","Selected Shipping Address is not same as in yaml file");
+        getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),
+                "Promo Code and Discount amount Line Item displayed","Promo code line item not displayed");
         getFidoorderreviewpage().clkTermsNConditionsAgreementConsent();
-        //getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
+        getFidoorderreviewpage().clkTermsNConditionsFinancingConsent();
         getFidoorderreviewpage().setOrderCommunicationConsent();
         getReporter().reportLogWithScreenshot("Terms and conditions clicked");
         getFidoorderreviewpage().clkSubmitMyOrder();
+        getReporter().reportLogPass("Submit button selected on review page");
         if(isPaymentRequired) {
             getReporter().reportLogWithScreenshot("OneTime payment page displayed");
             getReporter().softAssert(getFidopaymentpage().verifyOneTimePaymentTitle(),
@@ -100,6 +119,5 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStandardShipping_ChangeAddress_Test
     @AfterMethod(alwaysRun = true)
     public void afterTest() {
         closeSession();
-	}
-
+    }
 }

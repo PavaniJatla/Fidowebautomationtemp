@@ -17,7 +17,7 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","AALBFA","DP"})
-    public void tc10_fidoAALUsingFinancePlanExpressShippingTest() {
+    public void tc10_FidoAALUsingFinancePlanExpressShippingTest() {
         getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         getFidochoosephonepage().clickBannerSignIn();

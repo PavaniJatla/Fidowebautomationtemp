@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC01_NAC_ByodNoTerm_BasicPlan_StdShippingTest extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","SanityBFA","NACBFA","NACBFABYOD"})
-	public void tc01_fidoNACByodTermStandardShipping() {
+	public void tc01_FidoNACByodTermStdShipping() {
 		//getFidobuildplanpage().setProvince("Ontario");
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");

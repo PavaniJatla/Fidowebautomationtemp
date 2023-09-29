@@ -17,7 +17,7 @@ public class Fido_BFA_TC22_StandaloneAddons_RemoveVisualVoicemail_Test extends B
     }
 
     @Test(groups = {"RegressionBFA","SAABFA"})
-    public void tc22_fidoSAARemoveVisualVoicemailTest() {
+    public void tc22_FidoSAARemoveVisualVoicemailTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc22SAA_RemoveVoicemail.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc22SAA_RemoveVoicemail.getPassword());

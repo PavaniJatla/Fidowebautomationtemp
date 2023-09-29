@@ -18,7 +18,7 @@ public class Fido_BFA_TC07_TabletHUPwithPPCUsingFinPlanExpressShipping_Test exte
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA"})
-    public void tc07_fidoTabletHUPWithPPCUsingFinPlanExpressShippingTest() {
+    public void tc07_FidoTabletHUPWithPPCUsingFinPlanExpressShippingTest() {
         // **************************Regular Login Flow**************************************
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc07TabletHupPpcFinExpressShipping.getUsername());
         getFidologinpage().clkContinueSignIn();

@@ -27,7 +27,7 @@ public class Fido_BFA_TC20_PPC_SL_SubsidyOutTerm_SelectingTTFINPlan_Test extends
     }
 
     @Test(groups = {"RegressionBFA","PPCBFA"})
-    public void tc20_fidoPPCSL_SubsidyOutTerm_TTPlanTest() {
+    public void tc20_FidoPPCSL_SubsidyOutTerm_TTPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc20PPCSLSubsidyOutTermSelectingTTPlan.getPassword());

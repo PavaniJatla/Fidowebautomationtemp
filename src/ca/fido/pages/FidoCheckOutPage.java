@@ -147,6 +147,13 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='auto-pay-removal-modal-button']//span[contains(text(),'Continue')]")
 	WebElement autoPayRemovalCtnBtn;
 
+	@FindBy(xpath = "//button[@data-test='activation-options-continue']")
+	WebElement saveAndContinueBtnCheckoutPage;
+
+	@FindBy(xpath = "//*[contains(text(),'Upon order fulfillment')]/ancestor::ds-radio-button")
+	WebElement UponOrdrFulfillmentRadioBtnCheckoutPage;
+
+
 	/**
 	 * This method enters the value in email address field in shipping page
 	 * @author praveen.kumar7
@@ -408,5 +415,16 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public boolean verifyDpAddonPage(){
 		return reusableActions.isElementVisible(dpAddonPageTitle,10);
+	}
+
+	/**
+	 * This method Clicks on the 'Upon order fulfillment' radio option and Click on Save and Continue for shipping
+	 * @author sonali.Bansal
+	 */
+	public void clksaveAndContinueBtnCheckoutPage(){
+		reusableActions.waitForElementTobeClickable(UponOrdrFulfillmentRadioBtnCheckoutPage,40);
+		reusableActions.scrollToElement(UponOrdrFulfillmentRadioBtnCheckoutPage);
+		reusableActions.executeJavaScriptClick(UponOrdrFulfillmentRadioBtnCheckoutPage);
+		reusableActions.executeJavaScriptClick(saveAndContinueBtnCheckoutPage);
 	}
 }

@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","NACBFABYOD"})
-	public void tc02_pomfidoNACByodExpressShipping() {
+	public void tc02_POMRegularPromoMSFFidoNACByodExpressShipping() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().reportLogWithScreenshot("Fido plan config page");
 		// ***************************Promo Section************************************

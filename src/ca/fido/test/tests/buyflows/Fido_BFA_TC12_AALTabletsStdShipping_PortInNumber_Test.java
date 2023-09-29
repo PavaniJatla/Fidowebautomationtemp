@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends BaseTestClass {
+public class Fido_BFA_TC12_AALTabletsStdShipping_PortInNumber_Test extends BaseTestClass {
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         startSession(System.getProperty("QaUrl"),strBrowser ,strLanguage, FidoEnums.GroupName.buyflows ,  method);
@@ -22,7 +22,7 @@ public class Fido_BFA_TC12_AALTabletsStandardShipping_PortInNumber_Test extends 
     }
 
     @Test(groups = {"RegressionBFA","AALBFA"})
-    public void tc12_fidoAALTabletStandardShippingPortInTest() {
+    public void tc12_FidoAALTabletStdShippingPortInTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc12AALTabletsStandardShipping.getPassword());

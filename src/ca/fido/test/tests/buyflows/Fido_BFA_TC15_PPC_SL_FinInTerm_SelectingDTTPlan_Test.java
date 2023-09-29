@@ -27,7 +27,7 @@ public class Fido_BFA_TC15_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTe
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
-    public void tc15_fidoPPCSL_FINInTerm_DTTPlanTest() {
+    public void tc15_FidoPPCSL_FINInTerm_DTTPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc15PPCSLFinInTermDTTPlan.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc15PPCSLFinInTermDTTPlan.getPassword());

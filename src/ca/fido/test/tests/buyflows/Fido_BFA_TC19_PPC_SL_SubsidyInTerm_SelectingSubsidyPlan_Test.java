@@ -27,7 +27,7 @@ public class Fido_BFA_TC19_PPC_SL_SubsidyInTerm_SelectingSubsidyPlan_Test extend
     }
 
     @Test(groups = {"RegressionBFA"})
-    public void tc19_fidoPPCSLNonSE_SubsidyInTerm_SubsidyPlanTest() {
+    public void tc19_FidoPPCSLNonSE_SubsidyInTerm_SubsidyPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc19PPCSLSubsidyInTermSelectingSubsidyPlan.getUsername());
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc19PPCSLSubsidyInTermSelectingSubsidyPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
