@@ -64,7 +64,14 @@ public class FidoChooseNumberPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[@data-test='port-in-success' or @data-test='Bonne nouvelle']")
 	WebElement successPortInMessage;
-	
+
+	@FindAll({
+			@FindBy(xpath = "//button[contains(@data-test,'stepper-6')]"),
+			@FindBy(xpath = "//button[@data-test='caller-id-continue']")
+
+	})
+	WebElement continueCallerID;
+
 	/**
 	 * Clicks on the 'Select a number for your new phone' button
 	 * @author rajesh.varalli1
@@ -176,4 +183,11 @@ public class FidoChooseNumberPage extends BasePageClass {
 		reusableActions.clickWhenReady(btnContinueChooseANumberSection);
 	}
 
+	/**
+	 * This method Clicks on the 'Continue' button for saving First name and last name
+	 * @author sonali.Bansal
+	 */
+	public void clkCallerIDContinueBtn() {
+		reusableActions.clickWhenReady(continueCallerID, 30);
+	}
 }
