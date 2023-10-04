@@ -1,0 +1,166 @@
+name: $(Rev:r)
+appendCommitMessageToRunName: false
+
+resources:
+  repositories:
+    - repository: shared
+      type: github
+      endpoint: svcdawsdev
+      name: RogersCommunications/enterprise-ado-pipelines
+      ref: refs/heads/test-notification
+
+trigger: none
+pr: none
+
+parameters:
+  - name: Browser
+    displayName: Test Browser
+    type: string
+    default: saucechrome
+  - name: Language
+    displayName: Test Language
+    type: string
+    default: en
+    values:
+      - en
+      - fr
+  - name: ThreadCount
+    displayName: Number of parallel test sessions
+    type: string
+    default: 2
+  - name: Groups
+    displayName: Groups names separated by comma
+    type: string
+    default: SanityCH
+  - name: TestProfile
+    displayName: Only used for reporting - has no impact on test runs
+    type: string
+    default: DefaultProfile
+  - name: IndividualTests
+    displayName: Individual tests to be passed as Test1 Test2 Test3 Test4 and so on
+    type: string
+    default: NULL
+  - name: PageLoadStrategy
+    displayName: Give the strategy as NORMAL , EAGER or NONE
+    type: string
+    default: NORMAL
+  - name: QaUrl
+    displayName: Test QA URL Link
+    type: string
+    default: NULL
+  - name: SSPUrl
+    displayName: SSP URL
+    type: string
+    default: NULL
+  - name: AWSUrl
+    displayName: BFA AWS URL
+    type: string
+    default: NULL
+  - name: AWSPRODUrl
+    displayName: BFA AWS PROD URL
+    type: string
+    default: NULL
+  - name: EnsUrl
+    displayName: ENS URL Link
+    type: string
+    default: NULL
+  - name: TestProject
+    displayName: Test plan to update the test results in JIRA
+    type: string
+    default: RTM
+  - name: TestPlanKey
+    displayName: Test plan to update the test results in JIRA
+    type: string
+    default: NULL
+  - name: TestExecutionKey
+    displayName: Test Execution to update the test results in JIRA
+    type: string
+    default: NULL
+  - name: XrayImportFlag
+    displayName: Flag to check whether results need to be imported in Xray
+    type: string
+    default: false
+
+# schedules:
+#   - cron: '40 17 * * Mon-Fri'
+#     displayName: Scheduled Work Day Daily
+#     always: true
+#     batch: true
+#     branches:
+#       include:
+#         - ado-migration
+#         -
+extends:
+  template: generic-utility-1.yml@shared
+  parameters:
+    name: Output
+    pool: openjdk11-azure
+    teams: https://rcirogers.webhook.office.com/webhookb2/e3556c59-ec6f-42ad-b0e7-7e48d22625f9@0ab4cbbf-4bc7-4826-b52c-a14fed5286b9/IncomingWebhook/c1d14a56b09d4f7d859f607318cbefef/7ddb6f8f-d5ee-4b6c-b03e-fa40f0240dbd
+    reports: "https://qa1.rogers.com/Digital-QE/report"
+    groups:
+      - common
+      - artifactory_serv_svc_dawsdev
+      - global
+      - github_daws_svc_account
+    steps:
+      - checkout: self
+        submodules: true
+
+      - template: jobs/gradle/steps/cache.yml@shared
+        parameters:
+          use_cache_ignore: false
+
+      - script: |
+          generateTestString(){
+            local input="${1}"
+            input="$(echo ${input} | xargs)"
+            input=$(echo "${input}" | sed 's/.java//g')
+            newString=""
+            input_array=(${input})
+            for i in "${input_array[@]}"; do
+              newString="${newString}--tests ${i} "
+            done
+            echo "${newString}"
+          }
+          export GIT_COMMIT=$BUILD_SOURCEVERSION
+          export BRANCH_NAME=$BUILD_SOURCEBRANCHNAME
+          sh github-credentials.sh
+          sh artifactory-credentials.sh
+          sh sonarqube-credentials.sh
+          if [[ $BUILD_REASON == 'Schedule' ]]; then
+            echo "gradle sauceTest -Ptest_browser='saucechrome' -Ptest_language='en' -Ptest_groupName='PRODNACSanity' -Ptest_threadCount=6 -Ptest_profile='BFA' -i --stacktrace"
+            gradle sauceTest -Ptest_browser='saucechrome' -Ptest_language='en' -Ptest_groupName='PRODNACSanity' -Ptest_threadCount=6 -Ptest_profile='BFA' -i --stacktrace
+          else
+            if [[ ${{parameters.IndividualTests}} == "NULL" ]]; then
+              if [[ ${{parameters.urlLink}} == "NULL" ]]; then
+                echo "gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} -Ptest_groupName='${{parameters.Groups}}' -Ptest_threadCount=${{parameters.ThreadCount}} -i --stacktrace" 
+                gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} -Ptest_groupName='${{parameters.Groups}}' -Ptest_threadCount=${{parameters.ThreadCount}} -i --stacktrace
+              else
+                echo "gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} -Ptest_groupName='${{parameters.Groups}}' -Ptest_threadCount=${{parameters.ThreadCount}} ${{parameters.urlLink}} -i --stacktrace"
+                gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} -Ptest_groupName='${{parameters.Groups}}' -Ptest_threadCount=${{parameters.ThreadCount}} ${{parameters.urlLink}} -i --stacktrace
+              fi
+            else
+              if [[ ${{parameters.urlLink}} == "NULL" ]]; then
+                echo "gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} $(generateTestString "${{parameters.IndividualTests}}") -Ptest_threadCount=${{parameters.ThreadCount}} -i --stacktrace"
+                gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} $(generateTestString "${{parameters.IndividualTests}}") -Ptest_threadCount=${{parameters.ThreadCount}} -i --stacktrace
+              else
+                echo "gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} $(generateTestString "${{parameters.IndividualTests}}") -Ptest_threadCount=${{parameters.ThreadCount}} ${{parameters.urlLink}} -i --stacktrace"
+                gradle sauceTest -Ptest_browser=${{parameters.Browser}} -Ptest_language=${{parameters.Language}} $(generateTestString "${{parameters.IndividualTests}}") -Ptest_threadCount=${{parameters.ThreadCount}} ${{parameters.urlLink}} -i --stacktrace
+              fi
+            fi
+          fi
+        displayName: Run Test
+        env:
+          ARTIFACTORY_CREDENTIALS_PSW: $(ARTIFACTORY_CREDENTIALS_PSW)
+          ARTIFACTORY_CREDENTIALS_USR: $(ARTIFACTORY_CREDENTIALS_USR)
+          GITHUB_CREDENTIALS_PSW: $(GITHUB_CREDENTIALS_PSW)
+          GITHUB_CREDENTIALS_USR: $(GITHUB_CREDENTIALS_USR)
+          SAUCE_USERNAME: $(SAUCE_USERNAME)
+          SAUCE_ACCESS_KEY: $(SAUCE_ACCESS_KEY)
+          NETSTORAGE_HOST: $(NETSTORAGE_HOST)
+          NETSTORAGE_ID: $(NETSTORAGE_ID)
+          NETSTORAGE_ACCESS_KEY: $(NETSTORAGE_ACCESS_KEY)
+          EMAIL_USERNAME: $(EMAIL_USERNAME)
+          EMAIL_PASSWORD: $(EMAIL_PASSWORD)
+          XRAY_PROD_CRED_USR: $(XRAY_PROD_CRED_USR)
+          XRAY_PROD_CRED_PSW: $(XRAY_PROD_CRED_PSW)
