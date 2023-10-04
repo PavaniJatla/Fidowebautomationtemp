@@ -80,6 +80,10 @@ parameters:
     displayName: Flag to check whether results need to be imported in Xray
     type: string
     default: false
+  - name: urlLink
+    displayName: url Link
+    type: string
+    default: NULL
 
 # schedules:
 #   - cron: '40 17 * * Mon-Fri'
