@@ -53,8 +53,8 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
-    /*systemProperty 'TunnelName', "DigitalQETunnel"
-    systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"*/
+    systemProperty 'TunnelName', "DigitalQETunnel"
+    systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
