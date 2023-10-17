@@ -72,6 +72,9 @@ public class FidoChooseNumberPage extends BasePageClass {
 	})
 	WebElement continueCallerID;
 
+	@FindBy(xpath = "//button[@data-test='stepper-5-edit-step-continue-button']")
+	WebElement ContinueCallerIdName;
+
 	/**
 	 * Clicks on the 'Select a number for your new phone' button
 	 * @author rajesh.varalli1
@@ -184,10 +187,11 @@ public class FidoChooseNumberPage extends BasePageClass {
 	}
 
 	/**
-	 * This method Clicks on the 'Continue' button for saving First name and last name
+	 * This method Clicks on the 'Continue' button for saving First name and last name in choose number step
 	 * @author sonali.Bansal
 	 */
-	public void clkCallerIDContinueBtn() {
-		reusableActions.clickWhenReady(continueCallerID, 30);
+	public void clkContinueAfterFirstNameLastName() {
+		reusableActions.clickWhenReady(ContinueCallerIdName, 30);
+		reusableActions.clickWhenReady(continueCallerID, 10);
 	}
 }

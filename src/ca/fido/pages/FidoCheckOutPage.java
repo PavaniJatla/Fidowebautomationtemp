@@ -129,7 +129,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'Device Protection')]")
 	WebElement dpAddonPageTitle;
 
-	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	@FindBy(xpath = "//input[@formcontrolname='imei']/parent::div")
 	WebElement dpimeiField;
 
 	@FindBy(xpath = "//input[@formcontrolname='imei']")

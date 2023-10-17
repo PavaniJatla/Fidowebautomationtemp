@@ -252,7 +252,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//label[@aria-label='Device Protection' or contains(@aria-label,'Protection de l’appareil')]")
 	WebElement BYODdpAddon;
 
-	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	@FindBy(xpath = "//input[@formcontrolname='imei']/parent::div")
 	WebElement dpimeiField;
 
 	@FindBy(xpath = "//input[@formcontrolname='imei']")

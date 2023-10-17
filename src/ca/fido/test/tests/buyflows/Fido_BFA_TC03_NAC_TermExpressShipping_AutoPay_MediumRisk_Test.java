@@ -53,7 +53,9 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_AutoPay_MediumRisk_Test exten
 		getFidobuildplanpage().clkContinueDeviceProtection();
 		getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayDiscountInCartSummary(),"AutoPay discount is added in cart summary","AutoPay is not added in cart summary");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
-		getReporter().reportLogPass("Proceed to checkout button clicked");
+		getReporter().reportLogPass("Proceed to checkout button clicked on Build Plan Page");
+		getFidoShippingCartPage().clkProceedShoppingCart();
+		getReporter().reportLogPass("Proceed to checkout button clicked on Shopping Cart");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
 		getReporter().reportLogPass("User profile page");
 		getFidocreateuserpage().setCommunicationDetails();
@@ -88,6 +90,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_AutoPay_MediumRisk_Test exten
 		//getFidoCheckOutPage().clkNoThanks();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
+		getFidochoosenumberpage().clkContinueAfterFirstNameLastName();
 		getReporter().hardAssert(getFidopaymentoptionspage().verifyAutoPaymentPage(),"Autopay payment page is displayed","Autopay payment page is not displayed");
 		getFidopaymentoptionspage().enterBankDetails();
 		getFidopaymentoptionspage().clkAutoPayConsentCheckBox();
@@ -100,6 +103,7 @@ public class Fido_BFA_TC03_NAC_TermExpressShipping_AutoPay_MediumRisk_Test exten
 		getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
 		getFidoCheckOutPage().clkShippingContinueButton();
 		getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
+		getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");
 		getReporter().reportLogWithScreenshot("Order Review page");
