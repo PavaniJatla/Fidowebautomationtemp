@@ -3,9 +3,6 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'com.jfrog.artifactory' version '4.28.1'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'net.researchgate.release' version '2.8.1'
-    id 'net.saliman.properties' version '1.5.1'
     id 'com.aditya.SauceConnectPlugin' version '0.0.15'
 }
 
@@ -43,7 +40,7 @@ task "sauceTest"(type: Test) {
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
-    systemProperty 'ensEnv',test_ens_env
+    //systemProperty 'ensEnv',test_ens_env
     systemProperty 'OneViewUrl', test_oneViewUrl
     systemProperty 'OneViewEnv',  test_oneViewEnv
     systemProperty 'XrayImportFlag', xray_import_flag
@@ -61,7 +58,6 @@ task "sauceTest"(type: Test) {
     systemProperty 'parentTunnelOwner', parentTunnelOwner
     /*systemProperty 'TunnelName', "DigitalQETunnel"
     systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"*/
-
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
 
@@ -97,7 +93,7 @@ task "localTest"(type: Test) {
     systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
-    systemProperty 'ensEnv',test_ens_env
+    //systemProperty 'ensEnv',test_ens_env
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
     systemProperty 'OneViewUrl', test_oneViewUrl
@@ -153,6 +149,7 @@ dependencies {
 
 group = 'ca.fido'
 version = '1.0-SNAPSHOT'
+sourceCompatibility = '11'
 
 sourceSets {
 
