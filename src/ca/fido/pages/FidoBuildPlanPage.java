@@ -50,7 +50,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
 
-	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
+	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']/label")
 	WebElement keepMyCurrentPlanButton;
 
 	@FindBy(xpath = "//ds-checkbox[@data-test='vdp-checkbox']/label")
@@ -101,7 +101,11 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[@data-test='stepper-5-continue-cta']")
 	WebElement eSIMContinue;
 
-	@FindBy(xpath = "//span[contains(text(),'CONTINUE')]")
+	@FindAll({
+			@FindBy(xpath = "//button[contains(@data-test,'stepper-6')]"),
+			@FindBy(xpath = "//button[@data-test='caller-id-continue']")
+
+	})
 	WebElement callerIDContinue;
 
 	@FindBy(xpath = "//span[@translate='createAccount']/parent::button")
@@ -124,7 +128,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//a[@res='keep-existing']")
 	WebElement lnkKeepExisting;
 
-	@FindBy(xpath = "//span[@res='keep-existing']/parent::button")
+	@FindBy(xpath = "//*[@data-test='keep-current-plan-checkbox']")
 	WebElement btnKeepExistingPlan;
 
 	@FindBy(xpath = "//div[@res='build-your-phone']")
@@ -175,7 +179,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//div[contains(@class,'dsa-infoWidget__ctnInfo')]//span[contains(@class,'dsa-infoWidget__ctnCopy')]")
 	WebElement infoWidgetCtnCopy;
 
-	@FindBy(xpath = "//button[@data-test='stepper-0-edit-step-continue-button']")
+	@FindAll({
+			@FindBy(xpath = "//button[contains(@title,'Continue and change phone plan')]"),
+			@FindBy(xpath = "//button[@data-test='stepper-0-edit-step-continue-button']")
+	})
 	WebElement btnChangePlan;
 
 	@FindBy(xpath = "//button[@data-test='downgrade-modal-proceed']")
@@ -202,13 +209,22 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'dsa-cartSummary')]")
 	WebElement btnCartSummary;
 
-	@FindBy(xpath = "//span[contains(text(),'Have a promo code') or contains(text(),'code promotionnel')]")
+	@FindAll({
+		@FindBy(xpath = "//ds-icon[@name='chevron-down']/parent::div"),
+		@FindBy(xpath = "//div[@data-test='view-more-promos-header']/span[contains(text(),'Promos')]")
+	})
 	WebElement promoSection;
 
-	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]/ancestor::ds-form-field")
+	@FindAll({
+			@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]/parent::div"),
+			@FindBy(xpath = "//dsa-layout//*[@data-test='promo-input']/div")
+	})
 	WebElement promoCodeField;
 
-	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
+	@FindAll({
+			@FindBy(xpath = "//dsa-layout//*[@data-test='promo-input']//input"),
+			@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
+	})
 	WebElement txtPromoCode;
 
 	@FindBy(xpath = "//button[contains(@data-test,'promo-button-check') and contains(text(),'Check') or contains(text(),'Vérifier')]")
@@ -836,8 +852,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void keepExistingPlan() {
-		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(lnkKeepExisting, 40));
-		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnKeepExistingPlan, 30));
+		reusableActions.executeJavaScriptClick(btnKeepExistingPlan);
 		//reusableActions.clickIfAvailable(By.xpath("//button[@translate='bpo_redeem_offer']"));
 	}
 	
@@ -912,16 +927,16 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void selectPlanType(String planType) {
 		if(planType.equalsIgnoreCase("Financing")) {
-			reusableActions.clickWhenVisible(labelDTTPlanType);
+			reusableActions.executeJavaScriptClick(labelDTTPlanType);
 		}
 		else if(planType.equalsIgnoreCase("TALKTEXTFIN")) {
-			reusableActions.clickWhenVisible(labelTTPlanType);
+			reusableActions.executeJavaScriptClick(labelTTPlanType);
 		}
 		else if(planType.equalsIgnoreCase("NOTERM")) {
-			reusableActions.clickWhenVisible(labelNotermPlanType);
+			reusableActions.executeJavaScriptClick(labelNotermPlanType);
 		}
 		//reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[@aria-label='"+planType+"']"));
-		reusableActions.clickWhenVisible(btnContinueDeviceCost);
+		reusableActions.executeJavaScriptClick(btnContinueDeviceCost);
 		reusableActions.staticWait(15000);
 	}
 
@@ -993,9 +1008,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void clkPromoSection() {
-		reusableActions.staticWait(15000);
 		reusableActions.waitForElementVisibility(promoSection, 20);
-		reusableActions.clickWhenReady(promoSection);
+		reusableActions.javascriptScrollByVisibleElement(promoSection);
+		reusableActions.executeJavaScriptClick(promoSection);
 	}
 
 	/**
@@ -1005,8 +1020,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void setPromoCode(String promoCode) {
 		//reusableActions.executeJavaScriptClick(promoCodeField);
-		reusableActions.getWhenReady(promoCodeField,20).click();
-		reusableActions.getWhenReady(txtPromoCode,30).click();
+		reusableActions.executeJavaScriptClick(promoCodeField);
+		reusableActions.executeJavaScriptClick(txtPromoCode);
 		txtPromoCode.sendKeys(promoCode);
 	}
 

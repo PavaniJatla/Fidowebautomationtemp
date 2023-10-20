@@ -86,6 +86,7 @@ public class Fido_BFA_TC13_POM_PromoCodeMSF_AALBYODExpressShipping_DP_Test exten
             getReporter().reportLogWithScreenshot("Shipping selected");
         }
         getFidoCheckOutPage().clkShippingContinueButton();
+        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();

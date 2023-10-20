@@ -53,11 +53,11 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPla
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        //getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
-        //        "Autopay plan is selected successfully","Autopay plan is not selected");
+        getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
+                "Autopay plan is selected successfully","Autopay plan is not selected");
         //getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-        getFidobuildplanpage().clkContinueDataOption();
+        //getFidobuildplanpage().clkContinueDataOption();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");

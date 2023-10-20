@@ -81,6 +81,7 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
+		getFidochoosenumberpage().clkContinueAfterFirstNameLastName();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().clickSkipAutopay();
@@ -90,6 +91,7 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 		getReporter().reportLogWithScreenshot("Shipping selected");
 		getReporter().hardAssert(getFidoCheckOutPage().verifyMapOnCheckOutPage() , "Bopis Map displayed" , "Bopis Map not displayed");
 		getFidoCheckOutPage().clkShippingContinueButton();
+		getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
 		getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");

@@ -43,11 +43,9 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStdShipping_ChangeAddress_Test exte
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         //getFidobuildplanpage().clkDeviceCost1(deviceCostIndex, "Finance");
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
-        getFidobuildplanpage().clkDeviceBalancePopUp();
-        getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
         getFidobuildplanpage().clkBasicTab();
         getFidobuildplanpage().selectBasicPlanAndClkContinueBtn(TestDataHandler.tc04NoTermStandardShipping.getDataOptionIndex(),this.getClass().getSimpleName());
-        getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
+        //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
@@ -68,6 +66,7 @@ public class Fido_BFA_TC11_AALUsingNoTermPlanStdShipping_ChangeAddress_Test exte
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
+        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();

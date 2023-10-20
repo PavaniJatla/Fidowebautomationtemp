@@ -88,6 +88,7 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStdShipping_Test extends 
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
+		getFidochoosenumberpage().clkContinueAfterFirstNameLastName();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
@@ -96,6 +97,7 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStdShipping_Test extends 
 		getFidoCheckOutPage().clkShippingType("STANDARD");
 		getReporter().reportLogWithScreenshot("Shipping selected");
 		getFidoCheckOutPage().clkShippingContinueButton();
+		getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
 		getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");

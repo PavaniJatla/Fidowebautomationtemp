@@ -34,7 +34,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         getFidologinpage().switchOutOfSignInFrame();
-        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl") + "/phones/bring-your-own-device?flowType=aal&province=qc");
         getReporter().hardAssert(getFidobuildplanpage().verifyContinueBtnPlanStepper(),"Fido plan config page is displayed" , "Fido plan config page is not displayed");
@@ -61,6 +61,7 @@ public class Fido_BFA_TC14_AALBYODBasicPlanStdShippingQcProv_Test extends BaseTe
         getFidoCheckOutPage().clkShippingType(deliveryMethod);
         getReporter().reportLogWithScreenshot("Shipping selected");
         getFidoCheckOutPage().clkShippingContinueButton();
+        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();

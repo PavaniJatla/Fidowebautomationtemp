@@ -44,8 +44,8 @@ public class Fido_BFA_TC12_AALTabletsStdShipping_PortInNumber_Test extends BaseT
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         //getFidobuildplanpage().clkDeviceBalancePopUp();
         //getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        String dataOptionIndex = TestDataHandler.tc12AALTabletsStandardShipping.getDataOptionIndex();
-        getFidobuildplanpage().clkDataOption(dataOptionIndex,this.getClass().getSimpleName());
+//        String dataOptionIndex = TestDataHandler.tc12AALTabletsStandardShipping.getDataOptionIndex();
+//        getFidobuildplanpage().clkDataOption(dataOptionIndex,this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         //getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
@@ -76,6 +76,7 @@ public class Fido_BFA_TC12_AALTabletsStdShipping_PortInNumber_Test extends BaseT
             getReporter().reportLogWithScreenshot("Shipping selected");
         }
         getFidoCheckOutPage().clkShippingContinueButton();
+        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();

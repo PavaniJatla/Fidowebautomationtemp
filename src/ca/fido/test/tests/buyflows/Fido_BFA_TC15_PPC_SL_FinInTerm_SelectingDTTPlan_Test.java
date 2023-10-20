@@ -34,7 +34,7 @@ public class Fido_BFA_TC15_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTe
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
         //getFidologinpage().switchOutOfSignInFrame();
-        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl") + "/phones/build-plan?flowType=ppc");
         //--------------------------------------------Plan Config page--------------------------------------------------
