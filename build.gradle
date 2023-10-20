@@ -40,7 +40,7 @@ task "sauceTest"(type: Test) {
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
-    //systemProperty 'ensEnv',test_ens_env
+    systemProperty 'ensEnv',test_ens_env
     systemProperty 'OneViewUrl', test_oneViewUrl
     systemProperty 'OneViewEnv',  test_oneViewEnv
     systemProperty 'XrayImportFlag', xray_import_flag
@@ -93,7 +93,7 @@ task "localTest"(type: Test) {
     systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
-    //systemProperty 'ensEnv',test_ens_env
+    systemProperty 'ensEnv',test_ens_env
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
     systemProperty 'OneViewUrl', test_oneViewUrl
