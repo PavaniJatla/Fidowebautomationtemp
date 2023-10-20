@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPlan_SS_High_Test extends BaseTestClass {
+public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPlan_StdShipping_High_Test extends BaseTestClass {
 
     @BeforeMethod(alwaysRun=true)@Parameters({ "strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
@@ -18,7 +18,7 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPla
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA","POM"})
-    public void tc09_pomFidoHUPWithPPCFinancingAutoPayPlanHighRiskAcctTest() {
+    public void tc09_POMPromoCodeHWFinFidoHUPWithPPCFinancingAutoPayPlanStdShippingHighRiskAcctTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc09HupPpcFinancingStandardShipping.getPassword());
@@ -46,17 +46,18 @@ public class Fido_BFA_TC09_POM_PromoCodeHWFin_HUPWithPPCUsingFinancingAutoPayPla
         getFidobuildplanpage().clkCheckPromoBtn();
         getReporter().hardAssert(getFidobuildplanpage().verifyPromoSuccessMsg(),
                 "Promo Code Applied Successfully", "Promo Code Not Applied");
+        getFidobuildplanpage().clickContinuePromoModal();
         getFidobuildplanpage().clkContinueDeviceCost();
         //String deviceCostIndex = TestDataHandler.tc11HupPpcFinancingExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
-        //getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
-        //        "Autopay plan is selected successfully","Autopay plan is not selected");
+        getReporter().hardAssert(getFidobuildplanpage().verifyAutoPayPlanSelection(getFidobuildplanpage().getAutoPayPlanIndex("MSF"),this.getClass().getSimpleName()),
+                "Autopay plan is selected successfully","Autopay plan is not selected");
         //getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
         //getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
-        getFidobuildplanpage().clkContinueDataOption();
+        //getFidobuildplanpage().clkContinueDataOption();
         getReporter().reportLogWithScreenshot("Plan Config Page Talk Options selected");
         getFidobuildplanpage().clkContinueAddOns();
         getReporter().reportLogWithScreenshot("Plan Config Page Addons Options selected");

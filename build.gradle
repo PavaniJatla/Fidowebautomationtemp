@@ -19,7 +19,7 @@ def sauce = [
 ]
 
 
-task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
+task "sauceTest"(type: Test) {
 
     if(!test_browser){
         test_browser='saucechrome'
@@ -40,7 +40,7 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'EnsUrl', test_ensURL
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
-    //systemProperty 'ensEnv',test_ens_env
+    systemProperty 'ensEnv',test_ens_env
     systemProperty 'OneViewUrl', test_oneViewUrl
     systemProperty 'OneViewEnv',  test_oneViewEnv
     systemProperty 'XrayImportFlag', xray_import_flag
@@ -50,9 +50,14 @@ task "sauceTest"(dependsOn: startSauceConnect, type: Test) {
     systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
-    systemProperty 'TunnelName', "DigitalQETunnel"
-    systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"
-
+    systemProperty 'ReleaseName', test_release
+    systemProperty 'TestEnv', test_env
+    systemProperty 'TestUrl', test_TestURL
+    systemProperty 'IsPieChartRequired', IsPieChartRequired
+    systemProperty 'TunnelName', TunnelName
+    systemProperty 'parentTunnelOwner', parentTunnelOwner
+    /*systemProperty 'TunnelName', "DigitalQETunnel"
+    systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"*/
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
 
@@ -88,7 +93,7 @@ task "localTest"(type: Test) {
     systemProperty 'AWSPRODUrl', test_awsPRODURL
     systemProperty 'Language', test_language
     systemProperty 'EnsUrl', test_ensURL
-    //systemProperty 'ensEnv',test_ens_env
+    systemProperty 'ensEnv',test_ens_env
     systemProperty 'PageLoadStrategy', test_PageLoadStrategy
     systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
     systemProperty 'OneViewUrl', test_oneViewUrl
@@ -100,6 +105,10 @@ task "localTest"(type: Test) {
     systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
     systemProperty 'JiraAssignee', test_jira_assignee
     systemProperty 'JiraReporter', test_jira_reporter
+    systemProperty 'ReleaseName', test_release
+    systemProperty 'TestEnv', test_env
+    systemProperty 'TestUrl', test_TestURL
+    systemProperty 'IsPieChartRequired', IsPieChartRequired
 
     systemProperties(System.getProperties())
     outputs.upToDateWhen { false }  // Always run tests
@@ -134,9 +143,6 @@ repositories {
 dependencies {
 
     api 'automation-utils:common-utils:latest.release'
-    api 'io.rest-assured:rest-assured:4.3.1'
-	api 'io.rest-assured:json-path:4.3.1'
-	api 'org.json:json:20180813'
     api 'org.yaml:snakeyaml:1.24'
     api 'com.applitools:eyes-selenium-java3:3.199.1'
 }

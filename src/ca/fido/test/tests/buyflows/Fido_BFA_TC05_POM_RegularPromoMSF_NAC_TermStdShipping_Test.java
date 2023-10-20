@@ -15,10 +15,10 @@ import ca.fido.testdatamanagement.TestDataHandler;
  * @author Saurav.Goyal
  *
  */
-public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test extends BaseTestClass{
+public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStdShipping_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","POM"})
-	public void tc05_pomfidoNACTermStandardShipping() {
+	public void tc05_POMRegularPromoMSFFidoNACTermStdShipping() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
@@ -88,6 +88,7 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
+		getFidochoosenumberpage().clkContinueAfterFirstNameLastName();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
@@ -96,6 +97,7 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStandardShipping_Test ext
 		getFidoCheckOutPage().clkShippingType("STANDARD");
 		getReporter().reportLogWithScreenshot("Shipping selected");
 		getFidoCheckOutPage().clkShippingContinueButton();
+		getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
 		getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");

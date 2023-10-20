@@ -22,6 +22,9 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//select[contains(@id,'ds-form-input-id')]")
 	WebElement selectCity;
 
+	@FindBy(xpath = "//button[@data-test='search-available-number-button']")
+	WebElement searchNumberBtn;
+
 	@FindBy(xpath = "//p[@data-test='step-title-shipping']")
 	WebElement lblShippingPickUp;
 
@@ -126,7 +129,7 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//h1[@id='bfa-page-title' and contains(text(),'Device Protection')]")
 	WebElement dpAddonPageTitle;
 
-	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	@FindBy(xpath = "//input[@formcontrolname='imei']/parent::div")
 	WebElement dpimeiField;
 
 	@FindBy(xpath = "//input[@formcontrolname='imei']")
@@ -143,6 +146,13 @@ public class FidoCheckOutPage extends BasePageClass {
 
 	@FindBy(xpath = "//button[@data-test='auto-pay-removal-modal-button']//span[contains(text(),'Continue')]")
 	WebElement autoPayRemovalCtnBtn;
+
+	@FindBy(xpath = "//button[@data-test='activation-options-continue']")
+	WebElement saveAndContinueBtnCheckoutPage;
+
+	@FindBy(xpath = "//*[contains(text(),'Upon order fulfillment')]/ancestor::ds-radio-button")
+	WebElement UponOrdrFulfillmentRadioBtnCheckoutPage;
+
 
 	/**
 	 * This method enters the value in email address field in shipping page
@@ -281,6 +291,7 @@ public class FidoCheckOutPage extends BasePageClass {
     public void selectCityForChooseYourTelephoneNum(String cityName) {
     	reusableActions.getWhenReady(selectCity, 30).click();
     	reusableActions.selectWhenReadyByVisibleText(selectCity,cityName);
+		reusableActions.clickWhenReady(searchNumberBtn);
     	reusableActions.waitForElementVisibility(buttonChooseNumberContinue,10);
     	reusableActions.clickWhenReady(buttonChooseNumberContinue, 5);
 
@@ -404,5 +415,16 @@ public class FidoCheckOutPage extends BasePageClass {
 	 */
 	public boolean verifyDpAddonPage(){
 		return reusableActions.isElementVisible(dpAddonPageTitle,10);
+	}
+
+	/**
+	 * This method Clicks on the 'Upon order fulfillment' radio option and Click on Save and Continue for shipping
+	 * @author sonali.Bansal
+	 */
+	public void clksaveAndContinueBtnCheckoutPage(){
+		reusableActions.waitForElementTobeClickable(UponOrdrFulfillmentRadioBtnCheckoutPage,40);
+		reusableActions.scrollToElement(UponOrdrFulfillmentRadioBtnCheckoutPage);
+		reusableActions.executeJavaScriptClick(UponOrdrFulfillmentRadioBtnCheckoutPage);
+		reusableActions.executeJavaScriptClick(saveAndContinueBtnCheckoutPage);
 	}
 }

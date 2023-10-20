@@ -4,7 +4,6 @@ import ca.fido.test.base.BaseTestClass;
 import ca.fido.test.helpers.FidoEnums;
 import ca.fido.testdatamanagement.TestDataHandler;
 import org.apache.http.client.ClientProtocolException;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -15,10 +14,10 @@ import java.lang.reflect.Method;
  * TC04 - Regression - [FNAC TERM] - Perform Fido Net New Activation - TERM with Standard Shipping(No Term Plan)_E2E
  * @author Saurav.Goyal
  */
-public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestClass{
+public class Fido_BFA_TC04_NAC_NoTermStdShipping_DP_Test extends BaseTestClass{
 
 	@Test(groups = {"RegressionBFA","NACBFA","DP"})
-	public void tc04_fidoNACNoTermStandardShippingDPAddon() {
+	public void tc04_FidoNACNoTermStdShippingDPAddon() {
 		getReporter().reportLog("URL:" + System.getProperty("AWSUrl"));
 		getReporter().hardAssert(getFidochoosephonepage().verifyChoosePhonesPageLoad(), "Choose Phone page loaded", "Choose Phone page load error");
 		getReporter().reportLogWithScreenshot("PHONES & DEVICES page");
@@ -60,7 +59,9 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestCl
 		String dpAddon = getFidobuildplanpage().getDeviceProtectionAddon();
 		getReporter().reportLogPassWithScreenshot("Device Protection - " +dpAddon);
 		getFidobuildplanpage().clkContinueBelowCartSummary();
-		getReporter().reportLogPass("Proceed to checkout button clicked");
+		getReporter().reportLogPass("Proceed to checkout button clicked on Build Plan Page");
+		getFidoShippingCartPage().clkProceedShoppingCart();
+		getReporter().reportLogPass("Proceed to checkout button clicked on Shopping Cart");
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
 		getReporter().reportLogPass("User profile page");
 		getFidocreateuserpage().setCommunicationDetails();
@@ -90,6 +91,7 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestCl
 		getFidochoosenumberpage().selectFirstAvailableNumber();
 		getReporter().reportLogWithScreenshot("Phone Number selected");
 		getFidochoosenumberpage().clkContinue();
+		getFidochoosenumberpage().clkContinueAfterFirstNameLastName();
 		getFidopaymentoptionspage().setManualPaymentMethod();
 		getReporter().reportLogWithScreenshot("Payment method selected");
 		getFidopaymentoptionspage().billingOptionClkContinue();
@@ -97,6 +99,7 @@ public class Fido_BFA_TC04_NAC_NoTermStardardShipping_DP_Test extends BaseTestCl
 		getFidoCheckOutPage().clkShippingType("STANDARD");
 		getReporter().reportLogWithScreenshot("Shipping selected");
 		getFidoCheckOutPage().clkShippingContinueButton();
+		getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
 		getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
 		getFidoCheckOutPage().clkSubmitButton();
 		getReporter().hardAssert(getFidoorderreviewpage().verifyReviewPageLabel() , "Review page displayed" , "Review page not displayed");

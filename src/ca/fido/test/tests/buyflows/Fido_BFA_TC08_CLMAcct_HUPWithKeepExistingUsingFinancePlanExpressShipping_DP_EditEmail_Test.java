@@ -24,7 +24,7 @@ public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShi
     }
 
     @Test(groups = {"RegressionBFA","HUPBFA","DP"})
-    public void tc08_CLMAcctfidoHUPWithKEPExpressShippingTest() {
+    public void tc08_CLMAcctFidoHUPWithKEPExpressShippingTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc08HupPpcKeepExistingExpressShipping.getPassword());
@@ -47,14 +47,14 @@ public class Fido_BFA_TC08_CLMAcct_HUPWithKeepExistingUsingFinancePlanExpressShi
         getReporter().hardAssert(getFidodeviceconfigpage().verifyContinueButton(), "Continue button is displayed", "Continue button is not displayed");
         getFidodeviceconfigpage().clickContinueButton();
         getFidobuildplanpage().checkKeepMyCurrentPlanButton();
-        getReporter().reportLogWithScreenshot("Keep My Current Plan checkbox is checked");
-        getFidobuildplanpage().clkDownPaymentChkBox();
+        getReporter().reportLogPassWithScreenshot("Keep Current Plan checked");
         getFidobuildplanpage().clkContinueDeviceCost();
         //String deviceCostIndex = TestDataHandler.tc13HupPpcKeepExistingExpressShipping.getDeviceCostIndex();
         //getFidobuildplanpage().clkDeviceCost(deviceCostIndex);
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
         getFidobuildplanpage().clkDeviceBalancePopUp();
         getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
+        //getFidobuildplanpage().clkContinueDataOption();
         getFidobuildplanpage().selectDeviceProtectionAddon();
         getReporter().reportLogPass("Device Protection Addon is selected");
         getFidobuildplanpage().clkContinueAddOns();

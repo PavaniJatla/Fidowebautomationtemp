@@ -17,7 +17,7 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","AALBFA","DP"})
-    public void tc10_fidoAALUsingFinancePlanExpressShippingTest() {
+    public void tc10_FidoAALUsingFinancePlanExpressShippingTest() {
         getDriver().get(System.getProperty("AWSUrl")+"/phones");
         getReporter().reportLogWithScreenshot("Fido Choose Phones Page");
         getFidochoosephonepage().clickBannerSignIn();
@@ -37,8 +37,6 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         getFidodeviceconfigpage().clickContinueButton();
         getFidobuildplanpage().clkContinueDeviceCost();
         getReporter().reportLogWithScreenshot("Plan Config Page Device Cost option selected");
-        getFidobuildplanpage().clkDeviceBalancePopUp();
-        getReporter().reportLogWithScreenshot("Continue on Device balance pop-up is selected");
         String dataOptionIndex = TestDataHandler.tc10AALFinancingPlanExpressShipping.getDataOptionIndex();
         getFidobuildplanpage().clkDataOption(dataOptionIndex, this.getClass().getSimpleName());
         getReporter().reportLogWithScreenshot("Plan Config Page Data Options selected");
@@ -71,6 +69,7 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         } else {
             getReporter().reportLogWithScreenshot("Shipping selected");
         }
+        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getFidoCheckOutPage().clkShippingContinueButton();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();

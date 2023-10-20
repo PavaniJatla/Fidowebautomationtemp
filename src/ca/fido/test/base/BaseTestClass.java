@@ -111,6 +111,9 @@ public class BaseTestClass {
 	protected static final ThreadLocal<FidoOVOrderConfirmationPage> fidoOVOrderConfirmationPageThreadLocal = new ThreadLocal<>();
 
 	protected static final ThreadLocal<FidoFinanceAccessoriesPage> FidoFinanceAccessoriesPageThreadLocal = new ThreadLocal<>();
+
+	protected static final ThreadLocal<FidoShippingCartPage> FidoShippingCartPageThreadLocal = new ThreadLocal<>();
+
 	protected boolean isDockerStarted = false;
 	private CaptchaBypassHandlers captcha_bypass_handlers;
 	private Map<String,String> sauceParameters;
@@ -409,6 +412,10 @@ public class BaseTestClass {
 		return fidoOVOrderConfirmationPageThreadLocal.get();
 	}
 
+	public static FidoShippingCartPage getFidoShippingCartPage() {
+		return FidoShippingCartPageThreadLocal.get();
+	}
+
 	/**
 	 * This method will initialize a hash map with the sauce parameters
 	 * @param strBrowser string containing the browser name for sauce
@@ -501,19 +508,19 @@ public class BaseTestClass {
 				setCookie(strUrl);
 				if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("NAC_BYOD")) {
 					getDriver().get(strUrl + "/phones/bring-your-own-device?flowType=byod" + "?setLanguage=" + language + "&?province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 				} else if(currentTestMethodName.getName().contains("NAC")) { //HUP
 					//getDriver().get(strUrl);
 					getDriver().get(strUrl + "/phones" + "?setLanguage=" + language + "&province=" + "ON");
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					//getDriver().get(strUrl + "/phones"+ "?flowType=hup" + "&?setLanguage=" + language + "&?province=" + "ON");
 				}else if(currentTestMethodName.getDeclaringClass().getSimpleName().toUpperCase().contains("BFA_PROD")) {
 					getDriver().get(strUrl);
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl+"/profile/signin");
 				} else{
 					getDriver().get(strUrl);
-					captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
+					//captcha_bypass_handlers.captchaBypassURLLoginFlows(strUrl, language);
 					getDriver().get(strUrl+"/profile/signin");
 					//getDriver().get(strUrl + "/consumer/easyloginriverpage" + "?setLanguage=" + language + "&?province=" + "ON");
 				}
@@ -664,7 +671,8 @@ public class BaseTestClass {
                 FidoPaymentPageThreadLocal.set(new FidoPaymentPage(getDriver()));
                 FidoDeviceConfigPageThreadLocal.set(new FidoDeviceConfigPage(getDriver()));
                 FidoCheckOutPageThreadLocal.set(new FidoCheckOutPage(getDriver()));
-                break;
+				FidoShippingCartPageThreadLocal.set(new FidoShippingCartPage(getDriver()));
+				break;
             case "buyflowsoneview":
 				environmentSelectionPageThreadLocal.set(new EnvironmentSelectionPage(getDriver()));
 				accountOverViewPageThreadLocal.set(new AccountOverViewPage(getDriver()));

@@ -27,14 +27,14 @@ public class Fido_BFA_TC15_PPC_SL_FinInTerm_SelectingDTTPlan_Test extends BaseTe
     }
 
     @Test(groups = {"RegressionBFA","SanityBFA","PPCBFA"})
-    public void tc15_fidoPPCSL_FINInTerm_DTTPlanTest() {
+    public void tc15_FidoPPCSL_FINInTerm_DTTPlanTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc15PPCSLFinInTermDTTPlan.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc15PPCSLFinInTermDTTPlan.getPassword());
         getReporter().reportLogWithScreenshot("Login overlay");
         getFidologinpage().clkLoginInFrame();
-        getFidologinpage().switchOutOfSignInFrame();
-        //getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
+        //getFidologinpage().switchOutOfSignInFrame();
+        getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), "Login Successful", "Login Error");
         getReporter().reportLogWithScreenshot("Account Overview page");
         getDriver().get(System.getProperty("AWSUrl") + "/phones/build-plan?flowType=ppc");
         //--------------------------------------------Plan Config page--------------------------------------------------

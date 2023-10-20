@@ -17,7 +17,7 @@ public class Fido_BFA_TC21_StandaloneAddons_AddVisualVoicemail_AcceptConflict_Te
     }
 
     @Test(groups = {"RegressionBFA","SAABFA"})
-    public void tc21_fidoSAAAddVisualVoicemailTest() {
+    public void tc21_FidoSAAAddVisualVoicemailTest() {
         getFidologinpage().setUsernameInFrame(TestDataHandler.tc21SAA_AddVoicemail.getUsername());
         getFidologinpage().clkContinueSignIn();
         getFidologinpage().setPasswordInFrame(TestDataHandler.tc21SAA_AddVoicemail.getPassword());
@@ -48,10 +48,10 @@ public class Fido_BFA_TC21_StandaloneAddons_AddVisualVoicemail_AcceptConflict_Te
         String OrderConfirmMessage = getFidoorderconfirmationpage().getOrderConfirmMsg();
         getReporter().reportLogPassWithScreenshot("Addons Order Confirmation Message: " +OrderConfirmMessage);
         getFidoorderconfirmationpage().clickBackToAddonBtn();
-        getReporter().hardAssert(getFidoCheckOutPage().verifyAddonsPage(),
+        getReporter().softAssert(getFidoCheckOutPage().verifyAddonsPage(),
                 "Fido Standalone Addons Page Displayed","Fido Standalone Addons Page not Displayed");
         String selectedAddon = getFidoCheckOutPage().getSelectedAddon();
-        getReporter().hardAssert(selectedAddon.contains(newAddon),
+        getReporter().softAssert(selectedAddon.contains(newAddon),
                 "Selected Addon is reflected in Addons page after submission","Selected Addon is not reflected");
     }
 

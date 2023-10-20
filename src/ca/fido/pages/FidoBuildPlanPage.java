@@ -25,8 +25,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	String planType = TestDataHandler.tc13AALBYODExpressShipping.getNewPlanType();
 
 	public FidoBuildPlanPage(WebDriver driver) {
-		super(driver);		
+		super(driver);
 	}
+
 	List<WebElement> autoPayText = null;
 
 	@FindBy(xpath = "//*[@id='bfa-page-title' and contains(text(),'Build Your Plan')]")
@@ -34,25 +35,25 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "(//div[@class='features-section' or @class='features-section dataSectionEmpty']/button)[3]")
 	WebElement btnAdd;
-	
+
 	@FindBy(xpath = "//button[@translate='_continue']")
 	WebElement btnContinue;
-	
+
 	////f-cart-summary//button[contains(@class,'-primary -large') or @id='main-continue-button']//span[contains(@class,'ds-no-overflow mw-100')]
 	//@FindBy(xpath = "//button[@id='main-continue-button']")
 	@FindBy(xpath = "//button[@class='w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large' or @data-test='build-plan-checkout-flow-button']")
 	WebElement btnContinueBelowCartSummary;
 
-	@FindBy(xpath="//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]/parent::div")
+	@FindBy(xpath = "//input[@id='email' or (contains(@formcontrolname,'email') and  not(contains(@formcontrolname,'Confirm')))]/parent::div")
 	WebElement txtEmail;
-	
+
 	@FindBy(xpath = "//label[@aria-label='NOTERM_false']")
 	WebElement lblNoTermTierDeviceCost;
 
-	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']//label")
+	@FindBy(xpath = "//ds-checkbox[@data-test='keep-current-plan-checkbox']/label")
 	WebElement keepMyCurrentPlanButton;
 
-	@FindBy(xpath="//ds-checkbox[@data-test='vdp-checkbox']")
+	@FindBy(xpath = "//ds-checkbox[@data-test='vdp-checkbox']/label")
 	WebElement vdpCheckBox;
 
 	@FindBy(xpath = "//div[contains(@class,'ds-radioLabel') and contains(.,'full')]/parent::label")
@@ -72,10 +73,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 
 	@FindBy(xpath = "//span[contains(text(),'View All Plans')]")
 	WebElement viewAllPlansButton;
-	
+
 	@FindBy(xpath = "//button[@id='step-2-continue-button' or @data-test='stepper-2-edit-step-continue-button']")
 	WebElement btnContinueDataOption;
-	
+
 	@FindBy(xpath = "//button[@id='step-3-continue-button' or @data-test='stepper-3-edit-step-continue-button']")
 	WebElement btnContinueTalkOptions;
 
@@ -83,89 +84,105 @@ public class FidoBuildPlanPage extends BasePageClass {
 	WebElement btnDataAndTextPlan;
 
 	@FindAll({
-		@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']"),
-		@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
+			@FindBy(xpath = "//button[@data-test='bpo-offer-modal-button-primary']"),
+			@FindBy(xpath = "//button[contains(@title,'CONTINUE')]")
 	})
 	WebElement btnNoBPOOffer;
 
 	@FindAll({
-		@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']"),
-		@FindBy(xpath = "//button[contains(@id,'dummyContinueCta')]/span/span")
+			@FindBy(xpath = "//button[@id='step-4-continue-button' or @data-test='stepper-4-edit-step-continue-button']"),
+			@FindBy(xpath = "//button[contains(@id,'dummyContinueCta')]/span/span")
 	})
 	WebElement btnContinueAddOns;
 
-	@FindBy(xpath = "//span[contains(text(),'CONTINUE')]")
+	@FindBy(xpath = "//ds-radio-button[@data-test='stepper-5-radio-no']")
+	WebElement eSIMOptNo;
+
+	@FindBy(xpath = "//button[@data-test='stepper-5-continue-cta']")
+	WebElement eSIMContinue;
+
+	@FindAll({
+			@FindBy(xpath = "//button[contains(@data-test,'stepper-6')]"),
+			@FindBy(xpath = "//button[@data-test='caller-id-continue']")
+
+	})
 	WebElement callerIDContinue;
-	
+
 	@FindBy(xpath = "//span[@translate='createAccount']/parent::button")
 	WebElement btnCreateAnAccount;
-	
+
 	@FindBy(xpath = "//span[@translate='login-cta']/parent::button")
 	WebElement btnLogin;
-	
+
 	@FindBy(xpath = "//div[contains(@class,'current-balance-container')]//span[contains(@ng-if,'planCategory') and contains(@res,'category')]")
 	WebElement lblCurrentPlanCategory;
-	
+
 	@FindBy(xpath = "//span[contains(@class,'ui-slider-handle')]")
 	WebElement planSlider;
-	
+
 	@FindBy(xpath = "//button[@translate='btn_continue_to_addons']")
 	WebElement btnContinueToAddons;
-	
-	List<String> planCategory = Arrays.asList("category-SMALL","category-MEDIUM","category-LARGE","category-EXTRALARGE","category-2XLARGE");
-	
+
+	List<String> planCategory = Arrays.asList("category-SMALL", "category-MEDIUM", "category-LARGE", "category-EXTRALARGE", "category-2XLARGE");
+
 	@FindBy(xpath = "//a[@res='keep-existing']")
 	WebElement lnkKeepExisting;
-	
-	@FindBy(xpath = "//span[@res='keep-existing']/parent::button")
+
+	@FindBy(xpath = "//*[@data-test='keep-current-plan-checkbox']")
 	WebElement btnKeepExistingPlan;
-	
+
 	@FindBy(xpath = "//div[@res='build-your-phone']")
 	WebElement lblBuildYourPlan;
-	
+
 	@FindBy(xpath = "//button[@translate='bpo_redeem_offer']")
 	WebElement btnGetThisOffer;
-	
+
 	@FindBy(xpath = "//span[contains(@class,'dsa-cartSummary')]")
 	WebElement txtCartSummary;
-	
+
 	@FindBy(xpath = "(//span[@class='dsa-selection__label ds-no-overflow text-body mb-0 d-inline-block w-100']//p)[1]")
 	WebElement selectFirstTierChooseYourData;
-	
+
 	@FindBy(xpath = "//input[@formcontrolname='firstName']")
 	WebElement inputFirstName;
-	
+
 	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-first-name']")
 	WebElement frmFieldFirstName;
-	
+
 	@FindBy(xpath = "//input[@formcontrolname='lastName']")
 	WebElement inputLastName;
-	
+
 	@FindBy(xpath = "//ds-form-field[@data-test='caller-id-last-name']")
 	WebElement frmFieldLastName;
-	
+
 	@FindBy(xpath = "//button[@id='step-5-continue-button' or @data-test='stepper-5-edit-step-continue-button']")
 	WebElement buttonContinueUserName;
-	
+
 	@FindBy(xpath = "//select[contains(@id,'ds-form-input-id')]")
 	WebElement selectCity;
-	
+
 	@FindBy(xpath = "//button[@data-test='choose-number-continue']")
 	WebElement buttonChooseNumberContinue;
-	
+
 	@FindBy(xpath = "//img[@alt='Close']")
 	WebElement closeDialogWindow;
 
 	@FindBy(xpath = "//p[contains(.,'Basic plans') or contains(.,'Forfait de base')]/ancestor::button")
 	WebElement btnBasicPlan;
 
-	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']")
+	@FindAll({
+	@FindBy(xpath = "//span[contains(@class,'m-navLink__chevron')]/parent::a[@role='button']"),
+	@FindBy(xpath = "//a[@aria-label='Province']")
+	})
 	WebElement provinceDropDown;
 
 	@FindBy(xpath = "//div[contains(@class,'dsa-infoWidget__ctnInfo')]//span[contains(@class,'dsa-infoWidget__ctnCopy')]")
 	WebElement infoWidgetCtnCopy;
 
-	@FindBy(xpath = "//button[@data-test='stepper-0-edit-step-continue-button']")
+	@FindAll({
+			@FindBy(xpath = "//button[contains(@title,'Continue and change phone plan')]"),
+			@FindBy(xpath = "//button[@data-test='stepper-0-edit-step-continue-button']")
+	})
 	WebElement btnChangePlan;
 
 	@FindBy(xpath = "//button[@data-test='downgrade-modal-proceed']")
@@ -192,24 +209,35 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//button[contains(@class,'dsa-cartSummary')]")
 	WebElement btnCartSummary;
 
-	@FindBy(xpath = "//span[contains(text(),'Have a promo code') or contains(text(),'code promotionnel')]")
+	@FindAll({
+		@FindBy(xpath = "//ds-icon[@name='chevron-down']/parent::div"),
+		@FindBy(xpath = "//div[@data-test='view-more-promos-header']/span[contains(text(),'Promos')]")
+	})
 	WebElement promoSection;
 
-	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]/ancestor::ds-form-field")
+	@FindAll({
+			@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]/parent::div"),
+			@FindBy(xpath = "//dsa-layout//*[@data-test='promo-input']/div")
+	})
 	WebElement promoCodeField;
 
-	@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
+	@FindAll({
+			@FindBy(xpath = "//dsa-layout//*[@data-test='promo-input']//input"),
+			@FindBy(xpath = "//input[contains(@class,'ds-input') and contains(@id,'ds-form-input-id')]")
+	})
 	WebElement txtPromoCode;
 
 	@FindBy(xpath = "//button[contains(@data-test,'promo-button-check') and contains(text(),'Check') or contains(text(),'Vérifier')]")
 	WebElement btnCheckPromo;
 
 	@FindAll({
-			@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to cart') or contains(text(),' ajouté au panier')]"),
+			@FindBy(xpath = "//ds-modal-container[@aria-label='Add promo code']//p[contains(text(),'Add promo code')]"),
 			@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'added to your cart') or contains(text(),' ajoutée à votre panier')]")
 	})
 	WebElement promoCodeSuccessMsg;
 
+	@FindBy(xpath = "//ds-modal-container[@aria-label='Add promo code']//button[@data-test='modal-pom-continue']")
+	WebElement continueBtnPromo;
 	@FindBy(xpath = "//span[contains(@class,'text-body') and contains(text(),'with promo code') or contains(text(),'avec le code promotionnel')]")
 	WebElement promoCodeDuration;
 
@@ -240,7 +268,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//label[@aria-label='Device Protection' or contains(@aria-label,'Protection de l’appareil')]")
 	WebElement BYODdpAddon;
 
-	@FindBy(xpath = "//ds-form-field[@data-test='imei-input-field']")
+	@FindBy(xpath = "//input[@formcontrolname='imei']/parent::div")
 	WebElement dpimeiField;
 
 	@FindBy(xpath = "//input[@formcontrolname='imei']")
@@ -690,7 +718,16 @@ public class FidoBuildPlanPage extends BasePageClass {
 		reusableActions.waitForElementTobeClickable(btnContinueAddOns,30);
 		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnContinueAddOns));
 	}
-	
+
+	/**
+	 * Click continue on eSIM Stepper in BYOD Plan config page
+	 * @author subash.nedunchezhian
+	 */
+	public void clickeSIMContinueButton() {
+		reusableActions.clickWhenVisible(eSIMOptNo,10);
+		reusableActions.clickWhenReady(eSIMContinue, 5);
+	}
+
 	/**
 	 * Clicks on the 'Continue' button at the bottom of the cart summary
 	 * @author Saurav.Goyal
@@ -815,8 +852,7 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author rajesh.varalli1
 	 */
 	public void keepExistingPlan() {
-		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(lnkKeepExisting, 40));
-		reusableActions.executeJavaScriptClick(reusableActions.getWhenReady(btnKeepExistingPlan, 30));
+		reusableActions.executeJavaScriptClick(btnKeepExistingPlan);
 		//reusableActions.clickIfAvailable(By.xpath("//button[@translate='bpo_redeem_offer']"));
 	}
 	
@@ -891,16 +927,16 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void selectPlanType(String planType) {
 		if(planType.equalsIgnoreCase("Financing")) {
-			reusableActions.clickWhenVisible(labelDTTPlanType);
+			reusableActions.executeJavaScriptClick(labelDTTPlanType);
 		}
 		else if(planType.equalsIgnoreCase("TALKTEXTFIN")) {
-			reusableActions.clickWhenVisible(labelTTPlanType);
+			reusableActions.executeJavaScriptClick(labelTTPlanType);
 		}
 		else if(planType.equalsIgnoreCase("NOTERM")) {
-			reusableActions.clickWhenVisible(labelNotermPlanType);
+			reusableActions.executeJavaScriptClick(labelNotermPlanType);
 		}
 		//reusableActions.clickWhenVisible(By.xpath("//dsa-selection[contains(@data-test,'stepper-1-edit-step-selection-option-')]//label[@aria-label='"+planType+"']"));
-		reusableActions.clickWhenVisible(btnContinueDeviceCost);
+		reusableActions.executeJavaScriptClick(btnContinueDeviceCost);
 		reusableActions.staticWait(15000);
 	}
 
@@ -972,9 +1008,9 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 * @author Subash.Nedunchezhian
 	 */
 	public void clkPromoSection() {
-		reusableActions.staticWait(15000);
 		reusableActions.waitForElementVisibility(promoSection, 20);
-		reusableActions.clickWhenReady(promoSection);
+		reusableActions.javascriptScrollByVisibleElement(promoSection);
+		reusableActions.executeJavaScriptClick(promoSection);
 	}
 
 	/**
@@ -984,8 +1020,8 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public void setPromoCode(String promoCode) {
 		//reusableActions.executeJavaScriptClick(promoCodeField);
-		reusableActions.getWhenReady(promoCodeField,20).click();
-		reusableActions.getWhenReady(txtPromoCode,30).click();
+		reusableActions.executeJavaScriptClick(promoCodeField);
+		reusableActions.executeJavaScriptClick(txtPromoCode);
 		txtPromoCode.sendKeys(promoCode);
 	}
 
@@ -1005,6 +1041,15 @@ public class FidoBuildPlanPage extends BasePageClass {
 	 */
 	public boolean verifyPromoSuccessMsg() {
 		return reusableActions.isElementVisible(promoCodeSuccessMsg, 60);
+	}
+
+	/**
+	 * Clicks on the Continue button in Promo Modal
+	 * @author Subash.Nedunchezhian
+	 */
+	public void clickContinuePromoModal(){
+		reusableActions.isElementVisible(promoCodeSuccessMsg);
+		reusableActions.clickWhenReady(continueBtnPromo);
 	}
 
 	/**
