@@ -55,11 +55,13 @@ public class Fido_BFA_TC05_POM_RegularPromoMSF_NAC_TermStdShipping_Test extends 
 		//getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
 		getReporter().reportLogWithScreenshot("Continue button on AddOns clicked");
-		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Discount amount Line Item displayed","Promo line item not displayed");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getFidobuildplanpage().clkContinueDeviceProtection();
+		getReporter().hardAssert(getFidobuildplanpage().verifyCartLineItem(),"Promo Discount amount Line Item displayed",
+				"Promo line item not displayed");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
+		getFidoShippingCartPage().clkProceedShoppingCart();
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
 		getReporter().reportLogPass("User profile page");
 		getFidocreateuserpage().setCommunicationDetails();

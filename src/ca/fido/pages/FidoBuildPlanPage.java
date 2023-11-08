@@ -227,7 +227,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	})
 	WebElement txtPromoCode;
 
-	@FindBy(xpath = "//button[contains(@data-test,'promo-button-check') and contains(text(),'Check') or contains(text(),'Vérifier')]")
+	@FindAll({
+			@FindBy(xpath = "//button[contains(@data-test,'promo-button-check') and contains(text(),'Check') or contains(text(),'Vérifier')]"),
+			@FindBy(xpath = "//button[contains(@data-test,'promo-button-check')]")
+	})
 	WebElement btnCheckPromo;
 
 	@FindAll({
@@ -265,7 +268,10 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Protect supér appareil') or contains(text(),'Device Protection')]//ancestor::div[contains(@class,'dsa-orderTable__row')]")
 	WebElement dpAddonCarLineItem;
 
-	@FindBy(xpath = "//label[@aria-label='Device Protection' or contains(@aria-label,'Protection de l’appareil')]")
+	@FindAll({
+			@FindBy(xpath = "//input[contains(@value,'BYODDEVICEPROTECTION')]//following-sibling::span[contains(.,'Device Protection')]"),
+			@FindBy(xpath = "//label[@aria-label='Device Protection' or contains(@aria-label,'Protection de l’appareil')]")
+	})
 	WebElement BYODdpAddon;
 
 	@FindBy(xpath = "//input[@formcontrolname='imei']/parent::div")
@@ -289,7 +295,11 @@ public class FidoBuildPlanPage extends BasePageClass {
 	@FindBy(xpath = "//p[contains(.,'Your device is eligible') or contains(.,' Bonne nouvelle! Votre appareil est admissible')]")
 	WebElement imeiSuccessEligibleMsg;
 
-	@FindBy(xpath = "//label[@aria-label='No Device Protection' or contains(@aria-label,'Aucune protection de l’appareil')]")
+	@FindAll({
+			@FindBy(xpath = "//input[contains(@value,'NOPROTECTION')]//following-sibling::span[contains(.,'No Device Protection')]"),
+			@FindBy(xpath = "//label[@aria-label='No Device Protection' or contains(@aria-label,'Aucune protection de l’appareil')]")
+	})
+
 	WebElement byodNoDeviceProtection;
 
 	@FindBy(xpath = "//p[contains(.,'not eligible') or contains(.,'Votre appareil n’est pas admissible')]")
