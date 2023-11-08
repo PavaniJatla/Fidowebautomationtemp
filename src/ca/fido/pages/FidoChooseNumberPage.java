@@ -155,6 +155,7 @@ public class FidoChooseNumberPage extends BasePageClass {
 	 * @author subash.nedunchezhian
 	 */
 	public void setExistingPortInNumber(String eligiblePortInNumber){
+		reusableActions.staticWait(5000);
 		reusableActions.clickWhenReady(existingNumberField);
 		reusableActions.executeJavaScriptClick(inputPortInNumber);
 		inputPortInNumber.clear();
