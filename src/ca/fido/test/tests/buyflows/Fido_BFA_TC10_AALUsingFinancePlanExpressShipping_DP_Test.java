@@ -69,8 +69,8 @@ public class Fido_BFA_TC10_AALUsingFinancePlanExpressShipping_DP_Test extends Ba
         } else {
             getReporter().reportLogWithScreenshot("Shipping selected");
         }
-        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getFidoCheckOutPage().clkShippingContinueButton();
+        getFidoCheckOutPage().clksaveAndContinueBtnCheckoutPage();
         getReporter().reportLogWithScreenshot("Selecting submit on Checkout");
         getFidoCheckOutPage().clkSubmitButton();
         boolean isPaymentRequired = getFidoorderreviewpage().verifyPaymentRequired();

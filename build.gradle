@@ -3,82 +3,85 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'com.jfrog.artifactory' version '4.28.1'
-    id 'com.aditya.SauceConnectPlugin' version '0.0.15'
+    //id 'com.aditya.SauceConnectPlugin' version '0.0.15'
+    id 'io.github.karthick1110.SauceConnectPlugin' version '0.0.6'
 }
 
 
-sauceconnect {
+sauceAuth {
     username = System.getenv('SAUCE_USERNAME')
     key = System.getenv('SAUCE_ACCESS_KEY')
     options = "-i myTunnel --no-remove-colliding-tunnels"
 }
 
 def sauce = [
-        username: sauceconnect.username,
-        key     : sauceconnect.key,
+        username: sauceAuth.username,
+        key     : sauceAuth.key,
 ]
 
 
-task "sauceTest"(type: Test) {
+//task "sauceTest"(dependsOn: startSauceConnect, type: Test){
+task "sauceTest"(type: Test){
 
-    if(!test_browser){
-        test_browser='saucechrome'
-    }
-
-    if (!test_browser.contains('sauce')){
-        def browser = 'sauce'+test_browser
-        test_browser = browser
-    }
-
-
-    systemProperty 'QaUrl', test_qaURL
-    systemProperty 'SSPUrl', test_sspURL
-    systemProperty 'AWSUrl', test_awsURL
-    systemProperty 'AWSPRODUrl', test_awsPRODURL
-    systemProperty 'Browser', test_browser
-    systemProperty 'Language', test_language
-    systemProperty 'EnsUrl', test_ensURL
-    systemProperty 'PageLoadStrategy', test_PageLoadStrategy
-    systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
-    systemProperty 'ensEnv',test_ens_env
-    systemProperty 'OneViewUrl', test_oneViewUrl
-    systemProperty 'OneViewEnv',  test_oneViewEnv
-    systemProperty 'XrayImportFlag', xray_import_flag
-    systemProperty 'JiraProjectKey', jira_project_key
-    systemProperty 'TestPlanKey',test_plan_key
-    systemProperty 'TestExecutionKey',test_execution_key
-    systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
-    systemProperty 'JiraAssignee', test_jira_assignee
-    systemProperty 'JiraReporter', test_jira_reporter
-    systemProperty 'ReleaseName', test_release
-    systemProperty 'TestEnv', test_env
-    systemProperty 'TestUrl', test_TestURL
-    systemProperty 'IsPieChartRequired', IsPieChartRequired
-    systemProperty 'TunnelName', TunnelName
-    systemProperty 'parentTunnelOwner', parentTunnelOwner
-    /*systemProperty 'TunnelName', "DigitalQETunnel"
-    systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"*/
-    systemProperties(System.getProperties())
-    outputs.upToDateWhen { false }  // Always run tests
-
-    useTestNG() {
-        outputDirectory = file("$project.buildDir//testngOutput")
-        useDefaultListeners = true
-        parallel = test_parallel
-        threadCount = test_threadCount as int
-        Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
-        setListeners(listeners)
-        if (project.hasProperty('test_groupName')){
-            includeGroups test_groupName
-            System.out.println("**************************************"+test_groupName)
+        if(!test_browser){
+            test_browser='saucechrome'
         }
-        
+
+        if (!test_browser.contains('sauce')){
+            def browser = 'sauce'+test_browser
+            test_browser = browser
+        }
+
+
+        systemProperty 'QaUrl', test_qaURL
+        systemProperty 'SSPUrl', test_sspURL
+        systemProperty 'AWSUrl', test_awsURL
+        systemProperty 'AWSPRODUrl', test_awsPRODURL
+        systemProperty 'Browser', test_browser
+        systemProperty 'Language', test_language
+        systemProperty 'EnsUrl', test_ensURL
+        systemProperty 'PageLoadStrategy', test_PageLoadStrategy
+        systemProperty 'CookieFetcherMapping', test_CookieFetcherMapping
+        systemProperty 'ensEnv',test_ens_env
+        systemProperty 'OneViewUrl', test_oneViewUrl
+        systemProperty 'OneViewEnv',  test_oneViewEnv
+        systemProperty 'XrayImportFlag', xray_import_flag
+        systemProperty 'JiraProjectKey', jira_project_key
+        systemProperty 'TestPlanKey',test_plan_key
+        systemProperty 'TestExecutionKey',test_execution_key
+        systemProperty 'JiraTestRepoPath',jira_Test_Repo_Path
+        systemProperty 'JiraAssignee', test_jira_assignee
+        systemProperty 'JiraReporter', test_jira_reporter
+        systemProperty 'ReleaseName', test_release
+        systemProperty 'TestEnv', test_env
+        systemProperty 'TestUrl', test_TestURL
+        systemProperty 'IsPieChartRequired', IsPieChartRequired
+        systemProperty 'TunnelName', TunnelName
+        systemProperty 'parentTunnelOwner', parentTunnelOwner
+        /*systemProperty 'TunnelName', "DigitalQETunnel"
+        systemProperty 'parentTunnelOwner', "DigitalQAWebAutomation"*/
+        systemProperties(System.getProperties())
+        outputs.upToDateWhen { false }  // Always run tests
+
+        useTestNG() {
+            outputDirectory = file("$project.buildDir//testngOutput")
+            useDefaultListeners = true
+            parallel = test_parallel
+            threadCount = test_threadCount as int
+            Set listeners = ["extentreport.ExtentListener", "ca.fido.test.listeners.AnnotationTransformer"]
+            setListeners(listeners)
+            if (project.hasProperty('test_groupName')){
+                includeGroups test_groupName
+                System.out.println("**************************************"+test_groupName)
+            }
+
+        }
+
     }
 
-}
 
 //To shutdown the sauceconnect
-sauceTest.finalizedBy stopSauceConnect
+//sauceTest.finalizedBy stopSauceConnect
 
 task "localTest"(type: Test) {
 

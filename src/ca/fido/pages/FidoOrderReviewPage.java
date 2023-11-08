@@ -87,8 +87,8 @@ public class FidoOrderReviewPage extends BasePageClass {
 	WebElement btnSubmitMyOrder;
 
 	@FindAll({
-			@FindBy(xpath = "//input[@name='agreementConsent']/../.."),
-			@FindBy(xpath = "//label[@for='terms1']")
+			@FindBy(xpath = "//input[@name='agreementConsent']/.."),
+			@FindBy(xpath = "//label[contains(@for,'terms')]")
 	})
 	WebElement chkBoxAgreementConsent;
 
@@ -187,7 +187,7 @@ public class FidoOrderReviewPage extends BasePageClass {
 	 * @author Saurav.Goyal
 	 */
 	public void clkTermsNConditionsAgreementConsent() {
-		reusableActions.clickWhenVisible(chkBoxAgreementConsent , 60);
+		reusableActions.clickIfAvailable(chkBoxAgreementConsent , 60);
 	}
 	/**
 	 * Clicks on the Terms and Conditions checkbox

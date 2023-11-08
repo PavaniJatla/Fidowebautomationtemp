@@ -67,7 +67,7 @@ public class FidoDeviceConfigPage extends BasePageClass {
 	public void selectSubscriber(String strCTN) {
 		/*strCTN = strCTN.replace("-", "").replace(" ", "");
 		strCTN = strCTN.substring(0, 3) + "-" + strCTN.substring(3, 6) + "-" + strCTN.subSequence(6, 10);*/
-		String strCtnXpath = "//div[contains(@data-id,'"+ strCTN +"')]//label/span";
+		String strCtnXpath = "//div[contains(@data-id,'"+ strCTN +"')]//label";
 
 		if(reusableActions.isElementVisible(By.xpath(strCtnXpath))) {
 			reusableActions.executeJavaScriptClick(driver.findElement(By.xpath(strCtnXpath)));

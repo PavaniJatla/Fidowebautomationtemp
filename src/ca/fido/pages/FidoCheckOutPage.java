@@ -117,6 +117,9 @@ public class FidoCheckOutPage extends BasePageClass {
 	@FindBy(xpath = "//h1[@id='manageaddons-page-title' or contains(text(),'Manage add ons Page')]")
 	WebElement manageAddonsPageTitle;
 
+	@FindBy(xpath = "//span[contains(text(),'Active add-ons')]")
+	WebElement activeAddonsTitle;
+
 	@FindBy(xpath = "//addons-tile[contains(@data-test,'existing-addon')]/parent::div")
 	WebElement activeAddons;
 
@@ -384,8 +387,11 @@ public class FidoCheckOutPage extends BasePageClass {
 	 * @return String text of Addon under Active Addons section
 	 * @author subash.nedunchezhian
 	 */
-	public String getSelectedAddon(){
+	public String getSelectedAddon()
+	{
+		reusableActions.javascriptScrollByVisibleElement(activeAddonsTitle);
 		return  reusableActions.getWhenReady(activeAddons).getText().replaceAll("\\n", "");
+
 	}
 
 	/**

@@ -53,6 +53,7 @@ public class Fido_BFA_TC02_POM_RegularPromoMSF_NAC_ByodNoTermWithExpressShipping
 				"Promo line item not displayed");
 		getFidobuildplanpage().clkContinueBelowCartSummary();
 		getReporter().reportLogPass("Proceed to checkout button clicked");
+		getFidoShippingCartPage().clkProceedShoppingCart();
 		getReporter().hardAssert(getFidocreateuserpage().verifyCreateUserProfilePage() , "create user profile page loaded" , "create user profile page not loaded");
 		getReporter().reportLogPass("User profile page");
 		getFidocreateuserpage().setCommunicationDetails();

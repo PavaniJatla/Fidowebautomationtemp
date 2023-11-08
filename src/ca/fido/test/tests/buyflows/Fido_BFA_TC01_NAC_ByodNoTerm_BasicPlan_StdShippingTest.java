@@ -29,8 +29,8 @@ public class Fido_BFA_TC01_NAC_ByodNoTerm_BasicPlan_StdShippingTest extends Base
 		getFidobuildplanpage().clkContinueDataOption();*/
 		getFidobuildplanpage().differentPlanSelectionModal();
 		getReporter().reportLogPass("Continue button on Data option clicked");
-		getFidobuildplanpage().clkContinueTalkOptions();
-		getReporter().reportLogPass("Continue button on talk option clicked");
+		//getFidobuildplanpage().clkContinueTalkOptions();
+		//getReporter().reportLogPass("Continue button on talk option clicked");
 		//getFidobuildplanpage().clkNoBPOOfferButtonTalkOptions();
 		getReporter().reportLogPass("skipped BPO option");
 		getFidobuildplanpage().clkContinueAddOns();
