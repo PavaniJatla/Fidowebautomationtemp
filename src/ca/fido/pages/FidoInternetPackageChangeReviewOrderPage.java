@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class FidoInternetPackageChangeReviewOrderPage extends BasePageClass {
@@ -22,13 +23,25 @@ WebElement termsAndConditionsSspFido;
 @FindBy(xpath="//li[contains(text(),'819 994 6591')]")
 WebElement lnkUnsubscribe;
 
-@FindBy(xpath="//p[contains(text(),'Pre-Authorized Chequing')]")
-WebElement lnkPAC;
+@FindAll({
+		@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditions']"),
+	//	@FindBy(xpath="//p[contains(text(),'if there is any change to my/our account information')]"),
+	//	@FindBy(xpath="//p[text()='This authorization agreement may be cancelled at any time provided notice is received by Fido ']"),
+		@FindBy(xpath="//p[contains(text(),'I/We ')][2]"),
+		@FindBy(xpath="//p[contains(text(),'I/We ')][3]"),
+		@FindBy(xpath = "//p[contains(text(),'I/We ')][4]")
+})
+	WebElement lnkPAC;
+
 
 @FindBy(xpath="//*[contains(@translate,'label.reviewConsent')]")
 WebElement chkConsentCheckbox;
 
-@FindBy(xpath="//label[(@for='agree-to-terms-and-conditions')]")
+@FindAll({
+		@FindBy(xpath = "//label[(@for='agree-to-terms-and-conditions')]"),
+		@FindBy(xpath="//label[@ng-click='accepted()']"),
+		@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditionsConsent2']")
+})
 WebElement chkConsentCheckboxPAC;
 
 @FindBy(xpath="//input[@name='submit']")
