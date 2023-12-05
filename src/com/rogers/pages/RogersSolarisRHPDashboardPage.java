@@ -30,17 +30,23 @@ public class RogersSolarisRHPDashboardPage extends BasePageClass {
 	@FindBy(xpath = "//h3[contains(@class,'rhp_feature-title')]")
 	WebElement infoLegacyrhpDashboard;
 
-	@FindBy(xpath = "//span[contains(text(),'Configure your current features') or contains(text(),'Configuration des fonctions')]/ancestor::a")
-	WebElement lnkConfigureYourCurrentFeatures;
+@FindAll({
+		@FindBy(xpath = "//span[contains(text(),'Configure your current features') or contains(text(),'Configuration des fonctions')]/ancestor::a"),
+		@FindBy(xpath = "(//span[@class='ds-link__copy'])[71]")
+})
+	 WebElement lnkConfigureYourCurrentFeatures;
     //ins[@usertype-translate='global.cta.configureYourFeatures']
 
-	@FindBy(xpath = "//span[contains(text(),'Access your voicemail settings') or contains(text(),'Paramètres de messagerie vocale')]/ancestor::a")
-	WebElement lnkAccessYourVoicemailSettings;
+
+		//@FindBy(xpath = "//span[contains(text(),'Access your voicemail settings')] or contains(text(),'Paramètres de messagerie vocale')]/ancestor::a"),
+		@FindBy(xpath = "(//span[@class='ds-link__copy'])[72]")
+	 WebElement lnkAccessYourVoicemailSettings;
 	//ins[@usertype-translate='global.cta.accessYourVoicemailSettings']
 
-	@FindBy(xpath = "//span[contains(text(),'Reset your voicemail password') or contains(text(),'Mot de passe de la messagerie')]/ancestor::button")
-	WebElement lnkResetYourVoicemailPassword;
-   //ins[@usertype-translate='global.cta.resetVoicemailPassword']
+
+		@FindBy(xpath = "//button[@aria-label='Reset your voicemail password']")
+	    WebElement lnkResetYourVoicemailPassword;
+         //ins[@usertype-translate='global.cta.resetVoicemailPassword']
 
 	@FindBy(xpath = "//a[@aria-label='Need help? Chat with a Rogers agent.']")
 	WebElement lnkLiveChatOnRHPDashboard;

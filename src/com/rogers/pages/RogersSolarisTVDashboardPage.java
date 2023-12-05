@@ -103,14 +103,16 @@ public class RogersSolarisTVDashboardPage extends BasePageClass {
 	WebElement btnManageChannelsAndThemePacks;
 	//ins[@translate='global.cta.addChannelsOrThemePacksTv']
 
-	@FindBy(xpath = "//span[contains(text(),'Continue')]/ancestor::a/span")
+	//@FindBy(xpath = "//span[contains(text(),'Continue')]/ancestor::a/span")
+	@FindBy(xpath="//span[contains(text(),'Continue')]")
 	WebElement popupChangeTVPackage;
 	//ins[@translate='global.cta.bysContinue']
 
 	@FindBy(xpath = "//span[text()='Want to change your TV package?' or text()='Vous voulez changer votre forfait télé?']")
 	WebElement headerChangepkg;
 
-	@FindBy(xpath = "//span[text()='Changing your TV package' or text()='Changer votre forfait Télé.']")
+	//@FindBy(xpath = "//span[text()='Changing your TV package' or text()='Changer votre forfait Télé.']")
+	@FindBy(xpath="//span[text()='Changes to your Ignite services']")
 	WebElement headerChangeTVpkg;
 
 	@FindBy(xpath = "//div[@class='popup-modal-body__content']")
@@ -430,7 +432,7 @@ public class RogersSolarisTVDashboardPage extends BasePageClass {
 	public void clkChangeTVPackage() {
 		//NL and FL  Provinces taking long loading time to pull the dashboard details
 		getReusableActionsInstance().staticWait(20000);
-		By btnChangeTVPkg = By.xpath("//button[contains(@aria-label,'Change TV package') or  contains(@aria-label,'Modifier le forfait Télé')]");
+		By btnChangeTVPkg = By.xpath("(//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100'])[7]");
 		getReusableActionsInstance().getWhenReady(btnChangeTVPkg, 120).click();
 	}
 
@@ -538,7 +540,7 @@ public class RogersSolarisTVDashboardPage extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void selectSolarisTVPackage(String strPackageNameEn, String strPackageNameFr) {
-		By packageNameLocator = By.xpath("//div[@class='vertical-tile__cta']//button[contains(@aria-label, '" + strPackageNameEn + "') or contains(@aria-label, '" + strPackageNameFr + "')]/span");
+		By packageNameLocator = By.xpath("//div[@class='ng-star-inserted']//button[contains(@aria-label, '" + strPackageNameEn + "') or contains(@aria-label, '" + strPackageNameFr + "')]/span");
 		if(getReusableActionsInstance().isElementVisible(packageNameLocator,60))
 		{		
 		getReusableActionsInstance().getWhenReady(packageNameLocator, 20);

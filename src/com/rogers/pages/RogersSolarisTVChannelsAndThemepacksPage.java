@@ -50,7 +50,8 @@ public class RogersSolarisTVChannelsAndThemepacksPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(), 'have a 4k TV')] | //button[contains(@aria-label,'Add 4K') or contains(@aria-label,'4K')]/span")
 	WebElement btnAdd4kContent;
 
-	@FindBy(xpath = "//span[@translate='global.cta.bysSwapLaterContinue']")
+	//@FindBy(xpath = "//span[@translate='global.cta.bysSwapLaterContinue']")
+	@FindBy(xpath="//span[text()='Continue']")
 	WebElement btnExchangeLater;
 	//ins[@translate='global.cta.bysSwapLaterContinue']
 
