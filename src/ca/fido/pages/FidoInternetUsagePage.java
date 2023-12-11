@@ -4,6 +4,7 @@ import ca.fido.pages.base.BasePageClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -23,8 +24,9 @@ public class FidoInternetUsagePage extends BasePageClass {
 	public FidoInternetUsagePage(WebDriver driver) {
 		super(driver);}
 
-	@FindBy(xpath="//ins[@translate='global.label.dailyUsage']")
-	WebElement txtDailyUsage;
+
+		@FindBy(xpath = "//ins[@translate='global.label.dailyUsage']")
+		WebElement txtDailyUsage;
 
 	@FindBy(xpath="//div[@class='ct-chart ute-chart']")
 	WebElement txtDailyUsageChart;

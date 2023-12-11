@@ -24,13 +24,14 @@ WebElement termsAndConditionsSspFido;
 WebElement lnkUnsubscribe;
 
 @FindAll({
-		//@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditions']"),
-		@FindBy(xpath="//p[contains(text(),'This agreement authorizes Fido Solutions, operated by Rogers Communications Canada Inc')]"),
-		@FindBy(xpath="//p[contains(text(),'if there is any change to my/our account information')]"),
-		@FindBy(xpath="//p[text()='This authorization agreement may be cancelled at any time provided notice is received by Fido ']"),
-		@FindBy(xpath="//p[contains(text(),'I/We ')][2]"),
-		@FindBy(xpath="//p[contains(text(),'I/We ')][3]"),
-		@FindBy(xpath = "//p[contains(text(),'I/We ')][4]")
+		//@FindBy(xpath = "//div[@id='terms-conditions-scroll']"),
+		@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditions']"),
+		@FindBy(xpath="//p[contains(text(),'This agreement authorizes Fido Solutions, operated by Rogers Communications Canada Inc')]")
+		//@FindBy(xpath="//p[contains(text(),'if there is any change to my/our account information')]"),
+		//@FindBy(xpath="//p[text()='This authorization agreement may be cancelled at any time provided notice is received by Fido ']"),
+		//@FindBy(xpath="//p[contains(text(),'I/We ')][2]"),
+		//@FindBy(xpath="//p[contains(text(),'I/We ')][3]"),
+		//@FindBy(xpath = "//p[contains(text(),'I/We ')][4]")
 })
 	WebElement lnkPAC;
 
@@ -38,12 +39,11 @@ WebElement lnkUnsubscribe;
 @FindBy(xpath="//*[contains(@translate,'label.reviewConsent')]")
 WebElement chkConsentCheckbox;
 
-@FindAll({
-		@FindBy(xpath = "//label[(@for='agree-to-terms-and-conditions')]"),
-		@FindBy(xpath="//label[@ng-click='accepted()']"),
+
+		//@FindBy(xpath = "//label[(@for='agree-to-terms-and-conditions')]"),
+		//@FindBy(xpath="//label[@ng-click='accepted()']"),
 		@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditionsConsent2']")
-})
-WebElement chkConsentCheckboxPAC;
+       WebElement chkConsentCheckboxPAC;
 
 @FindBy(xpath="//input[@name='submit']")
 WebElement btnSubmit;
@@ -132,7 +132,7 @@ public void clkscrollToElement() {
 
 public void clkscrollToEndOfAgreement(){
 	reusableActions.waitForElementVisibility(lnkPAC,120);
-	reusableActions.executeJavaScriptClick(lnkPAC);
+	//reusableActions.executeJavaScriptClick(lnkPAC);
 	reusableActions.javascriptScrollByVisibleElement(lnkPAC);
 }
 
