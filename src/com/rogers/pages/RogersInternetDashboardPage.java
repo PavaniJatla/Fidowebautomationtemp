@@ -68,8 +68,11 @@ public class RogersInternetDashboardPage extends BasePageClass {
 	@FindBy(xpath = "//div[@id='terms-conditions']")
 	WebElement infoAgreement;
 
-	@FindBy(xpath = "//span[contains(text(),'Continue')]")
-	WebElement btnInternetChangeOK;
+@FindAll({
+		@FindBy(xpath = "//span[contains(text(),'Continue')]"),
+		@FindBy(xpath = "//button[@aria-label='Continue Ignite service upgrade.']")
+})
+	    WebElement btnInternetChangeOK;
 
 
 	@FindBy(xpath = "//a[contains(@aria-label, '1.5 Gbps')]/span/ancestor::div[@class='sai-vertical-tile-component']//div[@class='vertical-tile__internet']//label[contains(@title,'Add for $5')]")
@@ -386,6 +389,7 @@ public class RogersInternetDashboardPage extends BasePageClass {
 	 */
 	public void clkInternetChangeOK() {
 		getReusableActionsInstance().clickIfAvailable(btnInternetChangeOK, 30);
+		//getReusableActionsInstance().getWhenReady(btnInternetChangeOK, 30).click();
 		getReusableActionsInstance().staticWait(3000);
 	}
 
