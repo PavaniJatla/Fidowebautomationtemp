@@ -70,7 +70,7 @@ public class RogersInternetDashboardPage extends BasePageClass {
 
 @FindAll({
 		@FindBy(xpath = "//span[contains(text(),'Continue')]"),
-		@FindBy(xpath = "//button[@aria-label='Continue Ignite service upgrade.']")
+		@FindBy(xpath = "//button[@aria-label='Keep existing']")
 })
 	    WebElement btnInternetChangeOK;
 
@@ -389,7 +389,6 @@ public class RogersInternetDashboardPage extends BasePageClass {
 	 */
 	public void clkInternetChangeOK() {
 		getReusableActionsInstance().clickIfAvailable(btnInternetChangeOK, 30);
-		//getReusableActionsInstance().getWhenReady(btnInternetChangeOK, 30).click();
 		getReusableActionsInstance().staticWait(3000);
 	}
 

@@ -61,9 +61,9 @@ public class RogersCH_Auto_TC010_SolarisTVCx_TVPackageUpgradeTest extends BaseTe
         reporter.reportLogWithScreenshot("Launched the channels and themepacks page");
         getRogersSolarisTVChannelsAndThemepacksPage().clkContinueFromThemepacks();
         reporter.reportLogWithScreenshot("Launched the 4K enquiry popup");
-        getRogersSolarisTVChannelsAndThemepacksPage().clkYesIHave4K();
-        reporter.reportLogWithScreenshot("Launched the 4K Content popup");
-        getRogersSolarisTVChannelsAndThemepacksPage().clk4KContent();
+  //      getRogersSolarisTVChannelsAndThemepacksPage().clkYesIHave4K();
+//        reporter.reportLogWithScreenshot("Launched the 4K Content popup");
+//        getRogersSolarisTVChannelsAndThemepacksPage().clk4KContent();
         reporter.hardAssert(getRogersOrderReviewPage().verifyAgreement(),"Agreement has Launched","Agreement has not Launched");;
         getRogersOrderReviewPage().clkAcceptenceCheckboxUpdate();
         reporter.reportLogWithScreenshot("Agreement details");
