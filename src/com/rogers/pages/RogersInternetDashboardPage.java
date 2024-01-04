@@ -73,6 +73,8 @@ public class RogersInternetDashboardPage extends BasePageClass {
 		@FindBy(xpath = "//button[@aria-label='Keep existing']")
 })
 	    WebElement btnInternetChangeOK;
+@FindBy(xpath= "//button[@aria-label='Keep existing']")
+WebElement btnInternetcontinue;
 
 
 	@FindBy(xpath = "//a[contains(@aria-label, '1.5 Gbps')]/span/ancestor::div[@class='sai-vertical-tile-component']//div[@class='vertical-tile__internet']//label[contains(@title,'Add for $5')]")
@@ -238,6 +240,13 @@ public class RogersInternetDashboardPage extends BasePageClass {
 
 	}
 
+	public void clkChangeInternetPkg() {
+		getReusableActionsInstance().staticWait(2000);
+		By btnChangeIntPkg = By.xpath("(//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100'])[3]");
+				getReusableActionsInstance().getWhenReady(btnChangeIntPkg ,120).click();
+
+	}
+
 	/**
 	 * Click the Solaris Internet Badge on the Solaris account page
 	 *
@@ -389,6 +398,11 @@ public class RogersInternetDashboardPage extends BasePageClass {
 	 */
 	public void clkInternetChangeOK() {
 		getReusableActionsInstance().clickIfAvailable(btnInternetChangeOK, 30);
+		getReusableActionsInstance().staticWait(3000);
+	}
+
+	public void clkInternetchangebtn(){
+		getReusableActionsInstance().clickIfAvailable(btnInternetcontinue, 30);
 		getReusableActionsInstance().staticWait(3000);
 	}
 
