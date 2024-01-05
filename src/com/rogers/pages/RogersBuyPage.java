@@ -174,3 +174,5 @@ public class RogersBuyPage extends BasePageClass {
 	}
 
 	}
+	
+

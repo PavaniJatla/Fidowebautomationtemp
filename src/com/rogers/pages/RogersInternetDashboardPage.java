@@ -69,7 +69,7 @@ public class RogersInternetDashboardPage extends BasePageClass {
 	WebElement infoAgreement;
 
 @FindAll({
-		@FindBy(xpath = "//span[contains(text(),'Continue')]"),
+		@FindBy(xpath = "//button[@aria-label='Continue Ignite service upgrade.']"),
 		@FindBy(xpath = "//button[@aria-label='Keep existing']")
 })
 	    WebElement btnInternetChangeOK;

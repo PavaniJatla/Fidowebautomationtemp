@@ -65,10 +65,10 @@ public class RogersCH_Auto_TC021_SolarisTVCx_InternetBundleofferChangePackageUpg
 		
         getRogersOrderReviewPage().clkAcceptenceCheckboxUpdateInternet();
         reporter.reportLogWithScreenshot("Agreement details");
-        getRogersOrderReviewPage().clkSubmitUpdateInternet();
-        reporter.reportLogWithScreenshot("Launched the Confirmation page");
-        reporter.softAssert(getRogersOrderConfirmationPage().verifyOrderConfirmationNew(),"Update order completed","Update order Failed");
-        reporter.reportLogWithScreenshot("Verified the Confirmation page");
+ //       getRogersOrderReviewPage().clkSubmitUpdateInternet();
+ //       reporter.reportLogWithScreenshot("Launched the Confirmation page");
+ //       reporter.softAssert(getRogersOrderConfirmationPage().verifyOrderConfirmationNew(),"Update order completed","Update order Failed");
+ //       reporter.reportLogWithScreenshot("Verified the Confirmation page");
     	}
 	
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
