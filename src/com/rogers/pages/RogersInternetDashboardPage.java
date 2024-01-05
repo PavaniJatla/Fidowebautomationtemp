@@ -70,14 +70,17 @@ public class RogersInternetDashboardPage extends BasePageClass {
 
 @FindAll({
 		@FindBy(xpath = "//button[@aria-label='Continue Ignite service upgrade.']"),
-		@FindBy(xpath = "//button[@aria-label='Keep existing']")
+		@FindBy(xpath = "//a[@aria-label='Click to continue to change your internet package']")
 })
 	    WebElement btnInternetChangeOK;
 @FindBy(xpath= "//button[@aria-label='Keep existing']")
 WebElement btnInternetcontinue;
 
 
-	@FindBy(xpath = "//a[contains(@aria-label, '1.5 Gbps')]/span/ancestor::div[@class='sai-vertical-tile-component']//div[@class='vertical-tile__internet']//label[contains(@title,'Add for $5')]")
+//@FindAll({
+		//@FindBy(xpath = "//a[contains(@aria-label, '1.5 Gbps')]/span/ancestor::div[@class='sai-vertical-tile-component']//div[@class='vertical-tile__internet']//label[contains(@title,'Add for $5')]"),
+		@FindBy(xpath = "//button[@aria-label='Add undefined 1.5 Gbps to your cart']")
+//})
 	WebElement btnSmartstreamPack;
 
 	@FindBy(xpath = "//button[contains(@class,'-primary -large ng-star-inserted')]")
