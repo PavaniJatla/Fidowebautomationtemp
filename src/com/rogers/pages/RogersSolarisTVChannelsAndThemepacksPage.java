@@ -17,6 +17,9 @@ public class RogersSolarisTVChannelsAndThemepacksPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='tab-themepack']")
 	WebElement btnThemepacksTab;
 
+	@FindBy(xpath="//button[@id='tab-channel']")
+	WebElement btnChannelpackstab;
+
 	@FindBy(xpath = "//button[@aria-label='Add Prime Time Pack to cart']/span")
 	WebElement btnAddPrimePack;
 
@@ -99,9 +102,14 @@ public class RogersSolarisTVChannelsAndThemepacksPage extends BasePageClass {
 	@FindBy(xpath = "//button[@id='add-themepack-button']")
 	List<WebElement> addThemePackListOnManageChannelsAndThemePacks;
 
-	@FindBy(xpath="//button[contains(@aria-label,'Hollywood Suite')]")
+//	@FindBy(xpath="//button[contains(@aria-label,'Hollywood Suite')]")
+	@FindBy(xpath="//button[contains(@aria-label,'Add Sports Lite to cart')]")
 	WebElement addThemePackClassicTVThemePacks;
 	//h3[@class='themepack-detail__header']//span[contains(text(),'Classic TV & Movies')]/ancestor::div[@class='themepack-detail channels-container']//span[@translate='global.cta.add']/ancestor::button
+
+	@FindBy(xpath="//button[@aria-label='Add FAITHTV to cart']")
+	WebElement addChannelPackClassicTVChannelPacks;
+
 
 	@FindBy(xpath="//button[contains(@aria-label,'Prime Time Pack')]")
 	WebElement addThemePackClassicTVThemePacks4plus1;
@@ -111,7 +119,8 @@ public class RogersSolarisTVChannelsAndThemepacksPage extends BasePageClass {
 	WebElement yesContinueOnExistingChannelAlert;
 	//button[@class='ute-btn-primary ute-md']
 
-	@FindBy(xpath = "//span[@translate='global.cta.confirmChanges']")
+//	@FindBy(xpath = "//span[@translate='global.cta.confirmChanges']")
+	@FindBy(xpath="//a[@aria-label='Confirm Changes']")
 	WebElement clkConfirmChangesOnManageChannelsAndThemePacks;
 	//ins[@usertype-translate='global.cta.confirmChanges']
 
@@ -136,7 +145,13 @@ public class RogersSolarisTVChannelsAndThemepacksPage extends BasePageClass {
 		getReusableActionsInstance().staticWait(3000);
 		getReusableActionsInstance().waitForElementVisibility(addThemePackClassicTVThemePacks, 120);
 		getReusableActionsInstance().executeJavaScriptClick(addThemePackClassicTVThemePacks);
-	}		
+	}
+
+	public void clkAddButtononChannelPackListonManageChannelsAndThemePacks() {
+		getReusableActionsInstance().staticWait(3000);
+		getReusableActionsInstance().waitForElementVisibility(addChannelPackClassicTVChannelPacks,120);
+		getReusableActionsInstance().executeJavaScriptClick(addChannelPackClassicTVChannelPacks);
+	}
 	
 	/**
 	 * Click on add button of the first pack in theme pack in manage channels and theme pack
@@ -244,7 +259,15 @@ public class RogersSolarisTVChannelsAndThemepacksPage extends BasePageClass {
 		getReusableActionsInstance().javascriptScrollToTopOfPage();
 		getReusableActionsInstance().waitForElementTobeClickable(btnThemepacksTab, 180);
 		getReusableActionsInstance().executeJavaScriptClick(btnThemepacksTab);
-	}	
+	}
+
+
+	public void clkChannelPacks() {
+		getReusableActionsInstance().staticWait(5000);
+		getReusableActionsInstance().javascriptScrollToTopOfPage();
+		getReusableActionsInstance().waitForElementTobeClickable(btnChannelpackstab, 180);
+		getReusableActionsInstance().executeJavaScriptClick(btnChannelpackstab);
+	}
 	
 	/**
 	 * Add first theme pack

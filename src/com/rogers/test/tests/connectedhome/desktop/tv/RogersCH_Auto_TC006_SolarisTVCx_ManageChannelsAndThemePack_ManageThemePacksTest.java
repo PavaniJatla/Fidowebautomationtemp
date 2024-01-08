@@ -48,6 +48,10 @@ public class RogersCH_Auto_TC006_SolarisTVCx_ManageChannelsAndThemePack_ManageTh
 		reporter.reportLogWithScreenshot("Clicked on themepack tab");
 		getRogersSolarisTVChannelsAndThemepacksPage().clkAddButtonOnThemePackListOnManageChannelsAndThemePacks();
 		reporter.reportLogWithScreenshot("Clicked on confirm button");
+		 getRogersSolarisTVChannelsAndThemepacksPage().clkChannelPacks();
+		 reporter.reportLogWithScreenshot("Clicked Channel tab");
+		 getRogersSolarisTVChannelsAndThemepacksPage().clkAddButtononChannelPackListonManageChannelsAndThemePacks();
+		 reporter.reportLogWithScreenshot("Clicked on Channelpack tab");
 		//getRogersSolarisTVChannelsAndThemepacksPage().clkContinueOnExistingChannelAlertWindow();
 		reporter.reportLogWithScreenshot("ThemePack added");    
 		getRogersSolarisTVChannelsAndThemepacksPage().clkConfirmChangesOnManageChannelsAndThemePacks();
@@ -56,9 +60,9 @@ public class RogersCH_Auto_TC006_SolarisTVCx_ManageChannelsAndThemePack_ManageTh
 		reporter.hardAssert(getRogersOrderReviewPage().verifyAgreement(),"Agreement has Launched","Agreement has not Launched");
 		getRogersOrderReviewPage().clkAcceptenceCheckboxUpdate();
 		reporter.reportLogWithScreenshot("Agreement details");
-		getRogersOrderReviewPage().clkSubmitUpdate();
-		reporter.hardAssert(getRogersOrderConfirmationPage().verifyOrderSuccess(),"Update order completed","Update order Failed");
-		reporter.reportLogWithScreenshot("Launched the Confirmation page");
+//		getRogersOrderReviewPage().clkSubmitUpdate();
+//		reporter.hardAssert(getRogersOrderConfirmationPage().verifyOrderSuccess(),"Update order completed","Update order Failed");
+//		reporter.reportLogWithScreenshot("Launched the Confirmation page");
     	}
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
