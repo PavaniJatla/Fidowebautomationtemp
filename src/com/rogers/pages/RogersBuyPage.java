@@ -16,7 +16,7 @@ public class RogersBuyPage extends BasePageClass {
 	@FindBy(xpath = "//span[contains(text(),'Ignite Internet speed') or contains(text(),'Vitesse Internet Élan')]")
 	WebElement btnIgniteInternetSpeed;	
 
-	@FindBy(xpath = "//span[contains(text(),'Exchange Flex Channels') or contains(text(),'Échanger chaînes flexibles')]/ancestor::a")
+	@FindBy(xpath = "(//span[contains(text(),'Exchange Flex Channels') or contains(text(),'Échanger chaînes flexibles')]/ancestor::a)[2]")
 	WebElement btnExchangeFlexChannel;
 
 	@FindBy(xpath = "//label[@for='existingActiveAddress-1']")

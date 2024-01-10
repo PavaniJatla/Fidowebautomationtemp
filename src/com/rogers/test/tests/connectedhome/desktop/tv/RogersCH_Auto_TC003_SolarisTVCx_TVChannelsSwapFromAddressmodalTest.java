@@ -45,14 +45,16 @@ public class RogersCH_Auto_TC003_SolarisTVCx_TVChannelsSwapFromAddressmodalTest 
         getRogersLoginPage().clkSignInIFrame();
         getEnsVerifications().setVerificationCodeCH(TestDataHandler.tc01_02_03_IgniteTVAccount.getUsername());
         reporter.hardAssert(!getRogersLoginPage().verifyLoginFailMsgIframe(), "Login Successful", "Login Failed");
-        //getRogersAccountOverviewPage().selectAccount(TestDataHandler.tc01_02_03_IgniteTVAccount.accountDetails.getBan());
-       // reporter.reportLogWithScreenshot("Launched the Account Page");
-        getDriver().get(System.getProperty("QaUrl") + "/bundles");
+        getRogersAccountOverviewPage().selectAccount(TestDataHandler.tc01_02_03_IgniteTVAccount.accountDetails.getBan());
+        reporter.reportLogWithScreenshot("Launched the Account Page");
+ /*       getDriver().get(System.getProperty("QaUrl") + "/bundles");
         reporter.reportLogWithScreenshot("Launched the IgniteTV page");
         getRogersHomePage().clkServiceabilityMigration();
         reporter.reportLogWithScreenshot("Address confirmation popup has lanched to select Ignite Internet speed button");
         getRogersHomePage().selectAddressOnFile();
-        reporter.reportLogWithScreenshot("Select Address on file Radio Button");
+        reporter.reportLogWithScreenshot("Select Address on file Radio Button");*/
+        getRogersSolarisTVDashboardPage().clkTVBadge();
+        reporter.reportLogWithScreenshot("Launched the TV dash board");
         getRogersBuyPage().clkExchangeFlexChannel();
         reporter.reportLogWithScreenshot("TV channels pannel has displayed");
         getRogersSolarisChannelsExchangePage().verifyExchangeChannelPage();
