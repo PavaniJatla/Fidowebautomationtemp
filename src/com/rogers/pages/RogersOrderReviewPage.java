@@ -25,7 +25,8 @@ public class RogersOrderReviewPage extends BasePageClass {
 	@FindBy(xpath = "//h1[@translate='global.label.OrderReview']")
 	WebElement txtAgreementPageInternet;
 
-	@FindBy(xpath = "//span[contains(text(),'18')]//ancestor::div[contains(@class,'ds-checkbox')]| //label[@title='I understand that someone 18 years of age or older must be present to receive the equipment delivery.*']")
+	//@FindBy(xpath = "//span[contains(text(),'18')]//ancestor::div[contains(@class,'ds-checkbox')]| //label[@title='I understand that someone 18 years of age or older must be present to receive the equipment delivery.*']")
+	@FindBy(xpath="//label[@class='ds-checkboxLabel d-inline-flex align-items-start']")
 	WebElement chkageVerify;
 
 	@FindAll({

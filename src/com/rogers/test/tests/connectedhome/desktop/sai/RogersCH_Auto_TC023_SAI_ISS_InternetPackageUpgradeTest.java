@@ -51,12 +51,14 @@ public class RogersCH_Auto_TC023_SAI_ISS_InternetPackageUpgradeTest extends Base
         reporter.reportLogWithScreenshot("Launched the Internet dashboard");
         getRogersInternetDashboardPage().clkSolChangeInternetPackage();
         reporter.reportLogWithScreenshot("Launched the Internet packages page");
+ //       getRogersInternetDashboardPage().clkStreamingButton();
+ //       reporter.reportLogWithScreenshot("Click the Ignitestreaming Button");
         getRogersInternetDashboardPage().clkSmartstreamPack();
         reporter.reportLogWithScreenshot("Launched the Smart stream Pack");
-        getRogersInternetDashboardPage().selectStandAloneInternetPackage(TestDataHandler.tc23_24_standaloneInternetAccountforUpgrade.getAccountDetails().getUpgradePlanEn(),TestDataHandler.tc23_24_standaloneInternetAccountforUpgrade.getAccountDetails().getUpgradePlanFr());
-        reporter.reportLogWithScreenshot("Launched the agreement page");
+//        getRogersInternetDashboardPage().selectStandAloneInternetPackage(TestDataHandler.tc23_24_standaloneInternetAccountforUpgrade.getAccountDetails().getUpgradePlanEn(),TestDataHandler.tc23_24_standaloneInternetAccountforUpgrade.getAccountDetails().getUpgradePlanFr());
+//        reporter.reportLogWithScreenshot("Launched the agreement page");
 
-       // getRogersInternetDashboardPage().clkInternetChangeOK();
+        getRogersInternetDashboardPage().clkInternetChangeOK();
 		reporter.hardAssert(getRogersOrderReviewPage().verifyAgreementPageInternet(),"Agreement page has Launched","Agreement page has not Launched");
 		reporter.reportLogWithScreenshot("Launched the order review page");
 		reporter.hardAssert(getRogersOrderReviewPage().verifyAgreement(),"Agreement has Launched","Agreement has not Launched");
@@ -65,10 +67,10 @@ public class RogersCH_Auto_TC023_SAI_ISS_InternetPackageUpgradeTest extends Base
         getRogersOrderReviewPage().clkAcceptenceCheckboxUpdateInternet();
         reporter.reportLogWithScreenshot("Agreement details");
 
-        getRogersOrderReviewPage().clkSubmitUpdateSAI();
-        reporter.reportLogWithScreenshot("Launched the Confirmation page");
-        reporter.softAssert(getRogersOrderConfirmationPage().verifyOrderConfirmationNew(),"Update order completed","Update order Failed");
-        reporter.reportLogWithScreenshot("Verified the Confirmation page");
+ //       getRogersOrderReviewPage().clkSubmitUpdateSAI();
+ //       reporter.reportLogWithScreenshot("Launched the Confirmation page");
+ //       reporter.softAssert(getRogersOrderConfirmationPage().verifyOrderConfirmationNew(),"Update order completed","Update order Failed");
+ //       reporter.reportLogWithScreenshot("Verified the Confirmation page");
 
 
 

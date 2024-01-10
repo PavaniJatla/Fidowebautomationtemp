@@ -79,9 +79,12 @@ WebElement btnInternetcontinue;
 
 //@FindAll({
 		//@FindBy(xpath = "//a[contains(@aria-label, '1.5 Gbps')]/span/ancestor::div[@class='sai-vertical-tile-component']//div[@class='vertical-tile__internet']//label[contains(@title,'Add for $5')]"),
-		@FindBy(xpath = "//button[@aria-label='Add undefined 1.5 Gbps to your cart']")
+		@FindBy(xpath = "//button[@aria-label='Add Ignite Internet Gigabit 1.5 with Streaming 1.5 Gbps to your cart']")
 //})
 	WebElement btnSmartstreamPack;
+
+		@FindBy(xpath="(//label[@class='ds-checkboxLabel d-inline-flex align-items-start'])[4]")
+		WebElement btnIgniteStreaming;
 
 	@FindBy(xpath = "//button[contains(@class,'-primary -large ng-star-inserted')]")
 	WebElement btnSAInternetChangeOK;
@@ -416,6 +419,9 @@ WebElement btnInternetcontinue;
 	 */
 	public void clkSmartstreamPack() {
 		getReusableActionsInstance().getWhenReady(btnSmartstreamPack, 90).click();
+	}
+	public void clkStreamingButton() {
+		getReusableActionsInstance().getWhenReady(btnIgniteStreaming ,120).click();
 	}
 
 	/**

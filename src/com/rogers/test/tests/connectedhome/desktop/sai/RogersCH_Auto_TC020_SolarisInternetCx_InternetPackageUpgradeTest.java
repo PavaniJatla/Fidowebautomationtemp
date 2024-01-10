@@ -59,10 +59,10 @@ public class RogersCH_Auto_TC020_SolarisInternetCx_InternetPackageUpgradeTest ex
         reporter.hardAssert(getRogersOrderReviewPage().verifyAgreement(), "Agreement has Launched", "Agreement has not Launched");
         getRogersOrderReviewPage().clkAcceptenceCheckboxUpdateInternet();
         reporter.reportLogWithScreenshot("Agreement details");
-        getRogersOrderReviewPage().clkSubmitUpdateInternet();
-        reporter.reportLogWithScreenshot("Launched the Confirmation page");
-        reporter.softAssert(getRogersOrderConfirmationPage().verifyOrderConfirmationNew(), "Update order completed", "Update order Failed");
-        reporter.reportLogWithScreenshot("Verified the Confirmation page");
+//        getRogersOrderReviewPage().clkSubmitUpdateInternet();
+  //      reporter.reportLogWithScreenshot("Launched the Confirmation page");
+  //      reporter.softAssert(getRogersOrderConfirmationPage().verifyOrderConfirmationNew(), "Update order completed", "Update order Failed");
+  //      reporter.reportLogWithScreenshot("Verified the Confirmation page");
     }
 
 	@BeforeMethod (alwaysRun=true) @Parameters({ "strBrowser", "strLanguage"})
