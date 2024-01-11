@@ -138,6 +138,12 @@ public class InternetDashboardPage  extends BasePageClass {
 	@FindBy(xpath = "//span[text()='Change package' or text()='Changer de forfait']")
 	WebElement changePackageBtn;
 
+	@FindBy(xpath="(//span[@class='ds-selection__label ds-no-overflow text-body mb-0 w-100'])[2] ")
+	WebElement Productionbtn;
+
+	@FindBy(xpath="(//button[@class='ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration'])[2]")
+	WebElement btnProceed;
+
 	@FindBy(xpath="//p[contains(text(), 'Reached maximum')]")
 	WebElement maximumLimitReached;
 
@@ -585,6 +591,16 @@ public class InternetDashboardPage  extends BasePageClass {
 		getReusableActionsInstance().getWhenReady(changePackageBtn, 60);
 		getReusableActionsInstance().executeJavaScriptClick(changePackageBtn);
 
+	}
+
+	public void clkProductionbtn(){
+		getReusableActionsInstance().getWhenReady(Productionbtn,60);
+		getReusableActionsInstance().executeJavaScriptClick(Productionbtn);
+	}
+
+	public void clkProceedbtn(){
+		getReusableActionsInstance().getWhenReady(btnProceed,60);
+		getReusableActionsInstance().executeJavaScriptClick(btnProceed);
 	}
 
 	public void selectUpgradeInternetPlan(String upgradeBundle, String intPackage){

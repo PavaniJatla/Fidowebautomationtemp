@@ -42,7 +42,9 @@ public class RogersOrderReviewPage extends BasePageClass {
 
 	@FindBy(xpath = "//li[contains(text(),'819 994 6591')]")
 	WebElement lnkAgreementToEndExistingCustomer;	
-	
+
+
+
 	@FindBy(xpath = "//li[contains(text(),'819 994 6591')] | //a[contains(@aria-label,'priv.gc.ca/fr')]")
 	WebElement lnkAgreementToEnd;	
 	
@@ -325,6 +327,8 @@ public class RogersOrderReviewPage extends BasePageClass {
 		getReusableActionsInstance().javascriptScrollByVisibleElement(lnkAgreementToEndExistingCustomer);
 		getReusableActionsInstance().getWhenReady(clkChangeAcceptCheckboxUpdate, 90).click();
 	}
+
+
 
 	/**
 	 * Click on the Consent check box on the order review page

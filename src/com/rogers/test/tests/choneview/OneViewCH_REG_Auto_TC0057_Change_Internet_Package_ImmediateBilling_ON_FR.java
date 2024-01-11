@@ -27,20 +27,26 @@ public class OneViewCH_REG_Auto_TC0057_Change_Internet_Package_ImmediateBilling_
         reporter.reportLogWithScreenshot("switched to French Language");
         getAccountOverViewPage().selectInternetBadage();
         reporter.reportLogWithScreenshot("Internet Badge selected");
+        getInternetDashboardPage().clkProductionbtn();
+        reporter.reportLogWithScreenshot("Click Production button");
+        getInternetDashboardPage().clkProceedbtn();
+        reporter.reportLogWithScreenshot("Click Proceed button");
         getInternetDashboardPage().clickChangePackageButton();
         reporter.reportLogWithScreenshot("Change Internet Package clicked");
         getInternetDashboardPage().clickSelectbutton();
         reporter.reportLogWithScreenshot("Internet Package selected for upgrade");
         getInternetDashboardPage().clickContinue();
         reporter.reportLogWithScreenshot("Continue clicked on change Internet Package");
-        getRogersIgniteBundlesPage().clickExchangeLater();
+ //       getRogersIgniteBundlesPage().clickExchangeLater();
         getRogersIgniteBundlesPage().clkContinue();
-        getRogersIgniteBundlesPage().noTo4KTVPopup();
+ /*       getRogersIgniteBundlesPage().noTo4KTVPopup();
         getInternetDashboardPage().clickImmediateBill();
         reporter.reportLogWithScreenshot("select immediate bill");
         getInternetDashboardPage().clickContinueOnSelectDateChange();
-        reporter.reportLogWithScreenshot("Continue clicked");
-        //getRogersOVOrderReviewPage().clkSubmit();
+        reporter.reportLogWithScreenshot("Continue clicked");*/
+        reporter.hardAssert(getRogersOVOrderReviewPage().verifyOrderReviewHeader(),"Agreement has Launched","Agreement has not Launched");
+        getRogersOVOrderReviewPage().clkReview();
+     //   getRogersOVOrderReviewPage().clkSubmit();
         //reporter.hardAssert(getRogersOVOrderConfirmationPage().verifyOrder(),"Order Placed","Order Failed");
         //reporter.reportLogWithScreenshot("Order Placed");
     }
@@ -49,13 +55,13 @@ public class OneViewCH_REG_Auto_TC0057_Change_Internet_Package_ImmediateBilling_
     @Parameters({"strBrowser", "strLanguage"})
     public void beforeTest(@Optional("chrome") String strBrowser, @Optional("en") String strLanguage, ITestContext testContext, Method method) throws ClientProtocolException, IOException {
         // xmlTestParameters = new HashMap<String, String>(testContext.getCurrentXmlTest().getAllParameters());
-        startOVSession(System.getProperty("OVUrl"), strBrowser, strLanguage, RogersEnums.GroupName.connectedhome_oneview.toString().toLowerCase().trim(),"", "", "", "", method);
+        startOVSession(System.getProperty("OVUrl"), strBrowser, strLanguage, RogersEnums.GroupName.connectedhome_oneview.toString().toLowerCase().trim(),TestDataHandler.TC030_Internet_PackageUpgrade.getContactID(), TestDataHandler.TC030_Internet_PackageUpgrade.getAccountNo(), "Pavani.Jatla@rci.rogers.ca", "Pavani.Jatla", method);
     }
 
 
     @AfterMethod(alwaysRun = true)
     public void afterTest() {
-        //closeSession();
+        closeSession();
     }
 
 }

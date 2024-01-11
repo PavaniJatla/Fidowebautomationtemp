@@ -23,6 +23,9 @@ public class RogersOVOrderReviewPage  extends BasePageClass {
 	
 	@FindBy(xpath = "//span[@translate='global.cta.submit']/ancestor::button | //span[text()='Submit' or text()='Soumettre']/ancestor::button")
 	WebElement submitButton;
+
+	@FindBy(xpath="//h1[@translate='global.label.reviewYourOrder' or text()='Vérifier votre commande']")
+	WebElement OrderReviewHeader;
 	
 	@FindBy(xpath = "//span[text()='Campaign Codes' or text()='Codes de campagne']/ancestor::button")
 	WebElement campaignCodes;
@@ -121,6 +124,10 @@ public class RogersOVOrderReviewPage  extends BasePageClass {
 		getReusableActionsInstance().waitForElementVisibility(submitButton, 100);
 		getReusableActionsInstance().executeJavaScriptClick(submitButton);
 		getReusableActionsInstance().staticWait(10000);
+	}
+
+	public void clkReview(){
+		getReusableActionsInstance().waitForElementVisibility(OrderReviewHeader,120);
 	}
 	/**
 	 * Verify Monthly Charges Appear
