@@ -15,8 +15,12 @@ public class InternetDashboardPage  extends BasePageClass {
 		super(driver);
 	}
 
-	@FindBy(xpath = "//button[@class='a-btnPrimary ng-star-inserted'] | //span[text()='Continuer' or text()='Continue']/ancestor::button")
+	//@FindBy(xpath = "//button[@class='a-btnPrimary ng-star-inserted'] | //span[text()='Continuer' or text()='Continue']/ancestor::button")
+	@FindBy(xpath="(//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100'])[11]")
 	WebElement btnContnue;
+
+	@FindBy(xpath="(//span[@class='ds-button__copy text-button text-nowrap ds-no-overflow mw-100'])[5]")
+	WebElement Continuebtn;
 
 	@FindBy(xpath = "//div[@class='nsm-dialog success nsm-dialog-open']//preceding::i[@class='rch-icon']")
 	WebElement imgSuccess;
@@ -24,7 +28,9 @@ public class InternetDashboardPage  extends BasePageClass {
 	@FindBy(xpath = "//button[@class='a-btnPrimary ng-star-inserted']")
 	WebElement btnSuccessOk;
 
-	@FindBy(xpath = "(//span[@translate='global.cta.select']//ancestor::button)[2]")
+
+	//@FindBy(xpath = "(//span[@translate='global.cta.select']//ancestor::button)[2]")
+	@FindBy(xpath="(//button[contains(@class,'ds-button ds-corners ds-pointer text-center mw-100')])[3]")
 	WebElement packageName;
 
 	@FindBy(xpath = "//i[@class='li-loader']")
@@ -135,8 +141,14 @@ public class InternetDashboardPage  extends BasePageClass {
 	@FindBy(xpath="//span[@class='ds-icon d-inline-flex rds-icon-minus']/ancestor::button")
 	WebElement minusButtonToRemovePod;
 
-	@FindBy(xpath = "//span[text()='Change package' or text()='Changer de forfait']")
+	@FindBy(xpath = "(//button[contains(@class,'ds-button ds-corners')])[4]")
 	WebElement changePackageBtn;
+
+          // @FindAll({
+				  // @FindBy(xpath = "(//button[contains(@class, ' ds-pointer text-center mw-100 ')])[2]"),
+				   @FindBy(xpath = "//span[@translate='global.cta.loadOffer']//ancestor::button")
+		//   })
+	        WebElement Offersbutton;
 
 	@FindBy(xpath="(//span[@class='ds-selection__label ds-no-overflow text-body mb-0 w-100'])[2] ")
 	WebElement Productionbtn;
@@ -309,7 +321,11 @@ public class InternetDashboardPage  extends BasePageClass {
 	 * @author chinnarao.vattam
 	 */
 	public void clickContinue() {
-		getReusableActionsInstance().clickWhenReady(btnContnue,30);
+		getReusableActionsInstance().getWhenReady(btnContnue,30).click();
+	}
+
+	public void clickContinuebtn(){
+		getReusableActionsInstance().getWhenReady(Continuebtn,60).click();
 	}
 
 	/**
@@ -593,6 +609,12 @@ public class InternetDashboardPage  extends BasePageClass {
 
 	}
 
+	public void clkOffersbutton(){
+		getReusableActionsInstance().waitForElementVisibility(Offersbutton, 120);
+		getReusableActionsInstance().executeJavaScriptClick(Offersbutton);
+		getReusableActionsInstance().staticWait(1000);
+	}
+
 	public void clkProductionbtn(){
 		getReusableActionsInstance().getWhenReady(Productionbtn,60);
 		getReusableActionsInstance().executeJavaScriptClick(Productionbtn);
@@ -669,8 +691,9 @@ public class InternetDashboardPage  extends BasePageClass {
 	 * @author aditi.jain
 	 * */
 	public void clickSelectbutton() {
-//		getReusableActionsInstance().getWhenReady(packageName,60).click();
-		getReusableActionsInstance().waitForElementVisibility(packageName, 60);
+
+	//	getReusableActionsInstance().waitForElementVisibility(packageName, 60);
+		getReusableActionsInstance().getWhenReady(packageName,60);
 		getReusableActionsInstance().executeJavaScriptClick(packageName);
 	}
 

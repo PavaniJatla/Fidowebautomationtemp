@@ -18,6 +18,12 @@ public class OneViewCH_Auto_2557_TC02_Validate_Chargeable_Pods_Test extends Base
         getAccountOverViewPage().selectInternetBadage();
         reporter.reportLogWithScreenshot("select Internet Badge");
 
+        getInternetDashboardPage().clkProductionbtn();
+        reporter.reportLogWithScreenshot("Click Production button");
+
+        getInternetDashboardPage().clkProceedbtn();
+        reporter.reportLogWithScreenshot("Click Proceed button");
+
         getInternetDashboardPage().clickAddPodsButton();
         reporter.reportLogWithScreenshot("click AddPods Button ");
 
@@ -38,8 +44,8 @@ public class OneViewCH_Auto_2557_TC02_Validate_Chargeable_Pods_Test extends Base
         getInternetDashboardPage().clickCustomerUnderstandCheckbox();
         reporter.reportLogWithScreenshot("click Customer Understand Checkbox");
 
-        getRogersOVOrderReviewPage().clickSubmitOrder();
-        reporter.reportLogWithScreenshot("click Submit Order");
+//        getRogersOVOrderReviewPage().clickSubmitOrder();
+//        reporter.reportLogWithScreenshot("click Submit Order");
 
     }
 
@@ -47,11 +53,11 @@ public class OneViewCH_Auto_2557_TC02_Validate_Chargeable_Pods_Test extends Base
     @Parameters({"strBrowser","strLanguage"})
     public void beforeTest(@Optional("chrome")String strBrowser, @Optional("en")String strLanguage, ITestContext
             testContext, Method method)throws ClientProtocolException, IOException {
-        startOVSession(System.getProperty("OVUrl"),strBrowser,strLanguage, RogersEnums.GroupName.connectedhome_oneview.toString().toLowerCase().trim(),"","","","",method);
+        startOVSession(System.getProperty("OVUrl"),strBrowser,strLanguage, RogersEnums.GroupName.connectedhome_oneview.toString().toLowerCase().trim(),TestDataHandler.Chargeable_pods.getContactID(),TestDataHandler.Chargeable_pods.getAccountNo(),"Pavani.Jatla@rci.rogers.ca","Pavani.Jatla",method);
     }
 
     @AfterMethod(alwaysRun=true)
     public void afterTest(){
-        closeSession();
+        //closeSession();
     }
 }

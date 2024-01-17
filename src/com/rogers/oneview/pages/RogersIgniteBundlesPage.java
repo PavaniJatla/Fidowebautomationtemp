@@ -30,8 +30,14 @@ public class RogersIgniteBundlesPage extends BasePageClass{
 	@FindBy(xpath="//div[contains(@class,'ds-formField__inputContainer')]")
 	WebElement inputContainer;
 
-	@FindBy(xpath = "//span[text()='Continuer' or text()='Continue']/ancestor::button")
+	//FindBy(xpath = "//span[text()='Continuer' or text()='Continue']/ancestor::button")
+	//@FindBy(xpath="(//span[text()='Continuer' or text()='Continue'])[2]")
+	@FindBy(xpath="(//span[@translate='global.cta.continue'])[2]")
 	WebElement continueButton;
+
+	@FindBy(xpath="//label[@for='ds-radio-input-id-1']")
+	WebElement btnImmediate;
+
 
 	@FindBy(xpath = "//span[@translate='global.modals.serviceability.ptm.iHaveReviewed']//following::button")
 	WebElement continueReviewButton;
@@ -687,6 +693,11 @@ public class RogersIgniteBundlesPage extends BasePageClass{
 		getReusableActionsInstance().javascriptScrollToBottomOfPage();
 		getReusableActionsInstance().executeJavaScriptClick(continueButton);
 	}
+	public void clkImmediatebtn(){
+		getReusableActionsInstance().clickIfAvailable(btnImmediate,60);
+		getReusableActionsInstance().executeJavaScriptClick(btnImmediate);
+	}
+
 
 	/**
 	 * Click Continue Button after Address availability

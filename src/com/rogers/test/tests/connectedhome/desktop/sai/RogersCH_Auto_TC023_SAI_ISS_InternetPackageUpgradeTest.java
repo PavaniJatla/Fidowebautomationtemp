@@ -51,8 +51,8 @@ public class RogersCH_Auto_TC023_SAI_ISS_InternetPackageUpgradeTest extends Base
         reporter.reportLogWithScreenshot("Launched the Internet dashboard");
         getRogersInternetDashboardPage().clkSolChangeInternetPackage();
         reporter.reportLogWithScreenshot("Launched the Internet packages page");
- //       getRogersInternetDashboardPage().clkStreamingButton();
- //       reporter.reportLogWithScreenshot("Click the Ignitestreaming Button");
+       getRogersInternetDashboardPage().clkStreamingButton();
+        reporter.reportLogWithScreenshot("Click the Ignitestreaming Button");
         getRogersInternetDashboardPage().clkSmartstreamPack();
         reporter.reportLogWithScreenshot("Launched the Smart stream Pack");
 //        getRogersInternetDashboardPage().selectStandAloneInternetPackage(TestDataHandler.tc23_24_standaloneInternetAccountforUpgrade.getAccountDetails().getUpgradePlanEn(),TestDataHandler.tc23_24_standaloneInternetAccountforUpgrade.getAccountDetails().getUpgradePlanFr());

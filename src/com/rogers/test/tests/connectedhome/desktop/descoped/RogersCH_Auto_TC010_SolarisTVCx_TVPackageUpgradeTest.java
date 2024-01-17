@@ -37,7 +37,8 @@ public class RogersCH_Auto_TC010_SolarisTVCx_TVPackageUpgradeTest extends BaseTe
 	 @Test(groups = {"RegressionCH","TVPlanUpgardeCH"})
     public void rogersCH_Auto_TC010_SolarisTVCx_TVPackageUpgrade()
     {
-        reporter.reportLogWithScreenshot("Launched the SignIn popup");
+        reporter.reportLogWithScreenshot("Launched the SignIn popup");getRogersSolarisTVDashboardPage().clkTVBadge();
+        reporter.reportLogWithScreenshot("Launched the TV dash board");
         getRogersLoginPage().setUsernameIFrame(TestDataHandler.tc14_SolarisTVAccountFlex5Package.getUsername());
         getRogersLoginPage().clkContinueInBrowser();
         getRogersLoginPage().setPasswordIFrame(TestDataHandler.tc14_SolarisTVAccountFlex5Package.getPassword());
@@ -46,8 +47,7 @@ public class RogersCH_Auto_TC010_SolarisTVCx_TVPackageUpgradeTest extends BaseTe
         reporter.hardAssert(!getRogersLoginPage().verifyLoginFailMsgIframe(),"Login Successful","Login Failed");
         getRogersAccountOverviewPage().selectAccount(TestDataHandler.tc14_SolarisTVAccountFlex5Package.accountDetails.getBan());
         reporter.reportLogWithScreenshot("Launched the Account Page");
-        getRogersSolarisTVDashboardPage().clkTVBadge();
-        reporter.reportLogWithScreenshot("Launched the TV dash board");
+
         getRogersSolarisTVDashboardPage().clkChangeTVPackage();
         reporter.reportLogWithScreenshot("Launched the TV packages page");
         getRogersSolarisTVDashboardPage().selectSolarisTVPackage(TestDataHandler.tc10_SolarisTVAccountForUpgrade.accountDetails.getUpgradePlanEn(),TestDataHandler.tc10_SolarisTVAccountForUpgrade.accountDetails.getUpgradePlanFr());

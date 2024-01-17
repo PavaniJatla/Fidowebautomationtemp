@@ -33,11 +33,15 @@ public class OneViewCH_REG_Auto_TC0057_Change_Internet_Package_ImmediateBilling_
         reporter.reportLogWithScreenshot("Click Proceed button");
         getInternetDashboardPage().clickChangePackageButton();
         reporter.reportLogWithScreenshot("Change Internet Package clicked");
+
+        getInternetDashboardPage().clkOffersbutton();
+        reporter.reportLogWithScreenshot("Click Offers Button");
         getInternetDashboardPage().clickSelectbutton();
         reporter.reportLogWithScreenshot("Internet Package selected for upgrade");
         getInternetDashboardPage().clickContinue();
         reporter.reportLogWithScreenshot("Continue clicked on change Internet Package");
  //       getRogersIgniteBundlesPage().clickExchangeLater();
+        getRogersIgniteBundlesPage().clkImmediatebtn();
         getRogersIgniteBundlesPage().clkContinue();
  /*       getRogersIgniteBundlesPage().noTo4KTVPopup();
         getInternetDashboardPage().clickImmediateBill();
@@ -46,7 +50,7 @@ public class OneViewCH_REG_Auto_TC0057_Change_Internet_Package_ImmediateBilling_
         reporter.reportLogWithScreenshot("Continue clicked");*/
         reporter.hardAssert(getRogersOVOrderReviewPage().verifyOrderReviewHeader(),"Agreement has Launched","Agreement has not Launched");
         getRogersOVOrderReviewPage().clkReview();
-     //   getRogersOVOrderReviewPage().clkSubmit();
+    //  getRogersOVOrderReviewPage().clkSubmit();
         //reporter.hardAssert(getRogersOVOrderConfirmationPage().verifyOrder(),"Order Placed","Order Failed");
         //reporter.reportLogWithScreenshot("Order Placed");
     }
@@ -61,7 +65,7 @@ public class OneViewCH_REG_Auto_TC0057_Change_Internet_Package_ImmediateBilling_
 
     @AfterMethod(alwaysRun = true)
     public void afterTest() {
-        closeSession();
+        //closeSession();
     }
 
 }
