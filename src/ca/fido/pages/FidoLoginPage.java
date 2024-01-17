@@ -68,6 +68,9 @@ public class FidoLoginPage extends BasePageClass {
 	@FindBy(xpath = "//button[@title='Select to sign in to Fido My Account']")
 	WebElement btnLogIn;
 
+	@FindBy(xpath="//button[@title='Continue to sign in to Fido My Account']")
+	WebElement Continuebtn;
+
 	@FindAll({
 	@FindBy(xpath = "(//a[ @class = 'primary-link right-spec'])[02]"),
 	@FindBy(xpath = "//button[@title='Skip']/span")})
@@ -302,6 +305,11 @@ public class FidoLoginPage extends BasePageClass {
 				reusableActions.getWhenReady(btnContinue).click();
 			}
 		}
+	}
+
+	public void clkContinuebtn(){
+		reusableActions.getWhenReady(Continuebtn,60).click();
+		reusableActions.staticWait(3000);
 	}
 
 	/**

@@ -8,6 +8,10 @@ public class AccountData {
 	private AccountDetails accountDetails;
 	private String newUsername; 
 	private String newPassword;
+
+	private String accountAlias;
+
+	private String subscriptionAlias;
 	private String email;
 	public String usernamePay;
 	public String usernameUsage;
@@ -224,5 +228,21 @@ public class AccountData {
 	 */
 	public void setUsernameUsage(String usernameUsage) {
 		this.usernameUsage = usernameUsage;
+	}
+
+	public String getAccountAlias() {
+		return accountAlias;
+	}
+
+	public void setAccountAlias(String accountAlias) {
+		this.accountAlias = accountAlias;
+	}
+
+	public String getSubscriptionAlias() {
+		return subscriptionAlias;
+	}
+
+	public void setSubscriptionAlias(String subscriptionAlias) {
+		this.subscriptionAlias = subscriptionAlias;
 	}
 }

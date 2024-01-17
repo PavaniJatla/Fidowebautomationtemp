@@ -178,7 +178,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//span[@translate='onboarding-module.close']")
 	WebElement btnCloseAccountSetupProgress;
 
-	@FindBy(xpath = "//h1[@translate='global.label.profile']")
+	//@FindBy(xpath = "//h1[@translate='global.label.profile']")
+	@FindBy(xpath="(//span[text()='Contact & Billing'])[2]")
 	WebElement lblHeaderProfileAndSettings;
 
 	@FindBy(xpath = "//button/ins[@translate='global.cta.viewTransactions']")
@@ -274,7 +275,8 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath = "//fss-app-alert//a[contains(@title,'Make payment') or contains(@title,'Effectuer un paiement')]")
 	WebElement  lnkMakePaymentCLMNotification;
 
-	@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Profile & Settings' or @data-text='Profil et paramètres']")
+	//@FindBy(xpath = "//dsa-subnav-desktop//span[@data-text='Profile & Settings' or @data-text='Profil et paramètres']")
+	@FindBy(xpath="//dsa-subnav-desktop//span[@data-text='Settings' ]")
 	WebElement subNavProfileAndSettings;
 
 	@FindBy(xpath = "//h2[text()=' SORRY! ']")
@@ -1504,7 +1506,7 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				if (reusableActions.isElementVisible(tempErrorHeader)){
 					reusableActions.clickWhenReady(tempErrorClose);
 				}
-				reusableActions.waitForElementVisibility(lblHeaderProfileAndSettings,60);
+				reusableActions.getWhenReady(lblHeaderProfileAndSettings,60).click();
 				if(reusableActions.isElementVisible(lblHeaderProfileAndSettings))
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));

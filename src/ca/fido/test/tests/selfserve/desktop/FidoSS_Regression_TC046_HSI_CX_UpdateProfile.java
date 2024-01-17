@@ -26,7 +26,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 	
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() throws InterruptedException {
-		closeSession();
+	//	closeSession();
 	}
 	
 
@@ -36,6 +36,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 		//getFidohomepage().clkLogin();
 		//getFidologinpage().switchToSignInFrame();
 		getFidologinpage().setUsernameInFrame(TestDataHandler.tc4246.getUsername());
+		getFidologinpage().clkContinuebtn();
 		getFidologinpage().setPasswordInFrame(TestDataHandler.tc4246.getPassword());
 		getReporter().reportLogWithScreenshot("Login Credential is entered.");
 		getFidologinpage().clkLoginInFrame();

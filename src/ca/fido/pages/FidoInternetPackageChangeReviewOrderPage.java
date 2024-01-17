@@ -23,27 +23,20 @@ WebElement termsAndConditionsSspFido;
 @FindBy(xpath="//li[contains(text(),'819 994 6591')]")
 WebElement lnkUnsubscribe;
 
-@FindAll({
-		//@FindBy(xpath = "//div[@id='terms-conditions-scroll']"),
-		@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditions']"),
-		@FindBy(xpath="//p[contains(text(),'This agreement authorizes Fido Solutions, operated by Rogers Communications Canada Inc')]")
-		//@FindBy(xpath="//p[contains(text(),'if there is any change to my/our account information')]"),
-		//@FindBy(xpath="//p[text()='This authorization agreement may be cancelled at any time provided notice is received by Fido ']"),
-		//@FindBy(xpath="//p[contains(text(),'I/We ')][2]"),
-		//@FindBy(xpath="//p[contains(text(),'I/We ')][3]"),
-		//@FindBy(xpath = "//p[contains(text(),'I/We ')][4]")
-})
-	WebElement lnkPAC;
+@FindBy(xpath ="//p[contains(text(),'I/we may contact my/our financial institution or visit www.cdnpay.ca.')]")
+   	WebElement lnkPAC;
 
 
 @FindBy(xpath="//*[contains(@translate,'label.reviewConsent')]")
 WebElement chkConsentCheckbox;
 
 
-		//@FindBy(xpath = "//label[(@for='agree-to-terms-and-conditions')]"),
-		//@FindBy(xpath="//label[@ng-click='accepted()']"),
-		@FindBy(xpath = "//ins[@translate='global.label.preAuthChequingTermsConditionsConsent2']")
-       WebElement chkConsentCheckboxPAC;
+
+
+@FindAll({
+@FindBy(xpath = "//label[(@for='agree-to-terms-and-conditions')]"),
+	@FindBy(xpath="//ins[@translate='global.label.preAuthChequingTermsConditionsConsent2']")})
+	WebElement chkConsentCheckboxPAC;
 
 @FindBy(xpath="//input[@name='submit']")
 WebElement btnSubmit;
@@ -105,6 +98,8 @@ public void chkConsentCheckbox() {
 }
 
 public void chkConsentCheckboxPAC() {
+	reusableActions.scrollToElement(chkConsentCheckboxPAC);
+	reusableActions.waitForElementVisibility(chkConsentCheckboxPAC,60);
 	reusableActions.getWhenReady(chkConsentCheckboxPAC).click();
 }
 /**
@@ -130,9 +125,10 @@ public void clkscrollToElement() {
 	reusableActions.javascriptScrollByVisibleElement(lnkUnsubscribe);
 }
 
+
+
 public void clkscrollToEndOfAgreement(){
 	reusableActions.waitForElementVisibility(lnkPAC,120);
-	//reusableActions.executeJavaScriptClick(lnkPAC);
 	reusableActions.javascriptScrollByVisibleElement(lnkPAC);
 }
 
