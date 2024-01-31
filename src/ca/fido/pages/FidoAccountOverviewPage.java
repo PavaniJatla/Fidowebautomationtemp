@@ -182,6 +182,9 @@ public class FidoAccountOverviewPage extends BasePageClass {
 	@FindBy(xpath="(//span[text()='Contact & Billing'])[2]")
 	WebElement lblHeaderProfileAndSettings;
 
+	@FindBy(xpath="(//a[@aria-label='My Account Profile Go to my account profile page'])[2]")
+	WebElement lblMyAccountProfile;
+
 	@FindBy(xpath = "//button/ins[@translate='global.cta.viewTransactions']")
 	WebElement btnViewTransaction;
 
@@ -1511,6 +1514,38 @@ public class FidoAccountOverviewPage extends BasePageClass {
 				{
 					System.out.println("Profile and settings click successful in attempt: "+(count+1));
 					clickSuccess=true;				
+					break;
+
+				}
+				count++;
+			}
+		}catch (StaleElementReferenceException e) {
+			String exceptionName[] = e.getClass().getCanonicalName().split("\\.");
+			throw new WebDriverException("Failed due to  " + exceptionName[exceptionName.length - 1] + " on the \""
+					+ Thread.currentThread().getStackTrace()[2].getMethodName() + "\"" + " action method");
+		}
+
+	}
+
+	public void clkSubNavProfileAndSettings1() {
+		boolean clickSuccess=false;
+		int count=0;
+		try {
+			while (count<=3 && !clickSuccess) {
+				System.out.println("Attempt: "+(count+1)+" Profile and settings click");
+				reusableActions.waitForElementTobeClickable(subNavProfileAndSettings, 60);
+				// buffer static wait added to handle anomalies on firefox
+				reusableActions.staticWait(4000);
+				reusableActions.scrollToElement(subNavProfileAndSettings,40,0);
+				reusableActions.getWhenReady(subNavProfileAndSettings,60).click();
+				if (reusableActions.isElementVisible(tempErrorHeader)){
+					reusableActions.clickWhenReady(tempErrorClose);
+				}
+				reusableActions.getWhenReady(lblMyAccountProfile,60).click();
+				if(reusableActions.isElementVisible(lblMyAccountProfile))
+				{
+					System.out.println("Profile and settings click successful in attempt: "+(count+1));
+					clickSuccess=true;
 					break;
 
 				}

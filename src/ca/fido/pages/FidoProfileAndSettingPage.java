@@ -1,12 +1,18 @@
 package ca.fido.pages;
 
 import ca.fido.pages.base.BasePageClass;
+import ca.fido.testdatamanagement.TestDataHandler;
+import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.testng.TestException;
 
+import java.io.IOException;
 import java.util.Hashtable;
+
+import static ca.fido.test.base.BaseTestClass.*;
 
 public class FidoProfileAndSettingPage extends BasePageClass {
 	
@@ -91,19 +97,24 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//*[@id=\"billing-address-modal\"]//h2[@class='modal-title']']")
 	WebElement lblChangeAddressModalHeaderTitle;
 
-	@FindBy(xpath = "//*[@id=\"contactInfoSection\"]//div[@class='row fds-row contact-email-row']")
+	//@FindBy(xpath = "//*[@id=\"contactInfoSection\"]//div[@class='row fds-row contact-email-row']")
+	@FindBy(xpath="//ss-contact-info//button[@title='Learn more about this email address']//ancestor::p//parent::div/div")
 	WebElement divEmailAddress;
 	
-	@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Mobile phone:' or text()='Téléphone mobile :']//ancestor::div[@class='row fds-row']")
+	//@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Mobile phone:' or text()='Téléphone mobile :']//ancestor::div[@class='row fds-row']")
+	@FindBy(xpath="(//ss-contact-info//div[text()='Mobile phone']//parent::div/following-sibling::div)[1]//div[contains(@class,'overflow-break')]")
 	WebElement divMobilePhone;
 	
-	@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Home phone:' or text()='Téléphone résidentiel :']//ancestor::div[@class='row fds-row']")
+	//@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Home phone:' or text()='Téléphone résidentiel :']//ancestor::div[@class='row fds-row']")
+	@FindBy(xpath="(//ss-contact-info//div[text()='Home phone']//parent::div/following-sibling::div)[1]//div[contains(@class,'overflow-break')]")
 	WebElement divHomePhone;
 	
-	@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Business phone:' or text()='Téléphone professionnel :']//ancestor::div[@class='row fds-row']")
+	//@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Business phone:' or text()='Téléphone professionnel :']//ancestor::div[@class='row fds-row']")
+	@FindBy(xpath="(//ss-contact-info//div[text()='Business number']//parent::div/following-sibling::div)[1]//div[contains(@class,'overflow-break')]")
 	WebElement divBusinessPhone;
 	
-	@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Language:' or text()='Langue :']//ancestor::div[@class='row fds-row']")
+	//@FindBy(xpath = "//*[@id='contactInfoSection']//label[text()='Language:' or text()='Langue :']//ancestor::div[@class='row fds-row']")
+	@FindBy(xpath="(//ss-contact-info//div[text()='Language']//parent::div/following-sibling::div)[1]//div[contains(@class,'overflow-break')]")
 	WebElement divLanguage;
 	
 	//verified, the xpath can work both for EN and Fr.
@@ -128,14 +139,29 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//button//span[text()='BILLING SETTINGS']")
 	WebElement paneBillingSettingsMobile;
 	
-	@FindBy(id="mobilePhone")
+	//@FindBy(id="mobilePhone")
+	@FindBy(xpath = "(//button[@title='Add preferred contact mobile phone'])[1]")
 	WebElement txtMobilePhone;
 	
-	@FindBy(id="new-email")
+	//@FindBy(id="new-email")
+	@FindBy(xpath="(//ss-profile-security-settings//div[@class='label-text text-semi col-sm-6 col-md-12 py-24 pl-12'])[1]")
 	WebElement txtUserName;
+
+	@FindBy(xpath="(//div[@class='label-text text-semi col-sm-6 col-md-12 py-24 pl-12'])[2]")
+	WebElement txtPassword;
+
+	@FindBy(xpath="//button[@title='Update My Account username']")
+	WebElement updateUsernamebtn;
 	
 	@FindBy(id="confirm-email")
 	WebElement txtConfirmUserName;
+
+	@FindBy(xpath="//span[text()='Continue']")
+	WebElement continueBtn;
+
+	@FindBy(xpath="//p[text()='Before you start, we need to first verify your identity.']")
+		WebElement confirmText;
+
 	
 	@FindBy(xpath = "//input[@id='current-password']")
 	WebElement txtCurrentPassword;
@@ -149,7 +175,8 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(id="emailAddress")
 	WebElement txtEmail;
 	
-	@FindBy(id="homePhone")
+//	@FindBy(id="homePhone")
+	@FindBy(xpath="//input[@id='homePhone']")
 	WebElement txtHomePhone;
 	
 	@FindBy(id="businessPhone")
@@ -173,7 +200,8 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	@FindBy(xpath = "//div[@id='contactInfoSection']//p")
 	WebElement lblContactPrefUpdateRights;
 	
-	@FindBy(xpath = "//fidoss-billing-info//p")
+	//@FindBy(xpath = "//fidoss-billing-info//p")
+	@FindBy(xpath="//ss-billing-settings//div[text()='Billing address']")
 	WebElement lblBillingAddressUpdateRightsInfo;
 	
 	//For the pop up when there has api error.
@@ -325,7 +353,34 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void clkUpdateBillingAddress() {
-		reusableActions.getWhenReady(lnkUpdateBillingAddress, 20).click();
+		WebElement updatebillingAddress=getDriver().findElement(By.xpath("//button[@title='Update preferred billing address']"));
+		reusableActions.executeJavaScriptClick(updatebillingAddress);
+		reusableActions.isElementVisible(confirmText,30);
+		getDriver().switchTo().frame(0);
+	   WebElement continueBtn=getDriver().findElement(By.xpath("//span[text()='Continue']"));
+		reusableActions.executeJavaScriptClick(continueBtn);
+	/*	String strEmail= TestDataHandler.tc4246.getEmail();
+		try {
+           getEnsverifications().getEmailVerifyPage(strEmail);
+		   String recoverycode= getFidoprofileandsettingpage()
+
+
+		} catch (ClientProtocolException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
+
+        //	WebElement continueBtn1=getDriver().findElement(By.xpath("//span[text()='Continue']"));
+	//	reusableActions.executeJavaScriptClick(continueBtn1);
+	//	WebElement newAddress=getDriver().findElement(By.xpath("//span[text()='New billing address']"));
+	//	reusableActions.executeJavaScriptClick(newAddress);
+	//	reusableActions.getWhenReady(continueBtn,60);
+	//	reusableActions.executeJavaScriptClick(continueBtn);
+	/*	reusableActions.getWhenReady(By.xpath("//button[@title='Continue to the next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Submit']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();*/
+	//	reusableActions.getWhenReady(lnkUpdateBillingAddress, 20).click();
 		
 	}
 	
@@ -483,6 +538,43 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	public boolean verifySubscriberAccountBillingAddressSection() {
 		return reusableActions.isElementVisible(lblBillingAddressUpdateRightsInfo);
 	}
+
+	public boolean verifyUserName(){
+		return reusableActions.isElementVisible(txtUserName);
+	}
+
+	public void updateUsername(){
+		WebElement updateUsername=getDriver().findElement(By.xpath("//button[@title='Update My Account username']"));
+		reusableActions.executeJavaScriptClick(updateUsername);
+		WebElement userName =getDriver().findElement(By.xpath("//input[@title='Enter your new username.']"));
+		reusableActions.executeJavaScriptClick(userName);
+		reusableActions.getWhenReady(By.xpath("//input[@title='Enter your new username.']")).sendKeys("fidonet12456@mailinator.com");
+		reusableActions.getWhenReady(By.xpath("//button[@title='Select to continue.']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Select to confirm and proceed to the next step.']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Continue to next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();
+		//reusableActions.getWhenReady(updateUsernamebtn,60);
+		//reusableActions.executeJavaScriptClick(updateUsernamebtn);
+	}
+
+	public boolean verifyPassword(){
+		return reusableActions.isElementVisible(txtPassword);
+	}
+
+	public void updatePassword(){
+		WebElement updatePassword=getDriver().findElement(By.xpath("//button[@title='Update My Account password']"));
+		reusableActions.executeJavaScriptClick(updatePassword);
+		WebElement password =getDriver().findElement(By.xpath("//input[@id='currentPassword']"));
+		reusableActions.executeJavaScriptClick(password);
+		reusableActions.getWhenReady(By.xpath("//input[@id='currentPassword']")).sendKeys("rogers123");
+		reusableActions.getWhenReady(By.xpath("//button[@title='Select to proceed to next step.']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Select to confirm and proceed to the next step.']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Continue to next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();
+
+	}
+
+
 	
 	/**
 	 * Gets the old contact details into a HasTable
@@ -494,6 +586,12 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 		dict.put("email", this.getEmail());
 		dict.put("mobilePhone", this.getMobilePhone());
 		dict.put("homePhone", this.getHomePhone());
+		reusableActions.javascriptScrollByCoordinates(0,400);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 		dict.put("businessPhone", this.getBusinessPhone());
 		dict.put("language", reusableActions.getWhenVisible(divLanguage).getText().trim());
 		
@@ -535,7 +633,12 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author Mirza.Kamran
 	 */
 	public String getBusinessPhone() {
-		return reusableActions.getWhenVisible(divBusinessPhone).getText().trim();
+
+	String businessPhone=	getDriver().findElement(By.xpath("(//ss-contact-info//div[text()='Business phone']//parent::div/following-sibling::div)[1]//div[contains(@class,'overflow-break')]")).getText().trim();
+	System.out.println(businessPhone);
+	return businessPhone;
+		//return reusableActions.getWhenReady(divBusinessPhone).getText().trim();
+
 	}
 	
 	
@@ -545,8 +648,16 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setEmail(String strNewEmail) {
-		reusableActions.getWhenVisible(txtEmail).clear();
-		reusableActions.getWhenVisible(txtEmail).sendKeys(strNewEmail);
+		WebElement updateEmail=getDriver().findElement(By.xpath("//button[contains(@title,'Update preferred contact email address')]"));
+		reusableActions.executeJavaScriptClick(updateEmail);
+		WebElement emailId =getDriver().findElement(By.xpath("//input[@id='email']"));
+		reusableActions.executeJavaScriptClick(emailId);
+		reusableActions.getWhenReady(By.xpath("//input[@id='email']")).sendKeys(strNewEmail);
+		reusableActions.getWhenReady(By.xpath("//button[@title='Continue to the next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Submit']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();
+		/*reusableActions.getWhenVisible(txtEmail).clear();
+		reusableActions.getWhenVisible(txtEmail).sendKeys(strNewEmail);*/
 	}
 	
 	/**
@@ -556,10 +667,24 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 */
 	public void setMobilePhone(String strMobilePhoneNum) {
 		//for Chrome
-		reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+
+		WebElement updateMobilephone=getDriver().findElement(By.xpath("//button[@title='Update preferred contact mobile phone']"));
+		reusableActions.executeJavaScriptClick(updateMobilephone);
+		WebElement currentMobilephn=getDriver().findElement(By.xpath("//ds-modal//span[text()='Current mobile phone: ']"));
+		reusableActions.scrollToElement(currentMobilephn,0,50);
+		WebElement mobilePhone =getDriver().findElement(By.xpath("//input[@id='mobilePhone']"));
+		reusableActions.executeJavaScriptClick(mobilePhone);
+	    reusableActions.getWhenReady(By.xpath("//input[@id='mobilePhone']")).sendKeys(strMobilePhoneNum);
+		clkContinueSubmitDone();
+	/*	reusableActions.getWhenVisible(txtMobilePhone, 30).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		//add for Firefox
 		reusableActions.getWhenVisible(txtMobilePhone).clear();			
-		reusableActions.getWhenVisible(txtMobilePhone).sendKeys(strMobilePhoneNum);
+		reusableActions.getWhenVisible(txtMobilePhone).sendKeys(strMobilePhoneNum);*/
+	}
+	public void clkContinueSubmitDone(){
+		reusableActions.getWhenReady(By.xpath("//button[@title='Continue to the next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Submit']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();
 	}
 	
 	/**
@@ -595,8 +720,16 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setHomePhone(String strHomePhoneNum) {
-		reusableActions.getWhenVisible(txtHomePhone, 30).clear();
-		reusableActions.getWhenVisible(txtHomePhone).sendKeys(strHomePhoneNum);
+		WebElement updateHomephone=getDriver().findElement(By.xpath("//button[@title='Add preferred contact home phone' or @title='Update preferred contact home phone']"));
+		reusableActions.executeJavaScriptClick(updateHomephone);
+		WebElement homePhone =getDriver().findElement(By.xpath("//label[@for='homePhone']"));
+		reusableActions.executeJavaScriptClick(homePhone);
+		reusableActions.getWhenReady(By.xpath("//input[@id='homePhone']")).sendKeys(strHomePhoneNum);
+		reusableActions.getWhenReady(By.xpath("//button[@title='Continue to the next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Submit']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();
+		//reusableActions.getWhenVisible(txtHomePhone, 30).clear();
+	//	reusableActions.getWhenVisible(txtHomePhone).sendKeys(strHomePhoneNum);
 	}
 	
 	/**
@@ -605,8 +738,16 @@ public class FidoProfileAndSettingPage extends BasePageClass {
 	 * @author ning.xue
 	 */
 	public void setBusinessPhone(String strBusinessPhoneNum) {
-		reusableActions.getWhenVisible(txtBusinessPhone, 30).clear();
-		reusableActions.getWhenVisible(txtBusinessPhone).sendKeys(strBusinessPhoneNum);
+		WebElement updateBusinessPhoneNum=getDriver().findElement(By.xpath("//button[@title='Update preferred contact business phone']"));
+		reusableActions.executeJavaScriptClick(updateBusinessPhoneNum);
+		WebElement businessPhone =getDriver().findElement(By.xpath("//input[@id='businessPhone']"));
+		reusableActions.executeJavaScriptClick(businessPhone);
+		reusableActions.getWhenReady(By.xpath("//input[@id='businessPhone']")).sendKeys(strBusinessPhoneNum);
+		reusableActions.getWhenReady(By.xpath("//button[@title='Continue to the next step']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Submit']")).click();
+		reusableActions.getWhenReady(By.xpath("//button[@title='Done']")).click();
+	//	reusableActions.getWhenVisible(txtBusinessPhone, 30).clear();
+	//	reusableActions.getWhenVisible(txtBusinessPhone).sendKeys(strBusinessPhoneNum);
 	}
 	
 	/**

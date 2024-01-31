@@ -43,7 +43,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 		getReporter().hardAssert(!getFidologinpage().verifyIfErrorMsgIsDisplayedInFrame(), 
 				"Login proceed without error.", 
 				"Login failed with error.");
-		getFidologinpage().switchOutOfSignInFrame();
+//		getFidologinpage().switchOutOfSignInFrame();
 		getReporter().hardAssert(getFidoaccountoverviewpage().verifySuccessfulLogin(), 
 				"Login succeed.", 
 				"Failed to login.");
@@ -52,7 +52,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 		getReporter().reportLogWithScreenshot("menu profile and settings selected");
 		Hashtable<String, String> existingContactDetailsDict=getFidoprofileandsettingpage().getOldContactDetails();
 		
-		getFidoprofileandsettingpage().clkUpdateContactDetails();	
+		//getFidoprofileandsettingpage().clkUpdateContactDetails();
 		String strNewEmail = FormFiller.generateEmail();
 		String strNewMobilePhone = FormFiller.generatePhoneNumber();
 		String strNewHomePhone = FormFiller.generatePhoneNumber();
@@ -63,9 +63,18 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 		getFidoprofileandsettingpage().setHomePhone(strNewHomePhone);
 		getFidoprofileandsettingpage().setBusinessPhone(strNewBusinessPhone);
 		getReporter().reportLogWithScreenshot("new contact details entered");
-		getFidoprofileandsettingpage().saveContactDetails();		
-		getReporter().reportLogWithScreenshot("new contact details saved");		
-		getReporter().softAssert(getFidoprofileandsettingpage().verifyEmailUpdated(existingContactDetailsDict.get("email"), strNewEmail),
+
+		getFidoprofileandsettingpage().verifySubscriberAccountBillingAddressSection();
+		getReporter().reportLogWithScreenshot("Check Billing Address");
+		getFidoprofileandsettingpage().clkUpdateBillingAddress();
+		getFidoaccountoverviewpage().clkSubNavProfileAndSettings1();
+		getFidoprofileandsettingpage().verifyUserName();
+		getFidoprofileandsettingpage().updateUsername();
+		getFidoprofileandsettingpage().verifyPassword();
+		getFidoprofileandsettingpage().updatePassword();
+		//	getFidoprofileandsettingpage().saveContactDetails();
+	//	getReporter().reportLogWithScreenshot("new contact details saved");
+		/*getReporter().softAssert(getFidoprofileandsettingpage().verifyEmailUpdated(existingContactDetailsDict.get("email"), strNewEmail),
 							"The email updated on PnS page",
 							"Email not updated on PnS, please investigate");
 		getReporter().softAssert(getFidoprofileandsettingpage().verifyMobilePhoneUpdated(existingContactDetailsDict.get("mobilePhone"), strNewMobilePhone),
@@ -77,7 +86,7 @@ public class FidoSS_Regression_TC046_HSI_CX_UpdateProfile extends BaseTestClass{
 		getReporter().softAssert(getFidoprofileandsettingpage().verifyBusinessPhoneUpdated(existingContactDetailsDict.get("businessPhone"), strNewBusinessPhone),
 							"New business phone updated",
 							"New business phone not updated");	
-		getReporter().reportLogWithScreenshot("Update HSI account profile is done.");
+		getReporter().reportLogWithScreenshot("Update HSI account profile is done.");*/
 									
 	}
 

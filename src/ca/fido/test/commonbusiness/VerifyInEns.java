@@ -176,7 +176,9 @@ public class VerifyInEns{
 
 		BaseTestClass.getEnsnoteviewpage().clkMenuNotifViewer();
 		BaseTestClass.getEnsnoteviewpage().clkBtnSearchNotification();
+		baseTestClass.setImplicitWait(baseTestClass.getDriver(),2);
 		BaseTestClass.getEnsnoteviewpage().clkLnkHtmlForEmailVerify(strAccountId);
+		baseTestClass.setImplicitWait(baseTestClass.getDriver(),2);
 		BaseTestClass.getEnsnoteviewpage().switchToNewTab(2);
 	}
 
